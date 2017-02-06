@@ -190,7 +190,7 @@ function showVerifyError(verifyErrorList)
         {
             msg += verifyErrorList[i].msg + "\n";
         }
-        layer.msg(msg)
+        alert(msg)
     }
 }
 

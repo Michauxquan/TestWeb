@@ -27,7 +27,16 @@
 <div class="box">
 @Html.Partial("_menu")
 <div id="memberR">
-<h2 id="memberRT">验证身份</h2>
+    <div style="border-bottom: solid 2px #ccc; padding-bottom:5px;">
+        <div class="left">
+            <img src="../images/baseimg/banner.png"/>
+        </div>
+        <div class="left pLeft10">
+            <h2 id="memberRT" class="cblock">验证身份</h2>
+            <span class="font10">身份验证通过之后才可进行下步操作</span>
+        </div>
+        <div class="clear"></div>
+    </div>
 
 <div class="step">
 <ul>
@@ -56,6 +65,26 @@
               <tr>
                 <th align="right">&nbsp;</th>
                 <td><a href="javascript:verifyPassword()" class="greenBT" style="font-size:14px; padding:3px 20px;">提交</a></td>
+              </tr>
+            </table>
+         </form>
+        }
+        else if (Model.Mode == "safepassword")
+        {
+          <form name="verifySafePasswordForm" action="">
+            <input type="hidden" name="act" value="@Model.Action"/>
+            <table width="600" border="0" cellpadding="0" cellspacing="0" class="memberTable">
+              <tr>
+                <th height="50" align="right">登陆密码：<br /></th>
+                <td><input type="password" name="safepassword" class="text left" maxlength="15" style="width:180px;" /></td>
+              </tr>
+              <tr>
+                <th height="50" align="right">验证码：</th>
+                <td><input type="text" name="verifyCode" value="" class="text left" maxlength="15" style="width:180px;" /><img onclick="this.src='/tool/verifyimage?time=' + new Date()" src="/tool/verifyimage" alt="验证码" style="cursor:pointer;width:100px; margin-left:10px;height:32px; float:left;"></td>
+              </tr>
+              <tr>
+                <th align="right">&nbsp;</th>
+                <td><a href="javascript:verifySafePassword()" class="greenBT" style="font-size:14px; padding:3px 20px;">提交</a></td>
               </tr>
             </table>
          </form>

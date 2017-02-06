@@ -22,3 +22,11 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Chi
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.PayPlugin.ChinaBank\obj\Release\OWZX.PayPlugin.ChinaBank.dll
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.PayPlugin.ChinaBank\obj\Release\OWZX.PayPlugin.ChinaBank.pdb
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.PayPlugin.ChinaBank\obj\Release\OWZX.PayPlugin.ChinaBank.csprojResolveAssemblyReference.cache
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.ChinaBank\db.config
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.ChinaBank\plugin.config
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.ChinaBank\views\adminchinabank\config.cshtml
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.ChinaBank\OWZX.PayPlugin.ChinaBank.dll
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.ChinaBank\OWZX.PayPlugin.ChinaBank.pdb
+G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.PayPlugin.ChinaBank\obj\Release\OWZX.PayPlugin.ChinaBank.csprojResolveAssemblyReference.cache
+G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.PayPlugin.ChinaBank\obj\Release\OWZX.PayPlugin.ChinaBank.dll
+G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.PayPlugin.ChinaBank\obj\Release\OWZX.PayPlugin.ChinaBank.pdb

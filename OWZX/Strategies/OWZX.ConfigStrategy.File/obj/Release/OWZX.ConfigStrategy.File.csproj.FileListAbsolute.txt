@@ -15,3 +15,8 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.ConfigStrategy.Fi
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.ConfigStrategy.File\obj\Release\OWZX.ConfigStrategy.File.csprojResolveAssemblyReference.cache
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.ConfigStrategy.File\obj\Release\OWZX.ConfigStrategy.File.dll
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.ConfigStrategy.File\obj\Release\OWZX.ConfigStrategy.File.pdb
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.ConfigStrategy.File.dll
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.ConfigStrategy.File.pdb
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.ConfigStrategy.File\obj\Release\OWZX.ConfigStrategy.File.csprojResolveAssemblyReference.cache
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.ConfigStrategy.File\obj\Release\OWZX.ConfigStrategy.File.dll
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.ConfigStrategy.File\obj\Release\OWZX.ConfigStrategy.File.pdb

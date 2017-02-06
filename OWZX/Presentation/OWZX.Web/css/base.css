@@ -11,6 +11,7 @@ textarea,input{ word-wrap:break-word; word-break:break-all; padding:0px;}
 ul,ol,li { list-style-type:none;}
 img{ border:0 none;}
 a:hover{ color:#d23335;}
+ 
 a:link, a:visited{ text-decoration:none; color:#666;}
 a { outline:none;color:#000;}
 h1{ font-size:24px;}
@@ -26,6 +27,18 @@ s{text-decoration:none;}
 .clear{ clear:both;}
 .left{ float:left;}
 .right{ float:right;}
+.bold{ font-weight: bold;}
+.cblock{ color: #000;}
+.font10{ font-size: 10px;}
+.pLeft10{ padding-left: 10px;}
+.pLeft20{ padding-left: 20px;}
+.pRight10{ padding-right: 10px;}
+.pRight20{ padding-right: 20px;}
+.mLeft10{ margin-left:  10px;}
+.mLeft20{margin-left: 20px;} 
+.mRight10{ margin-right: 10px;}
+.mRight20{ margin-right: 20px;}
+.mRight40{ margin-right: 40px;}
 html body .show{ display:block;}
 .bigBox{ width:100%; text-align:center;}
 .box{ width:1000px; margin:0 auto; text-align:left;}
@@ -34,7 +47,8 @@ html body .Fred{ color:#E4393C;}
 .borDDD{ border:1px solid #DDD;}
 html body .redBT{padding: 1px 10px;background: #e03033;color: #FFF;border: 1px solid #c5272c;}
 html body .whiteBT{padding: 1px 10px;background: #FFF;color: #666;border: 1px solid #ddd;}
-html body .greenBT{padding: 1px 10px;background: #f0f9ea;color: #333;border: 1px solid #bfd6af;}
+html body .greenBT{padding: 1px 10px;background: #FF6B6B;color: #FFF;border: 1px solid #FF6B6B;}
+html body .greenBT:hover{background: #E4393C;}
 html body .grayBT{padding: 1px 10px;background: #f5f5f5;color: #333;border: 1px solid #ddd;}
 input[type="button"], input[type="submit"] {
     cursor: pointer;
@@ -47,7 +61,7 @@ input[type="button"], input[type="submit"] {
 #headerBar a:hover{ color:#d23335;}
 #headerBar .box{ position:relative;}
 #headerBar .headerLink{ position:absolute; right:0; top:0;}
-
+#imglogo{ width:1000px;margin:0 auto;text-align:center;height:74px; overflow:hidden;display: block; }
 .headerAD{ padding-top:10px; position:relative;}
 .headerAD .close{ position:absolute; right:0px; top:10px; background:#FFF; border:1px solid #DDD; display:block; width:20px; height:20px; line-height:16px; font-size:14px; text-align:center; background:#333; color:#FFF;}
 .headerAD .close:hover{ background:#FFF; color:#333;}
@@ -143,11 +157,11 @@ height:36px;margin-top:10px; margin-left:94px;
 
 
 /*导航*/
-/*#nav{ background:#da383a;}*/
-#navs {background: #cc0000;}
+/*#nav{ background:#da383a;} #cc0000*/
+#navs {background: #e4393c;}
 
 #navItme{ width:1000px;margin:0 auto;text-align:center;height:45px; overflow:hidden;display: block; }
-#navItme  li{ display:inline-block;width:166px;}
+#navItme  li{ display:inline-block;width:136px;}
 #navItme  li a{
     width:100%;
     color: #fff;

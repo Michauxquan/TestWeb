@@ -25,7 +25,33 @@ function verifyPassword() {
         }
     })
 }
+///安全密码修改
+function verifySafePassword() {
+    var verifyPasswordForm = document.forms["verifySafePasswordForm"];
 
+    var act = verifyPasswordForm.elements["act"].value;
+    var password = verifyPasswordForm.elements["safepassword"].value;
+    var verifyCode = verifyPasswordForm.elements["verifyCode"].value;
+
+    if (password.length == 0) {
+        alert("请输入密码");
+        return;
+    }
+    if (verifyCode.length == 0) {
+        alert("请输入验证码");
+        return;
+    }
+
+    $.post("/ucenter/verifysafepassword?act=" + act, { 'password': password, 'verifyCode': verifyCode }, function (data) {
+        var result = eval("(" + data + ")");
+        if (result.state == "success") {
+            window.location.href = result.content;
+        }
+        else {
+            alert(result.content)
+        }
+    })
+}
 //发送验证手机短信
 function sendVerifyMobile() {
     $.get("/ucenter/sendverifymobile", function (data) {
@@ -112,7 +138,38 @@ function updatePassword() {
         }
     })
 }
+//更新密码
+function updateSafePassword() {
+    var updatePasswordForm = document.forms["updateSafePasswordForm"];
 
+    var v = updatePasswordForm.elements["v"].value;
+    var password = updatePasswordForm.elements["safepassword"].value;
+    var confirmPwd = updatePasswordForm.elements["confirmsafePwd"].value;
+    var verifyCode = updatePasswordForm.elements["verifyCode"].value;
+
+    if (password.length == 0) {
+        alert("请输入密码");
+        return;
+    }
+    if (password != confirmPwd) {
+        alert("两次输入的密码不一样");
+        return;
+    }
+    if (verifyCode.length == 0) {
+        alert("请输入验证码");
+        return;
+    }
+
+    $.post("/ucenter/updatesafepassword?v=" + v, { 'password': password, 'confirmPwd': confirmPwd, 'verifyCode': verifyCode }, function (data) {
+        var result = eval("(" + data + ")");
+        if (result.state == "success") {
+            window.location.href = result.content;
+        }
+        else {
+            alert(result.content);
+        }
+    })
+}
 //发送更新手机确认短信
 function sendUpdateMobile() {
     var updateMobileForm = document.forms["updateMobileForm"];

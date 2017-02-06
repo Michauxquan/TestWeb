@@ -20,6 +20,7 @@ namespace OWZX.Core
         private int _paycredits;//支付积分
         private int _rankcredits;//等级积分
         private int _verifyemail;//是否验证邮箱
+        private int _verifysafepassword;//是否验证安全吗
         private int _verifymobile;//是否验证手机
         private DateTime _liftbantime = new DateTime(1900, 1, 1);//解禁时间
         private string _salt;//盐值
@@ -125,6 +126,15 @@ namespace OWZX.Core
             get { return _rankcredits; }
             set { _rankcredits = value; }
         }
+        /// <summary>
+        /// //已改动
+        /// </summary>
+        public int VerifySafePassWord
+        {
+            get { return _verifysafepassword; }
+            set { _verifysafepassword = value; }
+        }
+
         /// <summary>
         /// 是否验证邮箱
         /// </summary>

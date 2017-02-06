@@ -13,3 +13,8 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.SessionStrategy.A
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Release\OWZX.SessionStrategy.AspNetCache.dll
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Release\OWZX.SessionStrategy.AspNetCache.pdb
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Release\OWZX.SessionStrategy.AspNetCache.csprojResolveAssemblyReference.cache
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.SessionStrategy.AspNetCache.dll
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.SessionStrategy.AspNetCache.pdb
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Release\OWZX.SessionStrategy.AspNetCache.csprojResolveAssemblyReference.cache
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Release\OWZX.SessionStrategy.AspNetCache.dll
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Release\OWZX.SessionStrategy.AspNetCache.pdb

@@ -15,3 +15,8 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.AsynStrategy.Thre
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.AsynStrategy.ThreadPool\obj\Release\OWZX.AsynStrategy.ThreadPool.csprojResolveAssemblyReference.cache
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.AsynStrategy.ThreadPool\obj\Release\OWZX.AsynStrategy.ThreadPool.dll
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.AsynStrategy.ThreadPool\obj\Release\OWZX.AsynStrategy.ThreadPool.pdb
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.AsynStrategy.ThreadPool.dll
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.AsynStrategy.ThreadPool.pdb
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.AsynStrategy.ThreadPool\obj\Release\OWZX.AsynStrategy.ThreadPool.csprojResolveAssemblyReference.cache
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.AsynStrategy.ThreadPool\obj\Release\OWZX.AsynStrategy.ThreadPool.dll
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.AsynStrategy.ThreadPool\obj\Release\OWZX.AsynStrategy.ThreadPool.pdb

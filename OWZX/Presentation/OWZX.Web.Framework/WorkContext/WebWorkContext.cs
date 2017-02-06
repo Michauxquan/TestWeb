@@ -40,7 +40,7 @@ namespace OWZX.Web.Framework
         public string Avatar;//用户头像
 
         public string Password;//用户密码
-
+        public string SafePassword;//已改动
         public string EncryptPwd;//加密密码
 
         public string PayCreditName;//支付积分名称
