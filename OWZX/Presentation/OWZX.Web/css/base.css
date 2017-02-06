@@ -45,6 +45,9 @@ html body .show{ display:block;}
 html body .Fblue{ color:#005AA0;}
 html body .Fred{ color:#E4393C;}
 .borDDD{ border:1px solid #DDD;}
+.textindent5 {
+    text-indent: 5px;
+}
 html body .redBT{padding: 1px 10px;background: #e03033;color: #FFF;border: 1px solid #c5272c;}
 html body .whiteBT{padding: 1px 10px;background: #FFF;color: #666;border: 1px solid #ddd;}
 html body .greenBT{padding: 1px 10px;background: #FF6B6B;color: #FFF;border: 1px solid #FF6B6B;}

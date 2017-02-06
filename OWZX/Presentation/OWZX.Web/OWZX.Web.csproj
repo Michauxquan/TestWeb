@@ -643,6 +643,9 @@
     <Content Include="views\home\down.cshtml" />
     <Content Include="views\ucenter\accountdetail.cshtml" />
     <Content Include="views\ucenter\changerecord.cshtml" />
+    <Content Include="views\ucenter\userdefault.cshtml" />
+    <Content Include="views\ucenter\userbank.cshtml" />
+    <Content Include="views\ucenter\loginlimit.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

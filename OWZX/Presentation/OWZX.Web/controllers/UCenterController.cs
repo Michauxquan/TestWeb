@@ -827,6 +827,35 @@ namespace OWZX.Web.Controllers
         {
             return View(WorkContext.PartUserInfo);
         }
+
+        /// <summary>
+        /// 我的银行
+        /// </summary>
+        public ActionResult UserBank()
+        {
+            return View(WorkContext.PartUserInfo);
+        }
+
+        public ActionResult LoginLimit()
+        {
+            UserInfoModel model = new UserInfoModel();
+            model.UserInfo = Users.GetUserById(WorkContext.Uid);
+            RegionInfo regionInfo = Regions.GetRegionById(model.UserInfo.RegionId);
+            if (regionInfo != null)
+            {
+                ViewData["provinceId"] = regionInfo.ProvinceId;
+                ViewData["cityId"] = regionInfo.CityId;
+                ViewData["countyId"] = regionInfo.RegionId;
+            }
+            else
+            {
+                ViewData["provinceId"] = -1;
+                ViewData["cityId"] = -1;
+                ViewData["countyId"] = -1;
+            }
+            return View(WorkContext.PartUserInfo);
+        }
+
         #endregion
         protected sealed override void OnAuthorization(AuthorizationContext filterContext)
         {
