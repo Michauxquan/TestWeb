@@ -19,4 +19,3 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.LogStrategy.Txt.d
 D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.LogStrategy.Txt.pdb
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.LogStrategy.Txt\obj\Debug\OWZX.LogStrategy.Txt.dll
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.LogStrategy.Txt\obj\Debug\OWZX.LogStrategy.Txt.pdb
-D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.LogStrategy.Txt\obj\Debug\OWZX.LogStrategy.Txt.csprojResolveAssemblyReference.cache

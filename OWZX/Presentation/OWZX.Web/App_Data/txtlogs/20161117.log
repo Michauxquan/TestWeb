@@ -1,0 +1,3 @@
+Log Entry : 2016年11月17日 18:31:21
+方法:Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean),异常信息:输入字符串的格式不正确。
+------------------------------------

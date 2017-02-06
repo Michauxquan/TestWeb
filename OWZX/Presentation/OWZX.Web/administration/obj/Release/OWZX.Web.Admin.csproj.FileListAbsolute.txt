@@ -12,3 +12,8 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.Web.Admin.pdb
 D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\obj\Release\OWZX.Web.Admin.csprojResolveAssemblyReference.cache
 D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\obj\Release\OWZX.Web.Admin.dll
 D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\obj\Release\OWZX.Web.Admin.pdb
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.Web.Admin.dll
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.Web.Admin.pdb
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\administration\obj\Release\OWZX.Web.Admin.csprojResolveAssemblyReference.cache
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\administration\obj\Release\OWZX.Web.Admin.dll
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\administration\obj\Release\OWZX.Web.Admin.pdb

@@ -1,0 +1,21 @@
+Log Entry : 2016年11月01日 11:25:08
+方法:Void <Execute>b__1(),异常信息:未将对象引用设置到对象的实例。
+------------------------------------
+Log Entry : 2016年11月01日 11:42:39
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\views\draw\rechargelist.cshtml(35): error CS1001: 应输入标识符
+------------------------------------
+Log Entry : 2016年11月01日 11:43:05
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\views\draw\rechargelist.cshtml(35): error CS1001: 应输入标识符
+------------------------------------
+Log Entry : 2016年11月01日 16:45:56
+方法:System.Data.DataColumn GetDataColumn(System.String),异常信息:列“utitle”不属于表 Table。
+------------------------------------
+Log Entry : 2016年11月01日 16:46:08
+方法:System.Data.DataColumn GetDataColumn(System.String),异常信息:列“atitle”不属于表 Table。
+------------------------------------
+Log Entry : 2016年11月01日 16:53:42
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:关键字 'LEFT' 附近有语法错误。
+------------------------------------
+Log Entry : 2016年11月01日 16:55:29
+方法:System.Data.DataColumn GetDataColumn(System.String),异常信息:列“atitle”不属于表 Table。
+------------------------------------

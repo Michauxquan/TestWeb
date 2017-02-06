@@ -27,7 +27,16 @@
 <div class="box">
 @Html.Partial("_menu")
 <div id="memberR">
-<h2 id="memberRT">修改信息</h2>
+    <div style="border-bottom: solid 2px #ccc; padding-bottom:5px;">
+        <div class="left">
+            <img src="../images/baseimg/banner.png"/>
+        </div>
+        <div class="left pLeft10">
+            <h2 id="memberRT" class="cblock">修改信息</h2>
+            <span class="font10">所填写信息不能为空</span>
+        </div>
+        <div class="clear"></div>
+    </div>
 
 <div class="step">
 <ul>
@@ -60,6 +69,30 @@
               <tr>
                 <th align="right">&nbsp;</th>
                 <td><a href="javascript:updatePassword()" class="greenBT" style="font-size:14px; padding:3px 20px;">提交</a></td>
+              </tr>
+            </table>
+         </form>
+        }
+        @if (Model.Action == "updatesafepassword")
+        {
+          <form name="updateSafePasswordForm" action="">
+            <input type="hidden" name="v" value="@Model.V"/>
+            <table width="600" border="0" cellpadding="0" cellspacing="0" class="memberTable">
+              <tr>
+                <th height="50" align="right">新安全密码：<br /></th>
+                <td><input type="password" name="safepassword" class="text left" style="width:180px;" /></td>
+              </tr>
+              <tr>
+                <th height="50" align="right">确认密码：<br /></th>
+                <td><input type="password" name="confirmsafePwd" class="text left" style="width:180px;" /></td>
+              </tr>
+              <tr>
+                <th height="50" align="right">验证码：</th>
+                <td><input type="text" name="verifyCode" value="" class="text left" style="width:180px;" /><img onclick="this.src='/tool/verifyimage?time=' + new Date()" src="/tool/verifyimage" alt="验证码" style="cursor:pointer;width:100px; margin-left:10px;height:32px; float:left;"></td>
+              </tr>
+              <tr>
+                <th align="right">&nbsp;</th>
+                <td><a href="javascript:updateSafePassword()" class="greenBT" style="font-size:14px; padding:3px 20px;">提交</a></td>
               </tr>
             </table>
          </form>

@@ -1,0 +1,219 @@
+Log Entry : 2017年02月05日 21:49:38
+控制器：OWZX.Web.Controllers.UCenterController;异常信息：System.Web.HttpCompileException (0x80004005): g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\views\shared\_header.cshtml(22): error CS1955: 不能像使用方法那样使用不可调用的成员“OWZX.Web.Framework.WebWorkContext.NickName”。
+   在 System.Web.Compilation.AssemblyBuilder.Compile()
+   在 System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   在 System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   在 System.Web.Compilation.BuildManager.GetObjectFactory(String virtualPath, Boolean throwIfNotFound)
+   在 OWZX.Web.Framework.ThemeBuildManagerViewEngine.FileExists(ControllerContext controllerContext, String virtualPath) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeBuildManagerViewEngine .cs:行号 15
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.GetPathFromGeneralName(ControllerContext controllerContext, String[] viewLocationFormats, String name, String controllerName, String theme, String cacheKey, String[]& searchedLocations) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 155
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.GetPath(ControllerContext controllerContext, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 119
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.FindThemePartialView(ControllerContext controllerContext, String partialViewName, Boolean useCache) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 233
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.FindPartialView(ControllerContext controllerContext, String partialViewName, Boolean useCache) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 64
+   在 System.Web.Mvc.ViewEngineCollection.<>c__DisplayClass8.<FindPartialView>b__6(IViewEngine e)
+   在 System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
+   在 System.Web.Mvc.ViewEngineCollection.FindPartialView(ControllerContext controllerContext, String partialViewName)
+   在 System.Web.Mvc.HtmlHelper.FindPartialView(ViewContext viewContext, String partialViewName, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   在 System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
+   在 ASP._Page_views_ucenter_userinfo_cshtml.Execute() 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\views\ucenter\userinfo.cshtml:行号 29
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.RunPage()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   在 System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+------------------------------------
+Log Entry : 2017年02月05日 21:50:13
+控制器：OWZX.Web.Controllers.HomeController;异常信息：System.Web.HttpParseException (0x80004005): “:”在代码块开头无效。只有标识符、关键字、注释、“(”和“{”才有效。
+
+   在 System.Web.WebPages.Razor.RazorBuildProvider.EnsureGeneratedCode()
+   在 System.Web.WebPages.Razor.RazorBuildProvider.get_CodeCompilerType()
+   在 System.Web.Compilation.BuildProvider.GetCompilerTypeFromBuildProvider(BuildProvider buildProvider)
+   在 System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   在 System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   在 System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   在 System.Web.Compilation.BuildManager.GetObjectFactory(String virtualPath, Boolean throwIfNotFound)
+   在 OWZX.Web.Framework.ThemeBuildManagerViewEngine.FileExists(ControllerContext controllerContext, String virtualPath) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeBuildManagerViewEngine .cs:行号 15
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.GetPathFromGeneralName(ControllerContext controllerContext, String[] viewLocationFormats, String name, String controllerName, String theme, String cacheKey, String[]& searchedLocations) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 155
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.GetPath(ControllerContext controllerContext, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 119
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.FindThemePartialView(ControllerContext controllerContext, String partialViewName, Boolean useCache) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 233
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.FindPartialView(ControllerContext controllerContext, String partialViewName, Boolean useCache) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 64
+   在 System.Web.Mvc.ViewEngineCollection.<>c__DisplayClass8.<FindPartialView>b__6(IViewEngine e)
+   在 System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
+   在 System.Web.Mvc.ViewEngineCollection.FindPartialView(ControllerContext controllerContext, String partialViewName)
+   在 System.Web.Mvc.HtmlHelper.FindPartialView(ViewContext viewContext, String partialViewName, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   在 System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
+   在 ASP._Page_views_home_index_cshtml.Execute() 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\views\home\index.cshtml:行号 23
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.RunPage()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   在 System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+------------------------------------
+Log Entry : 2017年02月05日 21:51:47
+控制器：OWZX.Web.Controllers.HomeController;异常信息：System.Web.HttpParseException (0x80004005): “:”在代码块开头无效。只有标识符、关键字、注释、“(”和“{”才有效。
+
+   在 System.Web.WebPages.Razor.RazorBuildProvider.EnsureGeneratedCode()
+   在 System.Web.WebPages.Razor.RazorBuildProvider.get_CodeCompilerType()
+   在 System.Web.Compilation.BuildProvider.GetCompilerTypeFromBuildProvider(BuildProvider buildProvider)
+   在 System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   在 System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   在 System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   在 System.Web.Compilation.BuildManager.GetObjectFactory(String virtualPath, Boolean throwIfNotFound)
+   在 OWZX.Web.Framework.ThemeBuildManagerViewEngine.FileExists(ControllerContext controllerContext, String virtualPath) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeBuildManagerViewEngine .cs:行号 15
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.GetPathFromGeneralName(ControllerContext controllerContext, String[] viewLocationFormats, String name, String controllerName, String theme, String cacheKey, String[]& searchedLocations) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 155
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.GetPath(ControllerContext controllerContext, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 119
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.FindThemePartialView(ControllerContext controllerContext, String partialViewName, Boolean useCache) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 233
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.FindPartialView(ControllerContext controllerContext, String partialViewName, Boolean useCache) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 64
+   在 System.Web.Mvc.ViewEngineCollection.<>c__DisplayClass8.<FindPartialView>b__6(IViewEngine e)
+   在 System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
+   在 System.Web.Mvc.ViewEngineCollection.FindPartialView(ControllerContext controllerContext, String partialViewName)
+   在 System.Web.Mvc.HtmlHelper.FindPartialView(ViewContext viewContext, String partialViewName, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   在 System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
+   在 ASP._Page_views_home_index_cshtml.Execute() 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\views\home\index.cshtml:行号 23
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.RunPage()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   在 System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+------------------------------------
+Log Entry : 2017年02月05日 22:56:52
+控制器：OWZX.Web.Controllers.UCenterController;异常信息：System.InvalidOperationException: 传入字典的模型项的类型为“OWZX.Core.PartUserInfo”，但此字典需要类型“OWZX.Web.Models.UserInfoModel”的模型项。
+   在 System.Web.Mvc.ViewDataDictionary`1.SetModel(Object value)
+   在 System.Web.Mvc.ViewDataDictionary..ctor(ViewDataDictionary dictionary)
+   在 System.Web.Mvc.WebViewPage`1.SetViewData(ViewDataDictionary viewData)
+   在 System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   在 System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+------------------------------------
+Log Entry : 2017年02月05日 22:59:46
+控制器：OWZX.Web.Controllers.UCenterController;异常信息：System.Web.HttpCompileException (0x80004005): c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\48938bfd\d4be2611\App_Web_accountdetail.cshtml.5103fe69.3qyfka6i.0.cs(36): error CS0234: 命名空间“OWZX.Web.Models”中不存在类型或命名空间名称“PartUserInfo”(是否缺少程序集引用?)
+   在 System.Web.Compilation.AssemblyBuilder.Compile()
+   在 System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   在 System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   在 System.Web.Compilation.BuildManager.GetObjectFactory(String virtualPath, Boolean throwIfNotFound)
+   在 OWZX.Web.Framework.ThemeBuildManagerViewEngine.FileExists(ControllerContext controllerContext, String virtualPath) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeBuildManagerViewEngine .cs:行号 15
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.GetPathFromGeneralName(ControllerContext controllerContext, String[] viewLocationFormats, String name, String controllerName, String theme, String cacheKey, String[]& searchedLocations) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 155
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.GetPath(ControllerContext controllerContext, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 119
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.FindThemeView(ControllerContext controllerContext, String viewName, String masterName, Boolean useCache) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 190
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.FindView(ControllerContext controllerContext, String viewName, String masterName, Boolean useCache) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 49
+   在 System.Web.Mvc.ViewEngineCollection.<>c__DisplayClassc.<FindView>b__a(IViewEngine e)
+   在 System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
+   在 System.Web.Mvc.ViewEngineCollection.FindView(ControllerContext controllerContext, String viewName, String masterName)
+   在 System.Web.Mvc.ViewResult.FindView(ControllerContext context)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+------------------------------------
+Log Entry : 2017年02月05日 23:00:41
+控制器：OWZX.Web.Controllers.UCenterController;异常信息：System.Web.HttpCompileException (0x80004005): g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\views\ucenter\accountdetail.cshtml(52): error CS1061: “OWZX.Core.PartUserInfo”不包含“UserInfo”的定义，并且找不到可接受类型为“OWZX.Core.PartUserInfo”的第一个参数的扩展方法“UserInfo”(是否缺少 using 指令或程序集引用?)
+   在 System.Web.Compilation.AssemblyBuilder.Compile()
+   在 System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   在 System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   在 System.Web.Compilation.BuildManager.GetObjectFactory(String virtualPath, Boolean throwIfNotFound)
+   在 OWZX.Web.Framework.ThemeBuildManagerViewEngine.FileExists(ControllerContext controllerContext, String virtualPath) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeBuildManagerViewEngine .cs:行号 15
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.GetPathFromGeneralName(ControllerContext controllerContext, String[] viewLocationFormats, String name, String controllerName, String theme, String cacheKey, String[]& searchedLocations) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 155
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.GetPath(ControllerContext controllerContext, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 119
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.FindThemeView(ControllerContext controllerContext, String viewName, String masterName, Boolean useCache) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 190
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.FindView(ControllerContext controllerContext, String viewName, String masterName, Boolean useCache) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 49
+   在 System.Web.Mvc.ViewEngineCollection.<>c__DisplayClassc.<FindView>b__a(IViewEngine e)
+   在 System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
+   在 System.Web.Mvc.ViewEngineCollection.FindView(ControllerContext controllerContext, String viewName, String masterName)
+   在 System.Web.Mvc.ViewResult.FindView(ControllerContext context)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+------------------------------------
+Log Entry : 2017年02月05日 23:02:46
+控制器：OWZX.Web.Controllers.UCenterController;异常信息：System.Web.HttpCompileException (0x80004005): g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\views\ucenter\accountdetail.cshtml(52): error CS1061: “OWZX.Core.PartUserInfo”不包含“UserInfo”的定义，并且找不到可接受类型为“OWZX.Core.PartUserInfo”的第一个参数的扩展方法“UserInfo”(是否缺少 using 指令或程序集引用?)
+   在 System.Web.Compilation.AssemblyBuilder.Compile()
+   在 System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   在 System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   在 System.Web.Compilation.BuildManager.GetObjectFactory(String virtualPath, Boolean throwIfNotFound)
+   在 OWZX.Web.Framework.ThemeBuildManagerViewEngine.FileExists(ControllerContext controllerContext, String virtualPath) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeBuildManagerViewEngine .cs:行号 15
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.GetPathFromGeneralName(ControllerContext controllerContext, String[] viewLocationFormats, String name, String controllerName, String theme, String cacheKey, String[]& searchedLocations) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 155
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.GetPath(ControllerContext controllerContext, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 119
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.FindThemeView(ControllerContext controllerContext, String viewName, String masterName, Boolean useCache) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 190
+   在 OWZX.Web.Framework.ThemeVirtualPathProviderViewEngine.FindView(ControllerContext controllerContext, String viewName, String masterName, Boolean useCache) 位置 g:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web.Framework\Theme\ThemeVirtualPathProviderViewEngine.cs:行号 49
+   在 System.Web.Mvc.ViewEngineCollection.<>c__DisplayClassc.<FindView>b__a(IViewEngine e)
+   在 System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
+   在 System.Web.Mvc.ViewEngineCollection.FindView(ControllerContext controllerContext, String viewName, String masterName)
+   在 System.Web.Mvc.ViewResult.FindView(ControllerContext context)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+------------------------------------

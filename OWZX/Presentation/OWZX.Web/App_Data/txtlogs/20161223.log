@@ -1,0 +1,12 @@
+Log Entry : 2016年12月23日 10:23:58
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Int32”的对象无法转换为类型“System.String”。
+------------------------------------
+Log Entry : 2016年12月23日 16:49:15
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Decimal”的对象无法转换为类型“System.Int32”。
+------------------------------------
+Log Entry : 2016年12月23日 16:49:18
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Decimal”的对象无法转换为类型“System.Int32”。
+------------------------------------
+Log Entry : 2016年12月23日 16:49:20
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Decimal”的对象无法转换为类型“System.Int32”。
+------------------------------------

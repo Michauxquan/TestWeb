@@ -1,0 +1,9 @@
+Log Entry : 2016年12月15日 15:39:52
+方法:Void ParseNumber(),异常信息:JSON integer 1481787596189 is too large or small for an Int32. Path 'timestamp', line 20, position 30.
+------------------------------------
+Log Entry : 2016年12月15日 16:10:03
+http异常：服务器提交了协议冲突. Section=ResponseStatusLine
+------------------------------------
+Log Entry : 2016年12月15日 16:10:19
+http异常：服务器提交了协议冲突. Section=ResponseStatusLine
+------------------------------------

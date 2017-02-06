@@ -1,0 +1,9 @@
+Log Entry : 2016年12月05日 11:08:56
+方法:System.String AddRoom(OWZX.Model.MD_LotteryRoom),异常信息:未将对象引用设置到对象的实例。
+------------------------------------
+Log Entry : 2016年12月05日 11:11:43
+方法:System.String AddRoom(OWZX.Model.MD_LotteryRoom),异常信息:未将对象引用设置到对象的实例。
+------------------------------------
+Log Entry : 2016年12月05日 14:52:08
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Int64”的对象无法转换为类型“System.Int32”。
+------------------------------------

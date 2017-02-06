@@ -1,0 +1,6 @@
+Log Entry : 2016年12月20日 14:17:51
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:对象名 'owzx_userhassuite' 无效。
+------------------------------------
+Log Entry : 2016年12月20日 14:29:54
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:关键字 'convert' 附近有语法错误。
+------------------------------------

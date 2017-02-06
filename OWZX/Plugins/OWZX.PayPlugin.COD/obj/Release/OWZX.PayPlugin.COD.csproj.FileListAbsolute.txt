@@ -18,3 +18,10 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.COD
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.PayPlugin.COD\obj\Release\OWZX.PayPlugin.COD.dll
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.PayPlugin.COD\obj\Release\OWZX.PayPlugin.COD.pdb
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.PayPlugin.COD\obj\Release\OWZX.PayPlugin.COD.csprojResolveAssemblyReference.cache
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.COD\plugin.config
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.COD\views\admincod\config.cshtml
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.COD\OWZX.PayPlugin.COD.dll
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.COD\OWZX.PayPlugin.COD.pdb
+G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.PayPlugin.COD\obj\Release\OWZX.PayPlugin.COD.csprojResolveAssemblyReference.cache
+G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.PayPlugin.COD\obj\Release\OWZX.PayPlugin.COD.dll
+G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.PayPlugin.COD\obj\Release\OWZX.PayPlugin.COD.pdb

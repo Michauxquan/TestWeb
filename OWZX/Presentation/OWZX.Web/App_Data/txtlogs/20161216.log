@@ -1,0 +1,255 @@
+Log Entry : 2016年12月16日 14:46:15
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:对象名 'owzx_suites' 无效。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:57
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\幸运28\OWZX\Presentation\OWZX.Web\administration\views\baseinfo\lotterysetlist.cshtml(31): error CS1061: “System.Collections.Generic.List<OWZX.Model.MD_LotterySet>”不包含“type”的定义，并且找不到可接受类型为“System.Collections.Generic.List<OWZX.Model.MD_LotterySet>”的第一个参数的扩展方法“type”(是否缺少 using 指令或程序集引用?)
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:03:58
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:15
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\幸运28\OWZX\Presentation\OWZX.Web\administration\views\baseinfo\lotterysetlist.cshtml(31): error CS1061: “System.Collections.Generic.List<OWZX.Model.MD_LotterySet>”不包含“type”的定义，并且找不到可接受类型为“System.Collections.Generic.List<OWZX.Model.MD_LotterySet>”的第一个参数的扩展方法“type”(是否缺少 using 指令或程序集引用?)
+------------------------------------
+Log Entry : 2016年12月16日 15:13:15
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:15
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:15
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:15
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:15
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:15
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:15
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:15
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:15
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:15
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:15
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:15
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:16
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:16
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:16
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:16
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:16
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:16
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:16
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:16
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\幸运28\OWZX\Presentation\OWZX.Web\administration\views\baseinfo\lotterysetlist.cshtml(31): error CS1061: “System.Collections.Generic.List<OWZX.Model.MD_LotterySet>”不包含“type”的定义，并且找不到可接受类型为“System.Collections.Generic.List<OWZX.Model.MD_LotterySet>”的第一个参数的扩展方法“type”(是否缺少 using 指令或程序集引用?)
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:25
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:26
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:26
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:13:26
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\幸运28\OWZX\Presentation\OWZX.Web\administration\views\baseinfo\lotterysetlist.cshtml(31): error CS1061: “System.Collections.Generic.List<OWZX.Model.MD_LotterySet>”不包含“type”的定义，并且找不到可接受类型为“System.Collections.Generic.List<OWZX.Model.MD_LotterySet>”的第一个参数的扩展方法“type”(是否缺少 using 指令或程序集引用?)
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月16日 15:18:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------

@@ -1,0 +1,73 @@
+Log Entry : 2016年11月21日 14:59:17
+方法:Void ThrowArgumentOutOfRangeException(),异常信息:索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+------------------------------------
+Log Entry : 2016年11月21日 15:10:38
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\views\draw\rechargelist.cshtml(54): error CS1061: “OWZX.Web.Admin.Models.RechargeListModel”不包含“ChargeType”的定义，并且找不到可接受类型为“OWZX.Web.Admin.Models.RechargeListModel”的第一个参数的扩展方法“ChargeType”(是否缺少 using 指令或程序集引用?)
+------------------------------------
+Log Entry : 2016年11月21日 16:34:01
+方法:Void SetModel(System.Object),异常信息:传入字典的模型项的类型为“System.Collections.Generic.List`1[OWZX.Model.MD_Permission]”，但此字典需要类型“OWZX.Model.MD_Permission”的模型项。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:34
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\views\baseinfo\permissionlist.cshtml(44): error CS1061: “System.Collections.Generic.List<OWZX.Model.MD_Permission>”不包含“Type”的定义，并且找不到可接受类型为“System.Collections.Generic.List<OWZX.Model.MD_Permission>”的第一个参数的扩展方法“Type”(是否缺少 using 指令或程序集引用?)
+------------------------------------
+Log Entry : 2016年11月21日 16:42:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:34
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年11月21日 16:42:35
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...neric.List<OWZX.Model.MD_Permi...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------

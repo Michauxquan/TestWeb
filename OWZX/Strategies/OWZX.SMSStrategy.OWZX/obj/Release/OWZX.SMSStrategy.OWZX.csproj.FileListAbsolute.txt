@@ -9,3 +9,8 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.SMSStrategy.OWZX.
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.SMSStrategy.OWZX\obj\Release\OWZX.SMSStrategy.OWZX.csprojResolveAssemblyReference.cache
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.SMSStrategy.OWZX\obj\Release\OWZX.SMSStrategy.OWZX.dll
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.SMSStrategy.OWZX\obj\Release\OWZX.SMSStrategy.OWZX.pdb
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.SMSStrategy.OWZX.dll
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.SMSStrategy.OWZX.pdb
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.SMSStrategy.OWZX\obj\Release\OWZX.SMSStrategy.OWZX.csprojResolveAssemblyReference.cache
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.SMSStrategy.OWZX\obj\Release\OWZX.SMSStrategy.OWZX.dll
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.SMSStrategy.OWZX\obj\Release\OWZX.SMSStrategy.OWZX.pdb

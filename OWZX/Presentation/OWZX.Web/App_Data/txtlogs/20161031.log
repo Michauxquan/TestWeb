@@ -1,0 +1,15 @@
+Log Entry : 2016年10月31日 16:37:39
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:关键字 'where' 附近有语法错误。
+------------------------------------
+Log Entry : 2016年10月31日 16:42:40
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:列名 'id' 无效。
+列名 'id' 无效。
+------------------------------------
+Log Entry : 2016年10月31日 16:51:25
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:关键字 'over' 附近有语法错误。
+'userrank' 附近有语法错误。
+',' 附近有语法错误。
+------------------------------------
+Log Entry : 2016年10月31日 16:54:58
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\views\user\list.cshtml(40): error CS0019: 运算符“==”无法应用于“System.Data.DataRowCollection”和“int”类型的操作数
+------------------------------------

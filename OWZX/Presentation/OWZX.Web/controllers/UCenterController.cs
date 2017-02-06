@@ -201,14 +201,14 @@ namespace OWZX.Web.Controllers
         }
 
         /// <summary>
-        /// 安全验证
+        /// 安全验证 //已改动
         /// </summary>
         public ActionResult SafeVerify()
         {
             string action = WebHelper.GetQueryString("act").ToLower();
             string mode = WebHelper.GetQueryString("mode").ToLower();
 
-            if (action.Length == 0 || !CommonHelper.IsInArray(action, new string[3] { "updatepassword", "updatemobile", "updateemail" }) || (mode.Length > 0 && !CommonHelper.IsInArray(mode, new string[3] { "password", "mobile", "email" })))
+            if (action.Length == 0 || !CommonHelper.IsInArray(action, new string[4] { "updatesafepassword", "updatepassword", "updatemobile", "updateemail" }) || (mode.Length > 0 && !CommonHelper.IsInArray(mode, new string[4] { "safepassword", "password", "mobile", "email" })))
                 return HttpNotFound();
 
             SafeVerifyModel model = new SafeVerifyModel();
@@ -220,6 +220,8 @@ namespace OWZX.Web.Controllers
                     model.Mode = "mobile";
                 else if (WorkContext.PartUserInfo.VerifyEmail == 1)//通过邮箱验证
                     model.Mode = "email";
+                else if (WorkContext.PartUserInfo.VerifySafePassWord == 1)//通过安全码验证
+                    model.Mode = "safepassword";
                 else//通过密码验证
                     model.Mode = "password";
             }
@@ -229,6 +231,8 @@ namespace OWZX.Web.Controllers
                     model.Mode = "mobile";
                 else if (mode == "email" && WorkContext.PartUserInfo.VerifyEmail == 1)
                     model.Mode = "email";
+                else if (mode == "safepassword" && WorkContext.PartUserInfo.VerifySafePassWord == 1)
+                    model.Mode = "safepassword";
                 else
                     model.Mode = "password";
             }
@@ -272,7 +276,42 @@ namespace OWZX.Web.Controllers
             string url = Url.Action("safeupdate", new RouteValueDictionary { { "v", v } });
             return AjaxResult("success", url);
         }
+        /// <summary>
+        /// 验证安全密码  //已改动
+        /// </summary>
+        public ActionResult VerifySafePassword()
+        {
+            string action = WebHelper.GetQueryString("act").ToLower();
+            string password = WebHelper.GetFormString("safepassword");
+            string verifyCode = WebHelper.GetFormString("verifyCode");
 
+            if (action.Length == 0 || !CommonHelper.IsInArray(action, new string[4] { "updatesafepassword", "updatepassword", "updatemobile", "updateemail" }))
+                return AjaxResult("noaction", "动作不存在");
+
+            //检查验证码
+            if (string.IsNullOrWhiteSpace(verifyCode))
+            {
+                return AjaxResult("verifycode", "验证码不能为空");
+            }
+            if (verifyCode.ToLower() != Sessions.GetValueString(WorkContext.Sid, "verifyCode"))
+            {
+                return AjaxResult("verifycode", "验证码不正确");
+            }
+
+            //检查密码
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                return AjaxResult("safepassword", "密码不能为空");
+            }
+            if (Users.CreateUserSafePassword(password, WorkContext.PartUserInfo.Salt) != WorkContext.SafePassword)
+            {
+                return AjaxResult("safepassword", "密码不正确");
+            }
+
+            string v = ShopUtils.AESEncrypt(string.Format("{0},{1},{2},{3}", WorkContext.Uid, action, DateTime.Now, Randoms.CreateRandomValue(6)));
+            string url = Url.Action("safeupdate", new RouteValueDictionary { { "v", v } });
+            return AjaxResult("success", url);
+        }
         /// <summary>
         /// 发送验证手机短信
         /// </summary>
@@ -462,7 +501,69 @@ namespace OWZX.Web.Controllers
             string url = Url.Action("safesuccess", new RouteValueDictionary { { "act", "updatePassword" } });
             return AjaxResult("success", url);
         }
+        /// <summary>
+        /// 更新密码
+        /// </summary>
+        public ActionResult UpdateSafePassword()
+        {
+            string v = WebHelper.GetQueryString("v");
+            //解密字符串
+            string realV = ShopUtils.AESDecrypt(v);
 
+            //数组第一项为uid，第二项为动作，第三项为验证时间,第四项为随机值
+            string[] result = StringHelper.SplitString(realV);
+            if (result.Length != 4)
+                return AjaxResult("noauth", "您的权限不足");
+
+            int uid = TypeHelper.StringToInt(result[0]);
+            string action = result[1];
+            DateTime time = TypeHelper.StringToDateTime(result[2]);
+
+            //判断当前用户是否为验证用户
+            if (uid != WorkContext.Uid)
+                return AjaxResult("noauth", "您的权限不足");
+            //判断验证时间是否过时
+            if (DateTime.Now.AddMinutes(-30) > time)
+                return AjaxResult("expired", "密钥已过期,请重新验证");
+
+            string password = WebHelper.GetFormString("safepassword");
+            string confirmPwd = WebHelper.GetFormString("confirmSafePwd");
+            string verifyCode = WebHelper.GetFormString("verifyCode");
+
+            //检查验证码
+            if (string.IsNullOrWhiteSpace(verifyCode))
+            {
+                return AjaxResult("verifycode", "验证码不能为空");
+            }
+            if (verifyCode.ToLower() != Sessions.GetValueString(WorkContext.Sid, "verifyCode"))
+            {
+                return AjaxResult("verifycode", "验证码不正确");
+            }
+
+            //检查密码
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                return AjaxResult("safepassword", "安全密码不能为空");
+            }
+            if (password.Length < 4 || password.Length > 32)
+            {
+                return AjaxResult("safepassword", "安全密码不能小于3且不大于32个字符");
+            }
+            if (password != confirmPwd)
+            {
+                return AjaxResult("confirmpwd", "两次密码不相同");
+            }
+
+            string p = Users.CreateUserPassword(password, WorkContext.PartUserInfo.Salt);
+            //设置新密码
+            //未改动
+            //Users.UpdateUserPasswordByUid(WorkContext.Uid, p);
+            //同步cookie中密码
+            ShopUtils.SetCookiePassword(p, "web");
+
+            string url = Url.Action("safesuccess", new RouteValueDictionary { { "act", "updatePassword" } });
+            return AjaxResult("success", url);
+        }
         /// <summary>
         /// 发送更新手机确认短信
         /// </summary>
@@ -710,7 +811,23 @@ namespace OWZX.Web.Controllers
 
         #endregion
 
+        #region 元宝明细
+        /// <summary>
+        /// 元宝明细
+        /// </summary>
+        public ActionResult AccountDetail()
+        {
+            return View(WorkContext.PartUserInfo);
+        }
 
+        /// <summary>
+        /// 兑换明细
+        /// </summary>
+        public ActionResult ChangeRecord()
+        {
+            return View(WorkContext.PartUserInfo);
+        }
+        #endregion
         protected sealed override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);

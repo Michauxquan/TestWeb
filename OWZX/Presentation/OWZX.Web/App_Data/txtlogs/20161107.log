@@ -1,0 +1,13 @@
+Log Entry : 2016年11月07日 08:55:44
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:列名 'permissionid' 无效。
+列名 'type' 无效。
+------------------------------------
+Log Entry : 2016年11月07日 09:30:58
+方法:Void SetModel(System.Object),异常信息:传入字典的模型项的类型为“System.Collections.Generic.List`1[OWZX.Model.MD_Permission]”，但此字典需要类型“OWZX.Model.MD_Permission”的模型项。
+------------------------------------
+Log Entry : 2016年11月07日 14:19:28
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Decimal”的对象无法转换为类型“System.String”。
+------------------------------------
+Log Entry : 2016年11月07日 15:39:43
+方法:Void CreateThis(System.String, Boolean, System.UriKind),异常信息:无效的 URI: 未能确定 URI 的格式。
+------------------------------------

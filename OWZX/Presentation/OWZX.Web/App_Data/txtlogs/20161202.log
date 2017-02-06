@@ -1,0 +1,72 @@
+Log Entry : 2016年12月02日 14:17:36
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:列名 'bettid' 无效。
+------------------------------------
+Log Entry : 2016年12月02日 16:45:10
+方法:System.String AddRoom(OWZX.Model.MD_LotteryRoom),异常信息:未将对象引用设置到对象的实例。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:41
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\幸运28\OWZX\Presentation\OWZX.Web\administration\views\baseinfo\addroom.cshtml(64): error CS1061: “System.Web.Mvc.HtmlHelper<OWZX.Model.MD_LotteryRoom>”不包含“TextFor”的定义，并且找不到可接受类型为“System.Web.Mvc.HtmlHelper<OWZX.Model.MD_LotteryRoom>”的第一个参数的扩展方法“TextFor”(是否缺少 using 指令或程序集引用?)
+------------------------------------
+Log Entry : 2016年12月02日 16:52:41
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:52:42
+方法:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource),异常信息:从客户端(m="...HtmlHelper<OWZX.Model.MD_Lotte...")中检测到有潜在危险的 Request.QueryString 值。
+------------------------------------
+Log Entry : 2016年12月02日 16:53:16
+方法:System.String AddRoom(OWZX.Model.MD_LotteryRoom),异常信息:未将对象引用设置到对象的实例。
+------------------------------------

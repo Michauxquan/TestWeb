@@ -1,0 +1,33 @@
+Log Entry : 2016年11月08日 11:06:53
+0
+------------------------------------
+Log Entry : 2016年11月08日 11:08:24
+0
+------------------------------------
+Log Entry : 2016年11月08日 16:32:50
+http://120.24.18.116:8088/dialplatform/core/dial.do?account=guest&key=guest&calling=18237730903&called=15670179992&callbackurl=http://app.himicall.com/callapi/callnotify&ciphertext=DE26816CF529B098519021834B333F91
+------------------------------------
+Log Entry : 2016年11月08日 16:32:55
+http异常：远程服务器返回错误: (406) 不可接受。
+------------------------------------
+Log Entry : 2016年11月08日 16:34:17
+http异常：远程服务器返回错误: (406) 不可接受。
+------------------------------------
+Log Entry : 2016年11月08日 16:44:12
+http://120.24.18.116:8088/dialplatform/core/dial.do?account=guest&key=guest&calling=18237730903&called=15670179992&callbackurl=http://app.himicall.com/callapi/callnotify&ciphertext=DE26816CF529B098519021834B333F91
+------------------------------------
+Log Entry : 2016年11月08日 16:46:28
+http://120.24.18.116:8088/dialplatform/core/dial.do?account=guest&key=guest&calling=18237730903&called=15670179992&callbackurl=http://app.himicall.com/callapi/callnotify&ciphertext=DE26816CF529B098519021834B333F91
+------------------------------------
+Log Entry : 2016年11月08日 16:57:11
+http://120.24.18.116:8088/dialplatform/core/dial.do?account=guest&key=guest&calling=18237730903&called=15670179992&callbackurl=http://app.himicall.com/callapi/callnotify&ciphertext=DE26816CF529B098519021834B333F91
+------------------------------------
+Log Entry : 2016年11月08日 16:59:14
+http://120.24.18.116:8088/dialplatform/core/dial.do?account=guest&key=guest&calling=18237730903&called=15670179992&callbackurl=http://app.himicall.com/callapi/callnotify&ciphertext=DE26816CF529B098519021834B333F91
+------------------------------------
+Log Entry : 2016年11月08日 17:03:01
+http://120.24.18.116:8088/dialplatform/core/dial.do?account=guest&key=guest&calling=18237730903&called=15670179992&callbackurl=http://app.himicall.com/callapi/callnotify&ciphertext=DE26816CF529B098519021834B333F91
+------------------------------------
+Log Entry : 2016年11月08日 17:03:13
+response:{"status":"400","msg":"创建呼叫成功！","endtime":null}
+------------------------------------

@@ -1,0 +1,16 @@
+Log Entry : 2016年10月18日 16:11:57
+方法:Double ParseDouble(System.String, System.Globalization.NumberStyles, System.Globalization.NumberFormatInfo),异常信息:值不能为 null。
+参数名: value
+------------------------------------
+Log Entry : 2016年10月18日 16:11:57
+方法:Double ParseDouble(System.String, System.Globalization.NumberStyles, System.Globalization.NumberFormatInfo),异常信息:值不能为 null。
+参数名: value
+------------------------------------
+Log Entry : 2016年10月18日 16:17:23
+方法:Double ParseDouble(System.String, System.Globalization.NumberStyles, System.Globalization.NumberFormatInfo),异常信息:值不能为 null。
+参数名: value
+------------------------------------
+Log Entry : 2016年10月18日 16:21:56
+方法:Double ParseDouble(System.String, System.Globalization.NumberStyles, System.Globalization.NumberFormatInfo),异常信息:值不能为 null。
+参数名: value
+------------------------------------

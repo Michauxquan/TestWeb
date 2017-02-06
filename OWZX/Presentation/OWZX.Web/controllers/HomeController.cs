@@ -135,7 +135,7 @@ namespace OWZX.Web.Controllers
                 return AjaxResult("error", "请输入手机号");
             if (code == "")
                 return AjaxResult("error", "请输入验证码");
-
+            bool result = ValidateHelper.IsMobile(account);
             //bool result = ValidateHelper.IsGZYDModbile(account);
             //if (!result)
             //{

@@ -1,0 +1,18 @@
+Log Entry : 2016年11月19日 11:35:13
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:关键字 'order' 附近有语法错误。
+------------------------------------
+Log Entry : 2016年11月19日 11:51:54
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Int64”的对象无法转换为类型“System.Int32”。
+------------------------------------
+Log Entry : 2016年11月19日 14:07:45
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Int64”的对象无法转换为类型“System.Int32”。
+------------------------------------
+Log Entry : 2016年11月19日 14:08:27
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Int64”的对象无法转换为类型“System.Int32”。
+------------------------------------
+Log Entry : 2016年11月19日 14:08:34
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Int64”的对象无法转换为类型“System.Int32”。
+------------------------------------
+Log Entry : 2016年11月19日 14:48:56
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:'=' 附近有语法错误。
+------------------------------------

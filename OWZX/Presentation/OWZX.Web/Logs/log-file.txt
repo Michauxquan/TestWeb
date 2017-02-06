@@ -1,0 +1,79 @@
+记录时间：【2016-10-21 11:39:04,236】 
+线程ID:[11] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：类型错误： 队员
+记录时间：【2016-10-21 11:41:20,682】 
+线程ID:[6] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：类型错误： 队员
+记录时间：【2016-10-27 14:56:37,250】 
+线程ID:[75] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：缺少对象或列名，或者对象或列名为空。对于 SELECT INTO 语句，请确保每列均具有名称。对于其他语句，请查找空的别名。不允许使用定义为 "" 或 [] 的别名。请将别名更改为有效名称。
+记录时间：【2016-10-27 14:57:07,692】 
+线程ID:[75] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：缺少对象或列名，或者对象或列名为空。对于 SELECT INTO 语句，请确保每列均具有名称。对于其他语句，请查找空的别名。不允许使用定义为 "" 或 [] 的别名。请将别名更改为有效名称。
+记录时间：【2016-10-27 15:00:17,797】 
+线程ID:[46] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：无法绑定由多个部分组成的标识符 "c.uptype"。
+记录时间：【2016-11-03 17:21:37,303】 
+线程ID:[7] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：创建通话异常：Unexpected character encountered while parsing value: e. Path '', line 0, position 0.
+记录时间：【2016-11-08 15:59:14,758】 
+线程ID:[12] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：创建通话异常：列名 'a.usuiteid' 无效。
+列名 'a.uid' 无效。
+列名 'a.suiteid' 无效。
+列名 'a.totalmin' 无效。
+列名 'a.remaintime' 无效。
+列名 'a.expirationdate' 无效。
+列名 'a.addtime' 无效。
+列名 'a.updatetime' 无效。
+记录时间：【2016-11-08 16:04:22,313】 
+线程ID:[9] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：创建通话异常：']' 附近有语法错误。
+记录时间：【2016-11-08 16:46:18,716】 
+线程ID:[8] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：创建通话异常：远程服务器返回错误: (406) 不可接受。
+记录时间：【2016-11-08 16:46:34,987】 
+线程ID:[24] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：创建通话异常：远程服务器返回错误: (406) 不可接受。
+记录时间：【2016-11-09 09:26:05,730】 
+线程ID:[12] 日志级别：ERROR 
+出错类：SuitesService property:[(null)]  
+错误描述：获取失败通话账单出错：未将对象引用设置到对象的实例。
+记录时间：【2016-11-09 09:26:06,866】 
+线程ID:[12] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：保存通话账单出错：Unexpected character encountered while parsing value: p. Path '', line 0, position 0.
+记录时间：【2016-11-09 09:26:17,247】 
+线程ID:[26] 日志级别：ERROR 
+出错类：SuitesService property:[(null)]  
+错误描述：获取失败通话账单出错：未将对象引用设置到对象的实例。
+记录时间：【2016-11-09 09:26:17,331】 
+线程ID:[26] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：保存通话账单出错：Unexpected character encountered while parsing value: p. Path '', line 0, position 0.
+记录时间：【2016-11-09 09:26:50,828】 
+线程ID:[26] 日志级别：ERROR 
+出错类：SuitesService property:[(null)]  
+错误描述：获取失败通话账单出错：未将对象引用设置到对象的实例。
+记录时间：【2016-11-18 09:58:22,247】 
+线程ID:[6] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：充值异常：EXECUTE 后的事务计数指示 BEGIN 和 COMMIT 语句的数目不匹配。上一计数 = 0，当前计数 = 1。
+记录时间：【2016-11-19 16:57:48,795】 
+线程ID:[7] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：保存通话账单出错：未将对象引用设置到对象的实例。
+记录时间：【2016-11-19 16:58:49,874】 
+线程ID:[7] 日志级别：ERROR 
+出错类：VosAPI property:[(null)]  
+错误描述：保存通话账单出错：未将对象引用设置到对象的实例。

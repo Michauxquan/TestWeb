@@ -1,0 +1,84 @@
+Log Entry : 2016年10月22日 14:29:26
+方法:System.String CanonicalizePath(System.String, Boolean),异常信息:不支持给定路径的格式。
+------------------------------------
+Log Entry : 2016年10月22日 14:29:31
+方法:System.String CanonicalizePath(System.String, Boolean),异常信息:不支持给定路径的格式。
+------------------------------------
+Log Entry : 2016年10月22日 14:29:31
+方法:System.String CanonicalizePath(System.String, Boolean),异常信息:不支持给定路径的格式。
+------------------------------------
+Log Entry : 2016年10月22日 14:29:31
+方法:System.String CanonicalizePath(System.String, Boolean),异常信息:不支持给定路径的格式。
+------------------------------------
+Log Entry : 2016年10月22日 14:29:31
+方法:System.String CanonicalizePath(System.String, Boolean),异常信息:不支持给定路径的格式。
+------------------------------------
+Log Entry : 2016年10月22日 14:29:31
+方法:System.String CanonicalizePath(System.String, Boolean),异常信息:不支持给定路径的格式。
+------------------------------------
+Log Entry : 2016年10月22日 14:29:32
+方法:System.String CanonicalizePath(System.String, Boolean),异常信息:不支持给定路径的格式。
+------------------------------------
+Log Entry : 2016年10月22日 14:29:34
+方法:System.String CanonicalizePath(System.String, Boolean),异常信息:不支持给定路径的格式。
+------------------------------------
+Log Entry : 2016年10月22日 14:29:34
+方法:Int32 GetFullPathName(),异常信息:指定的路径或文件名太长，或者两者都太长。完全限定文件名必须少于 260 个字符，并且目录名必须少于 248 个字符。
+------------------------------------
+Log Entry : 2016年10月22日 14:31:57
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:不能将值 NULL 插入列 'uid'，表 'comdb.dbo.owzx_userinvite'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+------------------------------------
+Log Entry : 2016年10月22日 14:31:57
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:不能将值 NULL 插入列 'uid'，表 'comdb.dbo.owzx_userinvite'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+------------------------------------
+Log Entry : 2016年10月22日 14:31:57
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:不能将值 NULL 插入列 'uid'，表 'comdb.dbo.owzx_userinvite'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+------------------------------------
+Log Entry : 2016年10月22日 14:31:57
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:不能将值 NULL 插入列 'uid'，表 'comdb.dbo.owzx_userinvite'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+------------------------------------
+Log Entry : 2016年10月22日 14:31:57
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:不能将值 NULL 插入列 'uid'，表 'comdb.dbo.owzx_userinvite'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+------------------------------------
+Log Entry : 2016年10月22日 14:31:58
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:不能将值 NULL 插入列 'uid'，表 'comdb.dbo.owzx_userinvite'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+------------------------------------
+Log Entry : 2016年10月22日 14:32:03
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:不能将值 NULL 插入列 'uid'，表 'comdb.dbo.owzx_userinvite'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+------------------------------------
+Log Entry : 2016年10月22日 14:32:13
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:不能将值 NULL 插入列 'uid'，表 'comdb.dbo.owzx_userinvite'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+------------------------------------
+Log Entry : 2016年10月22日 14:32:16
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:不能将值 NULL 插入列 'uid'，表 'comdb.dbo.owzx_userinvite'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+------------------------------------
+Log Entry : 2016年10月22日 14:32:17
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:不能将值 NULL 插入列 'uid'，表 'comdb.dbo.owzx_userinvite'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+------------------------------------
+Log Entry : 2016年10月22日 14:32:17
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:不能将值 NULL 插入列 'uid'，表 'comdb.dbo.owzx_userinvite'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+------------------------------------
+Log Entry : 2016年10月22日 14:32:17
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:不能将值 NULL 插入列 'uid'，表 'comdb.dbo.owzx_userinvite'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+------------------------------------
+Log Entry : 2016年10月22日 17:49:07
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Int32”的对象无法转换为类型“System.String”。
+------------------------------------
+Log Entry : 2016年10月22日 17:49:29
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Int32”的对象无法转换为类型“System.String”。
+------------------------------------
+Log Entry : 2016年10月22日 17:51:36
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Int32”的对象无法转换为类型“System.String”。
+------------------------------------

@@ -13,3 +13,8 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.EventStrategy.Tim
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.EventStrategy.Timer\obj\Release\OWZX.EventStrategy.Timer.csprojResolveAssemblyReference.cache
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.EventStrategy.Timer\obj\Release\OWZX.EventStrategy.Timer.dll
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.EventStrategy.Timer\obj\Release\OWZX.EventStrategy.Timer.pdb
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.EventStrategy.Timer.dll
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.EventStrategy.Timer.pdb
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.EventStrategy.Timer\obj\Release\OWZX.EventStrategy.Timer.csprojResolveAssemblyReference.cache
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.EventStrategy.Timer\obj\Release\OWZX.EventStrategy.Timer.dll
+G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.EventStrategy.Timer\obj\Release\OWZX.EventStrategy.Timer.pdb

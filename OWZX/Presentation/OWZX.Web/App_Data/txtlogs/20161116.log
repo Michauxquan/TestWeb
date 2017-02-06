@@ -1,0 +1,8 @@
+Log Entry : 2016年11月16日 10:23:10
+方法:Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean),异常信息:值不能为 null。
+参数名: String
+------------------------------------
+Log Entry : 2016年11月16日 10:25:07
+方法:Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean),异常信息:值不能为 null。
+参数名: String
+------------------------------------

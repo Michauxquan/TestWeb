@@ -1,0 +1,186 @@
+Log Entry : 2016年11月03日 09:13:20
+方法:Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean),异常信息:输入字符串的格式不正确。
+------------------------------------
+Log Entry : 2016年11月03日 09:38:25
+方法:System.Data.DataColumn GetDataColumn(System.String),异常信息:列“username”不属于表 Table。
+------------------------------------
+Log Entry : 2016年11月03日 11:05:21
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\views\draw\callinfo.cshtml(57): error CS0266: 无法将类型“decimal”隐式转换为“int”。存在一个显式转换(是否缺少强制转换?)
+------------------------------------
+Log Entry : 2016年11月03日 11:07:11
+方法:System.Data.DataColumn GetDataColumn(System.String),异常信息:列“uid”不属于表 Table。
+------------------------------------
+Log Entry : 2016年11月03日 11:16:07
+方法:System.Data.DataColumn GetDataColumn(System.String),异常信息:列“ucallid”不属于表 Table。
+------------------------------------
+Log Entry : 2016年11月03日 14:24:42
+方法:Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean),异常信息:输入字符串的格式不正确。
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:34
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年11月03日 18:08:37
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------

@@ -27,16 +27,32 @@
 <div class="box">
 @Html.Partial("_menu")
 <div id="memberR">
-    <h2 id="memberRT">账户安全</h2>
-
-    <div class="safe">
-        <s class="ico1"></s>
-        <b>登录密码</b>
-        <p>互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</p>
-        <a href="@Url.Action("safeverify", new RouteValueDictionary { { "act", "updatePassword" } })" class="greenBT">修改</a>
+    <div style="border-bottom: solid 2px #ccc; padding-bottom:5px;">
+        <div class="left">
+            <img src="../images/baseimg/banner.png"/>
+        </div>
+        <div class="left pLeft10">
+            <h2 id="memberRT" class="cblock">账户安全</h2>
+            <span class="font10">登录密码，安全密码以及手机邮箱修改</span>
+        </div>
         <div class="clear"></div>
     </div>
 
+    <div class="safe" style="margin-top:20px;">
+        <s class="ico1"></s>
+        <b>登录密码</b>
+        <p>互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</p>
+        <a href="@Url.Action("safeverify", new RouteValueDictionary {{"act", "updatePassword"}})" class="greenBT">修改</a>
+        <div class="clear"></div>
+    </div>
+
+    <div class="safe">
+        <s class="ico1"></s>
+        <b>安全密码</b>
+        <p>互联网账号存在被盗风险，建议您定期更改安全密码以保护账户安全。</p>
+        <a href="@Url.Action("safeverify", new RouteValueDictionary { { "act", "updateSafePassword" } })" class="greenBT">修改</a>
+        <div class="clear"></div>
+    </div>
     <div class="safe hide" >
         <s class="@if (Model.VerifyEmail == 1){<text>ico1</text>}else{<text>ico2</text>}"></s>
         <b>邮箱验证</b> 
@@ -87,7 +103,7 @@
 
     <div class="safeInfo">
         <h2>安全服务提示</h2>
-        <p>1.确认您登录的是OWZX网址@*<a href="#">http://www.brnshop.com</a>*@，注意防范进入钓鱼网站，不要轻信各种即时通讯工具发送的商品或支付链接，谨防网购诈骗。 </p>
+        <p>1.确认您登录的是<a class="Fred">【发财28】</a>网址@*<a href="#">http://www.brnshop.com</a>*@，注意防范进入钓鱼网站，不要轻信各种即时通讯工具发送的商品或支付链接，谨防网购诈骗。 </p>
         <p>2.建议您安装杀毒软件，并定期更新操作系统等软件补丁，确保账户及交易安全。 </p>
     </div>
 

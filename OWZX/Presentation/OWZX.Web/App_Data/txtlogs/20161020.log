@@ -1,0 +1,26 @@
+Log Entry : 2016年10月20日 08:52:09
+方法:System.DateTime Parse(System.String, System.Globalization.DateTimeFormatInfo, System.Globalization.DateTimeStyles),异常信息:该字符串未被识别为有效的 DateTime。
+------------------------------------
+Log Entry : 2016年10月20日 09:49:51
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Int64”的对象无法转换为类型“System.Int32”。
+------------------------------------
+Log Entry : 2016年10月20日 11:29:28
+方法:System.Object ExtractParameterFromDictionary(System.Reflection.ParameterInfo, System.Collections.Generic.IDictionary`2[System.String,System.Object], System.Reflection.MethodInfo),异常信息:对于“OWZX.Web.Admin.Controllers.DrawController”中方法“System.Web.Mvc.ActionResult EditDraw(Int32, System.String)”的不可以为 null 的类型“System.Int32”的参数“drawId”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+------------------------------------
+Log Entry : 2016年10月20日 11:33:34
+方法:Void EnsureGeneratedCode(),异常信息:遇到的结束标记“td”没有匹配的起始标记。您的起始标记/结束标记是否匹配?
+
+------------------------------------
+Log Entry : 2016年10月20日 14:47:56
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:关键字 'where' 附近有语法错误。
+------------------------------------
+Log Entry : 2016年10月20日 15:49:57
+方法:System.Web.Mvc.ActionResult Register(),异常信息:未将对象引用设置到对象的实例。
+------------------------------------
+Log Entry : 2016年10月20日 15:51:25
+方法:System.Web.Mvc.ActionResult Register(),异常信息:未将对象引用设置到对象的实例。
+------------------------------------
+Log Entry : 2016年10月20日 15:54:12
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:在将 varchar 值 '13                                                                                                  ,' 转换成数据类型 int 时失败。
+------------------------------------

@@ -2,3 +2,8 @@ D:\我的\项目\电话App\OWZX\Libraries\OWZX.Model\bin\Release\OWZX.Model.dll
 D:\我的\项目\电话App\OWZX\Libraries\OWZX.Model\bin\Release\OWZX.Model.pdb
 D:\我的\项目\电话App\OWZX\Libraries\OWZX.Model\obj\Release\OWZX.Model.dll
 D:\我的\项目\电话App\OWZX\Libraries\OWZX.Model\obj\Release\OWZX.Model.pdb
+G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Model\bin\Release\OWZX.Model.dll
+G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Model\bin\Release\OWZX.Model.pdb
+G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Model\obj\Release\OWZX.Model.dll
+G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Model\obj\Release\OWZX.Model.pdb
+G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Model\obj\Release\OWZX.Model.csprojResolveAssemblyReference.cache

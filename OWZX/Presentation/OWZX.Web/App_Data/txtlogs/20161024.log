@@ -1,0 +1,26 @@
+Log Entry : 2016年10月24日 10:06:55
+方法:System.Web.Mvc.ActionResult UserInfo(),异常信息:未将对象引用设置到对象的实例。
+------------------------------------
+Log Entry : 2016年10月24日 11:40:25
+方法:System.Web.Mvc.ActionResult Notice(),异常信息:未将对象引用设置到对象的实例。
+------------------------------------
+Log Entry : 2016年10月24日 11:50:54
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\views\home\notice.cshtml(59): error CS1061: “OWZX.Web.Models.NewsModel”不包含“Body”的定义，并且找不到可接受类型为“OWZX.Web.Models.NewsModel”的第一个参数的扩展方法“Body”(是否缺少 using 指令或程序集引用?)
+------------------------------------
+Log Entry : 2016年10月24日 17:18:33
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年10月24日 17:18:58
+方法:System.String InternalSubStringWithChecks(Int32, Int32, Boolean),异常信息:索引和长度必须引用该字符串内的位置。
+参数名: length
+------------------------------------
+Log Entry : 2016年10月24日 17:19:27
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\views\baseinfo\baseinfolist.cshtml(47): error CS0173: 无法确定条件表达式的类型，因为“int”和“string”之间没有隐式转换
+------------------------------------
+Log Entry : 2016年10月24日 17:24:58
+方法:System.Object CoerceValue(System.Object, System.Data.SqlClient.MetaType, Boolean ByRef, Boolean ByRef, Boolean),异常信息:将参数值从 String 转换到 Boolean 失败。
+------------------------------------
+Log Entry : 2016年10月24日 17:31:10
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:列名 'type' 无效。
+------------------------------------

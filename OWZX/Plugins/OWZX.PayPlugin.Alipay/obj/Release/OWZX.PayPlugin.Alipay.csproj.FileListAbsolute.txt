@@ -22,3 +22,11 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Ali
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.PayPlugin.Alipay\obj\Release\OWZX.PayPlugin.Alipay.csprojResolveAssemblyReference.cache
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.PayPlugin.Alipay\obj\Release\OWZX.PayPlugin.Alipay.dll
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.PayPlugin.Alipay\obj\Release\OWZX.PayPlugin.Alipay.pdb
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Alipay\db.config
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Alipay\plugin.config
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Alipay\views\adminalipay\config.cshtml
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Alipay\OWZX.PayPlugin.Alipay.dll
+G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Alipay\OWZX.PayPlugin.Alipay.pdb
+G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.PayPlugin.Alipay\obj\Release\OWZX.PayPlugin.Alipay.csprojResolveAssemblyReference.cache
+G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.PayPlugin.Alipay\obj\Release\OWZX.PayPlugin.Alipay.dll
+G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.PayPlugin.Alipay\obj\Release\OWZX.PayPlugin.Alipay.pdb

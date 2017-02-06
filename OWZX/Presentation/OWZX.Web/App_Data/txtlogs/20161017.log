@@ -1,0 +1,6 @@
+Log Entry : 2016年10月17日 16:04:39
+方法:System.Web.Mvc.ActionResult SendToVOS(Int32),异常信息:未能加载文件或程序集“Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed”或它的某一个依赖项。找到的程序集清单定义与程序集引用不匹配。 (异常来自 HRESULT:0x80131040)
+------------------------------------
+Log Entry : 2016年10月17日 16:19:58
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Decimal”的对象无法转换为类型“System.Double”。
+------------------------------------

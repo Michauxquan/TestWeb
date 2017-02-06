@@ -1,0 +1,52 @@
+Log Entry : 2016年11月05日 10:56:44
+方法:System.Web.Mvc.ViewEngineResult FindView(System.Web.Mvc.ControllerContext),异常信息:未找到视图“positionoperate”或其母版视图，或没有视图引擎支持搜索的位置。搜索了以下位置: 
+~/administration/views/baseinfo/positionoperate.cshtml
+~/administration/views/shared/positionoperate.cshtml
+------------------------------------
+Log Entry : 2016年11月05日 11:16:58
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\views\baseinfo\positionlist.cshtml(38): error CS0103: 当前上下文中不存在名称“info”
+------------------------------------
+Log Entry : 2016年11月05日 11:21:00
+方法:System.Web.Mvc.ViewEngineResult FindView(System.Web.Mvc.ControllerContext),异常信息:未找到视图“positionoperate”或其母版视图，或没有视图引擎支持搜索的位置。搜索了以下位置: 
+~/administration/views/baseinfo/positionoperate.cshtml
+~/administration/views/shared/positionoperate.cshtml
+------------------------------------
+Log Entry : 2016年11月05日 11:27:00
+方法:Void ThrowArgumentOutOfRangeException(),异常信息:索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+------------------------------------
+Log Entry : 2016年11月05日 11:32:13
+方法:System.Web.Mvc.ViewEngineResult FindView(System.Web.Mvc.ControllerContext),异常信息:未找到视图“permissionList”或其母版视图，或没有视图引擎支持搜索的位置。搜索了以下位置: 
+~/administration/views/baseinfo/permissionList.cshtml
+~/administration/views/shared/permissionList.cshtml
+------------------------------------
+Log Entry : 2016年11月05日 11:40:01
+方法:System.Web.Mvc.ViewEngineResult FindView(System.Web.Mvc.ControllerContext),异常信息:未找到视图“addposition”或其母版视图，或没有视图引擎支持搜索的位置。搜索了以下位置: 
+~/administration/views/baseinfo/addposition.cshtml
+~/administration/views/shared/addposition.cshtml
+------------------------------------
+Log Entry : 2016年11月05日 14:23:49
+方法:Void <Execute>b__1(),异常信息:未将对象引用设置到对象的实例。
+------------------------------------
+Log Entry : 2016年11月05日 14:28:53
+方法:Void <Execute>b__1(),异常信息:未将对象引用设置到对象的实例。
+------------------------------------
+Log Entry : 2016年11月05日 14:36:26
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\views\baseinfo\permissionlist.cshtml(15): error CS0103: 当前上下文中不存在名称“positionid”
+------------------------------------
+Log Entry : 2016年11月05日 14:37:15
+方法:Void ThrowArgumentOutOfRangeException(),异常信息:索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+------------------------------------
+Log Entry : 2016年11月05日 14:47:57
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:列名 'permissionid' 无效。
+列名 'type' 无效。
+------------------------------------
+Log Entry : 2016年11月05日 15:35:48
+方法:Void set_Method(System.String),异常信息:无法按照请求设置空的或空白的方法。
+参数名: value
+------------------------------------
+Log Entry : 2016年11月05日 17:14:26
+方法:Void set_Method(System.String),异常信息:无法按照请求设置空的或空白的方法。
+参数名: value
+------------------------------------

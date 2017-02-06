@@ -1,0 +1,15 @@
+﻿[2016/12/17 16:00:08]结果:执行北京28补漏异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:00:18]结果:执行北京28补漏异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:00:28]结果:执行北京28补漏异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:00:38]结果:执行北京28补漏异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:00:48]结果:执行北京28补漏异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:00:58]结果:执行北京28补漏异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:05:08]结果:执行北京28异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:05:18]结果:执行北京28补漏异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:05:28]结果:执行北京28异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:05:38]结果:执行北京28补漏异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:05:48]结果:执行北京28补漏异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:05:58]结果:执行北京28补漏异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:10:08]结果:执行北京28补漏异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:10:18]结果:执行北京28补漏异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.
+[2016/12/17 16:10:28]结果:执行北京28异常：Unexpected character encountered while parsing value: 访. Path '', line 0, position 0.

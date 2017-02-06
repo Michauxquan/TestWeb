@@ -1,0 +1,24 @@
+Log Entry : 2016年12月08日 11:02:29
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\幸运28\OWZX\Presentation\OWZX.Web\administration\views\user\backlist.cshtml(40): error CS1502: 与“System.Web.WebPages.WebPageExecutingBase.Write(System.Web.WebPages.HelperResult)”最匹配的重载方法具有一些无效参数
+------------------------------------
+Log Entry : 2016年12月08日 11:11:16
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\幸运28\OWZX\Presentation\OWZX.Web\administration\views\user\backlist.cshtml(40): error CS1502: 与“System.Web.WebPages.WebPageExecutingBase.Write(System.Web.WebPages.HelperResult)”最匹配的重载方法具有一些无效参数
+------------------------------------
+Log Entry : 2016年12月08日 11:11:23
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\幸运28\OWZX\Presentation\OWZX.Web\administration\views\user\backlist.cshtml(40): error CS1502: 与“System.Web.WebPages.WebPageExecutingBase.Write(System.Web.WebPages.HelperResult)”最匹配的重载方法具有一些无效参数
+------------------------------------
+Log Entry : 2016年12月08日 11:17:03
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\幸运28\OWZX\Presentation\OWZX.Web\administration\views\user\backlist.cshtml(40): error CS1502: 与“System.Web.WebPages.WebPageExecutingBase.Write(System.Web.WebPages.HelperResult)”最匹配的重载方法具有一些无效参数
+------------------------------------
+Log Entry : 2016年12月08日 11:28:07
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\幸运28\OWZX\Presentation\OWZX.Web\administration\views\user\backlist.cshtml(42): error CS1061: “OWZX.Model.MD_UserBack”不包含“money”的定义，并且找不到可接受类型为“OWZX.Model.MD_UserBack”的第一个参数的扩展方法“money”(是否缺少 using 指令或程序集引用?)
+------------------------------------
+Log Entry : 2016年12月08日 11:32:10
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.Int64”的对象无法转换为类型“System.Int32”。
+------------------------------------
+Log Entry : 2016年12月08日 11:34:23
+方法:System.Object TryChangeType(System.Object, System.Reflection.Binder, System.Globalization.CultureInfo, Boolean),异常信息:类型“System.String”的对象无法转换为类型“System.DateTime”。
+------------------------------------
+Log Entry : 2016年12月08日 11:39:39
+方法:System.CodeDom.Compiler.CompilerResults Compile(),异常信息:d:\我的\项目\幸运28\OWZX\Presentation\OWZX.Web\administration\views\user\backlist.cshtml(43): error CS1502: 与“string.ToString(System.IFormatProvider)”最匹配的重载方法具有一些无效参数
+------------------------------------

@@ -1,0 +1,6 @@
+Log Entry : 2016年11月18日 11:30:42
+处理佣金和充值失败：ROLLBACK TRANSACTION 请求没有对应的 BEGIN TRANSACTION。
+------------------------------------
+Log Entry : 2016年11月18日 16:35:32
+方法:Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action]),异常信息:'=' 附近有语法错误。
+------------------------------------

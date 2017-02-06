@@ -16,3 +16,4 @@ D:\我的\项目\12、PC28\OWZX\Libraries\OWZX.Model\bin\Debug\OWZX.Model.dll
 D:\我的\项目\12、PC28\OWZX\Libraries\OWZX.Model\bin\Debug\OWZX.Model.pdb
 D:\我的\项目\12、PC28\OWZX\Libraries\OWZX.Model\obj\Debug\OWZX.Model.dll
 D:\我的\项目\12、PC28\OWZX\Libraries\OWZX.Model\obj\Debug\OWZX.Model.pdb
+D:\我的\项目\12、PC28\OWZX\Libraries\OWZX.Model\obj\Debug\OWZX.Model.csprojResolveAssemblyReference.cache
