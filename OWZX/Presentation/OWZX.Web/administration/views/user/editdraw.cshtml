@@ -1,0 +1,60 @@
+﻿@model OWZX.Model.MD_DrawAccount
+
+@section header{
+    <title>修改用户提现密码</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/administration/scripts/jquery.validate.js"></script>
+    <script type="text/javascript" src="/administration/scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $(function ()
+        {
+            $(".addBt").click(function ()
+            {
+                $("form:first").submit();
+                return false;
+            })
+        });
+    </script>
+}
+
+@section body{
+<h1 class="rightH1">
+用户管理 &gt;&gt; 修改提现密码
+<div class="right">
+<a href="@Html.Raw(ViewData["referer"].ToString())" class="menuBT"><img src="/administration/images/goback.jpg"/>返回列表</a>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</h1>
+    
+@using (Html.BeginForm())
+{
+<div class="addTable">
+<table width="100%">
+  <tr>
+    <td width="86px" align="right">账号：</td>
+    <td>
+        @Html.DisplayFor(m => m.Account)
+        @Html.HiddenFor(x => x.Account, new { @Value = @Model.Account }) </td>
+    </tr>
+
+      <tr>
+    <td align="right">提现密码：</td>
+    <td>@Html.TextBoxFor(x => x.Drawpwd, new { @class = "input", size = "35" })@Html.ValidationMessageFor(x => x.Drawpwd)</td>
+    </tr>
+  <tr>
+    <td align="right">&nbsp;</td>
+    <td>
+    <a href="" class="addBt" id="sumbitBut1" ><img src="/administration/images/submit.jpg" /></a>
+    </td>
+    </tr>
+  <tr>
+    <td align="right">&nbsp;</td>
+    <td>&nbsp;</td>
+    </tr>
+</table>
+</div>
+    
+}
+}

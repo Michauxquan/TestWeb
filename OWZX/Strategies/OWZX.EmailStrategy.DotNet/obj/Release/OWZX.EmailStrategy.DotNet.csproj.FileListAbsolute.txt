@@ -1,0 +1,15 @@
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.EmailStrategy.DotNet.dll
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.EmailStrategy.DotNet.pdb
+D:\我的\项目\装修网\BrnShop\Strategies\BrnShop.EmailStrategy.DotNet\obj\Release\OWZX.EmailStrategy.DotNet.dll
+D:\我的\项目\装修网\BrnShop\Strategies\BrnShop.EmailStrategy.DotNet\obj\Release\OWZX.EmailStrategy.DotNet.pdb
+D:\我的\项目\装修网\OWZX\Presentation\BrnShop.Web\bin\OWZX.EmailStrategy.DotNet.dll
+D:\我的\项目\装修网\OWZX\Presentation\BrnShop.Web\bin\OWZX.EmailStrategy.DotNet.pdb
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\bin\OWZX.EmailStrategy.DotNet.dll
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\bin\OWZX.EmailStrategy.DotNet.pdb
+D:\我的\项目\装修网\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Release\OWZX.EmailStrategy.DotNet.dll
+D:\我的\项目\装修网\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Release\OWZX.EmailStrategy.DotNet.pdb
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.EmailStrategy.DotNet.dll
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.EmailStrategy.DotNet.pdb
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Release\OWZX.EmailStrategy.DotNet.csprojResolveAssemblyReference.cache
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Release\OWZX.EmailStrategy.DotNet.dll
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Release\OWZX.EmailStrategy.DotNet.pdb

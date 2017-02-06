@@ -1,0 +1,54 @@
+﻿<div id="memberL">
+@*<h2>个人中心</h2>*@
+@*<ul id="memberNav">
+    <li><a href="@Url.Action("userinfo")"><s>&gt;</s>账户信息</a></li>
+    <li><a href="@Url.Action("safeinfo")"><s>&gt;</s>账户安全</a></li>
+    <li><a href="@Url.Action("orderlist")"><s>&gt;</s>我的订单</a></li>
+    <li><a href="@Url.Action("shipaddresslist")"><s>&gt;</s>收货地址</a></li>
+    <li><a href="@Url.Action("productreviewlist")"><s>&gt;</s>商品评价</a></li>
+    <li><a href="@Url.Action("addreserve")"><s>&gt;</s>预约量房</a></li>
+</ul>*@
+    <!--下拉菜单-->
+    <section id="conter">
+        <section id="help-left">
+            <details class="menu" open>
+                <summary>设计图纸</summary>
+                <ul>
+                    <li><a href="#">原始图</a></li>
+                    <li><a href="#">布局图</a></li>
+                    <li><a href="#">设计图</a></li>
+                    <li><a href="#">施工图</a></li>
+                </ul>
+            </details>
+            <details class="menu" open>
+                <summary>合同文书</summary>
+                <ul>
+                    <li><a href="#">申请支付宝</a></li>
+                    <li><a href="#">支付宝充值</a></li>
+                </ul>
+            </details>
+            <details class="menu" open>
+                <summary>个人资料</summary>
+                <ul>
+                    <li><a href="@Url.Action("userinfo")">账户信息</a></li>
+                    <li><a href="@Url.Action("safeinfo")">账户安全</a></li>
+                    <li><a href="@Url.Action("shipaddresslist")">收货地址</a></li>
+                </ul>
+            </details>
+            <details class="menu" open>
+                <summary>订单中心</summary>
+                <ul>
+                    <li><a href="@Url.Action("orderlist")">我的订单</a></li>
+                </ul>
+            </details>
+            <details class="menu" open>
+                <summary>售后服务记录</summary>
+                <ul>
+                    <li><a href="#">我的售后</a></li>
+                </ul>
+            </details>
+        </section>
+        <div class="clearfix"></div>
+        <section id="help-right"></section>
+    </section>
+</div>

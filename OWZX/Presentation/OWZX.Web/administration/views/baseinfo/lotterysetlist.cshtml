@@ -1,0 +1,118 @@
+﻿@model OWZX.Web.Admin.Models.LotterySets
+
+@section header{
+    <title>赔率列表</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css" />
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/administration/scripts/selectlist.js"></script>
+   <script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+}
+@section body{
+    <h1 class="rightH1">
+        系统设置 &gt;&gt; 赔率列表
+        <div class="right">
+            @*<a href="@Url.Action("addroom")" class="menuBT"><img src="/administration/images/add.jpg" />添加</a>*@
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </h1>
+    @using (Html.BeginForm())
+    {
+        <div class="dataListSearch">
+            <table height="32">
+                <tbody>
+                    <tr>
+                        <td width="35"><img id="searchImg" src="/administration/images/search1.gif" /></td>
+
+                        @*<td>
+                            &nbsp;&nbsp;&nbsp;彩票类型：
+                        </td>
+                        <td width="130">
+                            <select data-val="true" id="type" name="type">
+                                <option @if (-1 == Model.type)
+                                        { <text> selected="selected" </text>        } value="-1">选择类型</option>
+                                @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where outtypeid=28"))
+                                {
+                                    <option @if (info.Systypeid == Model.type)
+                                                { <text> selected="selected" </text>                } value="@info.Systypeid">@info.Type</option>
+                                }
+                            </select>
+                        </td>*@
+                        <td>
+                            &nbsp;&nbsp;&nbsp;房间类型：
+                        </td>
+                        <td width="130">
+                            <select data-val="true" id="roomtype" name="roomtype">
+                                <option @if (-1 == Model.roomtype)
+                                        { <text> selected="selected" </text>          } value="-1">选择类型</option>
+                                @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=19"))
+                                {
+                                    <option @if (info.Systypeid == Model.roomtype)
+                                            { <text> selected="selected" </text>                  } value="@info.Systypeid">@info.Type</option>
+                                }
+                            </select>
+                        </td>
+
+                        <td>
+                            &nbsp;&nbsp;投注类型：
+                        </td>
+                        <td width="130">
+                            <select data-val="true" id="bttype" name="bttype">
+                                <option @if (-1 == Model.bttype) { <text> selected="selected" </text>          } value="-1">选择类型</option>
+                                @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=29"))
+                                {
+                                    <option @if (info.Systypeid == Model.bttype) { <text> selected="selected" </text>                  } value="@info.Systypeid">@info.Type</option>
+                                }
+                            </select>
+
+                        </td>
+
+                        <td style="height:24px;">
+                            <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24" />
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="dataList">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <th width="10"></th>
+                        <th width="60" align="left">编号</th>
+                        @*<th width="100" align="left">彩票类型</th>*@
+                        <th width="100" align="left">房间类型</th>
+                        <th width="100" align="left">投注类型</th>
+                        <th width="80" align="left">投注名称</th>
+                        <th width="100" align="left">赔率</th>
+                        <th width="180" align="left">中奖和值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (OWZX.Model.MD_LotterySet info in Model.SetList)
+                    {
+                        
+                        <tr>
+                            <td></td>
+                            <td>@info.Id</td>
+                           @* <td>@info.Lottery</td>*@
+                            <td>@info.Room</td>
+                            <td>@info.Settype</td>
+                            <td>@info.Item</td>
+                            <td>@info.Odds</td>
+                            <td>@info.Nums</td>
+                           
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>    
+        <div class="dataListEdit">
+            <div class="page">
+                @Html.AdminPager(Model.PageModel)
+            </div>
+        </div>
+    }
+}
+}

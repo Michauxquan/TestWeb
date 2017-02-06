@@ -1,0 +1,337 @@
+﻿@{
+    ViewBag.Title = "expand";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="minimal-ui,width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="format-detection" content="telephone=no">
+    <!--<link rel="stylesheet" href="bootstrap.min.css">-->
+    <link type="text/css" rel="stylesheet" href="@{@WorkContext.ScriptCDN}/scripts/down/demo.css">
+    <link type="text/css" rel="stylesheet" href="@{@WorkContext.ScriptCDN}/scripts/down/fakeloader.css">
+    <link type="text/css" rel="stylesheet" href="@{@WorkContext.ScriptCDN}/scripts/down/main.css">
+    <script type="text/javascript" src="/scripts/jquery.js"></script>
+    <title>PC蛋蛋下载</title>
+</head>
+<body class="app">
+    <div class="masklayer" id="MaskLayer" style="display:none"></div>
+    <div class="top_ddd">
+        <div>
+            <!--<p>点击右上角菜单</p>-->
+            <!--在默认浏览器中打开并安装应用-->
+            <img src="../images/iphone_help.png" id="iphone" style="display: none;" alt="">
+            <img src="../images/anzhuo_help.png" id="anzhuo" style="display: none;" alt="">
+        </div>
+    </div>
+    @*<div style="position: relative;">
+        <span id="l" class="pattern left"><img src="./download_pattern_left.png"></span>
+        <span id="r" class="pattern right"><img src="./download_pattern_right.png"></span>
+    </div>*@
+    <div class="out-container">
+        <div class="main">
+            <header>
+                <div class="table-container">
+                    <div class="cell-container">
+                        <div class="app-brief">
+                            <div class="icon-container wrapper">
+                                <i class="icon-icon_path bg-path"></i>
+                                <span class="icon">
+                                    <img src="../images/logo.png">
+                                </span>
+                                <span class="qrcode" title="">
+                                    <canvas width="200" height="200" style="display: none;"></canvas>
+                                    <img alt="Scan me!" src="http://pcdd001.jshfcy.com/ewm/01.png">
+                                </span>
+                            </div>
+                            <h1 class="name wrapper">
+                                <span class="icon-warp">
+                                    PC蛋蛋
+                                </span>
+                            </h1>
+                            <p class="scan-tips">
+                                请扫描二维码下载或手机浏览器输入woaipc28.com下载<br>
+                                <!--或用手机浏览器输入这个网址:&nbsp;&nbsp;
+                                <span class="text-black">itms-services://?action=download-manifest&url=https://ssl.jshfcy.com/ceshi.plist</span>-->
+                            </p>
+                            <div class="release-info" style="position:relative;">
+                                <p>
+                                    版本 -
+                                    <span itemprop="softwareVersion">
+                                        2.9 
+                                        - 12005.25 KB
+                                    </span>
+                                </p>
+                                <p>更新于: <span itemprop="datePublished">2017-01-04 14:00</span></p>
+                                <!--<h2 class="title" id="title01" style="position:absolute;bottom:-110px;left:0;display:block;">扫描二维码<img src="jt.png"></h2>-->
+                            </div>
+                        </div>
+                        <div style="position: relative;text-align: center;" class="actions">
+                            <div id="load">页面加载中，请等待...</div>
+                            <div style="text-align: center;margin: 10px auto;width: 200px" id="da"></div>
+                            <div style="text-align: center;margin: 10px auto;width: 200px" id="b">
+
+                            </div>
+                            <div style="text-align: center;margin: 20px auto;width: 200px;" id="picBtn">
+                                <a class="bui" style="border: 1px solid #A9B1B3;display: none;" href="javascript:void(0)">安装步骤</a>
+                            </div>
+                            <div class="fakeloader"></div>
+                        </div>
+                        <!--<div id="actions" style="position: relative;text-align: center;" class="actions type-ios">-->
+                        <!--&lt;!&ndash;<a class="but" href="http://itms-services://?action=download-manifest&url=https://ssl.jshfcy.com/ceshi.plist">下载安装</a>&ndash;&gt;-->
+                        <!--<div class="fakeloader"></div>-->
+                        <!--</div>-->
+                        <!-- NOTE: 统计APP -->
+                        <div class="popularize-section section" id="popularize-container">
+                            <div class="label">推荐应用</div>
+                            <div class="popularize-list" id="popularize-list"></div>
+                        </div>
+                        <!--10-15修改-->
+                        <h2 class="title" id="title">扫描二维码<img src="../images/jt.png"></h2>
+                    </div>
+                </div>
+            </header>
+            <div id="sweep" class="master-section section">
+
+                <img id="code" src="http://pcdd001.jshfcy.com/ewm/01.png" style="width: 200px;display: none;" alt="">
+            </div>
+            <link href="@{@WorkContext.ScriptCDN}/scripts/down/help_fc.css" rel="stylesheet" type="text/css">
+            <script src="@{@WorkContext.ScriptCDN}/scripts/down/swiper.min.js" type="text/javascript"></script>
+            <link href="@{@WorkContext.ScriptCDN}/scripts/down/swiper.css" rel="stylesheet" type="text/css">
+            <!--焦点图-->
+            <div class="help_fcwk" id="helpTips" style="margin-top: -311.5px;">
+                <div style="text-align: right;">
+                    <img src="../images/ab_an.gif" id="btnClose" width="22">
+                </div>
+                <div class="swiper-container swiper-container-horizontal">
+                    <div class="swiper-wrapper">
+                        <div class="help_fc_img swiper-slide swiper-slide-active"><img src="00.png"></div>
+                        <div class="help_fc_img swiper-slide swiper-slide-next"><img src="01.png"></div>
+                        <div class="help_fc_img swiper-slide"><img src="02.png"></div>
+                        <div class="help_fc_img swiper-slide"><img src="03.png"></div>
+                        <div class="help_fc_img swiper-slide"><img src="04.png"></div>
+                        <div class="help_fc_img swiper-slide"><img src="05.png"></div>
+                        <!--<div class="help_fc_img swiper-slide" ><img src="06.png"></div>-->
+                    </div>
+                </div>
+                <div class="help_fc_dot">
+                    <div class="swiper-pagination swiper-pagination-clickable" style="bottom:65px;left:48%;">
+                        <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+                        <span class="swiper-pagination-bullet"></span>
+                        <span class="swiper-pagination-bullet"></span>
+                        <span class="swiper-pagination-bullet"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ft-bottom" class="color-3">
+     
+    </div>
+    <!--<div class="help_fc_bg" style="height: 8634px;"></div>-->
+    <!-- Release list -->
+    <script src="@{@WorkContext.ScriptCDN}/scripts/down/fakeloader.js"></script>
+    <script>
+        var browser = {
+            versions: function ()
+            {
+                var u = navigator.userAgent, app = navigator.appVersion;
+                return {
+                    // android终端或者uc浏览器
+                    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+                    // 是否为iPhone或者QQHD浏览器
+                    iPhone: u.indexOf('iPhone') > -1,
+                    //// 是否iPad
+                    //iPad: u.indexOf('iPad') > -1,
+                    // 是否是通过微信的扫一扫打开的
+                    weChat: u.indexOf('MicroMessenger') > -1
+                };
+            }(),
+            language: (navigator.browserLanguage || navigator.language).toLowerCase()
+        }
+        $("#load").html('');
+        //安卓下载地址
+        var an_1 = 'http://pcdd001.jshfcy.com/pcdd_2.9_01.apk';
+        var an_2 = '';
+        var an_3 = '';
+        var an_4 = '';
+        var an_5 = '';
+
+        //苹果下载地址
+        var iph_1 = 'itms-services://?action=download-manifest&url=https://ssl.jshfcy.com/pcdd/pcdd.plist';
+        var iph_2 = 'itms-services://?action=download-manifest&url=https://ssl.jshfcy.com/pcdd/pcdd01.plist';
+        var iph_3 = 'itms-services://?action=download-manifest&url=https://ssl.jshfcy.com/pcdd/pcdd02.plist';
+        var iph_4 = '';
+        var iph_5 = '';
+
+        //普通链接
+        var pu = 'http://pc28.gg/down/';
+        var ua = window.navigator.userAgent.toLowerCase();
+        function dong()
+        {
+            $(".fakeloader").fakeLoader({
+                timeToHide: 4000,
+                spinner: "spinner2",
+                top: '0px',  // Default Top value
+                left: '130px', // Default Left value
+                zIndex: '2',  // Default zIndex
+                bgColor: 'rgba(46, 204, 113, 0)'
+            });
+        };
+        /*苹果的5个下载地址*/
+        function sub1(a)
+        {
+            if (ua.match(/MicroMessenger/i))
+            {
+                $(".top_ddd").show();
+                $("#iphone").show();
+            } else
+            {
+                dong();
+                $('#code').show();
+                $("#b").html('<p>&nbsp;</p>');
+                self.location = a + '?' + Math.random();  //加随机数 防止缓存问题
+            }
+        }
+
+        /*安卓的5个下载地址*/
+        function sub2(b)
+        {
+            if (ua.match(/MicroMessenger/i))
+            {
+                $("#code").show();
+                $(".top_ddd").show();
+                $("#anzhuo").show();
+            } else
+            {
+                dong();
+                $("#b").html('<p>&nbsp;</p>');
+                self.location = b;
+                $('#code').show();
+            };
+        };
+
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent))
+        {
+            //苹果浏览器
+            $(".bui").show();
+            $("#load").hide();
+            $('#code').show();
+            $("#title").show();
+
+            $("#b").html('<button onclick="sub1(iph_1)">下载安装1</button><button onclick="sub1(iph_2)">下载安装2</button><button onclick="sub1(iph_3)">下载安装3</button>');
+
+
+            $(".but").click(function ()
+            {
+                dong();
+            }
+            );
+        } else if (/(Android)/i.test(navigator.userAgent))
+        {
+            //安卓浏览器
+            $("#load").hide();
+            $(".bui").hide();
+            $('#code').show();
+            $("#title").show();
+
+            $("#b").html('<button onclick="sub2(an_1)">下载安装</button>');
+        } else
+        {
+            $("#load").hide();
+            $("#sweep").hide();
+            $("#title").hide();
+
+        };
+    </script>
+    <script type="text/javascript">
+        window.onload = function ()
+        {
+
+            //扫描二维码定位
+            var tipsDivH = $('#helpTips').outerHeight(true);
+            $('#helpTips').css('margin-top', -tipsDivH / 2);
+            $('.help_fc_bg').height(pageHeight());
+        }
+
+        $(function ($)
+        {
+            $('#picBtn').click(function ()
+            {
+                setTimeout(function ()
+                {
+                    $('#helpTips').show();
+                    $("#l").hide();
+                    $("#r").hide();
+                    initHelpTips();
+                }, 0);
+
+                var swiper = undefined;
+                var proInterval = undefined;
+
+                function initHelpTips()
+                {
+
+                    swiper = new Swiper('.swiper-container', {
+                        pagination: '.swiper-pagination',
+                        slidesPerView: 1,
+                        paginationClickable: true,
+                        spaceBetween: 0,
+                        roundLengths: true
+                    });
+
+                    var curPro = -10;
+                    if (!proInterval) clearInterval(proInterval);
+                    proInterval = setInterval(function ()
+                    {
+                        curPro++;
+                        if (curPro <= 0)
+                        {
+                            return;
+                        }
+                        $('.help_fc_jdtt').width(curPro + '%');
+                        if (curPro == 100)
+                        {
+                            clearInterval(proInterval);
+                            $('.help_fc_jdt').hide();
+                            $('.gb_an').show();
+                            $('.help_fc_bt').html('安装完成，请开始设置！');
+                            $('.help_fc_ts').hide();
+                            $('.help_fc_an').show();
+                        }
+                    }, 80);
+
+                }
+
+            });
+        });
+        $('#btnClose').click(function ()
+        {
+            $("#l").show();
+            $("#r").show();
+            $('#helpTips').hide();
+            $('.help_fc_bg').hide();
+        });
+        /* 当前页面高度 */
+        function pageHeight()
+        {
+            return document.body.scrollHeight;
+        }
+
+    </script>
+</body>
+
+<div style=" visibility:hidden;">
+    <a href="http://www.51.la/?18989581" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18989581.asp" style="border:none" /></a>
+</div>
+
+</html>
+

@@ -1,0 +1,17 @@
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.WeChat\db.config
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.WeChat\plugin.config
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.WeChat\views\adminwechat\config.cshtml
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.WeChat\views\wechat\pay.cshtml
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.WeChat\BrnShop.PayPlugin.WeChat.dll
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.WeChat\BrnShop.PayPlugin.WeChat.pdb
+C:\Users\zm\Desktop\工作\BrnShop\Plugins\BrnShop.PayPlugin.WeChat\obj\Release\BrnShop.PayPlugin.WeChat.dll
+C:\Users\zm\Desktop\工作\BrnShop\Plugins\BrnShop.PayPlugin.WeChat\obj\Release\BrnShop.PayPlugin.WeChat.pdb
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.WeChat\db.config
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.WeChat\plugin.config
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.WeChat\views\adminwechat\config.cshtml
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.WeChat\views\wechat\pay.cshtml
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.WeChat\BrnShop.PayPlugin.WeChat.dll
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.WeChat\BrnShop.PayPlugin.WeChat.pdb
+C:\Users\zm\Desktop\BrnShop\Plugins\BrnShop.PayPlugin.WeChat\obj\Release\BrnShop.PayPlugin.WeChat.csprojResolveAssemblyReference.cache
+C:\Users\zm\Desktop\BrnShop\Plugins\BrnShop.PayPlugin.WeChat\obj\Release\BrnShop.PayPlugin.WeChat.dll
+C:\Users\zm\Desktop\BrnShop\Plugins\BrnShop.PayPlugin.WeChat\obj\Release\BrnShop.PayPlugin.WeChat.pdb

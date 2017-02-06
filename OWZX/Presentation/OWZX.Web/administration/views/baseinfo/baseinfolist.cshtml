@@ -1,0 +1,54 @@
+﻿@model List<OWZX.Model.BaseInfoModel>
+
+@section header{
+    <title>基础资料</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css" />
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/administration/scripts/selectlist.js"></script>
+
+}
+@section body{
+    <h1 class="rightH1">
+        系统设置 &gt;&gt; 基础资料列表
+        <div class="right">
+            <a href="@Url.Action("editbaseinfo", new RouteValueDictionary { {"baseid",0}})" class="menuBT"><img src="/administration/images/add.jpg" />添加</a>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </h1>
+    @using (Html.BeginForm())
+    {
+        <div class="dataList">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <th width="10"></th>
+                        <th width="60" align="left">编号</th>
+                        <th width="140" align="left">标题</th>
+                        <th width="180" align="left">内容</th>
+                        <th width="56" align="left">管理操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (OWZX.Model.BaseInfoModel bsinfo in Model)
+                    {
+                        if(!bsinfo.Title.Contains("海报"))
+                        {
+                        <tr>
+                            <td></td>
+                            <td>@bsinfo.BaseId</td>
+                            <td>@bsinfo.Title</td>
+                            <td>@{@bsinfo.Content.Substring(0, @bsinfo.Content.Length > 100 ? 100 : @bsinfo.Content.Length)}</td>
+                            <td>
+                                @Html.ActionLink("[编辑]", "editbaseinfo", new { baseid = @bsinfo.BaseId }, new { @class = "editOperate" })
+                            </td>
+                        </tr>
+                    }
+                    }
+                </tbody>
+            </table>
+        </div>
+       
+    }
+}
+}

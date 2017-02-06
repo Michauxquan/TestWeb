@@ -1,0 +1,103 @@
+﻿@model OWZX.Model.MD_LotteryRoom
+           
+@section header{
+    <title>添加房间信息</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/administration/scripts/jquery.validate.js"></script>
+    <script type="text/javascript" src="/administration/scripts/jquery.validate.unobtrusive.js"></script>
+}
+@section body{
+    <h1 class="rightH1">
+        基础资料 &gt;&gt; 添加房间信息
+        <div class="right">
+            <a href="@Html.Raw(ViewData["referer"].ToString())" class="menuBT">
+                <img src="/administration/images/goback.jpg" />返回列表</a>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </h1>
+    @using (Html.BeginForm())
+    {
+        <div class="addTable">
+                <table width="100%">
+                    <tr>
+                    <td width="100px" align="right">
+                        彩票类型：
+                    </td>
+                    <td>
+                        <select data-val="true" data-val-required="请选择" id="LotteryType" name="LotteryType">
+                            <option @if (-1 == Model.Lotterytype) { <text> selected="selected" </text>           } value="0">彩票类型</option>
+                            @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList("where outtypeid=28"))
+                            {
+                                <option @if (info.Systypeid == Model.Lotterytype) { <text> selected="selected" </text>           } value="@info.Systypeid">@info.Type</option>
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(x => x.Lotterytype)
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        房间类型：
+                    </td>
+                    <td>
+                        <select data-val="true" data-val-required="请选择" id="Room" name="Room">
+                            <option @if (-1 == Model.Room) { <text> selected="selected" </text>          } value="0">房间类型</option>
+                            @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList("where parentid=19"))
+                            {
+                                <option @if (info.Systypeid == Model.Room) { <text> selected="selected" </text>          } value="@info.Systypeid">@info.Type</option>
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(x => x.Room)
+                    </td>
+                </tr>
+                    <tr>
+                        <td align="right">
+                            最大人数：
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.Maxuser, new { @class = "input", size = "35" })@Html.ValidationMessageFor(x => x.Maxuser)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            进入条件：
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.Enter, new { @class = "input", size = "35" })
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="right">
+                            &nbsp;
+                        </td>
+                        <td>
+                            <a href="" class="addBt" id="sumbitBut">
+                                <img src="/administration/images/submit.jpg" /></a>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $("#sumbitBut").click(function () {
+                                        $("form:first").submit();
+                                        return false;
+                                    })
+                                });
+                            </script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+        </div>
+    }
+
+    
+}

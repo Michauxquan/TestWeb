@@ -1,0 +1,113 @@
+﻿@model OWZX.Web.Admin.Models.UserBackList
+
+@section header{
+<title>用户回水</title>
+<link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+<script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+<script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+<link href="/components/layer/skin/layer.css" rel="stylesheet" />
+<script src="/components/layer/layer.js"></script>
+}
+
+@section body{
+<h1 class="rightH1">
+    事务处理 &gt;&gt;回水记录
+<div class="right">
+   
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</h1>
+@using (Html.BeginForm())
+{
+    <div class="dataListSearch">
+        <table height="32">
+            <tbody>
+                <tr>
+                    <td width="35"><img id="searchImg" src="/administration/images/search1.gif" /></td>
+
+                    <td>
+                        &nbsp;&nbsp;&nbsp;账号：
+                    </td>
+                    <td width="130">
+                        @Html.TextBox("Account", Model.Account, new { height = "18" })
+                    </td>
+                    
+                    <td style="height:24px;">
+                        <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24" />
+                       
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<div class="dataList">
+<table width="100%">
+<thead>
+  <tr>
+    <th width="20"></th>
+    <th width="60" align="left">编号</th>
+    <th width="60" align="left">时间</th>
+    <th width="80" align="left">账号</th>
+    <th width="100" align="left">亏损金额</th>
+    <th width="100" align="left">组合比例</th>
+      <th width="100" align="left">房间类型</th>
+    <th width="100" align="left">回水</th>
+    <th width="60" align="left">状态</th>
+    <th width ="60" align="left">管理操作</th>
+    </tr>
+</thead>
+  <tbody>
+  @foreach (OWZX.Model.MD_UserBack info in Model.BackList)
+  {
+  <tr><td></td>
+    <td>@info.Id</td>
+      <td>@info.Addtime</td>
+    <td>@info.Account</td>
+      <td>@info.ProfitMoney</td><td>@info.CombRatio.ToString()%</td>
+      <td>@info.Room</td>
+    <td>@info.Money</td>
+   
+    <td>@switch (@info.Status)
+        { 
+            case 0:
+                @:未结算
+                break;
+            case 1:
+            @:审核中
+                break;
+            case 2:
+            @:已结算
+                break;
+        }</td>
+    <td>
+        @if(info.Status==0)
+        {
+         @Html.ActionLink("[审核中]", "editback", new { backid = @info.Backid, status = "1" }, new { @class = "editOperate" })
+        }
+        @if(info.Status<2)
+        {
+          @Html.ActionLink("[结算完成]", "editback", new { backid = @info.Backid, status="2"}, new { @class = "editOperate" })
+        }
+        @if(info.Status<2)
+        {
+          @Html.ActionLink("[删除]", "DelBack", new { backid = @info.Backid }, new { @class = "deleteOperate" })
+        }
+        @if (info.Status >=2)
+        {
+           @:--
+        }
+    </td>
+    </tr>
+  }
+</tbody>
+</table>
+</div>
+<div class="dataListEdit">
+<div class="page">
+    @Html.AdminPager(Model.PageModel)
+</div>
+</div>
+}
+}

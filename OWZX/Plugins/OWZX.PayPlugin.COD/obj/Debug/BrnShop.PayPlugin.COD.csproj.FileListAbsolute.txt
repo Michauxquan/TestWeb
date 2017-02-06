@@ -1,0 +1,14 @@
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.COD\plugin.config
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.COD\views\admincod\config.cshtml
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.COD\BrnShop.PayPlugin.COD.dll
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.COD\BrnShop.PayPlugin.COD.pdb
+C:\Users\zm\Desktop\BrnShop\Plugins\BrnShop.PayPlugin.COD\obj\Debug\BrnShop.PayPlugin.COD.csprojResolveAssemblyReference.cache
+C:\Users\zm\Desktop\BrnShop\Plugins\BrnShop.PayPlugin.COD\obj\Debug\BrnShop.PayPlugin.COD.dll
+C:\Users\zm\Desktop\BrnShop\Plugins\BrnShop.PayPlugin.COD\obj\Debug\BrnShop.PayPlugin.COD.pdb
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.COD\plugin.config
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.COD\views\admincod\config.cshtml
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.COD\BrnShop.PayPlugin.COD.dll
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.COD\BrnShop.PayPlugin.COD.pdb
+C:\Users\zm\Desktop\工作\BrnShop\Plugins\BrnShop.PayPlugin.COD\obj\Debug\BrnShop.PayPlugin.COD.csprojResolveAssemblyReference.cache
+C:\Users\zm\Desktop\工作\BrnShop\Plugins\BrnShop.PayPlugin.COD\obj\Debug\BrnShop.PayPlugin.COD.dll
+C:\Users\zm\Desktop\工作\BrnShop\Plugins\BrnShop.PayPlugin.COD\obj\Debug\BrnShop.PayPlugin.COD.pdb

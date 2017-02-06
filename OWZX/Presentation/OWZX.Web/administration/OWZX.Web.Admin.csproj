@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5B095420-1E35-41F3-A570-F5D96D54BE6A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OWZX.Web.Admin</RootNamespace>
+    <AssemblyName>OWZX.Web.Admin</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\RefDLL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AreaRegistration.cs" />
+    <Compile Include="controllers\AccountController.cs" />
+    <Compile Include="controllers\AdminGroupController.cs" />
+    <Compile Include="controllers\AdvertController.cs" />
+    <Compile Include="controllers\BannedIPController.cs" />
+    <Compile Include="controllers\BaseInfoController.cs" />
+    <Compile Include="controllers\DataBaseController.cs" />
+    <Compile Include="controllers\AdviceController.cs" />
+    <Compile Include="controllers\ErrorController.cs" />
+    <Compile Include="controllers\BaseSetController.cs" />
+    <Compile Include="controllers\EventController.cs" />
+    <Compile Include="controllers\FilterWordController.cs" />
+    <Compile Include="controllers\FriendLinkController.cs" />
+    <Compile Include="controllers\HelpController.cs" />
+    <Compile Include="controllers\LotteryController.cs" />
+    <Compile Include="controllers\HomeController.cs" />
+    <Compile Include="controllers\LogController.cs" />
+    <Compile Include="controllers\NavController.cs" />
+    <Compile Include="controllers\DrawController.cs" />
+    <Compile Include="controllers\NewsController.cs" />
+    <Compile Include="controllers\PluginController.cs" />
+    <Compile Include="controllers\SetController.cs" />
+    <Compile Include="controllers\StatController.cs" />
+    <Compile Include="controllers\ToolController.cs" />
+    <Compile Include="controllers\TopicController.cs" />
+    <Compile Include="controllers\NewUserController.cs" />
+    <Compile Include="controllers\UserController.cs" />
+    <Compile Include="controllers\UserRankController.cs" />
+    <Compile Include="models\AdminGroupModel.cs" />
+    <Compile Include="models\AdvertModel.cs" />
+    <Compile Include="models\BaseSetListModel.cs" />
+    <Compile Include="models\UserBankListModel.cs" />
+    <Compile Include="models\ProfitStatList.cs" />
+    <Compile Include="models\UserChangeList.cs" />
+    <Compile Include="models\VisitIPList.cs" />
+    <Compile Include="models\LotteryListModel.cs" />
+    <Compile Include="models\LotterySets.cs" />
+    <Compile Include="models\UserRemitList.cs" />
+    <Compile Include="models\UserBackList.cs" />
+    <Compile Include="models\AdviceInfoList.cs" />
+    <Compile Include="models\BannedIPModel.cs" />
+    <Compile Include="models\DrawListModel.cs" />
+    <Compile Include="models\EventModel.cs" />
+    <Compile Include="models\FilterWordModel.cs" />
+    <Compile Include="models\FriendLinkModel.cs" />
+    <Compile Include="models\HelpModel.cs" />
+    <Compile Include="models\HomeModel.cs" />
+    <Compile Include="models\LoginModel.cs" />
+    <Compile Include="models\LogModel.cs" />
+    <Compile Include="models\NavModel.cs" />
+    <Compile Include="models\RechargeListModel.cs" />
+    <Compile Include="models\NewsModel.cs" />
+    <Compile Include="models\PluginModel.cs" />
+    <Compile Include="models\SetModel.cs" />
+    <Compile Include="models\StatModel.cs" />
+    <Compile Include="models\TopicModel.cs" />
+    <Compile Include="models\UserModel.cs" />
+    <Compile Include="models\UserRankModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\OWZX.Core\OWZX.Core.csproj">
+      <Project>{6f48bb90-4f4c-4b85-a00c-0bde023d30eb}</Project>
+      <Name>OWZX.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\OWZX.Model\OWZX.Model.csproj">
+      <Project>{a53a486d-1a8b-430a-befb-569d3cfad9bc}</Project>
+      <Name>OWZX.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\OWZX.Services\OWZX.Services.csproj">
+      <Project>{596895bb-ff00-4139-b834-0718fa2dcd45}</Project>
+      <Name>OWZX.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OWZX.Web.Framework\OWZX.Web.Framework.csproj">
+      <Project>{46889243-4e04-4b19-9aa2-cd7cf2dd73d8}</Project>
+      <Name>OWZX.Web.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="views\account\login.cshtml" />
+    <None Include="views\admingroup\add.cshtml" />
+    <None Include="views\admingroup\edit.cshtml" />
+    <None Include="views\admingroup\list.cshtml" />
+    <None Include="views\advert\addadvert.cshtml" />
+    <None Include="views\advert\addadvertposition.cshtml" />
+    <None Include="views\advert\advertlist.cshtml" />
+    <None Include="views\advert\advertpositionlist.cshtml" />
+    <None Include="views\advert\editadvert.cshtml" />
+    <None Include="views\advert\editadvertposition.cshtml" />
+    <None Include="views\advice\advicelist.cshtml" />
+    <None Include="views\bannedip\add.cshtml" />
+    <None Include="views\bannedip\edit.cshtml" />
+    <None Include="views\bannedip\list.cshtml" />
+    <None Include="views\baseinfo\addbackrule.cshtml" />
+    <None Include="views\baseinfo\addroom.cshtml" />
+    <None Include="views\baseinfo\addbasetype.cshtml" />
+    <None Include="views\baseinfo\editbackrule.cshtml" />
+    <None Include="views\baseinfo\backrulelist.cshtml" />
+    <None Include="views\baseinfo\lotterysetlist.cshtml" />
+    <None Include="views\baseinfo\roomlist.cshtml" />
+    <None Include="views\baseinfo\basetypedetails.cshtml" />
+    <None Include="views\baseinfo\editroom.cshtml" />
+    <None Include="views\baseinfo\posterbaseinfo.cshtml" />
+    <None Include="views\baseinfo\editbasetype.cshtml" />
+    <None Include="views\baseinfo\basetypelist.cshtml" />
+    <None Include="views\baseinfo\baseinfolist.cshtml" />
+    <None Include="views\baseinfo\editbaseinfo.cshtml" />
+    <None Include="views\database\manage.cshtml" />
+    <None Include="views\draw\rechargelist.cshtml" />
+    <None Include="views\draw\drawlist.cshtml" />
+    <None Include="views\error\index.cshtml" />
+    <None Include="views\error\Info.cshtml" />
+    <None Include="views\baseset\add.cshtml" />
+    <None Include="views\baseset\edit.cshtml" />
+    <None Include="views\baseset\list.cshtml" />
+    <None Include="views\event\add.cshtml" />
+    <None Include="views\event\edit.cshtml" />
+    <None Include="views\event\list.cshtml" />
+    <None Include="views\filterword\add.cshtml" />
+    <None Include="views\filterword\edit.cshtml" />
+    <None Include="views\filterword\list.cshtml" />
+    <None Include="views\friendlink\add.cshtml" />
+    <None Include="views\friendlink\edit.cshtml" />
+    <None Include="views\friendlink\list.cshtml" />
+    <None Include="views\help\addhelp.cshtml" />
+    <None Include="views\help\addhelpcategory.cshtml" />
+    <None Include="views\help\edithelp.cshtml" />
+    <None Include="views\help\edithelpcategory.cshtml" />
+    <None Include="views\help\list.cshtml" />
+    <None Include="views\home\index.cshtml" />
+    <None Include="views\home\menu.cshtml" />
+    <None Include="views\home\navbar.cshtml" />
+    <None Include="views\home\shopruninfo.cshtml" />
+    <None Include="views\log\adminoperateloglist.cshtml" />
+    <None Include="views\log\creditloglist.cshtml" />
+    <None Include="views\lottery\profitlist.cshtml" />
+    <None Include="views\lottery\lotterylist.cshtml" />
+    <None Include="views\nav\add.cshtml" />
+    <None Include="views\nav\edit.cshtml" />
+    <None Include="views\nav\list.cshtml" />
+    <None Include="views\news\addnews.cshtml" />
+    <None Include="views\news\addnewstype.cshtml" />
+    <None Include="views\news\editnews.cshtml" />
+    <None Include="views\news\editnewstype.cshtml" />
+    <None Include="views\news\newslist.cshtml" />
+    <None Include="views\news\newstypelist.cshtml" />
+    <None Include="views\newuser\addremit.cshtml" />
+    <None Include="views\newuser\changelist.cshtml" />
+    <None Include="views\newuser\editbank.cshtml" />
+    <None Include="views\newuser\userbanklist.cshtml" />
+    <None Include="views\plugin\config.cshtml" />
+    <None Include="views\plugin\edit.cshtml" />
+    <None Include="views\plugin\list.cshtml" />
+    <None Include="views\set\access.cshtml" />
+    <None Include="views\set\account.cshtml" />
+    <None Include="views\set\credit.cshtml" />
+    <None Include="views\set\email.cshtml" />
+    <None Include="views\set\performance.cshtml" />
+    <None Include="views\set\printorder.cshtml" />
+    <None Include="views\set\shop.cshtml" />
+    <None Include="views\set\site.cshtml" />
+    <None Include="views\set\sms.cshtml" />
+    <None Include="views\set\theme.cshtml" />
+    <None Include="views\set\upload.cshtml" />
+    <None Include="views\shared\error.cshtml" />
+    <None Include="views\shared\prompt.cshtml" />
+    <None Include="views\shared\_layout.cshtml" />
+    <None Include="views\stat\clientstat.cshtml" />
+    <None Include="views\stat\onlineuserlist.cshtml" />
+    <None Include="views\stat\onlineusertrend.cshtml" />
+    <None Include="views\stat\visitiplist.cshtml" />
+    <None Include="views\stat\productstat.cshtml" />
+    <None Include="views\stat\regionstat.cshtml" />
+    <None Include="views\stat\saleproductlist.cshtml" />
+    <None Include="views\stat\orderstat.cshtml" />
+    <None Include="views\stat\searchwordstatlist.cshtml" />
+    <None Include="views\topic\add.cshtml" />
+    <None Include="views\topic\edit.cshtml" />
+    <None Include="views\topic\list.cshtml" />
+    <None Include="views\newuser\backlist.cshtml" />
+    <None Include="views\newuser\remitlist.cshtml" />
+    <None Include="views\userrank\add.cshtml" />
+    <None Include="views\userrank\edit.cshtml" />
+    <None Include="views\userrank\list.cshtml" />
+    <None Include="views\user\add.cshtml" />
+    <None Include="views\user\editdraw.cshtml" />
+    <None Include="views\user\edit.cshtml" />
+    <None Include="views\user\list.cshtml" />
+    <None Include="views\Web.config" />
+    <None Include="views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\login.css" />
+    <Content Include="images\1111.jpg" />
+    <Content Include="images\2222.jpg" />
+    <Content Include="images\ex.png" />
+    <Content Include="menu\2.js" />
+    <Content Include="css\site.css" />
+    <Content Include="images\a.jpg" />
+    <Content Include="images\add.jpg" />
+    <Content Include="images\bg.jpg" />
+    <Content Include="images\bottombg.jpg" />
+    <Content Include="images\bt_right.jpg" />
+    <Content Include="images\cancel.jpg" />
+    <Content Include="images\delete.jpg" />
+    <Content Include="images\delete2.gif" />
+    <Content Include="images\edit.jpg" />
+    <Content Include="images\goback.jpg" />
+    <Content Include="images\ico1.jpg" />
+    <Content Include="images\li.jpg" />
+    <Content Include="images\li1.jpg" />
+    <Content Include="images\menubg.jpg" />
+    <Content Include="images\menubg_bottom.jpg" />
+    <Content Include="images\menubg_top.jpg" />
+    <Content Include="images\menuli_bg.jpg" />
+    <Content Include="images\menuli_bg_hot.jpg" />
+    <Content Include="images\nav_bg_hot.jpg" />
+    <Content Include="images\progressbar.gif" />
+    <Content Include="images\refresh.jpg" />
+    <Content Include="images\right_ico.jpg" />
+    <Content Include="images\s.jpg" />
+    <Content Include="images\search1.gif" />
+    <Content Include="images\selectbg.gif" />
+    <Content Include="images\selectbgico.gif" />
+    <Content Include="images\submit.jpg" />
+    <Content Include="images\tagbg-left.jpg" />
+    <Content Include="images\tagbg.jpg" />
+    <Content Include="images\tip.gif" />
+    <Content Include="images\top_bg.jpg" />
+    <Content Include="images\tree_close.gif" />
+    <Content Include="images\tree_open.gif" />
+    <Content Include="scripts\excanvas.js" />
+    <Content Include="scripts\jquery.flot.js" />
+    <Content Include="scripts\jquery.flot.pie.js" />
+    <Content Include="scripts\jquery.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\login.js" />
+    <Content Include="scripts\product.js" />
+    <Content Include="scripts\project.js" />
+    <Content Include="scripts\region.js" />
+    <Content Include="scripts\selectlist.js" />
+    <Content Include="scripts\showlist.js" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,100 @@
+﻿@model OWZX.Web.Admin.Models.UserListModel
+
+@section header{
+    <title>用户列表</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css" />
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+}
+
+@section body{
+    <h1 class="rightH1">
+        用户管理 &gt;&gt; 用户列表
+        <div class="right">
+@{HashSet<string> actionlist = AdminGroups.GetAdminGroupActionHashSetNoCache(WorkContext.AdminGid);}
+@if (actionlist.Contains("user_add") || WorkContext.AdminGid == 2)
+{
+            <a href="@Url.Action("add")" class="menuBT"><img src="/administration/images/add.jpg" />添加</a>
+}
+
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </h1>
+    @using (Html.BeginForm("list", "user"))
+    {
+        <div class="dataListSearch">
+            <table height="32">
+                <tbody>
+                    <tr>
+                        <td width="35"><img id="searchImg" src="/administration/images/search1.gif" /></td>
+                        
+                        <td style="display:none;">
+                            用户名：
+                        </td>
+                        <td width="130" style="display:none;">
+                            @Html.TextBox("UserName", Model.UserName, new { height = "18" })
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;手机：
+                        </td>
+                        <td width="130">
+                            @Html.TextBox("Mobile", Model.Mobile, new { height = "18" })
+                        </td>
+                       
+                        <td style="height:24px;">
+                            <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="dataList">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <th width="10"></th>
+                        <th width="60" align="left">编号</th>
+                        <th width="80" align="left">用户名</th>
+                        <th width="80" align="left">手机</th>
+                        <th width="80" align="left">昵称</th>
+                        <th width="80" align="left">账户余额</th>
+                        <th width="80" align="left">注册时间</th>
+                        <th width="80" align="left">访问时间</th>
+                        <th width="80" align="left">权限</th>
+
+                        <th width="86" align="left">管理操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow row in Model.UserList.Rows)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@row["id"]</td>
+                            <td>@row["username"]</td>
+                            <td>@row["mobile"]</td>
+                            <td>@row["nickname"]</td>
+                            <td>@row["totalmoney"]</td>
+                            <td>@row["registertime"]</td>
+                            <td>@row["lastvisittime"]</td><td>@row["admingtitle"]</td>
+
+                            <td>
+                                @Html.ActionLink("[编辑]", "edit", new { uid = row["uid"] }, new { @class = "editOperate" })|
+                                @Html.ActionLink("[重置提现密码]", "editdraw", new { uid = row["uid"] }, new { @class = "editOperate" })|
+                                @Html.ActionLink("[删除]", "del", new { uid = row["uid"] }, new { @class = "deleteOperate" })
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="dataListEdit">
+            <div class="page">
+                @Html.AdminPager(Model.PageModel)
+            </div>
+        </div>
+    }
+}

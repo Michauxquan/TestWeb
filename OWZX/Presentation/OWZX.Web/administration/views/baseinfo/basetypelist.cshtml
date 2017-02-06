@@ -1,0 +1,154 @@
+﻿@using OWZX.Model
+@model BaseTypeListModel
+           
+@section header{
+    <title>基础类型</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+<script type="text/javascript" src="/administration/scripts/jquery.validate.js"></script>
+<script type="text/javascript" src="/administration/scripts/jquery.validate.unobtrusive.js"></script>
+<script src="/administration/scripts/showlist.js"></script>
+    <style>
+    
+    .menutype {
+    margin-left:20px;
+    padding:5px;
+    border:1px solid #234D66;
+    }
+        .menutype ul {
+            margin-left:20px;
+        }
+    .menutype li {
+     height:30px;
+     line-height:30px;
+     width:200px;
+    }
+        .menutype li:hover {
+           color:#e17a00;
+           cursor:pointer;
+        }
+        .menutype li.hot {color:#e17a00;
+        }
+    </style>
+    <script>
+    $(function ()
+    {
+        @{
+            var parentid = 0;
+           var patid= int.Parse(ViewData["parentid"].ToString());
+           if(patid==-1)
+           {
+            parentid=Model.basetypelist.Find(x => x.Parentid == 0).Systypeid;
+           }
+           else
+           {
+               parentid = patid;
+           }
+        }
+        $("#addchildtype").attr("href","/admin/baseinfo/addbasetype/"+@parentid);
+        if(@parentid==-1)
+        {
+            $(".menutype ul li").eq(0).addClass("hot");
+            $(".menutype ul li").eq(0).find("div.optype").css("display","inline-block");
+        }else
+        {
+            $(".menutype ul #@parentid").eq(0).addClass("hot");
+            $(".menutype ul #@parentid").eq(0).find("div.optype").css("display","inline-block");
+        }
+        $.post("/admin/baseinfo/basetypedetails/" + @parentid, function (data)
+        {
+            $(".dataList").html(data);
+        });
+
+        $(".menutype ul li").click(function ()
+        {
+            $(".menutype ul li").find("div.optype").css("display","none");
+            $(".menutype ul li").removeClass("hot").eq($(this).index()).addClass("hot").find("div.optype").css("display","inline-block");
+
+            var id = $(this).prop("id");
+            $("#addchildtype").attr("href","/admin/baseinfo/addbasetype/"+id);
+            $.post("/admin/baseinfo/basetypedetails/" + id, function (data)
+            {
+                $(".dataList").html(data);
+            });
+
+        });
+    });
+</script>
+}
+@section body{
+    <h1 class="rightH1">
+        系统设置 &gt;&gt; 基础类型
+        
+        <div class="clear"></div>
+    </h1>
+    <div style="padding-bottom:15px;height:auto;display:block;">
+        <div class="left rightH1" style="border-bottom:none;padding:15px 0;">
+            <a href="@Url.Action("addbasetype", new RouteValueDictionary { { "parentid", 0 } })" class="menuBT"><img src="/administration/images/add.jpg" />添加基础类型</a>
+            <div class="clear"></div>
+        </div>
+        <div class="left rightH1" style="border-bottom:none;padding:15px 0;">
+            <a id="addchildtype" class="menuBT"><img src="/administration/images/add.jpg" />添加子级类型</a>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="left menutype" >
+            <h5>基础类型</h5>
+            <ul>
+
+                @foreach (BaseTypeModel bsinfo in Model.basetypelist)
+                {
+                    if (bsinfo.Parentid == 0)
+                    {
+                        <text>
+                            <li id="@bsinfo.Systypeid">
+                                <div style="display:inline-block;">
+                                    @bsinfo.Type
+                                </div>
+                                <div class="optype" style="float:right;display:none;">
+                                    @Html.ActionLink("[编辑]", "editbasetype", new { systypeid = @bsinfo.Systypeid }, new { @class = "editOperate" })
+                                    @Html.ActionLink("[删除]", "deletebasetype", new { systypeid = @bsinfo.Systypeid }, new { @class = "deleteOperate" })
+                                </div>
+                            </li>
+                        </text>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="dataList" style="margin-left:16rem;border:1px solid #234D66;margin-top:0;padding-left:0; min-height:300px;">
+        </div>
+
+            @*@using (Html.BeginForm())
+            {
+                <div class="dataList" style="margin-left:16rem;border:1px solid #234D66;margin-top:0;padding-left:0; min-height:300px;">
+                    <table width="100%">
+                        <thead>
+                            <tr>
+                                <th width="10px"></th>
+                                <th width="50px" align="left">编号</th>
+                                <th width="140px" align="left">类型</th>
+                                <th width="180px" align="left">备注</th>
+                                <th width="56px" align="left">管理操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (BaseTypeModel bsinfo in Model.basetypelist.FindAll(x => x.Parentid == 1))
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td>@bsinfo.Systypeid</td>
+                                    <td>@bsinfo.Type</td>
+                                    <td>@bsinfo.Remark</td>
+                                    <td>
+                                        @Html.ActionLink("[编辑]", "editbaseinfo", new { systypeid = @bsinfo.Systypeid }, new { @class = "editOperate" })|
+                                        @Html.ActionLink("[删除]", "deletebasetype", new { systypeid = @bsinfo.Systypeid }, new { @class = "deleteOperate" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }*@
+        </div>
+    <div class="clear"></div>
+}

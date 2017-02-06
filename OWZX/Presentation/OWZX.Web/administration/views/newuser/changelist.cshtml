@@ -1,0 +1,83 @@
+﻿@model OWZX.Web.Admin.Models.UserChangeList
+
+@section header{
+<title>账变记录</title>
+<link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+<script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+<script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+<link href="/components/layer/skin/layer.css" rel="stylesheet" />
+<script src="/components/layer/layer.js"></script>
+<script type="text/javascript" src="/components/my97datepicker/WdatePicker.js"></script>
+}
+
+@section body{
+<h1 class="rightH1">
+    用户管理 &gt;&gt;账变记录
+<div class="right">
+   
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</h1>
+@using (Html.BeginForm())
+{
+    <div class="dataListSearch">
+        <table height="32">
+            <tbody>
+                <tr>
+                    <td width="35"><img id="searchImg" src="/administration/images/search1.gif" /></td>
+
+                    <td>
+                        &nbsp;&nbsp;&nbsp;账号：
+                    </td>
+                    <td width="130">
+                        @Html.TextBox("Account", Model.Account, new { height = "18" })
+                    </td>
+                    <td align="right">&nbsp;&nbsp;&nbsp;时间：</td>
+                    <td>
+                        <input type="text" class="Wdate" name="Start" id="Start" placeholder="开始时间" onfocus="WdatePicker({ maxDate: '#F{$dp.$D(\'End\')}', dateFmt: 'yyyy-MM-dd'})" value="@Model.Start" autocomplete="off" />
+                        至
+                        <input type="text" class="Wdate" name="End" id="End" placeholder="结束时间" onfocus="WdatePicker({ minDate: '#F{$dp.$D(\'Start\')}', dateFmt: 'yyyy-MM-dd'})" value="@Model.End" autocomplete="off" />
+                    </td>
+                    <td style="height:24px;">
+                        <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24" />
+                       
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<div class="dataList">
+<table width="100%">
+<thead>
+  <tr>
+    <th width="20"></th>
+    <th width="60" align="left">编号</th>
+    <th width="80" align="left">账号</th>
+    <th width="200" align="left">变动金额</th>
+    <th width="60" align="left">变动记录</th>
+    <th width="60" align="left">时间</th>
+    </tr>
+</thead>
+  <tbody>
+  @foreach (OWZX.Model.MD_Change info in Model.ChangeList)
+  {
+  <tr><td></td>
+    <td>@info.Id</td>
+    <td>@info.Account</td>
+    <td>@info.Changemoney</td>
+    <td>@info.Remark</td>
+    <td>@info.Addtime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+    </tr>
+  }
+</tbody>
+</table>
+</div>
+<div class="dataListEdit">
+<div class="page">
+    @Html.AdminPager(Model.PageModel)
+</div>
+</div>
+}
+}

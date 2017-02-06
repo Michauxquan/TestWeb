@@ -1,0 +1,171 @@
+﻿.mid{
+    display:inline-block;
+    width:1000px;margin:0 auto;min-height:600px;height:auto; background-color: inherit;
+    z-index: 10;
+}
+
+.mid_left{
+    /*border:1px solid red;*/width:150px;margin:0 auto;height:300px;background-color: gainsboro;
+    float: left;
+    margin-top:30px;
+}
+.mid_logo{
+    width:140px;height:100px;text-align:center;line-height:180px;color: gainsboro;
+}
+.mid_left li {
+    float: left;position: relative;
+}
+.mid_left li a{
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    display:block;
+    font-size: 16px;
+    color:#666666;
+}
+.mid_left li a:hover{
+    background:#4b505a;color: #ffffff;
+}
+
+.mid_left li .second{position: absolute;
+    position:absolute;left:0;display:none;z-index:10;background:#01af63;
+}
+
+.mid_right1{
+    width:1050px;
+    margin-left:  20px ;
+    margin-top: 30px;
+    float: left;
+}
+.title{
+    height: 20px;
+}
+.title_left{
+    font-family: 微软雅黑;
+    font-size: 20px;
+    font-weight: bold;
+    float: left;
+    color: darkgray;
+    height: 20px;
+}
+.title_right{
+    font-family: 微软雅黑;
+    height: 20px;
+    font-weight: bold;
+    float: right;
+}
+.title_right a{
+    text-decoration: none;
+    color: darkgray;
+}
+.img{
+    margin: 20px 10px;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: block;
+}
+
+.img1{
+    margin: 20px 10px;
+    position: relative;
+    width: 230px;
+    height: 212px;
+    display: block;
+}
+
+/*.mid_right1{
+    
+    margin-left: 20px ;
+    margin-top:30px;
+    float: left;
+}*/
+.service1 {
+    margin-left: 10px ;
+    font-size: 16px;
+    border-bottom:1px solid #666666;
+}
+.service1 li{
+    float: left;
+    margin-left: 10px;
+    color: darkgray;
+
+}
+.fan{
+  clear: left;
+    margin-left: 20px;
+    margin-top:20px;
+}
+.fan li {
+    margin-top:20px;
+}
+.fan .pull-left {
+    margin-top:10px;
+    }
+.mid_right2{
+    text-align: center;
+    margin-left: 20px ;
+    margin-top: 30px;
+    float: left;
+}
+.service2 {
+    margin-left: 10px ;
+
+}
+.service2 li{
+    float: left;
+    margin-left: 10px;
+    color: darkgray;
+
+}
+.fan2{
+    margin: 30px 30px;
+}
+.fan2 li{
+    margin: 10px 10px;
+    text-align: left;
+}
+.mid_right3{
+    text-align: center;
+    margin-left: 20px ;
+    margin-top: 40px;
+    float: left;
+}
+.service3 {
+    margin-left: 10px ;
+
+}
+.service3 li{
+    float: left;
+    margin-left: 10px;
+    color: darkgray;
+
+}
+.fan3{
+    margin: 20px 30px;
+    text-align: left;
+}
+.mid1{
+    width:1000px;margin:0 auto;height:1100px;background-color: inherit;
+    margin: 0 auto;z-index: 10;
+}
+.mid2{
+    width:1000px;margin:0 auto;height:1250px;background-color: inherit;
+    margin: 0 auto;z-index: 10;
+}
+
+/*底部固定*/
+body{  
+    position: relative;   /*重要！保证footer是相对于wapper位置绝对*/  
+    height: auto;          /* 保证页面能撑开浏览器高度时显示正常*/  
+    min-height: 100%;  /* IE6不支持，IE6要单独配置*/
+}  
+#footer{  
+   position: absolute;  bottom: 0; /* 关键 */  
+   left:0; /* IE下一定要记得 */  
+   height: 136px;         /* footer的高度一定要是固定值*/  
+}  
+.mid{  
+   padding-bottom: 170px; /*重要！给footer预留的空间*/  
+}

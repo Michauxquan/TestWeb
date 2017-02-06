@@ -1,0 +1,108 @@
+﻿@model OWZX.Web.Admin.Models.ProfitStatList
+
+@section header{
+<title>盈利报表</title>
+<link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+<script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+<script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+<link href="/components/layer/skin/layer.css" rel="stylesheet" />
+<script src="/components/layer/layer.js"></script>
+<script type="text/javascript" src="/components/my97datepicker/WdatePicker.js"></script>
+}
+
+@section body{
+<h1 class="rightH1">
+    财务报表 &gt;&gt;盈利报表
+<div class="right">
+   
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</h1>
+@using (Html.BeginForm())
+{
+    <div class="dataListSearch">
+        <table height="32">
+            <tbody>
+                <tr>
+                    <td width="35"><img id="searchImg" src="/administration/images/search1.gif" /></td>
+
+                    @*<td>
+                        &nbsp;&nbsp;&nbsp;彩票类型：
+                    </td>
+                    <td width="130">
+                        <select data-val="true" id="lottype" name="lottype">
+                            <option @if (-1 == Model.Lottery)
+                                    { <text> selected="selected" </text>           } value="-1">选择类型</option>
+                            @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where outtypeid=28"))
+                            {
+                                <option @if (info.Systypeid == Model.Lottery)
+                                        { <text> selected="selected" </text>       } value="@info.Systypeid">@info.Type</option>
+                            }
+                        </select>
+
+                    </td>*@
+                    <td>
+                        &nbsp;&nbsp;&nbsp;报表类型：
+                    </td>
+                    <td width="130">
+                        <select data-val="true" id="Type" name="Type">
+                            @foreach (SelectListItem info in (List<SelectListItem>)ViewData["statlist"])
+                            {
+                                <option @if (info.Text == Model.Type) { <text> selected="selected" </text>    } value="@info.Text">@info.Text</option>
+                            }
+                        </select>
+
+                    </td>
+                    <td >时间：</td>
+                    <td>
+                        <input type="text" class="Wdate" name="Start" id="Start" placeholder="开始时间" onfocus="WdatePicker({ maxDate: '#F{$dp.$D(\'End\')}', dateFmt: 'yyyy-MM-dd' })" value="@Model.Start" autocomplete="off" />
+                        至
+                        <input type="text" class="Wdate" name="End" id="End" placeholder="结束时间" onfocus="WdatePicker({ minDate: '#F{$dp.$D(\'Start\')}', dateFmt: 'yyyy-MM-dd'})" value="@Model.End" autocomplete="off" />
+                    </td>
+                    <td style="height:24px;">
+                        <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24" />
+                       
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<div class="dataList">
+<table width="100%">
+<thead>
+  <tr>
+    <th width="20"></th>
+    <th width="60" align="left">编号</th>
+    @*<th width="80" align="left">彩票类型</th>*@
+    <th width="200" align="left">投注金额</th>
+    <th width="60" align="left">中奖金额</th>
+      <th width="60" align="left">回水金额</th>
+      <th width="60" align="left">盈亏</th>
+    <th width="60" align="left">时间</th>
+    </tr>
+</thead>
+  <tbody>
+      @foreach (DataRow info in Model.ProfitList.Rows)
+      {
+        <tr>
+        <td>@info["id"]</td>
+        <td>@info["betttotal"]</td>
+        <td>@info["luckresult"]</td>
+        <td>@info["backtotal"]</td>
+        <td>@info["profitresult"]</td>
+        <td>@info["opentime"]</td>
+        </tr>
+      }
+      
+</tbody>
+</table>
+</div>
+<div class="dataListEdit">
+<div class="page">
+    @Html.AdminPager(Model.PageModel)
+</div>
+</div>
+}
+}

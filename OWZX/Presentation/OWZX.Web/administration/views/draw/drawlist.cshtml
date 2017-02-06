@@ -1,0 +1,170 @@
+﻿@model OWZX.Web.Admin.Models.DrawListModel
+
+@section header{
+    <title>提现记录</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css" />
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+    <link href="/components/layer/skin/layer.css" rel="stylesheet" />
+    <script src="/components/layer/layer.js"></script>
+}
+
+@section body{
+    <h1 class="rightH1">
+        事务处理 &gt;&gt;提现记录
+        <div class="right">
+
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </h1>
+    @using (Html.BeginForm())
+    {<div class="dataListSearch">
+        <table height="32">
+            <tbody>
+                <tr>
+                    <td width="35"><img id="searchImg" src="/administration/images/search1.gif" /></td>
+
+                    <td>
+                        &nbsp;&nbsp;&nbsp;账号：
+                    </td>
+                    <td width="130">
+                        @Html.TextBox("Mobile", Model.Mobile, new { height = "18" })
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;状态：
+                    </td>
+                    <td width="130">
+                        <select data-val="true" id="Status" name="Status">
+                            <option @if (-1 == Model.Status) { <text> selected="selected" </text>         } value="-1">全部</option>
+                            @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=5"))
+                            {
+                                <option @if (info.Outtypeid == Model.Status) { <text> selected="selected" </text>   } value="@info.Outtypeid">@info.Type</option>
+                            }
+                        </select>
+                    </td>
+                    <td style="height:24px;">
+                        <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24" />
+                        @{HashSet<string> actionlist = AdminGroups.GetAdminGroupActionHashSetNoCache(WorkContext.AdminGid);}
+                       
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <div class="dataList">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <th width="20"></th>
+                        <th width="60" align="left">编号</th>
+                        <th width="80" align="left">账号</th>
+                        <th width="60" align="left">提现金额</th>
+                        <th width="60" align="left">账户余额</th>
+                        <th width="80" align="left">提现时间</th>
+                        <th width="50" align="left">用户姓名</th>
+                        <th width="50" align="left">开户银行</th>
+                        <th width="50" align="left">银行卡号</th>
+                        <th width="100" align="left">开户地址</th>
+                        <th width="60" align="left">状态</th>
+                        <th width="100" align="left">异常备注</th>
+                        <th width="120" align="left">管理操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (OWZX.Model.DrawInfoModel info in Model.DrawList)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@info.Id</td>
+                            <td>@info.Mobile</td>
+                            <td>@info.Money</td><td>@info.TotalMoney</td>
+                            <td>@info.Addtime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                            <td>@info.Username</td><td>@info.Card</td>
+                            <td>@info.CardNum</td><td>@info.CardAddress</td>
+                            
+                            <td>@info.State</td>
+                        <td>
+                            
+                                @if (@info.State == "待审核" || @info.State == "审核中")
+                                {
+                                    <input type="text" class="remarkinput unselectedremarkinput" maxlength="300" height="30" value="@info.Exception" id="exception@{@info.Drawid}" />
+                                }
+                                else
+                                {
+                                    @info.Exception
+                                }
+                            
+                        </td>
+                        <td>
+                           
+                                @if (@info.State == "待审核")
+                                {
+                                    <a class="editOperate" href="#" onclick="complete(@info.Drawid,'1')">[审核中]</a>
+                                    <a class="editOperate" href="#" onclick="complete(@info.Drawid,'2')">[审核完成]</a>
+                                }
+                                else if (@info.State == "审核中")
+                                {
+                                    <a class="editOperate" href="#" onclick="complete(@info.Drawid,'2')">[审核完成]</a>
+                                }
+                                else
+                                {
+                                    @:--
+                                }
+                           
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="dataListEdit">
+            <div class="page">
+                @Html.AdminPager(Model.PageModel)
+            </div>
+        </div>
+        <script>
+            $(function ()
+            {
+                var oldremark = '';
+                if ($(".remarkinput").length > 0)
+                {
+                    $(".remarkinput").focus(function ()
+                    {
+                        var remarkInputObj = $(this);
+                        oldremark = remarkInputObj.val();
+                        remarkInputObj.val("").attr("class", "selectedremarkinput");
+                    });
+
+                    $(".remarkinput").blur(function ()
+                    {
+                        var remarkInputObj = $(this);
+                        if (remarkInputObj.val() == "")
+                        {
+                            remarkInputObj.val(oldremark)
+                        }
+                        remarkInputObj.attr("class", "unselectedremarkinput");
+                    });
+
+                }
+            });
+            function complete(id,type)
+            {
+                $.post("/admin/draw/editdraw", { "drawId": id, "exception": $("#exception" + id).val(),"type":type }, function (data)
+                {
+                    var result = eval("(" + data + ")");
+                    if (result.state == "success")
+                    {
+                        layer.alert("处理成功", { icon: 1 });
+                        setTimeout(function(){$('form:first').submit();}, 3000);
+                        
+                    }
+                    else
+                    {
+                        layer.alert(result.content, { icon: 2 });
+                    }
+                })
+            }
+        </script>
+    }
+}

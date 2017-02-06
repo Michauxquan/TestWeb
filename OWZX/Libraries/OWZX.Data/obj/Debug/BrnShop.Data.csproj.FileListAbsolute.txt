@@ -1,0 +1,14 @@
+C:\Users\zm\Desktop\BrnShop\Libraries\BrnShop.Data\bin\Debug\BrnShop.Data.dll
+C:\Users\zm\Desktop\BrnShop\Libraries\BrnShop.Data\bin\Debug\BrnShop.Data.pdb
+C:\Users\zm\Desktop\BrnShop\Libraries\BrnShop.Data\bin\Debug\BrnShop.Core.dll
+C:\Users\zm\Desktop\BrnShop\Libraries\BrnShop.Data\bin\Debug\BrnShop.Core.pdb
+C:\Users\zm\Desktop\BrnShop\Libraries\BrnShop.Data\obj\Debug\BrnShop.Data.csprojResolveAssemblyReference.cache
+C:\Users\zm\Desktop\BrnShop\Libraries\BrnShop.Data\obj\Debug\BrnShop.Data.dll
+C:\Users\zm\Desktop\BrnShop\Libraries\BrnShop.Data\obj\Debug\BrnShop.Data.pdb
+C:\Users\zm\Desktop\工作\BrnShop\Libraries\BrnShop.Data\bin\Debug\BrnShop.Data.dll
+C:\Users\zm\Desktop\工作\BrnShop\Libraries\BrnShop.Data\bin\Debug\BrnShop.Data.pdb
+C:\Users\zm\Desktop\工作\BrnShop\Libraries\BrnShop.Data\bin\Debug\BrnShop.Core.dll
+C:\Users\zm\Desktop\工作\BrnShop\Libraries\BrnShop.Data\bin\Debug\BrnShop.Core.pdb
+C:\Users\zm\Desktop\工作\BrnShop\Libraries\BrnShop.Data\obj\Debug\BrnShop.Data.csprojResolveAssemblyReference.cache
+C:\Users\zm\Desktop\工作\BrnShop\Libraries\BrnShop.Data\obj\Debug\BrnShop.Data.dll
+C:\Users\zm\Desktop\工作\BrnShop\Libraries\BrnShop.Data\obj\Debug\BrnShop.Data.pdb

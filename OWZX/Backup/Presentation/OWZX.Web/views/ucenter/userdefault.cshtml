@@ -1,0 +1,80 @@
+﻿@model OWZX.Web.Models.UserInfoModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>基本信息-@{@WorkContext.ShopConfig.SiteTitle}</title>
+    @Html.Raw(WorkContext.ShopConfig.SEOKeyword)
+    @Html.Raw(WorkContext.ShopConfig.SEODescription)
+    <link href="@{@WorkContext.CSSCDN}/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="@{@WorkContext.CSSCDN}/css/ucenter.css" rel="stylesheet" type="text/css" />
+    <script src="@{@WorkContext.ScriptCDN}/scripts/jquery.js" type="text/javascript"></script>
+    <script src="@{@WorkContext.ScriptCDN}/scripts/region.js" type="text/javascript"></script>
+    <script src="@{@WorkContext.ScriptCDN}/scripts/common.js" type="text/javascript"></script>
+    <script src="@{@WorkContext.ScriptCDN}/scripts/ucenter.user.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        uid = @WorkContext.Uid;
+    </script>
+</head>
+
+<body>
+@Html.Partial("_header")
+
+<div class="bigBox" id="member">
+<div class="box">
+@Html.Partial("_menu")
+<div id="memberR">
+    
+    <form name="userInfoForm" action="">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="memberTable">
+            <tr>
+                <td id="memberRT">您好，@WorkContext.NickName </td>
+                <td>(ID:@WorkContext.Uid 账号:@WorkContext.UserEmail)</td>
+                <td></td>
+                <td><a href="@Url.Action("logout", "account")" alt="">退出</a></td>
+            </tr>
+          <tr>
+            <th width="100" align="right">会员等级：</th>
+            <td>
+               0 
+            </td>
+          </tr>
+
+          <tr>
+            <th width="100" align="right">您的当前乐豆：</th>
+            <td><input type="text" name="nickName" value="" class="text" maxlength="15" style="width:200px" /></td>
+              <th width="100" align="right">最后一次登录时间：</th>
+              <td><span value="@Model.UserInfo.LastVisitTime.ToString("yyyy-MM-dd HH:mm:ss")"  style="width:200px" /></td>
+          </tr>
+  
+          <tr>
+              <th width="100" align="right">您当前银行乐豆：</th>
+              <td><span  style="width:100px" /></td>
+              <th width="100" align="right">当前经验：</th>
+              <td><span  style="width:100px" /></td>
+            <th width="100" align="right">最后一次登录IP：</th>
+            <td><span style="width:120px" /></td>
+          </tr>
+  
+          <tr>
+            <th width="100" align="right">温馨提示您可以进行以下操作：</th>
+            <td>
+            </td>
+          </tr>
+        </table>
+    </form>
+    
+</div>
+
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+
+
+@Html.Partial("_footer")
+</body>
+</html>

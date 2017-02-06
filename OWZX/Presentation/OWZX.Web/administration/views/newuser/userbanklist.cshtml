@@ -1,0 +1,89 @@
+﻿@model OWZX.Web.Admin.Models.UserBankListModel
+
+@section header{
+    <title>银行卡信息</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css" />
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+    <link href="/components/layer/skin/layer.css" rel="stylesheet" />
+    <script src="/components/layer/layer.js"></script>
+<script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+}
+
+@section body{
+    <h1 class="rightH1">
+        用户管理 &gt;&gt;用户银行卡
+        <div class="right">
+
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </h1>
+    @using (Html.BeginForm())
+    {<div class="dataListSearch">
+        <table height="32">
+            <tbody>
+                <tr>
+                    <td width="35"><img id="searchImg" src="/administration/images/search1.gif" /></td>
+
+                    <td>
+                        &nbsp;&nbsp;&nbsp;账号：
+                    </td>
+                    <td width="130">
+                        @Html.TextBox("Mobile", Model.Mobile, new { height = "18" })
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;开户姓名：
+                    </td>
+                    <td width="130">
+                        @Html.TextBox("UserName", Model.UserName, new { height = "18" })
+                    </td>
+                    <td style="height:24px;">
+                        <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <div class="dataList">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <th width="20"></th>
+                        <th width="60" align="left">编号</th>
+                        <th width="80" align="left">账号</th>
+                        <th width="50" align="left">开户姓名</th>
+                        <th width="50" align="left">开户银行</th>
+                        <th width="50" align="left">银行卡号</th>
+                        <th width="100" align="left">开户地址</th>
+                        <th width="120" align="left">管理操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (OWZX.Model.MD_DrawAccount info in Model.BankList)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@info.Id</td>
+                            <td>@info.Account</td>
+                            <td>@info.Username</td><td>@info.Card</td>
+                            <td>@info.Cardnum</td>
+                            <td>@info.Cardaddress</td>
+                        
+                            <td>
+                                @Html.ActionLink("[编辑]", "editbank", new { id =@info.Drawaccid }, new { @class = "editOperate" })|
+                                @Html.ActionLink("[删除]", "delbank", new { id =@info.Drawaccid }, new { @class = "deleteOperate" })
+                            </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="dataListEdit">
+            <div class="page">
+                @Html.AdminPager(Model.PageModel)
+            </div>
+        </div>
+        
+    }
+}

@@ -1,0 +1,59 @@
+﻿@model OWZX.Web.Admin.Models.VisitIPList
+
+@section header{
+    <title>访问IP统计</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+    <link rel="stylesheet" type="text/css"  href="/components/jbox/Skins/Default/jbox.css"/>
+    <script type="text/javascript" src="/components/jbox/jquery.jBox-2.3.min.js"></script>
+    <script type="text/javascript" src="/administration/scripts/selectlist.js"></script>
+}
+
+@section body{
+<h1 class="rightH1">
+报表统计 &gt;&gt; 访问IP统计
+<div class="right">
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</h1>
+@using (Html.BeginForm())
+{
+<div class="dataListSearch">
+
+</div>
+
+<div class="dataList">
+<table width="100%">
+    <thead>
+        <tr>
+            <th width="10" align="center"></th>
+            <th width="150" align="left">编号</th>
+            <th width="150" align="left">用户账号</th>
+            <th width="100" align="left">IP</th>
+            <th width="150" align="center">访问时间</th>
+            <th></th>
+        </tr>
+    </thead>
+  <tbody>
+  @foreach (OWZX.Model.MD_VisitIP info in Model.visitipList)
+  {
+  <tr>
+    <td align="center"></td>
+    <td>@info.Id</td>
+    <td>@info.Account</td>
+    <td>@info.Ip</td>
+    <td align="center">@info.Addtime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+    </tr>
+  }
+</tbody>
+</table>
+</div>
+<div class="dataListEdit">
+<div class="page">
+    @Html.AdminPager(Model.PageModel)
+</div>
+</div>
+}
+}

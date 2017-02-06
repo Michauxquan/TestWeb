@@ -1,0 +1,149 @@
+﻿@model OWZX.Web.Admin.Models.RechargeListModel
+
+@section header{
+<title>充值列表</title>
+<link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+<script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+<script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+<link href="/components/layer/skin/layer.css" rel="stylesheet" />
+<script src="/components/layer/layer.js"></script>
+<script src="/components/my97datepicker/WdatePicker.js"></script>
+}
+
+@section body{
+<h1 class="rightH1">
+财务报表 &gt;&gt;充值列表
+<div class="right">
+   
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</h1>
+@using (Html.BeginForm())
+{
+    <div class="dataListSearch">
+        <table height="32">
+            <tbody>
+                <tr>
+                    <td width="35"><img id="searchImg" src="/administration/images/search1.gif" /></td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;手机号：
+                    </td>
+                    <td width="130">
+                        @Html.TextBox("Mobile", Model.Mobile, new { height = "18" })
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;充值套餐：
+                    </td>
+                    <td width="110">
+                        <select data-val="true" id="Suite" name="Suite">
+                            <option @if (-1 == int.Parse(Model.Suite))
+                                    { <text> selected="selected" </text>          } value="-1">选择套餐</option>
+                            @foreach (OWZX.Model.SuitesModel info in Suites.GetSuitesList(1, -1))
+                            {
+                                <option @if (info.Suiteid == int.Parse(Model.Suite))
+                                        { <text> selected="selected" </text>           } value="@info.Suiteid">@info.name</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;支付方式：
+                    </td>
+                    <td width="130">
+                        <select data-val="true" id="PlatForm" name="PlatForm">
+                            <option @if ("全部" == Model.PlatForm) { <text> selected="selected" </text>    } value="全部">全部</option>
+
+                            @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=20"))
+                            {
+                                <option @if (info.Type == Model.PlatForm) { <text> selected="selected" </text>   } value="@info.Type">@info.Type</option>
+                            }
+                        </select>
+                    </td>
+                    @*<td>
+                        &nbsp;&nbsp;&nbsp;充值类型：
+                    </td>
+                    <td width="130">
+                        <select data-val="true" id="PlatForm" name="PlatForm">
+                            <option @if ("全部" == Model.ChargeType) { <text> selected="selected" </text>  } value="全部">全部</option>
+
+                                <option @if (Model.ChargeType=="充话费")
+                                        { <text> selected="selected" </text> } value="1">充话费</option>
+                        </select>
+
+                    </td>*@
+                    <td width="50" align="right">&nbsp;&nbsp;&nbsp;时间：</td>
+                    <td width="170">
+                        <input type="text" class="Wdate" name="starttime" id="starttime" placeholder="开始时间" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'endtime\')}',dateFmt:'yyyy-MM-dd'})" value="@Model.StartTime" autocomplete="off" />
+                    </td>
+                    <td width="170">
+                        &nbsp;&nbsp;<input type="text" class="Wdate" name="endtime" id="endtime" placeholder="结束时间" onfocus="WdatePicker({ minDate: '#F{$dp.$D(\'starttime\')}', maxDate: '%y-%M-%d', dateFmt: 'yyyy-MM-dd' })" value="@Model.EndTime" autocomplete="off" />
+                    </td>
+                    <td>
+                        <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" />
+                        @{HashSet<string> actionlist = AdminGroups.GetAdminGroupActionHashSetNoCache(WorkContext.AdminGid);}
+                        @if (actionlist.Contains("draw_exportexcelforrech") || WorkContext.AdminGid == 2)
+{
+                        <a id="export" href="/admin/draw/exportexcelforrech?mobile=@Model.Mobile&suite=@Model.Suite&platform=@Model.PlatForm&starttime=@Model.StartTime&endtime=@Model.EndTime"><img src="/administration/images/ex.png" style="vertical-align: middle;" height="24" /></a>
+}
+                        @{ 
+                           decimal total = 0;
+                           if (@Model.RechargeList.Count > 0)
+                           {
+                               total = decimal.Parse(@Model.RechargeList[0].totalmoney.ToString());
+                           }
+                         }
+                        &nbsp;&nbsp;&nbsp;&nbsp;当日营业额：@total
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<div class="dataList">
+<table width="100%">
+<thead>
+  <tr>
+      <th width="20"></th>
+    <th width="60" align="left">编号</th>
+    <th width="80" align="left">手机号</th>
+    <th width="100" align="left">姓名</th>
+    <th width="100" align="left">职位</th>
+    <th width="40" align="left">充值金额</th>
+      <th width="50" align="left">充值套餐</th>
+    <th width="60" align="left">支付方式</th>
+      <th width="100" align="left">充值类型</th>  
+    <th width="100" align="left">充值时间</th>  
+    </tr>
+</thead>
+  <tbody>
+  @foreach (OWZX.Model.RechargeModel info in Model.RechargeList)
+  {
+  <tr><td></td>
+     <td>@info.Id</td>
+    <td>@info.Account</td>
+    <td>@info.NickName</td>
+    <td>@info.UserRank</td>
+    <td>@info.Total_fee</td>
+      <td>@info.SuiteName</td>
+      <td>@info.PlatForm</td>
+      <td>@switch (@info.Type)
+          {
+              case 1:@:充话费
+                  break;
+              case 2:@:升级
+                  break;
+              case 3:@:充流量
+                  break; 
+          }</td>
+      <td>@info.Paytime</td>
+    </tr>
+  }
+</tbody>
+</table>
+</div>
+<div class="dataListEdit">
+<div class="page">
+    @Html.AdminPager(Model.PageModel)
+</div>
+</div>
+}
+}

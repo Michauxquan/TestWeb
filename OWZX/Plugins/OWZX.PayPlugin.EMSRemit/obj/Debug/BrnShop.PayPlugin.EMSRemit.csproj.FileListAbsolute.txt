@@ -1,0 +1,16 @@
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.EMSRemit\db.config
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.EMSRemit\plugin.config
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.EMSRemit\views\adminemsremit\config.cshtml
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.EMSRemit\BrnShop.PayPlugin.EMSRemit.dll
+C:\Users\zm\Desktop\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.EMSRemit\BrnShop.PayPlugin.EMSRemit.pdb
+C:\Users\zm\Desktop\BrnShop\Plugins\BrnShop.PayPlugin.EMSRemit\obj\Debug\BrnShop.PayPlugin.EMSRemit.csprojResolveAssemblyReference.cache
+C:\Users\zm\Desktop\BrnShop\Plugins\BrnShop.PayPlugin.EMSRemit\obj\Debug\BrnShop.PayPlugin.EMSRemit.dll
+C:\Users\zm\Desktop\BrnShop\Plugins\BrnShop.PayPlugin.EMSRemit\obj\Debug\BrnShop.PayPlugin.EMSRemit.pdb
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.EMSRemit\db.config
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.EMSRemit\plugin.config
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.EMSRemit\views\adminemsremit\config.cshtml
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.EMSRemit\BrnShop.PayPlugin.EMSRemit.dll
+C:\Users\zm\Desktop\工作\BrnShop\Presentation\BrnShop.Web\plugins\BrnShop.PayPlugin.EMSRemit\BrnShop.PayPlugin.EMSRemit.pdb
+C:\Users\zm\Desktop\工作\BrnShop\Plugins\BrnShop.PayPlugin.EMSRemit\obj\Debug\BrnShop.PayPlugin.EMSRemit.csprojResolveAssemblyReference.cache
+C:\Users\zm\Desktop\工作\BrnShop\Plugins\BrnShop.PayPlugin.EMSRemit\obj\Debug\BrnShop.PayPlugin.EMSRemit.dll
+C:\Users\zm\Desktop\工作\BrnShop\Plugins\BrnShop.PayPlugin.EMSRemit\obj\Debug\BrnShop.PayPlugin.EMSRemit.pdb

@@ -1,0 +1,17 @@
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.RDBSStrategy.SqlServer.dll
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.RDBSStrategy.SqlServer.pdb
+D:\我的\项目\装修网\BrnShop\Strategies\BrnShop.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.csprojResolveAssemblyReference.cache
+D:\我的\项目\装修网\BrnShop\Strategies\BrnShop.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.dll
+D:\我的\项目\装修网\BrnShop\Strategies\BrnShop.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.pdb
+D:\我的\项目\装修网\OWZX\Presentation\BrnShop.Web\bin\OWZX.RDBSStrategy.SqlServer.dll
+D:\我的\项目\装修网\OWZX\Presentation\BrnShop.Web\bin\OWZX.RDBSStrategy.SqlServer.pdb
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\bin\OWZX.RDBSStrategy.SqlServer.dll
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\bin\OWZX.RDBSStrategy.SqlServer.pdb
+D:\我的\项目\装修网\OWZX\Strategies\OWZX.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.csprojResolveAssemblyReference.cache
+D:\我的\项目\装修网\OWZX\Strategies\OWZX.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.dll
+D:\我的\项目\装修网\OWZX\Strategies\OWZX.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.pdb
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.RDBSStrategy.SqlServer.dll
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.RDBSStrategy.SqlServer.pdb
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.dll
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.pdb
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.csprojResolveAssemblyReference.cache

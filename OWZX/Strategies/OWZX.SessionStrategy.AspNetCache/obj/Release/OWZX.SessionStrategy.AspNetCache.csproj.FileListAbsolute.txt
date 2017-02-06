@@ -1,0 +1,15 @@
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.SessionStrategy.AspNetCache.dll
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.SessionStrategy.AspNetCache.pdb
+D:\我的\项目\装修网\BrnShop\Strategies\BrnShop.SessionStrategy.AspNetCache\obj\Release\OWZX.SessionStrategy.AspNetCache.dll
+D:\我的\项目\装修网\BrnShop\Strategies\BrnShop.SessionStrategy.AspNetCache\obj\Release\OWZX.SessionStrategy.AspNetCache.pdb
+D:\我的\项目\装修网\OWZX\Presentation\BrnShop.Web\bin\OWZX.SessionStrategy.AspNetCache.dll
+D:\我的\项目\装修网\OWZX\Presentation\BrnShop.Web\bin\OWZX.SessionStrategy.AspNetCache.pdb
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\bin\OWZX.SessionStrategy.AspNetCache.dll
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\bin\OWZX.SessionStrategy.AspNetCache.pdb
+D:\我的\项目\装修网\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Release\OWZX.SessionStrategy.AspNetCache.dll
+D:\我的\项目\装修网\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Release\OWZX.SessionStrategy.AspNetCache.pdb
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.SessionStrategy.AspNetCache.dll
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.SessionStrategy.AspNetCache.pdb
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Release\OWZX.SessionStrategy.AspNetCache.dll
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Release\OWZX.SessionStrategy.AspNetCache.pdb
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Release\OWZX.SessionStrategy.AspNetCache.csprojResolveAssemblyReference.cache

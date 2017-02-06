@@ -1,0 +1,14 @@
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.Web.Admin.dll
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.Web.Admin.pdb
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\administration\obj\Release\OWZX.Web.Admin.dll
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\administration\obj\Release\OWZX.Web.Admin.pdb
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\bin\OWZX.Web.Admin.dll
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\bin\OWZX.Web.Admin.pdb
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\administration\obj\Release\OWZX.Web.Admin.csprojResolveAssemblyReference.cache
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\administration\obj\Release\OWZX.Web.Admin.dll
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\administration\obj\Release\OWZX.Web.Admin.pdb
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.Web.Admin.dll
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.Web.Admin.pdb
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\obj\Release\OWZX.Web.Admin.csprojResolveAssemblyReference.cache
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\obj\Release\OWZX.Web.Admin.dll
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\administration\obj\Release\OWZX.Web.Admin.pdb

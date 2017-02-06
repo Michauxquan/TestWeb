@@ -1,0 +1,88 @@
+﻿@model OWZX.Model.BaseInfoModel
+           
+@section header{
+    <title>编辑基本资料</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+    <link href="/components/ueditor/themes/default/css/ueditor.css" rel="stylesheet" />
+    <script src="/components/ueditor/ueditor.config.js"></script>
+<script src="/components/ueditor/ueditor.all.js"></script>
+<script src="/components/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="/administration/scripts/jquery.validate.js"></script>
+<script type="text/javascript" src="/administration/scripts/jquery.validate.unobtrusive.js"></script>
+<script type="text/javascript" src="/administration/scripts/selectlist.js"></script>
+}
+@section body{
+    <h1 class="rightH1">
+        基本资料
+        
+        <div class="right">
+            <a href="@Html.Raw(ViewData["referer"].ToString())" class="menuBT"><img src="/administration/images/goback.jpg" />返回列表</a>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </h1>
+    @using(Html.BeginForm())
+    {
+        <div class="addTable">
+            <table width="100%">
+                <input type="hidden" name="baseid" value="@Model.BaseId"/>
+                <tr>
+                    <td width="94px" align="right">
+                        标题：
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Title, new { @class = "input", size = "80" })
+                        @Html.ValidationMessageFor(x => x.Title)
+                    </td>
+                </tr>
+                <tr><td width="84px" align="right">详细描述</td><td></td><td></td></tr>
+                <tr>
+                    <td width="84px" align="right"></td>
+                    <td>
+                        <script name="Content" id="bspEditor" type="text/plain">
+                            @Html.Raw(Model.Content)
+                        </script>
+                        <script type="text/javascript">
+                            window.UEDITOR_CONFIG.imageUrl = "" + "/admin/tool/upload?operation=uploadbaseinfo";
+                            UE.getEditor("bspEditor");
+                        </script>
+                    </td>
+                </tr>
+
+                
+                <tr>
+                    <td align="right">
+                        &nbsp;
+                    </td>
+                    <td>
+                        <a href="" class="addBt submit">
+                            <img src="/administration/images/submit.jpg" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        &nbsp;
+                    </td>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+    <script>
+        $(".submit").on("click", function ()
+        {
+            var text = UE.getEditor('bspEditor').getContent();
+            if (text.length == 0)
+            {
+                alert("请输入详细描述信息");
+                return false
+            }
+            $("form:first").submit();
+            return false;
+        });
+        </script>
+    }
+}

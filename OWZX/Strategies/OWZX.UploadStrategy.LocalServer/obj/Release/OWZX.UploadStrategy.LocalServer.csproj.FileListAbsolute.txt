@@ -1,0 +1,15 @@
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.UploadStrategy.LocalServer.dll
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.UploadStrategy.LocalServer.pdb
+D:\我的\项目\装修网\BrnShop\Strategies\BrnShop.UploadStrategy.LocalServer\obj\Release\OWZX.UploadStrategy.LocalServer.dll
+D:\我的\项目\装修网\BrnShop\Strategies\BrnShop.UploadStrategy.LocalServer\obj\Release\OWZX.UploadStrategy.LocalServer.pdb
+D:\我的\项目\装修网\OWZX\Presentation\BrnShop.Web\bin\OWZX.UploadStrategy.LocalServer.dll
+D:\我的\项目\装修网\OWZX\Presentation\BrnShop.Web\bin\OWZX.UploadStrategy.LocalServer.pdb
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\bin\OWZX.UploadStrategy.LocalServer.dll
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\bin\OWZX.UploadStrategy.LocalServer.pdb
+D:\我的\项目\装修网\OWZX\Strategies\OWZX.UploadStrategy.LocalServer\obj\Release\OWZX.UploadStrategy.LocalServer.dll
+D:\我的\项目\装修网\OWZX\Strategies\OWZX.UploadStrategy.LocalServer\obj\Release\OWZX.UploadStrategy.LocalServer.pdb
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.UploadStrategy.LocalServer.dll
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.UploadStrategy.LocalServer.pdb
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.UploadStrategy.LocalServer\obj\Release\OWZX.UploadStrategy.LocalServer.dll
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.UploadStrategy.LocalServer\obj\Release\OWZX.UploadStrategy.LocalServer.pdb
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.UploadStrategy.LocalServer\obj\Release\OWZX.UploadStrategy.LocalServer.csprojResolveAssemblyReference.cache

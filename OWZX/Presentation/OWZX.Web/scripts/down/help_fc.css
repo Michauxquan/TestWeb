@@ -1,0 +1,34 @@
+
+/* CSS Document */
+.help_fcwk{display: none; color:#6b6b6b; font-size:14px; padding:5%; padding-top:10PX; padding-bottom:16PX; width:90%; margin:0 auto; height:650px;background-color:#f8f8f8; border-radius:8px; clear:both; position:fixed;top: 217px; left:5%; z-index:1001;overflow: hidden;}
+.help_fc_img img{width:100%;    height: 580px;}
+@media (device-height:480px) and (-webkit-min-device-pixel-ratio:2){
+    .help_fcwk{top: 60px;height: 430px}
+    .help_fc_img img{width:100%;height: 365px;}
+}
+@media (device-height:568px) and (-webkit-min-device-pixel-ratio:2){
+    /* 兼容iphone5 */
+    .help_fcwk{top: 90px;height: 510px}
+    .help_fc_img img{width:100%;height: 420px;}
+}
+@media (device-height:667px) and (-webkit-min-device-pixel-ratio:2) {
+    /* 兼容iphone6 */
+    .help_fcwk{top: 124px;height: 575px;}
+    .help_fc_img img{width:100%;height: 500px;}
+}
+@media (device-height:736px) and (-webkit-min-device-pixel-ratio:2) {
+    /* 兼容iphone6 Plus */
+    .help_fcwk{top: 160px;height: 650px}
+    .help_fc_img img{width:100%;height: 580px;}
+}
+.gb_an{ position:absolute; text-align:right; float:right; width:88%; padding-top:5px; cursor:pointer;}
+.help_fc_bt{ margin:0 auto; height:30px;line-height:30px; text-align:left;}
+.help_fc_jdt{height:10px; line-height:10px; margin:0 auto;background-color: #dddddd;border-radius: 10px;}
+.help_fc_jdtt{background-color:#9ed740;border-radius:10px; height:10px; line-height:10px; width:0%;}
+.help_fc_jdtb{height:10px; line-height:10px; background-color:#dddddd; border-radius:10px;}
+.help_fc_ts{ color:#ed3f17;margin:0 auto; font-size:12px; line-height:16px; padding-top:8px; text-align:left;}
+.help_fc_img{width:100%; margin:0 auto; margin-top:0px;}
+
+.help_fc_dot{text-align:center; margin:0 auto; height:28px; }
+.help_fc_an{background-color:#ed3f17; height:32px; width:70%; margin:0 auto; cursor:pointer; text-align:center; color:#FFF; font-size:16px; line-height:32px;border-radius:6px;}
+.help_fc_bg{width: 100%; margin: 0 auto; height: 100%; background: #000; opacity: .5; filter: alpha(opacity=50); overflow: hidden; position: fixed;top:0px; z-index: 100;} 

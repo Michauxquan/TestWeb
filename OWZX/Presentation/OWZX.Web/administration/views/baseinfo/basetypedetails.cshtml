@@ -1,0 +1,36 @@
+﻿@using OWZX.Model
+@model BaseTypeListModel
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm())
+{
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th width="10px"></th>
+                    <th width="50px" align="left">编号</th>
+                    <th width="140px" align="left">类型</th>
+                    <th width="180px" align="left">备注</th>
+                    <th width="56px" align="left">管理操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (BaseTypeModel bsinfo in Model.basetypelist)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@bsinfo.Systypeid</td>
+                        <td>@bsinfo.Type</td>
+                        <td>@bsinfo.Remark</td>
+                        <td>
+                            @Html.ActionLink("[编辑]", "editbasetype", new { systypeid = @bsinfo.Systypeid }, new { @class = "editOperate" })|
+                            @Html.ActionLink("[删除]", "deletebasetype", new { systypeid = @bsinfo.Systypeid }, new { @class = "deleteOperate" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+}
+<div class="clear"></div>

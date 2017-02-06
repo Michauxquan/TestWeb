@@ -1,0 +1,8 @@
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.RandomStrategy.BrnShop.dll
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.RandomStrategy.BrnShop.pdb
+D:\我的\项目\装修网\BrnShop\Strategies\BrnShop.RandomStrategy.BrnShop\obj\Release\OWZX.RandomStrategy.BrnShop.dll
+D:\我的\项目\装修网\BrnShop\Strategies\BrnShop.RandomStrategy.BrnShop\obj\Release\OWZX.RandomStrategy.BrnShop.pdb
+D:\我的\项目\装修网\OWZX\Presentation\BrnShop.Web\bin\OWZX.RandomStrategy.BrnShop.dll
+D:\我的\项目\装修网\OWZX\Presentation\BrnShop.Web\bin\OWZX.RandomStrategy.BrnShop.pdb
+D:\我的\项目\装修网\OWZX\Strategies\OWZX.RandomStrategy.BrnShop\obj\Release\OWZX.RandomStrategy.BrnShop.dll
+D:\我的\项目\装修网\OWZX\Strategies\OWZX.RandomStrategy.BrnShop\obj\Release\OWZX.RandomStrategy.BrnShop.pdb

@@ -1,0 +1,147 @@
+﻿@model IList<OWZX.Model.BaseInfoModel> 
+@{
+    ViewBag.Title = "notice";
+}
+
+<html>
+<head>
+    <title>黑米壳</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="description" content="不超过150个字符" />
+    <meta name="keywords" content="" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="robots" content="index,follow" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="HandheldFriendly" content="true">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name ="title"  content=""   />
+    <meta name ="mobile-web-app-capable"  content="yes">
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: "黑体";
+                font-size: 1.1rem;
+            }
+
+            body {
+                background: #FFD879;
+                overflow-x: hidden;
+            }
+
+            .container {
+                padding-left: 1rem;
+                margin-bottom: 2rem;
+                padding-right: 0.3rem;
+            }
+
+                .container div {
+                    border: 1px solid #aaa;
+                    margin-top: .8rem;
+                    padding: 1rem .4rem .5rem;
+                }
+
+            p {
+                color: #666;
+            }
+
+            div p:first-child {
+                line-height: 1.2rem;
+                color: white;
+                background: #47C1A8;
+                float: left;
+                margin-bottom: .6rem;
+                text-indent: 1rem;
+                margin-left: -1.2rem;
+                font-size: 1.3rem;
+                border-top-right-radius: .4rem;
+                border-bottom-right-radius: .4rem;
+                color: white;
+                padding: .4rem 0;
+                position: relative;
+                border: 1px solid #dedede;
+            }
+
+            p {
+                clear: both;
+            }
+
+            div p:first-child img {
+                width: .8rem;
+                position: absolute;
+                bottom: -.8rem;
+                left: 0;
+            }
+        </style>
+        <script type="text/javascript" src="js/jquery-1.12.1.js"></script>
+        <script type="text/javascript" src="js/resize.js"></script>
+
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div>
+            <p>1、什么是黑米壳？<img src="../images/tr.png"></p>
+            <p>答：【黑米壳】是本公司与中国电信合作专门开发的拨号软件，它的特点：直接拨打，非网络电话、，走电信电路拨打电话，通话质量同移电信质量一样，更不是像网络电话那样在手机没有3G网络的地方就不能通话等。</p>
+        </div>
+        <div>
+            <p>2、什么号码可以注册？<img src="../images/tr.png"></p>
+            <p>答：只要是接听免费的手机号码均可以注册使用，无论电信、联通、移动号码均可以参加。</p>
+        </div>
+        <div>
+            <p>3、使用本软件拨打电话是否会扣除SIM卡的话费和流量？<img src="../images/tr.png"></p>
+            <p>答：我们的软件在全国范围内均可使用，不会扣除SIM卡的话费和流量，请您放心使用。另外，回拨本身是完全免费的，但如果您的手机套餐接听收费（如本地接听、外地漫游等），拨打电话时运营商会收取接听电话的费用。</p>
+        </div>
+        <div>
+            <p>4、为什么我的号码不能注册？<img src="../images/tr.png"></p>
+            <p>答： 请检查您的号码是否已经停机，不能正常接收验证码，导致不能注册。</p>
+        </div>
+        <div>
+            <p>5、可打10086，10000、400号码吗？<img src="../images/tr.png"></p>
+            <p>答：不可以，我们的软件暂不支持拨打:110，120，114，119和以400，800，168为开头的号码，以及10000，10010，10086，12580，95555，95588等服务类免费号码。</p>
+        </div>
+        <div>
+            <p>6、拨打电话，是否显示本机号码？<img src="../images/tr.png"></p>
+            <p>答：是，本软件拨打电话全部显号，所以在被叫的手机上，显示的是主叫的号码，不会显示未知号码，请您放心使用。</p>
+        </div>
+        <div>
+            <p>7、读取不到联系人及通话记录？<img src="../images/tr.png"></p>
+            <p>答：请查看手机是否安装了360手机卫士或腾讯管家等软件，它们会拦截手机联系人以及通话记录的显示，请进入安全软件内设置我们的软件允许读取联系人以及通话记录即可。</p>
+        </div>
+        <div>
+            <p>8、系统如何扣费？<img src="../images/tr.png"></p>
+            <p>答：我们的系统是按照分钟扣除，您购买时也是购买分钟数，资费参照包月套餐，全国任打。暂不支持拨打国际电话。</p>
+        </div>
+        <div>
+            <p>9、包月卡的有效期是如何计算的？<img src="../images/tr.png"></p>
+            <p>答:每张包月卡的有效期为30天，自充值之日起30天内有效。</p>
+        </div>
+        <div>
+            <p>10、如何升职？<img src="../images/tr.png"></p>
+            <p>答：【黑米壳】APP“我的”--升级队长--升职通道选择可以直接升职。</p>
+        </div>
+        <div>
+            <p>11、升职有什么好处？<img src="../images/tr.png"></p>
+            <p>答： 【黑米壳】家族团队管理职位有队长、经理两个职位，升职后所享受的职位特权都不一样，收益比例都不同，具体在APP中有提示。</p>
+        </div>
+        <div>
+            <p>12、如何赚收益？<img src="../images/tr.png"></p>
+            <p>答： 【黑米壳】是一款直拨创业平台软件，大家使用的好就分享给好友使用，这样自己就可以获得相应的收益。</p>
+        </div>
+        <div>
+            <p>13、收益有几种？<img src="../images/tr.png"></p>
+            <p>
+                答： 三种。<br />&nbsp;&nbsp;&nbsp;1）赠送话费收益：推荐好友注册双方免费赠送通话分钟数。<br />&nbsp;&nbsp;&nbsp;2）好友充值收益：推荐的好友以后充值都有相应的收益。<br />&nbsp;&nbsp;&nbsp;3）好友升职收益：推荐的好友以后升职都有相应的收益。
+            </p>
+        </div>
+    </div>
+</body>
+</html>

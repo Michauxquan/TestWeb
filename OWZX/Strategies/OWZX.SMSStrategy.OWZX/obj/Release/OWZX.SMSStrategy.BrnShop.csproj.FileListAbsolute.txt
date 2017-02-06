@@ -1,0 +1,4 @@
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.SMSStrategy.BrnShop.dll
+D:\我的\项目\装修网\BrnShop\Presentation\BrnShop.Web\bin\OWZX.SMSStrategy.BrnShop.pdb
+D:\我的\项目\装修网\BrnShop\Strategies\BrnShop.SMSStrategy.BrnShop\obj\Release\OWZX.SMSStrategy.BrnShop.dll
+D:\我的\项目\装修网\BrnShop\Strategies\BrnShop.SMSStrategy.BrnShop\obj\Release\OWZX.SMSStrategy.BrnShop.pdb

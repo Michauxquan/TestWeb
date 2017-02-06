@@ -1,0 +1,54 @@
+﻿@model OWZX.Web.Admin.Models.BaseSetListModel
+
+@section header{
+<title>基础信息列表</title>
+<link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+}
+
+@section body{
+<h1 class="rightH1">
+系统配置 &gt;&gt; 基础信息管理
+<div class="right">
+<a href="@Url.Action("add")" class="menuBT"><img src="/administration/images/add.jpg"/>添加</a>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</h1>
+        <div class="table_top">
+        </div>
+
+<div class="dataList">
+<table width="100%">
+<thead>
+  <tr>
+    <th width="10" align="left" ></th>  
+    <th align="left" width="100">类型名称</th>  
+    <th width="130" align="left" >名称</th>  
+    <th width="130" align="left" >账号</th>
+    <th width="130" align="left">图片</th>
+    <th width="80" align="left" >附加字段1</th>
+    <th width="120" align="left">附加字段2</th>
+    <th width="114" align="left">管理操作</th>
+    </tr>
+</thead>
+  <tbody>
+  @foreach (BaseInfo info in Model.BaseSetList)
+  {
+  <tr>
+    <td></td>
+    <td>@info.Key</td>
+    <td>@info.Name</td>
+    <td>@info.Account</td>
+    <td>@info.Image</td>
+    <td>@info.Bank</td>
+    <td>@info.BankAddress</td>
+    <td>
+        @Html.ActionLink("[编辑]", "edit", new { key = info.Key }, new { @class = "editOperate" })
+    </td>
+    </tr>
+  }
+</tbody>
+</table>
+</div>
+<div class="table_bottom"></div>
+}

@@ -1,0 +1,104 @@
+﻿@model OWZX.Web.Admin.Models.AdviceInfoList
+
+@section header{
+<title>意见列表</title>
+<link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+<script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+<script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+<link href="/components/layer/skin/layer.css" rel="stylesheet" />
+<script src="/components/layer/layer.js"></script>
+}
+
+@section body{
+<h1 class="rightH1">
+财务管理 &gt;&gt;意见列表
+<div class="right">
+   
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</h1>
+@using (Html.BeginForm())
+{
+<div class="dataList">
+<table width="100%">
+<thead>
+  <tr>
+      <th width="20"></th>
+    <th width="60" align="left">编号</th>
+    <th width="80" align="left">账号</th>
+    <th width="200" align="left">意见</th>
+      <th width="200" align="left">回复</th>
+    <th width="60" align="left">添加时间</th>
+    </tr>
+</thead>
+  <tbody>
+  @foreach (OWZX.Model.AdviceInfoModel info in Model.AdviceList)
+  {
+  <tr><td></td>
+    <td>@info.Id</td>
+    <td>@info.Account</td>
+    <td>@info.Remark</td>
+    <td>@if(info.reply=="")
+        {
+            <input type="text" class="remarkinput unselectedremarkinput" maxlength="200" height="30" value="@info.reply" id="@info.Adviceid" />
+      }else
+      {
+        @info.reply
+      }
+      </td>
+    <td>@info.Addtime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+    </tr>
+  }
+</tbody>
+</table>
+</div>
+<div class="dataListEdit">
+<div class="page">
+    @Html.AdminPager(Model.PageModel)
+</div>
+</div>
+    <script>
+        $(function ()
+        {
+            var oldremark = '';
+            if ($(".remarkinput").length > 0)
+            {
+                $(".remarkinput").focus(function ()
+                {
+                    var remarkInputObj = $(this);
+                    oldremark = remarkInputObj.val();
+                    remarkInputObj.val("").attr("class", "selectedremarkinput");
+                });
+
+                $(".remarkinput").blur(function ()
+                {
+                    var remarkInputObj = $(this);
+                    if (remarkInputObj.val() != oldremark)
+                    {
+                        layer.load(2);
+                        $.get("/admin/advice/editadvice?adviceid=" + remarkInputObj.prop("id") + "&reply=" + remarkInputObj.val(), function (data)
+                        {
+                            setTimeout(function ()
+                            {
+                                layer.closeAll('loading');
+                            }, 2000);
+                            if (data != "0")
+                            {
+                                layer.alert("更新成功", { icon: 1 });
+                            } else
+                            {
+                                remarkInputObj.val(oldremark);
+                                layer.alert("更新失败，请联系管理员", { icon: 2 });
+                            }
+                        });
+                        remarkInputObj.attr("class", "unselectedremarkinput");
+                    }
+                    
+                });
+
+            }
+        });
+    </script>
+}
+}

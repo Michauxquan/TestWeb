@@ -1,0 +1,11 @@
+D:\我的\项目\装修网\OWZX\Presentation\BrnShop.Web\bin\OWZX.SMSStrategy.BrnShop.dll
+D:\我的\项目\装修网\OWZX\Presentation\BrnShop.Web\bin\OWZX.SMSStrategy.BrnShop.pdb
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\bin\OWZX.SMSStrategy.OWZX.dll
+D:\我的\项目\装修网\OWZX\Presentation\OWZX.Web\bin\OWZX.SMSStrategy.OWZX.pdb
+D:\我的\项目\装修网\OWZX\Strategies\OWZX.SMSStrategy.OWZX\obj\Release\OWZX.SMSStrategy.OWZX.dll
+D:\我的\项目\装修网\OWZX\Strategies\OWZX.SMSStrategy.OWZX\obj\Release\OWZX.SMSStrategy.OWZX.pdb
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.SMSStrategy.OWZX.dll
+D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.SMSStrategy.OWZX.pdb
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.SMSStrategy.OWZX\obj\Release\OWZX.SMSStrategy.OWZX.csprojResolveAssemblyReference.cache
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.SMSStrategy.OWZX\obj\Release\OWZX.SMSStrategy.OWZX.dll
+D:\我的\项目\电话App\OWZX\Strategies\OWZX.SMSStrategy.OWZX\obj\Release\OWZX.SMSStrategy.OWZX.pdb

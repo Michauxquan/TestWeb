@@ -1,0 +1,224 @@
+﻿@model OWZX.Web.Admin.Models.UserRemitList
+
+@section header{
+<title>用户转账审核</title>
+<link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+<script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+<script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+<link href="/components/layer/skin/layer.css" rel="stylesheet" />
+<script src="/components/layer/layer.js"></script>
+}
+
+@section body{
+<h1 class="rightH1">
+    事务处理 &gt;&gt;充值记录
+<div class="right">
+    <a href="@Url.Action("addremit")" class="menuBT"><img src="/administration/images/add.jpg" />添加</a>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</h1>
+@using (Html.BeginForm())
+{
+    <div class="dataListSearch">
+        <table height="32">
+            <tbody>
+                <tr>
+                    <td width="35"><img id="searchImg" src="/administration/images/search1.gif" /></td>
+
+                    <td>
+                        &nbsp;&nbsp;&nbsp;账号：
+                    </td>
+                    <td width="130">
+                        @Html.TextBox("Account", Model.Account, new { height = "18" })
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;支付方式：
+                    </td>
+                    <td width="130">
+                        <select data-val="true" id="type" name="type">
+                            <option @if ("" == Model.type)
+                                    { <text> selected="selected" </text>           } value="">全部</option>
+                            @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=1"))
+                            {
+                                <option @if (info.Type == Model.type)
+                                        { <text> selected="selected" </text>     } value="@info.Type">@info.Type</option>
+                            }
+                        </select>
+                    </td>
+                    <td style="height:24px;">
+                        <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24" />
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<div class="dataList">
+<table width="100%">
+<thead>
+  <tr>
+    <th width="20"></th>
+    <th width="60" align="left">编号</th>
+    <th width="80" align="left">手机号</th>
+    <th width="80" align="left">汇款昵称</th>
+    <th width="60" align="left">汇款账号</th>
+    <th width="60" align="left">汇款金额</th>
+    <th width="60" align="left">开户银行</th>
+    <th width="60" align="left">汇款类型</th>
+    <th width="80" align="left">时间</th>
+    <th width="60" align="left">实际汇款金额</th>
+    <th width="100" align="left">异常备注</th>
+    <th width="60" align="left">状态</th>
+    <th width ="60" align="left">管理操作</th>
+    </tr>
+</thead>
+  <tbody>
+  @foreach (OWZX.Model.MD_Remit info in Model.RemitList)
+  {
+  <tr><td></td>
+    <td>@info.Id</td>
+    <td>@info.Mobile</td>
+    <td>@info.Name</td>
+    <td>@info.Account</td>
+    <td>@info.Money</td>
+    <td>@info.Bankname</td>
+    <td>@info.Type</td>
+    <td>@info.Addtime</td>
+    <td>
+        <input type="text" class="moneyinput unselectedremarkinput" maxlength="200" height="30" value="@info.RealMoney" id="@info.Remitid" />
+    </td>
+      <td>
+          <input type="text" class="remarkinput unselectedremarkinput" maxlength="200" height="30" value="@info.Remark" id="@info.Remitid" />
+      </td>
+    <td>@switch (@info.Status)
+        { 
+            case 0:
+                @:待审核
+                break;
+            case 1:
+            @:审核中
+                break;
+            case 2:
+            @:充值成功
+                break;
+            case 3:
+            @:审核失败
+                break;
+        }</td>
+    <td>
+        @if(info.Status==0)
+        {
+         @Html.ActionLink("[审核中]", "editremit", new { remitid = @info.Remitid, status = 1 }, new { @class = "editOperate" })
+        }
+        @if(info.Status<2)
+        {
+          @Html.ActionLink("[充值成功]", "editremit", new { remitid = @info.Remitid, status = 2 }, new { @class = "editOperate" })
+        }
+        @*@if (info.Status < 2)
+        {
+            @Html.ActionLink("[转账失败]", "editremit", new { remitid = @info.Remitid, status = 3 }, new { @class = "editOperate" })
+        }*@
+        @if(info.Status<2)
+        {
+          @Html.ActionLink("[删除]", "delremit", new { remitid = @info.Remitid }, new { @class = "deleteOperate" })
+        }
+        @if (info.Status >=2)
+        {
+           @:--
+        }
+    </td>
+    </tr>
+  }
+</tbody>
+</table>
+</div>
+<div class="dataListEdit">
+<div class="page">
+    @Html.AdminPager(Model.PageModel)
+</div>
+</div>
+    <script>
+    $(function ()
+    {
+        var oldremark = '';
+        if ($(".remarkinput").length > 0)
+        {
+            $(".remarkinput").focus(function ()
+            {
+                var remarkInputObj = $(this);
+                oldremark = remarkInputObj.val();
+                remarkInputObj.val("").attr("class", "selectedremarkinput");
+            });
+
+            $(".remarkinput").blur(function ()
+            {
+                var remarkInputObj = $(this);
+                if (remarkInputObj.val()!="" && remarkInputObj.val() != oldremark)
+                {
+                    layer.load(2);
+                    $.get("/admin/newuser/editremitremark?remitid=" + remarkInputObj.prop("id") + "&remark=" + remarkInputObj.val(), function (data)
+                    {
+                        setTimeout(function ()
+                        {
+                            layer.closeAll('loading');
+                        }, 2000);
+                        if (data != "0")
+                        {
+                            layer.alert("更新成功", { icon: 1 });
+                        } else
+                        {
+                            remarkInputObj.val(oldremark);
+                            layer.alert("更新失败，请联系管理员", { icon: 2 });
+                        }
+                    });
+                    remarkInputObj.attr("class", "unselectedremarkinput");
+                }else
+                    remarkInputObj.attr("class", "unselectedremarkinput");
+
+            });
+        }
+
+
+        var oldmoney = '';
+        if ($(".moneyinput").length > 0)
+        {
+            $(".moneyinput").focus(function ()
+            {
+                var remarkInputObj = $(this);
+                oldmoney = remarkInputObj.val();
+                remarkInputObj.val("").attr("class", "selectedremarkinput");
+            });
+
+            $(".moneyinput").blur(function ()
+            {
+                var remarkInputObj = $(this);
+                if (remarkInputObj.val() != "" && remarkInputObj.val() != oldremark)
+                {
+                    layer.load(2);
+                    $.get("/admin/newuser/editremitmoney?remitid=" + remarkInputObj.prop("id") + "&realmoney=" + remarkInputObj.val(), function (data)
+                    {
+                        setTimeout(function ()
+                        {
+                            layer.closeAll('loading');
+                        }, 2000);
+                        if (data != "0")
+                        {
+                            layer.alert("更新成功", { icon: 1 });
+                        } else
+                        {
+                            remarkInputObj.val(oldmoney);
+                            layer.alert("更新失败，请联系管理员", { icon: 2 });
+                        }
+                    });
+                    remarkInputObj.attr("class", "unselectedremarkinput");
+                }else
+                    remarkInputObj.attr("class", "unselectedremarkinput");
+
+            });
+        }
+    });
+
+    </script>
+}
+}

@@ -1,0 +1,14 @@
+C:\Users\zm\Desktop\工作\BrnShop\Libraries\BrnShop.Core\bin\Release\BrnShop.Core.dll
+C:\Users\zm\Desktop\工作\BrnShop\Libraries\BrnShop.Core\bin\Release\BrnShop.Core.pdb
+C:\Users\zm\Desktop\工作\BrnShop\Libraries\BrnShop.Core\obj\Release\BrnShop.Core.dll
+C:\Users\zm\Desktop\工作\BrnShop\Libraries\BrnShop.Core\obj\Release\BrnShop.Core.pdb
+C:\Users\zm\Desktop\BrnShop\Libraries\BrnShop.Core\bin\Release\BrnShop.Core.dll
+C:\Users\zm\Desktop\BrnShop\Libraries\BrnShop.Core\bin\Release\BrnShop.Core.pdb
+C:\Users\zm\Desktop\BrnShop\Libraries\BrnShop.Core\obj\Release\BrnShop.Core.csprojResolveAssemblyReference.cache
+C:\Users\zm\Desktop\BrnShop\Libraries\BrnShop.Core\obj\Release\BrnShop.Core.dll
+C:\Users\zm\Desktop\BrnShop\Libraries\BrnShop.Core\obj\Release\BrnShop.Core.pdb
+D:\我的\项目\MVC架构\BrnShop\Libraries\BrnShop.Core\bin\Release\BrnShop.Core.dll
+D:\我的\项目\MVC架构\BrnShop\Libraries\BrnShop.Core\bin\Release\BrnShop.Core.pdb
+D:\我的\项目\MVC架构\BrnShop\Libraries\BrnShop.Core\obj\Release\BrnShop.Core.csprojResolveAssemblyReference.cache
+D:\我的\项目\MVC架构\BrnShop\Libraries\BrnShop.Core\obj\Release\BrnShop.Core.dll
+D:\我的\项目\MVC架构\BrnShop\Libraries\BrnShop.Core\obj\Release\BrnShop.Core.pdb
