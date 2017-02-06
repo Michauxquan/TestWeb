@@ -348,16 +348,7 @@ namespace OWZX.Services
         {
             return SecureHelper.MD5(password + salt);
         }
-        /// <summary>
-        /// 创建用户密码
-        /// </summary>
-        /// <param name="password">真实密码</param>
-        /// <param name="salt">散列盐值</param>
-        /// <returns></returns>
-        public static string CreateUserSafePassword(string safepassword, string salt)
-        {
-            return SecureHelper.MD5(safepassword + salt);
-        }
+
         /// <summary>
         /// 获得用户等级下用户的数量
         /// </summary>

@@ -15,8 +15,3 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.RDBSStrategy.SqlS
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.dll
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.pdb
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.csprojResolveAssemblyReference.cache
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.RDBSStrategy.SqlServer.dll
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.RDBSStrategy.SqlServer.pdb
-G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.csprojResolveAssemblyReference.cache
-G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.dll
-G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.RDBSStrategy.SqlServer\obj\Release\OWZX.RDBSStrategy.SqlServer.pdb

@@ -28,16 +28,7 @@
 <div class="box">
 @Html.Partial("_menu")
 <div id="memberR">
- <div style="border-bottom: solid 2px #ccc; padding-bottom:5px;">
-        <div class="left">
-            <img src="../images/baseimg/banner.png"/>
-        </div>
-        <div class="left pLeft10">
-            <h2 id="memberRT" class="cblock">修改完成</h2>
-            <span class="font10">信息已修改成功</span>
-        </div>
-        <div class="clear"></div>
-    </div>
+<h2 id="memberRT">修改完成</h2>
 
 <div class="step">
 <ul>
@@ -62,10 +53,6 @@
     else if (Model.Action == "updateemail")
     {
         @:邮箱更新成功：@Model.Remark
-    }
-    else if (Model.Action == "updatesafepassword")
-    {
-        @:安全密码更新成功：@Model.Remark
     }
     </div>
 

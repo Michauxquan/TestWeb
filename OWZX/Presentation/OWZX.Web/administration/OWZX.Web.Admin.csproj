@@ -239,6 +239,7 @@
     <None Include="views\user\list.cshtml" />
     <None Include="views\Web.config" />
     <None Include="views\_ViewStart.cshtml" />
+    <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\login.css" />

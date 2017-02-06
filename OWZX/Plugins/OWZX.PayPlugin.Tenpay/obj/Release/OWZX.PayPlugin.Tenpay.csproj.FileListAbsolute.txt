@@ -20,11 +20,3 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Ten
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.PayPlugin.Tenpay\obj\Release\OWZX.PayPlugin.Tenpay.dll
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.PayPlugin.Tenpay\obj\Release\OWZX.PayPlugin.Tenpay.pdb
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.PayPlugin.Tenpay\obj\Release\OWZX.PayPlugin.Tenpay.csprojResolveAssemblyReference.cache
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Tenpay\db.config
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Tenpay\plugin.config
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Tenpay\views\admintenpay\config.cshtml
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Tenpay\OWZX.PayPlugin.Tenpay.dll
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Tenpay\OWZX.PayPlugin.Tenpay.pdb
-G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.PayPlugin.Tenpay\obj\Release\OWZX.PayPlugin.Tenpay.csprojResolveAssemblyReference.cache
-G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.PayPlugin.Tenpay\obj\Release\OWZX.PayPlugin.Tenpay.dll
-G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.PayPlugin.Tenpay\obj\Release\OWZX.PayPlugin.Tenpay.pdb

@@ -15,8 +15,3 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.CacheStrategy.Asp
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.CacheStrategy.AspNet\obj\Release\OWZX.CacheStrategy.AspNet.csprojResolveAssemblyReference.cache
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.CacheStrategy.AspNet\obj\Release\OWZX.CacheStrategy.AspNet.dll
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.CacheStrategy.AspNet\obj\Release\OWZX.CacheStrategy.AspNet.pdb
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.CacheStrategy.AspNet.dll
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.CacheStrategy.AspNet.pdb
-G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.CacheStrategy.AspNet\obj\Release\OWZX.CacheStrategy.AspNet.csprojResolveAssemblyReference.cache
-G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.CacheStrategy.AspNet\obj\Release\OWZX.CacheStrategy.AspNet.dll
-G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.CacheStrategy.AspNet\obj\Release\OWZX.CacheStrategy.AspNet.pdb

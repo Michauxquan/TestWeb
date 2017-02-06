@@ -4,16 +4,7 @@ a{
 	text-decoration: none;
 }
 
-.basecontent{ z-index: 2; width: 1000px; margin: auto; }
-.basecontent .title{line-height: 24px;height: 24px;padding: 12px 0px;font-size: 16px;font-weight: bold;color: #000;}
-.title img{  vertical-align:bottom;}
-.title .more{ font-size: 12px;color: #e43846;cursor: pointer;float: right;}
 
-.basecontent .news { padding: 10px 5px 5px 10px;height: 309px;}
-.basecontent .news li{ height: 24px;line-height: 24px;cursor: pointer;}
-.goods img{ margin:0;float: left;}
-
-.games img{ margin-left:14px;cursor: pointer;}
 .switch_over,.DL_ZC,.TEL{
 	float: left;
 }
@@ -48,20 +39,15 @@ a{
 #header .nav .sub_nav{
 	float:left;
 	display: none;
-}*/ 
+}*/
 #order .Message{
-	text-align: left;
-    margin-left: 24px;
+	text-align: center;
 	margin-top: 20px;}
-#order .Message ul li {
-    height: 55px;
-    line-height: 55px;
-}
 #order .Message ul li input{
-	width: 250px;
+	width: 248px;
 	height: 34px;
-    font-size: 13px;
-	border: 1px solid #ebebeb; 
+	border: 1px solid #ebebeb;
+	padding-left: 10px;
 	outline: medium; }
 
 #order .Message ul li em {
@@ -74,13 +60,8 @@ a{
             background: url('../images/error.png') no-repeat;
             overflow: hidden;
         }
-#order .reg {float: right; color: #ffffff; cursor: pointer;}
-#order .reg:hover{ color: #E23B45;}
-#order #reserve {
-   cursor:pointer; border: none;background:#E43846; width:255px;color:#ffffff;padding:0;margin-top:12px;font-size: 16px;font-weight: bold; letter-spacing: 8px;
-}
-#order #reserve:hover {
-    cursor:pointer;background:#d23335;
+#order .ind_reserve:hover {
+    cursor:pointer;color:#d23335;
 }
 #order .contact a:hover {
     cursor:pointer;color:#d23335;

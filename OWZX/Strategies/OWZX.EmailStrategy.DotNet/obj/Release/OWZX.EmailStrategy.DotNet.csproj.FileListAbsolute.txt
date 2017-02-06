@@ -13,8 +13,3 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\bin\OWZX.EmailStrategy.Dot
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Release\OWZX.EmailStrategy.DotNet.csprojResolveAssemblyReference.cache
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Release\OWZX.EmailStrategy.DotNet.dll
 D:\我的\项目\电话App\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Release\OWZX.EmailStrategy.DotNet.pdb
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.EmailStrategy.DotNet.dll
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.EmailStrategy.DotNet.pdb
-G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Release\OWZX.EmailStrategy.DotNet.csprojResolveAssemblyReference.cache
-G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Release\OWZX.EmailStrategy.DotNet.dll
-G:\MichauxPro\12、PC28\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Release\OWZX.EmailStrategy.DotNet.pdb

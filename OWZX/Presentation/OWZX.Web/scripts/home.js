@@ -14,23 +14,23 @@
         $(this).css("border-color", "#EBEBEB");
     });
 
-    //$(".ind_reserve").on("click", function ()
-    //{
-    //    var index = $(this).index();
-    //    switch (index)
-    //    {
-    //        case 0:
-    //            $(this).css("background-color", "#FFFFFF").next().css("background-color", "#f8f8f8");
-    //            $(".Message").css("display", "block");
-    //            $(".contact").css("display", "none");
-    //            break;
-    //        case 1:
-    //            $(this).css("background-color", "#FFFFFF").prev().css("background-color", "#f8f8f8");
-    //            $(".contact").css("display", "block");
-    //            $(".Message").css("display", "none");
-    //            break;
-    //    }
-    //});
+    $(".ind_reserve").on("click", function ()
+    {
+        var index = $(this).index();
+        switch (index)
+        {
+            case 0:
+                $(this).css("background-color", "#FFFFFF").next().css("background-color", "#f8f8f8");
+                $(".Message").css("display", "block");
+                $(".contact").css("display", "none");
+                break;
+            case 1:
+                $(this).css("background-color", "#FFFFFF").prev().css("background-color", "#f8f8f8");
+                $(".contact").css("display", "block");
+                $(".Message").css("display", "none");
+                break;
+        }
+    });
 
 });
 function addreserveoper()

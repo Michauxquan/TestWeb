@@ -25,13 +25,3 @@ D:\我的\项目\电话App\OWZX\Libraries\OWZX.Data\bin\Release\OWZX.Model.pdb
 D:\我的\项目\电话App\OWZX\Libraries\OWZX.Data\obj\Release\OWZX.Data.csprojResolveAssemblyReference.cache
 D:\我的\项目\电话App\OWZX\Libraries\OWZX.Data\obj\Release\OWZX.Data.dll
 D:\我的\项目\电话App\OWZX\Libraries\OWZX.Data\obj\Release\OWZX.Data.pdb
-G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Data\bin\Release\OWZX.Data.dll
-G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Data\bin\Release\OWZX.Data.pdb
-G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Data\bin\Release\OWZX.Core.dll
-G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Data\bin\Release\OWZX.Model.dll
-G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Data\bin\Release\Newtonsoft.Json.dll
-G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Data\bin\Release\OWZX.Core.pdb
-G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Data\bin\Release\OWZX.Model.pdb
-G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Data\obj\Release\OWZX.Data.csprojResolveAssemblyReference.cache
-G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Data\obj\Release\OWZX.Data.dll
-G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Data\obj\Release\OWZX.Data.pdb

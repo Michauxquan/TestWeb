@@ -17,3 +17,4 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.RandomStrategy.OW
 D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.RandomStrategy.OWZX.pdb
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.RandomStrategy.OWZX\obj\Debug\OWZX.RandomStrategy.OWZX.dll
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.RandomStrategy.OWZX\obj\Debug\OWZX.RandomStrategy.OWZX.pdb
+D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.RandomStrategy.OWZX\obj\Debug\OWZX.RandomStrategy.OWZX.csprojResolveAssemblyReference.cache

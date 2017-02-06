@@ -28,11 +28,3 @@ D:\我的\项目\电话App\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.W
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.OAuthPlugin.WeChat\obj\Release\OWZX.OAuthPlugin.WeChat.dll
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.OAuthPlugin.WeChat\obj\Release\OWZX.OAuthPlugin.WeChat.pdb
 D:\我的\项目\电话App\OWZX\Plugins\OWZX.OAuthPlugin.WeChat\obj\Release\OWZX.OAuthPlugin.WeChat.csprojResolveAssemblyReference.cache
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.WeChat\db.config
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.WeChat\plugin.config
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.WeChat\views\adminwechatoauth\config.cshtml
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.WeChat\OWZX.OAuthPlugin.WeChat.dll
-G:\MichauxPro\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.WeChat\OWZX.OAuthPlugin.WeChat.pdb
-G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.OAuthPlugin.WeChat\obj\Release\OWZX.OAuthPlugin.WeChat.csprojResolveAssemblyReference.cache
-G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.OAuthPlugin.WeChat\obj\Release\OWZX.OAuthPlugin.WeChat.dll
-G:\MichauxPro\12、PC28\OWZX\Plugins\OWZX.OAuthPlugin.WeChat\obj\Release\OWZX.OAuthPlugin.WeChat.pdb
