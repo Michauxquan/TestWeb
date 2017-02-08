@@ -20,7 +20,7 @@ Thumbs.db
 *.ilk
 *.log
 *.config
-
+*.txt
 [Bb]in
 [Dd]ebug*/
 *.lib
