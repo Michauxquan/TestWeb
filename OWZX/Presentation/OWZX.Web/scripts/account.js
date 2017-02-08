@@ -190,7 +190,7 @@ function showVerifyError(verifyErrorList)
         {
             msg += verifyErrorList[i].msg + "\n";
         }
-        alert(msg)
+        layer.msg(msg,{icon:2})
     }
 }
 
@@ -201,7 +201,7 @@ function login()
 
     var accountName = loginForm.elements[shadowName].value;
     var password = loginForm.elements["password"].value;
-    //var verifyCode = loginForm.elements["verifyCode"] ? loginForm.elements["verifyCode"].value : undefined;
+    var verifyCode = loginForm.elements["verifyCode"] ? loginForm.elements["verifyCode"].value : undefined;
     var isRemember = loginForm.elements["isRemember"] ? loginForm.elements["isRemember"].checked ? 1 : 0 : 0;
 
     if (!verifyLogin(accountName, password))
@@ -212,7 +212,7 @@ function login()
     var parms = new Object();
     parms[shadowName] = accountName;
     parms["password"] = password;
-    //parms["verifyCode"] = verifyCode;
+    parms["verifyCode"] = verifyCode;
     parms["isRemember"] = isRemember;
     $.post("/account/login", parms, loginResponse)
 }
@@ -232,10 +232,10 @@ function verifyLogin(accountName, password)
         $(".password").html("<em></em>请输入密码");
         return false;
     }
-    //if (verifyCode != undefined && verifyCode.length == 0) {
-    //    alert("请输入验证码");
-    //    return false;
-    //}
+    if (verifyCode != undefined && verifyCode.length == 0) {
+        $(".code").html("<em></em>请输入验证码");
+        return false;
+    }
     return true;
 }
 

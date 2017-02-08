@@ -108,6 +108,7 @@
     <Compile Include="controllers\HomeController.cs" />
     <Compile Include="controllers\LotteryController.cs" />
     <Compile Include="controllers\NewsController.cs" />
+    <Compile Include="controllers\NWLotteryController.cs" />
     <Compile Include="controllers\ToolController.cs" />
     <Compile Include="controllers\UCenterController.cs" />
     <Compile Include="controllers\APIController.cs" />
@@ -490,7 +491,6 @@
     <Content Include="images\hmkdownload.png" />
     <Content Include="images\ico.png" />
     <Content Include="images\iphone_help.png" />
-    <Content Include="images\logo.png" />
     <Content Include="images\mall\dui.png" />
     <Content Include="images\mall\gg.png" />
     <Content Include="images\mall\sd.png" />
@@ -646,6 +646,8 @@
     <Content Include="views\ucenter\userdefault.cshtml" />
     <Content Include="views\ucenter\userbank.cshtml" />
     <Content Include="views\ucenter\loginlimit.cshtml" />
+    <Content Include="views\nwlottery\ltindex.cshtml" />
+    <Content Include="views\nwlottery\_lotteryheader.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

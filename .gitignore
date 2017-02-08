@@ -20,7 +20,7 @@ Thumbs.db
 *.ilk
 *.log
 *.config
-
+*.txt
 [Bb]in
 [Dd]ebug*/
 *.lib
@@ -29,3 +29,7 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
+
+*.dll
+Debug/
+Relase/
