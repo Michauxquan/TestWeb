@@ -46,19 +46,19 @@
                         <form name="loginForm" action="">
                             <ul class="cf">
                                 <li class="ml0">
-                                    <input class="b1" type="text" name="@Model.ShadowName" id="@Model.ShadowName" placeholder="用户名/手机号" value=""/><br/>
+                                    邮箱：<input class="b1" type="text" name="@Model.ShadowName" id="@Model.ShadowName" placeholder="邮箱" value=""/><br/>
                                     <span class="phone" style="font-size: 12px; color: red; height: 22px;"></span><br/>
-                                    <input class="b1" type="password" id="password" name="password" placeholder="密码" value=""/><br/>
+                                    密码：<input class="b1" type="password" id="password" name="password" placeholder="密码" value=""/><br/>
                                     <span class="password" style="font-size: 12px; color: red; height: 22px;"></span><br/>
-                                    <input class="b1" type="text" id="yzm" name="checkcode" placeholder="验证码" value=""/><br/>
+                                    验证码：<input class="b1" type="text" id="verifyCode" name="checkcode" placeholder="验证码" value=""  />
+                                    <img id="verifyCode" style="cursor:pointer;margin:0 0 0 14px; width: 106px;height:36px;vertical-align:middle;" title="点击刷新验证码" onclick="this.src = '/tool/verifyimage?time=' + new Date()" src="/tool/verifyimage" /><br/>
+                                    <span class="code" style="font-size: 12px; color: red; height: 22px;"></span><br />
                                 </li>
-                                <li style="height: 25px; line-height: 25px; margin-top: 10px; text-align: center;">
-                                    <span style="float: left;"><input style="width: 15px; height: 15px; margin-top: 5px; outline: medium;" name="isRemember" type="checkbox" /></span>
-                                    <span style="text-align: center; float: left; margin-left: 12px;">下次自动登录</span>
-                                    <span style="float: right; margin-left: 115px; color: #3b3b3b;"><a style="color: #3b3b3b;" href="@Url.Action("findpwd")">忘记密码?</a></span>
+                                <li style="height: 25px; line-height: 25px; margin-top: 10px; text-align: right;float:right;">
+                                    <span style="text-align:right;color: #3b3b3b;padding-right:20px;"><a style="color: blue;" href="@Url.Action("findpwd")">忘记密码?</a></span>
                                 </li>
                                 <li class="loginBt">
-                                    <a class="redBT loginIn" style="text-align: center;" href="javascript:void(0)" onclick="login()">立即登录</a>
+                                    <a class="redBT loginIn" style="text-align: center;" href="javascript:void(0)" onclick="login()">登录</a>
                                 </li> 
                             </ul>
                         </form>

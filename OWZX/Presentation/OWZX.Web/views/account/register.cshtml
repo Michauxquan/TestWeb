@@ -82,6 +82,7 @@
                                 <input class="b2" type="password" placeholder="确认密码" name="confirmPwd" id="confirmPwd" autocomplete="off"/><br/>
                                 <span class="a4" style="font-size: 12px; color: red; height: 24px;"></span><br/>
                                 <input class="b2" style="width: 120px;" maxlength="6" name="verifyCode" id="verifyCode" type="text" placeholder="验证码" autocomplete="off"/>
+                                <img id="verifyCode" style="cursor:pointer;margin:0 0 0 14px; width: 106px;height:24px;vertical-align:middle;" title="点击刷新验证码" onclick="this.src = '/tool/verifyimage?time=' + new Date()" src="/tool/verifyimage" /><br />
                                 <span class="a5" style="font-size: 12px; color: red; height: 24px;"></span><br/>
                             </li>
                             <li class="btn">
