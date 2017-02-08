@@ -26,7 +26,6 @@ namespace OWZX.Web.Controllers
         /// </summary>
         public ActionResult Index()
         {
-            //首页的数据需要在其视图文件中直接调用，所以此处不再需要视图模型
             return View();
         }
         /// <summary>

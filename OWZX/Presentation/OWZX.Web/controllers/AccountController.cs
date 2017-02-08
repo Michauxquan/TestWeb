@@ -50,7 +50,7 @@ namespace OWZX.Web.Controllers
             string accountName = WebHelper.GetFormString(WorkContext.ShopConfig.ShadowName);
             string password = WebHelper.GetFormString("password");
             string verifyCode = WebHelper.GetFormString("verifyCode");
-            int isRemember = WebHelper.GetFormInt("isRemember");
+            int isRemember = WebHelper.GetFormInt("isRemember",0);
 
             StringBuilder errorList = new StringBuilder("[");
             //验证账户名
@@ -58,9 +58,9 @@ namespace OWZX.Web.Controllers
             {
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名不能为空", "}");
             }
-            else if (accountName.Length < 4 || accountName.Length > 50)
+            else if (accountName.Length < 5 || accountName.Length > 20)
             {
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名必须大于3且不大于50个字符", "}");
+                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名必须大于5且不大于20个字符", "}");
             }
             else if ((!SecureHelper.IsSafeSqlString(accountName, false)))
             {
@@ -72,9 +72,9 @@ namespace OWZX.Web.Controllers
             {
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码不能为空", "}");
             }
-            else if (password.Length < 4 || password.Length > 32)
+            else if (password.Length < 6 || password.Length > 16)
             {
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码必须大于3且不大于32个字符", "}");
+                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码必须大于6且不大于16个字符", "}");
             }
 
             //验证验证码
@@ -194,6 +194,7 @@ namespace OWZX.Web.Controllers
             string confirmPwd = WebHelper.GetFormString("confirmPwd");
             string verifyCode = WebHelper.GetFormString("verifyCode");
             int invitecode = WebHelper.GetFormInt("invitecode", 0); //邀请码
+
 
             
 
