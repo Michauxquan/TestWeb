@@ -31,5 +31,5 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 
 *.dll
-Debug
-Relase
+Debug/
+Relase/
