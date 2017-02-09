@@ -221,9 +221,8 @@ height:36px;margin-top:10px; margin-left:94px;
 .proList .info2 .addShopping:hover{text-decoration:none;}
 .proList .info2 span{ cursor:pointer; }
 .page{ padding:15px 0; clear:both; text-align:center;}
-.page .summary{min-width: 100px;float: right;margin-right: 40px;}
 .page a{ display:inline; padding:3px 10px; background:#FFF; border:1px solid #cccccc; color:#005aa0;}
-.page a:hover,.proList .page a.hot,#memberR .page a.hot{ background: #E4393C;color: #fff;border:1px solid #fff; }
+.page a:hover,.proList .page a.hot,#memberR .page a.hot{ border:1px solid #e4393c; color:#e4393c;}
 
 .prompt{ color:#7ABD54; font-size:24px; height:80px; line-height:80px;text-align:center; margin-top:30px;}
 
