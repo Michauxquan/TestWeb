@@ -163,8 +163,8 @@ height:36px;margin-top:10px; margin-left:94px;
 /*#nav{ background:#da383a;} #cc0000*/
 #navs {background: #e4393c;}
 
-#navItme{ width:1000px;margin:0 auto;text-align:center;height:45px; overflow:hidden;display: block; }
-#navItme  li{ display:inline-block;width:136px;}
+#navItme{ width:1000px;margin:0 auto;text-align:center;height:45px; overflow:hidden;display:block; }
+#navItme  li{ display:inline-block;width:155px;}
 #navItme  li a{
     width:100%;
     color: #fff;
