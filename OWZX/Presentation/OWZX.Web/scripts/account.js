@@ -241,8 +241,8 @@ function verifyLogin(accountName, password)
 
 //处理登录的反馈信息
 function loginResponse(data)
-{
-    var result = eval("(" + data + ")");
+{ 
+    var result = eval("(" + data + ")"); 
     if (result.state == "success")
     {
         window.location.href = returnUrl;
@@ -346,12 +346,12 @@ function verifyBlur(type, value)
                 $(".a1").html("<em></em>手机号码不能为空");
                 return false;
             }
-            else if (!isMobile(value))
-            {
-                $("#" + shadowName).css("border-color", "red");
-                $(".a1").html("<em></em>手机号码格式错误");
-                return false;
-            }
+            //else if (!isMobile(value))
+            //{
+            //    $("#" + shadowName).css("border-color", "red");
+            //    $(".a1").html("<em></em>手机号码格式错误");
+            //    return false;
+            //}
             break;
         case "loginname":
             if (value.length == 0)

@@ -47,7 +47,15 @@ namespace OWZX.Web.Controllers
 
             return View(model);
         }
-
+        /// <summary>
+        /// 用户default
+        /// </summary>
+        public ActionResult UserDefault()
+        {
+            UserInfoModel model = new UserInfoModel();
+            model.UserInfo = Users.GetUserById(WorkContext.Uid); 
+            return View(model);
+        }
         /// <summary>
         /// 编辑用户信息
         /// </summary>
