@@ -61,14 +61,25 @@ function hmlogin(parms)
 {
     $.post("/account/login", parms, function (data)
     {
+        console.log(data)
         var result = eval("(" + data + ")");
         if (result.state == "success")
         {
             window.location.href = "/";
         }
-        else
-        {
-            layer.msg(result.content, { icon: 2 });
+        else {
+            showVerifyError(result.content);
+            //layer.msg(result.content, { icon: 2 });
         }
     });
+}
+//展示验证错误
+function showVerifyError(verifyErrorList) {
+    if (verifyErrorList != undefined && verifyErrorList != null && verifyErrorList.length > 0) {
+        var msg = "";
+        for (var i = 0; i < verifyErrorList.length; i++) {
+            msg += verifyErrorList[i].msg + "\n";
+        }
+        layer.msg(msg, { icon: 2 })
+    }
 }

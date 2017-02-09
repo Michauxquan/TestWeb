@@ -72,9 +72,9 @@ namespace OWZX.Web.Controllers
             {
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码不能为空", "}");
             }
-            else if (password.Length < 6 || password.Length > 16)
+            else if (password.Length < 5 || password.Length > 16)
             {
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码必须大于6且不大于16个字符", "}");
+                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码必须大于5且不大于16个字符", "}");
             }
 
             //验证验证码
@@ -106,11 +106,17 @@ namespace OWZX.Web.Controllers
                     if (partUserInfo == null)
                         errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "手机不存在", "}");
                 }
-                else if (BSPConfig.ShopConfig.LoginType.Contains("1"))//用户名登陆
+                else if (BSPConfig.ShopConfig.LoginType.Contains("1")) //用户名登陆
                 {
                     partUserInfo = Users.GetPartUserByName(accountName);
                     if (partUserInfo == null)
-                        errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "用户名不存在", "}");
+                        errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "用户名不存在",
+                            "}");
+                }
+                else
+                {  
+                    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账号格式输入不正确",
+                            "}");
                 }
 
                 if (partUserInfo != null)
