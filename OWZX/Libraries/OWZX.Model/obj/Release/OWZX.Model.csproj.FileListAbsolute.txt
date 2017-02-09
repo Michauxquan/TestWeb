@@ -7,3 +7,7 @@ G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Model\bin\Release\OWZX.Model.pdb
 G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Model\obj\Release\OWZX.Model.dll
 G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Model\obj\Release\OWZX.Model.pdb
 G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Model\obj\Release\OWZX.Model.csprojResolveAssemblyReference.cache
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Model\bin\Release\OWZX.Model.dll
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Model\bin\Release\OWZX.Model.pdb
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Model\obj\Release\OWZX.Model.dll
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Model\obj\Release\OWZX.Model.pdb

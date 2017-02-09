@@ -204,11 +204,11 @@ function login()
     var verifyCode = loginForm.elements["verifyCode"] ? loginForm.elements["verifyCode"].value : undefined;
     var isRemember = loginForm.elements["isRemember"] ? loginForm.elements["isRemember"].checked ? 1 : 0 : 0;
 
-    if (!verifyLogin(accountName, password))
+    if (!verifyLogin(accountName, password, verifyCode))
     {
         return;
     }
-
+    console.log(verifyCode);
     var parms = new Object();
     parms[shadowName] = accountName;
     parms["password"] = password;
@@ -218,7 +218,7 @@ function login()
 }
 
 //验证登录
-function verifyLogin(accountName, password)
+function verifyLogin(accountName, password, verifyCode)
 {
     if (accountName.trim().length == 0)
     {
@@ -232,7 +232,7 @@ function verifyLogin(accountName, password)
         $(".password").html("<em></em>请输入密码");
         return false;
     }
-    if (verifyCode != undefined && verifyCode.length == 0) {
+    if (verifyCode != undefined && verifyCode.trim().length == 0) {
         $(".code").html("<em></em>请输入验证码");
         return false;
     }

@@ -45,9 +45,8 @@
                 <tr>
                 @*    <th><em>*</em>验证码：</th>*@
                     <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td width="132"><em> </em><input type="text" name="verifyCode"  placeholder="*验证码" autocomplete="off" class="YZM text"/></td>
-                                <td><img id="verifyImage" width="100" height="36" style="margin-left: 5px;" title="点击刷新验证码" onclick="this.src = '/tool/verifyimage?time=' + new Date()" src="/tool/verifyimage"/></td>
+                            <tr>  
+                                <td align="center"><em> </em><input type="text" name="verifyCode" style="width: 100px;margin-top: -30px;" placeholder="*验证码" autocomplete="off" class="YZM text"> <img id="verifyImage" width="100" height="36" style="padding-top:10px;" title="点击刷新验证码" onclick="this.src = '/tool/verifyimage?time=' + new Date()" src="/tool/verifyimage"></td>
                             </tr>
                         </table>
                     </td> 

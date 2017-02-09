@@ -43,7 +43,16 @@ namespace OWZX.Model
             get { return changemoney; }
             set { changemoney = value; }
         }
-
+        private decimal accounted;
+        /// <summary>
+        /// 变更金额
+        /// </summary>
+        [JsonProperty(PropertyName = "Accounted")]
+        public decimal Accounted
+        {
+            get { return accounted; }
+            set { accounted = value; }
+        }
         private string remark;
         /// <summary>
         /// 变更记录

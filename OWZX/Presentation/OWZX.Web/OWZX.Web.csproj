@@ -119,6 +119,7 @@
     <Compile Include="models\HelpModel.cs" />
     <Compile Include="models\NewsModel.cs" />
     <Compile Include="models\UCenterModel.cs" />
+    <Compile Include="models\UserChangeList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -463,6 +464,8 @@
     <Content Include="images\baseimg\dd28.png" />
     <Content Include="images\baseimg\ddlhb.png" />
     <Content Include="images\baseimg\dl.jpg" />
+    <Content Include="images\baseimg\email.png" />
+    <Content Include="images\baseimg\error.png" />
     <Content Include="images\baseimg\fw.png" />
     <Content Include="images\baseimg\gg1.jpg" />
     <Content Include="images\baseimg\gg2.jpg" />
@@ -476,7 +479,9 @@
     <Content Include="images\baseimg\logo_bdz.jpg" />
     <Content Include="images\baseimg\logo_dz.jpg" />
     <Content Include="images\baseimg\logright.jpg" />
+    <Content Include="images\baseimg\mobile.png" />
     <Content Include="images\baseimg\msgbgl.png" />
+    <Content Include="images\baseimg\ok.png" />
     <Content Include="images\baseimg\PKgj.png" />
     <Content Include="images\baseimg\PKgyj.png" />
     <Content Include="images\baseimg\regright.jpg" />

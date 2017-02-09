@@ -26,3 +26,11 @@ G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Core\bin\Release\OWZX.Model.pdb
 G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Core\obj\Release\OWZX.Core.csprojResolveAssemblyReference.cache
 G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Core\obj\Release\OWZX.Core.dll
 G:\MichauxPro\12、PC28\OWZX\Libraries\OWZX.Core\obj\Release\OWZX.Core.pdb
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\bin\Release\OWZX.Core.dll
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\bin\Release\OWZX.Core.pdb
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\bin\Release\Newtonsoft.Json.dll
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\bin\Release\OWZX.Model.dll
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\bin\Release\OWZX.Model.pdb
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\obj\Release\OWZX.Core.csprojResolveAssemblyReference.cache
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\obj\Release\OWZX.Core.dll
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\obj\Release\OWZX.Core.pdb

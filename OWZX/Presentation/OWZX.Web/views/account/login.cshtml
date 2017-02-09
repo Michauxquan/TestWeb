@@ -18,15 +18,13 @@
     <script type="text/javascript">
         returnUrl = "@Model.ReturnUrl";
         shadowName = "@Model.ShadowName";
-        $(function ()
-        {
-            $(".cf .loginBt").on("keydown", function ()
-            {
+        $(function () {
+            $(".cf .loginBt").on("keydown", function () {
                 if (event.keyCode == 13) login();
             });
-            $('.loginBt').click(function() { login(); });
+            $('.loginBt').click(function () { login(); });
         })
-        
+
     </script>
     <style>
             
@@ -51,15 +49,15 @@
                                     <span class="phone" style="font-size: 12px; color: red; height: 22px;"></span><br/>
                                     <input class="b1" type="password" id="password" name="password" placeholder="密码" value=""/><br/>
                                     <span class="password" style="font-size: 12px; color: red; height: 22px;"></span><br/>
-                                    <input class="b1" type="text" id="verifyCode" name="checkcode" placeholder="验证码" value=""  />
-                                    <img id="verifyCode" style="cursor:pointer;margin:0 0 0 14px; width: 106px;height:36px;vertical-align:middle;" title="点击刷新验证码" onclick="this.src = '/tool/verifyimage?time=' + new Date()" src="/tool/verifyimage" /><br/>
+                                    <input class="b1" type="text" id="verifyCode" name="checkcode"  style="width: 100px;" placeholder="验证码" value=""  />
+                                    <img id="verifyCode1" style="cursor:pointer;margin:0 0 0 14px; width: 106px;height:36px;vertical-align:middle;" title="点击刷新验证码" onclick="this.src = '/tool/verifyimage?time=' + new Date()" src="/tool/verifyimage" /><br/>
                                     <span class="code" style="font-size: 12px; color: red; height: 22px;"></span><br />
                                 </li>
-                                <li style="height: 25px; line-height: 25px; margin-top: 10px; text-align: right;float:right;">
+                                <li style="height: 20px; line-height: 20px; margin-top: 10px; text-align: right;float:right;"> 
                                     <span style="text-align:right;color: #3b3b3b;padding-right:20px;"><a style="color: blue;" href="@Url.Action("findpwd")">忘记密码?</a></span>
                                 </li>
                                 <li class="loginBt">
-                                    <a class="redBT loginIn" style="text-align: center;" href="javascript:void(0)" onclick="login()">登录</a>
+                                    <a class="redBT loginIn" style="text-align: center;" href="javascript:void(0)">登录</a>
                                 </li> 
                             </ul>
                         </form>
