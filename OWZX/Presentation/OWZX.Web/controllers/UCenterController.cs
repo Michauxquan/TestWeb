@@ -823,9 +823,29 @@ namespace OWZX.Web.Controllers
         /// <summary>
         /// 元宝明细
         /// </summary>
-        public ActionResult AccountDetail()
+        public ActionResult AccountDetail(string Account = "", string start = "", string end = "", int pageSize = 15, int pageNumber = 1)
         {
-            return View(WorkContext.PartUserInfo);
+
+            StringBuilder strb = new StringBuilder();
+            strb.Append(" where 1=1");
+            if (string.IsNullOrEmpty(Account))
+            {
+                Account = WorkContext.PartUserInfo.Mobile;
+            }
+            strb.Append(" and rtrim(b.mobile)='" + Account + "'");
+            if (start != string.Empty)
+                strb.Append(" and a.addtime between '" + start + "' and '" + end + "'");
+
+            List<MD_Change> list = NewUser.GetAChangeList(pageNumber, pageSize, strb.ToString());
+            UserChangeList userlist = new UserChangeList
+            {
+                Account = Account,
+                Start = start,
+                End = end,
+                PageModel = new PageModel(pageSize, pageNumber, list.Count > 0 ? list[0].TotalCount : 0),
+                ChangeList = list
+            };
+            return View(userlist);
         }
 
         /// <summary>
@@ -834,8 +854,7 @@ namespace OWZX.Web.Controllers
         public ActionResult ChangeRecord()
         {
             return View(WorkContext.PartUserInfo);
-        }
-
+        } 
         /// <summary>
         /// 我的银行
         /// </summary>

@@ -29,48 +29,47 @@
 <div id="memberR">
     
     <form name="userInfoForm" action="">
-        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="memberTable">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="memberTable" style=" padding: 5px 10px 20px 20px; ">
             <tr>
-                <td id="memberRT">您好，@WorkContext.NickName </td>
-                <td>(ID:@WorkContext.Uid 账号:@WorkContext.UserEmail)</td>
-                <td></td>
-                <td><a href="@Url.Action("logout","account")" alt="">退出</a></td>
+                <td id="memberRT" style="width: 370px;  color: #000;padding-bottom:10px;"> <h4 style=" float: left;">您好，@WorkContext.NickName </h4> <span class="Fred left"> &nbsp;(ID:@WorkContext.Uid &nbsp; 账号:@WorkContext.UserEmail)</span></td>
+                <td style="padding-bottom:10px;">
+                    
+                    <div style="border: solid 1px #ddd; padding: 2px 3px;; height: 18px; width: 86px; float: left;"><img src="../images/baseimg/mobile.png" style="width: 18px; height: 18px;"/>
+                        <img src="../images/baseimg/@(Model.UserInfo.VerifyMobile == 0 ? "error" : "ok").png" style="width: 18px; height: 18px;"/>
+                        <img src="../images/baseimg/email.png" style="width: 18px; height: 18px;"/>
+                        <img src="../images/baseimg/@(Model.UserInfo.VerifyEmail == 0 ? "error" : "ok").png" style="width: 18px; height: 18px;"/>
+                    </div>
+                    <div style="float: left; margin-left: 10px;"><a href="@Url.Action("logout", "account")" alt="">[退出]</a>
+                    </div>
+                    <div class="clear"></div>
+                </td>
             </tr>
-          <tr>
-            <th width="100" align="right">会员等级：</th>
-            <td>
-               0 
-            </td>
-          </tr>
+          
 
-          <tr>
-            <th width="100" align="right">您的当前乐豆：</th>
-            <td><input type="text" name="nickName" value="" class="text" maxlength="15" style="width:200px" />   <a href="#">消费明细</a></td>
-              <th width="100" align="right">最后一次登录时间：</th>
-              <td><span value="@Model.UserInfo.LastVisitTime.ToString("yyyy-MM-dd HH:mm:ss")"  style="width:200px" /></td>
+          <tr style="background: #fff7f0; ">
+            <td align="right" style="width:370px;padding-top:10px;text-indent: 24px;height:26px; line-height: 24px;">您的当前乐豆：  <span  class="Fred bold" >0</span>  <a href="/ucenter/accountdetail" style="color: #FF6B6B;">消费明细</a></td> 
+            <td width="240">最后一次登录时间：<span value="@Model.UserInfo.LastVisitTime.ToString("yyyy-MM-dd HH:mm:ss")"  style="width:200px" /></td>
           </tr>
   
-          <tr>
-              <th width="100" align="right">您当前银行乐豆：</th>
-              <td><span  style="width:100px" />0</td>
-              <th width="100" align="right">当前经验：</th>
-              <td><span  style="width:100px" />0</td>
-            <th width="100" align="right">最后一次登录IP：</th>
-            <td><span style="width:120px" >@Model.UserInfo.LastVisitIP</span></td>
+          <tr style="background: #fff7f0;">
+              <td width="370" align="right"  style="padding-bottom:10px;text-indent: 24px;height:26px; line-height: 24px;">您当前银行乐豆： <span  class="Fred bold" >0</span> &nbsp;当前经验： <span   >0</span></td>
+            <td width="240" align="right">最后一次登录IP： <span style="width:120px" >@Model.UserInfo.LastVisitIP</span></td>
           </tr>
           @if(@Model.UserInfo.VerifyEmail==0 ||@Model.UserInfo.VerifyMobile==0)
           {
           <tr>
-            <th width="100" align="right">温馨提示您可以进行以下操作：</th>
-            <td>
+              <td align="right" colspan="2" style="height: 40px; line-height: 30px; font-size: 13px;"><span class="Fred bold">温馨提示</span>您可以进行以下操作：</td>
+            </tr>
+            <tr>
+                <td colspan="2">
                 @if (@Model.UserInfo.VerifyMobile == 0)
-                { 
-                
+                {
+                    <img src="../images/baseimg/mobile.png" class="left" style="width: 100px; height: 100px;"/><a href="/ucenter/safeinfo"><h3 style="width:120px; margin-top: 40px;" class="left">认证手机>></h3></a>
                 }
                 
                 @if (@Model.UserInfo.VerifyEmail == 0)
                 { 
-                  
+                  <img src="../images/baseimg/email.png" class="left" style="width:100px; height: 100px;"/><a href="/ucenter/safeinfo"><h3 style="width:120px;margin-top: 40px;" class="left">认证邮箱>></h3></a>
                 }
             </td>
           </tr>

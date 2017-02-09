@@ -53,6 +53,17 @@ namespace OWZX.Model
             get { return remark; }
             set { remark = value; }
         }
+        private decimal accounted;
+    
+        /// <summary>
+        /// 变更后的金额
+        /// </summary>
+        [JsonProperty(PropertyName = "Accounted")]
+        public decimal Accounted
+        {
+            get { return accounted; }
+            set { accounted = value; }
+        }
 
         private DateTime addtime;
         [JsonProperty(PropertyName="Time")]
