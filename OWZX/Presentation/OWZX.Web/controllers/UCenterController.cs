@@ -53,7 +53,7 @@ namespace OWZX.Web.Controllers
         public ActionResult UserDefault()
         {
             UserInfoModel model = new UserInfoModel();
-            model.UserInfo = Users.GetUserById(WorkContext.Uid); 
+            model.UserInfo = Users.GetUserById(WorkContext.Uid);
             return View(model);
         }
         /// <summary>
@@ -854,7 +854,7 @@ namespace OWZX.Web.Controllers
         public ActionResult ChangeRecord()
         {
             return View(WorkContext.PartUserInfo);
-        } 
+        }
         /// <summary>
         /// 我的银行
         /// </summary>
