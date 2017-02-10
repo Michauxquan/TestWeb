@@ -20,3 +20,8 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.AsynStrategy.Thre
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.AsynStrategy.ThreadPool\obj\Debug\OWZX.AsynStrategy.ThreadPool.csprojResolveAssemblyReference.cache
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.AsynStrategy.ThreadPool\obj\Debug\OWZX.AsynStrategy.ThreadPool.dll
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.AsynStrategy.ThreadPool\obj\Debug\OWZX.AsynStrategy.ThreadPool.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\bin\OWZX.AsynStrategy.ThreadPool.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\bin\OWZX.AsynStrategy.ThreadPool.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Strategies\OWZX.AsynStrategy.ThreadPool\obj\Debug\OWZX.AsynStrategy.ThreadPool.csprojResolveAssemblyReference.cache
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Strategies\OWZX.AsynStrategy.ThreadPool\obj\Debug\OWZX.AsynStrategy.ThreadPool.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Strategies\OWZX.AsynStrategy.ThreadPool\obj\Debug\OWZX.AsynStrategy.ThreadPool.pdb

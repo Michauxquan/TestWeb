@@ -33,3 +33,11 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.EMS
 D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.EMSRemit\OWZX.PayPlugin.EMSRemit.pdb
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.PayPlugin.EMSRemit\obj\Debug\OWZX.PayPlugin.EMSRemit.dll
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.PayPlugin.EMSRemit\obj\Debug\OWZX.PayPlugin.EMSRemit.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.EMSRemit\db.config
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.EMSRemit\plugin.config
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.EMSRemit\views\adminemsremit\config.cshtml
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.EMSRemit\OWZX.PayPlugin.EMSRemit.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.EMSRemit\OWZX.PayPlugin.EMSRemit.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.PayPlugin.EMSRemit\obj\Debug\OWZX.PayPlugin.EMSRemit.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.PayPlugin.EMSRemit\obj\Debug\OWZX.PayPlugin.EMSRemit.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.PayPlugin.EMSRemit\obj\Debug\OWZX.PayPlugin.EMSRemit.csprojResolveAssemblyReference.cache

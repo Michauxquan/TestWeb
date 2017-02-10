@@ -32,3 +32,10 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Ten
 D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Tenpay\OWZX.PayPlugin.Tenpay.pdb
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.PayPlugin.Tenpay\obj\Debug\OWZX.PayPlugin.Tenpay.dll
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.PayPlugin.Tenpay\obj\Debug\OWZX.PayPlugin.Tenpay.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Tenpay\db.config
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Tenpay\plugin.config
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Tenpay\views\admintenpay\config.cshtml
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Tenpay\OWZX.PayPlugin.Tenpay.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Tenpay\OWZX.PayPlugin.Tenpay.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.PayPlugin.Tenpay\obj\Debug\OWZX.PayPlugin.Tenpay.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.PayPlugin.Tenpay\obj\Debug\OWZX.PayPlugin.Tenpay.pdb

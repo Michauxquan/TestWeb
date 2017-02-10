@@ -20,3 +20,8 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.CacheStrategy.Asp
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.CacheStrategy.AspNet\obj\Debug\OWZX.CacheStrategy.AspNet.csprojResolveAssemblyReference.cache
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.CacheStrategy.AspNet\obj\Debug\OWZX.CacheStrategy.AspNet.dll
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.CacheStrategy.AspNet\obj\Debug\OWZX.CacheStrategy.AspNet.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\bin\OWZX.CacheStrategy.AspNet.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\bin\OWZX.CacheStrategy.AspNet.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Strategies\OWZX.CacheStrategy.AspNet\obj\Debug\OWZX.CacheStrategy.AspNet.csprojResolveAssemblyReference.cache
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Strategies\OWZX.CacheStrategy.AspNet\obj\Debug\OWZX.CacheStrategy.AspNet.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Strategies\OWZX.CacheStrategy.AspNet\obj\Debug\OWZX.CacheStrategy.AspNet.pdb

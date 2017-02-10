@@ -76,6 +76,7 @@
     <Compile Include="Config\Info\SMSConfigInfo.cs" />
     <Compile Include="Data\BSPData.cs" />
     <Compile Include="Data\DbException.cs" />
+    <Compile Include="Data\RDBS\IRDBSStrategy\ILotteryListStrategy.cs" />
     <Compile Include="Data\RDBS\IRDBSStrategy\INewUserStrategy.cs" />
     <Compile Include="Data\RDBS\IRDBSStrategy\IRDBSStrategy.cs" />
     <Compile Include="Data\RDBS\IRDBSStrategy\ILotteryStrategy.cs" />

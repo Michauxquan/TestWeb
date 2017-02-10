@@ -37,3 +37,11 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.WeC
 D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.WeChat\OWZX.PayPlugin.WeChat.pdb
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.PayPlugin.WeChat\obj\Debug\OWZX.PayPlugin.WeChat.dll
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.PayPlugin.WeChat\obj\Debug\OWZX.PayPlugin.WeChat.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.WeChat\db.config
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.WeChat\plugin.config
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.WeChat\views\adminwechat\config.cshtml
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.WeChat\views\wechat\pay.cshtml
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.WeChat\OWZX.PayPlugin.WeChat.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.WeChat\OWZX.PayPlugin.WeChat.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.PayPlugin.WeChat\obj\Debug\OWZX.PayPlugin.WeChat.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.PayPlugin.WeChat\obj\Debug\OWZX.PayPlugin.WeChat.pdb

@@ -18,3 +18,8 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.Web.Admin.pdb
 D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\administration\obj\Debug\OWZX.Web.Admin.dll
 D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\administration\obj\Debug\OWZX.Web.Admin.pdb
 D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\administration\obj\Debug\OWZX.Web.Admin.csprojResolveAssemblyReference.cache
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\bin\OWZX.Web.Admin.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\bin\OWZX.Web.Admin.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\administration\obj\Debug\OWZX.Web.Admin.csprojResolveAssemblyReference.cache
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\administration\obj\Debug\OWZX.Web.Admin.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\administration\obj\Debug\OWZX.Web.Admin.pdb
