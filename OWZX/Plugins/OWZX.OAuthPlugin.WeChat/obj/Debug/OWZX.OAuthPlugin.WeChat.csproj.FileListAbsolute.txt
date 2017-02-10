@@ -35,3 +35,10 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.W
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.OAuthPlugin.WeChat\obj\Debug\OWZX.OAuthPlugin.WeChat.dll
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.OAuthPlugin.WeChat\obj\Debug\OWZX.OAuthPlugin.WeChat.pdb
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.OAuthPlugin.WeChat\obj\Debug\OWZX.OAuthPlugin.WeChat.csprojResolveAssemblyReference.cache
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.WeChat\db.config
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.WeChat\plugin.config
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.WeChat\views\adminwechatoauth\config.cshtml
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.WeChat\OWZX.OAuthPlugin.WeChat.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.WeChat\OWZX.OAuthPlugin.WeChat.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.OAuthPlugin.WeChat\obj\Debug\OWZX.OAuthPlugin.WeChat.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.OAuthPlugin.WeChat\obj\Debug\OWZX.OAuthPlugin.WeChat.pdb

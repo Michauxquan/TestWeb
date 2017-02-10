@@ -29,3 +29,10 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.COD
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.PayPlugin.COD\obj\Debug\OWZX.PayPlugin.COD.csprojResolveAssemblyReference.cache
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.PayPlugin.COD\obj\Debug\OWZX.PayPlugin.COD.dll
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.PayPlugin.COD\obj\Debug\OWZX.PayPlugin.COD.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.COD\plugin.config
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.COD\views\admincod\config.cshtml
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.COD\OWZX.PayPlugin.COD.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.COD\OWZX.PayPlugin.COD.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.PayPlugin.COD\obj\Debug\OWZX.PayPlugin.COD.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.PayPlugin.COD\obj\Debug\OWZX.PayPlugin.COD.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.PayPlugin.COD\obj\Debug\OWZX.PayPlugin.COD.csprojResolveAssemblyReference.cache

@@ -18,3 +18,7 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.UploadStrategy.Lo
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.UploadStrategy.LocalServer\obj\Debug\OWZX.UploadStrategy.LocalServer.dll
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.UploadStrategy.LocalServer\obj\Debug\OWZX.UploadStrategy.LocalServer.pdb
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.UploadStrategy.LocalServer\obj\Debug\OWZX.UploadStrategy.LocalServer.csprojResolveAssemblyReference.cache
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\bin\OWZX.UploadStrategy.LocalServer.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\bin\OWZX.UploadStrategy.LocalServer.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Strategies\OWZX.UploadStrategy.LocalServer\obj\Debug\OWZX.UploadStrategy.LocalServer.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Strategies\OWZX.UploadStrategy.LocalServer\obj\Debug\OWZX.UploadStrategy.LocalServer.pdb

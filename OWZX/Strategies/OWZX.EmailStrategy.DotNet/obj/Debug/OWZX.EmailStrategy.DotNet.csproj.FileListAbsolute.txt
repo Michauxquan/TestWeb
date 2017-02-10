@@ -20,3 +20,8 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.EmailStrategy.Dot
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Debug\OWZX.EmailStrategy.DotNet.csprojResolveAssemblyReference.cache
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Debug\OWZX.EmailStrategy.DotNet.dll
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Debug\OWZX.EmailStrategy.DotNet.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\bin\OWZX.EmailStrategy.DotNet.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\bin\OWZX.EmailStrategy.DotNet.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Debug\OWZX.EmailStrategy.DotNet.csprojResolveAssemblyReference.cache
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Debug\OWZX.EmailStrategy.DotNet.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Strategies\OWZX.EmailStrategy.DotNet\obj\Debug\OWZX.EmailStrategy.DotNet.pdb

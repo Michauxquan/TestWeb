@@ -35,3 +35,11 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Ali
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.PayPlugin.Alipay\obj\Debug\OWZX.PayPlugin.Alipay.csprojResolveAssemblyReference.cache
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.PayPlugin.Alipay\obj\Debug\OWZX.PayPlugin.Alipay.dll
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.PayPlugin.Alipay\obj\Debug\OWZX.PayPlugin.Alipay.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Alipay\db.config
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Alipay\plugin.config
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Alipay\views\adminalipay\config.cshtml
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Alipay\OWZX.PayPlugin.Alipay.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.PayPlugin.Alipay\OWZX.PayPlugin.Alipay.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.PayPlugin.Alipay\obj\Debug\OWZX.PayPlugin.Alipay.csprojResolveAssemblyReference.cache
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.PayPlugin.Alipay\obj\Debug\OWZX.PayPlugin.Alipay.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.PayPlugin.Alipay\obj\Debug\OWZX.PayPlugin.Alipay.pdb

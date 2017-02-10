@@ -65,18 +65,30 @@ text-align:center;color:white;height:75px;vertical-align:middle;
 background-image:url(../images/ltnumber.png);
 
 }
-.ltresult {color:#c30000;font-weight:bold;font-size:14px;}
+.ltresult {color:#c30000;font-weight:bold;font-size:20px;}
+
+.pcresult {
+    background:rgba(0, 0, 0, 0) url(../images/number/lottery.fw.png) no-repeat scroll 0 0;height:32px;width:32px;
+    color:#fff;text-align:center;display:inline-block;line-height:32px;text-indent:0;
+}
+
 .ltwarn {color:#c30000;font-size:15px;}
 .ltnum1 {
-color:#005BFD;font-size:15px;
+color:#0167ff;font-size:15px;
 }
 .ltnum2 {
-color:#ECA70A;font-size:15px;
+color:#ECA101;font-size:15px;
 }
 .ltnum3 {
 color:#e4393c;font-size:15px;
 }
 
+.dv i {
+color:#000;
+font-weight:600;
+font-size:15px;
+padding:0 3px;
+}
 
 #play td {
 background:#FFFFFF;text-align:center;}

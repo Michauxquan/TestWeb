@@ -17,3 +17,7 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.SessionStrategy.A
 D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\bin\OWZX.SessionStrategy.AspNetCache.pdb
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Debug\OWZX.SessionStrategy.AspNetCache.dll
 D:\我的\项目\12、PC28\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Debug\OWZX.SessionStrategy.AspNetCache.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\bin\OWZX.SessionStrategy.AspNetCache.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\bin\OWZX.SessionStrategy.AspNetCache.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Debug\OWZX.SessionStrategy.AspNetCache.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Strategies\OWZX.SessionStrategy.AspNetCache\obj\Debug\OWZX.SessionStrategy.AspNetCache.pdb

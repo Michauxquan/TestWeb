@@ -35,3 +35,11 @@ D:\我的\项目\12、PC28\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.Q
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.OAuthPlugin.QQ\obj\Debug\OWZX.OAuthPlugin.QQ.csprojResolveAssemblyReference.cache
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.OAuthPlugin.QQ\obj\Debug\OWZX.OAuthPlugin.QQ.dll
 D:\我的\项目\12、PC28\OWZX\Plugins\OWZX.OAuthPlugin.QQ\obj\Debug\OWZX.OAuthPlugin.QQ.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.QQ\db.config
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.QQ\plugin.config
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.QQ\views\adminqqoauth\config.cshtml
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.QQ\OWZX.OAuthPlugin.QQ.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Presentation\OWZX.Web\plugins\OWZX.OAuthPlugin.QQ\OWZX.OAuthPlugin.QQ.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.OAuthPlugin.QQ\obj\Debug\OWZX.OAuthPlugin.QQ.dll
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.OAuthPlugin.QQ\obj\Debug\OWZX.OAuthPlugin.QQ.pdb
+D:\我的\项目\0、测试\Test\TestWeb\OWZX\Plugins\OWZX.OAuthPlugin.QQ\obj\Debug\OWZX.OAuthPlugin.QQ.csprojResolveAssemblyReference.cache
