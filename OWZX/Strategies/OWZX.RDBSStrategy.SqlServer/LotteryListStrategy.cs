@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +22,13 @@ namespace OWZX.RDBSStrategy.SqlServer
         /// <returns></returns>
         public DataSet GetLotteryByType(string type, string pageindex, string pagesize, int uid=-1)
         {
+            DbParameter[] parms = {
+                                      GenerateInParam("@pagesize", SqlDbType.Int, 4, pagesize),
+                                      GenerateInParam("@pageindex", SqlDbType.Int, 4, pageindex)
+                                  };
+
             string sql = string.Format(@"
-declare @uid int=19,@type int=10
+declare @uid int={1},@type int={0}
 
 select  type,expect,orderresult,first,second,three,result,resultnum,resulttype,status 
 from owzx_lotteryrecord 
@@ -54,10 +60,14 @@ declare @total int=(select COUNT(1) from owzx_lotteryrecord where type=@type)
  
 if OBJECT_ID('tempdb..#lottery') is not null
  drop table #lottery
-select top 20 type,expect,orderresult,first,second,three,result,resultnum,resulttype,status
-into #lottery 
-from owzx_lotteryrecord 
-where type=@type order by lotteryid desc
+
+select * 
+into #lottery
+from (
+select ROW_NUMBER() over(order by lotteryid desc) id,type,expect,orderresult,first,second,three,result,
+resultnum,resulttype,status
+from owzx_lotteryrecord where type=@type 
+) a  where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
 
 
 if OBJECT_ID('tempdb..#bettprof') is not null
@@ -87,10 +97,9 @@ left join #temp e
 on a.type=e.type and a.expect=e.expect
 
 
+",type,uid);
 
-");
-
-            return RDBSHelper.ExecuteDataset(sql);
+            return RDBSHelper.ExecuteDataset(CommandType.Text, sql, parms);
         }
         #endregion
     }
