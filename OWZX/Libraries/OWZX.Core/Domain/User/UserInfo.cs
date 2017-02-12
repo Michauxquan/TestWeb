@@ -13,6 +13,7 @@ namespace OWZX.Core
         private string _email = "";//用户邮箱
         private string _mobile = "";//用户手机
         private string _password = "";//用户密码
+        private string _safepassword = "";//用户密码
         private int _admingid;//用户管理员组id
         private int _userrid;//用户等级id
         private string _nickname = "";//用户昵称
@@ -45,7 +46,19 @@ namespace OWZX.Core
             set { _username = value.TrimEnd(); }
             get { return _username; }
         }
-        
+
+        public string SafePassWord
+        {
+            set { _safepassword = value.TrimEnd(); }
+            get { return _safepassword; }
+        }
+
+        private decimal bankmoney;
+        public decimal BankMoney
+        {
+            set { bankmoney = value; }
+            get { return bankmoney; }
+        }
         /// <summary>
         ///用户标识编号
         /// </summary>

@@ -523,7 +523,20 @@ namespace OWZX.Data
             OWZX.Core.BSPData.RDBS.UpdateUserPasswordByUid(uid, password);
 
         }
+        /// <summary>
+        /// 更新用户安全密码
+        /// </summary>
+        /// <param name="uid">用户id.</param>
+        /// <param name="password">密码</param>
+        public static void UpdateUserSafePasswordByUid(int uid, string password)
+        {
+            OWZX.Core.BSPData.RDBS.UpdateUserSafePasswordByUid(uid, password);
 
+        }
+        public static string BankChange(int uid, decimal changefee, int type = 0)
+        {
+            return OWZX.Core.BSPData.RDBS.BankChange(uid, changefee, type);
+        }
         /// <summary>
         /// 更新用户密码
         /// </summary>

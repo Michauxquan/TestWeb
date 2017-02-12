@@ -348,6 +348,19 @@ namespace OWZX.Core
         /// <param name="password">密码</param>
         void UpdateUserPasswordByUid(int uid, string password);
         /// <summary>
+        /// 更新用户安全密码
+        /// </summary>
+        /// <param name="uid">用户id.</param>
+        /// <param name="password">密码</param>
+        void UpdateUserSafePasswordByUid(int uid, string password);
+        /// <summary>
+        /// 更新用户账户余额
+        /// </summary>
+        /// <param name="uid">用户id</param>
+        /// <param name="changefee">帐变</param>
+        /// <param name="type">类型 0 增加 1 减少</param>
+        string BankChange(int uid, decimal changefee, int type = 0);
+        /// <summary>
         /// 更新用户密码
         /// </summary>
         /// <param name="mobile">用户手机号</param>
