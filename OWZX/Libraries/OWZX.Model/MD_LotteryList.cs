@@ -37,7 +37,9 @@ namespace OWZX.Model
         /// </summary>
         public List<MD_Lottery> LotteryList { get; set; }
     }
-
+    /// <summary>
+    /// 彩票类型枚举
+    /// </summary>
     public enum LotteryType
     {
         /// <summary>
@@ -57,23 +59,23 @@ namespace OWZX.Model
         /// </summary>
         dd36 = 4,
         /// <summary>
-        /// 蛋蛋28
+        /// 加拿大36
         /// </summary>
         cakeno36 = 5,
         /// <summary>
-        /// 蛋蛋28
+        /// 韩国28
         /// </summary>
         hg28 = 6,
         /// <summary>
-        /// 蛋蛋28
+        /// PK冠军
         /// </summary>
         pkgj = 7,
         /// <summary>
-        /// 蛋蛋28
+        /// PK冠亚军
         /// </summary>
         pkgyj = 8,
         /// <summary>
-        /// 蛋蛋28
+        /// 蛋蛋龙虎豹
         /// </summary>
         ddlhb = 9
     }
