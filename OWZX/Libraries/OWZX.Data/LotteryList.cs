@@ -5,12 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OWZX.Core
+namespace OWZX.Data
 {
-    /// <summary>
-    /// 新的竞猜数据接口
-    /// </summary>
-    public partial interface IRDBSStrategy
+   public class LotteryList
     {
         #region 竞猜数据
         /// <summary>
@@ -18,8 +15,10 @@ namespace OWZX.Core
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        DataSet GetLotteryByType(string type, string pageindex, string pagesize, int uid = -1);
-
+       public static DataSet GetLotteryByType(string type, string pageindex, string pagesize, int uid = -1)
+       {
+           return OWZX.Core.BSPData.RDBS.GetLotteryByType(type,pageindex,pagesize,uid);
+       }
         #endregion
     }
 }
