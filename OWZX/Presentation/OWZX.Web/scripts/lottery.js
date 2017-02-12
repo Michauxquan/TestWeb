@@ -1,6 +1,6 @@
 ﻿/*竞猜*/
-/*倒计时*/
-function GetRTime(ctime, fcnum)
+/*倒计时 剩余总时间，期号，下注时间，封盘时间*/
+function GetRTime(type,ctime, fcnum,bettime,stoptime)
 {
     //ns 开奖时间
     var nS = ctime;
@@ -9,52 +9,44 @@ function GetRTime(ctime, fcnum)
         //alert(document.getElementById('check_reload').checked);
         //alert(nS);
         nS = nS - 1;
-        stopSencond = stopSencond - 1;
-        if (stopSencond < 0)
+        if (nS >= stoptime && nS <= bettime)
         {
-            document.getElementById("RemainS").innerHTML = "已经停止竞猜，还有<strong style='color:#ff0000;'>" + nS + "</strong>秒开奖 ";
-            $("." + fcnum + "_status a").removeClass("a0").text("开奖中");
-        }
-        else
+            //bett
+            $(".remains").html(
+                '第 <i class="bold">' + fcnum + '</i>期  还有<span class="ltwarn">' + (nS - 30).toString() + '</span>秒停止下注!');
+        } else
         {
-            document.getElementById("RemainS").innerHTML = "还有<strong style='color:#ff0000;'>" + stopSencond + "</strong>秒停止竞猜，<strong style='color:#ff0000;'>" + nS + "</strong>秒开奖 ";
+            //stop
+            $(".remains").html(
+                '第 <i class="bold">' + fcnum + '</i>期  停止下注,还有<span class="ltwarn">' + nS + '</span>秒开奖!');
+            if ($(".lot_" + fcnum + "_btn .ltoperate").text() != "正在开奖")
+            {
+                $(".lot_" + fcnum + "_btn").html("").html('<a href="#"><div class="ltoperate">正在开奖</div></a>');
+            }
         }
-        document.getElementById("RemainTitle").innerHTML = "第<strong>" + fcnum + "</strong>期";
-        if (0 == 1)
-        {
-            document.getElementById("RemainTitle").innerHTML = "<span class='form_game'>距离第" + fcnum + "期开奖还有</span>";
-            document.getElementById("RemainS").innerHTML = "<span class='form_game'>" + nS + "</span><span class='form_game'>秒</span>";
-        }
-
 
     }
     else
     {
-        var isReload = document.getElementById('reloadshow').value;
-        document.getElementById("RemainTitle").innerHTML = "<strong>第" + fcnum + "期</strong>";
-        if (isReload == 2)
+        if(nS>-30)
         {
-            document.getElementById("RemainS").innerHTML = "正在开奖中请等待！";
-        }
-        else
-        {
-            document.getElementById("RemainS").innerHTML = "已开奖 <a href='/qcgeass.aspx' style='color:red; font-size:12px;'>请刷新</a>";
+            $(".remains").html(
+                '第 <i class="bold">' + fcnum + '</i>期  正在开奖,请稍后!');
         }
 
         nS = nS - 1;
-        if (isReload == 2)
+        
+        if (nS == -5 || nS == -10 || nS == -15 || nS == -20 || nS == -25)
         {
-            if (nS == -5 || nS == -10 || nS == -15 || nS == -20 || nS == -25)
-            {
-                window.location = '/qcgeass.aspx';
-            }
+            $(".remains").html('Loading......');
+            $(".lot_content").load("/nwlottery/lt28data", { "type": type, "pageindex": 1 })
         }
 
         if (nS <= -30)
             clearTimeout(tiner);
     }
     if (nS > -30)
-        tiner = setTimeout("GetRTime(" + nS + "," + fcnum + ")", 1000);
+        tiner = setTimeout("GetRTime("+type+"," + nS + "," + fcnum + "," + bettime + "," + stoptime + ")", 1000);
 }
 /*数字增加，分割*/
 function transStr(str)

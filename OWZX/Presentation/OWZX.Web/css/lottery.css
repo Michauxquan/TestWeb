@@ -33,9 +33,11 @@ border-bottom:1px solid #c30000;
             border-radius: 10px;
             text-align: center;
             margin:10px 7.5px 10px 7px;
-            font-size:14px;
-            font-weight:bold;
+            font-size:14.5px;
+            /*font-weight:bold;*/
         }
+            #ltheader #ltItme li a div.hot {background:#e4393c;color:white;
+            }
 /*内容*/
 .content {
 height:auto;
@@ -45,7 +47,7 @@ width:910px;
     height:40px;
 }
 
-    .sec_head a:hover, .sec_head a .hot {
+.sec_head a:hover, .sec_head a.hot {
         color:#e4393c;
     }
 
@@ -57,7 +59,7 @@ border-bottom:2px solid #ECECEC;
 }*/
 
 .dv {
-display:inline-block;width:910px;margin-bottom:5px;
+display:inline-block;width:910px;margin-bottom:10px;
 }
 .ltnumber {
 width:20%;display:block;float:left;
@@ -72,7 +74,8 @@ background-image:url(../images/ltnumber.png);
     color:#fff;text-align:center;display:inline-block;line-height:32px;text-indent:0;
 }
 
-.ltwarn {color:#c30000;font-size:15px;}
+
+.ltwarn {color:#c30000;font-size:15px;font-weight:600;}
 .ltnum1 {
 color:#0167ff;font-size:15px;
 }
@@ -90,13 +93,46 @@ font-size:15px;
 padding:0 3px;
 }
 
-#play td {
+
+/*table*/
+.lot_content table {
+width:910px; border:0;
+}
+
+#play i {
+    font-size:16px;font-weight:600;color:#c30000;
+}
+
+#play td,.table_rule td {
 background:#FFFFFF;text-align:center;}
 
+.table_rule td {
+border:1px solid #cacaca;
+}
+
+    .table_rule td .finalbig {
+        font-style: normal;
+        color: #fff;
+        font-size: 21px;
+        background: url('../images/number/lottery.fw.png') no-repeat;
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        text-indent: 0;
+        line-height: 32px;
+        text-align: center;
+    }
+.table_rule tr {
+height:40px;
+}
 #trhead,#trhead td {
     background:#E0E0E0;
 }
 
 #play .ltoperate {
 background:#e4393c;color:white;border-radius:40px;text-align:center;width:80%;margin:3px auto;font-weight:bold;font-size:14px;
+}
+
+.ltclose {color:#666;border-radius:40px;text-align:center;width:80%;margin:3px auto;font-weight:bold;font-size:14px;
+box-shadow:2px 3px 3px 3px  rgba(0,0,0,.3) inset;
 }

@@ -1,6 +1,5 @@
-﻿@{
-    Layout = null;
-}
+﻿@model LotteryModel
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -12,8 +11,22 @@
     <link href="@{@WorkContext.CSSCDN}/css/lottery.css" rel="stylesheet" />
     <script src="@{@WorkContext.ScriptCDN}/scripts/jquery.js" type="text/javascript"></script>
     <script src="@{@WorkContext.ScriptCDN}/scripts/common.js" type="text/javascript"></script>
+    <script src="@{@WorkContext.ScriptCDN}/scripts/lottery.js"></script>
+    <script src="@{@WorkContext.ScriptCDN}/scripts/play.js"></script>
     <script type="text/javascript">
         uid = @WorkContext.Uid;
+        $(function(){
+            $("#navItme li").removeClass("hot");
+            $("#navItme li:eq(3)").addClass("hot");
+            $("#ltItme li div").removeClass("hot");
+            $("#ltItme li:eq(1) a div").addClass("hot");
+            $(".sec_head a").click(function(){
+                $(".sec_head a").removeClass("hot");
+                $(this).addClass("hot");
+                $(".con_table").hide().eq($(this).index()).show();
+
+            });
+        });
     </script>
 </head>
 <body>
@@ -31,59 +44,713 @@
             <span class="wh12">|</span>
             <a  href="#" target="_parent">自动投注</a>
         </div>
-        <div class="dv">
-            <div class="ltnumber">
-              <h4 style="padding-top:10px;">第811611期</h4>开奖结果
-            </div>
-            <div style="width:80%;display:block;float:left;line-height:35px;border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;font-weight:600;">
-                <div style="padding-left:50px;">
-                    <span class="ltnum1">01,03,04,08,09,20</span>&nbsp;&nbsp;&nbsp;
-                    <span class="ltnum2">25,26,27,35,37,39</span>&nbsp;&nbsp;&nbsp;
-                    <span class="ltnum3">41,45,50,61,64,65</span>
-                    <a href="#" style="color:#666;float:right;">[官方查询]</a>
+        <div class="lot_content">
+            
+            <div class="dv">
+                @if(@Model.lotterylist.Prev_Lottery.Expect !=null)
+                {
+                <div class="ltnumber">
+                    <h4 style="padding-top:10px;">第 @Model.lotterylist.Prev_Lottery.Expect 期</h4>开奖结果
                 </div>
-                <div style="border-top:1px solid #ECECEC;padding-left:50px;"><span style="font-size:15px;">一区号码: <span class="ltresult">5</span></span>
-                    <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">9</span></span>
-                    <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">6</span> </span>                       
-                    <span style="margin-left:60px;font-size:15px;" >结果: <span class="ltresult pcresult">20</span></span>
-                </div>
-            </div>
-        </div>
-        <div class="dv" >
-            <div style="width:30%; display:block;float:left;" >第 <i class="bold">811612</i>期 还有<span class="ltwarn">192</span>秒停止下注!</div>
-            <div style="width:30%;display:block;float:left;" >今日盈亏: <span class="ltwarn">200</span> 参与: <i class="bold">10</i>期 胜率: <i class="bold">30%</i></div>
-            <div style="width:40%; display:block;float:left;text-align:right;">最高投注<span class="ltwarn">2,000</span>万豆,最高中奖 <span class="ltwarn">100,0000</span>万豆</div>
-        </div>
-        <table id="play" width="910" border="0" cellpadding="0" cellspacing="1" align="center"
-               style="color: Black; margin-bottom: 4px;border-top:2px solid #e4393c;" bgcolor="#CACACA">
-            <tr id="trhead">
-                <td width="15%" style="height: 28px;">期号</td>
-                <td width="15%" style="height: 28px">开奖时间</td>
-                <td width="15%" style="height: 28px">开奖结果</td>
-                <td width="15%" style="height: 28px">乐豆总数</td>
-                <td width="12%" style="height: 28px">中奖人数</td>
-                <td width="15%" style="height: 28px">投注额/中奖额</td>
-                <td width="13%" style="height: 28px">投注</td>
-            </tr>
-            <tr>
-                <td>811610</td>
-                <td>02-09 11:20</td>
-                <td>0+9+7=<span >16</span></td>
-                <td>@{string rt = string.Format("{0:n0}",100000456);} @rt</td>
-                <td>10/139</td>
-                <td>@{string bt = string.Format("{0:n0}", 100000); string lk = string.Format("{0:n0}", 100000456);} @bt/@lk</td>
-                <td style="width:30px;">
-                    <a href="#"><div class="ltoperate">竞  猜</div></a>
-                </td>
-            </tr>
-            <tr align="center" bgcolor="#FFFFFF" id="pagetr">
-                <td height="28" colspan="8" bgcolor="#FFFFFF">
-                    <div class="tcdPageCode">
+                <div style="width:80%;display:block;float:left;line-height:35px;border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;font-weight:600;">
+                    <div style="padding-left:50px;">
+                        <span class="ltnum1">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(0, 17)</span>&nbsp;&nbsp;&nbsp;
+                        <span class="ltnum2">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(18, 17)</span>&nbsp;&nbsp;&nbsp;
+                        <span class="ltnum3">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(36, 17)</span>
+                        <a href="http://www.bwlc.net/bulletin/keno.html" style="color:#666;float:right;">[官方查询]</a>
                     </div>
-                </td>
-            </tr>
-        </table>
-            <div class="clear"></div>
+                    <div style="border-top:1px solid #ECECEC;padding-left:50px;">
+                        <span style="font-size:15px;">一区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.First</span></span>
+                        <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Second</span></span>
+                        <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
+                        <span style="margin-left:60px;font-size:15px;">结果: <span class="ltresult pcresult">@Model.lotterylist.Prev_Lottery.Resultnum</span></span>
+                    </div>
+                </div>
+                }else
+                {
+                  @:暂无历史开奖
+                }
+            </div>
+            <div class="dv">
+                <div style="width:30%; display:block;float:left;" class="remains">
+                    第 <i class="bold">@Model.lotterylist.LastNumber</i>期
+                    @if (@Model.lotterylist.RemainS >= 30 && @Model.lotterylist.RemainS <= 270)
+                    {
+                        <text>还有<span class="ltwarn">@Model.lotterylist.RemainS</span>秒停止下注!</text>
+                    }
+                    else if (@Model.lotterylist.RemainS > 0 && @Model.lotterylist.RemainS < 30)
+                    {
+                        <text>停止下注,还有<span class="ltwarn">@Model.lotterylist.RemainS</span>秒开奖!</text>
+                    }
+                    else if (@Model.lotterylist.RemainS > -60 && @Model.lotterylist.RemainS <= 0)
+                    {
+                        <text>正在开奖,请稍后!</text>
+                    }
+                </div>
+                <script>
+                    $(function(){
+                        GetRTime(1,@Model.lotterylist.RemainS,@Model.lotterylist.LastNumber,270,30)
+                    });
+                </script>
+                <div style="width:30%;display:block;float:left;">
+                今日盈亏: <span class="ltwarn">@Model.lotterylist.TdProf</span> 参与: <i class="bold">@Model.lotterylist.TdBettNum</i>期 胜率: <i class="bold">@Model.lotterylist.WinPercent%</i></div>
+                <div style="width:40%; display:block;float:left;text-align:right;">最高投注<span class="ltwarn">2,000</span>万豆,最高中奖 <span class="ltwarn">100,0000</span>万豆</div>
+            </div>
+            <table class="con_table" id="play" cellpadding="0" cellspacing="1" align="center"
+                   style="color: Black; margin-bottom: 4px;margin-top:5px; border-top:2px solid #e4393c;" bgcolor="#CACACA">
+                <tr id="trhead">
+                    <td width="13%" style="height: 28px;">期号</td>
+                    <td width="13%" style="height: 28px">开奖时间</td>
+                    <td width="17%" style="height: 28px">开奖结果</td>
+                    <td width="15%" style="height: 28px">乐豆总数</td>
+                    <td width="12%" style="height: 28px">中奖人数</td>
+                    <td width="15%" style="height: 28px">投注额/中奖额</td>
+                    <td width="13%" style="height: 28px">投注</td>
+                </tr>
+                @foreach(OWZX.Model.MD_LotteryUser lot in @Model.lotterylist.LotteryList)
+                {
+                <tr>
+                    <td>@lot.Expect</td>
+                    <td>@lot.Opentime.ToString("MM-dd HH:mm")</td>
+                    <td >
+                    @if (@lot.Status != 2)
+                    { 
+                     @:-
+                    }else
+                    {
+                     <text><i>@lot.First</i>+<i>@lot.Second</i>+<i>@lot.Three</i>=<span class="ltresult pcresult">@lot.Resultnum</span></text>
+                    }</td>
+                    <td>@{string rt = string.Format("{0:n0}",@lot.TotalBett);} @rt</td>
+                    <td>@lot.WinPerson/@lot.BettPerson</td>
+                    <td>@{string bt = string.Format("{0:n0}", @lot.LuckResult); string lk = string.Format("{0:n0}", @lot.Money);} @bt/@lk</td>
+                    <td style="width:30px;">
+                        @if(lot.Status==0){
+                        <div class="lot_"@lot.Expect"_btn"><a href="#"><div class="ltoperate">竞  猜</div></a></div>
+                        }else if(lot.Status==1){
+                        <div class="lot_"@lot.Expect"_btn"><a href="#"><div class="ltoperate">正在开奖</div></a></div>
+                        }
+                        else if (lot.Status == 2)
+                        {
+                            <div class="lot_"@lot.Expect"_btn"><a href="#"><div class="ltclose">- 已开奖 -</div></a></div>
+                        }
+                    </td>
+                </tr>
+                }
+                <tr align="center" bgcolor="#FFFFFF" id="pagetr">
+                    <td height="28" colspan="7" bgcolor="#FFFFFF">
+                        <div class="tcdPageCode">
+                            @Html.WebPager(Model.PageModel)
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table class="con_table"></table>@*占位使用*@
+            <table class="con_table table_rule hide" cellspacing="0" style="border-collapse:collapse;border:1px solid #cacaca;margin-top:10px;" bgcolor="#CACACA">
+                <tbody>
+                    <tr><td colspan="4">采用北京福彩中心快乐8数据，与PC蛋蛋结果相同，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
+                    <tr>
+                        <td width="120">如第654574期</td>
+                        <td colspan="3">02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75</td>
+
+                    </tr>
+                    <tr>
+                        <td width="120">区位</td>
+                        <td>第一区[第1/2/3/4/5/6位数字]</td>
+                        <td>第二区[第7/8/9/10/11/12位数字]</td>
+                        <td>第三区[第13/14/15/16/17/18位数字]</td>
+
+                    </tr>
+                    <tr>
+                        <td>数字</td>
+                        <td>02,04,07,08,18,22</td>
+                        <td>25,30,35,36,43,49</td>
+                        <td>50,53,59,66,69,71</td>
+
+                    </tr>
+                    <tr >
+                        <td>求和</td>
+                        <td>61</td>
+                        <td>218</td>
+                        <td>368</td>
+
+                    </tr>
+                    <tr >
+                        <td>计算</td>
+                        <td>取尾数</td>
+                        <td>取尾数</td>
+                        <td>取尾数</td>
+
+                    </tr>
+                    <tr >
+                        <td>结果</td>
+                        <td><li class="finalbig">1</li></td>
+                        <td><li class="finalbig">8</li></td>
+                        <td><li class="finalbig">8</li></td>
+
+                    </tr>
+                    <tr>
+                        <td>开奖</td>
+                        <td colspan="3"><li class="finalbig">1</li> + <li class="finalbig">8</li> + <li class="finalbig">8</li> = <li class="finalbig">17</li></td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <table class="con_table"></table>@*占位使用*@
+            <div class="bt_page">
+                    <div class="border_out" style="height: auto; margin-top: 8px;">
+                        <div class="border_out_r">
+                            <div class="border_out_title"><span style="float: left; width: auto;">我的模式</span> <span style="float: right; width: auto;"></span></div>
+
+                            <div style="padding: 2px 5px; background-color: #FEFEF9; border: 1px solid #E6C48F; line-height: 24px;" id="usbettmode">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border_out" style="margin-top: -2px;">
+                        <div class="border_out_l">
+                            <div class="border_out_title"><span style="float: left; width: auto;">标准投注模式</span> <span style="float: right; width: auto;"></span></div>
+
+                            <table border="0" align="left">
+                                <tr>
+                                    <td class="img_bt1" attr="0">全包</td>
+                                    <td class="img_bt1" attr="1">单</td>
+                                    <td class="img_bt1" attr="2">双</td>
+                                    <td class="img_bt1" attr="3">大</td>
+                                    <td class="img_bt1" attr="4">小</td>
+                                    <td class="img_bt1" attr="5">中</td>
+                                    <td class="img_bt1" attr="6">边</td>
+                                    <td class="img_bt1" attr="7">大单</td>
+                                    <td class="img_bt1" attr="8">小单</td>
+                                    <td class="img_bt1" attr="9">大双</td>
+                                    <td class="img_bt1" attr="10">小双</td>
+                                    <td class="img_bt1" attr="11">大边</td>
+                                    <td class="img_bt1" attr="12">小边</td>
+                                    <td class="img_bt1" attr="13">单边</td>
+                                    <td class="img_bt1" attr="14">双边</td>
+                                    <td class="img_bt1" attr="15">0尾</td>
+                                    <td class="img_bt1" attr="16">1尾</td>
+                                    <td class="img_bt1" attr="17">2尾</td>
+                                    <td class="img_bt1" attr="18">3尾</td>
+                                    <td class="img_bt1" attr="19">4尾</td>
+                                    <td class="img_bt1" attr="20">小尾</td>
+                                </tr>
+                                <tr>
+                                    <td class="img_bt1" attr="21">5尾</td>
+                                    <td class="img_bt1" attr="22">6尾</td>
+                                    <td class="img_bt1" attr="23">7尾</td>
+                                    <td class="img_bt1" attr="24">8尾</td>
+                                    <td class="img_bt1" attr="25">9尾</td>
+                                    <td class="img_bt1" attr="26">大尾</td>
+                                    <td class="img_bt1" attr="27">3余0</td>
+                                    <td class="img_bt1" attr="28">3余1</td>
+                                    <td class="img_bt1" attr="29">3余2</td>
+                                    <td class="img_bt1" attr="30">4余0</td>
+                                    <td class="img_bt1" attr="31">4余1</td>
+                                    <td class="img_bt1" attr="32">4余2</td>
+                                    <td class="img_bt1" attr="33">4余3</td>
+                                    <td class="img_bt1" attr="34">5余0</td>
+                                    <td class="img_bt1" attr="35">5余1</td>
+                                    <td class="img_bt1" attr="36">5余2</td>
+                                    <td class="img_bt1" attr="37">5余3</td>
+                                    <td class="img_bt1" attr="38">5余4</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="border_wg" id="stoptip" style="display: none;">
+                        为了保护您的投注安全，<strong style="color: #ff0000; font-weight: bold;">您的投注已被暂停</strong>！<span id="stopsubtip">您的账号要到<strong style="color: #ff0000; font-weight: bold;">2012-2-14 12:12</strong>才能恢复投注。</span><br />
+                    </div>
+
+
+
+                    <div class="border_out1">
+                        <div class="border_out1_l" id="border_out1_l">
+                            <span>0.1倍</span><span>1.5倍</span><span>2倍</span><span>10倍</span><span>50倍</span><span>100倍</span>
+                        </div>
+                        <div class="border_out1_c">
+                            <div style="float: left; width: 72px; padding-left: 5px;">总投注金币：</div>
+                            <div style="color: #ff0000; font-weight: bold; width: 108px; float: left; overflow: hidden" id="totalvalue">
+                                0
+                            </div>
+                            <div class="conform_btn" onclick="comform()" id="conform_btn">确认投注</div>
+                        </div>
+                        
+                    </div>
+                    <div class="content_middle" style="height: auto; width: 910px; margin: auto;" id="panel">
+                        <input class="input2" name="SMONEYY" type="hidden" value="ALD" />
+                        <table width="455" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFB91F" align="left" style="color: Black;">
+                            <tr align="center" height="20">
+                                <td width="50" background="../img/xy28_bg.gif">号码</td>
+                                <td width="71" style="display: none;" background="../img/xy28_bg.gif">上期赔率</td>
+                                <td width="71" background="../img/xy28_bg.gif">当前赔率</td>
+                                <td width="53" background="../img/xy28_bg.gif">请选择</td>
+                                <td width="130" background="../img/xy28_bg.gif">投注</td>
+                                <td width="80" background="../img/xy28_bg.gif">倍数</td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_0.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="0">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt0" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_1.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="1">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt1" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_2.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="2">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt2" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_3.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="3">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt3" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_4.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="4">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt4" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_5.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="5">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt5" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_6.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="6">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt6" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_7.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="7">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt7" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_8.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="8">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt8" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_9.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="9">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt9" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_10.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="10">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt10" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_11.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="11">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt11" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_12.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="12">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt12" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_13.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="13">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt13" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                        </table>
+                        <table width="455" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFB91F" align="right" style="color: Black;">
+                            <tr align="center" height="20">
+                                <td width="50" background="../img/xy28_bg.gif">号码</td>
+                                <td width="71" style="display: none;" background="../img/xy28_bg.gif">上期赔率</td>
+                                <td width="71" background="../img/xy28_bg.gif">当前赔率</td>
+                                <td width="53" background="img/xy28_bg.gif">请选择</td>
+                                <td width="130" background="../img/xy28_bg.gif">投注</td>
+                                <td width="80" background="../img/xy28_bg.gif" style="width: 80px">倍数</td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_27.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="27">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt27" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_26.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="26">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt26" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_25.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="25">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt25" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_24.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="24">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt24" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_23.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="23">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt23" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_22.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="22">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt22" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_21.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="21">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt21" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_20.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="20">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt20" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_19.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="19">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt19" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_18.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="18">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt18" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_17.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="17">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt17" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_16.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="16">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt16" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_15.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="15">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt15" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+                            <tr align="center" bgcolor="#FFFFFF" height="27">
+                                <td>
+                                    <img class="btnumber" src="../img/number/number_14.gif" width="25" height="25" />
+                                </td>
+                                <td style="display: none;"></td>
+                                <td class="lossrate" data-type="14">--</td>
+                                <td>
+                                    <input type="checkbox" name="checkboxd" value="checkbox" />
+                                </td>
+                                <td>
+                                    <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt14" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                </td>
+                                <td style="width: 80px;">
+                                    <input class="input3" name="Add" type="button" value="+" style="vertical-align: middle;" /><img name="img" src="../img/number/dt1.png" class="input" style="vertical-align: middle;" />
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+            </div>
+        </div>
+        <div class="clear"></div>
         </div>
     @Html.Partial("_footer")
 </body>

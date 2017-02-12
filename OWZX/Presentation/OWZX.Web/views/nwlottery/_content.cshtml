@@ -1,0 +1,60 @@
+﻿@model LotteryModel
+@{
+    Layout = null;
+}
+
+    
+    <div class="dv">
+        <div class="ltnumber">
+            <h4 style="padding-top:10px;">第@Model期</h4>开奖结果
+        </div>
+        <div style="width:80%;display:block;float:left;line-height:35px;border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;font-weight:600;">
+            <div style="padding-left:50px;">
+                <span class="ltnum1">01,03,04,08,09,20</span>&nbsp;&nbsp;&nbsp;
+                <span class="ltnum2">25,26,27,35,37,39</span>&nbsp;&nbsp;&nbsp;
+                <span class="ltnum3">41,45,50,61,64,65</span>
+                <a href="#" style="color:#666;float:right;">[官方查询]</a>
+            </div>
+            <div style="border-top:1px solid #ECECEC;padding-left:50px;">
+                <span style="font-size:15px;">一区号码: <span class="ltresult">5</span></span>
+                <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">9</span></span>
+                <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">6</span> </span>
+                <span style="margin-left:60px;font-size:15px;">结果: <span class="ltresult pcresult">20</span></span>
+            </div>
+        </div>
+    </div>
+    <div class="dv">
+        <div style="width:30%; display:block;float:left;">第 <i class="bold">811612</i>期 还有<span class="ltwarn">192</span>秒停止下注!</div>
+        <div style="width:30%;display:block;float:left;">今日盈亏: <span class="ltwarn">200</span> 参与: <i class="bold">10</i>期 胜率: <i class="bold">30%</i></div>
+        <div style="width:40%; display:block;float:left;text-align:right;">最高投注<span class="ltwarn">2,000</span>万豆,最高中奖 <span class="ltwarn">100,0000</span>万豆</div>
+    </div>
+    <table id="play" width="910" border="0" cellpadding="0" cellspacing="1" align="center"
+           style="color: Black; margin-bottom: 4px;border-top:2px solid #e4393c;" bgcolor="#CACACA">
+        <tr id="trhead">
+            <td width="15%" style="height: 28px;">期号</td>
+            <td width="15%" style="height: 28px">开奖时间</td>
+            <td width="15%" style="height: 28px">开奖结果</td>
+            <td width="15%" style="height: 28px">乐豆总数</td>
+            <td width="12%" style="height: 28px">中奖人数</td>
+            <td width="15%" style="height: 28px">投注额/中奖额</td>
+            <td width="13%" style="height: 28px">投注</td>
+        </tr>
+        <tr>
+            <td>811610</td>
+            <td>02-09 11:20</td>
+            <td>0+9+7=<span>16</span></td>
+            <td>@{string rt = string.Format("{0:n0}", 100000456);} @rt</td>
+            <td>10/139</td>
+            <td>@{string bt = string.Format("{0:n0}", 100000); string lk = string.Format("{0:n0}", 100000456);} @bt/@lk</td>
+            <td style="width:30px;">
+                <a href="#"><div class="ltoperate">竞  猜</div></a>
+            </td>
+        </tr>
+        <tr align="center" bgcolor="#FFFFFF" id="pagetr">
+            <td height="28" colspan="8" bgcolor="#FFFFFF">
+                <div class="tcdPageCode">
+                </div>
+            </td>
+        </tr>
+    </table>
+

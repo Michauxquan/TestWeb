@@ -29,13 +29,17 @@ namespace OWZX.Model
         /// </summary>
         public decimal WinPercent { get; set; }
         /// <summary>
+        /// 总记录数
+        /// </summary>
+        public int TotalCount { get; set; }
+        /// <summary>
         /// 上一期结果
         /// </summary>
         public MD_Lottery Prev_Lottery { get; set; }
         /// <summary>
         /// 往期开奖数据
         /// </summary>
-        public List<MD_Lottery> LotteryList { get; set; }
+        public List<MD_LotteryUser> LotteryList { get; set; }
     }
     /// <summary>
     /// 彩票类型枚举

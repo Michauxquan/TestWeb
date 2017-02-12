@@ -18,8 +18,23 @@ namespace OWZX.Core
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        DataSet GetLotteryByType(string type, string pageindex, string pagesize, int uid = -1);
+        DataSet GetLotteryByType(int type, int pageindex, int pagesize, int uid = -1);
 
+        /// <summary>
+        /// 是否已开奖
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="expect"></param>
+        /// <returns></returns>
+        bool ExistsLotteryOpen(string type, string expect);
+
+        /// <summary>
+        /// 获取投注记录
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        DataTable GetUserBett(int type, int uid);
         #endregion
     }
 }
