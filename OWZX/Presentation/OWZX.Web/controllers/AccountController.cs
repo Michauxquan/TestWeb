@@ -148,6 +148,7 @@ namespace OWZX.Web.Controllers
             }
             else//验证成功时
             {
+                LoginFailLogs.AddLogin(WorkContext.IP, WorkContext.Uid,DateTime.Now,"",0,"登录");
                 //删除登陆失败日志
                 LoginFailLogs.DeleteLoginFailLogByIP(WorkContext.IP);
                 //更新用户最后访问

@@ -160,6 +160,7 @@ namespace OWZX.Core
         /// <param name="loginTime">登录时间</param>
         void AddLoginFailTimes(long loginIP, DateTime loginTime);
 
+        void AddLogin(string loginIP, int uid, DateTime loginTime, string ipName, int type, string remark);
         /// <summary>
         /// 删除登录失败日志
         /// </summary>

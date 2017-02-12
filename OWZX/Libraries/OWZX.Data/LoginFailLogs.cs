@@ -40,7 +40,15 @@ namespace OWZX.Data
         {
             OWZX.Core.BSPData.RDBS.AddLoginFailTimes(loginIP, loginTime);
         }
-
+        /// <summary>
+        /// 增加登陆记录
+        /// </summary>
+        /// <param name="loginIP">登陆IP</param>
+        /// <param name="loginTime">登陆时间</param>
+        public static void AddLogin(string loginIP, int uid, DateTime loginTime, string ipName, int type,string remark)
+        {
+            OWZX.Core.BSPData.RDBS.AddLogin(loginIP, uid, loginTime, ipName, type, remark);
+        }
         /// <summary>
         /// 删除登陆失败日志
         /// </summary>

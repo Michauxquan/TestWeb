@@ -504,7 +504,18 @@ end catch
                 RDBSHelper.ExecuteNonQuery(CommandType.Text, commandText, parms);
             }
         }
-
+       
+        /// <summary>
+        /// 增加登陆日志
+        /// </summary>
+        /// <param name="loginIP">登陆IP</param>
+        /// <param name="loginTime">登陆时间</param>
+        public void AddLogin(string loginIP, int uid, DateTime loginTime, string ipName, int type, string remark)
+        { 
+            string commandText = string.Format("INSERT INTO [{0}userslog]([uid],[createtime],[remark],[type],[ip] ,[ipname]) VALUES({1},'{2}','{3}',{4},'{5}','{6}')",
+                                             RDBSHelper.RDBSTablePre,uid,loginTime.ToString("yyyy-MM-dd HH:mm:ss:fff"),remark,type,loginIP,ipName);
+                RDBSHelper.ExecuteNonQuery(CommandType.Text, commandText, null); 
+        }
         /// <summary>
         /// 删除登陆失败日志
         /// </summary>
