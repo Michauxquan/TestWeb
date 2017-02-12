@@ -60,16 +60,14 @@ function verifyReserve(name, password, code)
 function hmlogin(parms)
 {
     $.post("/account/login", parms, function (data)
-    {
-        console.log(data)
+    { 
         var result = eval("(" + data + ")");
         if (result.state == "success")
         {
             window.location.href = "/";
         }
         else {
-            showVerifyError(result.content);
-            //layer.msg(result.content, { icon: 2 });
+            showVerifyError(result.content); 
         }
     });
 }

@@ -199,8 +199,8 @@ namespace OWZX.Web.Controllers
         public ActionResult GetUserMoney()
         {
             PartUserInfo pu = Users.GetPartUserById(WorkContext.Uid);
-            var content = "\"totalmoney\":\""+pu.TotalMoney+"\",\"bankmoney\":\""+pu.BankMoney+"\"";
-            return AjaxResult("sussace", content);
+            var content = "{\"totalmoney\":\""+pu.TotalMoney+"\",\"bankmoney\":\""+pu.BankMoney+"\"}";
+            return AjaxResult("sussace", content,true);
         }
 
         #endregion

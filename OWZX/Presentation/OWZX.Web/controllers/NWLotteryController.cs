@@ -30,7 +30,7 @@ namespace OWZX.Web.controllers
                 PageModel = new PageModel(20, 1, list.TotalCount),
                 lotterylist = list
             };
-            return View(lot);
+            return View(lot); 
         }
         /// <summary>
         /// dd28获取数据
@@ -44,7 +44,7 @@ namespace OWZX.Web.controllers
                 PageModel = new PageModel(20, pageindex, list.TotalCount),
                 lotterylist = list
             };
-            return View(lot);
+            return View(lot); 
         }
 
 

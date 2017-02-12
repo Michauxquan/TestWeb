@@ -44,6 +44,7 @@
     <Compile Include="RechargeStrategy.cs" />
     <Compile Include="ShopStrategy.cs" />
     <Compile Include="UserStrategy.cs" />
+    <Compile Include="ChangeWareStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\OWZX.Core\OWZX.Core.csproj">

@@ -1,0 +1,110 @@
+﻿@Model OWZX.Web.Admin.Models.WareListModel
+ 
+@section header{
+    <title>会员等级列表</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+    <script type="text/javascript">
+        function showsku(warecode) {
+            $.post('/Ware/SkuList',
+                { warecode: warecode },
+                function(data) {
+                    var items = eval(data);
+                    var html = "";
+                    if (items.length > 0) {
+                        for (var i = 0; i < items.length; i++) {
+                            html += '<tr><td align="center">' +items[i].specid +'</td><td>' +items[i].speccode +'</td><td>' +items[i].specname +'</td><td>' +items[i].price +'</td>'
+                                +'<td>' +(items[i].status == 0 ? "销售中" : "已下架") +'</td><td>' +items[i].usernum +'</td>'
+                                +'<td> <a class="editOperate" href="/admin/Ware/EditSku?specid=' +items[i].specid +'" >[编辑规格]</a>|' +
+                                '<a class="editOperate" href="/admin/Ware/DelSku?specid=' +items[i].specid +'&status='+(items[i].status==1?"0":"1")+'" >['+(items[i].status==1?"上架":"下架")+']</a></td></tr>';
+                        }
+                        $('#skuname').html('&nbsp;  &nbsp;'+items[0].warecode+'&nbsp; &nbsp;'+items[0].warename+'&nbsp; &nbsp;规格列表:');
+                    } else {
+                        html = '<tr><td align="center" colspan="7"><h3 style="text-align:center;">暂未数据</h3></td></tr>';
+                    }
+                    $('#skulist').html(html);
+                    $('.skudiv').show();
+                });
+        }
+    </script>
+}
+
+@section body{
+<h1 class="rightH1">
+商品管理 &gt;&gt; 商品列表
+<div class="right">
+<a href="@Url.Action("add")" class="menuBT"><img src="/administration/images/add.jpg"/>添加</a>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</h1>
+        <div class="table_top">
+        </div>
+@using (Html.BeginForm("list", "ware"))
+        {
+          <div class="dataList">
+        <table width="100%">
+        <thead>
+          <tr>
+            <th width="20"></th>
+            <th align="left">商品编码</th>
+            <th width="240" align="left">商品名称</th>
+            <th width="120" align="left">单价</th>
+            <th width="120" align="left">状态</th>
+            <th width="120" align="left">类型</th>
+            <th width="280" align="left">管理操作</th>
+            </tr>
+        </thead>
+            <tbody>
+            @foreach (DataRow row in Model.WareList.Rows)
+            {
+                <tr>
+                    <td></td> 
+                    <td>@row["warecode"]</td>
+                    <td>@row["warename"]</td>
+                    <td>@row["price"]</td>
+                    <td>@(row["status"].ToString()=="0"?"销售中":"已下架")</td>
+                    <td>@((row["type"].ToString()=="1")?"夺宝":"兑换")</td> 
+                    <td>
+                        @Html.ActionLink("[编辑]", "edit", new { warecode = row["warecode"] }, new { @class = "editOperate" })|
+                        <a class="editOperate" href="javascript:void(0)" onclick="showsku('\'@row["warecode"]\'')" >[查看规格]</a>| 
+                        @Html.ActionLink("[添加规格]", "skuadd", new { warecode = row["warecode"] }, new { @class = "editOperate" })|  
+                        <a class="editOperate" href="/admin/Ware/del?warecode=@row["warecode"]&status=@(row["status"].ToString()=="1"?0:1)">[@(row["status"].ToString() == "1" ? "上架" : "下架")]</a>
+                        @*@Html.ActionLink("["+(@row["status"].ToString() == "1" ? "上架" : "下架") +"]", "del", new { warecode = row["warecode"],status=(@row["status"].ToString()=="0"?1:0) }, new { @class = "deleteOperate" })*@
+                    </td>
+
+                </tr>
+            }
+            </tbody>
+            <tfoot>
+            <div class="dataList skudiv" style="display: none;"> 
+                <table width="100%">
+                    <thead>
+                    <tr>
+                        <th id="skuname"style="text-indent: 10px; background: #fff; text-align: left; font-size: 14px; font-weight: bold; " colspan="7">&nbsp;&nbsp;</th> 
+                    </tr>
+                    <tr>
+                        <th width="70" align="center">序号</th>
+                        <th width="240" align="left">规格编码</th>
+                        <th width="300" align="left">规格名称</th>
+                        <th width="120" align="left">单价</th>
+                        <th width="120" align="left">状态</th>
+                        <th width="120" align="left" title="夺宝商品为需要参与人次">人次</th>
+                        <th width="280" align="left">管理操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="skulist">
+                    
+                    </tbody>
+                </table>
+            </div>
+            </tfoot>
+    </table>
+    </div>
+    }
+<div class="table_bottom" style=" margin-left:15px;">
+    <div>(1)商品编码为唯一。</div> 
+    <div>(2)规格编码为唯一。</div> 
+</div>
+}

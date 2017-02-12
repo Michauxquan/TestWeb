@@ -77,6 +77,7 @@
     <Compile Include="controllers\NewUserController.cs" />
     <Compile Include="controllers\UserController.cs" />
     <Compile Include="controllers\UserRankController.cs" />
+    <Compile Include="controllers\WareController.cs" />
     <Compile Include="models\AdminGroupModel.cs" />
     <Compile Include="models\AdvertModel.cs" />
     <Compile Include="models\BaseSetListModel.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="models\TopicModel.cs" />
     <Compile Include="models\UserModel.cs" />
     <Compile Include="models\UserRankModel.cs" />
+    <Compile Include="models\WareModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="views\account\login.cshtml" />
+    <None Include="views\ware\add.cshtml" />
     <None Include="views\admingroup\add.cshtml" />
     <None Include="views\admingroup\edit.cshtml" />
     <None Include="views\admingroup\list.cshtml" />
@@ -159,6 +162,8 @@
     <None Include="views\database\manage.cshtml" />
     <None Include="views\draw\rechargelist.cshtml" />
     <None Include="views\draw\drawlist.cshtml" />
+    <None Include="views\ware\edit.cshtml" />
+    <None Include="views\ware\editsku.cshtml" />
     <None Include="views\error\index.cshtml" />
     <None Include="views\error\Info.cshtml" />
     <None Include="views\baseset\add.cshtml" />
@@ -182,6 +187,7 @@
     <None Include="views\home\menu.cshtml" />
     <None Include="views\home\navbar.cshtml" />
     <None Include="views\home\shopruninfo.cshtml" />
+    <None Include="views\ware\list.cshtml" />
     <None Include="views\log\adminoperateloglist.cshtml" />
     <None Include="views\log\creditloglist.cshtml" />
     <None Include="views\lottery\profitlist.cshtml" />
@@ -216,6 +222,7 @@
     <None Include="views\shared\error.cshtml" />
     <None Include="views\shared\prompt.cshtml" />
     <None Include="views\shared\_layout.cshtml" />
+    <None Include="views\ware\skuadd.cshtml" />
     <None Include="views\stat\clientstat.cshtml" />
     <None Include="views\stat\onlineuserlist.cshtml" />
     <None Include="views\stat\onlineusertrend.cshtml" />

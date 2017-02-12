@@ -1,0 +1,55 @@
+﻿@model OWZX.Web.WareSkuList
+@{
+    Layout = null;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>兑换列表-@{@WorkContext.ShopConfig.SiteTitle}</title>
+    @Html.Raw(WorkContext.ShopConfig.SEOKeyword)
+    @Html.Raw(WorkContext.ShopConfig.SEODescription)
+    <link href="@{@WorkContext.CSSCDN}/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="@{@WorkContext.CSSCDN}/css/lottery.css" rel="stylesheet" />
+    <script src="@{@WorkContext.ScriptCDN}/scripts/jquery.js" type="text/javascript"></script>
+    <script src="@{@WorkContext.ScriptCDN}/scripts/common.js" type="text/javascript"></script> 
+    <script type="text/javascript">
+        uid = @WorkContext.Uid; 
+    </script>
+</head>
+<body>
+    @Html.Partial("_header")
+    @using (Html.BeginForm())
+{
+<div class="bigBox">
+<div class="box" style="border: solid 1px #ddd;">
+    <div style="height: 45px; line-height: 40px; background: #E9454E; color: #fff; text-indent: 24px; font-size: 16px; font-weight: bolder; "><img src="../images/baseimg/liebiao.png"/>兑换列表</div>
+    <ul style="min-height: 300px;">
+        @foreach (OWZX.Model.MD_Ware info in Model.WareList)
+        {
+            <li style="height: 236px; width: 160px; float: left; margin: 25px 18px 5px 18px; border: solid 1px #ddd;">
+                <div style="position: absolute;">
+                <div style="width: 160px; height: 160px; position: absolute;"><img style="width: 160px; height: 160px; z-index: 0; position: absolute;"/>
+                    <span style="z-index: 0; color: #fff; font-size: 13px; position: absolute; bottom: 0px; text-align: center; width: 160px;">@(info.WareName + info.SpecName.Replace("万", "W"))</span></div>
+                    <div style="width: 160px; height: 50px; margin-top: 160px;background: #eee;">
+                        <p style="text-align: center; width: 160px; color: #000;">@(info.WareName + info.SpecName)</p> 
+                        <p style="text-align: center; width: 160px;color: #000;">@(info.Price)</p> 
+                    </div>
+                    <div style="width: 140px !important; margin-left: -1px; height: 24px; line-height: 24px; font-size: 14px; text-align: center; cursor: pointer;" class="greenBT">
+                        <a href="/changeware/changedetail?specid=@info.SpecID" style="color:#fff;">兑&nbsp;&nbsp;换</a>
+                    </div>
+
+                </div>
+            </li>
+        } 
+
+    </ul>
+             
+</div> 
+</div>
+
+}
+    
+ @Html.Partial("_footer")
+</body>
+</html>

@@ -89,6 +89,7 @@
     <Compile Include="AutoService\WaitPayBonusEvent.cs" />
     <Compile Include="AutoService\LotteryService.cs" />
     <Compile Include="BannedIPs.cs" />
+    <Compile Include="ChangeWare.cs" />
     <Compile Include="ComMethod.cs" />
     <Compile Include="DataBases.cs" />
     <Compile Include="Emails.cs" />

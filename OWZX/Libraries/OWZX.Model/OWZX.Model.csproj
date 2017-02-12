@@ -71,6 +71,7 @@
     <Compile Include="MD_SysSet.cs" />
     <Compile Include="MD_AccessTokenResult.cs" />
     <Compile Include="MD_UserBack.cs" />
+    <Compile Include="MD_UserOrder.cs" />
     <Compile Include="MD_VisitIP.cs" />
     <Compile Include="MD_WaitPayBonus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="System\DepartmentModel.cs" />
     <Compile Include="System\SystemRoleModel.cs" />
     <Compile Include="UserCallInfoModel.cs" />
+    <Compile Include="MD_Ware.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
