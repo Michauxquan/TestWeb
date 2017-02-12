@@ -37,7 +37,8 @@ namespace OWZX.Services
                 return OWZX.Data.Users.GetPartUserByInviteCode(invitecode);
 
             return null;
-        }
+        } 
+
         /// <summary>
         /// 获得用户
         /// </summary>
@@ -428,13 +429,23 @@ namespace OWZX.Services
             OWZX.Data.Users.UpdateUserPasswordByUid(uid, password);
         }
         /// <summary>
-        /// 更新用户密码
+        /// 更新用户安全密码
         /// </summary>
         /// <param name="mobile">用户手机号</param>
         /// <param name="password">密码</param>
         public static bool UpdateUserPasswordByMobile(string mobile, string password)
         {
            return OWZX.Data.Users.UpdateUserPasswordByMobile(mobile, password);
+        }
+
+        public static bool UpdateUserSafePasswordByUid(int uid, string password)
+        {
+            OWZX.Data.Users.UpdateUserSafePasswordByUid(uid, password);
+            return true;
+        }
+        public static string BankChange(int uid, decimal changefee, int type = 0)
+        {
+            return OWZX.Data.Users.BankChange(uid, changefee, type);
         }
         /// <summary>
         /// 生成用户盐值
@@ -495,7 +506,7 @@ namespace OWZX.Services
             {
                 WebHelper.SetCookie("oltime", Environment.TickCount.ToString());
             }
-        }
+        } 
 
         /// <summary>
         /// 通过注册ip获得注册时间

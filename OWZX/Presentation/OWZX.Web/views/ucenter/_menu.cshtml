@@ -1,6 +1,6 @@
 ﻿<div id="memberL">
-@*<h2>个人中心</h2>*@
-@*<ul id="memberNav">
+    @*<h2>个人中心</h2>*@
+    @*<ul id="memberNav">
     <li><a href="@Url.Action("userinfo")"><s>&gt;</s>账户信息</a></li>
     <li><a href="@Url.Action("safeinfo")"><s>&gt;</s>账户安全</a></li>
     <li><a href="@Url.Action("orderlist")"><s>&gt;</s>我的订单</a></li>
@@ -20,14 +20,14 @@
                 <div id="infobox">
                     <ul style="margin-top: 5px;">
                         <li class="cblock"> 您好，@WorkContext.NickName</li>
-                        <li><span>乐豆：</span><span class="Fred bold font10">200.0</span></li>
-                        <li><span>银行：</span><span class="Fred bold font10">1500032000</span></li>
+                        <li><span>乐豆：</span><span id="usertotalmoney" class="usertotalmoney Fred bold font10">200.0</span></li>
+                        <li><span>银行：</span><span id="banktotalmoney" class="banktotalmoney Fred bold font10">1500032000</span></li>
                     </ul>
 
                 </div>
                 <div class="clear"></div>
             </div>
-              <details class="menu" open>
+            <details class="menu" open>
                 <summary>会员信息</summary>
                 <ul>
                     <li><a href="@Url.Action("userinfo")">我的资料</a></li>
@@ -51,3 +51,11 @@
         <section id="help-right"></section>
     </section>
 </div>
+<script type="text/javascript">
+    $(function() {
+        $.post('/ucenter/getmoney',{},function(data) {
+            $('.usertotalmoney').html(data.content.totalmoney);
+            $('.banktotalmoney').html(data.content.bankmoney);
+        });
+    });
+</script>

@@ -1146,6 +1146,29 @@ end", condition);
                                        parms);
         }
 
+        public void UpdateUserSafePasswordByUid(int uid, string password)
+        {
+            DbParameter[] parms = {
+                                       GenerateInParam("@uid",SqlDbType.Int,4, uid),
+                                       GenerateInParam("@safepassword",SqlDbType.Char,32, password)
+                                   };
+            RDBSHelper.ExecuteNonQuery(CommandType.StoredProcedure,
+                                       string.Format("{0}updateusersafepasswordbyuid", RDBSHelper.RDBSTablePre),
+                                       parms);
+        }
+        public string BankChange(int uid, decimal changefee, int type = 0)
+        { 
+            DbParameter[] parms = {
+                                       GenerateInParam("@uid",SqlDbType.Int,4, uid),
+                                       GenerateInParam("@type",SqlDbType.Int,4, type),
+                                       GenerateInParam("@changefee",SqlDbType.Decimal,32, changefee),
+                                       GenerateOutParam("@msg",SqlDbType.VarChar, 500)
+                                   };
+            RDBSHelper.ExecuteNonQuery(CommandType.StoredProcedure,
+                string.Format("{0}updateuserchange", RDBSHelper.RDBSTablePre),
+                parms);
+            return parms[3].Value.ToString();
+        }
         /// <summary>
         /// 更新用户密码
         /// </summary>

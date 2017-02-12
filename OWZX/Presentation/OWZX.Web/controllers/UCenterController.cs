@@ -196,6 +196,13 @@ namespace OWZX.Web.Controllers
             }
         }
 
+        public ActionResult GetUserMoney()
+        {
+            PartUserInfo pu = Users.GetPartUserById(WorkContext.Uid);
+            var content = "\"totalmoney\":\""+pu.TotalMoney+"\",\"bankmoney\":\""+pu.BankMoney+"\"";
+            return AjaxResult("sussace", content);
+        }
+
         #endregion
 
         #region 安全中心
@@ -565,9 +572,9 @@ namespace OWZX.Web.Controllers
             string p = Users.CreateUserPassword(password, WorkContext.PartUserInfo.Salt);
             //设置新密码
             //未改动
-            //Users.UpdateUserPasswordByUid(WorkContext.Uid, p);
+            Users.UpdateUserSafePasswordByUid(WorkContext.Uid, p);
             //同步cookie中密码
-            ShopUtils.SetCookiePassword(p, "web");
+            //ShopUtils.SetCookiePassword(p, "web");
 
             string url = Url.Action("safesuccess", new RouteValueDictionary { { "act", "updatePassword" } });
             return AjaxResult("success", url);
@@ -861,6 +868,19 @@ namespace OWZX.Web.Controllers
         public ActionResult UserBank()
         {
             return View(WorkContext.PartUserInfo);
+        }
+
+        public ActionResult BankChange(decimal changefee, int type = 0, string safepassword = "")
+        {
+            string msg = "";
+            if (!string.IsNullOrEmpty(safepassword) || type == 1)
+            {
+                return AjaxResult("data", "安全密码错误"); 
+            }
+            
+            msg= Users.BankChange(WorkContext.Uid, changefee, type);
+           
+            return AjaxResult("data", msg);
         }
 
         public ActionResult LoginLimit()
