@@ -79,7 +79,7 @@ begin try
  
 SELECT ROW_NUMBER() over(order by specid desc) id
       ,b.[specid],a.[warecode],a.[warename],b.[status],a.[type],
-    b.[price],a.[imgsrc],b.[speccode],b.[specname],b.usernum 
+    b.[price],b.[speccode],b.[specname],b.usernum ,b.imgsrc
    into  #list
   FROM owzx_ware a  join owzx_waresku b on a.warecode=b.warecode where 1=1 
   {0} 

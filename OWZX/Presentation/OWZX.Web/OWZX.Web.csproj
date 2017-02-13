@@ -462,6 +462,11 @@
     <Content Include="images\ad_scroll_back.png" />
     <Content Include="images\ad_scroll_forward.png" />
     <Content Include="images\anzhuo_help.png" />
+    <Content Include="images\baseimg\100.png" />
+    <Content Include="images\baseimg\1000.png" />
+    <Content Include="images\baseimg\1W.png" />
+    <Content Include="images\baseimg\5000.png" />
+    <Content Include="images\baseimg\5W.png" />
     <Content Include="images\baseimg\banner.png" />
     <Content Include="images\baseimg\dd36.png" />
     <Content Include="images\baseimg\db1.jpg" />

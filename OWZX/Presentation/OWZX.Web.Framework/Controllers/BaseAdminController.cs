@@ -28,13 +28,13 @@ namespace OWZX.Web.Framework
             WorkContext.UrlReferrer = WebHelper.GetUrlReferrer();
 
             //获得用户唯一标示符sid
-            WorkContext.Sid = ShopUtils.GetSidCookie("admin");
+            WorkContext.Sid = ShopUtils.GetSidCookie("web");
             if (WorkContext.Sid.Length == 0)
             {
                 //生成sid
                 WorkContext.Sid = Sessions.GenerateSid();
                 //将sid保存到cookie中
-                ShopUtils.SetSidCookie(WorkContext.Sid, "admin");
+                ShopUtils.SetSidCookie(WorkContext.Sid, "web");
             }
 
             PartUserInfo partUserInfo;

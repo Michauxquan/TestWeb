@@ -23,15 +23,18 @@
 {
 <div class="bigBox">
 <div class="box" style="border: solid 1px #ddd;">
-    <div style="height: 45px; line-height: 40px; background: #E9454E; color: #fff; text-indent: 24px; font-size: 16px; font-weight: bolder; "><img src="../images/baseimg/liebiao.png"/>兑换列表</div>
+    <div style="height: 45px; line-height: 40px; background: #E9454E; color: #fff; font-size: 16px; font-weight: bolder;">
+        <img src="../images/baseimg/liebiao.png" style="width: 30px; height: 30px;margin-left: 15px; margin-top: 7px; float: left;" /> &nbsp;
+        <a title="返回兑换列表" href="@Url.Action("changelist","changeware")"=changelist","changeware")" style="color: #fff;float: left;margin-top: 3px;margin-left: 5px;">兑换详情</a>
+    </div>
   <div style="padding-top: 25px; min-height: 400px;">
         @foreach (OWZX.Model.MD_Ware info in Model.WareList)
         {
 
             <div class="wareinfo" style="margin-left: 20px;">
                 <div style="width: 250px; height: 236px; float: left; position: absolute;">
-                    <img style="width: 250px;  height: 236px; z-index: 0; position: absolute;"/>
-                    <span style="z-index: 0; color: #fff; font-size: 13px; position: absolute; bottom: 0px; text-align: center; width: 160px;">@(info.WareName + info.SpecName.Replace("万", "W"))</span>
+                    <img  src="@(WorkContext.ImageCDN+"/"+info.ImgSrc)" style="width: 250px;  height: 236px; z-index: 0; position: absolute;"/>
+                    <span style="z-index: 0; color: #fff; font-size: 13px; position: absolute; bottom: 5px; font-size: 20px;text-align: center; width: 250px;">@(info.WareName + info.SpecName.Replace("万", "W"))</span>
                 </div>
                 <div style="float: left;height: 236px; margin-left: 265px; position: absolute; font-weight: bold; font-size: 16px; margin-top: 20px;">
                     <p style="text-align: center; width: 160px; color: #000;">@(info.WareName + info.SpecName)</p> 
