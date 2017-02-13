@@ -12,7 +12,7 @@ using System.Text;
 using Newtonsoft.Json;
 using OWZX.Core.Helper;
 using OWZX.Model;
-using OWZX.Web.Admin.models;
+using OWZX.Web.Admin.Models;
 
 namespace OWZX.Web.Admin.Controllers
 {

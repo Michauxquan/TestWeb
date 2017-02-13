@@ -203,10 +203,12 @@ if OBJECT_ID('tempdb..#list') is not null
 
 SELECT ROW_NUMBER() over(order by orderid desc) id
       ,a.orderid,a.ordercode,a.warecode,a.warename,a.speccode,a.specname,a.issuenum,a.status,
-       a.totalfee,a.price,a.type,a.num,a.content,a.changeid,a.createtime ,rtrim(b.nickname) nickname,
-        c.winname,c.winnum,c.usernum,c.playnum 
+       a.totalfee,a.price,a.type,a.num,a.content,a.changeid,a.createtime ,rtrim(b.nickname) nickname 
+--,        c.winname,c.winnum,c.usernum,c.playnum 
   into  #list
-  FROM owzx_userorder a join  owzx_users b  on a.userid=b.uid left join owzx_changeware c  on c.changeid =a.changeid where  1=1 
+  FROM owzx_userorder a join  owzx_users b  on a.userid=b.uid  
+--left join owzx_changeware c  on c.changeid =a.changeid
+where  1=1 
   {0}
 
 declare @total int
@@ -242,7 +244,10 @@ end catch
 begin try
 
 declare @usernum int=0, @oldnum int=0,@index int=0,@status int =0,@msg varchar(300)='',@userid int=0,@error int=0
-
+if({12}=0)
+  select @userid=uid from owzx_users where rtrim(mobile)='{11}'
+else
+ select @userid={12}
 if({10}=1)
 begin 
     select @usernum=usernum,@oldnum=playnum,@status=status from owzx_changeware where changeid='{1}'   
@@ -267,8 +272,8 @@ begin
                         break;
                     end
                     else if(@id=0)
-                    begin
-                        select @userid=uid from owzx_users where rtrim(mobile)='{11}'
+                    begin 
+                      
                         INSERT INTO owzx_userorder ([userid],[ordercode],[warecode],[warename],[speccode],[specname],[issuenum],[totalfee]
                            ,[status] ,[price],[type],[num] ,[content],[changeid])
                         VALUES( @userid,'{2}' ,'{7}' ,'{8}','{5}','{6}','{0}',{9},0,{4},{10},{3},@content,{1})
@@ -308,9 +313,22 @@ else if({10}=0)
 begin
     if((select count(1) from owzx_ware a join owzx_waresku b on a.warecode=b.warecode where a.status=0 and b.status=0)>0)
     begin
-        INSERT INTO owzx_userorder ([userid],[ordercode],[warecode],[warename],[speccode],[specname],[issuenum],[totalfee]
-            ,[status] ,[price],[type],[num] ,[content],[changeid])
-        VALUES( @userid,'{2}' ,'{7}' ,'{8}','{5}','{6}','{0}',{9},0,{4},{10},{3},@content,{1})
+        if((select count(1) from owzx_users where uid=@userid and isnull(totalmoney,0)>{9})=0)
+        begin
+            select '账户余额不足' state
+        end
+        else
+        begin
+            INSERT INTO owzx_userorder ([userid],[ordercode],[warecode],[warename],[speccode],[specname],[issuenum],[totalfee]
+                ,[status] ,[price],[type],[num] ,[content],[changeid])
+            VALUES( @userid,'{2}' ,'{7}' ,'{8}','{5}','{6}','{0}',{9},0,{4},{10},{3},@content,{1})
+            declare @changefee decimal(18,2)=0.00
+            set @changefee=0-{9}
+            insert into owzx_accountchange
+            select @userid,@changefee,'兑换商品',getdate(),totalmoney from owzx_users where uid=@userid  
+
+            select '' state
+        end
      end
      else
     begin
@@ -323,7 +341,7 @@ begin catch
 end catch
 
 ", order.IssueNum, order.ChangeID, order.OrderCode, order.Num, order.Price, order.SpecCode, order.SpecName
-, order.WareCode, order.WareName, order.TotalFee, order.Type, order.Account);
+, order.WareCode, order.WareName, order.TotalFee, order.Type, order.Account,order.UserID);
             return RDBSHelper.ExecuteScalar(CommandType.Text, commandText).ToString();
         }
 

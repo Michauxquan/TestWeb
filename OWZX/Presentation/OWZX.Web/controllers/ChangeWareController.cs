@@ -107,6 +107,51 @@ namespace OWZX.Web.controllers
                     return APIResult("error", betres);
             }
         }
+        public ActionResult AddUserOrder()
+        {
+            NameValueCollection parmas = WorkContext.postparms;
+            int type = parmas.AllKeys.Contains("type") && !string.IsNullOrEmpty(parmas["type"])
+                ? int.Parse(parmas["type"])
+                : 0;
+            if (type == 1 && string.IsNullOrEmpty(parmas["issuenum"]))
+            {
+                return APIResult("error", "夺宝期数不能为空");
+            }
+            lock (lkchangeware)
+            {
+                var num = parmas.AllKeys.Contains("num")
+                    ? (string.IsNullOrEmpty(parmas["num"]) ? 1 : int.Parse(parmas["num"]))
+                    : 1;
+                MD_UserOrder order = new MD_UserOrder
+                {
+                    OrderCode = parmas["ordercode"],
+                    ChangeID =
+                        parmas.AllKeys.Contains("changeid") && !string.IsNullOrEmpty(parmas["changeid"])
+                            ? int.Parse(parmas["changeid"])
+                            : 0,
+                    UserID = int.Parse(parmas["uid"]),
+                    Status = 0,
+                    Type = type,
+                    WareName = parmas["warename"],
+                    WareCode = parmas["warecode"],
+                    SpecName = parmas["specname"],
+                    SpecCode = parmas["speccode"],
+                    Price = decimal.Parse(parmas["price"]),
+                    TotalFee =
+                        parmas.AllKeys.Contains("totalfee") && !string.IsNullOrEmpty(parmas["totalfee"])
+                            ? decimal.Parse(parmas["totalfee"])
+                            : (decimal.Parse(parmas["price"])*num),
+                    Content = "",
+                    Num = num
+                };
+                order.IssueNum = type == 1 ? parmas["issuenum"] : "";
+                string betres = ChangeWare.AddUserOrder(order);
+                if (string.IsNullOrEmpty(betres))
+                    return AjaxResult("success", "投注成功");
+                else
+                    return AjaxResult("error", betres);
+            }
+        }
 
         /// <summary>
         /// 获取夺宝记录

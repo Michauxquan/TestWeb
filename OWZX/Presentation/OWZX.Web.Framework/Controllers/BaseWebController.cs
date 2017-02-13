@@ -161,7 +161,11 @@ namespace OWZX.Web.Framework
             ControllerBase ctb = filterContext.Controller;
 
             string result = WebHelper.GetPostStr();
-
+            if (WebHelper.IsPost())
+            { 
+                NameValueCollection parmas = WebHelper.GetParmList(result);
+                WorkContext.postparms = parmas;
+            }
             //商城已经关闭
             if (WorkContext.ShopConfig.IsClosed == 1 && WorkContext.AdminGid == 1 && WorkContext.PageKey != "/account/login" && WorkContext.PageKey != "/account/logout")
             {

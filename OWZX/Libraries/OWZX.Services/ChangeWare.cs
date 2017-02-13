@@ -114,7 +114,19 @@ namespace OWZX.Services
         {
             return OWZX.Core.BSPData.RDBS.GetUserOrder(pageNumber, pageSize, condition);
         }
-
+        /// <summary>
+        ///获取用户兑换信息(分页)
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public static List<MD_UserOrder> GetUserOrderList(int pageIndex, int pageSize, string condition = "")
+        {
+            DataTable dt = GetUserOrder(pageIndex, pageSize, condition);
+            List<MD_UserOrder> list = (List<MD_UserOrder>)ModelConvertHelper<MD_UserOrder>.ConvertToModel(dt);
+            return list;
+        }
         public static int CreateWare(Ware ware)
         {
             return OWZX.Core.BSPData.RDBS.CreateWare(ware);

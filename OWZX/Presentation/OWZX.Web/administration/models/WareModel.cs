@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using OWZX.Web.Framework;
 
-namespace OWZX.Web.Admin.models
+namespace OWZX.Web.Admin.Models
 {
     /// <summary>
     /// 商品列表模型类

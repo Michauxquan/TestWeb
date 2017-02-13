@@ -153,5 +153,6 @@ namespace OWZX.Model
             get { return totalfee; }
             set { totalfee = value; }
         }
+        public int TotalCount { get; set; }
     }
 }

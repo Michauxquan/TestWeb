@@ -120,10 +120,12 @@
     <Compile Include="models\AccountModel.cs" />
     <Compile Include="models\HelpModel.cs" />
     <Compile Include="models\LotteryModel.cs" />
+    <Compile Include="models\LotteryRecord.cs" />
     <Compile Include="models\NewsModel.cs" />
     <Compile Include="models\UCenterModel.cs" />
     <Compile Include="models\UserChangeList.cs" />
     <Compile Include="models\WareSkuList.cs" />
+    <Compile Include="models\WareChangeList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

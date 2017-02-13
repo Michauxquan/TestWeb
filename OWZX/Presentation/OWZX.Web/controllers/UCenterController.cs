@@ -858,9 +858,26 @@ namespace OWZX.Web.Controllers
         /// <summary>
         /// 兑换明细
         /// </summary>
-        public ActionResult ChangeRecord()
-        {
-            return View(WorkContext.PartUserInfo);
+        public ActionResult ChangeRecord(int type=-1, int pageSize = 15, int pageNumber = 1)
+        { 
+            StringBuilder strb = new StringBuilder();
+            strb.Append(" ");
+            if (type>-1)
+            {
+                var btime =
+                    DateTime.Now.AddDays(type == 1
+                        ? -7
+                        : (type == 2 ? -30 : (type == 3 ? -180 : (type == 4 ? -365 : -1)))).ToString("yyyy-MM-dd HH:mm:ss");
+                strb.Append(" and a.createtime between '" + btime + "' and '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'");
+            } 
+            List<MD_UserOrder> list = ChangeWare.GetUserOrderList(pageNumber, pageSize, strb.ToString());
+            WareChangeList warelist = new WareChangeList
+            {
+                type = type, 
+                PageModel = new PageModel(pageSize, pageNumber, list.Count > 0 ? list[0].TotalCount : 0),
+                ChangeList = list
+            };
+            return View(warelist);
         }
         /// <summary>
         /// 我的银行

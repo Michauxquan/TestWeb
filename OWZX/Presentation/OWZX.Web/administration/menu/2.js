@@ -112,5 +112,16 @@
 
 
 	    ]
-	}
+	},
+    	{
+    	    "title": "商品管理",
+    	    "subMenuList": [
+                {
+                    "title": "商品列表",
+                    "url": "/admin/ware/list"
+                } 
+
+
+    	    ]
+    	}
 ]

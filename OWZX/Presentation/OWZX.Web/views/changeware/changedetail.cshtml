@@ -14,7 +14,26 @@
     <script src="@{@WorkContext.ScriptCDN}/scripts/jquery.js" type="text/javascript"></script>
     <script src="@{@WorkContext.ScriptCDN}/scripts/common.js" type="text/javascript"></script> 
     <script type="text/javascript">
-        uid = @WorkContext.Uid; 
+        uid = @WorkContext.Uid;
+        
+      
+        $(function() {  
+          
+            $('.greenBT').click(function() {  
+                var list = {};  
+                var _this = $('#sptitle');
+                list.ordercode = _this.data("rcode");
+                list.price = _this.data("price"); 
+                list.uid = _this.data("uid");
+                list.speccode = _this.data("scode");
+                list.warecode = _this.data("code");
+                list.specname = _this.data("sname");
+                list.warename = _this.data("name");
+                $.post('/changeware/AddUserOrder', list, function(data) {
+                    var result = eval('('+data+')'); alert(result.content);
+                });
+            });
+        });
     </script>
 </head>
 <body>
@@ -25,26 +44,42 @@
 <div class="box" style="border: solid 1px #ddd;">
     <div style="height: 45px; line-height: 40px; background: #E9454E; color: #fff; font-size: 16px; font-weight: bolder;">
         <img src="../images/baseimg/liebiao.png" style="width: 30px; height: 30px;margin-left: 15px; margin-top: 7px; float: left;" /> &nbsp;
-        <a title="返回兑换列表" href="@Url.Action("changelist","changeware")"=changelist","changeware")" style="color: #fff;float: left;margin-top: 3px;margin-left: 5px;">兑换详情</a>
+        <a title="返回兑换列表" href="@Url.Action("changelist","changeware")" style="color: #fff;float: left;margin-top: 3px;margin-left: 5px;">兑换详情</a>
     </div>
-  <div style="padding-top: 25px; min-height: 400px;">
+  <div style="padding-top: 25px; min-height: 595px;">
         @foreach (OWZX.Model.MD_Ware info in Model.WareList)
         {
 
             <div class="wareinfo" style="margin-left: 20px;">
                 <div style="width: 250px; height: 236px; float: left; position: absolute;">
-                    <img  src="@(WorkContext.ImageCDN+"/"+info.ImgSrc)" style="width: 250px;  height: 236px; z-index: 0; position: absolute;"/>
-                    <span style="z-index: 0; color: #fff; font-size: 13px; position: absolute; bottom: 5px; font-size: 20px;text-align: center; width: 250px;">@(info.WareName + info.SpecName.Replace("万", "W"))</span>
+                    <img src="@(WorkContext.ImageCDN + "/" + info.ImgSrc)" style="width: 250px; height: 236px; z-index: 0; position: absolute;"/>
+                    <span style="z-index: 0; color: #fff; font-size: 13px; position: absolute; bottom: 5px; font-size: 20px; text-align: center; width: 250px;">@(info.WareName + info.SpecName.Replace("万", "W"))</span>
                 </div>
-                <div style="float: left;height: 236px; margin-left: 265px; position: absolute; font-weight: bold; font-size: 16px; margin-top: 20px;">
-                    <p style="text-align: center; width: 160px; color: #000;">@(info.WareName + info.SpecName)</p> 
-                    <p style="text-align: center; width: 160px;" class="Fred">@(info.Price)</p> 
-               
-                <div style="width: 100px; height: 30px; margin-left: 20px; position: absolute; bottom: 20px; line-height: 28px; font-size: 16px; text-align: center; cursor: pointer;" class="greenBT">
-                    <a href="#" style="color:#fff;">立刻兑换</a>
+                <div style="float: left; height: 236px; margin-left: 265px; position: absolute; font-weight: bold; font-size: 16px; margin-top: 20px;">
+                    <p style="text-align: center; width: 160px; color: #000;" id="sptitle" data-sid="specid" data-rcode="@(DateTime.Now.ToString("yyyyMMddHHmmssfff")+WorkContext.Uid)" data-uid="@WorkContext.Uid"
+                         data-scode="@info.SpecCode" data-code="@info.WareCode" data-sname="@info.SpecName" data-name="@info.WareName" data-price="@info.Price">@(info.WareName + info.SpecName)</p>
+                    <p style="text-align: center; width: 160px;" id="price" class="Fred">@(info.Price)</p>
+
+                    <div style="width: 100px; height: 30px; margin-left: 20px; position: absolute; bottom: 20px; line-height: 28px; font-size: 16px; text-align: center; cursor: pointer;" class="greenBT">
+                        <a href="#" style="color: #fff;">立刻兑换</a>
+                    </div>
                 </div>
-                </div>
-           </div>
+
+                <div class="detail-tabcont" style="display: block; position: absolute; margin-top: 250px;"> 
+                    <strong style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74); font-size: 14px">奖品寄送方式：<br>
+                    </strong><span style="line-height: 24px; background-color: rgb(255, 254, 246); font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)">卡密只能给代理回收，不能自行使用，如果发现不能兑换可以联系首页客服QQ<a title="点击这里给我发消息" href=" http://wpa.qq.com/msgrd?v=3&uin=2244929864&site=发财28客服&menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=2:252503501:41"></a><br>
+<br>
+</span><strong style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74); font-size: 14px">奖品兑换流程：<br>
+                    </strong><span style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)"><br>
+1. 奖品价格</span><span class="re1" style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(225, 0, 0)">已经包含邮寄费用在内</span><span style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)">，您无须另行支付。兑奖前请确认您的帐户中有足够数量的金额！</span><br style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)">
+                    <span style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)">2. 在您要兑奖的奖品页面点击“立即兑换”按钮，提交您的兑奖申请！</span><br style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)">
+                    <span style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)">3. 确认您的奖品邮寄地址、联系电话正确无误后提交兑奖申请 ！</span><br style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)">
+                    <span style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)">4. 实物奖品将在您的兑奖确认后的2-5工作日内发出(奖品状态您可通过“</span><a target="_blank" href="@Url.Action("changelist","changeware")"><span style="color: rgb(255, 0, 0)"><strong>账户中心-兑奖记录</strong></span></a><span style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)">”查询)！</span><br style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)">
+                    <span style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)">5. 兑奖中心所有奖品颜色均为随机发送, 敬请谅解！</span><br style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)">
+                    <span style="line-height: 24px; font-family: Arial, Helvetica, sans-serif, 宋体; color: rgb(74, 74, 74)">6. 奖品受供货商库存影响，会有缺货情况，如有缺货，客服会取消兑奖，退还金额。</span>
+                </div> 
+            </div>
+          
         }  
     </div>   
 </div> 

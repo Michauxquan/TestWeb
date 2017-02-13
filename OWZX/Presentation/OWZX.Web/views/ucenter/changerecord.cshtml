@@ -1,4 +1,4 @@
-﻿@model OWZX.Core.PartUserInfo
+﻿@model OWZX.Web.WareChangeList
 @{
     Layout = null;
 }
@@ -12,7 +12,8 @@
     <link href="@{@WorkContext.CSSCDN}/css/base.css" rel="stylesheet" type="text/css" />
     <link href="@{@WorkContext.CSSCDN}/css/ucenter.css" rel="stylesheet" type="text/css" />
     <script src="@{@WorkContext.ScriptCDN}/scripts/jquery.js" type="text/javascript"></script>
-    <script src="@{@WorkContext.ScriptCDN}/scripts/common.js" type="text/javascript"></script>
+                   <script src="@{@WorkContext.ScriptCDN}/scripts/common.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/administration/scripts/showlist.js"></script>
     <script type="text/javascript">
         uid = @WorkContext.Uid;
         isGuestSC = @WorkContext.ShopConfig.IsGuestSC;
@@ -38,42 +39,74 @@
         <div class="clear"></div>
     </div>
     <form name="ChangeRecordForm" action="">
-          <div style="margin-top: 10px; border: solid 1px #ddd;width: 686px;">
-            <div style=" height: 38px; color: #fff; line-height: 39px; background: url('../images/baseimg/msgbgl.png') no-repeat">
-                &nbsp; &nbsp;我的记录 
-            </div>
-            <table style="width:666px;  border: solid 1px #ddd; margin: 10px 0 10px 10px;"  cellpadding="0" cellspacing="0" class="memberTableBorder">
-                <thead >
-                    <tr>
-                        <th  class="th" width="200" >兑换时间</th>
-                        <th class="th" width="100" >卡类型</th>
-                        <th class="th" width="200" >数量</th>
-                        <th class="th" width="100" >操作</th>
+        @using (Html.BeginForm())
+        {
+            <div style="margin-top: 10px; border: solid 1px #ddd; width: 686px;">
+                <div style="height: 38px; color: #fff; line-height: 39px; background: url('../images/baseimg/msgbgl.png') no-repeat">
+                    &nbsp; &nbsp;我的记录
+                </div>
+                <table style="width: 666px; border: solid 1px #ddd; margin: 10px 0 10px 10px;" cellpadding="0" cellspacing="0" class="memberTableBorder">
+                    <thead >
+                    <tr style="height: 34px;line-height: 34px; ">
+                        <th class="th" style="text-align: left; padding: 5px 0;background: #fff;font-weight: 100;" colspan="4">
+                        <input type="radio" class="radioday" name="type" style="margin-left: 10px;" @(Model.type==1?"checked=true":"") value="1"/>7天&nbsp;&nbsp;<input type="radio" name="type" @(Model.type==2?"checked=true":"") class="radioday" value="2"/>30天&nbsp;&nbsp;
+                        <input type="radio" class="radioday" name="type" value="3" @(Model.type==3?"checked=true":"")/>半年 &nbsp;&nbsp;
+                        <input type="radio" class="radioday" name="type" value="4" @(Model.type==4?"checked=true":"")/>一年 &nbsp;&nbsp;
+                            <a class="greenBT submit" style="cursor: pointer;" style="font-size: 10px; padding: 2px 8px;" >提交</a>
+                        </th> 
                     </tr>
-                </thead>
-                <tbody>
-            
-                </tbody>
-            </table>
-        </div>
-         <div style="margin-top: 10px; border: solid 1px #ddd;width: 686px;">
-            <div style=" height: 38px; color: #fff; line-height: 39px; background: url('../images/baseimg/msgbgl.png') no-repeat">
+                    <tr>
+                        <th class="th" width="200">兑换时间</th>
+                        <th class="th" width="200">卡类型</th>
+                        <th class="th" width="100">数量</th>
+                        <th class="th" width="100">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (OWZX.Model.MD_UserOrder info in Model.ChangeList)
+                    {
+                        <tr>
+                            <td style="text-align: center; height: 24px; line-height: 24px; border-bottom: solid 1px #ddd;">@info.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                            <td style="text-align: center; border-bottom: solid 1px #ddd;">@(info.WareName+" "+info.SpecName)</td>
+                            <td style="text-align: center; border-bottom: solid 1px #ddd;">@info.Num</td>
+                            <td style="text-align: center; border-bottom: solid 1px #ddd;"></td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+            <div class="dataListEdit">
+                <div class="page">
+                    @Html.AdminPager(Model.PageModel)
+                </div>
+            </div>
+        }
+  @*      <div style="margin-top: 10px; border: solid 1px #ddd; width: 686px;">
+            <div style="height: 38px; color: #fff; line-height: 39px; background: url('../images/baseimg/msgbgl.png') no-repeat">
                 &nbsp; &nbsp;我的点卡
             </div>
-            <table style="width:666px;  border: solid 1px #ddd; margin: 10px 0 10px 10px;"  cellpadding="0" cellspacing="0" class="memberTableBorder">
+            <table style="width: 666px; border: solid 1px #ddd; margin: 10px 0 10px 10px;" cellpadding="0" cellspacing="0" class="memberTableBorder">
                 <thead >
-                    <tr>
-                        <th  class="th" width="200" >卡密</th>
-                        <th class="th" width="200" >卡类型</th>
-                        <th class="th" width="100" >卡状态</th>
-                        <th class="th" width="100" >点数</th>
+                <tr>
+                      <tr style="height: 34px;line-height: 34px; ">
+                        <th class="th" style="text-align: left; padding: 5px 0;background: #fff;font-weight: 100;" colspan="4">
+                        <input type="radio" class="radioday" name="type" style="margin-left: 10px;" @(Model.type==1?"checked=true":"") value="1"/>7天&nbsp;&nbsp;<input type="radio" name="type" @(Model.type==2?"checked=true":"") class="radioday" value="2"/>30天&nbsp;&nbsp;
+                        <input type="radio" class="radioday" name="type" value="3" @(Model.type==3?"checked=true":"")/>半年 &nbsp;&nbsp;
+                        <input type="radio" class="radioday" name="type" value="4" @(Model.type==4?"checked=true":"")/>一年 &nbsp;&nbsp;
+                            <a class="greenBT submit" style="cursor: pointer;" style="font-size: 10px; padding: 2px 8px;" >提交</a>
+                        </th> 
                     </tr>
+                    <th class="th" width="200">卡密</th>
+                    <th class="th" width="200">卡类型</th>
+                    <th class="th" width="100">卡状态</th>
+                    <th class="th" width="100">点数</th>
+                </tr>
                 </thead>
                 <tbody>
-            
+
                 </tbody>
             </table>
-        </div>
+        </div>*@
     </form> 
 </div>
 
