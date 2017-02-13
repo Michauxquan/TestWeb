@@ -34,7 +34,16 @@ namespace OWZX.Core
         /// <param name="type"></param>
         /// <param name="uid"></param>
         /// <returns></returns>
-        DataTable GetUserBett(int type, int uid);
+        DataTable GetUserBett(int type, int uid, int pageindex, int pagesize);
+        #endregion
+
+        #region 赔率
+        /// <summary>
+        /// 获取赔率信息
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        DataSet GetLotterySet(int type);
         #endregion
     }
 }

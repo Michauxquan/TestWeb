@@ -444,28 +444,7 @@ function refreshd(id)
 //    });
 //}
 
-//倒计时
-function GetRTime(ctime, Isue)
-{
-    var nS = ctime;
-    var Issue = Isue;
 
-    if (nS > 0)
-    {
-        //alert(document.getElementById('check_reload').checked);
-        //alert(nS);
-        nS = nS - 1
-        document.getElementById("RemainTitle").innerHTML = "<span  style='color: #FF0000;font-size: 14px;'>距离第<span style='font-size:12px'>" + Issue + "</span>期停止竞猜还有<span style='font-size:12px'>" + nS + "</span>秒</span>";
-        StrTimeOut = "1";
-    }
-    else
-    {
-        document.getElementById("RemainTitle").innerHTML = "<span class='form_game'>第<span style='font-size:12px'>" + Issue + "</span>期正在开奖中！</span>";
-        StrTimeOut = "-1";
-    }
-    if (StrTimeOut >= 0)
-        setTimeout("GetRTime(" + nS + "," + Issue + ")", 1000);
-}
 //用户金币
 //获取用户金币
 function VadUsGold()

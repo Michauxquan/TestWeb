@@ -9,7 +9,13 @@ namespace OWZX.Web.Models
 {
     public class LotteryModel
     {
+        /// <summary>
+        /// 彩票类型
+        /// </summary>
+        public int LotteryType { get; set; }
         public PageModel PageModel { get; set; }
         public MD_LotteryList lotterylist { get; set; }
     }
+
+    
 }

@@ -1,9 +1,11 @@
-﻿using OWZX.Model;
+﻿using OWZX.Core;
+using OWZX.Model;
 using OWZX.Services;
 using OWZX.Web.Framework;
 using OWZX.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,24 +29,27 @@ namespace OWZX.Web.controllers
 
             LotteryModel lot = new LotteryModel()
             {
+                LotteryType = id,
                 PageModel = new PageModel(20, 1, list.TotalCount),
                 lotterylist = list
             };
-            return View(lot); 
+            return View(lot);
         }
         /// <summary>
         /// dd28获取数据
         /// </summary>
         /// <returns></returns>
-        public ActionResult LT28Data(int type, int pageindex = 1, int pagesize = 20)
+        public ActionResult _Content()
         {
-            MD_LotteryList list = LotteryList.GetLotteryByType(type, pageindex, pagesize, WorkContext.Uid);
+            int type = WebHelper.GetFormInt("type");
+            int pageindex = WebHelper.GetFormInt("pageindex");
+            MD_LotteryList list = LotteryList.GetLotteryByType(type, pageindex, 20, WorkContext.Uid);
             LotteryModel lot = new LotteryModel()
             {
                 PageModel = new PageModel(20, pageindex, list.TotalCount),
                 lotterylist = list
             };
-            return View(lot); 
+            return View(lot);
         }
 
 
@@ -52,6 +57,45 @@ namespace OWZX.Web.controllers
         public ActionResult LT36Index()
         {
             return View();
+        }
+
+        /// <summary>
+        /// 投注
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _BettPage()
+        {
+            int type = WebHelper.GetFormInt("type");
+            DataSet ds = LotteryList.GetLotterySet(type);
+            ViewData["ltset"] = ds;
+            return View();
+        }
+        /// <summary>
+        /// 游戏规则
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _LTRule()
+        {
+            int type = WebHelper.GetFormInt("type");
+            ViewData["ltruletype"] = type;
+            return View();
+        }
+        /// <summary>
+        /// 投注记录
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _BettRecord()
+        {
+            int type = WebHelper.GetFormInt("type");
+            int pageindex = WebHelper.GetFormInt("pageindex");
+            int pagesize = 20;
+            DataTable dt = LotteryList.GetUserBett(type,2 , pageindex, pagesize);//WorkContext.Uid
+            LotteryRecord record = new LotteryRecord()
+            {
+                PageModel = new PageModel(20, pageindex, dt.Rows.Count > 0 ? int.Parse(dt.Rows[0]["totalcount"].ToString()) : 0),
+                Records = dt
+            };
+            return View(record);
         }
     }
 }

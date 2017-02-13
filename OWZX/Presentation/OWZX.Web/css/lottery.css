@@ -136,3 +136,108 @@ background:#e4393c;color:white;border-radius:40px;text-align:center;width:80%;ma
 .ltclose {color:#666;border-radius:40px;text-align:center;width:80%;margin:3px auto;font-weight:bold;font-size:14px;
 box-shadow:2px 3px 3px 3px  rgba(0,0,0,.3) inset;
 }
+
+/*投注*/
+
+.bt_page .border_out{ width:905px;height:92px;margin:auto;border:1px solid #cacaca; }
+.bt_page .border_out_l{width:905px;height:92px;}
+
+/* button */
+.pu_enter{display:inline-block; background: url(../img/bg_anniu.gif) no-repeat left top; height:23px; padding-left:8px; color:#FFFFFF; cursor:pointer; width:26px; text-align:center;}
+.pu_enter span{display:inline-block; background:url(../img/bg_anniu.gif) no-repeat right top; height:23px; padding-right:8px; line-height:23px; width:26px;text-align:center;}
+a.pu_enter:hover, a.pu_enter:active{text-decoration:none; width:26px;text-align:center;}
+
+.puan_enter{display:inline-block; background: url(../img/bg_anniu.gif) no-repeat left -29px; height:23px; padding-left:8px; color:#515151; cursor:pointer;width:26px;text-align:center;}
+.puan_enter span{display:inline-block; background:url(../img/bg_anniu.gif) no-repeat right -29px; height:23px; padding-right:8px; line-height:22px;width:26px;text-align:center;}
+a.puan_enter:hover, a.puan_enter:active{text-decoration:none;width:26px;text-align:center;}
+
+.puan_quan_enter{display:inline-block; background: url(../img/bg_anniu.gif) no-repeat left bottom; height:23px; padding-left:8px; color:#515151; cursor:pointer;width:26px;text-align:center;}
+.puan_quan_enter span{display:inline-block; background:url(../img/bg_anniu.gif) no-repeat right bottom; height:23px; padding-right:8px; line-height:22px;width:26px;text-align:center;}
+a.puan_quan_enter:hover, a.puan_quan_enter:active{text-decoration:none;width:26px;text-align:center;}
+
+
+
+.border_out_r{width:898px; height:auto; padding:4px;border-bottom:1px solid #cacaca; padding-top:0px;}
+.border_out_title{height:25px;line-height:25px;color:#000000; width:auto;padding:0px 8px; padding-top:4px;}
+
+.border_out1{width:905px;height:45px;margin:auto;padding-top:10px;}
+.border_out1_l{ background-repeat:no-repeat;width:388px; height:33px; float:left; color:#515151;line-height:33px;}
+
+.border_out_title1{ background-image:url(../img/bg_tz.gif);background-repeat:no-repeat;margin:auto;width:220px;height:77px;margin-top:2px;}
+
+.border_out1_l span{width:63.6px; float:left; text-align:center;letter-spacing: 1px;
+                    word-spacing: 1px; cursor:pointer;color:#8d5000;border:1px solid #e4393c;border-right:none;height:31px; }
+.border_out1_c{width:268px;height:29px; border:2px solid #e4393c; float:left;line-height:29px;margin-left:3px;}
+.border_out1_r{width:74px;height:35px; float:left;}
+.touzhu1{width:80px;height:33px;float:left;line-height:33px; text-align:center; color:#8d5000;margin-left:4px; cursor:pointer;}
+.touzhu2{background:#e4393c; width:47px;height:33px;float:left;line-height:33px; text-align:center; color:white;margin-left:4px; cursor:pointer;border-radius:3px;font-size:14px; font-weight:bold;}
+.conform_btn{ width:80px;height:27px;float:right; background:#e4393c;color:white; font-size:14px; font-weight:bold;line-height:25px; text-align:center;border:1px solid #e4393c; cursor:pointer;}
+/*.content_middle { background: url(../img/content-border.gif) repeat-y;
+}*/
+.content_middle td span{cursor:pointer;}
+.content_top {
+    height: 6px;
+    /*background: url(../img/content-top.gif) no-repeat;*/
+    overflow: hidden;
+}
+
+.img_bt1 {
+    width: 43px;
+    height: 21px;
+    border: 1px solid #e4393c;
+    float: left;
+    text-align: center;
+    line-height: 21px;
+    margin: 0 4px 5px 0;
+    color:#8d5000;
+}
+
+.content_middle th,#bettrecord th   {
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background: #e4393c;
+    border: 1px solid #e4393c;
+    border-left:none;
+    color: #fff;
+    font-weight:bold;
+}
+
+#bettrecord th {
+border-top:none;
+}
+
+.content_middle td,#bettrecord td  {
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid #eee;
+    border-right:none;
+    border-bottom:none;
+    color: #932d2f;
+}
+#bettrecord td {
+color: #666;font-weight:normal;
+}
+
+    #bettrecord td a:hover {
+    color:#e4393c;
+    }
+
+.btnumber {
+font-size:16px;
+}
+.content_middle .input2 {
+height:30px;
+width: 110px; ime-mode: disabled;color:#e4393c;
+}
+.content_middle td a.multiple {
+    background: url(../images/number/number.fw.png) no-repeat;
+    width: 34px;
+    height: 28px;
+    display: inline-block;
+    text-align: center;
+    color: #000;
+    line-height: 28px;
+    font-size: 14px;
+}
+

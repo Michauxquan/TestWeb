@@ -83,4 +83,22 @@ namespace OWZX.Model
         /// </summary>
         ddlhb = 9
     }
+    /// <summary>
+    /// 投注类型
+    /// </summary>
+    public enum LotterySetType
+    {
+        /// <summary>
+        /// 大小单双 龙虎豹
+        /// </summary>
+        lhb = 12,
+        /// <summary>
+        /// 猜数字
+        /// </summary>
+        number = 13,
+        /// <summary>
+        /// 顺对杂
+        /// </summary>
+        sdz = 15
+    }
 }

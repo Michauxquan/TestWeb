@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "_bettrecord";
+}
+@model LotteryRecord
+
+<table class="con_table" id="bettrecord"  cellpadding="0" cellspacing="1" align="center"
+       style="color: Black; margin-bottom: 4px;margin-top:5px; border-top:2px solid #e4393c;" >
+    <tr >
+        <th width="10%" style="height: 28px;">期号</th>
+        <th width="15%" style="height: 28px">投注时间</th>
+        <th width="10%" style="height: 28px">开奖结果</th>
+        <th width="15%" style="height: 28px">投注数量</th>
+        <th width="12%" style="height: 28px">获得数量</th>
+        <th width="10%" style="height: 28px">赢取</th>
+        <th width="7%" style="height: 28px">详情</th>
+        <th width="7%" style="height: 28px">保存模式</th>
+    </tr>
+    @foreach (DataRow row in @Model.Records.Rows)
+    { 
+       <tr>
+           <td>@row["lotterynum"]</td>
+           <td>@{DateTime dt = DateTime.Parse(@row["addtime"].ToString());
+    } @dt.ToString("MM-dd HH:mm:ss")</td>
+           <td>@row["resultnum"]</td>
+           <td>@string.Format("{0:n0}",@row["money"].ToString())</td>
+           <td>@string.Format("{0:n0}", @row["luckresult"].ToString())</td>
+           <td>@string.Format("{0:n0}", @row["win"].ToString())</td>
+           <td><a href="#" style="color:#e4393c">查看</a></td>
+           <td><a href="#" >保存</a></td>
+       </tr>
+    }
+    <tr align="center" bgcolor="#FFFFFF" id="pagetr">
+        <td height="28" colspan="8" bgcolor="#FFFFFF">
+            <div class="tcdPageCode">
+                @Html.WebPager(Model.PageModel)
+            </div>
+        </td>
+    </tr>
+    </table>

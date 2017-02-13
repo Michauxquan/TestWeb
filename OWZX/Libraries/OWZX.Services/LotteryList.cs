@@ -43,9 +43,21 @@ namespace OWZX.Services
        /// <param name="type"></param>
        /// <param name="uid"></param>
        /// <returns></returns>
-        public static DataTable GetUserBett(int type, int uid)
+        public static DataTable GetUserBett(int type, int uid, int pageindex, int pagesize)
         {
-            return OWZX.Data.LotteryList.GetUserBett(type, uid);
+            return OWZX.Data.LotteryList.GetUserBett(type, uid, pageindex,pagesize);
+        }
+        #endregion
+
+        #region 赔率
+        /// <summary>
+        /// 获取赔率信息
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static DataSet GetLotterySet(int type)
+        {
+            return OWZX.Data.LotteryList.GetLotterySet(type);
         }
         #endregion
     }

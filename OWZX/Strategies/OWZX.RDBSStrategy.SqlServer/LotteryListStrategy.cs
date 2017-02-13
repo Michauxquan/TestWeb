@@ -66,7 +66,7 @@ if OBJECT_ID('tempdb..#lottery') is not null
 select * 
 into #lottery
 from (
-select ROW_NUMBER() over(order by lotteryid ) id,type,expect,orderresult,first,second,three,result,opentime,
+select ROW_NUMBER() over(order by lotteryid desc) id,type,expect,orderresult,first,second,three,result,opentime,
 resultnum,resulttype,status
 from owzx_lotteryrecord where type=@type 
 ) a  where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
@@ -123,14 +123,76 @@ select 1 from owzx_lotteryrecord where type={0} and expect={1} and status=2
         /// <param name="type"></param>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public DataTable GetUserBett(int type, int uid)
+        public DataTable GetUserBett(int type, int uid, int pageindex, int pagesize)
         {
-            string sql = string.Format(@"select a.lotterynum,a.addtime,c.resultnum,a.money,b.luckresult,
-case when b.luckresult>=0 then b.luckresult-a.money else b.luckresult end win,a.bettid  
+            DbParameter[] parms = {
+                                      GenerateInParam("@pagesize", SqlDbType.Int, 4, pagesize),
+                                      GenerateInParam("@pageindex", SqlDbType.Int, 4, pageindex)
+                                  };
+
+            string sql = string.Format(@"
+if OBJECT_ID('tempdb..#lotrecord') is not null
+ drop table #lotrecord
+
+select  ROW_NUMBER() over(order by a.bettid desc) id,a.lotterynum,a.addtime,c.resultnum,a.money,b.luckresult,
+case when b.luckresult>=0 then b.luckresult-a.money else b.luckresult end win,a.bettid
+into #lotrecord  
 from owzx_bett a
 join owzx_bettprofitloss b on a.bettid=b.bettid and a.uid={1}
-join owzx_lotteryrecord c on a.lotteryid=c.type and a.lotterynum=c.expect and c.type={0}",type,uid);
-            return RDBSHelper.ExecuteTable(sql,null)[0];
+join owzx_lotteryrecord c on a.lotteryid=c.type and a.lotterynum=c.expect and c.type={0}
+
+declare @total int=(select count(1) from #lotrecord )
+
+if(@pagesize=-1)
+begin
+select * ,@total totalcount from #lotrecord
+end
+else
+begin
+select * ,@total totalcount from #lotrecord where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
+end
+
+", type,uid);
+            return RDBSHelper.ExecuteTable(sql,parms)[0];
+        }
+        #endregion
+
+        #region 赔率
+        /// <summary>
+        /// 获取赔率信息
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public DataSet GetLotterySet(int type)
+        {
+            string sql = string.Format(@"
+if OBJECT_ID('tempdb..#list') is not null
+drop table #list
+
+SELECT ROW_NUMBER() over(order by a.bttypeid ) id,
+a.[bttypeid]
+,a.[type],c.type as settype,replicate('0',2-len(a.item))+rtrim(a.item) item,a.odds odds,a.[nums],a.[addtime],a.roomtype
+into  #list
+FROM owzx_lotteryset a
+join owzx_sys_basetype c on a.type=c.systypeid
+where roomtype=20 and a.type={0}
+
+if({0}=13)
+begin
+select top 14 * from  #list
+
+select top 14 * from  #list order by [bttypeid] desc 
+end
+else if({0}=15)
+begin
+--顺对杂
+end
+else if({0}=12)
+begin
+--大小单双龙虎豹
+end
+", type);
+            return RDBSHelper.ExecuteDataset(sql);
         }
         #endregion
     }
