@@ -102,6 +102,7 @@
     <Compile Include="LoginFailLogs.cs" />
     <Compile Include="Logs.cs" />
     <Compile Include="Lottery.cs" />
+    <Compile Include="LotteryList.cs" />
     <Compile Include="Navs.cs" />
     <Compile Include="News.cs" />
     <Compile Include="NewUser.cs" />
