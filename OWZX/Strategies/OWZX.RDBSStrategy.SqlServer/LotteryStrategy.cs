@@ -959,6 +959,51 @@ select count(1) from #list where DATEDIFF(SECOND,opentime,getdate())>=210
         /// </summary>
         /// <param name="bett"></param>
         /// <returns></returns>
+        public string AddNewBett(MD_Bett bett)
+        {
+            DbParameter[] parms = {
+                                    GenerateInParam("@uid", SqlDbType.VarChar, 20, bett.Account),
+                                     GenerateInParam("@lotteryid", SqlDbType.Int, 4, bett.Bttypeid),
+                                     GenerateInParam("@lotterynum", SqlDbType.VarChar, 50, bett.Lotterynum),
+                                    GenerateInParam("@money", SqlDbType.Int, 4, bett.Money),
+                                    GenerateInParam("@bettinfo", SqlDbType.VarChar, 500, bett.Bettinfo),
+                                    GenerateInParam("@bettnum", SqlDbType.VarChar, 100, bett.Bettnum),
+                                    GenerateInParam("@bettmode", SqlDbType.Int, 4, bett.Bettmode),
+                                    
+                                    };
+            string commandText = string.Format(@"
+begin try
+begin tran t1
+
+INSERT INTO owzx_bett([uid],[lotteryid],[lotterynum],[money],[bettinfo],[bettnum],[bettmode],isread)
+    select @uid,@lotteryid,@lotterynum,@money,@bettinfo,@bettnum,@bettmode,0
+   
+
+--扣除用户金额
+update a 
+set a.totalmoney=a.totalmoney-@money
+from owzx_users a where a.uid=@uid
+
+--账变记录
+INSERT INTO [owzx_accountchange]([uid],[changemoney],[remark],accounted)
+select @uid,-@money,'投注',(select totalmoney from owzx_users  where uid=@uid)
+
+select '添加成功' state
+commit tran t1
+
+end try
+begin catch
+rollback tran t1
+select ERROR_MESSAGE() state
+end catch
+");
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+        }
+        /// <summary>
+        /// 添加投注记录
+        /// </summary>
+        /// <param name="bett"></param>
+        /// <returns></returns>
         public string AddBett(MD_Bett bett)
         {
             DbParameter[] parms = {

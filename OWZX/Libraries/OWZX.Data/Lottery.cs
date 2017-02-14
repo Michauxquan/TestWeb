@@ -209,6 +209,15 @@ namespace OWZX.Data
         /// </summary>
         /// <param name="bett"></param>
         /// <returns></returns>
+        public static string AddNewBett(MD_Bett bett)
+        {
+            return OWZX.Core.BSPData.RDBS.AddNewBett(bett);
+        }
+        /// <summary>
+        /// 添加投注记录
+        /// </summary>
+        /// <param name="bett"></param>
+        /// <returns></returns>
         public static  string AddBett(MD_Bett bett)
         {
             return OWZX.Core.BSPData.RDBS.AddBett(bett);

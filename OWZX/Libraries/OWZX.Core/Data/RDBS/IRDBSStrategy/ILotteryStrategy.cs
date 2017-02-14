@@ -157,6 +157,12 @@ namespace OWZX.Core
         /// </summary>
         /// <param name="bett"></param>
         /// <returns></returns>
+        string AddNewBett(MD_Bett bett);
+        /// <summary>
+        /// 添加投注记录
+        /// </summary>
+        /// <param name="bett"></param>
+        /// <returns></returns>
         string AddBett(MD_Bett bett);
         /// <summary>
         /// 更新投注记录 

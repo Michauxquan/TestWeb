@@ -394,10 +394,10 @@ namespace OWZX.Services
         /// <param name="pageSize">-1 取全部</param>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        public static MD_BettMode GetModeList(int pageNumber, int pageSize, string condition = "")
+        public static List<MD_BettMode> GetModeList(int pageNumber, int pageSize, string condition = "")
         {
             DataTable dt = OWZX.Data.NewUser.GetModeList(pageNumber, pageSize, condition);
-            return ModelConvertHelper<MD_BettMode>.DataTableToModel(dt);
+            return (List<MD_BettMode>) ModelConvertHelper<MD_BettMode>.ConvertToModel(dt);
         }
 
         /// <summary>

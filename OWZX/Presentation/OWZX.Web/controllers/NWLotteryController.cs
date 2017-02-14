@@ -1,4 +1,5 @@
-﻿using OWZX.Core;
+﻿using Newtonsoft.Json;
+using OWZX.Core;
 using OWZX.Model;
 using OWZX.Services;
 using OWZX.Web.Framework;
@@ -89,8 +90,30 @@ namespace OWZX.Web.controllers
             DataSet ds = LotteryList.GetLotterySet(settype);
             ViewData["ltset"] = ds;
             ViewData["exists"] = NewUser.ExistsMode(WorkContext.Uid);
-            return View();
+            List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString());
+            return View(model);
         }
+        /// <summary>
+        /// 获取投注模式
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetBettMode()
+        {
+            int id = WebHelper.GetQueryInt("id");
+            MD_BettMode btmode = NewUser.GetModeList(1, 1, " where a.modeid=" + id.ToString())[0];
+           string btjson= JsonConvert.SerializeObject(btmode);
+           return Content(btjson);
+        }
+        /// <summary>
+        /// 投注
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AddBettInfo()
+        {
+
+            return Content("");
+        }
+
         /// <summary>
         /// 游戏规则
         /// </summary>

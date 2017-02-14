@@ -122,7 +122,7 @@ $(document).ready(function ()
     ////点击反选按钮
     //$(".touzhu2").eq(0).click(function () { ani_select(); })
     //点击清除按钮
-    $(".touzhu2").eq(1).click(function () { clear(); })
+    $(".touzhu2").eq(1).click(function () { bettmodel = ""; clear(); })
     ////刷新赔率
     //$(".touzhu1").eq(0).click(function () { refreshd(Periods); })
     ////上期投注
@@ -262,68 +262,48 @@ function ani_select()
     getAllpceggs();
 }
 
-//获取用户模式
-function InitMd(id)
+
+//获取自定义模式 
+function personmode(id)
 {
+    bettmodel = id;
     $.ajax({
         type: "get",
-        url: "../Data/CusBettOperater.ashx?qctype=bettmd&mdID=" + id,
+        url: "/nwlottery/getbettmode/"+id,
         success: function (data)
         {
             var dt = JSON.parse(data);
-            $("#usbettmode").html("");
-            if (dt.Msg != "" && dt.Result)
-            {
-                var jsdt = JSON.parse(dt.Msg);
-                var strb = "";
-                $.each(jsdt, function (i, item)
-                {
-                    strb +=
-            "<a href='javascript:personmode(" + item.ObjName + ")' style='margin-left:15px;'>" + item.Objjc + "</a>";
-                })
-                $("#usbettmode").html(strb);
-            }
+             
+            UserMode(dt.Bettinfo.split(';'));
 
         }
     });
 }
-//自定义模式 
-function personmode(id)
-{
-    $.ajax({
-        type: "get",
-        url: "../Data/CusBettOperater.ashx?qctype=bettmd&mdID=" + id,
-        success: function (data)
-        {
-            var dt = JSON.parse(data);
 
-            if (dt.Msg != "" && dt.Result)
-            {
-                var dtmsg = JSON.parse(dt.Msg)[0];
-                var bttype = dtmsg.CheckBettType;
-
-                UserMode(dtmsg.BettInfo.split(';'));
-
-                $(".img_bt1").css("background", "url(../img/img_bt1.png) left no-repeat");
-                //if (bttype == "数字")
-                //    betttype = "0";
-                //switch (bttype)
-                //{
-                //    case "单":
-                //        $(".img_bt1").eq(0).css("background", "url(../img/xy28_bg.gif)"); betttype = "1";
-                //        break;
-                //    case "双":
-                //        $(".img_bt1").eq(1).css("background", "url(../img/xy28_bg.gif)"); betttype = "2";
-                //        break;
-                //    case "大": $(".img_bt1").eq(2).css("background", "url(../img/xy28_bg.gif)"); betttype = "3";
-                //        break;
-                //    case "小": $(".img_bt1").eq(3).css("background", "url(../img/xy28_bg.gif)"); betttype = "4";
-                //        break;
-                //}
+//自定义投注模式
+function UserMode(arr, flag) {
+    if (StrTimeOut == "-1") {
+        layer.alert("该期已经截止投注！", {icon:2,title:"提示"});
+        return false;
+    }
+    clear();
+    $.each(arr, function (i) {
+        var arritem = arr[i].split(':');
+        if (this != "") {
+            //不可选的号，不处理
+            if ($("#txt_" + (parseInt(arritem[0])).toString()).attr("readonly")) {
+                return;
             }
-
+            if (flag) {
+                $("#txt_" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").attr("disabled", true);
+                $("#txt_" + (parseInt(arritem[0])).toString()).attr("readonly", true).attr("disabled", true);
+            } else {
+                $("#txt_" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").attr("checked", true);
+            }
+            $("#txt_" + (parseInt(arritem[0])).toString()).val(ver(arritem[1]));
         }
     });
+    getAllpceggs();
 }
 
 //刷新赔率 
@@ -343,21 +323,6 @@ function refreshd(id)
         }
     });
 }
-
-
-//开始 由首页传递期号和开奖时间
-
-////获取选择竞猜期号，是否已经开奖
-//function getfcnumTime(fcnum)
-//{
-//    $.get("../Data/CusBettOperater.ashx?qctype=vdfctmot&fcnum=" + fcnum, function (data)
-//    {
-//        if (data)
-//            StrTimeOut = "-1";
-//        else
-//            StrTimeOut = "1";
-//    });
-//}
 
 
 //用户金币
@@ -417,40 +382,7 @@ function getgoldop()
 //结束
 
 
-//自定义投注模式
-function UserMode(arr, flag)
-{
-    if (StrTimeOut == "-1")
-    {
-        showmessage("3", "该期已经截止投注！", LastIssue);
-        return false;
-        // $("#div_ad").css("display","");
-        return;
-    }
-    clear();
-    $.each(arr, function (i)
-    {
-        var arritem = arr[i].split(':');
-        if (this != "")
-        {
-            //不可选的号，不处理
-            if ($("#txt" + (parseInt(arritem[0])).toString()).attr("readonly"))
-            {
-                return;
-            }
-            if (flag)
-            {
-                $("#txt" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").attr("disabled", true);
-                $("#txt" + (parseInt(arritem[0])).toString()).attr("readonly", true).attr("disabled", true);
-            } else
-            {
-                $("#txt" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").attr("checked", true);
-            }
-            $("#txt" + (parseInt(arritem[0])).toString()).val(ver(arritem[1]));
-        }
-    });
-    getAllpceggs();
-}
+
 
 var first = 0;
 //取总的投注金币
@@ -553,10 +485,7 @@ function comform()
     }
 }
 
-
-
-
-//确认投注
+//执行投注
 function datapost()
 {
     //chgsubmit();

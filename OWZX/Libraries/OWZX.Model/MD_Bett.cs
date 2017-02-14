@@ -162,5 +162,18 @@ namespace OWZX.Model
         }
 
         public int TotalCount { get; set; }
+
+        /// <summary>
+        /// 号码:金额  ;分割
+        /// </summary>
+        public string Bettinfo { get; set; }
+        /// <summary>
+        /// 号码  ;分割 
+        /// </summary>
+        public string Bettnum { get; set; }
+        /// <summary>
+        /// 用户设置投注模式id
+        /// </summary>
+        public int Bettmode { get; set; }
     }
 }

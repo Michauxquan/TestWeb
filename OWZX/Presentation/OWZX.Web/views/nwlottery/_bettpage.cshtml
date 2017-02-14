@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "_numberbett";
 }
-
+@model List<OWZX.Model.MD_BettMode>
 <script src="@{@WorkContext.ScriptCDN}/scripts/play.js"></script>
 
 <link href="/components/layer/skin/layer.css" rel="stylesheet" />
@@ -9,6 +9,7 @@
 <script>
     var StrTimeOut = 0;
     var num = "";
+    var bettmodel = "";
 </script>
 <div class="bt_page">
     @if((bool)ViewData["exists"])
@@ -18,6 +19,10 @@
             <div class="border_out_title"><span style="float: left; width: auto;">我的模式</span> <span style="float: right; width: auto;"></span></div>
 
             <div style="padding: 2px 5px; border: 1px solid #cacaca; height:24px; line-height: 24px;width:880px;" id="usbettmode">
+            @foreach (OWZX.Model.MD_BettMode info in Model)
+            { 
+            <text><a href='javascript:personmode(@info.Modeid)' style='margin-left:15px;'>@info.Name</a></text>
+            }
             </div>
         </div>
     </div>
