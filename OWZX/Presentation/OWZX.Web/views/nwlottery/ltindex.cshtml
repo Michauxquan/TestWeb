@@ -12,10 +12,11 @@
     <script src="@{@WorkContext.ScriptCDN}/scripts/jquery.js" type="text/javascript"></script>
     <script src="@{@WorkContext.ScriptCDN}/scripts/common.js" type="text/javascript"></script>
     <script src="@{@WorkContext.ScriptCDN}/scripts/lottery.js"></script>
-    <script src="@{@WorkContext.ScriptCDN}/scripts/play.js"></script>
+    
     <script type="text/javascript">
         uid = @WorkContext.Uid;
         lotterytype=@Model.LotteryType;
+        
         $(function(){
             $("#navItme li").removeClass("hot");
             $("#navItme li:eq(3)").addClass("hot");
@@ -108,7 +109,7 @@
         switch(type)
         {
             case 'lottery':
-                $(".temp_content").load("/nwlottery/_content",{"type":lotterytype});
+                $(".temp_content").load("/nwlottery/_content",{"type":lotterytype,"pageindex":1});
                 break;
             case 'bett':
                 $(".temp_content").load("/nwlottery/_bettpage",{"type":lotterytype});

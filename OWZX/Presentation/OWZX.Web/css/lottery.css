@@ -189,8 +189,13 @@ a.puan_quan_enter:hover, a.puan_quan_enter:active{text-decoration:none;width:26p
     text-align: center;
     line-height: 21px;
     margin: 0 4px 5px 0;
-    color:#8d5000;
+    color:#8d5000;cursor:pointer;
 }
+
+.img_bt1{ 
+    
+    box-sizing: border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;
+   }
 
 .content_middle th,#bettrecord th   {
     height: 30px;
@@ -219,7 +224,7 @@ border-top:none;
 color: #666;font-weight:normal;
 }
 
-    #bettrecord td a:hover {
+    #bettrecord td a:hover{
     color:#e4393c;
     }
 
@@ -227,8 +232,8 @@ color: #666;font-weight:normal;
 font-size:16px;
 }
 .content_middle .input2 {
-height:30px;
-width: 110px; ime-mode: disabled;color:#e4393c;
+height:26px;
+width: 110px; ime-mode: disabled;color:#e4393c;padding-left:2px;
 }
 .content_middle td a.multiple {
     background: url(../images/number/number.fw.png) no-repeat;
@@ -239,5 +244,9 @@ width: 110px; ime-mode: disabled;color:#e4393c;
     color: #000;
     line-height: 28px;
     font-size: 14px;
+}
+
+.content_middle td a.multiple:hover {
+  color:#e4393c;
 }
 

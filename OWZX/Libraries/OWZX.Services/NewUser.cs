@@ -219,7 +219,7 @@ namespace OWZX.Services
         /// <returns></returns>
         public static List<MD_Remit> GetUserRemitList(int pageIndex, int pageSize, string condition = "")
         {
-            DataTable dt= OWZX.Data.NewUser.GetUserRemitList(pageIndex, pageSize, condition);
+            DataTable dt = OWZX.Data.NewUser.GetUserRemitList(pageIndex, pageSize, condition);
             List<MD_Remit> list = (List<MD_Remit>)ModelConvertHelper<MD_Remit>.ConvertToModel(dt);
             return list;
         }
@@ -305,7 +305,7 @@ namespace OWZX.Services
         /// <returns></returns>
         public static List<MD_SMSCode> GetSMSCodeList(int pageNumber, int pageSize, string condition = "")
         {
-            DataTable dt= OWZX.Data.NewUser.GetSMSCodeList(pageNumber, pageSize, condition);
+            DataTable dt = OWZX.Data.NewUser.GetSMSCodeList(pageNumber, pageSize, condition);
             List<MD_SMSCode> list = (List<MD_SMSCode>)ModelConvertHelper<MD_SMSCode>.ConvertToModel(dt);
             return list;
         }
@@ -323,13 +323,13 @@ namespace OWZX.Services
         /// <returns></returns>
         public static DataTable GetUserBettList(int pageNumber, int pageSize, string account, string condition = "")
         {
-            return OWZX.Data.NewUser.GetUserBettList(pageNumber, pageSize, account,condition);
+            return OWZX.Data.NewUser.GetUserBettList(pageNumber, pageSize, account, condition);
         }
 
         #endregion
 
         #region 用户公告
-        
+
 
         /// <summary>
         /// 获取系统公告
@@ -339,6 +339,77 @@ namespace OWZX.Services
         {
             return OWZX.Data.NewUser.GetUserSysNew(account);
         }
+        #endregion
+
+        #region 用户投注模式
+        /// <summary>
+        /// 添加用户投注模式
+        /// </summary>
+        /// <param name="chag"></param>
+        /// <returns></returns>
+        public static bool AddMode(MD_BettMode mode)
+        {
+            string result = OWZX.Data.NewUser.AddMode(mode);
+            if (result.EndsWith("成功"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 更新模式信息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public static bool UpdateMode(MD_BettMode mode)
+        {
+            string result = OWZX.Data.NewUser.UpdateMode(mode);
+            if (result.EndsWith("成功"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 删除模式信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static bool DeleteMode(string id)
+        {
+            string result = OWZX.Data.NewUser.DeleteMode(id);
+            if (result.EndsWith("成功"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        ///获取模式信息(分页)
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public static MD_BettMode GetModeList(int pageNumber, int pageSize, string condition = "")
+        {
+            DataTable dt = OWZX.Data.NewUser.GetModeList(pageNumber, pageSize, condition);
+            return ModelConvertHelper<MD_BettMode>.DataTableToModel(dt);
+        }
+
+        /// <summary>
+        /// 是否设置投注模式
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        public static bool ExistsMode(int uid)
+        {
+            return OWZX.Data.NewUser.ExistsMode(uid);
+        }
+
         #endregion
     }
 }

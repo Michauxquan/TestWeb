@@ -273,5 +273,61 @@ namespace OWZX.Data
             return OWZX.Core.BSPData.RDBS.GetUserSysNew(account);
         }
         #endregion
+
+
+        #region 用户投注模式
+        /// <summary>
+        /// 添加用户投注模式
+        /// </summary>
+        /// <param name="chag"></param>
+        /// <returns></returns>
+        public static string AddMode(MD_BettMode mode)
+        {
+            return OWZX.Core.BSPData.RDBS.AddMode( mode);
+        }
+
+        /// <summary>
+        /// 更新模式信息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public static string UpdateMode(MD_BettMode mode) {
+            return OWZX.Core.BSPData.RDBS.UpdateMode( mode);
+        }
+
+        /// <summary>
+        /// 删除模式信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static string DeleteMode(string id)
+        {
+            return OWZX.Core.BSPData.RDBS.DeleteMode( id);
+        }
+
+        /// <summary>
+        ///获取模式信息(分页)
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public static DataTable GetModeList(int pageNumber, int pageSize, string condition = "")
+        {
+            return OWZX.Core.BSPData.RDBS.GetModeList( pageNumber,  pageSize,  condition);
+        }
+
+        /// <summary>
+        /// 是否设置投注模式
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        public static bool ExistsMode(int uid)
+        {
+            return OWZX.Core.BSPData.RDBS.ExistsMode(uid);
+        }
+
+        #endregion
+
     }
 }

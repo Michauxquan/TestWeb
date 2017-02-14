@@ -66,8 +66,29 @@ namespace OWZX.Web.controllers
         public ActionResult _BettPage()
         {
             int type = WebHelper.GetFormInt("type");
-            DataSet ds = LotteryList.GetLotterySet(type);
+            int settype = 13;
+            switch (type)
+            { 
+                case 1:
+                case 2:
+                case 6:
+                    settype = (int)LotterySetType.number;
+                    break;
+                case 4:
+                case 5:
+                    settype = (int)LotterySetType.sdz;
+                    break;
+                case 9:
+                    settype = (int)LotterySetType.lhb;
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+            }
+            DataSet ds = LotteryList.GetLotterySet(settype);
             ViewData["ltset"] = ds;
+            ViewData["exists"] = NewUser.ExistsMode(WorkContext.Uid);
             return View();
         }
         /// <summary>

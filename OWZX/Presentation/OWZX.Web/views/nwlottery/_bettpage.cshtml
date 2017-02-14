@@ -1,19 +1,30 @@
 ﻿@{
     ViewBag.Title = "_numberbett";
 }
+
+<script src="@{@WorkContext.ScriptCDN}/scripts/play.js"></script>
+
+<link href="/components/layer/skin/layer.css" rel="stylesheet" />
+<script src="/components/layer/layer.js"></script>
+<script>
+    var StrTimeOut = 0;
+    var num = "";
+</script>
 <div class="bt_page">
+    @if((bool)ViewData["exists"])
+    {
     <div class="border_out" style="height: auto; margin-top: 8px;">
         <div class="border_out_r">
             <div class="border_out_title"><span style="float: left; width: auto;">我的模式</span> <span style="float: right; width: auto;"></span></div>
 
-            <div style="padding: 2px 5px; border: 1px solid #cacaca; height:24px; line-height: 24px;width:870px;" id="usbettmode">
+            <div style="padding: 2px 5px; border: 1px solid #cacaca; height:24px; line-height: 24px;width:880px;" id="usbettmode">
             </div>
         </div>
     </div>
+    }
     <div class="border_out" style="margin-top: -2px; height:120px;">
         <div class="border_out_l">
             <div class="border_out_title"><span style="float: left; width: auto;">标准投注模式</span> <span style="float: right; width: auto;"></span></div>
-
             <table border="0" align="left" style="padding-left: 5px;">
                 <tr>
                     <td class="img_bt1" attr="0">全包</td>
@@ -34,11 +45,10 @@
                     <td class="img_bt1" attr="15">0尾</td>
                     <td class="img_bt1" attr="16">1尾</td>
                     <td class="img_bt1" attr="17">2尾</td>
-
+                    <td class="img_bt1" attr="18">3尾</td>
 
                 </tr>
                 <tr>
-                    <td class="img_bt1" attr="18">3尾</td>
                     <td class="img_bt1" attr="19">4尾</td>
                     <td class="img_bt1" attr="20">小尾</td>
                     <td class="img_bt1" attr="21">5尾</td>
@@ -69,7 +79,7 @@
             <span>0.1倍</span><span>1.5倍</span><span>2倍</span><span>10倍</span><span>50倍</span><span>100倍</span>
         </div>
         <div class="border_out1_c">
-            <div style="float: left; width: 72px; padding-left: 5px;">总投注金币：</div>
+            <div style="float: left; width: 72px; padding-left: 5px;">总投注乐豆：</div>
             <div style="color: #ff0000; width: 108px; float: left; overflow: hidden" id="totalvalue">
                 0
             </div>
@@ -102,18 +112,18 @@
                         <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.fw.png'); " width="25" height="25">@row["item"]</span>
                     </td>
                     <td style="display: none;"></td>
-                    <td class="lossrate" data-type=@row["nums"]>--</td>
+                    <td class="lossrate" data-type=@row["nums"]>@row["odds"]</td>
                     <td>
                         <input type="checkbox" name="checkboxd" value="checkbox" />
                     </td>
                     <td>
-                        <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt" @num onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                        <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt_@num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
                     </td>
                     <td style="width: 80px;">
 
-                        <a class="multiple" href="javascript:chgTimes('txt'+@num,0.5)">.5</a>
-                        <a class="multiple" href="javascript:chgTimes('txt'+@num,2)">2</a>
-                        <a class="multiple" href="javascript:chgTimes('txt'+@num,10)">10</a>
+                        <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
+                        <a class="multiple" href="javascript:chgTimes('txt_@num',2)">2</a>
+                        <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>
                     </td>
                 </tr>
             }
@@ -125,28 +135,28 @@
                 <th width="71" style="display: none;">上期赔率</th>
                 <th width="71">当前赔率</th>
                 <th width="53">请选择</th>
-                <th width="130">投注</th>
-                <th width="80" style="width: 80px">倍数</th>
+                <th width="100">投注</th>
+                <th width="110">倍数</th>
             </tr>
             @foreach (DataRow row in ds.Tables[1].Rows)
             {
-                string num = @row["nums"].ToString();
+                 string num = @row["nums"].ToString();
                 <tr align="center" bgcolor="#FFFFFF" height="27">
                     <td>
                         <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.fw.png'); " width="25" height="25">@row["item"]</span>
                     </td>
                     <td style="display: none;"></td>
-                    <td class="lossrate" data-type=@row["nums"]>--</td>
+                    <td class="lossrate" data-type=@row["nums"]>@row["odds"]</td>
                     <td>
                         <input type="checkbox" name="checkboxd" value="checkbox" />
                     </td>
                     <td>
-                        <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt" @num=@num onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                        <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id='txt_@num' onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
                     </td>
                     <td style="width: 80px;">
-                        <a class="multiple" href="javascript:chgTimes('txt'+@num,0.5)">.5</a>
-                        <a class="multiple" href="javascript:chgTimes('txt'+@num,2)">2</a>
-                        <a class="multiple" href="javascript:chgTimes('txt'+@num,10)">10</a>
+                        <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
+                        <a class="multiple" href="javascript:chgTimes('txt_@num',2)">2</a>
+                        <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>
                     </td>
                 </tr>
             }

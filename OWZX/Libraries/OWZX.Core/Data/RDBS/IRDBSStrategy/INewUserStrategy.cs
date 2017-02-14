@@ -204,5 +204,45 @@ namespace OWZX.Core
         DataTable GetUserSysNew(string account);
         #endregion
 
+
+        #region 用户投注模式
+        /// <summary>
+        /// 添加用户投注模式
+        /// </summary>
+        /// <param name="chag"></param>
+        /// <returns></returns>
+        string AddMode(MD_BettMode mode);
+
+        /// <summary>
+        /// 更新模式信息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+         string UpdateMode(MD_BettMode mode);
+
+        /// <summary>
+        /// 删除模式信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        string DeleteMode(string id);
+
+        /// <summary>
+        ///获取模式信息(分页)
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        DataTable GetModeList(int pageNumber, int pageSize, string condition = "");
+
+        /// <summary>
+        /// 是否设置投注模式
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        bool ExistsMode(int uid);
+        #endregion
+
     }
 }

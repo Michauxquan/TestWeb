@@ -1011,5 +1011,202 @@ end
             return RDBSHelper.ExecuteDataset(CommandType.Text, sql, parms).Tables[0];
         }
         #endregion
+
+        #region 用户投注模式
+        /// <summary>
+        /// 添加用户投注模式
+        /// </summary>
+        /// <param name="chag"></param>
+        /// <returns></returns>
+        public string AddMode(MD_BettMode mode)
+        {
+            DbParameter[] parms = {
+                                        GenerateInParam("@name", SqlDbType.VarChar,50, mode.Name),
+                                        GenerateInParam("@uid", SqlDbType.Int,4, mode.Uid),
+                                        GenerateInParam("@bettnum", SqlDbType.VarChar, 300, mode.Bettnum),
+                                        GenerateInParam("@bettinfo", SqlDbType.VarChar,1000, mode.Bettinfo),
+                                        GenerateInParam("@betttotal", SqlDbType.Int,4, mode.Betttotal),
+                                        GenerateInParam("@wintype", SqlDbType.Int,4, mode.Wintype),
+                                        GenerateInParam("@losstype", SqlDbType.Int,4, mode.Losstype)
+                                        
+                                       
+                                    };
+            string commandText = string.Format(@"
+begin try
+
+INSERT INTO [owzx_userbettmodel]
+           ([name]
+           ,[uid]
+           ,[bettnum]
+           ,[bettinfo]
+           ,[betttotal]
+           ,[wintype]
+           ,[losstype]
+           )
+VALUES (@name,@uid,@bettnum,@bettinfo ,@betttotal,@wintype,@losstype)
+
+select '添加成功' state
+end try
+begin catch
+select ERROR_MESSAGE() state
+end catch
+");
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+        }
+
+        /// <summary>
+        /// 更新模式信息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public string UpdateMode(MD_BettMode mode)
+        {
+            DbParameter[] parms = {
+                                      GenerateInParam("@modeid", SqlDbType.Int,4, mode.Modeid),
+                                        GenerateInParam("@name", SqlDbType.VarChar,50, mode.Name),
+                                        GenerateInParam("@uid", SqlDbType.Int,4, mode.Uid),
+                                        GenerateInParam("@bettnum", SqlDbType.VarChar, 300, mode.Bettnum),
+                                        GenerateInParam("@bettinfo", SqlDbType.VarChar,1000, mode.Bettinfo),
+                                        GenerateInParam("@betttotal", SqlDbType.Int,4, mode.Betttotal),
+                                        GenerateInParam("@wintype", SqlDbType.Int,4, mode.Wintype),
+                                        GenerateInParam("@losstype", SqlDbType.Int,4, mode.Losstype)
+                                        
+                                       
+                                    };
+            string commandText = string.Format(@"
+
+begin try
+begin tran t1
+
+if exists(select 1 from owzx_userbettmodel where modeid=@modeid)
+begin
+
+update a set 
+a.name=@name
+,a.bettnum=@bettnum
+,a.bettinfo=@bettinfo
+,a.betttotal=@betttotal
+,a.wintype=@wintype
+,a.losstype=@losstype
+a.updatetime=convert(varchar(25),getdate(),120)
+a.updateuid=@uid
+from owzx_userbettmodel a
+where a.modeid=@modeid
+
+select '更新成功' state
+commit tran t1
+end
+else
+begin
+select '记录已被删除' state
+commit tran t1
+end
+end try
+begin catch
+rollback tran t1
+select ERROR_MESSAGE() state
+end catch
+");
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+        }
+
+        /// <summary>
+        /// 删除模式信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string DeleteMode(string id)
+        {
+            string commandText = string.Format(@"
+            begin try
+            if exists(select 1 from owzx_userbettmodel where modeid in ({0}))
+            begin
+            delete from owzx_userbettmodel where modeid in ({0})
+            select '删除成功' state
+            end
+            else
+            begin
+            select '记录已被删除' state
+            end
+            end try
+            begin catch
+            select ERROR_MESSAGE() state
+            end catch
+            ",
+             id);
+            return RDBSHelper.ExecuteScalar(commandText).ToString();
+        }
+
+        /// <summary>
+        ///获取模式信息(分页)
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public DataTable GetModeList(int pageNumber, int pageSize, string condition = "")
+        {
+            DbParameter[] parms = {
+                                      GenerateInParam("@pagesize", SqlDbType.Int, 4, pageSize),
+                                      GenerateInParam("@pageindex", SqlDbType.Int, 4, pageNumber)
+                                  };
+
+
+            string commandText = string.Format(@"
+begin try
+if OBJECT_ID('tempdb..#list') is not null
+  drop table #list
+
+SELECT ROW_NUMBER() over(order by a.modeid desc) id
+      ,a.[name]
+           ,a.[uid]
+           ,a.[bettnum]
+           ,a.[bettinfo]
+           ,a.[betttotal]
+           ,a.[wintype]
+           ,a.[losstype]
+           ,a.[addtime]
+           ,a.[updatetime]
+           ,a.[updateuid]
+  into  #list
+  FROM owzx_userbettmodel a
+  join owzx_users b on a.uid=b.uid
+  {0}
+
+declare @total int
+select @total=(select count(1)  from #list)
+
+if(@pagesize=-1)
+begin
+select *,@total TotalCount from #list
+end
+else
+begin
+select *,@total TotalCount from #list where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
+end
+
+end try
+begin catch
+select ERROR_MESSAGE() state
+end catch
+
+", condition);
+
+            return RDBSHelper.ExecuteTable(CommandType.Text, commandText, parms)[0];
+        }
+        /// <summary>
+        /// 是否设置投注模式
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        public bool ExistsMode(int uid)
+        {
+            string sql = string.Format(@"
+select 1 from owzx_userbettmodel where uid={0}
+",uid);
+            return RDBSHelper.Exists(sql);
+        }
+
+        #endregion
     }
 }

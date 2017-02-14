@@ -186,10 +186,12 @@ end
 else if({0}=15)
 begin
 --顺对杂
+select * from  #list
 end
 else if({0}=12)
 begin
 --大小单双龙虎豹
+select * from  #list
 end
 ", type);
             return RDBSHelper.ExecuteDataset(sql);

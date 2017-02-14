@@ -42,7 +42,7 @@ var mode = new Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 
 					 [4, 9, 14, 19, 24]//5余4
 					 );
 
-var maxnum = 100000000; //最大投注金额
+var maxnum = 20000000; //最大投注金额
 var minnum = 10;
 $(document).ready(function ()
 {
@@ -51,15 +51,15 @@ $(document).ready(function ()
     {
         clear();
         var i = $(this).attr("attr");
-        if (i == 1|| i == 2 || i == 3 || i == 4)
-        {
-            betttype = "1";
-        }
-        else if (i == 7 || i == 8|| i == 9 || i == 10)
-        {
-            betttype = i;
-        }
-        $(this).css("background", "url(../img/xy28_bg.gif)");//img_bt2.gif
+        //if (i == 1|| i == 2 || i == 3 || i == 4)
+        //{
+        //    betttype = "1";
+        //}
+        //else if (i == 7 || i == 8|| i == 9 || i == 10)
+        //{
+        //    betttype = i;
+        //}
+        //$(this).css("background", "url(../img/xy28_bg.gif)");//img_bt2.gif
         setValue(i);
         getAllpceggs();
     }).hover(
@@ -69,92 +69,13 @@ $(document).ready(function ()
   },
   function ()
   {
-      $(this).css("color", "#515151"); //鼠标移过后样式
+      $(this).css("color", "#8d5000"); //鼠标移过后样式
   }
 
 );
 
-    var btps = new Array("10", "100", "500", "1000");
     //点击每个栏目倍数
-    //$("#panel").find("input[name='Add']").click(function () {
-    //    var peilv = $(this).val();
-    //    var txt = $(this).parent().prev("td").children("input");
-    //    if (!txt.attr("readonly")) {
-    //        var txt_value = txt.val().replace(/,/gi, "");
-    //        if (!txt_value) { return; }
-    //        var new_value = Math.floor(txt_value * peilv);
-    //        txt.val(ver(new_value + ""));
-    //        getAllpceggs();
-    //    }
-    //})
-    $("#panel").find("input[name='Add']").click(function ()
-    {
-        var peilv = $(this).val();
-        var peiimg = $(this).parent().children("img")[0];
-        var pei = peiimg.src;
-        var imgNum = parseInt(pei.substr(pei.lastIndexOf('/') + 3, 1));
-        if (imgNum <= 4)
-        {
-            var txt = $(this).parent().prev("td").children("input");
-            var txt_value = txt.val().replace(/,/gi, "");
-            if (txt_value.length > 8 || txt_value == 0 || txt_value == "") { return; }
-            if (imgNum == 4)
-            {
-                peiimg.src = "../img/number/dt" + imgNum + ".png";
-            }
-            else
-            {
-                peiimg.src = "../img/number/dt" + (imgNum + 1) + ".png";
-            }
-            peilv = btps[(imgNum - 1)];
 
-
-            if (!txt.attr("readonly"))
-            {
-                var new_value = Math.floor(txt_value * peilv);
-                if (new_value.toString().length > 8)
-                    txt.val(ver(new_value.toString().substr(0, 8) + ""));
-                else
-                    txt.val(ver(new_value.toString() + ""));
-                getAllpceggs();
-            }
-        }
-
-    })
-    $("#panel").find("input[name='Loss']").click(function ()
-    {
-        var peilv = $(this).val();
-        var peiimg = $(this).parent().children("img")[0];
-        var pei = peiimg.src;
-        var imgNum = parseInt(pei.substr(pei.lastIndexOf('/') + 3, 1));
-        if (imgNum >= 1)
-        {
-            var txt = $(this).parent().prev("td").children("input");
-            var txt_value = txt.val().replace(/,/gi, "");
-            if (!txt_value || txt_value == 0 || txt_value == "") { return; }
-            if (imgNum == 1)
-            {
-                peiimg.src = "../img/number/dt" + imgNum + ".png";
-            } else
-            {
-                peiimg.src = "../img/number/dt" + (imgNum - 2) + ".png";
-
-            }
-            peilv = btps[(imgNum - 1)];
-
-            if (!txt.attr("readonly"))
-            {
-                var new_value = Math.floor(txt_value / peilv);
-                txt.val(ver(new_value.toString() + ""));
-                getAllpceggs();
-            }
-        } //else if (imgnum = 5)
-        //{
-        //    peiimg.src = "../img/number/dt" + ('1') + ".png";
-        //    peilv = "1";
-        //};
-
-    })
     $("input[name='checkboxd']").each(function (i)
     {
         $(this).click(function ()
@@ -181,21 +102,17 @@ $(document).ready(function ()
     {
         $(this).click(function ()
         {
-            if (betttype != "0")
-            {
-                return;
-            }
             var dom = $(this).parent().next("td").next("td").next("td").children("input");
             if (!dom.attr("disabled"))
             {
-                if (!dom.attr("checked"))
+                if (!dom.prop("checked"))
                 {
                     dom.parent().next("td").children("input").val(nub1[i]); //改了
-                    dom.attr("checked", true);
+                    dom.prop("checked", true);
                 } else
                 {
                     dom.parent().next("td").children("input").val("");
-                    dom.attr("checked", false);
+                    dom.prop("checked", false);
                 }
                 getAllpceggs()
             }
@@ -243,7 +160,7 @@ $(document).ready(function ()
             getAllpceggs();
         } else
         {
-            $(this).parent().prev("td").children("input").attr("checked", true);
+            $(this).parent().prev("td").children("input").prop("checked", true);
             getAllpceggs();
         }
     }).blur(function ()
@@ -276,19 +193,17 @@ function setValue(num)
     for (var i = 0; i < mode[num].length; i++)
     {
         var id_num = mode[num][i];
-        var id_name = "#txt" + mode[num][i];
+        var id_name = "#txt_" + mode[num][i];
         if (!$(id_name).attr("readonly"))
         {
             $(id_name).val(nub[id_num]);
-            $(id_name).parent().prev("td").children("input").attr("checked", true);
+            $(id_name).parent().prev("td").children("input").prop("checked", true);
         }
     }
 }
 //清除方法
 function clear()
 {
-    betttype = "0";
-    $(".img_bt1").css("background", "url(../img/img_bt1.png) left no-repeat");
     $("#panel").find("input[name='SMONEY']").each(function (i)
     {
         if (!$(this).attr("readonly"))
@@ -390,21 +305,21 @@ function personmode(id)
                 UserMode(dtmsg.BettInfo.split(';'));
 
                 $(".img_bt1").css("background", "url(../img/img_bt1.png) left no-repeat");
-                if (bttype == "数字")
-                    betttype = "0";
-                switch (bttype)
-                {
-                    case "单":
-                        $(".img_bt1").eq(0).css("background", "url(../img/xy28_bg.gif)"); betttype = "1";
-                        break;
-                    case "双":
-                        $(".img_bt1").eq(1).css("background", "url(../img/xy28_bg.gif)"); betttype = "2";
-                        break;
-                    case "大": $(".img_bt1").eq(2).css("background", "url(../img/xy28_bg.gif)"); betttype = "3";
-                        break;
-                    case "小": $(".img_bt1").eq(3).css("background", "url(../img/xy28_bg.gif)"); betttype = "4";
-                        break;
-                }
+                //if (bttype == "数字")
+                //    betttype = "0";
+                //switch (bttype)
+                //{
+                //    case "单":
+                //        $(".img_bt1").eq(0).css("background", "url(../img/xy28_bg.gif)"); betttype = "1";
+                //        break;
+                //    case "双":
+                //        $(".img_bt1").eq(1).css("background", "url(../img/xy28_bg.gif)"); betttype = "2";
+                //        break;
+                //    case "大": $(".img_bt1").eq(2).css("background", "url(../img/xy28_bg.gif)"); betttype = "3";
+                //        break;
+                //    case "小": $(".img_bt1").eq(3).css("background", "url(../img/xy28_bg.gif)"); betttype = "4";
+                //        break;
+                //}
             }
 
         }
@@ -501,42 +416,6 @@ function getgoldop()
 
 //结束
 
-//页面载入时执行
-function showvalue(arr, flag)
-{
-    if (StrTimeOut == "-1")
-    {
-        showmessage("3", num + "期已经截止投注！", LastIssue);
-        return false;
-    }
-    //else if (IsGetEggs == "1")
-    //{
-    //    //$("#div_ad").css("display",""); 
-
-    //    showmessage("8", "目前您的账户上金币少于5000，是否需要免费获取金币？", LastIssue);
-
-    //}
-
-    $.each(arr, function (i)
-    {
-        var arritem = arr[i].split(':');
-        var selnum = (parseInt(arritem[0])).toString();
-        if ($("#txt" + selnum).attr("readOnly"))
-        {
-            return;
-        }
-        if (flag)
-        {
-            $("#txt" + selnum).parent().prev("td").children("input").attr("disabled", true);
-            $("#txt" + selnum).attr("readOnly", true).attr("disabled", true);
-        } else
-        {
-            $("#txt" + selnum).parent().prev("td").children("input").attr("checked", true);
-        }
-        $("#txt" + selnum).val(ver(arritem[1]));
-    });
-    getAllpceggs();
-}
 
 //自定义投注模式
 function UserMode(arr, flag)
@@ -588,26 +467,11 @@ function getAllpceggs()
                 total += parseInt(txt_value);
             }
         }
-    }
-															   )
+    })
 
     $("#totalvalue").text(ver(total + ""));
     $("#totalvalue").attr("")
 
-
-    if (readcookie("handflag") == "1")
-    {
-        if ($("#totalvalue").text() != 0 && first == 0)
-        {
-            first = 1;
-            // $("#help_show1").css("display",""); 
-            // $("#help_show").css("display","none"); 
-        }
-    }
-    //if(total>maxnum){
-    //alert("对不起，总投注金额不能超过投注上限！");}
-    // if(total>mypceggs){
-    //alert("您的余额不足！");}
 }
 function setpeilv(a_cis, a_cis1)
 {
@@ -640,27 +504,33 @@ function comform()
     t = $("#totalvalue").text().replace(/,/gi, "");
     t = parseInt(t);
     var str = [];
+
     if (StrTimeOut < 0)
     {
-        showmessage("3", num + "期投注投注已截止！", LastIssue); isconfirmenable = true
+        layer.alert(num + "期投注投注已截止！", { icon: 2, title: "提示" });
+        isconfirmenable = true
         return false;
     }
     else if (t < minnum)
     {
-        showmessage("11", "投注金额[" + minnum + "]积分起！", LastIssue); isconfirmenable = true
+        layer.alert("最小投注额[" + minnum + "]乐豆！", { icon: 2, title: "提示" });
+        isconfirmenable = true
         return false;
     }
     else if (t > maxnum)
     {
-        showmessage("11", "对不起，总投注金额不能超过投注上限[" + maxnum + "]！", LastIssue); isconfirmenable = true
+        layer.alert("对不起，总投注额不能超过投注上限[" + maxnum + "]！", { icon: 2, title: "提示" });
+        isconfirmenable = true
         return false;
     } else if (t == 0)
     {
-        showmessage("13", "请先投注！", LastIssue); isconfirmenable = true
+        layer.alert("请投注！", { icon: 2, title: "提示" });
+        isconfirmenable = true
         return false;
     } else if (t > mypceggs)
     {
-        showmessage("12", "您的金币不足！", LastIssue); isconfirmenable = true
+        layer.alert("您的乐豆不足！", { icon: 2, title: "提示" });
+        isconfirmenable = true
         return false;
 
     }
@@ -673,45 +543,18 @@ function comform()
             str.push(txt_value);
         }
         $("#ALLSMONEY").val(str.join(","));
-        //$("#div_ad").css("display","");
-        showmessage("9", "确认你投注？将扣除你<span id='postgoldeggs' style='color :Red;font-weight:bold'>" + t + "</span>个金币！<br/><input type='hidden' name='isdb' id='isdb' value='1'  style='margin-right:2px' />", LastIssue);
+        layer.alert("确认你投注？将扣除你<span id='postgoldeggs' style='color :Red;font-weight:bold'>" + t + "</span>乐豆！", { icon: 3, title: "提示" });
         t = ver(String(t)); //将数字转字符串后千分位 
         $("#postgoldeggs").html(t);
         $("#SMONEYSUM").val(t);
-        //document.documentElement.clientHeight - document.getElementById("div_ad").offsetHeight  document.documentElement.clientWidth - document.getElementById("div_ad").offsetWidth
-        document.getElementById("div_ad").style.top = (document.documentElement.scrollTop + document.body.scrollTop + ($(window).height() - $('#div_ad').height()) / 2) + "px";
-        document.getElementById("div_ad").style.left = (document.documentElement.scrollLeft + ($(window).width() - $('#div_ad').width()) / 2) + "px";
-
+       
+        datapost();
         isconfirmenable = true;
     }
 }
 
 
 
-//是否按现模式自动投注
-function ischecked()
-{
-    var isdb = document.getElementById("isdb")//子层
-    var isdb_p = ""; //父层
-
-
-    if (isdb.checked == true)
-    {
-        document.getElementById("isdb_p").value = "1";
-    } else
-    {
-        document.getElementById("isdb_p").value = "0";
-    }
-
-}
-
-//取消投注
-function rm()
-{
-    //document.getElementById("isdb_p").value = "0";
-    document.getElementById("div_ad").style.display = 'none';
-    document.getElementById("parent_div").style.display = 'none';
-}
 
 //确认投注
 function datapost()
@@ -735,8 +578,8 @@ function datapost()
             }
         }
     });
-    $.post(
-               "../Data/CusBettOperater.ashx?qctype=addbett",
+    //??
+    $.post("../Data/CusBettOperater.ashx?qctype=addbett",
                {
                    "fcnum": num, "bettTotalEggs": $("#totalvalue").text().replace(/,/gi, ""),
                    "cusbettinfo": arrbettnew.substr(0, arrbettnew.length - 1), "bettnumber": arrbettnum.substr(0, arrbettnum.length - 1),
@@ -750,16 +593,35 @@ function datapost()
                        if (dt.Result)
                        {
                            //成功
-                           showmessage1(num);
+                           layer.alert("第<span  style='color :Red;'>" + num + "</span>期投注成功！", {icon:1, title: "提示"})
                        } else
                        {
-                           showmessage("1", dt.Msg, "");
+                           layer.alert("投注失败！", { icon: 2, title: "提示" })
                        }
 
                    }
 
                });
 }
+
+
+//是否按现模式自动投注
+function ischecked()
+{
+    var isdb = document.getElementById("isdb")//子层
+    var isdb_p = ""; //父层
+
+
+    if (isdb.checked == true)
+    {
+        document.getElementById("isdb_p").value = "1";
+    } else
+    {
+        document.getElementById("isdb_p").value = "0";
+    }
+
+}
+
 
 //滚动
 function sc1()
