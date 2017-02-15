@@ -300,9 +300,9 @@ namespace OWZX.Data
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static string DeleteMode(string id)
+        public static string DeleteMode(string name, int uid, int lotterytype)
         {
-            return OWZX.Core.BSPData.RDBS.DeleteMode( id);
+            return OWZX.Core.BSPData.RDBS.DeleteMode(name,uid,lotterytype);
         }
 
         /// <summary>

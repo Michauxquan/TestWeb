@@ -83,74 +83,74 @@ namespace OWZX.RDBSStrategy.SqlServer
                 return RDBSHelper.ExecuteTable(sql, null)[0];
             }
         }
-//        /// <summary>
-//        /// 获取最新彩票记录
-//        /// </summary>
-//        /// <param name="type"></param>
-//        /// <returns></returns>
-//        public DataTable LastLottery(string type)
-//        {
-//            lock (lkstate)
-//            {
-//                string sql = string.Format(@" 
-//                --逻辑：北京 投注4:30s 封盘30s ,到开奖时间加载新的一期；
-//                --加拿大 投注3分，封盘30s,到开奖时间加载新的一期；
-//                declare @type int ={0}
-//                declare @min varchar(5), @sec varchar(5),@expect varchar(50),@totalsec varchar(5)
-//                if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status in (0,1) and 
-//                DATEDIFF(second,opentime,getdate()) between -30 and 0  order by lotteryid )
-//                begin
-//                select expect,DATEDIFF(second,opentime,getdate()) time   from owzx_lotteryrecord where type=@type and status  in (0,1) and 
-//                DATEDIFF(second,opentime,getdate()) between -30 and 0  order by lotteryid 
-//                return
-//                end
-//
-//                if(@type=10) 
-//                begin
-//
-//                if exists(select top 1 1 from owzx_lotteryrecord where type=10 and status=0 and 
-//                (DATEDIFF(second,opentime,getdate()) >= -300 and DATEDIFF(second,opentime,getdate())<-30) order by lotteryid )
-//                begin
-//                select top 1 @expect=expect, @min=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))/60),
-//                @sec=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))%60),
-//                @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
-//                from owzx_lotteryrecord where type=@type and status=0 and (DATEDIFF(second,opentime,getdate()) >= -300 and DATEDIFF(second,opentime,getdate())<-30)
-//                order by lotteryid
-//
-//                select @expect expect,@totalsec time
-//                --select @expect expect,(replicate('0',2-len(@min))+rtrim(@min)) +'分'+(replicate('0',2-len(@sec))+rtrim(@sec)) +'秒' time
-//                end
-//                else
-//                begin
-//                select 0 expect,'维护中' time
-//                end
-//
-//                end
-//                else if(@type=11) 
-//                begin
-//
-//                if exists(select top 1 1 from owzx_lotteryrecord where type=11 and status=0 and 
-//                (DATEDIFF(second,opentime,getdate()) >= -210 and DATEDIFF(second,opentime,getdate())<-30) order by lotteryid )
-//                begin
-//                select top 1 @expect=expect, @min=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))/60),
-//                @sec=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))%60),
-//                @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime)))
-//                from owzx_lotteryrecord where type=11 and status=0 and (DATEDIFF(second,opentime,getdate()) >= -210 and DATEDIFF(second,opentime,getdate())<-30)
-//                order by lotteryid
-//
-//                select @expect expect,@totalsec time
-//                --select @expect expect,(replicate('0',2-len(@min))+rtrim(@min)) +'分'+(replicate('0',2-len(@sec))+rtrim(@sec)) +'秒' time
-//                end
-//                else
-//                begin
-//                select 0 expect,'维护中' time
-//                end
-//
-//                end
-//                ", type);
-//                return RDBSHelper.ExecuteTable(sql, null)[0];
-//            }
-//        }
+        //        /// <summary>
+        //        /// 获取最新彩票记录
+        //        /// </summary>
+        //        /// <param name="type"></param>
+        //        /// <returns></returns>
+        //        public DataTable LastLottery(string type)
+        //        {
+        //            lock (lkstate)
+        //            {
+        //                string sql = string.Format(@" 
+        //                --逻辑：北京 投注4:30s 封盘30s ,到开奖时间加载新的一期；
+        //                --加拿大 投注3分，封盘30s,到开奖时间加载新的一期；
+        //                declare @type int ={0}
+        //                declare @min varchar(5), @sec varchar(5),@expect varchar(50),@totalsec varchar(5)
+        //                if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status in (0,1) and 
+        //                DATEDIFF(second,opentime,getdate()) between -30 and 0  order by lotteryid )
+        //                begin
+        //                select expect,DATEDIFF(second,opentime,getdate()) time   from owzx_lotteryrecord where type=@type and status  in (0,1) and 
+        //                DATEDIFF(second,opentime,getdate()) between -30 and 0  order by lotteryid 
+        //                return
+        //                end
+        //
+        //                if(@type=10) 
+        //                begin
+        //
+        //                if exists(select top 1 1 from owzx_lotteryrecord where type=10 and status=0 and 
+        //                (DATEDIFF(second,opentime,getdate()) >= -300 and DATEDIFF(second,opentime,getdate())<-30) order by lotteryid )
+        //                begin
+        //                select top 1 @expect=expect, @min=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))/60),
+        //                @sec=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))%60),
+        //                @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
+        //                from owzx_lotteryrecord where type=@type and status=0 and (DATEDIFF(second,opentime,getdate()) >= -300 and DATEDIFF(second,opentime,getdate())<-30)
+        //                order by lotteryid
+        //
+        //                select @expect expect,@totalsec time
+        //                --select @expect expect,(replicate('0',2-len(@min))+rtrim(@min)) +'分'+(replicate('0',2-len(@sec))+rtrim(@sec)) +'秒' time
+        //                end
+        //                else
+        //                begin
+        //                select 0 expect,'维护中' time
+        //                end
+        //
+        //                end
+        //                else if(@type=11) 
+        //                begin
+        //
+        //                if exists(select top 1 1 from owzx_lotteryrecord where type=11 and status=0 and 
+        //                (DATEDIFF(second,opentime,getdate()) >= -210 and DATEDIFF(second,opentime,getdate())<-30) order by lotteryid )
+        //                begin
+        //                select top 1 @expect=expect, @min=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))/60),
+        //                @sec=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))%60),
+        //                @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime)))
+        //                from owzx_lotteryrecord where type=11 and status=0 and (DATEDIFF(second,opentime,getdate()) >= -210 and DATEDIFF(second,opentime,getdate())<-30)
+        //                order by lotteryid
+        //
+        //                select @expect expect,@totalsec time
+        //                --select @expect expect,(replicate('0',2-len(@min))+rtrim(@min)) +'分'+(replicate('0',2-len(@sec))+rtrim(@sec)) +'秒' time
+        //                end
+        //                else
+        //                begin
+        //                select 0 expect,'维护中' time
+        //                end
+        //
+        //                end
+        //                ", type);
+        //                return RDBSHelper.ExecuteTable(sql, null)[0];
+        //            }
+        //        }
 
         /// <summary>
         /// 添加新的竞猜记录
@@ -397,7 +397,7 @@ end catch
         {
             //lock (lkaddlot)
             //{
-                string commandText = string.Format(@"
+            string commandText = string.Format(@"
 begin try
 declare @lasttime varchar(25)
 select @lasttime=(
@@ -462,7 +462,7 @@ begin catch
 select ERROR_MESSAGE() state
 end catch
 ", type, starttime, endtime);
-                return RDBSHelper.ExecuteScalar(commandText).ToString();
+            return RDBSHelper.ExecuteScalar(commandText).ToString();
             //}
         }
         /// <summary>
@@ -912,7 +912,7 @@ select count(1) from #list where DATEDIFF(SECOND,opentime,getdate())>=210
         /// <param name="vip"></param>
         /// <param name="bttypeid"></param>
         /// <returns></returns>
-        public string ValidateBett(string account,string expect,string money,string room,string vip,int bttypeid)
+        public string ValidateBett(string account, string expect, string money, string room, string vip, int bttypeid)
         {
             string sql = string.Format(@"declare @account varchar(15)='{0}',@expect varchar(100)='{1}',@money decimal(18,2)={2},
   @room varchar(10)='{3}',@vip varchar(10)='{4}',@bttypeid int={5}
@@ -947,7 +947,7 @@ select count(1) from #list where DATEDIFF(SECOND,opentime,getdate())>=210
   else
   begin
   select '' msg
-  end", account,expect,money,room,vip,bttypeid);
+  end", account, expect, money, room, vip, bttypeid);
 
             return RDBSHelper.ExecuteScalar(sql).ToString();
         }
@@ -962,13 +962,13 @@ select count(1) from #list where DATEDIFF(SECOND,opentime,getdate())>=210
         public string AddNewBett(MD_Bett bett)
         {
             DbParameter[] parms = {
-                                    GenerateInParam("@uid", SqlDbType.VarChar, 20, bett.Account),
-                                     GenerateInParam("@lotteryid", SqlDbType.Int, 4, bett.Bttypeid),
-                                     GenerateInParam("@lotterynum", SqlDbType.VarChar, 50, bett.Lotterynum),
+                                    GenerateInParam("@uid", SqlDbType.VarChar, 20, bett.Uid),
+                                    GenerateInParam("@lotteryid", SqlDbType.Int, 4, bett.Lotteryid),
+                                    GenerateInParam("@lotterynum", SqlDbType.VarChar, 50, bett.Lotterynum),
                                     GenerateInParam("@money", SqlDbType.Int, 4, bett.Money),
                                     GenerateInParam("@bettinfo", SqlDbType.VarChar, 500, bett.Bettinfo),
                                     GenerateInParam("@bettnum", SqlDbType.VarChar, 100, bett.Bettnum),
-                                    GenerateInParam("@bettmode", SqlDbType.Int, 4, bett.Bettmode),
+                                    GenerateInParam("@bettmode", SqlDbType.Int, 4, bett.Bettmode)
                                     
                                     };
             string commandText = string.Format(@"
@@ -1381,7 +1381,7 @@ end
 
 end
 
-", expect, bttypeid,money,type);
+", expect, bttypeid, money, type);
             return RDBSHelper.ExecuteScalar(sql).ToString();
         }
 
@@ -2112,7 +2112,7 @@ end catch
         /// <param name="pageNumber"></param>
         /// <param name="condition"></param>
         /// <returns></returns>
-        public DataTable GetProfitList(string type,int pageSize,int pageNumber,string condition="")
+        public DataTable GetProfitList(string type, int pageSize, int pageNumber, string condition = "")
         {
             DbParameter[] parms = {
                                       GenerateInParam("@pagesize", SqlDbType.Int, 4, pageSize),
@@ -2209,7 +2209,7 @@ begin catch
 select ERROR_MESSAGE() state
 end catch
 
-", type,condition);
+", type, condition);
             DataTable dt = RDBSHelper.ExecuteTable(sql, parms)[0];
             return dt;
 

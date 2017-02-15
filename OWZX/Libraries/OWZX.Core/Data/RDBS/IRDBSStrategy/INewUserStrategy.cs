@@ -225,7 +225,7 @@ namespace OWZX.Core
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        string DeleteMode(string id);
+         string DeleteMode(string name, int uid, int lotterytype);
 
         /// <summary>
         ///获取模式信息(分页)

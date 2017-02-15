@@ -78,8 +78,8 @@ if OBJECT_ID('tempdb..#bettprof') is not null
  select a.*,b.luckresult
  into #bettprof
  from owzx_bett a
- join owzx_bettprofitloss b on a.bettid=b.bettid
  join  #lottery c on a.lotteryid=c.type and a.lotterynum=c.expect
+ left join owzx_bettprofitloss b on a.bettid=b.bettid
 
 
 select a.*,isnull(b.totalbett,0)totalbett,isnull(c.winperson,0) winperson,isnull(d.bettperson,0)bettperson,isnull(e.luckresult,0)luckresult,

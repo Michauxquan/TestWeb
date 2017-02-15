@@ -31,12 +31,12 @@
     </div>
     <div id="navs">
         <ul id="navItme">
-            <li><a href="/" class="index">首页</a></li>
+            <li onclick="javascript: window.location.href ='/'"><a href="/" class="index">首页</a></li>
             <li><a href="/">商务合作</a></li>
             <li><a href="/">活动专区</a></li>
-            <li><a href="/nwlottery/ltindex/1">游戏乐园</a></li>
-            <li><a href="@Url.Action("changelist","changeware")">兑换中心</a></li>
-            <li><a href="@Url.Action("userdefault", "ucenter")">用户中心</a></li> 
+            <li onclick="javascript: window.location.href = '/nwlottery/ltindex/1'"><a href="/nwlottery/ltindex/1">游戏乐园</a></li>
+            <li onclick="javascript: window.location.href =@Url.Action("changelist","changeware")"><a href="@Url.Action("changelist","changeware")">兑换中心</a></li>
+            <li onclick="javascript: window.location.href =@Url.Action("userdefault", "ucenter")"><a href="@Url.Action("userdefault", "ucenter")">用户中心</a></li> 
         </ul>
     </div>
 <div  style="border-bottom: 2px solid white;"></div>

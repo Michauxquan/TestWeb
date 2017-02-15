@@ -377,9 +377,9 @@ namespace OWZX.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static bool DeleteMode(string id)
+        public static bool DeleteMode(string name, int uid, int lotterytype)
         {
-            string result = OWZX.Data.NewUser.DeleteMode(id);
+            string result = OWZX.Data.NewUser.DeleteMode(name,uid,lotterytype);
             if (result.EndsWith("成功"))
             {
                 return true;

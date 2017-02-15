@@ -4,12 +4,12 @@
 @model List<OWZX.Model.MD_BettMode>
 <script src="@{@WorkContext.ScriptCDN}/scripts/play.js"></script>
 
-<link href="/components/layer/skin/layer.css" rel="stylesheet" />
-<script src="/components/layer/layer.js"></script>
+
 <script>
     var StrTimeOut = 0;
     var num = "";
     var bettmodel = "";
+    var mymoney = @WorkContext.PartUserInfo.TotalMoney;//我的余额
 </script>
 <div class="bt_page">
     @if((bool)ViewData["exists"])
@@ -114,7 +114,8 @@
                 string num = @row["nums"].ToString();
                 <tr align="center" bgcolor="#FFFFFF" height="27">
                     <td>
-                        <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.fw.png'); " width="25" height="25">@row["item"]</span>
+                        <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.fw.png'); " 
+                              width="25" height="25">@row["item"]</span>
                     </td>
                     <td style="display: none;"></td>
                     <td class="lossrate" data-type=@row["nums"]>@row["odds"]</td>

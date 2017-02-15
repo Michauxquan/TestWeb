@@ -9,7 +9,7 @@ namespace OWZX.Model
     /// <summary>
     /// 用户投注模式
     /// </summary>
-   public class MD_BettMode
+    public class MD_BettMode
     {
         private int modeid;
         /// <summary>
@@ -32,13 +32,18 @@ namespace OWZX.Model
         }
 
         private int uid;
-        
+
         public int Uid
         {
             get { return uid; }
             set { uid = value; }
         }
 
+        private int lotterytype;
+        /// <summary>
+        /// 彩票类型
+        /// </summary>
+        public int LotteryType { get; set; }
         private string bettnum;
         /// <summary>
         ///号码集合;分割 
@@ -108,7 +113,7 @@ namespace OWZX.Model
             get { return updatetime; }
             set { updatetime = value; }
         }
-        
+
         private int updateuid;
         /// <summary>
         /// 

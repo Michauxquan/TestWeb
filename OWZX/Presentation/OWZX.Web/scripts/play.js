@@ -59,7 +59,7 @@ $(document).ready(function ()
         //{
         //    betttype = i;
         //}
-        //$(this).css("background", "url(../img/xy28_bg.gif)");//img_bt2.gif
+        $(this).css("background", "url(../../images/xy28_bg.gif)");//img_bt2.gif
         setValue(i);
         getAllpceggs();
     }).hover(
@@ -204,6 +204,7 @@ function setValue(num)
 //清除方法
 function clear()
 {
+    $(".img_bt1").css("background", "url(../../images/img_bt1.png) left no-repeat");
     $("#panel").find("input[name='SMONEY']").each(function (i)
     {
         if (!$(this).attr("readonly"))
@@ -269,11 +270,11 @@ function personmode(id)
     bettmodel = id;
     $.ajax({
         type: "get",
-        url: "/nwlottery/getbettmode/"+id,
+        url: "/nwlottery/getbettmode/" + id,
         success: function (data)
         {
             var dt = JSON.parse(data);
-             
+
             UserMode(dt.Bettinfo.split(';'));
 
         }
@@ -281,23 +282,30 @@ function personmode(id)
 }
 
 //自定义投注模式
-function UserMode(arr, flag) {
-    if (StrTimeOut == "-1") {
-        layer.alert("该期已经截止投注！", {icon:2,title:"提示"});
+function UserMode(arr, flag)
+{
+    if (StrTimeOut == "-1")
+    {
+        layer.alert("该期已经截止投注！", { icon: 2, title: "提示" });
         return false;
     }
     clear();
-    $.each(arr, function (i) {
+    $.each(arr, function (i)
+    {
         var arritem = arr[i].split(':');
-        if (this != "") {
+        if (this != "")
+        {
             //不可选的号，不处理
-            if ($("#txt_" + (parseInt(arritem[0])).toString()).attr("readonly")) {
+            if ($("#txt_" + (parseInt(arritem[0])).toString()).attr("readonly"))
+            {
                 return;
             }
-            if (flag) {
+            if (flag)
+            {
                 $("#txt_" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").attr("disabled", true);
                 $("#txt_" + (parseInt(arritem[0])).toString()).attr("readonly", true).attr("disabled", true);
-            } else {
+            } else
+            {
                 $("#txt_" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").attr("checked", true);
             }
             $("#txt_" + (parseInt(arritem[0])).toString()).val(ver(arritem[1]));
@@ -323,65 +331,6 @@ function refreshd(id)
         }
     });
 }
-
-
-//用户金币
-//获取用户金币
-function VadUsGold()
-{
-    var result = false;
-    $.ajax({
-        url: "../Data/CusBettOperater.ashx?qctype=vdusgold",
-        type: "get",
-        async: "false",
-        success: function (data)
-        {
-            if (data != "")
-            {
-                mypceggs = data;
-                if (parseInt(mypceggs) < 500)
-                {
-                    //验证是否能够领取
-                    $.ajax({
-                        type: "post",
-                        url: '../Data/CusBettOperater.ashx',
-                        data: { "qctype": "getgold", "type": "get" },
-                        async: false,
-                        success: function (data)
-                        {
-                            var dt = JSON.parse(data);
-                            if (dt.Result)
-                            {
-                                showmessage("8", "目前您的账户上金币少于500，是否需要免费获取金币？", LastIssue);
-                            }
-                        }
-                    });
-
-                }
-            }
-        }
-    });
-    return result;
-
-}
-
-function getgoldop()
-{
-    $.ajax({
-        type: "post",
-        url: '../Data/CusBettOperater.ashx',
-        data: { "qctype": "getgold", "type": "add" },
-        async: false,
-        success: function (data)
-        {
-            rm();
-        }
-    });
-}
-
-//结束
-
-
 
 
 var first = 0;
@@ -459,7 +408,7 @@ function comform()
         layer.alert("请投注！", { icon: 2, title: "提示" });
         isconfirmenable = true
         return false;
-    } else if (t > mypceggs)
+    } else if (t > mymoney)
     {
         layer.alert("您的乐豆不足！", { icon: 2, title: "提示" });
         isconfirmenable = true
@@ -475,12 +424,18 @@ function comform()
             str.push(txt_value);
         }
         $("#ALLSMONEY").val(str.join(","));
-        layer.alert("确认你投注？将扣除你<span id='postgoldeggs' style='color :Red;font-weight:bold'>" + t + "</span>乐豆！", { icon: 3, title: "提示" });
+        var message = "确认你投注？将扣除你<span id='postgoldeggs' style='color :Red;font-weight:bold'>" + t + "</span>乐豆！"
+
+        layer.confirm(message, function ()
+        {
+            datapost();
+            layer.closeAll('dialog');
+        }, { icon: 3, title: "提示" });
         t = ver(String(t)); //将数字转字符串后千分位 
         $("#postgoldeggs").html(t);
         $("#SMONEYSUM").val(t);
-       
-        datapost();
+
+
         isconfirmenable = true;
     }
 }
@@ -500,34 +455,30 @@ function datapost()
             ipval = $.trim(ipval).replace(/,/gi, "");//去掉数字分割符
             if (ipval != "0" && ipval.trim() != "")
             {
-                var src = $(this).parent().parent().find("td").eq(0).find("img").attr("src");
-                var num = src.split('_')[1].split('.')[0];
+                var src = $(this).parent().parent().find("td").eq(0).find("span").text();
+                var num = src;
                 arrbettnew += (num.length == 1 ? ("0" + num) : num) + ":" + ipval + ";";
                 arrbettnum += (num.length == 1 ? ("0" + num) : num) + ";";
             }
         }
     });
-    //??
-    $.post("../Data/CusBettOperater.ashx?qctype=addbett",
+
+    $.post("/nwlottery/addbettinfo",
                {
-                   "fcnum": num, "bettTotalEggs": $("#totalvalue").text().replace(/,/gi, ""),
+                   "lotterytype":lotterytype,"fcnum": num, "bettTotalEggs": $("#totalvalue").text().replace(/,/gi, ""),
                    "cusbettinfo": arrbettnew.substr(0, arrbettnew.length - 1), "bettnumber": arrbettnum.substr(0, arrbettnum.length - 1),
-                   "betttype": betttype
+                   "bettmodel": bettmodel
                },
                function (data)
                {
-                   if (data != "")
+                   if (data == "1")
                    {
-                       var dt = JSON.parse(data);
-                       if (dt.Result)
-                       {
-                           //成功
-                           layer.alert("第<span  style='color :Red;'>" + num + "</span>期投注成功！", {icon:1, title: "提示"})
-                       } else
-                       {
-                           layer.alert("投注失败！", { icon: 2, title: "提示" })
-                       }
-
+                       //成功
+                       layer.alert("第<span  style='color :Red;'>" + num + "</span>期投注成功！", { icon: 1, title: "提示" })
+                       $(".temp_content").load("/nwlottery/_content", { "type": lotterytype, "pageindex": 1 });
+                   } else
+                   {
+                       layer.alert("投注失败！", { icon: 2, title: "提示" })
                    }
 
                });
@@ -683,7 +634,7 @@ function showmessage(flag, msg, NLid)
 
 
     //弹出笼罩层
-    var bodyheight =$('#bb_body').height();
+    var bodyheight = $('#bb_body').height();
     var parent_div = document.getElementById("parent_div");
     parent_div.style.display = 'block';
     parent_div.style.height = parseInt(bodyheight) + 'px';

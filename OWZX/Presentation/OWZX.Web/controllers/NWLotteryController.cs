@@ -52,8 +52,20 @@ namespace OWZX.Web.controllers
             };
             return View(lot);
         }
-
-
+        /// <summary>
+        /// 彩票是否开奖
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult LotteryOpen()
+        {
+            int type = WebHelper.GetFormInt("type");
+            string expect = WebHelper.GetFormString("expect");
+            bool result = LotteryList.ExistsLotteryOpen(type.ToString(), expect);
+            if (result)
+                return Content("1");
+            else
+                return Content("0");
+        }
 
         public ActionResult LT36Index()
         {
@@ -69,7 +81,7 @@ namespace OWZX.Web.controllers
             int type = WebHelper.GetFormInt("type");
             int settype = 13;
             switch (type)
-            { 
+            {
                 case 1:
                 case 2:
                 case 6:
@@ -101,8 +113,8 @@ namespace OWZX.Web.controllers
         {
             int id = WebHelper.GetQueryInt("id");
             MD_BettMode btmode = NewUser.GetModeList(1, 1, " where a.modeid=" + id.ToString())[0];
-           string btjson= JsonConvert.SerializeObject(btmode);
-           return Content(btjson);
+            string btjson = JsonConvert.SerializeObject(btmode);
+            return Content(btjson);
         }
         /// <summary>
         /// 投注
@@ -110,8 +122,21 @@ namespace OWZX.Web.controllers
         /// <returns></returns>
         public ActionResult AddBettInfo()
         {
-
-            return Content("");
+            MD_Bett bett = new MD_Bett
+            {
+                Uid = WorkContext.Uid,
+                Lotteryid = WebHelper.GetFormInt("lotterytype"),
+                Lotterynum = WebHelper.GetFormString("fcnum"),
+                Bettinfo = WebHelper.GetFormString("cusbettinfo"),
+                Bettnum = WebHelper.GetFormString("bettnumber"),
+                Money = WebHelper.GetFormInt("bettTotalEggs"),
+                Bettmode = WebHelper.GetFormInt("bettmodel")
+            };
+            bool result = Lottery.AddNewBett(bett);
+            if (result)
+                return Content("1");
+            else
+                return Content("0");
         }
 
         /// <summary>
@@ -133,7 +158,7 @@ namespace OWZX.Web.controllers
             int type = WebHelper.GetFormInt("type");
             int pageindex = WebHelper.GetFormInt("pageindex");
             int pagesize = 20;
-            DataTable dt = LotteryList.GetUserBett(type,2 , pageindex, pagesize);//WorkContext.Uid
+            DataTable dt = LotteryList.GetUserBett(type, WorkContext.Uid, pageindex, pagesize);
             LotteryRecord record = new LotteryRecord()
             {
                 PageModel = new PageModel(20, pageindex, dt.Rows.Count > 0 ? int.Parse(dt.Rows[0]["totalcount"].ToString()) : 0),
@@ -141,5 +166,72 @@ namespace OWZX.Web.controllers
             };
             return View(record);
         }
+        /// <summary>
+        /// 投注模式
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _BettMode()
+        {
+            int type = WebHelper.GetFormInt("type");
+            int settype = 13;
+            switch (type)
+            {
+                case 1:
+                case 2:
+                case 6:
+                    settype = (int)LotterySetType.number;
+                    break;
+                case 4:
+                case 5:
+                    settype = (int)LotterySetType.sdz;
+                    break;
+                case 9:
+                    settype = (int)LotterySetType.lhb;
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+            }
+            DataSet ds = LotteryList.GetLotterySet(settype);
+            ViewData["ltset"] = ds;
+            List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString());
+            return View(model);
+        }
+
+        /// <summary>
+        /// 添加投注模式
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AddBettMode()
+        {
+            MD_BettMode btmode = new MD_BettMode
+            {
+                Name = WebHelper.GetFormString("mdname"),
+                Bettinfo = WebHelper.GetFormString("list"),
+                Bettnum = WebHelper.GetFormString("listnum"),
+                Betttotal = WebHelper.GetFormInt("sum"),
+                Uid = WorkContext.Uid
+            };
+            bool result = NewUser.AddMode(btmode);
+            if (result)
+                return Content("1");
+            else
+                return Content("0");
+        }
+        /// <summary>
+        /// 删除模式
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DelBettMode()
+        {
+            bool result = NewUser.DeleteMode(WebHelper.GetFormString("mdname"), WorkContext.Uid, WebHelper.GetFormInt("lotterytype"));
+            if (result)
+                return Content("1");
+            else
+                return Content("0");
+        }
+
+
     }
 }

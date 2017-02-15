@@ -43,7 +43,13 @@ function GetRTime(type, ctime, fcnum, bettime, stoptime)
         if (nS == -5 || nS == -10 || nS == -15 || nS == -20 || nS == -25)
         {
             $(".remains").html('Loading......');
-            //$(".lot_content").load("/nwlottery/", { "type": type, "pageindex": 1 })
+            $.post("/nwlottery/lotteryopen", { "type": lotterytype, "expect": num }, function (data)
+            {
+                if (data == "1")
+                {
+                    $(".temp_content").load("/nwlottery/_content", { "type": lotterytype, "pageindex": 1 });
+                }
+            });
         }
 
         if (nS <= -30)

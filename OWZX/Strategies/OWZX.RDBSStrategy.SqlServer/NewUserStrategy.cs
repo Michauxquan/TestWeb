@@ -1020,9 +1020,12 @@ end
         /// <returns></returns>
         public string AddMode(MD_BettMode mode)
         {
-            DbParameter[] parms = {
+            try
+            {
+                DbParameter[] parms = {
                                         GenerateInParam("@name", SqlDbType.VarChar,50, mode.Name),
                                         GenerateInParam("@uid", SqlDbType.Int,4, mode.Uid),
+                                        GenerateInParam("@lotterytype", SqlDbType.Int,4, mode.LotteryType),
                                         GenerateInParam("@bettnum", SqlDbType.VarChar, 100, mode.Bettnum),
                                         GenerateInParam("@bettinfo", SqlDbType.VarChar,500, mode.Bettinfo),
                                         GenerateInParam("@betttotal", SqlDbType.Int,4, mode.Betttotal),
@@ -1031,27 +1034,53 @@ end
                                         
                                        
                                     };
-            string commandText = string.Format(@"
+                string commandText = string.Format(@"
 begin try
+begin tran t1
+if exists(select 1 from owzx_userbettmodel where uid=@uid and lotterytype=@lotterytype and name=@name)
+begin
+update a set 
+a.bettnum=@bettnum
+,a.bettinfo=@bettinfo
+,a.betttotal=@betttotal
+,a.wintype=@wintype
+,a.losstype=@losstype
+,a.updatetime=convert(varchar(25),getdate(),120)
+,a.updateuid=@uid
+from owzx_userbettmodel a
+where  uid=@uid and name=@name
 
+end
+else
+begin
 INSERT INTO [owzx_userbettmodel]
            ([name]
-           ,[uid]
+           ,[uid],lotterytype
            ,[bettnum]
            ,[bettinfo]
            ,[betttotal]
            ,[wintype]
            ,[losstype]
            )
-VALUES (@name,@uid,@bettnum,@bettinfo ,@betttotal,@wintype,@losstype)
+VALUES (@name,@uid,@lotterytype,@bettnum,@bettinfo ,@betttotal,@wintype,@losstype)
+end
 
 select '添加成功' state
+commit tran t1
 end try
 begin catch
+rollback tran t1
 select ERROR_MESSAGE() state
 end catch
+
 ");
-            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+                return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+            }
+            catch (Exception er)
+            {
+                
+                throw;
+            }
         }
 
         /// <summary>
@@ -1088,8 +1117,8 @@ a.name=@name
 ,a.betttotal=@betttotal
 ,a.wintype=@wintype
 ,a.losstype=@losstype
-a.updatetime=convert(varchar(25),getdate(),120)
-a.updateuid=@uid
+,a.updatetime=convert(varchar(25),getdate(),120)
+,a.updateuid=@uid
 from owzx_userbettmodel a
 where a.modeid=@modeid
 
@@ -1115,13 +1144,13 @@ end catch
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public string DeleteMode(string id)
+        public string DeleteMode(string name, int uid,int lotterytype)
         {
             string commandText = string.Format(@"
             begin try
-            if exists(select 1 from owzx_userbettmodel where modeid in ({0}))
+            if exists(select 1 from owzx_userbettmodel where uid={0} and name='{1}' and lotterytype={2})
             begin
-            delete from owzx_userbettmodel where modeid in ({0})
+            delete from owzx_userbettmodel where uid={0} and name='{1}'
             select '删除成功' state
             end
             else
@@ -1132,8 +1161,8 @@ end catch
             begin catch
             select ERROR_MESSAGE() state
             end catch
-            ",
-             id);
+            ", uid,
+             name,lotterytype);
             return RDBSHelper.ExecuteScalar(commandText).ToString();
         }
 
@@ -1159,7 +1188,7 @@ if OBJECT_ID('tempdb..#list') is not null
 
 SELECT ROW_NUMBER() over(order by a.modeid desc) id
       ,a.[name]
-           ,a.[uid]
+           ,a.[uid],a.lotterytype
            ,a.[bettnum]
            ,a.[bettinfo]
            ,a.[betttotal]
