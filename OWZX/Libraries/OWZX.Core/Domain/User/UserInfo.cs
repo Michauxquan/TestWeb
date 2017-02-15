@@ -21,6 +21,7 @@ namespace OWZX.Core
         private int _paycredits;//支付积分
         private int _rankcredits;//等级积分
         private int _verifyemail;//是否验证邮箱
+        private int _verifyrg;//是否验地区
         private int _verifysafepassword;//是否验证安全吗
         private int _verifymobile;//是否验证手机
         private DateTime _liftbantime = new DateTime(1900, 1, 1);//解禁时间
@@ -82,7 +83,13 @@ namespace OWZX.Core
         {
             set { _mobile = value.TrimEnd(); }
             get { return _mobile; }
+        } 
+        public int VerifyRg
+        {
+            set { _verifyrg = value; }
+            get { return _verifyrg; }
         }
+
         /// <summary>
         /// 用户密码
         /// </summary>
@@ -243,6 +250,7 @@ namespace OWZX.Core
         private DateTime _bday = DateTime.Now;//用户出生日期
         private string _idcard = "";//身份证号
         private int _regionid = 0;//区域id
+        private int _regionidtwo = 0;//区域id
         private string _address = "";//所在地
         private string _bio = "";//简介
         private int _invitecode = 0;//邀请码
@@ -287,7 +295,15 @@ namespace OWZX.Core
             get { return _registerip; }
         }
         /// <summary>
-        /// 用户注册区域id
+        /// 用户验证区域id1
+        /// </summary>
+        public int RegisterRgIdTwo
+        {
+            set { _regionidtwo = value; }
+            get { return _regionidtwo; }
+        }
+        /// <summary>
+        /// 用户验证区域id
         /// </summary>
         public int RegisterRgId
         {
@@ -380,6 +396,7 @@ namespace OWZX.Core
         private DateTime _bday = DateTime.Now;//用户出生日期
         private string _idcard = "";//身份证号
         private int _regionid = 0;//区域id
+        private int _regionidtwo = 0;//区域id
         private string _address = "";//所在地
         private string _bio = "";//简介
         private int _invitecode = 0;//邀请码
@@ -479,6 +496,14 @@ namespace OWZX.Core
         {
             get { return _regionid; }
             set { _regionid = value; }
+        }
+        ///<summary>
+        ///区域id
+        ///</summary>
+        public int RegionIdTwo
+        {
+            get { return _regionidtwo; }
+            set { _regionidtwo = value; }
         }
         ///<summary>
         ///所在地

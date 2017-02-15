@@ -123,6 +123,7 @@
     <Compile Include="models\LotteryRecord.cs" />
     <Compile Include="models\NewsModel.cs" />
     <Compile Include="models\UCenterModel.cs" />
+    <Compile Include="models\UserLogList.cs" />
     <Compile Include="models\UserChangeList.cs" />
     <Compile Include="models\WareSkuList.cs" />
     <Compile Include="models\WareChangeList.cs" />

@@ -148,7 +148,7 @@ namespace OWZX.Web.Controllers
             }
             else//验证成功时
             {
-                LoginFailLogs.AddLogin(WorkContext.IP, WorkContext.Uid,DateTime.Now,"",0,"登录");
+                LoginFailLogs.AddLogin(WorkContext.IP, partUserInfo.Uid,DateTime.Now, CommonTools.commontools.GetIpName(WorkContext.IP), 0,"登录");
                 //删除登陆失败日志
                 LoginFailLogs.DeleteLoginFailLogByIP(WorkContext.IP);
                 //更新用户最后访问
@@ -511,10 +511,10 @@ namespace OWZX.Web.Controllers
             {
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名必须大于3且不大于50个字符", "}");
             }
-            else if ((!SecureHelper.IsSafeSqlString(accountName)))
-            {
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名不存在", "}");
-            }
+            //else if (!SecureHelper.IsSafeSqlString(accountName)  )
+            //{
+            //    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名不存在", "}");
+            //}
 
             //验证码验证
             if (CommonHelper.IsInArray(WorkContext.PageKey, WorkContext.ShopConfig.VerifyPages))

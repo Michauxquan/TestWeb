@@ -830,23 +830,23 @@ namespace OWZX.Web.Controllers
         /// <summary>
         /// 元宝明细
         /// </summary>
-        public ActionResult AccountDetail(string Account = "", string start = "", string end = "", int pageSize = 15, int pageNumber = 1)
+        public ActionResult AccountDetail(int Uid=-1 , string start = "", string end = "", int pageSize = 15, int pageNumber = 1)
         {
 
             StringBuilder strb = new StringBuilder();
             strb.Append(" where 1=1");
-            if (string.IsNullOrEmpty(Account))
+            if (Uid==-1)
             {
-                Account = WorkContext.PartUserInfo.Mobile;
+                Uid = WorkContext.PartUserInfo.Uid;
             }
-            strb.Append(" and rtrim(b.mobile)='" + Account + "'");
+            strb.Append(" and b.uid=" + Uid + "");
             if (start != string.Empty)
                 strb.Append(" and a.addtime between '" + start + "' and '" + end + "'");
 
             List<MD_Change> list = NewUser.GetAChangeList(pageNumber, pageSize, strb.ToString());
             UserChangeList userlist = new UserChangeList
             {
-                Account = Account,
+                Uid = Uid,
                 Start = start,
                 End = end,
                 PageModel = new PageModel(pageSize, pageNumber, list.Count > 0 ? list[0].TotalCount : 0),
@@ -858,10 +858,15 @@ namespace OWZX.Web.Controllers
         /// <summary>
         /// 兑换明细
         /// </summary>
-        public ActionResult ChangeRecord(int type=-1, int pageSize = 15, int pageNumber = 1)
+        public ActionResult ChangeRecord(int uid=-1,int type=-1 ,int pageSize = 15, int pageNumber = 1)
         { 
             StringBuilder strb = new StringBuilder();
             strb.Append(" ");
+            if (uid == -1)
+            {
+                uid = WorkContext.PartUserInfo.Uid;
+            }
+            strb.Append(" and a.userid="+uid+" ");
             if (type>-1)
             {
                 var btime =
@@ -873,7 +878,8 @@ namespace OWZX.Web.Controllers
             List<MD_UserOrder> list = ChangeWare.GetUserOrderList(pageNumber, pageSize, strb.ToString());
             WareChangeList warelist = new WareChangeList
             {
-                type = type, 
+                type = type,
+                uid = uid,
                 PageModel = new PageModel(pageSize, pageNumber, list.Count > 0 ? list[0].TotalCount : 0),
                 ChangeList = list
             };
@@ -900,11 +906,12 @@ namespace OWZX.Web.Controllers
             return AjaxResult("data", msg);
         }
 
-        public ActionResult LoginLimit()
+        public ActionResult LoginLimit(int uid=-1,int type = -1, int pageSize = 15, int pageNumber = 1)
         {
             UserInfoModel model = new UserInfoModel();
             model.UserInfo = Users.GetUserById(WorkContext.Uid);
             RegionInfo regionInfo = Regions.GetRegionById(model.UserInfo.RegionId);
+            RegionInfo regionInfotwo = Regions.GetRegionById(model.UserInfo.RegisterRgIdTwo);
             if (regionInfo != null)
             {
                 ViewData["provinceId"] = regionInfo.ProvinceId;
@@ -917,8 +924,46 @@ namespace OWZX.Web.Controllers
                 ViewData["cityId"] = -1;
                 ViewData["countyId"] = -1;
             }
-            return View(WorkContext.PartUserInfo);
-        }
+            if (regionInfotwo != null)
+            {
+                ViewData["provinceId"] = regionInfotwo.ProvinceId;
+                ViewData["cityIdtwo"] = regionInfotwo.CityId;
+                ViewData["countyIdtwo"] = regionInfotwo.RegionId;
+            }
+            else
+            {
+                ViewData["provinceIdtwo"] = -1;
+                ViewData["cityIdtwo"] = -1;
+                ViewData["countyIdtwo"] = -1;
+            }
+            StringBuilder strb = new StringBuilder();
+            strb.Append(" ");
+            if (uid == -1)
+            {
+                uid = WorkContext.PartUserInfo.Uid;
+            }
+            if (uid > -1)
+            {
+                strb.Append(" and a.uid="+uid+" ");
+            }
+            if (type > -1)
+            {
+                var btime =
+                    DateTime.Now.AddDays(type == 1
+                        ? -7
+                        : (type == 2 ? -30 : (type == 3 ? -180 : (type == 4 ? -365 : -1)))).ToString("yyyy-MM-dd HH:mm:ss");
+                strb.Append(" and a.createtime between '" + btime + "' and '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'");
+            }
+            List<MD_UsersLog> list = LoginFailLogs.GetUserLoginList(pageNumber, pageSize, strb.ToString());
+            UserLogList loglist = new UserLogList
+            {
+                type = type,
+                PartUser = WorkContext.PartUserInfo,
+                PageModel = new PageModel(pageSize, pageNumber, list.Count > 0 ? list[0].TotalCount : 0),
+                LogList = list
+            };
+            return View(loglist); 
+    }
 
         #endregion
         protected sealed override void OnAuthorization(AuthorizationContext filterContext)

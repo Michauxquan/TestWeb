@@ -62,6 +62,7 @@
     <Compile Include="Cache\CacheManager\CacheByRegex.cs" />
     <Compile Include="Cache\CacheManager\ICacheManager.cs" />
     <Compile Include="Cache\ICacheStrategy.cs" />
+    <Compile Include="Common\CommonTools.cs" />
     <Compile Include="Config\BSPConfig.cs" />
     <Compile Include="Config\IConfigStrategy.cs" />
     <Compile Include="Config\Info\AppUpdateConfigInfo.cs" />

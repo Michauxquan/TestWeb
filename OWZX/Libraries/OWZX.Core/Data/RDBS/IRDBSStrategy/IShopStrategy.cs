@@ -159,7 +159,15 @@ namespace OWZX.Core
         /// <param name="loginIP">登录IP</param>
         /// <param name="loginTime">登录时间</param>
         void AddLoginFailTimes(long loginIP, DateTime loginTime);
-
+        /// <summary>
+        /// 增加登陆日志
+        /// </summary>
+        /// <param name="loginIP"></param>
+        /// <param name="uid"></param>
+        /// <param name="loginTime"></param>
+        /// <param name="ipName"></param>
+        /// <param name="type"></param>
+        /// <param name="remark"></param>
         void AddLogin(string loginIP, int uid, DateTime loginTime, string ipName, int type, string remark);
         /// <summary>
         /// 删除登录失败日志
@@ -184,6 +192,8 @@ namespace OWZX.Core
         /// <param name="condition">条件</param>
         /// <returns></returns>
         IDataReader GetAdminOperateLogList(int pageSize, int pageNumber, string condition);
+
+        DataTable  GetLoginList(int pageindex, int pageSize, string sqlwhere = "");
 
         /// <summary>
         /// 获得管理员操作日志列表条件
