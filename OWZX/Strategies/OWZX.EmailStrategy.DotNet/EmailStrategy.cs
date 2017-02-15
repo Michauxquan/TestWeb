@@ -84,33 +84,66 @@ namespace OWZX.EmailStrategy.DotNet
         /// <returns>是否发送成功</returns>
         public bool Send(string to, string subject, string body)
         {
-            SmtpClient smtp = new SmtpClient();
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            if (_port != 25)
-                smtp.EnableSsl = true;
-
-            smtp.Host = _host;
-            smtp.Port = _port;
-            smtp.Credentials = new NetworkCredential(_username, _password);
-
-            MailMessage mm = new MailMessage();
-            mm.Priority = MailPriority.Normal;
-            mm.From = new MailAddress(_from, subject, _bodyencoding);
-            mm.To.Add(to);
-            mm.Subject = subject;
-            mm.Body = body;
-            mm.BodyEncoding = _bodyencoding;
-            mm.IsBodyHtml = _isbodyhtml;
-
-            try
+            if (_port == 465)
             {
-                smtp.Send(mm);
-            }
-            catch
-            {
-                return false;
-            }
+                SmtpClient client = new SmtpClient(_host);
+                client.EnableSsl = true;
+                client.Port = _port;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new System.Net.NetworkCredential(_from, _password);
+                MailAddress from = new MailAddress(_from, "发财28", Encoding.UTF8);//初始化发件人  
+                MailAddress toadd = new MailAddress(to, "", Encoding.UTF8);//初始化收件人  
+                //设置邮件内容  
+                MailMessage message = new MailMessage(from, toadd);
+                message.Body = body;
+                message.BodyEncoding = _bodyencoding;
+                message.Subject = subject;
+                message.Priority = MailPriority.Normal;
+                message.SubjectEncoding = System.Text.Encoding.Default;
+                message.IsBodyHtml = _isbodyhtml;
 
+                //发送邮件  
+                try
+                {
+                    client.Send(message);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                if (_port != 25)
+                    smtp.EnableSsl = true;
+
+                smtp.Host = _host;
+                smtp.Port = _port;
+                smtp.Credentials = new NetworkCredential(_username, _password);
+
+                MailMessage mm = new MailMessage();
+                mm.Priority = MailPriority.Normal;
+                mm.From =new MailAddress(_from, subject, _bodyencoding);
+                mm.To.Add(to);
+                mm.Subject = subject;
+                mm.Body = body;
+                mm.Priority = MailPriority.High;
+                mm.BodyEncoding = _bodyencoding;
+                mm.IsBodyHtml = _isbodyhtml;
+
+                try
+                {
+                    smtp.Send(mm);
+                }
+                catch(Exception ex)
+                {
+                    return false;
+                }
+            }
             return true;
         }
 

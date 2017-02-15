@@ -49,6 +49,12 @@ namespace OWZX.Data
         {
             OWZX.Core.BSPData.RDBS.AddLogin(loginIP, uid, loginTime, ipName, type, remark);
         }
+
+        public static DataTable GetLoginList(int pageindex, int pageSize, string sqlwhere = "")
+        {
+            return OWZX.Core.BSPData.RDBS.GetLoginList(pageindex, pageSize, sqlwhere);
+        }
+
         /// <summary>
         /// 删除登陆失败日志
         /// </summary>
