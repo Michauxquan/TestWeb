@@ -911,30 +911,32 @@ namespace OWZX.Web.Controllers
             UserInfoModel model = new UserInfoModel();
             model.UserInfo = Users.GetUserById(WorkContext.Uid);
             RegionInfo regionInfo = Regions.GetRegionById(model.UserInfo.RegionId);
-            RegionInfo regionInfotwo = Regions.GetRegionById(model.UserInfo.RegisterRgIdTwo);
+            RegionInfo regionInfotwo = Regions.GetRegionById(model.UserInfo.RegionIdTwo);
             if (regionInfo != null)
             {
                 ViewData["provinceId"] = regionInfo.ProvinceId;
-                ViewData["cityId"] = regionInfo.CityId;
-                ViewData["countyId"] = regionInfo.RegionId;
+                ViewData["cityId"] = regionInfo.RegionId;
+               // ViewData["cityId"] = regionInfo.CityId;
+              //  ViewData["countyId"] = regionInfo.RegionId; 
             }
             else
             {
                 ViewData["provinceId"] = -1;
                 ViewData["cityId"] = -1;
-                ViewData["countyId"] = -1;
+               // ViewData["countyId"] = -1; 
             }
             if (regionInfotwo != null)
             {
-                ViewData["provinceId"] = regionInfotwo.ProvinceId;
-                ViewData["cityIdtwo"] = regionInfotwo.CityId;
-                ViewData["countyIdtwo"] = regionInfotwo.RegionId;
+                ViewData["provinceIdtwo"] = regionInfotwo.ProvinceId;
+                ViewData["cityIdtwo"] = regionInfotwo.RegionId;
+               // ViewData["cityIdtwo"] = regionInfotwo.CityId;
+              //  ViewData["countyIdtwo"] = regionInfotwo.RegionId; 
             }
             else
             {
                 ViewData["provinceIdtwo"] = -1;
                 ViewData["cityIdtwo"] = -1;
-                ViewData["countyIdtwo"] = -1;
+               // ViewData["countyIdtwo"] = -1; 
             }
             StringBuilder strb = new StringBuilder();
             strb.Append(" ");
@@ -958,12 +960,27 @@ namespace OWZX.Web.Controllers
             UserLogList loglist = new UserLogList
             {
                 type = type,
+                uid=uid,
                 PartUser = WorkContext.PartUserInfo,
                 PageModel = new PageModel(pageSize, pageNumber, list.Count > 0 ? list[0].TotalCount : 0),
                 LogList = list
             };
             return View(loglist); 
     }
+
+
+        public ActionResult UpdateVerifyRgLog(int uid =-1,int isveritylog=0,int regionid=0, int regionidtwo=0)
+        {
+            if (uid < 1)
+            {
+                return AjaxResult("data", "此用户不存在!"); 
+            }
+
+            var result = Users.UpdateUserVerifyLog(uid, isveritylog, regionid, regionidtwo);
+
+            return AjaxResult("data", result?"设置成功":"设置失败"); 
+
+        }
 
         #endregion
         protected sealed override void OnAuthorization(AuthorizationContext filterContext)

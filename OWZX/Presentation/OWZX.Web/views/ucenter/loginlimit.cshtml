@@ -20,11 +20,23 @@
         isGuestSC = @WorkContext.ShopConfig.IsGuestSC;
         scSubmitType = @WorkContext.ShopConfig.SCSubmitType;
         provinceId = @ViewData["provinceId"]; //省id
-        cityId = @ViewData["cityId"]; //市id
-        countyId = @ViewData["countyId"]; //县或区id
+        cityId = @ViewData["cityId"]; //市id 
+       // countyId = @ViewData["countyId"]; 
         provinceIdtwo = @ViewData["provinceIdtwo"]; //省id
-        cityIdtwo = @ViewData["cityIdtwo"]; //市id
-        countyIdtwo = @ViewData["countyIdtwo"]; //县或区id
+        cityIdtwo = @ViewData["cityIdtwo"]; //市id 
+        //countyIdtwo=@ViewData["countyIdtwo"];
+        $(function() {
+            $('.okbtn').click(function() {
+                var regionid = $('#cityId').val();
+                if(parseInt(regionid)<1){regionid = $('#provinceId').val();}
+                var regionidtwo = $('#cityIdtwo').val();
+                if(parseInt(regionidtwo)<1){regionidtwo = $('#provinceIdtwo').val();}
+                $.post('/ucenter/UpdateVerifyRgLog', {uid:$('#uid').val(),isveritylog:$('#isverifylog').val(),regionid:regionid,regionidtwo:regionidtwo}, function(data) {
+                    var result = eval('(' + data + ')');
+                    alert(result.content);
+                });
+            });
+        });
     </script>
 </head>
 
@@ -49,7 +61,7 @@
     <form name="LoginRecordForm" action="">
         <div style="margin-top: 10px; border: solid 1px #ddd; width: 686px;">
             <div style="height: 38px; color: #fff; line-height: 39px; background: url('../images/baseimg/msgbgl.png') no-repeat">
-                &nbsp; &nbsp;我的记录
+                &nbsp; &nbsp;登陆地区设置
             </div>
             <table style="width: 666px; border: solid 1px #ddd; margin: 10px 0 10px 10px; font-size: 12px; color: #000; text-indent: 5px; line-height: 34px;" cellpadding="0" cellspacing="0" class="memberTable">
 
@@ -57,12 +69,12 @@
                     <td class="th" colspan="2">两个常用登录地区都设置成“--”即取消常用登陆地区限制，不设置“市”即省内都可登录</td>
                 </tr>
                 <tr >
-                    <td align="left" class="borDDD textindent" style="width: 190px; height: 34px; line-height: 34px; border-left: none;">我等前登录地区：</td>
+                    <td align="left" class="borDDD textindent" style="width: 190px; height: 34px; line-height: 34px; border-left: none;">我当前登录地区：</td>
                     <td style="border-bottom: solid 1px #ddd; border-top: solid 1px #ddd;">河南 南阳</td>
                 </tr>
                 <tr >
                     <td align="left" style="border-right: solid 1px #ddd; border-bottom: solid 1px #ddd;">是否开启登陆地区限制：</td>
-                    <td style="border-bottom: solid 1px #ddd;"><select><option value="0">否</option><option value="1">是</option></select></td>
+                    <td style="border-bottom: solid 1px #ddd;"><select id="isverifylog"><option value="0">否</option><option value="1">是</option></select></td>
                 </tr>
                 <tr >
                     <td align="left" style="border-right: solid 1px #ddd; border-bottom: solid 1px #ddd;">常用登录地区一：</td>
@@ -73,17 +85,29 @@
                         <select id="cityId" name="cityId">
                             <option selected="selected" value="-1">--</option>
                         </select>
+                         <select id="countyId" name="countyId" style="display: none !important;">
+                        <option selected="selected" value="-1">请选择</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
-                    <td align="left" style="border-right: solid 1px #ddd;">常用登录地区二：</td>
-                    <td >
+                    <td align="left" style="border-right: solid 1px #ddd;border-bottom: solid 1px #ddd;">常用登录地区二：</td>
+                    <td style="border-bottom: solid 1px #ddd;">
                         <select id="provinceIdtwo" name="provinceIdtwo">
-                            <option selected="selected" value="-1">--</option>
+                            <option selected="selected" value="0">--</option>
                         </select>
                         <select id="cityIdtwo" name="cityIdtwo">
-                            <option selected="selected" value="-1">--</option>
+                            <option selected="selected" value="0">--</option>
                         </select>
+                          <select id="countyIdtwo" name="countyIdtwo" style="display: none !important;">
+                        <option selected="selected" value="-1">请选择</option>
+                        </select>
+                    </td>
+                </tr>
+                 <tr>
+                    <td align="left"  >&nbsp;</td>
+                    <td >
+                        <a class="greenBT okbtn" style="padding: 4px 20px; font-size: 14px; cursor: pointer;">确定</a>
                     </td>
                 </tr>
             </table>
@@ -92,14 +116,14 @@
 {
     <div style="margin-top: 10px; border: solid 1px #ddd; width: 686px;">
         <div style="height: 38px; color: #fff; line-height: 39px; background: url('../images/baseimg/msgbgl.png') no-repeat">
-            &nbsp; &nbsp;登陆记录 <input type="text" style="display: none;" readonly="readonly" name="type" value="@(Model.PartUser.Uid)"  />
+            &nbsp; &nbsp;登陆记录 <input type="text" style="display: none;" id="uid" name="uid" readonly="readonly" name="type" value="@(Model.PartUser.Uid)"  />
         </div>
         <table style="width: 666px; border: solid 1px #ddd; margin: 10px 0 10px 10px;" cellpadding="0" cellspacing="0" class="memberTableBorder">
             <thead >
             <tr style="height: 34px; line-height: 34px;">
                 <th class="th" style="text-align: left; padding: 5px 0;background: #fff;font-weight: 100;" colspan="4">
                     <input type="radio" class="radioday" name="type" style="margin-left: 10px;" @(Model.type==1?"checked=true":"")  value="1" />7天&nbsp;&nbsp;
-                    <input type="radio" name="type"  @(Model.type==2?"checked=true":"")  class="radioday" value="2" />30天&nbsp;&nbsp;
+                    <input type="radio" class="radioday" name="type"  @(Model.type==2?"checked=true":"")   value="2" />30天&nbsp;&nbsp;
                     <input type="radio" class="radioday" name="type" value="3"  @(Model.type==3?"checked=true":"")  />半年 &nbsp;&nbsp;
                     <input type="radio" class="radioday" name="type" value="4" @(Model.type==4?"checked=true":"")  />一年 &nbsp;&nbsp;
                     <a class="greenBT submit" style="cursor: pointer;" style="font-size: 10px; padding: 2px 8px;">提交</a>
@@ -144,10 +168,16 @@
             });
             //绑定省列表
             bindProvinceList(document.getElementById("provinceId"), provinceId);
-            bindProvinceList(document.getElementById("provinceIdtwo"), provinceId);
+            bindProvinceList(document.getElementById("provinceIdtwo"), provinceIdtwo);
+            console.log(cityId);
             if (cityId > 0) {
                 bindCityList(provinceId, document.getElementById("cityId"), cityId); 
-                bindCityList(provinceId, document.getElementById("cityIdtwo"), cityId); 
+                //bindCountyList(cityId, document.getElementById("countyId"), countyId);
+            }
+                console.log(cityIdtwo);
+            if (cityIdtwo > 0) {
+                bindCityList(provinceIdtwo, document.getElementById("cityIdtwo"), cityIdtwo);
+                //bindCountyList(cityIdtwo, document.getElementById("countyIdtwo"), countyIdtwo);
             }
 </script>
 </div>

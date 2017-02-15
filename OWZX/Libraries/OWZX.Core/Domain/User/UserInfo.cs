@@ -297,7 +297,7 @@ namespace OWZX.Core
         /// <summary>
         /// 用户验证区域id1
         /// </summary>
-        public int RegisterRgIdTwo
+        public int RegionIdTwo
         {
             set { _regionidtwo = value; }
             get { return _regionidtwo; }

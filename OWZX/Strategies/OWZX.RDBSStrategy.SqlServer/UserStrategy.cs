@@ -721,6 +721,59 @@ delete from owzx_onlineusers where uid={1}", RDBSHelper.RDBSTablePre, uid);
 
 
         /// <summary>
+        /// 更新用户细节
+        /// </summary>
+        /// <returns></returns>
+        public bool UpdateUserVerifyLog(int uid = -1, int isveritylog = 0, int regionid = 0, int regionidtwo = 0)
+        {
+            string commandText = string.Format(@" begin try 
+ update owzx_users set verifyloginrg={1} where uid={0}
+ update owzx_userdetails set regionid={2},regionidtwo={3}   where uid={0}
+select @@rowcount state
+end try
+begin catch select -1 state end catch ", uid, isveritylog, regionid, regionidtwo);
+
+            return TypeHelper.ObjectToInt(RDBSHelper.ExecuteScalar(CommandType.Text, commandText), 0)>0;  
+        }
+
+        public string GetRegionName(int uid)
+        {
+            string commandText = string.Format(@" begin try 
+
+   declare  @allname varchar(50)='' ,@res varchar(50)='',@i int=0 ,@kk varchar(30)
+if({0}>0)
+begin
+    select top 1 @res= case when regionid>0 then  cast( regionid as varchar) else ' ' end +','+
+    case when regionidtwo>0 then  cast( regionidtwo as varchar) else ' ' end +',' 
+    from  owzx_userdetails where uid={0}
+    if(@res!=' , ,')
+    set @i=charindex(',',@res)
+    while @i>0
+    begin
+        declare @name varchar(50)=''
+        set @kk= SUBSTRING(@res,0,@i)
+        select  @name=ISNULL(name,'')  from owzx_regions where layer=3 and regionid=cast(@kk as int)
+        if(@name='')
+        begin 
+            select @name=ISNULL(name,'')  from owzx_regions where layer=2 and regionid=cast(@kk as int)
+	        if(@name='')
+	        begin 
+		        select @name=ISNULL(name,'')  from owzx_regions where layer=1 and regionid=cast(@kk as int)
+	        end
+        end
+        if(@name!='')  set @allname= ltrim(rtrim(@name))+','+@allname  
+        set @res=substring(@res,@i+1,LEN(@res))	
+        set @i=charindex(',',@res,0)	
+    end
+end
+select @allname state
+end try
+begin catch select '查询错误' state end catch ", uid);
+
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText).ToString();
+        }
+
+        /// <summary>
         /// 更新用户最后访问
         /// </summary>
         /// <param name="uid">用户id</param>

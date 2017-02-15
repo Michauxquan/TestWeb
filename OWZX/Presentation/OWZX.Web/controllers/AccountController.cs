@@ -148,16 +148,46 @@ namespace OWZX.Web.Controllers
             }
             else//验证成功时
             {
-                LoginFailLogs.AddLogin(WorkContext.IP, partUserInfo.Uid,DateTime.Now, CommonTools.commontools.GetIpName(WorkContext.IP), 0,"登录");
-                //删除登陆失败日志
-                LoginFailLogs.DeleteLoginFailLogByIP(WorkContext.IP);
-                //更新用户最后访问
-                Users.UpdateUserLastVisit(partUserInfo.Uid, DateTime.Now, WorkContext.IP, WorkContext.RegionId);
+                var ipname = CommonTools.commontools.GetIpName(WorkContext.IP);
+                var iserror = partUserInfo.VerifyRg == 0;
                 
-                //将用户信息写入cookie中
-                ShopUtils.SetUserCookie(partUserInfo, (WorkContext.ShopConfig.IsRemember == 1 && isRemember == 1) ? 30 : -1,"web");
+                if (partUserInfo.VerifyRg == 1)
+                {
+                    var regs=Users.GetRegionName(partUserInfo.Uid);
+                    if (!string.IsNullOrEmpty(regs))
+                    {
+                        var arr = regs.Split(',');
+                        foreach (var val in arr)
+                        {
+                            if (!string.IsNullOrEmpty(val))
+                            {
+                                if (ipname.Contains(val))
+                                {
+                                    iserror = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                LoginFailLogs.AddLogin(WorkContext.IP, partUserInfo.Uid, DateTime.Now, CommonTools.commontools.GetIpName(ipname), 0, iserror ? "登录成功" : "登录地区验证失败");
+                if (iserror)
+                {
+                    //删除登陆失败日志
+                    LoginFailLogs.DeleteLoginFailLogByIP(WorkContext.IP);
+                    //更新用户最后访问
+                    Users.UpdateUserLastVisit(partUserInfo.Uid, DateTime.Now, WorkContext.IP, WorkContext.RegionId);
 
-                return AjaxResult("success", "登录成功");
+                    //将用户信息写入cookie中
+                    ShopUtils.SetUserCookie(partUserInfo,
+                        (WorkContext.ShopConfig.IsRemember == 1 && isRemember == 1) ? 30 : -1, "web");
+                    return AjaxResult("success", "登录成功");
+                }
+
+                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "登录地区验证失败",
+                           "}");
+                return AjaxResult("error", errorList.Remove(errorList.Length - 1, 1).Append("]").ToString(), true);
+                
             }
         }
 

@@ -11,7 +11,7 @@ namespace OWZX.Web
 {
     public class UserLogList
     {
-        public string Account { get; set; }
+        public int uid { get; set; }
         public int type { get; set; }
 
         public PartUserInfo PartUser { get; set; }

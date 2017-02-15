@@ -244,6 +244,9 @@ namespace OWZX.Core
         /// <returns></returns>
         bool UpdateUserDetail(UserDetailInfo userDetailInfo);
 
+        bool UpdateUserVerifyLog(int uid = -1, int isveritylog = 0, int regionid = 0, int regionidtwo = 0);
+
+        string GetRegionName(int uid = -1);
         /// <summary>
         /// 更新用户最后访问
         /// </summary>

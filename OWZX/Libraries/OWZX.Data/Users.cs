@@ -379,6 +379,15 @@ namespace OWZX.Data
 
         }
 
+        public static bool UpdateUserVerifyLog(int uid = -1, int isveritylog = 0, int regionid = 0, int regionidtwo = 0)
+        {
+            return OWZX.Core.BSPData.RDBS.UpdateUserVerifyLog(uid, isveritylog, regionid, regionidtwo);
+        }
+        public static string GetRegionName(int uid = -1)
+        {
+            return OWZX.Core.BSPData.RDBS.GetRegionName(uid);
+        }
+
         /// <summary>
         /// 更新用户最后访问
         /// </summary>
