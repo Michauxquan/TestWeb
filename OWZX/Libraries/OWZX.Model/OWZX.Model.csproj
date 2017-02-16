@@ -54,6 +54,7 @@
     <Compile Include="BaseTypeModel.cs" />
     <Compile Include="DrawInfoModel.cs" />
     <Compile Include="InviteModel.cs" />
+    <Compile Include="MD_AutoBett.cs" />
     <Compile Include="MD_BackRate.cs" />
     <Compile Include="MD_Bett.cs" />
     <Compile Include="MD_BettMode.cs" />
