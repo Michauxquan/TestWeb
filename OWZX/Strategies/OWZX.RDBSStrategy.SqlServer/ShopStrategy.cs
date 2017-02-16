@@ -528,8 +528,45 @@ end catch
             RDBSHelper.ExecuteNonQuery(CommandType.StoredProcedure,
                                        string.Format("{0}deleteloginfaillogbyip", RDBSHelper.RDBSTablePre),
                                        parms);
-        }
+        } 
+        public DataTable GetLoginList(int pageindex, int pageSize, string sqlwhere = "")
+        {
+            DbParameter[] parms =
+             {
+                GenerateInParam("@pagesize", SqlDbType.Int, 4, pageSize),
+                GenerateInParam("@pageindex", SqlDbType.Int, 4, pageindex)
+            };
+            string commandText = string.Format(@"
+begin try
+if OBJECT_ID('tempdb..#list') is not null
+  drop table #list
 
+SELECT ROW_NUMBER() over(order by autoid desc) id ,a.*
+  into  #list
+  FROM owzx_userslog a where  1=1 
+  {0}
+
+declare @total int
+select @total=(select count(1)  from #list)
+
+if(@pagesize=-1)
+begin
+    select *,@total TotalCount from #list
+end
+else
+begin
+    select *,@total TotalCount from #list where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
+end
+
+end try
+begin catch
+select ERROR_MESSAGE() state
+end catch
+
+", sqlwhere
+            );
+            return RDBSHelper.ExecuteTable(CommandType.Text, commandText, parms)[0];
+        }
         #endregion
 
         #region 管理员操作日志

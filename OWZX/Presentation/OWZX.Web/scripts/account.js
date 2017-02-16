@@ -263,7 +263,7 @@ function register()
     var password = registerForm.elements["password"].value;
     var confirmPwd = registerForm.elements["confirmPwd"].value;
     var verifyCode = registerForm.elements["verifyCode"] ? registerForm.elements["verifyCode"].value : undefined;
-    var chkservice = registerForm.elements["chkservice"].value;
+   // var chkservice = registerForm.elements["chkservice"].value;
     if (!verifyRegister(accountName, loginname, password, confirmPwd, verifyCode))
     {
         return;
@@ -287,7 +287,7 @@ function verifyRegister(accountName, loginname, password, confirmPwd, verifyCode
         $(".a1").html("<em></em>手机号码不能为空");
         return false;
     }
-    else if (!isMobile(accountName))
+    else if (!isEmail(accountName))
     {
         $("#" + shadowName).css("border-color", "red");
         $(".a1").html("<em></em>手机号码格式错误");
@@ -343,7 +343,7 @@ function verifyBlur(type, value)
             {
                 $("#" + shadowName).css("border-color", "red");
                 $(".phone").html("<em></em>请输入帐户名");
-                $(".a1").html("<em></em>手机号码不能为空");
+                $(".a1").html("<em></em>账户名不能为空");
                 return false;
             }
             //else if (!isMobile(value))

@@ -301,6 +301,18 @@ namespace OWZX.Services
         }
 
         /// <summary>
+        /// 更新登录区域验证
+        /// </summary>
+        /// <returns></returns>
+        public static bool UpdateUserVerifyLog(int uid = -1, int isveritylog = 0, int regionid = 0, int regionidtwo = 0)
+        {
+            return OWZX.Data.Users.UpdateUserVerifyLog(uid, isveritylog, regionid, regionidtwo);
+        }
+        public static string GetRegionName(int uid = -1)
+        {
+            return OWZX.Data.Users.GetRegionName(uid);
+        }
+        /// <summary>
         /// 更新用户最后访问
         /// </summary>
         /// <param name="uid">用户id</param>

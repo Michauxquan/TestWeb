@@ -10,7 +10,7 @@ namespace OWZX.Web
 {
     public class UserChangeList
     {
-        public string Account { get; set; }
+        public int Uid { get; set; }
         public string Start { get; set; }
         public string End { get; set; }
         /// <summary>
