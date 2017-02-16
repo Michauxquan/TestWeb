@@ -383,6 +383,7 @@ namespace OWZX.Core
         /// <param name="userRid">用户等级id</param>
         void UpdateUserRankByUid(int uid, int userRid);
 
+        bool UpdateUserAccount(int uid, decimal fee);
         /// <summary>
         /// 更新用户在线时间
         /// </summary>

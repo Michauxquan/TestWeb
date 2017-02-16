@@ -38,3 +38,11 @@ D:\我的\项目\0、测试\Test\TestWeb\OWZX\Libraries\OWZX.Core\bin\Debug\OWZX
 D:\我的\项目\0、测试\Test\TestWeb\OWZX\Libraries\OWZX.Core\obj\Debug\OWZX.Core.csprojResolveAssemblyReference.cache
 D:\我的\项目\0、测试\Test\TestWeb\OWZX\Libraries\OWZX.Core\obj\Debug\OWZX.Core.dll
 D:\我的\项目\0、测试\Test\TestWeb\OWZX\Libraries\OWZX.Core\obj\Debug\OWZX.Core.pdb
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\bin\Debug\OWZX.Core.dll
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\bin\Debug\OWZX.Core.pdb
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\bin\Debug\Newtonsoft.Json.dll
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\bin\Debug\OWZX.Model.dll
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\bin\Debug\OWZX.Model.pdb
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\obj\Debug\OWZX.Core.csprojResolveAssemblyReference.cache
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\obj\Debug\OWZX.Core.dll
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Core\obj\Debug\OWZX.Core.pdb

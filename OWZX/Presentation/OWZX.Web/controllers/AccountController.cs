@@ -161,7 +161,7 @@ namespace OWZX.Web.Controllers
                         {
                             if (!string.IsNullOrEmpty(val))
                             {
-                                if (ipname.Contains(val))
+                                if (ipname.Contains(val.Substring(0,2)))
                                 {
                                     iserror = true;
                                     break;

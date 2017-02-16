@@ -53,7 +53,7 @@
         <a href="@Url.Action("safeverify", new RouteValueDictionary { { "act", "updateSafePassword" } })" class="greenBT">修改</a>
         <div class="clear"></div>
     </div>
-    <div class="safe hide" >
+    <div class="safe" >
         <s class="@if (Model.VerifyEmail == 1){<text>ico1</text>}else{<text>ico2</text>}"></s>
         <b>邮箱验证</b> 
         <p>@if (Model.VerifyEmail == 0){<text>建议您绑定并验证邮箱以保护账户安全</text>}else{<text>邮箱已验证，可用于快速找回登录密码，接收账户余额变动提醒。</text>}</p> 

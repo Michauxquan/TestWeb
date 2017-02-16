@@ -2,20 +2,26 @@
 
 @section header{
     <title>用户列表</title>
-    <link type="text/css" rel="stylesheet" href="/administration/css/site.css" />
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
     <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
     <script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+    <style type="text/css">
+        .greenBT {float: right;margin-right: 20px;border: solid 1px #ddd;padding: 2px 7px;cursor: pointer;}
+        .greenBT:first-child {background: #4682b4;color: #fff; }
+        .greenBT:hover {color: #fff;background: #4682b4;opacity: 0.8;
+        }
+    </style>
 }
 
 @section body{
     <h1 class="rightH1">
         用户管理 &gt;&gt; 用户列表
         <div class="right">
-@{HashSet<string> actionlist = AdminGroups.GetAdminGroupActionHashSetNoCache(WorkContext.AdminGid);}
-@if (actionlist.Contains("user_add") || WorkContext.AdminGid == 2)
-{
-            <a href="@Url.Action("add")" class="menuBT"><img src="/administration/images/add.jpg" />添加</a>
-}
+            @{HashSet<string> actionlist = AdminGroups.GetAdminGroupActionHashSetNoCache(WorkContext.AdminGid);}
+            @if (actionlist.Contains("user_add") || WorkContext.AdminGid == 2)
+            {
+                <a href="@Url.Action("add")" class="menuBT"><img src="/administration/images/add.jpg"/>添加</a>
+            }
 
             <div class="clear"></div>
         </div>
@@ -26,26 +32,26 @@
         <div class="dataListSearch">
             <table height="32">
                 <tbody>
-                    <tr>
-                        <td width="35"><img id="searchImg" src="/administration/images/search1.gif" /></td>
-                        
-                        <td style="display:none;">
-                            用户名：
-                        </td>
-                        <td width="130" style="display:none;">
-                            @Html.TextBox("UserName", Model.UserName, new { height = "18" })
-                        </td>
-                        <td>
-                            &nbsp;&nbsp;&nbsp;手机：
-                        </td>
-                        <td width="130">
-                            @Html.TextBox("Mobile", Model.Mobile, new { height = "18" })
-                        </td>
-                       
-                        <td style="height:24px;">
-                            <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24" />
-                        </td>
-                    </tr>
+                <tr>
+                    <td width="35"><img id="searchImg" src="/administration/images/search1.gif"/></td>
+
+                    <td style="display: none;">
+                        用户名：
+                    </td>
+                    <td width="130" style="display: none;">
+                        @Html.TextBox("UserName", Model.UserName, new {height = "18"})
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;手机：
+                    </td>
+                    <td width="130">
+                        @Html.TextBox("Mobile", Model.Mobile, new {height = "18"})
+                    </td>
+
+                    <td style="height: 24px;">
+                        <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24"/>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -53,41 +59,42 @@
         <div class="dataList">
             <table width="100%">
                 <thead>
-                    <tr>
-                        <th width="10"></th>
-                        <th width="60" align="left">编号</th>
-                        <th width="80" align="left">用户名</th>
-                        <th width="80" align="left">手机</th>
-                        <th width="80" align="left">昵称</th>
-                        <th width="80" align="left">账户余额</th>
-                        <th width="80" align="left">注册时间</th>
-                        <th width="80" align="left">访问时间</th>
-                        <th width="80" align="left">权限</th>
+                <tr>
+                    <th width="10"></th>
+                    <th width="60" align="left">编号</th>
+                    <th width="80" align="left">用户名</th>
+                    <th width="80" align="left">手机</th>
+                    <th width="80" align="left">昵称</th>
+                    <th width="80" align="left">账户余额</th>
+                    <th width="80" align="left">注册时间</th>
+                    <th width="80" align="left">访问时间</th>
+                    <th width="80" align="left">权限</th>
 
-                        <th width="86" align="left">管理操作</th>
-                    </tr>
+                    <th width="86" align="left">管理操作</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach (DataRow row in Model.UserList.Rows)
-                    {
-                        <tr>
-                            <td></td>
-                            <td>@row["id"]</td>
-                            <td>@row["username"]</td>
-                            <td>@row["mobile"]</td>
-                            <td>@row["nickname"]</td>
-                            <td>@row["totalmoney"]</td>
-                            <td>@row["registertime"]</td>
-                            <td>@row["lastvisittime"]</td><td>@row["admingtitle"]</td>
+                @foreach (DataRow row in Model.UserList.Rows)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@row["id"]</td>
+                        <td>@row["username"]</td>
+                        <td>@row["mobile"]</td>
+                        <td>@row["nickname"]</td>
+                        <td>@row["totalmoney"]</td>
+                        <td>@row["registertime"]</td>
+                        <td>@row["lastvisittime"]</td><td>@row["admingtitle"]</td>
 
-                            <td>
-                                @Html.ActionLink("[编辑]", "edit", new { uid = row["uid"] }, new { @class = "editOperate" })|
-                                @Html.ActionLink("[重置提现密码]", "editdraw", new { uid = row["uid"] }, new { @class = "editOperate" })|
-                                @Html.ActionLink("[删除]", "del", new { uid = row["uid"] }, new { @class = "deleteOperate" })
-                            </td>
+                        <td>
+                            <a class="editOperate UpdAccount" data-id="@row["uid"]" href="javascript:void(0);">[上下分]</a>|
+                            @Html.ActionLink("[编辑]", "edit", new {uid = row["uid"]}, new {@class = "editOperate"})|
+                            @Html.ActionLink("[重置提现密码]", "editdraw", new {uid = row["uid"]}, new {@class = "editOperate"})|
+                            @Html.ActionLink("[删除]", "del", new {uid = row["uid"]}, new {@class = "deleteOperate"})
+                        </td>
 
-                        </tr>
-                    }
+                    </tr>
+                }
                 </tbody>
             </table>
         </div>
@@ -96,5 +103,43 @@
                 @Html.AdminPager(Model.PageModel)
             </div>
         </div>
+        <script>
+            $(function() {
+                $('.UpdAccount').each(function(i, v) {
+                    var _this = $(v);
+                    _this.click(function() {
+                        $('#updaccountdiv').show();
+                        $('.okbtn').data('id', _this.data("id"));
+                    });
+                });
+                $('.cancelbtn').click(function () { $('#updaccountdiv').hide();
+                    $('#iptaccount').val('');
+                    $('.okbtn').data('id', '');
+                });
+                $('.okbtn').click(function() {
+                    var r = /^[-+]?\d*$/;
+                    if (!r.test($("#iptaccount").val()) || $("#iptaccount").val() == '') {
+                        alert('上下分只能输入数字');
+                        return;
+                    } else {
+                        $.post('/admin/user/updaccount', { id: $('.okbtn').data('id'), fee: $('#iptaccount').val() }, function(data) {
+                            var result = eval('(' + data + ')');
+                            alert(result.content);
+                            self.location.reload();
+                        });
+                        $('#updaccountdiv').hide();
+                        $('#iptaccount').val('');
+                        $('.okbtn').data('id', '');
+                    }
+                });
+            })
+        </script>
     }
+    <div id="updaccountdiv" style="display: none; position: absolute; top: 20%; left: 40%; background: #f0f0f0; z-index: 100; border: solid 2px #ddd; border-radius: 5px; -webkit-box-shadow: 0 0 10px rgba(0, 204, 204, .5); -moz-box-shadow: 0 0 10px rgba(0, 204, 204, .5); box-shadow: 0 0 10px rgba(0, 204, 204, .5); width: 200px; height: 120px;">
+        <div style="padding: 7px 0;"><h4 style="text-align: center;">快捷修改金额</h4>
+        </div>
+        <div style="width: 97%; height: 24px; line-height: 22px; padding: 5px;"> &nbsp;&nbsp;上下分: &nbsp;<input id="iptaccount" style="line-height: 22px; width: 120px;" value=""/>
+        </div>
+        <div style="width: 100%; margin-top: 5px;"><span  class="greenBT okbtn"> 确 定 </span><span  class="greenBT cancelbtn"> 取 消 </span></div>
+    </div>
 }

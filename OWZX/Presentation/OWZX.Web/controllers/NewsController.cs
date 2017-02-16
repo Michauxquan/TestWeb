@@ -25,7 +25,7 @@ namespace OWZX.Web.Controllers
 
             NewsInfo newsInfo = News.GetNewsById(newsId);
             if (newsInfo == null)
-                return PromptView("/", "你访问的页面不存在");
+                return PromptView("/", "活动已过期不存在");
 
             NewsModel model = new NewsModel();
             model.NewsInfo = newsInfo;
@@ -43,8 +43,9 @@ namespace OWZX.Web.Controllers
             int newsTypeId = WebHelper.GetQueryInt("newsTypeId");
             int page = WebHelper.GetQueryInt("page");
 
-            string condition = News.GetNewsListCondition(newsTypeId, newsTitle);
+            string condition = News.GetNewsListCondition(newsTypeId, newsTitle);  
             PageModel pageModel = new PageModel(10, page, News.GetNewsCount(condition));
+            condition = condition + (string.IsNullOrEmpty(condition) ? " where " : " and ") + " [isshow]=1 ";
             NewsListModel model = new NewsListModel()
             {
                 PageModel = pageModel,

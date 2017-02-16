@@ -264,7 +264,7 @@ namespace OWZX.Web.Controllers
             string password = WebHelper.GetFormString("password");
             string verifyCode = WebHelper.GetFormString("verifyCode");
 
-            if (action.Length == 0 || !CommonHelper.IsInArray(action, new string[3] { "updatepassword", "updatemobile", "updateemail" }))
+            if (action.Length == 0 || !CommonHelper.IsInArray(action, new string[4] { "updatepassword", "updatesafepassword", "updatemobile", "updateemail" }))
                 return AjaxResult("noaction", "动作不存在");
 
             //检查验证码

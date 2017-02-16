@@ -207,5 +207,11 @@ namespace OWZX.Web.Controllers
             List<BaseInfoModel> listbase = AdminBaseInfo.GetBaseInfoList(-1, "  and title='帮助信息'");
             return View(listbase);
         }
+
+        public ActionResult GetHomeNewsList()
+        {
+           var list = News.GetNewsList(15, 1, " where [isshow]=1 "); 
+            return AjaxResult("success", JsonConvert.SerializeObject(list), true);
+        }
     }
 }

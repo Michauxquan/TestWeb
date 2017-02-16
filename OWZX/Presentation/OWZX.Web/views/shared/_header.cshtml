@@ -1,5 +1,6 @@
 ﻿
-<div id="headercontent" style="background:#FFF;color: #666;">
+
+<div id="headercontent" style="background: #FFF; color: #666;">
     <div id="headerBar" class="bigBox">
         <div class="box">
             <div class="headerLink">
@@ -13,11 +14,12 @@
                 else
                 {
 
-                    string lgname = WorkContext.NickName + " (" + WorkContext.Uid + ")";
-
+                    string lgname = (string.IsNullOrEmpty(WorkContext.NickName) ? WorkContext.UserEmail : WorkContext.NickName) + " (" + WorkContext.Uid + ")";
                     <a class="cblock" href="@Url.Action("userdefault", "ucenter")">@lgname</a>@:&nbsp; &nbsp; 
-                    <a class="cblock" href="@Url.Action("logout", "account")">[退出]</a>@:&nbsp; &nbsp; |
-                    <a class="cblock" href="@Url.Action("userdefault", "ucenter")">我的帐户</a>@:&nbsp; &nbsp; 
+                    <a class="cblock" href="@Url.Action("logout", "account")">[退出]</a>@:&nbsp; &nbsp; | &nbsp; &nbsp;
+                    <a class="cblock" href="@Url.Action("userdefault", "ucenter")">我的帐户</a>@:&nbsp; &nbsp; | &nbsp; &nbsp;
+                    <span class="cblock" >元宝: <i class="usertotalmoney Fred bold">0</i> </span>@:&nbsp; &nbsp; | &nbsp; &nbsp;
+                    <span class="cblock" >银行: <i class="banktotalmoney Fred bold">0</i></span>@:&nbsp; &nbsp; 
                 }
             </div>
 
@@ -25,20 +27,31 @@
     </div>
     <div style="width: 100%;">
         <div id="imglogo">
-            <img src="/images/baseimg/logo_dz.jpg" />
-            <img src="~/images/baseimg/toutu.jpg" />
+            <img src="/images/baseimg/logo_dz.jpg"/>
+            <img src="~/images/baseimg/toutu.jpg"/>
         </div>
     </div>
     <div id="navs">
         <ul id="navItme">
-            <li onclick="javascript: window.location.href ='/'"><a href="/" class="index">首页</a></li>
+            <li onclick="javascript: window.location.href = '/'"><a href="/" class="index">首页</a></li>
             <li><a href="/">商务合作</a></li>
-            <li><a href="/">活动专区</a></li>
-            <li onclick="javascript: window.location.href = '/nwlottery/ltindex/1'"><a href="/nwlottery/ltindex/1">游戏乐园</a></li>
-            <li onclick="javascript: window.location.href =@Url.Action("changelist","changeware")"><a href="@Url.Action("changelist","changeware")">兑换中心</a></li>
-            <li onclick="javascript: window.location.href =@Url.Action("userdefault", "ucenter")"><a href="@Url.Action("userdefault", "ucenter")">用户中心</a></li> 
+            <li onclick="javascript: window.location.href = '@Url.Action("list", "news")'"><a href="javascript:void(0);">活动专区</a></li>
+            <li onclick="javascript: window.location.href = '/nwlottery/ltindex/1'"><a href="javascript:void(0);">游戏乐园</a></li>
+            <li onclick="javascript: window.location.href = '@Url.Action("changelist", "changeware")'"><a href="javascript:void(0);">兑换中心</a></li>
+            <li onclick="javascript: window.location.href = '@Url.Action("userdefault", "ucenter")'"><a href="javascript:void(0);">用户中心</a></li>
         </ul>
     </div>
-<div  style="border-bottom: 2px solid white;"></div>
+    <div style="border-bottom: 2px solid white;"></div>
     <div class="clear"></div>
 </div>
+<script>
+    $(function() {
+        if (@WorkContext.Uid > 0) {
+            $.post('/ucenter/getusermoney', {}, function (data) { 
+                var result = eval("(" + data + ")"); 
+                $('.usertotalmoney').html(result.content.totalmoney);
+                $('.banktotalmoney').html(result.content.bankmoney);
+            });
+        }
+    });
+ </script>

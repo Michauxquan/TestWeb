@@ -17,10 +17,27 @@
     uid=@WorkContext.Uid;
 
     $(function(){
-        if(uid>0)
+        if(uid<1)
         {
-            $("#banner").css("display","none");
+            $("#banner").show();
         }
+        $('.goods').click(function() {
+            window.location.href = '/changeware/changelist';
+        });
+        $.post('/home/GetHomeNewsList', null, function(data) {
+            var result=eval('('+data+')');
+            var html='';
+            for (var i = 0; i < result.content.length; i++) {
+                html += ' <li data-id="'+ result.content[i].id+'" title="'+result.content[i].title+'">【发财28】' + result.content[i].title + '</li>';
+            }
+            $('.news').html(html);
+            $('.news li').each(function (i,v) {
+                var _this = $(v);
+                _this.click(function() {
+                    window.location.href = '/news/details?newsId=' + _this.data("id");
+                });
+            });
+        });
     });
     </script>
 
@@ -29,7 +46,7 @@
 @Html.Partial("_header")
 
 <div class="mid" style="background-image: url('/images/baseimg/hb.jpg'); height: 498px;">
-    <div id="banner"class="basecontent">
+    <div id="banner" class="basecontent" style="display: none;">
         <div id="order">
             <div style="width: 300px; height: 330px; float: right; margin-top: 50px; background-color: #000000; opacity: 0.8;">
                 <div class="ind_reserve" style="margin-left: 24px; width: 85%; text-align: left; height: 38px; line-height: 38px;">
@@ -78,31 +95,27 @@
     <div class="games basecontent">
         <div style="float: left; width: 700px; ">
             <div class="title" >
-                <img src="/images/baseimg/tb_2.jpg"/> 热门游戏 games  <span class="more">更多>></span>
+                <img src="/images/baseimg/tb_2.jpg"/> 热门游戏 games  <a href="/nwlottery/ltindex/1"  class="more">更多>></a>
             </div>
             <div style="border: solid 1px #eee;">
-                <img src="~/images/baseimg/dd28.png" data-type="10"/>
-                <img src="~/images/baseimg/js28.png" data-type="48"/>
-                <img src="~/images/baseimg/jnd28.png" data-type="11"/>
-                <img src="~/images/baseimg/hg28.png" data-type="47"/>
-                <img src="~/images/baseimg/dd36.png" data-type="49"/>
-                <img src="~/images/baseimg/jnd36.png" data-type="50"/>
-                <img src="~/images/baseimg/PKgj.png" data-type="51"/>
-                <img src="~/images/baseimg/PKgyj.png" data-type="52" />
+                <a href="/nwlottery/ltindex/1" title="蛋蛋28"><img src="~/images/baseimg/dd28.png" data-type="1"/></a>
+                 <a href="/nwlottery/ltindex/1" title="急速28"><img src="~/images/baseimg/js28.png" data-type="48"/></a>
+                 <a href="/nwlottery/ltindex/1" title="加拿大28"><img src="~/images/baseimg/jnd28.png" data-type="11"/></a>
+                 <a href="/nwlottery/ltindex/1" title="韩国28"><img src="~/images/baseimg/hg28.png" data-type="47"/></a>
+                 <a href="/nwlottery/ltindex/1" title="蛋蛋36"> <img src="~/images/baseimg/dd36.png" data-type="49"/></a>
+                 <a href="/nwlottery/ltindex/1" title="加拿大36"><img src="~/images/baseimg/jnd36.png" data-type="50"/></a>
+                 <a href="/nwlottery/ltindex/1" title="PK冠军"><img src="~/images/baseimg/PKgj.png" data-type="51"/></a>
+                 <a href="/nwlottery/ltindex/1" title="PK冠亚军"><img src="~/images/baseimg/PKgyj.png" data-type="52" /></a>
             </div>
         </div>
         <div style="float: right; width: 264px;">
             <div class="title">
-                <img src="/images/baseimg/tb_3.jpg"/> 新闻公告 news <span class="more">更多>></span>
+                <img src="/images/baseimg/tb_3.jpg"/> 新闻公告 news <a href="/news/list" class="more">更多>></a>
                 <div class="clear"></div>
             </div>
             <div style="border: solid 1px #eee;">
                 <ul class="news">
-                    <li>【发财28】跨年返利特惠，返利</li>
-                    <li>【发财28】跨年返利特惠，返利</li>
-                    <li>【发财28】跨年返利特惠，返利</li>
-                    <li>【发财28】跨年返利特惠，返利</li>
-                    <li>【发财28】跨年返利特惠，返利</li>
+                    
                 </ul>
             </div>
         </div>

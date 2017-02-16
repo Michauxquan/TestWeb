@@ -84,12 +84,11 @@ namespace OWZX.EmailStrategy.DotNet
         /// <returns>是否发送成功</returns>
         public bool Send(string to, string subject, string body)
         {
-            if (_port == 465)
+            if (_port == 465 || _port == 587 || _port ==995)
             {
-                SmtpClient client = new SmtpClient(_host);
+                SmtpClient client = new SmtpClient(_host,_port);
                 client.EnableSsl = true;
-                client.Port = _port;
-                client.UseDefaultCredentials = false;
+                client.UseDefaultCredentials = false; 
                 client.Credentials = new System.Net.NetworkCredential(_from, _password);
                 MailAddress from = new MailAddress(_from, "发财28", Encoding.UTF8);//初始化发件人  
                 MailAddress toadd = new MailAddress(to, "", Encoding.UTF8);//初始化收件人  
@@ -98,7 +97,7 @@ namespace OWZX.EmailStrategy.DotNet
                 message.Body = body;
                 message.BodyEncoding = _bodyencoding;
                 message.Subject = subject;
-                message.Priority = MailPriority.Normal;
+                message.Priority = MailPriority.High;
                 message.SubjectEncoding = System.Text.Encoding.Default;
                 message.IsBodyHtml = _isbodyhtml;
 

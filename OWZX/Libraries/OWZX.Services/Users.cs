@@ -498,6 +498,11 @@ namespace OWZX.Services
             OWZX.Data.Users.UpdateUserRankByUid(uid, userRid);
         }
 
+        public static bool UpdateUserAccount(int uid, decimal fee)
+        {
+           return  OWZX.Data.Users.UpdateUserAccount(uid, fee);
+        }
+
         /// <summary>
         /// 更新用户在线时间
         /// </summary>

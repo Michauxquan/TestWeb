@@ -74,7 +74,7 @@ namespace OWZX.Services
             body.Replace("{shopname}", _shopconfiginfo.WebName);
             body.Replace("{siteurl}", _shopconfiginfo.SiteUrl);
             body.Replace("{username}", userName);
-            body.Replace("{deadline}", DateTime.Now.AddMinutes(30).ToString("yyyy-MM-dd HH:mm"));
+            body.Replace("{deadline}", " "+DateTime.Now.AddMinutes(30).ToString("yyyy-MM-dd HH:mm"));
             body.Replace("{url}", url);
 
             return _iemailstrategy.Send(to, subject, body.ToString());
@@ -95,7 +95,7 @@ namespace OWZX.Services
             body.Replace("{shopname}", _shopconfiginfo.WebName);
             body.Replace("{siteurl}", _shopconfiginfo.SiteUrl);
             body.Replace("{username}", userName);
-            body.Replace("{deadline}", DateTime.Now.AddMinutes(30).ToString("yyyy-MM-dd HH:mm"));
+            body.Replace("{deadline}", " "+DateTime.Now.AddMinutes(30).ToString("yyyy-MM-dd HH:mm"));
             body.Replace("{url}", url);
 
             return _iemailstrategy.Send(to, subject, body.ToString());
@@ -116,7 +116,7 @@ namespace OWZX.Services
             body.Replace("{shopname}", _shopconfiginfo.WebName);
             body.Replace("{siteurl}", _shopconfiginfo.SiteUrl);
             body.Replace("{username}", userName);
-            body.Replace("{deadline}", DateTime.Now.AddMinutes(30).ToString("yyyy-MM-dd HH:mm"));
+            body.Replace("{deadline}", " "+DateTime.Now.AddMinutes(30).ToString("yyyy-MM-dd HH:mm"));
             body.Replace("{url}", url);
 
             return _iemailstrategy.Send(to, subject, body.ToString());

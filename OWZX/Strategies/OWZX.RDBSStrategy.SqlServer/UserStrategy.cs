@@ -1264,7 +1264,17 @@ end", condition);
                                        string.Format("{0}updateuserrankbyuid", RDBSHelper.RDBSTablePre),
                                        parms);
         }
-
+        /// <summary>
+        /// 更新用户等级
+        /// </summary>
+        /// <param name="uid">用户id</param>
+        /// <param name="userRid">用户等级id</param>
+        public bool UpdateUserAccount(int uid, decimal fee)
+        {
+            string commandText = string.Format(" UPDATE [{0}users] SET totalmoney=totalmoney+{1} WHERE [uid]={2} ",
+                                               RDBSHelper.RDBSTablePre, fee, uid);
+           return  RDBSHelper.ExecuteNonQuery(CommandType.Text, commandText)>0;
+        }
         /// <summary>
         /// 更新用户在线时间
         /// </summary>

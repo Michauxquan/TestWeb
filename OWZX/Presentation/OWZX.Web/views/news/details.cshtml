@@ -3,8 +3,20 @@
     Layout = null;
 }
 <html>
-<head>
-    <title>@{@WorkContext.ShopConfig.SiteTitle}<</title>
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>新闻列表-@{@WorkContext.ShopConfig.SiteTitle}</title>
+    @Html.Raw(WorkContext.ShopConfig.SEOKeyword)
+    @Html.Raw(WorkContext.ShopConfig.SEODescription)
+    <link href="@{@WorkContext.CSSCDN}/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="@{@WorkContext.CSSCDN}/css/help.css" rel="stylesheet" type="text/css" />
+    <script src="@{@WorkContext.ScriptCDN}/scripts/jquery.js" type="text/javascript"></script>
+    <script src="@{@WorkContext.ScriptCDN}/scripts/common.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        uid = @WorkContext.Uid;
+        isGuestSC = @WorkContext.ShopConfig.IsGuestSC;
+        scSubmitType = @WorkContext.ShopConfig.SCSubmitType;
+    </script> 
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1" />
@@ -27,10 +39,10 @@
                 font-size: 1.1rem;
             }
 
-            body {
+            /*body {
                 background: #FFD879;
                 overflow-x: hidden;
-            }
+            }*/
 
             .container {
                 padding-left: 1rem;
@@ -51,7 +63,7 @@
             div p:first-child {
                 line-height: 1.2rem;
                 color: white;
-                background: #47C1A8;
+                background: #ec5658;
                 float: left;
                 margin-bottom: .6rem;
                 text-indent: 1rem;
@@ -60,7 +72,7 @@
                 border-top-right-radius: .4rem;
                 border-bottom-right-radius: .4rem;
                 color: white;
-                padding: .4rem 0;
+                padding: .4rem .1rem;
                 position: relative;
                 border: 1px solid #dedede;
             }
@@ -85,14 +97,20 @@
         <![endif]-->
     </meta name>
 </head>
-<body>
-    <div class="container">
-        <h1 class="newsTitle">@Model.NewsInfo.Title</h1>
-        <div class="newsInfo">时间：@Model.NewsInfo.AddTime</div>
-        <div class="edit">
-            @Html.Raw(Model.NewsInfo.Body)
-        </div>
+             <body>
+             @Html.Partial("_header")
+             <div class="container box">
+                 <div class="newsInfo" style="background-color: #ec5658; color: #ffffff; padding: 10px 0px;">
+                     <span style="float: left; margin-left: 24px;"> @Model.NewsInfo.Title</span>
+                     <span style="float: right; margin-right: 24px; font-size: 14px;"> @Model.NewsInfo.AddTime</span>
+                     <span class="clear"></span>
+                 </div>
+                 <div class="edit">
+                     @Html.Raw(Model.NewsInfo.Body)
+                 </div>
 
-    </div>
-</body>
+             </div>
+
+             @Html.Partial("_footer")
+             </body>
 </html>

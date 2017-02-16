@@ -580,6 +580,10 @@ namespace OWZX.Data
             OWZX.Core.BSPData.RDBS.UpdateUserRankByUid(uid, userRid);
 
         }
+        public static bool UpdateUserAccount(int uid, decimal userRid)
+        {
+          return  OWZX.Core.BSPData.RDBS.UpdateUserAccount(uid, userRid);
+        }
 
         /// <summary>
         /// 更新用户在线时间
