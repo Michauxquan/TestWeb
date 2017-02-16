@@ -264,13 +264,14 @@ function ani_select()
 }
 
 
-//获取自定义模式 
+//选择自定义模式 
 function personmode(id)
 {
     bettmodel = id;
     $.ajax({
         type: "get",
-        url: "/nwlottery/getbettmode/" + id,
+        url: "/nwlottery/getbettmode",
+        data:{"id":id},
         success: function (data)
         {
             var dt = JSON.parse(data);
@@ -386,9 +387,9 @@ function comform()
     t = parseInt(t);
     var str = [];
 
-    if (StrTimeOut < 0)
+    if (StrTimeOut <= 0)
     {
-        layer.alert(num + "期投注投注已截止！", { icon: 2, title: "提示" });
+        layer.alert("第<span  style='color :Red;'>" + num + "</span>期投注已截止！", { icon: 2, title: "提示" });
         isconfirmenable = true
         return false;
     }
@@ -410,7 +411,7 @@ function comform()
         return false;
     } else if (t > mymoney)
     {
-        layer.alert("您的乐豆不足！", { icon: 2, title: "提示" });
+        layer.alert("您的乐豆不足,请充值！", { icon: 2, title: "提示" });
         isconfirmenable = true
         return false;
 
@@ -475,10 +476,16 @@ function datapost()
                    {
                        //成功
                        layer.alert("第<span  style='color :Red;'>" + num + "</span>期投注成功！", { icon: 1, title: "提示" })
-                       $(".temp_content").load("/nwlottery/_content", { "type": lotterytype, "pageindex": 1 });
+                       $(".temp_content").load("/nwlottery/_content", { "type": lotterytype, "page": 1 });
                    } else
                    {
-                       layer.alert("投注失败！", { icon: 2, title: "提示" })
+                       var msg = "投注失败";
+                       if (data == "2")
+                           msg = "投注失败，第<span  style='color :Red;'>" + num + "</span>期投注已截止！";
+                       else if (data == "3")
+                           msg = "您的乐豆不足,请充值！";
+
+                       layer.alert(msg, { icon: 2, title: "提示" })
                    }
 
                });

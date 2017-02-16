@@ -973,8 +973,22 @@ select count(1) from #list where DATEDIFF(SECOND,opentime,getdate())>=210
                                     };
             string commandText = string.Format(@"
 begin try
-begin tran t1
 
+if not exists(select 1 from owzx_lotteryrecord where type=@lotteryid and expect=@lotterynum and status=0)
+begin
+--select '第'+@lotterynum+'期投注已截止！' state
+select '2' state
+return 
+end
+
+if((select totalmoney from owzx_users a where a.uid=@uid)<@money)
+begin
+--select '您的余额不足,请充值！' state
+select '3' state
+return 
+end
+
+begin tran t1
 INSERT INTO owzx_bett([uid],[lotteryid],[lotterynum],[money],[bettinfo],[bettnum],[bettmode],isread)
     select @uid,@lotteryid,@lotterynum,@money,@bettinfo,@bettnum,@bettmode,0
    

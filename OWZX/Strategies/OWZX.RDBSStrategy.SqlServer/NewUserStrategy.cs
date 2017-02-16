@@ -1187,7 +1187,7 @@ if OBJECT_ID('tempdb..#list') is not null
   drop table #list
 
 SELECT ROW_NUMBER() over(order by a.modeid desc) id
-      ,a.[name]
+      ,a.[name],a.modeid
            ,a.[uid],a.lotterytype
            ,a.[bettnum]
            ,a.[bettinfo]

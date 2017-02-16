@@ -93,6 +93,47 @@ font-size:15px;
 padding:0 3px;
 }
 
+/*分页*/
+.Paging {
+    margin: 20px auto;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.Paging span.pagerecord {
+    border: 0;
+}
+.Paging span {
+    display: inline-block;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    padding: 4px 5px;
+    font-size: 12px;
+    color: #000;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.Paging span.pageindex {
+    color: #cb0000;
+    font-weight: bold;
+}
+.Paging a {
+    display: inline-block;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    padding: 4px 5px;
+    font-size: 12px;
+    color: #000;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+    font-weight: 400;
+}
 
 /*table*/
 .lot_content table {
@@ -275,5 +316,22 @@ button {
     font-weight: normal;
 }
 
+/*auto*/
+.zdtz_topbg{margin:0 auto; width:928px; height:64px; border:1px solid #FFE1B6;  background:url(../img/zdtz_topbg.jpg) repeat-x; padding:3px; color:#000000; text-align:center; font-size:14px;}
+.zdtz_left{ width:716px; float:left; height:54px; text-align:center; line-height:26px; background-color:#FFFDF6; border:1px solid #FFE1B6; padding-top:8px;}
+.zdtz_leftbg{ background:url(../img/zdtz_toptb.gif) center center no-repeat; width:18px; height:18px;}
+.zdtz_right{ width:200px; float:right; padding-top:10px; text-align:left;}
+.zdtz_jbsz{ width:936px; margin:0 auto; color:#000000;margin-top:10px;}
+.zdtz_jbsz p{ font-size:14px; font-weight:bold; line-height:40px;float:left;}
+.zdtz_bzred{ color:#FF0000; font-weight:bold; }
+.zdtz_red{ color:#FF0000; }
+.zdtz_line{ background:url(../../images/line.gif) repeat-x; height:3px;}
+.zdtz_text{ line-height:26px; padding:2px 5px;}
+/*.pright{padding-right:35px; text-align:right;}*/
+.pright{padding-right:85px; text-align:right;}
+.zdtzright_lj{position:absolute; z-index:10px; margin-left:842px; margin-top:10px;}
+
+.zdtz_anli{width:936px; margin:0 auto; font-size:14px; line-height:30px;}
+.zdtz_anli p{text-indent: 2em;}
 
 

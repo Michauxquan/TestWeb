@@ -41,6 +41,16 @@ namespace OWZX.Data
        {
            return OWZX.Core.BSPData.RDBS.GetUserBett(type, uid,pageindex,pagesize);
        }
+
+       /// <summary>
+        /// 获取最新彩票记录
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+       public static DataTable NewestLottery(string type)
+       {
+           return OWZX.Core.BSPData.RDBS.NewestLottery(type);
+       }
         #endregion
 
        #region 赔率

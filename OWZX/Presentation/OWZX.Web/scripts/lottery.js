@@ -7,8 +7,6 @@ function GetRTime(type, ctime, fcnum, bettime, stoptime)
     var nS = ctime;
     if (nS > 0)
     {
-        //alert(document.getElementById('check_reload').checked);
-        //alert(nS);
         nS = nS - 1;
         if (nS >= stoptime && nS <= bettime)
         {
@@ -19,8 +17,15 @@ function GetRTime(type, ctime, fcnum, bettime, stoptime)
         } else
         {
             //stop
-            $(".remains").html(
-                '第 <i class="bold">' + fcnum + '</i>期  停止下注,还有<span class="ltwarn">' + nS + '</span>秒开奖!');
+            if (nS != 0)
+            {
+                $(".remains").html(
+                    '第 <i class="bold">' + fcnum + '</i>期  停止下注,还有<span class="ltwarn">' + nS + '</span>秒开奖!');
+            } else
+            {
+                $(".remains").html(
+                                '第 <i class="bold">' + fcnum + '</i>期  正在开奖,请稍后!');
+            }
             if ($(".lot_btn_" + fcnum + " .ltoperate").text() != "正在开奖")
             {
                 $(".lot_btn_" + fcnum).html("").html('<a href="#"><div class="ltoperate">正在开奖</div></a>');
@@ -40,14 +45,37 @@ function GetRTime(type, ctime, fcnum, bettime, stoptime)
 
         nS = nS - 1;
 
-        if (nS == -5 || nS == -10 || nS == -15 || nS == -20 || nS == -25)
+        if (nS == -5 || nS == -10 || nS == -15 || nS == -20 || nS == -25 || nS == -30)
         {
             $(".remains").html('Loading......');
             $.post("/nwlottery/lotteryopen", { "type": lotterytype, "expect": num }, function (data)
             {
+                //是否开奖，开奖且是首页则自动刷新，不是首页则提示刷新
+                //未开奖 显示新一期的倒计时，另起一个计时器，获取未开奖信息直到获取到结果
                 if (data == "1")
                 {
-                    $(".temp_content").load("/nwlottery/_content", { "type": lotterytype, "pageindex": 1 });
+                    if ($(".sec_head a:eq(0)").hasClass("hot"))
+                    {
+                        $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });
+                    } else
+                    {
+                        $(".remains").html('第 <i class="bold">' + fcnum + '</i>期  已开奖,请刷新!');
+                        //$(".temp_content").load("/nwlottery/_content", { "type": lotterytype, "page": 1 });
+                    }
+                } else
+                {
+                    if (nS == -30)
+                    {
+                        if ($(".sec_head a:eq(0)").hasClass("hot"))
+                        {
+                            $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });
+                            trap(lotterytype, fcnum);
+                        }else
+                        {
+                            $(".remains").html('第 <i class="bold">' + fcnum + '</i>期  已开奖,请刷新!');
+                            //$(".temp_content").load("/nwlottery/_content", { "type": lotterytype, "page": 1 });
+                        }
+                    }
                 }
             });
         }
@@ -57,6 +85,21 @@ function GetRTime(type, ctime, fcnum, bettime, stoptime)
     }
     if (nS > -30)
         tiner = setTimeout("GetRTime(" + type + "," + nS + "," + fcnum + "," + bettime + "," + stoptime + ")", 1000);
+}
+var traptime;
+function trap(type,fcnum)
+{
+    $.post("/nwlottery/lotteryopen", { "type": lotterytype, "expect": fcnum }, function (data)
+    {
+        if (data == "1")
+        {
+            clearTimeout(traptime);
+            $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });
+        }else
+        {
+            traptime = setTimeout("trap(" + type + "," + fcnum +")", 2000);
+        }
+    });
 }
 /*数字增加，分割*/
 function transStr(str)
@@ -139,7 +182,7 @@ function chgTimes(numID, times)
             {
                 $("#totalvalue").text(parseInt($("#totalvalue").text()) + parseInt("1") - parseInt($(numIDx).val()));
                 $(numIDx).val("1");
-            } else if (result.toString().length >9)
+            } else if (result.toString().length > 9)
             {
                 var res = result.toString().substr(0, 9);
                 $("#totalvalue").text(parseInt($("#totalvalue").text()) + parseInt(res) - parseInt($(numIDx).val()));

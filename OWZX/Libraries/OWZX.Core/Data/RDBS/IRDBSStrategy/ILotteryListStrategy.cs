@@ -35,6 +35,13 @@ namespace OWZX.Core
         /// <param name="uid"></param>
         /// <returns></returns>
         DataTable GetUserBett(int type, int uid, int pageindex, int pagesize);
+
+        /// <summary>
+        /// 获取最新彩票记录
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        DataTable NewestLottery(string type);
         #endregion
 
         #region 赔率

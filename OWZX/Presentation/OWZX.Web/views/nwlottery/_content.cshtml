@@ -1,4 +1,10 @@
-﻿@model LotteryModel
+﻿@{
+    ViewBag.Title = "_content";
+}
+@model LotteryModel
+<script src="~/components/pager/jquery.page.js"></script>
+<link href="~/components/pager/page.css" rel="stylesheet" />
+
 <table class="con_table" id="play" cellpadding="0" cellspacing="1" align="center"
        style="color: Black; margin-bottom: 4px;margin-top:5px; border-top:2px solid #e4393c;" bgcolor="#CACACA">
     <tr id="trhead">
@@ -45,10 +51,54 @@
     }
     <tr align="center" bgcolor="#FFFFFF" id="pagetr">
         <td height="28" colspan="7" bgcolor="#FFFFFF">
+            @*<div class="Paging">
+                共<span class="pagerecord">@Model.PageModel.TotalCount</span>记录&nbsp;共<span class="pagerecord">@Model.PageModel.TotalPages</span>页&nbsp; 
+                @if(Model.PageModel.HasPrePage)
+                {
+                <a href="javascript:ajax_page(@Model.PageModel.PrePageNumber)">上一页</a>@:&nbsp;&nbsp;
+                }
+                else
+                {
+                <a href="javascript:void(0)">上一页</a>@:&nbsp;&nbsp;
+                }
+                 @if(Model.PageModel.TotalPages>5)
+                {
+                     <a href="javascript:ajax_page(12)">12</a>@:&nbsp;
+                     <a href="javascript:ajax_page(13)">13</a>@:&nbsp;
+                     <span id="currentpage" class="pageindex">14</span>@:&nbsp;
+                     <a href="javascript:ajax_page(15)">15</a>@:&nbsp;
+                     <a href="javascript:ajax_page(16)">16</a>@:&nbsp;
+                }
+                @if(Model.PageModel.HasNextPage)
+                {
+                <a href="javascript:ajax_page(@Model.PageModel.NextPageNumber)">下一页</a>@:&nbsp;&nbsp;
+                }
+                else
+                {
+                <a href="javascript:void(0)">下一页</a>@:&nbsp;&nbsp;
+                }
+            </div>*@
             <div class="tcdPageCode">
-                @Html.WebPager(Model.PageModel)
+                
             </div>
         </td>
     </tr>
 </table>
+<script>
+    function ajax_page(page)
+    {
+
+    }
+    $(function ()
+    {
+        $(".tcdPageCode").createPage({
+            pageCount: @Model.PageModel.TotalPages> 20 ? 20 : @Model.PageModel.TotalPages,
+            current: @Model.PageModel.PageNumber,
+            backFn: function (p)
+            {
+                $(".temp_content").load("/nwlottery/_content",{"type":lotterytype,"page":p});
+            }
+        });
+    });
+</script>
 

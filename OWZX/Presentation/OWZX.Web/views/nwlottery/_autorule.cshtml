@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "_autorule";
+}
+
+<div class="doc">
+    <form name="form1" method="post" action="/" id="form1">
+        <div class="zdtz_anli">
+            <p style="padding: 6px; width: 924px;">自动投注是网站根据用户的设置进行投注，这样用户就不用每期盯着，可以忙别的事情。而且自动投注不受用户电脑关机的影响。</p>
+            <p style="background-color: #f8f8f8; margin: 12px 0px; color: #7B0000; padding: 6px; width: 924px;">自动投注的设置包括基本设置（哪一期开始？开始那期用什么模式投注？符合什么条件后停止自动投注？）；规则设置（自定义模式在输赢后切换模式，配合10个自定义模式，这样就很灵活实现您的自动投注）；</p>
+            <div class="zdtz_line"></div>
+            <p style="line-height: 40px;"><strong>下面我们举个例子，</strong>这个例子的总体思路：追单双！就是当压单双赢了的时候，下一期加倍追。如果输了，则切换单双。</p>
+            <div style="width: 878px; margin: 0 auto;">
+                <img src="../img/bettdemo.png" />
+            </div>
+            <p>“<span class="zdtz_bzred">单5000</span>”赢了加倍用“<span class="zdtz_bzred">单10000</span>”，输了用<span class="zdtz_bzred">“双5000</span>”，依次类推！</p>
+            <p><strong>这个例子有两点注意：</strong></p>
+            <p style="text-indent: 4em; color: #7B0000;">
+                1、不管“单多少”输了，都用“双5000”，反过来也一样。从头开始！
+
+            </p>
+            <p style="text-indent: 4em; color: #7B0000;">
+                2、到最大“单40000”不管连续赢多少次，依旧用“单40000”。不能再加倍，控制风险。
+
+            </p>
+            <p>
+                类似的设置有很多：“追大小”；“追....”，这些都是很简单的思路，相信广大玩家会有更多更精彩的想法。
+
+            </p>
+
+
+            <div class="zdtz_line" style="margin: 12px 0px;"></div>
+            <div class="zdtz_jbsz" style="margin-bottom: 8px;">
+                <div style="width: 182px; margin: 0 auto; height: 62px; padding-top: 20px;">
+                    <a onclick="retAutoBett()">
+                        <img src="../img/fhzdtz_an.gif" width="182" height="42" border="0" />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+</div>
+<style>
+    a {
+        cursor: pointer;
+    }
+</style>
+<script>
+        function retAutoBett()
+        {
+            $("#middlecontent").load("Paly/autobett.aspx");
+        }
+</script>

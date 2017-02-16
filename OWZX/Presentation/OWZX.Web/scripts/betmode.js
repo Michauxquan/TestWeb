@@ -14,12 +14,13 @@ var ModelDatas = new Array(
 var ModeNames = new Array("", "", "", "", "", "", "", "", "", "");
 var CurrentMode = 0;
 var ModeCount = 0;
+var betttype = 0;//1 自定义模式 2组合
 var modelbetttype = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
     "", "", "", "", "", "", "", "", "", "", "", "","", "", "", "", "", "", "", "", "");
 
 
 
-//不同的模式不同的投注金额
+//自定义模式  不同的模式不同的投注金额
 function Change_Modes(ModeId) {
     //console.log(ModeId);
     CurrentMode = 0;
@@ -40,7 +41,7 @@ function Change_Modes(ModeId) {
         }
     }
     if (CurrentMode < 1) return;
-
+    betttype = 1;
     for (var i = 0; i < 28; i++)
     {
         document.getElementById("SMONEY_"+i).value = ModelDatas[CurrentMode - 1][i];
@@ -49,7 +50,7 @@ function Change_Modes(ModeId) {
 
 
     $(".img_bt1").css("background", "url(../../images/img_bt1.png) left no-repeat");
-
+   
     //$('.img_bt1').each(function(i, v) {
     //    if ($(v).html() == bttype) {
     //        $(v).css("background", "url(../../images/xy28_bg.gif)"); betttype = i;
@@ -104,9 +105,10 @@ function AddMONEY(val)
     {
         document.getElementById('SMONEY_'+val).value = "0";
     }
-    //组合不允许增加数字
-    if (obj.value == '0')
-        return;
+    alert(obj.value+'_'+ betttype);
+    ////组合不允许增加数字
+    //if (obj.value == '0' && betttype ==2)
+    //    return;
     var ciobj = document.getElementsByName('CI')[val];
     var SMONEYSUM = document.getElementById("SMONEYSUM");
         
@@ -234,6 +236,8 @@ new Array(0, 0, 0, 0, 15, 0, 0, 0, 0, 55, 0, 0, 0, 0, 75, 0, 0, 0, 0, 45, 0, 0, 
 //标准模式
 function FirstModes(modes)
 {
+    CurrentMode = 0;//自定义模式归0
+    betttype = 2;
     $(".img_bt1").css("background", "url(../../images/img_bt1.png) left no-repeat");
     $(".img_bt1").eq(modes-1).css("background", "url(../../images/xy28_bg.gif)");
     var SMONEYS;
