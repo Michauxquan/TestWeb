@@ -149,9 +149,9 @@ namespace OWZX.Web.Controllers
             else//验证成功时
             {
                 var ipname = CommonTools.commontools.GetIpName(WorkContext.IP);
-                var iserror = partUserInfo.VerifyRg == 0;
+                var iserror = partUserInfo.VerifyLoginRg == 0;
                 
-                if (partUserInfo.VerifyRg == 1)
+                if (partUserInfo.VerifyLoginRg == 1)
                 {
                     var regs=Users.GetRegionName(partUserInfo.Uid);
                     if (!string.IsNullOrEmpty(regs))
@@ -170,7 +170,7 @@ namespace OWZX.Web.Controllers
                         }
                     }
                 }
-                LoginFailLogs.AddLogin(WorkContext.IP, partUserInfo.Uid, DateTime.Now, CommonTools.commontools.GetIpName(ipname), 0, iserror ? "登录成功" : "登录地区验证失败");
+                LoginFailLogs.AddLogin(WorkContext.IP, partUserInfo.Uid, DateTime.Now, ipname, 0, iserror ? "登录成功" : "登录地区验证失败");
                 if (iserror)
                 {
                     //删除登陆失败日志

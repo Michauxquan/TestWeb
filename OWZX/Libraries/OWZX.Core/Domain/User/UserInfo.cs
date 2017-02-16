@@ -20,8 +20,7 @@ namespace OWZX.Core
         private string _avatar;//用户头像
         private int _paycredits;//支付积分
         private int _rankcredits;//等级积分
-        private int _verifyemail;//是否验证邮箱
-        private int _verifyrg;//是否验地区
+        private int _verifyemail;//是否验证邮箱 
         private int _verifysafepassword;//是否验证安全吗
         private int _verifymobile;//是否验证手机
         private DateTime _liftbantime = new DateTime(1900, 1, 1);//解禁时间
@@ -83,12 +82,11 @@ namespace OWZX.Core
         {
             set { _mobile = value.TrimEnd(); }
             get { return _mobile; }
-        } 
-        public int VerifyRg
-        {
-            set { _verifyrg = value; }
-            get { return _verifyrg; }
         }
+        /// <summary>
+        /// 是否验地区
+        /// </summary>
+        public int VerifyLoginRg { set; get; }
 
         /// <summary>
         /// 用户密码

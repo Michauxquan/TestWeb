@@ -42,6 +42,7 @@ namespace OWZX.Data
             partUserInfo.RankCredits = TypeHelper.ObjectToInt(reader["rankcredits"]);
             partUserInfo.VerifyEmail = TypeHelper.ObjectToInt(reader["verifyemail"]);
             partUserInfo.VerifyMobile = TypeHelper.ObjectToInt(reader["verifymobile"]);
+            partUserInfo.VerifyLoginRg = TypeHelper.ObjectToInt(reader["verifyloginrg"]);
             partUserInfo.LiftBanTime = TypeHelper.ObjectToDateTime(reader["liftbantime"]);
             partUserInfo.Salt = reader["salt"].ToString();
 
@@ -70,6 +71,7 @@ namespace OWZX.Data
             userInfo.RankCredits = TypeHelper.ObjectToInt(reader["rankcredits"]);
             userInfo.VerifyEmail = TypeHelper.ObjectToInt(reader["verifyemail"]);
             userInfo.VerifyMobile = TypeHelper.ObjectToInt(reader["verifymobile"]);
+            userInfo.VerifyLoginRg = TypeHelper.ObjectToInt(reader["verifyloginrg"]);
             userInfo.LiftBanTime = TypeHelper.ObjectToDateTime(reader["liftbantime"]);
             userInfo.Salt = reader["salt"].ToString();
 
@@ -86,6 +88,7 @@ namespace OWZX.Data
             userInfo.Bday = TypeHelper.ObjectToDateTime(reader["bday"]);
             userInfo.IdCard = reader["idcard"].ToString();
             userInfo.RegionId = TypeHelper.ObjectToInt(reader["regionid"]);
+            userInfo.RegionIdTwo = TypeHelper.ObjectToInt(reader["regionidtwo"]);
             userInfo.Address = reader["address"].ToString();
             userInfo.Bio = reader["bio"].ToString();
 
@@ -115,7 +118,7 @@ namespace OWZX.Data
             userDetailInfo.Address = reader["address"].ToString();
             userDetailInfo.Bio = reader["bio"].ToString();
             userDetailInfo.SignName = reader["signname"].ToString();
-
+            userDetailInfo.RegionIdTwo= TypeHelper.ObjectToInt(reader["regionidtwo"]);
             return userDetailInfo;
         }
 

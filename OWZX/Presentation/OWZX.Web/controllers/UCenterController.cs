@@ -914,30 +914,25 @@ namespace OWZX.Web.Controllers
             RegionInfo regionInfotwo = Regions.GetRegionById(model.UserInfo.RegionIdTwo);
             if (regionInfo != null)
             {
-                ViewData["provinceId"] = regionInfo.ProvinceId;
-                ViewData["cityId"] = regionInfo.RegionId;
-               // ViewData["cityId"] = regionInfo.CityId;
-              //  ViewData["countyId"] = regionInfo.RegionId; 
+                ViewData["provinceId"] = regionInfo.ParentId;
+                ViewData["cityId"] = regionInfo.RegionId; 
             }
             else
             {
                 ViewData["provinceId"] = -1;
-                ViewData["cityId"] = -1;
-               // ViewData["countyId"] = -1; 
+                ViewData["cityId"] = -1; 
             }
             if (regionInfotwo != null)
             {
-                ViewData["provinceIdtwo"] = regionInfotwo.ProvinceId;
-                ViewData["cityIdtwo"] = regionInfotwo.RegionId;
-               // ViewData["cityIdtwo"] = regionInfotwo.CityId;
-              //  ViewData["countyIdtwo"] = regionInfotwo.RegionId; 
+                ViewData["provinceIdtwo"] = regionInfotwo.ParentId;
+                ViewData["cityIdtwo"] = regionInfotwo.RegionId;  
             }
             else
             {
                 ViewData["provinceIdtwo"] = -1;
-                ViewData["cityIdtwo"] = -1;
-               // ViewData["countyIdtwo"] = -1; 
+                ViewData["cityIdtwo"] = -1; 
             }
+
             StringBuilder strb = new StringBuilder();
             strb.Append(" ");
             if (uid == -1)
@@ -956,6 +951,8 @@ namespace OWZX.Web.Controllers
                         : (type == 2 ? -30 : (type == 3 ? -180 : (type == 4 ? -365 : -1)))).ToString("yyyy-MM-dd HH:mm:ss");
                 strb.Append(" and a.createtime between '" + btime + "' and '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'");
             }
+            ViewData["isverifylog"] = WorkContext.PartUserInfo.VerifyLoginRg;
+            ViewData["IP"] = WorkContext.IP;
             List<MD_UsersLog> list = LoginFailLogs.GetUserLoginList(pageNumber, pageSize, strb.ToString());
             UserLogList loglist = new UserLogList
             {
@@ -977,7 +974,12 @@ namespace OWZX.Web.Controllers
             }
 
             var result = Users.UpdateUserVerifyLog(uid, isveritylog, regionid, regionidtwo);
-
+            if (result)
+            {
+                PartUserInfo part = WorkContext.PartUserInfo;
+                part.VerifyLoginRg = isveritylog;
+                WorkContext.PartUserInfo= part;
+            }
             return AjaxResult("data", result?"设置成功":"设置失败"); 
 
         }
