@@ -37,13 +37,31 @@ namespace OWZX.Web.controllers
             return View(lot);
         }
         /// <summary>
+        /// 竞猜首页数据（当期，上一次结果，竞猜集合）
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _Index()
+        {
+            int id = WebHelper.GetFormInt("type");//彩票类型
+            int page = WebHelper.GetFormInt("page",1);
+            MD_LotteryList list = LotteryList.GetLotteryByType(id, page, 20, WorkContext.Uid);
+
+            LotteryModel lot = new LotteryModel()
+            {
+                LotteryType = id,
+                PageModel = new PageModel(20, page, list.TotalCount),
+                lotterylist = list
+            };
+            return View(lot);
+        }
+        /// <summary>
         /// dd28获取数据
         /// </summary>
         /// <returns></returns>
         public ActionResult _Content()
         {
             int type = WebHelper.GetFormInt("type");
-            int pageindex = WebHelper.GetFormInt("pageindex");
+            int pageindex = WebHelper.GetFormInt("page");
             MD_LotteryList list = LotteryList.GetLotteryByType(type, pageindex, 20, WorkContext.Uid);
             LotteryModel lot = new LotteryModel()
             {
@@ -132,11 +150,11 @@ namespace OWZX.Web.controllers
                 Money = WebHelper.GetFormInt("bettTotalEggs"),
                 Bettmode = WebHelper.GetFormInt("bettmodel")
             };
-            bool result = Lottery.AddNewBett(bett);
-            if (result)
+            string result = Lottery.AddNewBett(bett);
+            if (result.EndsWith("成功"))
                 return Content("1");
-            else
-                return Content("0");
+            else 
+                return Content(result);
         }
 
         /// <summary>
@@ -156,7 +174,7 @@ namespace OWZX.Web.controllers
         public ActionResult _BettRecord()
         {
             int type = WebHelper.GetFormInt("type");
-            int pageindex = WebHelper.GetFormInt("pageindex");
+            int pageindex = WebHelper.GetFormInt("page");
             int pagesize = 20;
             DataTable dt = LotteryList.GetUserBett(type, WorkContext.Uid, pageindex, pagesize);
             LotteryRecord record = new LotteryRecord()
@@ -231,7 +249,24 @@ namespace OWZX.Web.controllers
             else
                 return Content("0");
         }
-
-
+        /// <summary>
+        /// 自动投注
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _AutoBett()
+        {
+            int type = WebHelper.GetFormInt("type");
+            DataTable dt = LotteryList.NewestLottery(type.ToString());
+            ViewData["lastlot"] = dt;
+            return View();
+        }
+        /// <summary>
+        /// 自动投注规则
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _AutoRule()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,456 @@
+﻿@{
+    ViewBag.Title = "_autobett";
+}
+<div class="zdtz_topbg" style="height: 64px;">
+    <div id="autoremark" style="display: none;">
+        <div class="zdtz_left">
+            <span class="zdtz_leftbg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><span style="color: #FF7200;">您的自动投注正在进行中...</span></strong><br>
+            <span style="font-size: 12px;" id="autohead"></span>
+        </div>
+        <div class="zdtz_right">
+            <a onclick="stop()" style="cursor: pointer;">
+                <img src="../../images/tzzdtz_an.gif" width="182" height="42" border="0" />
+            </a>
+        </div>
+    </div>
+    <div id="remark"><strong><span style="color: #FF7200; line-height: 50px;">自动投注：</span></strong>网站根据您的要求，自动帮您投注。完成以下设置即可开始自动投注，而且您随时可以停止自动投注。</div>
+</div>
+
+
+<div class="zdtz_jbsz">
+    <p>基本设置</p>
+    <table width="936" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFB91F" id="addatbt">
+        <tr>
+            <td width="109" height="66" rowspan="2" bgcolor="#FFE4B0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前投注&nbsp;&nbsp;<img src="../../images/zdtz_jth.gif" width="6" height="11" align="middle" /></td>
+            <td width="824" height="33" bgcolor="#FFFAC7">
+                &nbsp;&nbsp;&nbsp;开始模式：
+                <select id="BEGINMODES" name="BEGINMODES"></select>
+                <span id="span_BEGINMODES" style="display: none;"></span>
+                &nbsp;&nbsp;<span style="color: #6A6A6A">选择自动投注的开始模式，自动投注将从这个模式开始</span>
+            </td>
+        </tr>
+        <tr>
+            <td height="33" bgcolor="#FFFAC7">
+                &nbsp;&nbsp;&nbsp;投注期号：
+                <input name="STARTISSUE" id="STARTISSUE" type="text" value="" style="width: 80px;" onblur="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))" maxlength="10" />
+                <span id="span_STARTISSUE" style="display: none;"></span>
+                <span style="color: #6A6A6A">&nbsp;&nbsp;当前已经是第 <span class="zdtz_bzred" id="spnum"></span>期，开始期号必须大于或等于 <span class="zdtz_bzred" id="spnum1"></span></span>
+            </td>
+        </tr>
+        <tr>
+            <td height="66" bgcolor="#E7E7E7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;停止投注&nbsp;&nbsp;<img src="../img/zdtz_jtb.gif" width="6" height="11" align="middle" /></td>
+            <td bgcolor="#F4F4F4" style="line-height: 26px">
+                &nbsp;&nbsp;&nbsp;投注期数达到：
+                <input name="QS" id="QS" type="text" style="width: 80px;" value="5000" onblur="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))" maxlength="10" />
+                <span id="span_QS" style="display: none;"></span>
+                <span style="color: #6A6A6A">(不能超过5000)</span> <span class="zdtz_bzred">&nbsp;或</span> 金币≤
+                <input name="MINGOLDEGGS" id="MINGOLDEGGS" type="text" style="width: 80px;" value="0" onblur="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))" maxlength="12" />
+                <span id="span_MINGOLDEGGS" style="display: none;"></span>
+                <span class="zdtz_bzred">&nbsp;或</span> 金币不够投注<br />
+                &nbsp;&nbsp;&nbsp;<span style="color: #7B0000;">*以上几项达到任意一项即马上停止自动投注</span>
+            </td>
+        </tr>
+    </table>
+    <table width="936" border="0" cellpadding="0" cellspacing="1" id="atbt" bgcolor="#FFB91F" style="display: none;">
+        <tbody>
+            <tr>
+                <td width="109" height="66" rowspan="2" bgcolor="#FFE4B0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前投注&nbsp;&nbsp;<img src="../../images/zdtz_jth.gif" width="6" height="11" align="absmiddle"></td>
+                <td width="824" height="33" bgcolor="#FFFAC7">&nbsp;&nbsp;&nbsp;投注模式：<span id="nowmd" class="zdtz_bzred">1</span>&nbsp;&nbsp;<span style="color: #6A6A6A">投注额<span class="zdtz_bzred" id="btgold">40</span>，赢了会使用“<span class="zdtz_bzred" id="winmd">1</span>”模式；输了会使用“<span class="zdtz_bzred" id="lossmd">1</span>”模式继续投注。</span></td>
+            </tr>
+            <tr>
+                <td height="33" bgcolor="#FFFAC7">&nbsp;&nbsp;&nbsp;投注期号：<span class="zdtz_bzred" id="nowfcnum">764497</span> <span style="color: #6A6A6A" id="betnum">（已投2期，还剩8期）</span></td>
+            </tr>
+            <tr>
+                <td height="66" bgcolor="#E7E7E7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;停止投注&nbsp;&nbsp;<img src="../../images/zdtz_jtb.gif" width="6" height="11" align="absmiddle"></td>
+                <td bgcolor="#F4F4F4" style="line-height: 26px">
+                    &nbsp;&nbsp;&nbsp;投注期数达到：<strong id="maxbetnum">10</strong> <span class="zdtz_bzred">&nbsp;或</span> 金币不够投注<br>
+                    &nbsp;&nbsp;&nbsp;<span style="color: #7B0000;">*以上几项达到任意一项即马上停止自动投注</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="zdtz_jbsz" style="margin-bottom: 8px;">
+    <div class="zdtzright_lj"><a style="color: #FF6600" id="btrule">规则设置案例>></a></div>
+    <p>规则设置</p><br /><br /><br />
+    <div class="zdtz_line"></div>
+    <div class="zdtz_text">设置每个自定义投注模式输赢后使用哪个投注模式进行投注。自动投注开启后，系统会根据您的设置进行循环投注，如果您把其中一个模式的输赢都继续使用这个模式，那么自动投注会一直使用这个模式，直到达到停止投注的条件。（<span class="zdtz_red">输赢</span>与是否猜中号码无关，赢了是指开奖后您得到金币分≥您投注的金币，反之是输了。）</div>
+
+</div>
+<table width="936" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFB91F" align="center" style="color: Black;">
+
+
+    <tr id="autotitle" align="center">
+        <td width="24%"  style="height: 28px; color: #7B0000;">投注模式</td>
+        <td width="28%"  style="height: 28px; color: #7B0000;">投注金币</td>
+
+        <td width="24%"  style="height: 28px; color: #7B0000;">赢了使用投注模式</td>
+        <td width="24%"  style="height: 28px; color: #7B0000;">输了使用投注模式</td>
+    </tr>
+
+
+
+</table>
+<div class="zdtz_jbsz" style="margin-bottom: 8px;">
+    <div style="width: 182px; margin: 0 auto; height: 62px; padding-top: 20px;">
+        <input type="image" name="ibtnStart" id="ibtnStart" src="../../images/kszdtz_an.gif" onclick="return check();" style="border-width: 0px;" />
+        <input type="image" id="ibtnEnd" src="../../images/tzzdtz_an.gif" onclick="return stop();" style="border-width: 0px; display: none;" />
+    </div>
+    <div class="zdtz_line"></div>
+    <div class="zdtz_text">
+        <span style="color: #6A6A6A;">
+            <strong>备注：</strong>1、自动投注将在开奖后2分钟进行投注，关机也不影响。<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、以最近一期“已开奖”结果的输赢作为下期投注依据。（如果上一期未成功开奖，则以上上一期的输赢结果作为投注依据。）
+        </span>
+    </div>
+
+</div>
+
+<style>
+    #btrule:hover {
+        cursor: pointer;
+    }
+</style>
+<script type="text/javascript">
+        var lotttime = "";
+        var usergold = "";
+        var userid = "";
+        var nowmdid = "";
+        var mingold = "";
+        var fcnum = "";
+        $(function ()
+        {
+            $("#btrule").bind("click", function ()
+            {
+                $("#middlecontent").load("/nwlottery/_autorule");
+            });
+            Init();
+        });
+
+        var autonowmdid = "";
+
+        function Init()
+        {
+            //获取自动投注信息
+            $.get("../Data/CusBettOperater.ashx", { "qctype": "gtauto" }, function (data)
+            {
+                if (data != "")
+                {
+                    $("#addatbt").css("display", "none");
+                    $("#atbt").css("display", "");
+                    $("#remark").css("display", "none");
+                    $("#autoremark").css("display", "");
+                    $("#ibtnEnd").css("display", "");
+                    $("#ibtnStart").css("display", "none");
+                    var dt = JSON.parse(data);
+
+                    if (dt.auto.length > 0)
+                    {
+
+                        var autoif = dt.auto[0];
+
+                        autonowmdid = autoif.NowSelectModeID;
+                        var msg = '当前正使用“<strong>' + autoif.Objjc + '</strong>”模式投注，投注额<strong>' + autoif.BettEggs
+                            + '</strong>，赢了会使用“<strong>' + autoif.wintype + '</strong>”模式；输了会使用“<strong>' + autoif.losstype + '</strong>”模式继续投注。';
+                        $("#autohead").html(msg);
+
+                        $("#nowmd").text(autoif.Objjc); $("#btgold").text(autoif.BettEggs); $("#winmd").text(autoif.wintype);
+                        $("#lossmd").text(autoif.losstype);
+
+                        $("#nowfcnum").text(autoif.NowStartFCNum); $("#betnum").text("（已投" + autoif.AutoBettNum.toString() + "期，还剩" + (parseInt(autoif.MaxBettNumber) - parseInt(autoif.AutoBettNum)).toString() + "期） ");
+                        $("#maxbetnum").text(autoif.MaxBettNumber.toString());
+                    }
+
+                    var base = dt.btmd;
+
+                    var strb = "";
+                    $(".atnwtr").remove();
+                    for (var i = 0; i <= base.length - 1; i++)
+                    {
+                        var item = base[i];
+                        strb += '<tr class="atnwtr" align="center" bgcolor="#FFFFFF">' +
+            '<td height="32" bgcolor="#FFFaC7"><a >' +
+             chkresult(item.ObjName, autonowmdid)
+            + item.Objjc + '</a></td>' +
+            '<td class="pright">' + item.BettEggs + '<img src="../img/egg.gif" /><input type="hidden" id="mosegg_1" value="' + item.BettEggs + '" /></td><td>' +
+                item.wintype
+                         +
+                    '</td><td>' +
+                        item.losstype +
+                    '</td></tr>';
+                    }
+                    if (strb != "")
+                    {
+                        $(strb).insertAfter("#autotitle");
+                    }
+                } else
+                {
+                    GetData();
+                }
+
+            });
+        }
+
+        function GetData()
+        {
+            $.get("../Data/CusBettOperater.ashx", { "qctype": "setautobett" }, function (data)
+            {
+                if (data != "")
+                {
+                    $("#addatbt").css("display", "");
+                    $("#atbt").css("display", "none");
+                    $("#remark").css("display", "");
+                    $("#autoremark").css("display", "none");
+                    $("#ibtnEnd").css("display", "none");
+                    $("#ibtnStart").css("display", "");
+                    var dt = JSON.parse(data);
+                    var base = dt.base;
+                    if (base.length == 0)
+                    {
+                        alert("设置“投注模式”后，才能够进行自动投注");
+                        return;
+                    }
+
+                    if (dt.fcinfo.length > 0)
+                    {
+                        var fcinfo = dt.fcinfo[0];
+                        $("#STARTISSUE").val(fcinfo.FCNum); $("#spnum1").text(fcinfo.FCNum); $("#spnum").text(fcinfo.FCNum);
+                        lotttime = fcinfo.LotteryTime;
+                        fcnum = fcinfo.FCNum;
+                    }
+                    if (dt.usinfo.length > 0)
+                    {
+                        var usinfo = dt.usinfo[0]
+                        usergold = usinfo.UsGoldNum; userid = usinfo.CusUserID;
+                    }
+                    if (dt.autoinfo.length > 0)
+                    {
+                        var autoinfo = dt.autoinfo[0];
+                        nowmdid = autoinfo.NowSelectModeID;
+                        mingold = autoinfo.MinGoldNumber;
+                        $("#QS").val(autoinfo.MaxBettNumber); $("#MINGOLDEGGS").val(autoinfo.MinGoldNumber);
+                    }
+
+                    var sel = "";
+                    sel = SetOption(base);
+                    if (sel != "")
+                    {
+                        $("#BEGINMODES").append(sel);
+                    }
+                    var strb = "";
+                    $(".atnwtr").remove();
+                    $.each(base, function (i, item)
+                    {
+                        strb += '<tr class="atnwtr" align="center" bgcolor="#FFFFFF">' +
+            '<td height="32" bgcolor="#FFFaC7"><a >[' + item.CheckBettType + "]" + item.Objjc + '</a></td>' +
+            '<td class="pright">' + item.BettEggs + '<img src="../img/egg.gif" /><input type="hidden" id="mosegg_1" value="' + item.BettEggs + '" /></td><td>' +
+                '<select id="MODES' + (i + 1).toString() + '" name="WINMODES" style="width: 90px;">' +
+                 sel +
+                        '</select>'
+                         +
+                    '</td><td>' +
+                        '<select id="MODESW' + (i + 1).toString() + '" name="LOSTMODES" style="width: 90px;">' + sel +
+                        '</select>' +
+                        '<input type="hidden" name="Modes" id="hdmdval' + (i + 1).toString() + '" value="' + item.ObjName + '">' +
+                    '</td></tr>'
+                    });
+                    if (strb != "")
+                    {
+                        $(strb).insertAfter("#autotitle");
+                        Rows = base.length;
+                        $.each(base, function (i, item)
+                        {
+                            ModeSelect(item.SetWinType, (i + 1).toString());
+                            ModeSelect1(item.SetLossType, (i + 1).toString());
+                        });
+                    }
+
+
+                } else
+                    $(".atnwtr").remove();
+
+            });
+        }
+        function chkresult(id, selid)
+        {
+            if (id == selid)
+                return '<img src="../img/jt_red.gif" title="目前正在投注的模式" align="absmiddle">'
+            else
+                return ''
+        }
+        function SetOption(base)
+        {
+            var strb = "";
+            $.each(base, function (i, item)
+            {
+                strb += "<option value='" + item.ObjName + "'>" + item.Objjc + "</option>";
+            });
+            return strb;
+        }
+        //下拉菜单如何选中
+        function Select(IDname, Value)
+        {
+            for (var pp = 0; pp < document.getElementById(IDname).options.length; pp++)
+            {
+                if (document.getElementById(IDname).options[pp].value == Value)
+                {
+                    document.getElementById(IDname).options[pp].selected = true;
+                    break;
+                }
+            }
+        }
+
+        var Rows = "1";
+        //赢的方法的选中
+        function ModeSelect(getMode, modes)
+        {
+            var obj = document.getElementById("MODES" + modes);
+            for (i = 0; i < Rows; i++)
+            {
+                if (getMode == obj.options[i].value)
+                {
+                    obj.options[i].selected = true;
+                }
+            }
+        }
+
+        //输的方法的选中
+        function ModeSelect1(getMode, modes)
+        {
+            var obj = document.getElementById("MODESW" + modes);
+            for (i = 0; i < Rows; i++)
+            {
+                if (getMode == obj.options[i].value)
+                {
+                    obj.options[i].selected = true;
+                }
+            }
+        }
+
+        function stop()
+        {
+            //获取自动投注信息
+            $.get("../Data/CusBettOperater.ashx", { "qctype": "delauto" }, function (data)
+            {
+                if (data == "True")
+                {
+                    Init();
+                    //window.location.href = "/qcgeass.aspx"
+                }
+            });
+        }
+        //判断
+        function check()
+        {
+            var startissue = fcnum;  //默认的开始期号
+            var endissue = parseInt(fcnum) + parseInt($("#QS").val());  //默认的结束期号
+            var usereggs = usergold;  //用户积分
+            var mode_num = 10;
+            var mode_rows = 1;
+
+
+            var g_startissue = document.getElementById("STARTISSUE").value; //开始期号
+            var QS = $("#QS").val();  //期数
+
+            var MINGOLDEGGS = document.getElementById("MINGOLDEGGS").value; //最小值
+            var v_BEGINMODES = document.getElementById("BEGINMODES").value;
+
+
+            if (g_startissue == "")
+            {
+                showdiv("请填写开始期数！");
+                document.getElementById("STARTISSUE").focus();
+                return false;
+            }
+
+            if (startissue != "")
+            {
+                if (g_startissue < startissue)
+                {
+                    showdiv("开始期号必须大于！" + startissue);
+                    document.getElementById("STARTISSUE").focus();
+                    return false;
+                }
+            }
+
+            if (QS == "")
+            {
+                showdiv("请填写结束期数！");
+                document.getElementById("QS").focus();
+                return false;
+            }
+
+            if (parseInt(QS) <= 0)
+            {
+                showdiv("请填写有效的投注期数！");
+                document.getElementById("QS").focus();
+                return false;
+            }
+
+            if (parseInt(QS) > 5000)
+            {
+                showdiv("投注期数不能大于5000！");
+                document.getElementById("QS").focus();
+                return false;
+            }
+
+            //      if(parseInt(mode_num) < parseInt(mode_rows))
+            //      {
+            //          btnmsg = "<a class=\"red_enter\" href=\"/vip/vip_index.aspx\"><span style=\"color:White\">查看VIP</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            //          btnmsg += "<a class=\"red_enter\" onclick=\"closezNotice(0)\"><span style=\"color:White\">关 闭</span></a>";
+            //          showdiv("您的自定义模式个数超出了，请“投注模式编辑”中删除或升级VIP。",btnmsg,"auto",395);
+            //
+            //        return false;
+            //      }
+
+            if (parseInt(MINGOLDEGGS) >= parseInt(usereggs))
+            {
+                showdiv("您的当前金币<=" + MINGOLDEGGS + ",符合停止投注条件！");
+                document.getElementById("MINGOLDEGGS").focus();
+                return false;
+            }
+            //var v_modeseggs = document.getElementById("mosegg_" + v_BEGINMODES).value;
+            //if (parseInt(v_modeseggs) > parseInt(usereggs))
+            //{
+            //    showdiv("您的当前积分不够开始模式的投注，符合停止投注条件！");
+            //    return false;
+            //}
+            var allmd = "";
+            $.each($(".atnwtr"), function (i, item)
+            {
+
+                var win = $(item).find("td").eq(2).find("#MODES" + (i + 1).toString()).val();
+                var losss = $(item).find("td").eq(3).find("#MODESW" + (i + 1).toString()).val();
+                var objname = $(item).find("td").eq(3).find("#hdmdval" + (i + 1).toString()).val();
+                allmd += win + ":" + losss + ":" + objname + ";";
+            });
+            $.post("../Data/CusBettOperater.ashx", {
+                "qctype": "addautobett", "startmd": v_BEGINMODES,
+                "nowfcnum": g_startissue, "maxfcnum": QS, "mingold": MINGOLDEGGS, "allselmd": allmd
+            }, function (data)
+            {
+                if (data != "")
+                {
+                    var dt = JSON.parse(data);
+                    if (dt.Result)
+                    {
+                        window.location = "/qcgeass.aspx"
+                    } else
+                    {
+                        showdiv(dt.Msg);
+                    }
+
+                }
+            });
+        }
+
+        function endvip()
+        {
+            //var btnmsg = "<a class=\"red_enter\" href=\"/vip/vip_index.aspx\"><span style=\"color:White\">查看VIP</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            var btnmsg = "<a class=\"red_enter\" onclick=\"closezNotice(0)\"><span style=\"color:White\">关 闭</span></a>";
+            showdiv("您的自定义投注模式数据已超出。", btnmsg, "auto", 395);
+
+        }
+        
+</script>

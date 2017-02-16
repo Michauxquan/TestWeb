@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "_index";
+}
+@model LotteryModel
+<div class="dv">
+    @if (@Model.lotterylist.Prev_Lottery.Expect != null)
+    {
+        <div class="ltnumber">
+            <h4 style="padding-top:10px;">第 @Model.lotterylist.Prev_Lottery.Expect 期</h4>开奖结果
+        </div>
+        <div style="width:80%;display:block;float:left;line-height:35px;border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;font-weight:600;">
+            <div style="padding-left:50px;">
+                <span class="ltnum1">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(0, 17)</span>&nbsp;&nbsp;&nbsp;
+                <span class="ltnum2">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(18, 17)</span>&nbsp;&nbsp;&nbsp;
+                <span class="ltnum3">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(36, 17)</span>
+                <a href="http://www.bwlc.net/bulletin/keno.html" style="color:#666;float:right;">[官方查询]</a>
+            </div>
+            <div style="border-top:1px solid #ECECEC;padding-left:50px;">
+                <span style="font-size:15px;">一区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.First</span></span>
+                <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Second</span></span>
+                <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
+                <span style="margin-left:60px;font-size:15px;">结果: <span class="ltresult pcresult">@Model.lotterylist.Prev_Lottery.Resultnum</span></span>
+            </div>
+        </div>
+    }
+    else
+    {
+        @:暂无历史开奖
+                }
+</div>
+<div class="dv">
+    <div style="width:30%; display:block;float:left;" class="remains">
+        第 <i class="bold">@Model.lotterylist.LastNumber</i>期
+        @if (@Model.lotterylist.RemainS >= 30 && @Model.lotterylist.RemainS <= 270)
+        {
+            <text>还有<span class="ltwarn">@Model.lotterylist.RemainS</span>秒停止下注!</text>
+        }
+        else if (@Model.lotterylist.RemainS > 0 && @Model.lotterylist.RemainS < 30)
+        {
+            <text>停止下注,还有<span class="ltwarn">@Model.lotterylist.RemainS</span>秒开奖!</text>
+        }
+        else if (@Model.lotterylist.RemainS > -60 && @Model.lotterylist.RemainS <= 0)
+        {
+            <text>正在开奖,请稍后!</text>
+        }
+    </div>
+    <script>
+                    $(function(){
+                        GetRTime(1,@Model.lotterylist.RemainS,@Model.lotterylist.LastNumber,270,30)
+                    });
+    </script>
+    <div style="width:30%;display:block;float:left;">
+        今日盈亏: <span class="ltwarn">@Model.lotterylist.TdProf</span> 参与: <i class="bold">@Model.lotterylist.TdBettNum</i>期 胜率: <i class="bold">@Model.lotterylist.WinPercent%</i>
+    </div>
+    <div style="width:40%; display:block;float:left;text-align:right;">最高投注<span class="ltwarn">2,000</span>万豆,最高中奖 <span class="ltwarn">100,0000</span>万豆</div>
+</div>
+<div class="temp_content">
+    @Html.Partial("_content")
+</div>

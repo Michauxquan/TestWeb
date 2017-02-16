@@ -173,7 +173,9 @@ height:36px;margin-top:10px; margin-left:94px;
     text-align:center;
     height:40px;
     line-height: 45px !important;font-size:15px;}
-
+    #navItme li:hover {
+    cursor:pointer;
+    }
 #navItme li:hover,#navItme li.hot{ background:#990000;}
 #navItme li a.index {background: url(../images/ico.png);background-position: -2px -121px;padding-left: 20px;}
 

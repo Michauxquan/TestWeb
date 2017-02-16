@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OWZX.Services
 {
-   public class LotteryList
+    public class LotteryList
     {
         #region 竞猜数据
         /// <summary>
@@ -17,17 +17,17 @@ namespace OWZX.Services
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-       public static MD_LotteryList GetLotteryByType(int type, int pageindex, int pagesize, int uid = -1)
+        public static MD_LotteryList GetLotteryByType(int type, int pageindex, int pagesize, int uid = -1)
         {
-            DataSet ds= OWZX.Data.LotteryList.GetLotteryByType(type, pageindex, pagesize, uid);
-            MD_LotteryList list = ModelConvertHelper <MD_LotteryList>.DataTableToModel(ds.Tables[1]);
+            DataSet ds = OWZX.Data.LotteryList.GetLotteryByType(type, pageindex, pagesize, uid);
+            MD_LotteryList list = ModelConvertHelper<MD_LotteryList>.DataTableToModel(ds.Tables[1]);
             list.Prev_Lottery = ModelConvertHelper<MD_Lottery>.DataTableToModel(ds.Tables[0]);
             list.LotteryList = (List<MD_LotteryUser>)ModelConvertHelper<MD_LotteryUser>.ConvertToModel(ds.Tables[2]);
 
             return list;
         }
 
-       /// <summary>
+        /// <summary>
         /// 是否已开奖
         /// </summary>
         /// <param name="type"></param>
@@ -37,15 +37,24 @@ namespace OWZX.Services
         {
             return OWZX.Data.LotteryList.ExistsLotteryOpen(type, expect);
         }
-       /// <summary>
-       /// 获取投注记录
-       /// </summary>
-       /// <param name="type"></param>
-       /// <param name="uid"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// 获取投注记录
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="uid"></param>
+        /// <returns></returns>
         public static DataTable GetUserBett(int type, int uid, int pageindex, int pagesize)
         {
-            return OWZX.Data.LotteryList.GetUserBett(type, uid, pageindex,pagesize);
+            return OWZX.Data.LotteryList.GetUserBett(type, uid, pageindex, pagesize);
+        }
+        /// <summary>
+        /// 获取最新彩票记录
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static DataTable NewestLottery(string type)
+        {
+            return OWZX.Data.LotteryList.NewestLottery(type);
         }
         #endregion
 

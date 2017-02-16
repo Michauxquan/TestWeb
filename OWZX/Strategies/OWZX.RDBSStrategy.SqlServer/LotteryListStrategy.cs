@@ -1,4 +1,5 @@
 ﻿using OWZX.Core;
+using OWZX.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -138,8 +139,8 @@ select  ROW_NUMBER() over(order by a.bettid desc) id,a.lotterynum,a.addtime,c.re
 case when b.luckresult>=0 then b.luckresult-a.money else b.luckresult end win,a.bettid
 into #lotrecord  
 from owzx_bett a
-join owzx_bettprofitloss b on a.bettid=b.bettid and a.uid={1}
-join owzx_lotteryrecord c on a.lotteryid=c.type and a.lotterynum=c.expect and c.type={0}
+left join owzx_bettprofitloss b on a.bettid=b.bettid
+join owzx_lotteryrecord c on a.lotteryid=c.type and a.lotterynum=c.expect and c.type={0} and a.uid={1}
 
 declare @total int=(select count(1) from #lotrecord )
 
@@ -154,6 +155,71 @@ end
 
 ", type,uid);
             return RDBSHelper.ExecuteTable(sql,parms)[0];
+        }
+
+        /// <summary>
+        /// 获取最新彩票记录
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public DataTable NewestLottery(string type)
+        {
+            lock (lkstate)
+            {
+                string sql = string.Format(@" 
+                --逻辑：北京 投注4:30s 封盘30s ,到开奖时间加载新的一期；
+                --加拿大 投注3分，封盘30s,到开奖时间加载新的一期；
+                declare @type int ={0}
+declare @min varchar(5), @sec varchar(5),@expect varchar(50),@totalsec varchar(5)
+
+if(@type in (1,4,9)) 
+begin
+
+if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status !=2 and 
+(DATEDIFF(second,opentime,getdate()) >= -270 and DATEDIFF(second,opentime,getdate())<0) order by lotteryid )
+begin
+select top 1 @expect=expect, 
+--@min=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))/60),
+--@sec=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))%60),
+@totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
+from owzx_lotteryrecord where type=@type and status  !=2  and (DATEDIFF(second,opentime,getdate()) >= -270 and DATEDIFF(second,opentime,getdate())<0)
+order by lotteryid
+
+select @expect expect,@totalsec time
+--select @expect expect,(replicate('0',2-len(@min))+rtrim(@min)) +'分'+(replicate('0',2-len(@sec))+rtrim(@sec)) +'秒' time
+end
+else
+begin
+select '?' expect,'维护中' time
+end
+
+end
+else if(@type in (2,3)) 
+begin
+
+if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status  !=2  and 
+(DATEDIFF(second,opentime,getdate()) >= -180 and DATEDIFF(second,opentime,getdate())<0) order by lotteryid )
+begin
+select top 1 @expect=expect, 
+--@min=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))/60),
+--@sec=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))%60),
+@totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
+from owzx_lotteryrecord where type=@type and status  !=2 and (DATEDIFF(second,opentime,getdate()) >= -180 and DATEDIFF(second,opentime,getdate())<0)
+order by lotteryid
+
+select @expect expect,@totalsec time
+--select @expect expect,(replicate('0',2-len(@min))+rtrim(@min)) +'分'+(replicate('0',2-len(@sec))+rtrim(@sec)) +'秒' time
+end
+else
+begin
+
+select '?' expect,'维护中' time
+end
+
+end
+                ", type);
+                return RDBSHelper.ExecuteTable(sql, null)[0];
+            }
         }
         #endregion
 
@@ -196,6 +262,155 @@ end
 ", type);
             return RDBSHelper.ExecuteDataset(sql);
         }
+        #endregion
+
+        #region 自动投注
+        /// <summary>
+        /// 添加自动投注
+        /// </summary>
+        /// <param name="chag"></param>
+        /// <returns></returns>
+        public string AddAutoBett(MD_AutoBett mode)
+        {
+            try
+            {
+                DbParameter[] parms = {
+                                        GenerateInParam("@uid", SqlDbType.Int,4, mode.Uid),
+                                        GenerateInParam("@lotteryid", SqlDbType.Int,4, mode.LotteryId),
+                                        GenerateInParam("@selmodeid", SqlDbType.Int,4, mode.SelModeId),
+                                        GenerateInParam("@startexpect", SqlDbType.VarChar,50, mode.StartExpect),
+                                        GenerateInParam("@maxbettnum", SqlDbType.Int,4, mode.MaxBettNum),
+                                        GenerateInParam("@mingold", SqlDbType.Int,4, mode.MinGold),
+                                        GenerateInParam("@autobettnum", SqlDbType.Int,4, mode.AutoBettNum)
+                                       
+                                    };
+                string commandText = string.Format(@"
+begin try
+begin tran t1
+if exists(select 1 from owzx_userbettmodel where uid=@uid and lotterytype=@lotterytype)
+begin
+
+
+end
+else
+begin
+INSERT INTO [owzx_userautobett]
+           ([uid]
+           ,[lotteryid]
+           ,[selmodeid]
+           ,[startexpect]
+           ,[maxbettnum]
+           ,[mingold]
+           ,[autobettnum]
+           ,[isstart]
+          )
+VALUES (@uid,@lotteryid,@selmodeid,@startexpect,@maxbettnum,@mingold,@autobettnum,@isstart)
+end
+
+select '添加成功' state
+commit tran t1
+end try
+begin catch
+rollback tran t1
+select ERROR_MESSAGE() state
+end catch
+
+");
+                return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+            }
+            catch (Exception er)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 更新模式信息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public string UpdateAutoBett(MD_AutoBett mode)
+        {
+            return "";
+        }
+
+        /// <summary>
+        /// 停止自动投注
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string StopAutoBett(int uid, int lotterytype)
+        {
+            string commandText = string.Format(@"
+            begin try
+            if exists(select 1 from owzx_userbettmodel where uid={0} and name='{1}' and lotterytype={2})
+            begin
+            delete from owzx_userbettmodel where uid={0} and name='{1}'
+            select '删除成功' state
+            end
+            else
+            begin
+            select '记录已被删除' state
+            end
+            end try
+            begin catch
+            select ERROR_MESSAGE() state
+            end catch
+            ", uid,lotterytype);
+            return RDBSHelper.ExecuteScalar(commandText).ToString();
+        }
+
+        /// <summary>
+        ///获取自动投注
+        /// </summary>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public DataTable GetAutoBett(string condition = "")
+        {
+            string commandText = string.Format(@"
+begin try
+if OBJECT_ID('tempdb..#list') is not null
+  drop table #list
+
+SELECT ROW_NUMBER() over(order by a.modeid desc) id
+      ,a.[name]
+           ,a.[uid],a.lotterytype
+           ,a.[bettnum]
+           ,a.[bettinfo]
+           ,a.[betttotal]
+           ,a.[wintype]
+           ,a.[losstype]
+           ,a.[addtime]
+           ,a.[updatetime]
+           ,a.[updateuid]
+  into  #list
+  FROM owzx_userbettmodel a
+  join owzx_users b on a.uid=b.uid
+  {0}
+
+declare @total int
+select @total=(select count(1)  from #list)
+
+if(@pagesize=-1)
+begin
+select *,@total TotalCount from #list
+end
+else
+begin
+select *,@total TotalCount from #list where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
+end
+
+end try
+begin catch
+select ERROR_MESSAGE() state
+end catch
+
+", condition);
+
+            return RDBSHelper.ExecuteTable(CommandType.Text, commandText,null)[0];
+        }
+        
         #endregion
     }
 }

@@ -695,14 +695,10 @@ namespace OWZX.Services
         /// </summary>
         /// <param name="bett"></param>
         /// <returns></returns>
-        public static bool AddNewBett(MD_Bett bett)
+        public static string AddNewBett(MD_Bett bett)
         {
             string result = OWZX.Data.Lottery.AddNewBett(bett);
-            if (result.EndsWith("成功"))
-            {
-                return true;
-            }
-            return false;
+            return result;
         }
         /// <summary>
         /// 添加投注记录
