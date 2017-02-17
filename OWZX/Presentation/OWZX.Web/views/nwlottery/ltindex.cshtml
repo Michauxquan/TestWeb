@@ -25,7 +25,7 @@
             $("#ltItme li div").removeClass("hot");
             $("#ltItme li:eq(1) a div").addClass("hot");
             $(".sec_head a").click(function(){
-                if($(this).index()>1 &&uid<=0)
+                if($(this).index()>3 &&uid<=0)
                 {
                     layer.alert("<div style='text-align:center;'>请登录</div>",{title:"提示"});
                     return;
@@ -116,6 +116,14 @@
     <script>
     function loadpage(type)
     {
+        if(type=="bett" || type=="bettrecords" ||type=="models" ||type=="autobett" )
+        {
+            if(uid<=0)
+            {
+                layer.alert("<div style='text-align:center;'>请登录</div>",{title:"提示"});
+                return;
+            }
+        }
         isbett=0;
         switch(type)
         {
@@ -124,6 +132,7 @@
                 break;
             case 'bett':
                 isbett=1;
+               
                 $(".temp_content").load("/nwlottery/_bettpage",{"type":lotterytype});
                 break;
             case 'rule':
