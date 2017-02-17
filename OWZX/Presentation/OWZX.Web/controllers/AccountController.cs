@@ -433,7 +433,7 @@ namespace OWZX.Web.Controllers
             else//验证成功
             {
                 #region 绑定用户信息
-
+                userInfo.UserId = Randoms.CreateRandomValue(6);
                 userInfo.Salt = Randoms.CreateRandomValue(6);
                 userInfo.Password = Users.CreateUserPassword(password, userInfo.Salt);
                 userInfo.UserRid = UserRanks.GetLowestUserRank().UserRid;
