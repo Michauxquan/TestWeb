@@ -25,9 +25,12 @@
             @if (@lot.Status != 2)
             {
             @:-
-            }else
+            }
+            else
             {
-            <text><i>@lot.First</i>+<i>@lot.Second</i>+<i>@lot.Three</i>=<span class="ltresult pcresult">@lot.Resultnum</span></text>
+                string resnum = int.Parse(@lot.Resultnum).ToString("d2");
+            <text><i>@lot.First</i>+<i>@lot.Second</i>+<i>@lot.Three</i>=<span class="ltresult pcresult">
+            @resnum</span></text>
             }
         </td>
         <td>@{string rt = string.Format("{0:n0}",@lot.TotalBett);} @rt</td>

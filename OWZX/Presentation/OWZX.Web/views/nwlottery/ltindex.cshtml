@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <title>游戏乐园-@{@WorkContext.ShopConfig.SiteTitle}</title>
     @Html.Raw(WorkContext.ShopConfig.SEOKeyword)
     @Html.Raw(WorkContext.ShopConfig.SEODescription)
@@ -69,7 +70,10 @@
                         <span style="font-size:15px;">一区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.First</span></span>
                         <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Second</span></span>
                         <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
-                        <span style="margin-left:60px;font-size:15px;">结果: <span class="ltresult pcresult">@Model.lotterylist.Prev_Lottery.Resultnum</span></span>
+                        <span style="margin-left:60px;font-size:15px;">结果: <span class="ltresult pcresult">
+                            @{string resnum = int.Parse(@Model.lotterylist.Prev_Lottery.Resultnum).ToString("d2");}
+                            @resnum
+                            </span></span>
                     </div>
                 </div>
                 }else

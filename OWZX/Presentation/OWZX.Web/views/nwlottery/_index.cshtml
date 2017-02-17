@@ -19,7 +19,9 @@
                 <span style="font-size:15px;">一区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.First</span></span>
                 <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Second</span></span>
                 <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
-                <span style="margin-left:60px;font-size:15px;">结果: <span class="ltresult pcresult">@Model.lotterylist.Prev_Lottery.Resultnum</span></span>
+                <span style="margin-left:60px;font-size:15px;">结果: <span class="ltresult pcresult">
+                                                                       @{string resnum = int.Parse(@Model.lotterylist.Prev_Lottery.Resultnum).ToString("d2");}
+                                                                       @resnum</span></span>
             </div>
         </div>
     }
