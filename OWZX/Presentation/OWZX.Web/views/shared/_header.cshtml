@@ -34,7 +34,7 @@
     <div id="navs">
         <ul id="navItme">
             <li onclick="javascript: window.location.href = '/'"><a href="/" class="index">首页</a></li>
-            <li><a href="/">商务合作</a></li>
+            <li onclick="javascript:alert('正在开发中...');"><a href="javascript:void(0);">商务合作</a></li>
             <li onclick="javascript: window.location.href = '@Url.Action("list", "news")'"><a href="javascript:void(0);">活动专区</a></li>
             <li onclick="javascript: window.location.href = '/nwlottery/ltindex/1'"><a href="javascript:void(0);">游戏乐园</a></li>
             <li onclick="javascript: window.location.href = '@Url.Action("changelist", "changeware")'"><a href="javascript:void(0);">兑换中心</a></li>
@@ -47,11 +47,74 @@
 <script>
     $(function() {
         if (@WorkContext.Uid > 0) {
-            $.post('/ucenter/getusermoney', {}, function (data) { 
-                var result = eval("(" + data + ")"); 
+            $.post('/ucenter/getusermoney', {}, function(data) {
+                var result = eval("(" + data + ")");
                 $('.usertotalmoney').html(result.content.totalmoney);
                 $('.banktotalmoney').html(result.content.bankmoney);
             });
         }
     });
- </script>
+</script>
+@{
+    <style >
+        #box-kefu { position: fixed; right: 0; top: 30%; z-index: 100; _position: absolute; _top: expression(eval(document.documentElement.scrollTop+100)); }
+        #box-kefu .kefu-open { position: absolute; top: 0; right: 0; width: 138px; padding: 46px 0 0 0; background: url(../images/kefu_icon.png) no-repeat -46px 0; _background-image: url(../images/kefu_icon.gif); overflow: hidden; }
+        #box-kefu .kefu-open .close{ display: block; position: absolute; width: 22px; height: 22px; right: 0; top: 0; text-indent: -9999px; }
+        #box-kefu .kefu-open div { padding-bottom: 5px; background: url(../images/kefu_bg.png) no-repeat -268px bottom; width: 134px; }
+        #box-kefu .kefu-open ul { background: url(../images/kefu_bg.png) repeat-y 0 0 #939393; }
+        #box-kefu .kefu-open li { height: 32px; line-height: 32px; padding: 0 15px 2px; background: url(../images/kefu_bg.png) no-repeat -134px bottom; }
+        #box-kefu .kefu-open li a { color: #fff; display: block; position: relative; zoom: 1; padding-left: 35px; }
+        #box-kefu .kefu-open li a:hover { text-decoration: none; }
+        #box-kefu .kefu-open li a i { display: inline-block; position: absolute; left: 10px; top: 6px; width: 21px; height: 21px; background: url(../images/kefu_icon.png) no-repeat 9999px 9999px; _background-image: url(../images/kefu_icon.gif); }
+        #box-kefu .kefu-open li a i.qq { background-position: -86px -56px; }
+        #box-kefu .kefu-open li a i.online { background-position: -56px -56px; }
+        #box-kefu .kefu-open li a i.txt { background-position: -56px -86px; }
+        #box-kefu .kefu-close { position: absolute; top: 5px; right: 0; width: 0; height: 127px; padding: 0; background: url(../images/kefu_icon.png) no-repeat 0 0; _background-image: url(../images/kefu_icon.gif); cursor: pointer; overflow: hidden; }
+       </style>
+}
+    <div id="box-kefu">
+        <div class="kefu-close"></div>
+        <div class="kefu-open">
+            <div>
+            <ul>
+                <li><a href="http://wpa.qq.com/msgrd?v=3&uin=2244929864&site=qq&menu=yes" target="_blank"><i class="qq"></i>在线客服1</a></li> 
+            </ul>
+            </div>
+            <a href="javascript:;" class="close">关闭</a>
+        </div>
+    </div>
+    <script>var online = new Array();
+        online[0] = 1;
+    </script>
+<script src="http://webpresence.qq.com/getonline?Type=1&2244929864:"></script>
+<script>
+    (function($){
+        for (var i=0; i<online.length; i++) {
+            if (online[i]) jQuery("#box-kefu .qq").eq(i).addClass("online");
+        }
+        var _open = $("#box-kefu").find(".kefu-open"),
+            _close = $("#box-kefu").find(".kefu-close");
+        _open.find("a").hover(function(){
+            $(this).stop(true,true).animate({paddingLeft:20},200).find("i").stop(true,true).animate({left:75},200);
+        },function(){
+            $(this).stop(true,true).animate({paddingLeft:35},200).find("i").stop(true,true).animate({left:10},200);
+        });
+    
+
+        _open.find(".close").click(function(){
+            _open.animate({width:148},200,function(){
+                _open.animate({width:0},200,function(){
+                    _close.animate({width:34},200);
+
+                });
+            });
+        });
+        _close.click(function(){
+            _close.animate({width:44},200,function(){
+                _close.animate({width:0},200,function(){
+                    _open.animate({width:138},200);
+                });
+            });
+        });
+    })(jQuery)
+</script>

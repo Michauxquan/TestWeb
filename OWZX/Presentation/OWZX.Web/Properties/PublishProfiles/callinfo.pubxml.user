@@ -61,34 +61,34 @@
       <publishTime>02/06/2017 19:05:47</publishTime>
     </File>
     <File Include="bin/OWZX.Core.dll">
-      <publishTime>02/17/2017 01:33:22</publishTime>
+      <publishTime>02/18/2017 23:20:54</publishTime>
     </File>
     <File Include="bin/OWZX.Core.pdb">
       <publishTime>11/17/2016 18:05:41</publishTime>
     </File>
     <File Include="bin/OWZX.Data.dll">
-      <publishTime>02/17/2017 01:33:22</publishTime>
+      <publishTime>02/18/2017 23:20:54</publishTime>
     </File>
     <File Include="bin/OWZX.Data.pdb">
       <publishTime>11/17/2016 18:05:42</publishTime>
     </File>
     <File Include="bin/OWZX.Model.dll">
-      <publishTime>02/17/2017 01:33:22</publishTime>
+      <publishTime>02/18/2017 23:20:53</publishTime>
     </File>
     <File Include="bin/OWZX.Model.pdb">
       <publishTime>11/17/2016 18:05:41</publishTime>
     </File>
     <File Include="bin/OWZX.Services.dll">
-      <publishTime>02/17/2017 01:33:23</publishTime>
+      <publishTime>02/18/2017 23:20:55</publishTime>
     </File>
     <File Include="bin/OWZX.Services.pdb">
       <publishTime>11/17/2016 18:05:42</publishTime>
     </File>
     <File Include="bin/OWZX.Web.dll">
-      <publishTime>02/17/2017 01:33:24</publishTime>
+      <publishTime>02/18/2017 23:20:56</publishTime>
     </File>
     <File Include="bin/OWZX.Web.Framework.dll">
-      <publishTime>02/17/2017 01:33:23</publishTime>
+      <publishTime>02/18/2017 23:20:55</publishTime>
     </File>
     <File Include="bin/OWZX.Web.Framework.pdb">
       <publishTime>11/17/2016 18:05:43</publishTime>
@@ -1147,7 +1147,7 @@
       <publishTime>02/06/2017 19:05:47</publishTime>
     </File>
     <File Include="controllers/AccountController.cs">
-      <publishTime>02/16/2017 20:03:14</publishTime>
+      <publishTime>02/18/2017 19:35:05</publishTime>
     </File>
     <File Include="controllers/APIController.cs">
       <publishTime>02/06/2017 19:05:47</publishTime>
@@ -1202,6 +1202,9 @@
     </File>
     <File Include="css/index.css">
       <publishTime>02/08/2017 22:02:03</publishTime>
+    </File>
+    <File Include="css/kefu.css">
+      <publishTime>02/18/2017 23:16:55</publishTime>
     </File>
     <File Include="css/lanrenzhijia.css">
       <publishTime>02/06/2017 19:05:47</publishTime>
@@ -1374,6 +1377,21 @@
     <File Include="images/btn.png">
       <publishTime>02/06/2017 19:05:47</publishTime>
     </File>
+    <File Include="images/chips/chips_10000.png">
+      <publishTime>02/18/2017 23:09:18</publishTime>
+    </File>
+    <File Include="images/chips/chips_100000.png">
+      <publishTime>02/18/2017 23:09:18</publishTime>
+    </File>
+    <File Include="images/chips/chips_1000000.png">
+      <publishTime>02/18/2017 23:09:18</publishTime>
+    </File>
+    <File Include="images/chips/chips_500000.png">
+      <publishTime>02/18/2017 23:09:18</publishTime>
+    </File>
+    <File Include="images/chips/chips_5000000.png">
+      <publishTime>02/18/2017 23:09:18</publishTime>
+    </File>
     <File Include="images/dlogo.png">
       <publishTime>02/06/2017 19:05:47</publishTime>
     </File>
@@ -1400,6 +1418,15 @@
     </File>
     <File Include="images/jt.png">
       <publishTime>02/06/2017 19:05:47</publishTime>
+    </File>
+    <File Include="images/kefu_bg.png">
+      <publishTime>02/18/2017 23:16:50</publishTime>
+    </File>
+    <File Include="images/kefu_icon.gif">
+      <publishTime>02/18/2017 23:16:12</publishTime>
+    </File>
+    <File Include="images/kefu_icon.png">
+      <publishTime>02/18/2017 23:16:12</publishTime>
     </File>
     <File Include="images/ltnumber.png">
       <publishTime>02/12/2017 19:46:08</publishTime>
@@ -1465,10 +1492,10 @@
       <publishTime>02/12/2017 23:17:41</publishTime>
     </File>
     <File Include="OWZX.Web.csproj">
-      <publishTime>02/16/2017 19:57:54</publishTime>
+      <publishTime>02/18/2017 23:17:40</publishTime>
     </File>
     <File Include="OWZX.Web.csproj.user">
-      <publishTime>02/14/2017 00:12:50</publishTime>
+      <publishTime>02/18/2017 23:17:40</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>02/06/2017 19:05:47</publishTime>
@@ -1642,7 +1669,7 @@
       <publishTime>02/06/2017 19:05:47</publishTime>
     </File>
     <File Include="views/home/index.cshtml">
-      <publishTime>02/16/2017 22:37:19</publishTime>
+      <publishTime>02/18/2017 23:01:09</publishTime>
     </File>
     <File Include="views/home/notice.cshtml">
       <publishTime>02/06/2017 19:05:47</publishTime>
@@ -1657,7 +1684,7 @@
       <publishTime>02/12/2017 19:46:08</publishTime>
     </File>
     <File Include="views/nwlottery/ltindex.cshtml">
-      <publishTime>02/16/2017 19:57:54</publishTime>
+      <publishTime>02/18/2017 19:35:05</publishTime>
     </File>
     <File Include="views/nwlottery/_autobett.cshtml">
       <publishTime>02/16/2017 19:57:54</publishTime>
@@ -1675,10 +1702,10 @@
       <publishTime>02/16/2017 19:57:54</publishTime>
     </File>
     <File Include="views/nwlottery/_content.cshtml">
-      <publishTime>02/16/2017 19:57:54</publishTime>
+      <publishTime>02/18/2017 19:35:05</publishTime>
     </File>
     <File Include="views/nwlottery/_index.cshtml">
-      <publishTime>02/16/2017 19:57:54</publishTime>
+      <publishTime>02/18/2017 19:35:05</publishTime>
     </File>
     <File Include="views/nwlottery/_ltheader.cshtml">
       <publishTime>02/16/2017 19:57:54</publishTime>
@@ -1696,7 +1723,7 @@
       <publishTime>08/24/2016 15:34:50</publishTime>
     </File>
     <File Include="views/shared/_header.cshtml">
-      <publishTime>02/17/2017 00:28:27</publishTime>
+      <publishTime>02/18/2017 23:19:31</publishTime>
     </File>
     <File Include="views/shared/_layout.cshtml">
       <publishTime>02/06/2017 19:05:47</publishTime>
@@ -1735,13 +1762,13 @@
       <publishTime>02/12/2017 21:59:09</publishTime>
     </File>
     <File Include="views/ucenter/userdefault.cshtml">
-      <publishTime>02/12/2017 21:59:04</publishTime>
+      <publishTime>02/18/2017 23:05:52</publishTime>
     </File>
     <File Include="views/ucenter/userinfo.cshtml">
       <publishTime>02/14/2017 01:16:13</publishTime>
     </File>
     <File Include="views/ucenter/_menu.cshtml">
-      <publishTime>02/12/2017 21:59:25</publishTime>
+      <publishTime>02/18/2017 22:59:27</publishTime>
     </File>
     <File Include="views/Web.config">
       <publishTime>02/06/2017 19:05:47</publishTime>

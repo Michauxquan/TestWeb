@@ -33,9 +33,10 @@
             <tr>
                 <td id="memberRT" style="width: 370px;  color: #000;padding-bottom:10px;"> <h4 style=" float: left;">您好，@WorkContext.NickName </h4> <span class="Fred left"> &nbsp;(ID:@WorkContext.Uid &nbsp; 账号:@WorkContext.UserEmail)</span></td>
                 <td style="padding-bottom:10px;">
-                    
-                    <div style="border: solid 1px #ddd; padding: 2px 3px;; height: 18px; width: 86px; float: left;"><img src="../images/baseimg/mobile.png" style="width: 18px; height: 18px;"/>
-                        <img src="../images/baseimg/@(Model.UserInfo.VerifyMobile == 0 ? "error" : "ok").png" style="width: 18px; height: 18px;"/>
+
+                    <div style="border: solid 1px #ddd; padding: 2px 3px;   height: 18px; width: 42px; float: left;">
+                        <img src="../images/baseimg/mobile.png" style="width: 18px; height: 18px; display: none;"/>
+                        <img src="../images/baseimg/@(Model.UserInfo.VerifyMobile == 0 ? "error" : "ok").png" style="width: 18px; height: 18px; display: none;"/>
                         <img src="../images/baseimg/email.png" style="width: 18px; height: 18px;"/>
                         <img src="../images/baseimg/@(Model.UserInfo.VerifyEmail == 0 ? "error" : "ok").png" style="width: 18px; height: 18px;"/>
                     </div>
@@ -62,10 +63,10 @@
             </tr>
             <tr>
                 <td colspan="2">
-                @if (@Model.UserInfo.VerifyMobile == 0)
+             @*   @if (@Model.UserInfo.VerifyMobile == 0)
                 {
                     <img src="../images/baseimg/mobile.png" class="left" style="width: 100px; height: 100px;"/><a href="/ucenter/safeinfo"><h3 style="width:120px; margin-top: 40px;" class="left">认证手机>></h3></a>
-                }
+                }*@
                 
                 @if (@Model.UserInfo.VerifyEmail == 0)
                 { 

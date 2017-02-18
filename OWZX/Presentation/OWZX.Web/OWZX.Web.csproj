@@ -449,6 +449,7 @@
     <Content Include="components\zyupload\zyUpload.css" />
     <Content Include="components\zyupload\zyUpload.js" />
     <Content Include="css\index.css" />
+    <Content Include="css\kefu.css" />
     <Content Include="css\lanrenzhijia.css" />
     <Content Include="css\lgstyle.css" />
     <Content Include="css\lottery.css" />
@@ -505,11 +506,19 @@
     <Content Include="images\baseimg\tb_4.jpg" />
     <Content Include="images\baseimg\toutu.jpg" />
     <Content Include="images\btn.png" />
+    <Content Include="images\chips\chips_10000.png" />
+    <Content Include="images\chips\chips_100000.png" />
+    <Content Include="images\chips\chips_1000000.png" />
+    <Content Include="images\chips\chips_500000.png" />
+    <Content Include="images\chips\chips_5000000.png" />
     <Content Include="images\error\404.jpg" />
     <Content Include="images\error\500.jpg" />
     <Content Include="images\hmkdownload.png" />
     <Content Include="images\ico.png" />
     <Content Include="images\iphone_help.png" />
+    <Content Include="images\kefu_bg.png" />
+    <Content Include="images\kefu_icon.gif" />
+    <Content Include="images\kefu_icon.png" />
     <Content Include="images\ltnumber.png" />
     <Content Include="images\mall\dui.png" />
     <Content Include="images\mall\gg.png" />

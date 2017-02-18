@@ -26,3 +26,4 @@ G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Model\bin\Debug\OWZX.Model.dll
 G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Model\bin\Debug\OWZX.Model.pdb
 G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Model\obj\Debug\OWZX.Model.dll
 G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Model\obj\Debug\OWZX.Model.pdb
+G:\MichauxPro\TestWeb\OWZX\Libraries\OWZX.Model\obj\Debug\OWZX.Model.csprojResolveAssemblyReference.cache
