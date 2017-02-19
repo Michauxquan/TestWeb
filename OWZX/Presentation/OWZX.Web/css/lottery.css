@@ -93,6 +93,19 @@ font-size:15px;
 padding:0 3px;
 }
 
+.sdz {
+    background: url('../images/number/dd36.png');
+    width: 28px;
+    height: 28px;
+    display: inline-block;margin-top:5px
+}
+.z1{background-position:0 0}
+.z2{background-position:0 -32px}
+.z3{background-position:0 -65px}
+.z4{background-position:0 -98px}
+.z5{background-position:0 -131px }
+.z6{background-position:0 -32px}
+
 /*分页*/
 .Paging {
     margin: 20px auto;

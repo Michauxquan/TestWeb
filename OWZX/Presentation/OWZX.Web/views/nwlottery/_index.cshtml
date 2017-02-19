@@ -13,7 +13,7 @@
                 <span class="ltnum1">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(0, 17)</span>&nbsp;&nbsp;&nbsp;
                 <span class="ltnum2">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(18, 17)</span>&nbsp;&nbsp;&nbsp;
                 <span class="ltnum3">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(36, 17)</span>
-                <a href="http://www.bwlc.net/bulletin/keno.html" style="color:#666;float:right;">[官方查询]</a>
+                <a href="http://www.bwlc.net/bulletin/keno.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
             </div>
             <div style="border-top:1px solid #ECECEC;padding-left:50px;">
                 <span style="font-size:15px;">一区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.First</span></span>
@@ -47,9 +47,9 @@
        }
     </div>
     <script>
-                    $(function(){
-                        GetRTime(1,@Model.lotterylist.RemainS,@Model.lotterylist.LastNumber,300,30)
-                    });
+        $(function(){
+            GetRTime(lotterytype,@Model.lotterylist.RemainS,@Model.lotterylist.LastNumber,300,30,@Model.lotterylist.Prev_Lottery.Expect)
+        });
     </script>
     <div style="width:30%;display:block;float:left;">
         今日盈亏: <span class="ltwarn">@Model.lotterylist.TdProf</span> 参与: <i class="bold">@Model.lotterylist.TdBettNum</i>期 胜率: <i class="bold">@Model.lotterylist.WinPercent%</i>

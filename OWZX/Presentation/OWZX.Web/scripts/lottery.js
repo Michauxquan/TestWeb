@@ -1,7 +1,15 @@
 ﻿/*竞猜*/
-/*倒计时 剩余总时间，期号，下注时间，封盘时间*/
-function GetRTime(type, ctime, fcnum, totalime, stoptime)
+/*倒计时 剩余总时间，期号，总时间，封盘时间,结果期数*/
+var tiner;
+var traptime;
+function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
 {
+    //处理上期未开奖，重启计时处理
+    if (prevnum != undefined)
+    {
+        trap(type, fcnum - 1);
+    }
+
     num = fcnum;
     //ns 开奖时间
     var nS = ctime;
@@ -37,14 +45,13 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime)
     }
     else
     {
+        nS = nS - 1;
         StrTimeOut = -1;
         if (nS > -30)
         {
             $(".remains").html(
                 '第 <i class="bold">' + fcnum + '</i>期  正在开奖,请稍后!');
         }
-
-        nS = nS - 1;
 
         if (nS == -5 || nS == -10 || nS == -15 || nS == -20 || nS == -25 || nS == -30)
         {
@@ -57,6 +64,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime)
                 if (data == "1")
                 {
                     clearTimeout(tiner);
+                    clearTimeout(traptime);
 
                     if ($(".sec_head a:eq(0)").hasClass("hot"))
                     {
@@ -89,20 +97,20 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime)
             clearTimeout(tiner);
     }
     if (nS > -30)
-        tiner = setTimeout("GetRTime(" + type + "," + nS + "," + fcnum + "," + totalime + "," + stoptime + ")", 1000);
+        tiner = setTimeout("GetRTime(" + type + "," + nS + "," + fcnum + "," + totalime + "," + stoptime +")", 1000);
 }
-var traptime;
 function trap(type,fcnum)
 {
     $.post("/nwlottery/lotteryopen", { "type": lotterytype, "expect": fcnum }, function (data)
     {
         if (data == "1")
         {
+            clearTimeout(tiner);
             clearTimeout(traptime);
             $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });
         }else
         {
-            traptime = setTimeout("trap(" + type + "," + fcnum +")", 2000);
+            traptime = setTimeout("trap(" + type + "," + fcnum + ")", 2000);
         }
     });
 }

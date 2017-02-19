@@ -27,15 +27,48 @@ namespace OWZX.Web.controllers
         public ActionResult LTIndex(int id)
         {
             MD_LotteryList list = LotteryList.GetLotteryByType(id, 1, 20, WorkContext.Uid);
-
+            int total = 0;
+            int stop = 0;
+            InitParms(id, ref total, ref stop);
             LotteryModel lot = new LotteryModel()
             {
                 LotteryType = id,
+                TotalS=total,
+                StopTime=stop,
                 PageModel = new PageModel(20, 1, list.TotalCount),
                 lotterylist = list
             };
             return View(lot);
         }
+
+        private static void InitParms(int id, ref int total, ref int stop)
+        {
+            switch (id)
+            {
+                case (int)LotteryType.dd28:
+                case (int)LotteryType.dd36:
+                case (int)LotteryType.ddlhb:
+                    total = 300;
+                    stop = 30;
+                    break;
+                case (int)LotteryType.cakeno28:
+                case (int)LotteryType.cakeno36:
+                    total = 210;
+                    stop = 30;
+                    break;
+                case (int)LotteryType.pkgj:
+                case (int)LotteryType.pkgyj:
+                    total = 300;
+                    stop = 30;
+                    break;
+                case (int)LotteryType.hg28:
+                    break;
+                case (int)LotteryType.js28:
+                    break;
+            }
+        }
+
+        
         /// <summary>
         /// 竞猜首页数据（当期，上一次结果，竞猜集合）
         /// </summary>
@@ -45,10 +78,14 @@ namespace OWZX.Web.controllers
             int id = WebHelper.GetFormInt("type");//彩票类型
             int page = WebHelper.GetFormInt("page",1);
             MD_LotteryList list = LotteryList.GetLotteryByType(id, page, 20, WorkContext.Uid);
-
+            int total = 0;
+            int stop = 0;
+            InitParms(id, ref total, ref stop);
             LotteryModel lot = new LotteryModel()
             {
                 LotteryType = id,
+                TotalS = total,
+                StopTime = stop,
                 PageModel = new PageModel(20, page, list.TotalCount),
                 lotterylist = list
             };
@@ -63,8 +100,14 @@ namespace OWZX.Web.controllers
             int type = WebHelper.GetFormInt("type");
             int pageindex = WebHelper.GetFormInt("page");
             MD_LotteryList list = LotteryList.GetLotteryByType(type, pageindex, 20, WorkContext.Uid);
+            int total = 0;
+            int stop = 0;
+            InitParms(type, ref total, ref stop);
             LotteryModel lot = new LotteryModel()
             {
+                LotteryType=type,
+                TotalS=total,
+                StopTime=stop,
                 PageModel = new PageModel(20, pageindex, list.TotalCount),
                 lotterylist = list
             };
