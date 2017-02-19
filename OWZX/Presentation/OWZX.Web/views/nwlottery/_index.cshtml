@@ -33,22 +33,22 @@
 <div class="dv">
     <div style="width:30%; display:block;float:left;" class="remains">
         第 <i class="bold">@Model.lotterylist.LastNumber</i>期
-        @if (@Model.lotterylist.RemainS >= 30 && @Model.lotterylist.RemainS <= 270)
-        {
-            <text>还有<span class="ltwarn">@Model.lotterylist.RemainS</span>秒停止下注!</text>
-        }
-        else if (@Model.lotterylist.RemainS > 0 && @Model.lotterylist.RemainS < 30)
-        {
-            <text>停止下注,还有<span class="ltwarn">@Model.lotterylist.RemainS</span>秒开奖!</text>
-        }
-        else if (@Model.lotterylist.RemainS > -60 && @Model.lotterylist.RemainS <= 0)
-        {
-            <text>正在开奖,请稍后!</text>
-        }
+       @if (@Model.lotterylist.RemainS > 30 && @Model.lotterylist.RemainS <= 300)
+       {
+        <text>还有<span class="ltwarn">@Model.lotterylist.RemainS-30</span>秒停止下注!</text>
+       }
+       else if (@Model.lotterylist.RemainS > 0 && @Model.lotterylist.RemainS <= 30)
+       {
+        <text>停止下注,还有<span class="ltwarn">@Model.lotterylist.RemainS</span>秒开奖!</text>
+       }
+       else if (@Model.lotterylist.RemainS > -60 && @Model.lotterylist.RemainS <= 0)
+       {
+        <text>正在开奖,请稍后!</text>
+       }
     </div>
     <script>
                     $(function(){
-                        GetRTime(1,@Model.lotterylist.RemainS,@Model.lotterylist.LastNumber,270,30)
+                        GetRTime(1,@Model.lotterylist.RemainS,@Model.lotterylist.LastNumber,300,30)
                     });
     </script>
     <div style="width:30%;display:block;float:left;">
