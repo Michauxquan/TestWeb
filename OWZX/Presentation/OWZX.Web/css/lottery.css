@@ -106,6 +106,29 @@ padding:0 3px;
 .z5{background-position:0 -131px }
 .z6{background-position:0 -32px}
 
+.shuang{color: #F00;font-size: 14px;font-weight: bold; }
+.xiaos {
+    color: #00F;
+    font-size: 14px;
+    font-weight: bold;
+}
+.dan{    color: #00C6FF;font-size: 14px;font-weight: bold; }
+.da{    color:#00C6FF;font-size: 14px;font-weight: bold; }
+.xiao{    color: #F00;font-size: 14px;font-weight: bold; }
+.xiaodan {
+    color: #fd00ff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.long{color: #00C6FF;font-size: 14px;font-weight: bold;}
+.hu{color: #F00;font-size: 14px;font-weight: bold;}
+.bao {
+    color: #018796;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 /*分页*/
 .Paging {
     margin: 20px auto;

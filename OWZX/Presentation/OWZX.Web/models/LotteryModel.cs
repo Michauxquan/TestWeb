@@ -15,6 +15,10 @@ namespace OWZX.Web.Models
         /// </summary>
         public int LotteryType { get; set; }
         /// <summary>
+        /// 标题
+        /// </summary>
+        public string Title { get; set; }
+        /// <summary>
         /// 彩票总时间
         /// </summary>
         public int TotalS { get; set; }

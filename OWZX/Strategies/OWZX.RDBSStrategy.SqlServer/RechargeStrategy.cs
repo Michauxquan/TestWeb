@@ -440,7 +440,7 @@ end catch
             string commandText = string.Format(@"
 begin try
 begin tran t1
-if exists(select 1 from {0}users where totalmoney>@money)
+if exists(select 1 from {0}users where mobile=@account and totalmoney>=@money)
 begin
 
 declare @uid int

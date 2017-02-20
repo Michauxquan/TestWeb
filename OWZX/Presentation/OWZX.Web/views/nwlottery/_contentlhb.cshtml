@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "_content36";
+}
+
+@model LotteryModel
+<script src="~/components/pager/jquery.page.js"></script>
+<link href="~/components/pager/page.css" rel="stylesheet" />
+
+<table class="con_table" id="play" cellpadding="0" cellspacing="1" align="center"
+       style="color: Black; margin-bottom: 4px;margin-top:5px; border-top:2px solid #e4393c;" bgcolor="#CACACA">
+    <tr id="trhead">
+        <td width="13%" style="height: 28px;">期号</td>
+        <td width="13%" style="height: 28px">开奖时间</td>
+        <td width="17%" style="height: 28px">开奖结果</td>
+        <td width="27%" style="height: 28px">中奖</td>
+        <td colspan="5" width="15%" style="height: 28px">投注额/中奖额</td>
+        <td width="13%" style="height: 28px">投注</td>
+    </tr>
+    @foreach (OWZX.Model.MD_LotteryUser lot in @Model.lotterylist.LotteryList)
+    {
+        @{string[] resulttype = lot.ResultType.Split(',');}
+        <tr>
+            <td>@lot.Expect</td>
+            <td>@lot.Opentime.ToString("MM-dd HH:mm")</td>
+            <td>
+                @if (@lot.Status != 2)
+                {
+                    
+                }
+                else
+                {
+                    <text><i>@lot.First</i>+<i>@lot.Second</i>+<i>@lot.Three</i>=</text>
+                    string resnum = string.Empty;
+                   
+                        resnum = int.Parse(@lot.Resultnum).ToString("d2");
+                        <span class="ltresult pcresult">
+                            @resnum
+                        </span>
+                    
+                }
+            </td>
+            <td>
+            @if (@resulttype[0]=="大")
+            {
+            <span class="da">@resulttype[0]</span>
+            }
+            else if (@resulttype[0] == "小")
+            {
+                <span class="xiao">@resulttype[0]</span>
+            }</td><td>
+            @if (@resulttype[1] == "单")
+            {
+                <span class="dan">@resulttype[1]</span>
+            }
+            else if (@resulttype[1] == "双")
+            {
+                <span class="shuang">@resulttype[1]</span>
+            }
+            </td>
+            <td><span>@if (@resulttype[2] == "大单")
+                    {
+                        <span class="dan">@resulttype[2]</span>
+                    }
+                      else if (@resulttype[2] == "小单")
+                      {
+                        <span class="xiaodan">@resulttype[2]</span>
+                      }
+                      else if (@resulttype[2] == "大双")
+                      {
+                        <span class="shuang">@resulttype[2]</span>
+                      }
+                      else if (@resulttype[2] == "小双")
+                      {
+                        <span class="xiaos">@resulttype[2]</span>
+                      }</span></td>
+            <td>
+                @if (@resulttype[3] == "龙")
+                {
+                    <span class="long">@resulttype[3]</span>
+                }
+                else if (@resulttype[3] == "虎")
+                {
+                    <span class="hu">@resulttype[3]</span>
+                }
+                else if (@resulttype[3] == "豹")
+                {
+                    <span class="bao">@resulttype[3]</span>
+                }
+                
+            </td>
+            <td>
+                @if (@resulttype.Length > 4)
+                {
+                    string type = @resulttype[4] == "极小" ? "xiao" : "da";
+                    <span class="@type">
+                        @resulttype[4]
+                    </span>
+                }
+                else
+                {
+                   @:- 
+                    }
+                               </td>
+            <td>@{string bt = string.Format("{0:n0}", @lot.LuckResult); string lk = string.Format("{0:n0}", @lot.Money);} @bt/@lk</td>
+            <td style="width:30px;">
+                @if (lot.Status == 0)
+                {
+                    <div class="lot_btn_@lot.Expect"><a href="javascript:loadpage('bett')"><div class="ltoperate">竞  猜</div></a></div>
+                }
+                else if (lot.Status == 1)
+                {
+                    <div class="lot_btn_@lot.Expect"><a href="#"><div class="ltoperate">正在开奖</div></a></div>
+                }
+                else if (lot.Status == 2)
+                {
+                    <div class="lot_btn_@lot.Expect"><a href="#"><div class="ltclose">- 已开奖 -</div></a></div>
+                }
+            </td>
+        </tr>
+    }
+    <tr align="center" bgcolor="#FFFFFF" id="pagetr">
+        <td height="28" colspan="7" bgcolor="#FFFFFF">
+
+            <div class="tcdPageCode">
+
+            </div>
+        </td>
+    </tr>
+</table>
+<script>
+    function ajax_page(page)
+    {
+
+    }
+    $(function ()
+    {
+        $(".tcdPageCode").createPage({
+            pageCount: @Model.PageModel.TotalPages> 20 ? 20 : @Model.PageModel.TotalPages,
+            current: @Model.PageModel.PageNumber,
+            backFn: function (p)
+            {
+                $(".temp_content").load("/nwlottery/_content",{"type":lotterytype,"page":p});
+            }
+        });
+    });
+</script>

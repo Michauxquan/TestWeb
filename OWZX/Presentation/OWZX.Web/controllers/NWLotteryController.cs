@@ -29,41 +29,62 @@ namespace OWZX.Web.controllers
             MD_LotteryList list = LotteryList.GetLotteryByType(id, 1, 20, WorkContext.Uid);
             int total = 0;
             int stop = 0;
-            InitParms(id, ref total, ref stop);
+            string title = string.Empty;
+            InitParms(id, ref total, ref stop,ref title);
             LotteryModel lot = new LotteryModel()
             {
                 LotteryType = id,
                 TotalS=total,
                 StopTime=stop,
+                Title=title,
                 PageModel = new PageModel(20, 1, list.TotalCount),
                 lotterylist = list
             };
             return View(lot);
         }
 
-        private static void InitParms(int id, ref int total, ref int stop)
+        private static void InitParms(int id, ref int total, ref int stop,ref string title)
         {
             switch (id)
             {
                 case (int)LotteryType.dd28:
-                case (int)LotteryType.dd36:
-                case (int)LotteryType.ddlhb:
+                    title = "蛋蛋28首页";
+                     total = 300;
+                    stop = 30;
+                    break;
+                case (int)LotteryType.dd36: title = "蛋蛋36首页";
                     total = 300;
                     stop = 30;
                     break;
-                case (int)LotteryType.cakeno28:
-                case (int)LotteryType.cakeno36:
+                case (int)LotteryType.ddlhb: title = "蛋蛋龙虎豹首页";
+                    total = 300;
+                    stop = 30;
+                    break;
+                case (int)LotteryType.cakeno28: title = "加拿大28首页";
+                     total = 210;
+                    stop = 30;
+                    break;
+                case (int)LotteryType.cakeno36: title = "加拿大36首页";
                     total = 210;
                     stop = 30;
                     break;
-                case (int)LotteryType.pkgj:
-                case (int)LotteryType.pkgyj:
+                case (int)LotteryType.pkgj: title = "PK冠军首页";
+                     total = 300;
+                    stop = 30;
+                    break;
+                case (int)LotteryType.pkgyj: title = "PK冠亚军首页";
                     total = 300;
                     stop = 30;
                     break;
                 case (int)LotteryType.hg28:
+                    title = "韩国28首页";
+                    total = 90;
+                    stop = 30;
                     break;
                 case (int)LotteryType.js28:
+                    title = "急速28首页";
+                    total = 0;
+                    stop = 0;
                     break;
             }
         }
@@ -80,7 +101,8 @@ namespace OWZX.Web.controllers
             MD_LotteryList list = LotteryList.GetLotteryByType(id, page, 20, WorkContext.Uid);
             int total = 0;
             int stop = 0;
-            InitParms(id, ref total, ref stop);
+            string title = string.Empty;
+            InitParms(id, ref total, ref stop, ref title);
             LotteryModel lot = new LotteryModel()
             {
                 LotteryType = id,
@@ -102,12 +124,59 @@ namespace OWZX.Web.controllers
             MD_LotteryList list = LotteryList.GetLotteryByType(type, pageindex, 20, WorkContext.Uid);
             int total = 0;
             int stop = 0;
-            InitParms(type, ref total, ref stop);
+            string title = string.Empty;
+            InitParms(type, ref total, ref stop, ref title);
             LotteryModel lot = new LotteryModel()
             {
                 LotteryType=type,
                 TotalS=total,
                 StopTime=stop,
+                PageModel = new PageModel(20, pageindex, list.TotalCount),
+                lotterylist = list
+            };
+            return View(lot);
+        }
+        /// <summary>
+        /// LHB获取数据
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _ContentLHB()
+        {
+            int type = WebHelper.GetFormInt("type");
+            int pageindex = WebHelper.GetFormInt("page");
+            MD_LotteryList list = LotteryList.GetLotteryByType(type, pageindex, 20, WorkContext.Uid);
+            int total = 0;
+            int stop = 0;
+            string title = string.Empty;
+            InitParms(type, ref total, ref stop, ref title);
+            LotteryModel lot = new LotteryModel()
+            {
+                LotteryType = type,
+                TotalS = total,
+                StopTime = stop,
+                PageModel = new PageModel(20, pageindex, list.TotalCount),
+                lotterylist = list
+            };
+            return View(lot);
+        }
+        /// <summary>
+        /// pk获取数据
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _ContentPK()
+        {
+            int type = WebHelper.GetFormInt("type");
+            int pageindex = WebHelper.GetFormInt("page");
+            MD_LotteryList list = LotteryList.GetLotteryByType(type, pageindex, 20, WorkContext.Uid);
+            int total = 0;
+            int stop = 0;
+            string title = string.Empty;
+            InitParms(type, ref total, ref stop, ref title);
+            LotteryModel lot = new LotteryModel()
+            {
+                LotteryType = type,
+                TotalS = total,
+                StopTime = stop,
                 PageModel = new PageModel(20, pageindex, list.TotalCount),
                 lotterylist = list
             };

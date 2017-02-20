@@ -5,7 +5,7 @@ var traptime;
 function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
 {
     //处理上期未开奖，重启计时处理
-    if (prevnum != undefined)
+    if (prevnum != undefined && prevnum!=fcnum-1)
     {
         trap(type, fcnum - 1);
     }

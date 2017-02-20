@@ -693,6 +693,8 @@
     <Content Include="views\nwlottery\_content.cshtml" />
     <Content Include="views\nwlottery\_index.cshtml" />
     <Content Include="views\nwlottery\_ltrule.cshtml" />
+    <Content Include="views\nwlottery\_contentlhb.cshtml" />
+    <Content Include="views\nwlottery\_contentpk.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

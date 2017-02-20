@@ -2,33 +2,63 @@
     ViewBag.Title = "_index";
 }
 @model LotteryModel
+
 <div class="dv">
-    @if (@Model.lotterylist.Prev_Lottery.Expect != null)
-    {
-        <div class="ltnumber">
-            <h4 style="padding-top:10px;">第 @Model.lotterylist.Prev_Lottery.Expect 期</h4>开奖结果
-        </div>
-        <div style="width:80%;display:block;float:left;line-height:35px;border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;font-weight:600;">
-            <div style="padding-left:50px;">
-                <span class="ltnum1">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(0, 17)</span>&nbsp;&nbsp;&nbsp;
-                <span class="ltnum2">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(18, 17)</span>&nbsp;&nbsp;&nbsp;
-                <span class="ltnum3">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(36, 17)</span>
+    
+@if (@Model.lotterylist.Prev_Lottery.Expect == null)
+        {
+    @:暂无历史开奖
+        }
+        else
+        {
+    <div class="ltnumber">
+        <h4 style="padding-top:10px;">第 @Model.lotterylist.Prev_Lottery.Expect 期</h4>开奖结果
+    </div>
+    <div style="width:80%;display:block;float:left;line-height:35px;border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;font-weight:600;">
+        <div style="padding-left:50px;">
+            <span class="ltnum1">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(0, 17)</span>&nbsp;&nbsp;&nbsp;
+            <span class="ltnum2">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(18, 17)</span>&nbsp;&nbsp;&nbsp;
+            <span class="ltnum3">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(36, 17)</span>
+            @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9)
+                        {
                 <a href="http://www.bwlc.net/bulletin/keno.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
-            </div>
-            <div style="border-top:1px solid #ECECEC;padding-left:50px;">
-                <span style="font-size:15px;">一区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.First</span></span>
-                <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Second</span></span>
-                <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
-                <span style="margin-left:60px;font-size:15px;">结果: <span class="ltresult pcresult">
-                                                                       @{string resnum = int.Parse(@Model.lotterylist.Prev_Lottery.Resultnum).ToString("d2");}
-                                                                       @resnum</span></span>
-            </div>
+                        }
+                        else if (@Model.LotteryType == 2 || @Model.LotteryType == 5)
+                        {
+                            <a href="hhttp://lotto.bclc.com/winning-numbers/keno-and-keno-bonus.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
+                        }
         </div>
-    }
-    else
-    {
-        @:暂无历史开奖
-                }
+        <div style="border-top:1px solid #ECECEC;padding-left:50px;">
+            <span style="font-size:15px;">一区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.First</span></span>
+            <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Second</span></span>
+            <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
+
+
+            @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 6)
+            {
+                <span style="margin-left:60px;font-size:15px;">
+                    结果:
+                    <span class="ltresult pcresult">
+                        @{string resnum = int.Parse(@Model.lotterylist.Prev_Lottery.Resultnum).ToString("d2");}
+                        @resnum
+                    </span>
+                </span>
+            }
+            else if (@Model.LotteryType == 4 || @Model.LotteryType == 5)
+            {
+                string type = @Model.lotterylist.Prev_Lottery.Resultnum;
+                string cltype = type == "豹" ? "z1" : (type == "顺" ? "z3" : (type == "对" ? "z2" : (type == "半" ? "z4" : "z5")));
+                        <span style="margin-left:60px;font-size:15px;">
+                            @*结果:<span class="ltresult sdz @cltype"></span>*@
+                            结果:<span class="ltresult pcresult">@type</span>
+                        </span>
+                    }
+
+
+
+        </div>
+    </div>
+        }
 </div>
 <div class="dv">
     <div style="width:30%; display:block;float:left;" class="remains">
@@ -47,9 +77,9 @@
        }
     </div>
     <script>
-        $(function(){
-            GetRTime(lotterytype,@Model.lotterylist.RemainS,@Model.lotterylist.LastNumber,300,30,@Model.lotterylist.Prev_Lottery.Expect)
-        });
+    $(function(){
+        GetRTime(lotterytype,@Model.lotterylist.RemainS,@Model.lotterylist.LastNumber,@Model.TotalS,@Model.StopTime,@Model.lotterylist.Prev_Lottery.Expect)
+    });
     </script>
     <div style="width:30%;display:block;float:left;">
         今日盈亏: <span class="ltwarn">@Model.lotterylist.TdProf</span> 参与: <i class="bold">@Model.lotterylist.TdBettNum</i>期 胜率: <i class="bold">@Model.lotterylist.WinPercent%</i>
@@ -57,5 +87,12 @@
     <div style="width:40%; display:block;float:left;text-align:right;">最高投注<span class="ltwarn">2,000</span>万豆,最高中奖 <span class="ltwarn">100,0000</span>万豆</div>
 </div>
 <div class="temp_content">
-    @Html.Partial("_content")
+    @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 6 || @Model.LotteryType == 4 || @Model.LotteryType == 5)
+    {
+        @Html.Partial("_content")
+    }
+    else if (@Model.LotteryType == 9)
+    {
+        @Html.Partial("_contentlhb")
+    }
 </div>
