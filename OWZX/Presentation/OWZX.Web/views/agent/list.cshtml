@@ -27,22 +27,22 @@
                             <img src="../images/baseimg/liebiao.png" style="width: 30px; height: 30px;margin-left: 15px; margin-top: 7px; float: left;" /> &nbsp;
                             <a href="@Url.Action("list","agent")" style="color: #fff;float: left;margin-top: 3px;margin-left: 5px;">合作商家 | Merchants</a>
                         </div>
-                        <ul style="min-height: 300px;">
+                        <ul style="min-height: 300px; ">
                             @foreach (DataRow info in Model.UserList.Rows)
                             {
-                                <li style="height: 110px; width: 180px; float: left; margin: 25px 18px 5px 18px; border: solid 1px #ddd;">
+                                <li style="height: 110px; width: 180px; float: left; margin: 25px 0px 5px 45px; border: solid 1px #ddd;">
                                     <div style="position: absolute;">
                                         <div style="width: 180px; height: 110px; position: absolute;">
-                                            <img src="../images/bg_agent-.png"style="width: 180px; height: 110px; z-index: 0; position: absolute;"/>
+                                            <img src="../images/bg_agent-.png"style="width: 180px; height: 110px; z-index: 0; border: none;position: absolute;"/>
                                             <span style="z-index: 0; color: #fff; font-size: 13px; position: absolute; top: 10px; text-align: center; width: 180px; font-weight: bold;">发财网合作代理</span>
-                                            <span style="z-index: 0; color: #fff; font-size: 13px; position: absolute; top: 50px; text-align: center; width: 180px;">@(info["nickname"])</span>
+                                            <span style="z-index: 0; color: #fff; font-size: 13px; position: absolute; top: 50px; font-weight: bold;text-align: center; width: 180px;">@(info["nickname"])</span>
                                             <span style="z-index: 0; color: #fff; font-size: 13px; position: absolute; bottom: 5px; text-align: center; width: 180px;">@("QQ:"+info["qq"])</span>
                                         </div>
                                     </div>
                                 </li>
                             }
-                        </ul>
-
+                        </ul> 
+                        <div class="clear"></div>
                     </div>
                 </div>
 

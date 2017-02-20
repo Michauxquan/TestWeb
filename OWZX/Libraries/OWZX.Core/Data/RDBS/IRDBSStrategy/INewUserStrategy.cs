@@ -96,6 +96,7 @@ namespace OWZX.Core
         string UpdateUserBack(MD_UserBack back);
 
         string UpdateUserBackReport(MD_UserBack back);
+        string UpdUserBackReport(int uid, int type = 0);
         /// <summary>
         /// 删除用户消息
         /// </summary>

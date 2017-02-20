@@ -387,7 +387,47 @@ end catch
             ");
             return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
         }
-        
+        /// <summary>
+        /// 更新用户回水
+        /// </summary>
+        /// <param name="back"></param>
+        /// <returns></returns>
+        public string UpdUserBackReport(int uid, int type=0)
+        {
+            DbParameter[] parms = {
+                                    GenerateInParam("@uid", SqlDbType.Int, 4, uid),  
+                                    GenerateInParam("@type", SqlDbType.Int, 4 ,type)
+                                  };
+            string commandText = string.Format(@"
+            begin try
+            begin tran t1
+            declare @backid int =0,@money decimal(18,2)=0
+            select top 1 @backid=backid,@money=money from owzx_userbackreport where uid=@uid and status=0 and type=@type
+            if (@backid>0)
+            begin  
+
+            update  owzx_userbackreport set status=2 where backid=@backid  
+            INSERT INTO owzx_accountchange([uid],[changemoney],[remark].accounted)
+            select @uid,@money,'回水',(select totalmoney from owzx_users where uid=@uid)
+            update owzx_users set totalmoney=totalmoney+@money where uid=@uid) 
+ 
+            
+            select '修改成功' state
+            commit tran t1
+            end
+            else
+            begin
+            select '不存在待回水金额' state
+            commit tran t1
+            end
+            end try
+            begin catch
+            rollback tran t1
+            select ERROR_MESSAGE() state
+            end catch
+            ");
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+        }
         /// <summary>
         /// 删除用户
         /// </summary>

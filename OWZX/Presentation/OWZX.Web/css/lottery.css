@@ -379,3 +379,54 @@ button {
 .zdtz_anli p{text-indent: 2em;}
 
 
+.table_rule td em {
+    font-style: normal;
+    background: url(../images/word.fw.png) no-repeat;
+    display: inline-block;
+    width: 23px;
+    height: 21px;
+    text-indent: 0;
+    padding: 0 1px;
+    margin: 0;
+    letter-spacing: normal;
+    word-spacing: normal;
+}
+.table_rule td em.regular01,.regular01{ background-position:0px 0px !important;}
+.table_rule td em.regular02,.regular02{ background-position:0px -25px !important;}
+.table_rule td em.regular03,.regular03{ background-position:0px -50px !important;}
+.table_rule td em.regular04,.regular04{ background-position:0px -75px  !important;}
+.table_rule td em.regular05,.regular05{ background-position:0px -100px  !important;}
+.table_rule td em.regular06,.regular06{ background-position:0px -125px  !important;}
+.table_rule td em.regular07,.regular07{ background-position:0px -150px  !important;}
+.table_rule td em.regular08,.regular08{ background-position:0px -175px !important;}
+.table_rule td em.regular09,.regular09{ background-position:0px -200px !important;}
+.table_rule td em.regular10,.regular010{ background-position:0px -225px !important;}
+
+.table_rule td em.light01{ background-position:0px -250px;}
+.table_rule td em.light02{ background-position:0px -275px;}
+.table_rule td em.light03{ background-position:0px -300px;}
+.table_rule td em.light04{ background-position:0px -325px;}
+.table_rule td em.light05{ background-position:0px -350px;}
+.table_rule td em.light06{ background-position:0px -375px;}
+.table_rule td em.light07{ background-position:0px -400px;}
+.table_rule td em.light08{ background-position:0px -425px;}
+.table_rule td em.light09{ background-position:0px -450px;}
+.table_rule td em.light10{ background-position:0px -475px;}
+.table_rule td em.final{ background-position:1px -497px; height:23px; width:26px; position:relative;}
+.table_rule td em.finals{ background-position:0px -497px; height:26px; width:30px; position:relative; top:5px}
+.table_rule td em.final i{ position:absolute; width:30px; display:block; height:26px; text-align:center; color:#fff; top:0px; left:0; line-height:26px;}
+.table_rule td li.finalbig { font-style:normal; color:#fff; font-size:21px; background:url(../images/number/lottery.fw.png) no-repeat; display:inline-block; width:32px; height:32px; text-indent:0px; line-height:32px; text-align:center; }
+.table_rule td.state .open1{ background-position:0 0;}
+.table_rule td.state .open2{ background-position:0 -40px; cursor:pointer; }
+.table_rule td.state .open3{ background-position:0 -80px;}
+
+.table_rule td em.slh0 {
+    background: rgba(0, 0, 0, 0) url("../images/sdragon.png") no-repeat scroll center center;
+    height: 22px;
+    width: 22px;
+}
+.table_rule td em.slh1 {
+    background: rgba(0, 0, 0, 0) url("../images/stiger.png") no-repeat scroll center center;
+    height: 22px;
+    width: 22px;
+}

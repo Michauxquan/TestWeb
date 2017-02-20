@@ -144,28 +144,31 @@
                 <th width="100">投注</th>
                 <th width="110">倍数</th>
             </tr>
-            @foreach (DataRow row in ds.Tables[1].Rows)
-            {
-                 string num = @row["nums"].ToString();
-                <tr align="center" bgcolor="#FFFFFF" height="27">
-                    <td>
-                        <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.fw.png'); " width="25" height="25">@row["item"]</span>
-                    </td>
-                    <td style="display: none;"></td>
-                    <td class="lossrate" data-type=@row["nums"]>@row["odds"]</td>
-                    <td>
-                        <input type="checkbox" name="checkboxd" value="checkbox" />
-                    </td>
-                    <td>
-                        <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id='txt_@num' onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
-                    </td>
-                    <td style="width: 80px;">
-                        <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
-                        <a class="multiple" href="javascript:chgTimes('txt_@num',2)">2</a>
-                        <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>
-                    </td>
-                </tr>
-            }
+             @if ((bool) ViewData["exists"])
+             { 
+                     foreach (DataRow row in ds.Tables[1].Rows)
+                     {
+                         string num = @row["nums"].ToString();
+                         <tr align="center" bgcolor="#FFFFFF" height="27">
+                             <td>
+                                 <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.fw.png');" width="25" height="25">@row["item"]</span>
+                             </td>
+                             <td style="display: none;"></td>
+                             <td class="lossrate" data-type=@row["nums"]>@row["odds"]</td>
+                             <td>
+                                 <input type="checkbox" name="checkboxd" value="checkbox"/>
+                             </td>
+                             <td>
+                                 <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id='txt_@num' onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8"/>
+                             </td>
+                             <td style="width: 80px;">
+                                 <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
+                                 <a class="multiple" href="javascript:chgTimes('txt_@num',2)">2</a>
+                                 <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>
+                             </td>
+                         </tr>
+                     } 
+             }
 
         </table>
     </div>

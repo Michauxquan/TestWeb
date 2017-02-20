@@ -72,6 +72,11 @@ namespace OWZX.Data
             return OWZX.Core.BSPData.RDBS.UpdateUserBackReport(back);
         }
 
+        public static string UpdUserBackReport(int uid, int type=0)
+        {
+            return OWZX.Core.BSPData.RDBS.UpdUserBackReport(uid, type);
+        }
+
         /// <summary>
         /// 删除用户消息
         /// </summary>

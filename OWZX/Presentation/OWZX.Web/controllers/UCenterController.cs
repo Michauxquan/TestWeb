@@ -985,6 +985,24 @@ namespace OWZX.Web.Controllers
         }
 
         #endregion
+        #region 用户回水
+        public ActionResult GetOwnerBack(int type)
+        {
+
+            if (WorkContext.PartUserInfo != null && WorkContext.PartUserInfo.Uid > 0)
+            {
+                var result = NewUser.UpdUserBackReport(WorkContext.PartUserInfo.Uid, type);
+                return AjaxResult("data", result); 
+            }
+            else
+            {
+                return AjaxResult("data", "用户信息已过期,请重新登录!");
+            }
+
+           
+
+        }
+        #endregion
         protected sealed override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);

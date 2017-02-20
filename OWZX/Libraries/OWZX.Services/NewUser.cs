@@ -102,6 +102,10 @@ namespace OWZX.Services
             }
             return false;
         }
+        public static string UpdUserBackReport(int uid,int type=0)
+        {
+            return OWZX.Data.NewUser.UpdUserBackReport(uid,type);
+        }
         /// <summary>
         /// 删除用户消息
         /// </summary>
