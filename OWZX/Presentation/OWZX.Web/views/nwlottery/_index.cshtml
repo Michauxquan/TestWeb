@@ -16,25 +16,54 @@
     </div>
     <div style="width:80%;display:block;float:left;line-height:35px;border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;font-weight:600;">
         <div style="padding-left:50px;">
+            @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9)
+            { 
+                <text>
             <span class="ltnum1">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(0, 17)</span>&nbsp;&nbsp;&nbsp;
             <span class="ltnum2">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(18, 17)</span>&nbsp;&nbsp;&nbsp;
             <span class="ltnum3">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(36, 17)</span>
+            </text>
+            }
+            else if (@Model.LotteryType == 2 || @Model.LotteryType == 5)
+            {
+                string[] numbs = @Model.lotterylist.Prev_Lottery.Orderresult.Split(',');
+                <text><span class="numberl n1">@numbs[0]</span><span class="numberl n3">@numbs[1]</span><span class="numberl n2">@numbs[2]</span>
+                <span class="numberl n4">@numbs[3]</span><span class="numberl n3">@numbs[4]</span><span class="numberl n2">@numbs[5]</span>
+                <span class="numberl n4">@numbs[6]</span><span class="numberl n3">@numbs[7]</span><span class="numberl n2">@numbs[8]</span>
+                <span class="numberl n4">@numbs[9]</span><span class="numberl n3">@numbs[10]</span><span class="numberl n2">@numbs[11]</span>
+                <span class="numberl n4">@numbs[12]</span><span class="numberl n3">@numbs[13]</span><span class="numberl n2">@numbs[14]</span>
+                <span class="numberl n4">@numbs[15]</span><span class="numberl n3">@numbs[16]</span><span class="numberl n2">@numbs[17]</span>
+                <span class="numberl n1">@numbs[18]</span><span class="numberl n1">@numbs[19]</span>
+               </text>
+            }
+
+
             @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9)
-                        {
-                <a href="http://www.bwlc.net/bulletin/keno.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
-                        }
-                        else if (@Model.LotteryType == 2 || @Model.LotteryType == 5)
-                        {
-                            <a href="hhttp://lotto.bclc.com/winning-numbers/keno-and-keno-bonus.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
-                        }
+            {
+              <a href="http://www.bwlc.net/bulletin/keno.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
+            }
+            else if (@Model.LotteryType == 2 || @Model.LotteryType == 5)
+            {
+                <a href="http://lotto.bclc.com/winning-numbers/keno-and-keno-bonus.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
+            }
+            else if (@Model.LotteryType == 7 || @Model.LotteryType == 8)
+            {
+                <a href="http://www.bwlc.net/bulletin/trax.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
+            }
+            else if (@Model.LotteryType == 6)
+            {
+                <a href="http://www.knlotto.kr/keno.aspx?method=kenoWinNoList" target="_blank" style="color:#666;float:right;">[官方查询]</a>
+            }
         </div>
         <div style="border-top:1px solid #ECECEC;padding-left:50px;">
             <span style="font-size:15px;">一区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.First</span></span>
             <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Second</span></span>
-            <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
+            @if (@Model.LotteryType != 7 && @Model.LotteryType != 8)
+            {
+                <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
+            }
 
-
-            @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 6)
+            @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 6 || @Model.LotteryType == 9)
             {
                 <span style="margin-left:60px;font-size:15px;">
                     结果:
@@ -52,10 +81,7 @@
                             @*结果:<span class="ltresult sdz @cltype"></span>*@
                             结果:<span class="ltresult pcresult">@type</span>
                         </span>
-                    }
-
-
-
+            }
         </div>
     </div>
         }

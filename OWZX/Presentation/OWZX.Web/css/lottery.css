@@ -129,6 +129,14 @@ padding:0 3px;
     font-weight: bold;
 }
 
+/*can*/
+.numberl{margin-left:5px;}
+.n1{color:#000}
+.n2{color:#0167FF}
+.n3{color:#eca101}
+.n4{color:#ff0000}
+.n5{color:#000}
+
 /*分页*/
 .Paging {
     margin: 20px auto;

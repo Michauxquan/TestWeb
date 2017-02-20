@@ -12,13 +12,13 @@
         <td width="13%" style="height: 28px;">期号</td>
         <td width="13%" style="height: 28px">开奖时间</td>
         <td width="17%" style="height: 28px">开奖结果</td>
-        <td width="27%" style="height: 28px">中奖</td>
-        <td colspan="5" width="15%" style="height: 28px">投注额/中奖额</td>
+        <td colspan="5" width="27%" style="height: 28px">中奖</td>
+        <td width="15%" style="height: 28px">投注额/中奖额</td>
         <td width="13%" style="height: 28px">投注</td>
     </tr>
     @foreach (OWZX.Model.MD_LotteryUser lot in @Model.lotterylist.LotteryList)
     {
-        @{string[] resulttype = lot.ResultType.Split(',');}
+        
         <tr>
             <td>@lot.Expect</td>
             <td>@lot.Opentime.ToString("MM-dd HH:mm")</td>
@@ -39,6 +39,9 @@
                     
                 }
             </td>
+            @if(lot.ResultType!=null &&lot.ResultType!=string.Empty)
+            {
+            string[] resulttype = lot.ResultType.Split(',');
             <td>
             @if (@resulttype[0]=="大")
             {
@@ -98,9 +101,14 @@
                 }
                 else
                 {
-                   @:- 
+                  <span>-</span>
                     }
                                </td>
+            }else
+            { 
+              <td></td><td></td><td></td><td></td><td></td>
+            }
+                
             <td>@{string bt = string.Format("{0:n0}", @lot.LuckResult); string lk = string.Format("{0:n0}", @lot.Money);} @bt/@lk</td>
             <td style="width:30px;">
                 @if (lot.Status == 0)
@@ -119,7 +127,7 @@
         </tr>
     }
     <tr align="center" bgcolor="#FFFFFF" id="pagetr">
-        <td height="28" colspan="7" bgcolor="#FFFFFF">
+        <td height="28" colspan="10" bgcolor="#FFFFFF">
 
             <div class="tcdPageCode">
 
@@ -139,7 +147,7 @@
             current: @Model.PageModel.PageNumber,
             backFn: function (p)
             {
-                $(".temp_content").load("/nwlottery/_content",{"type":lotterytype,"page":p});
+                $(".temp_content").load("/nwlottery/_contentlhb",{"type":lotterytype,"page":p});
             }
         });
     });
