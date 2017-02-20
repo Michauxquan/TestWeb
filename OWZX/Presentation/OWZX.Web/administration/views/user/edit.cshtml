@@ -78,7 +78,17 @@
     <td align="right">确认密码：</td>
     <td>@Html.PasswordFor(x => x.ConfirmPassword, new { @class = "input", size = "35" })@Html.ValidationMessageFor(x => x.ConfirmPassword)</td>
     </tr>
-    
+    <tr>
+        <td align="right">性别：</td>
+        <td>
+            <p>
+                <label>@Html.RadioButtonFor(x => x.UserType, 0, new { @class = "checkbox" })会员</label>
+                <label>@Html.RadioButtonFor(x => x.UserType, 1, new { @class = "checkbox" })代理</label> 
+                @Html.ValidationMessageFor(x => x.UserType)
+                <br />
+            </p>
+        </td>
+    </tr>
                   <tr>
     <td align="right">用户组：</td>
     <td>@Html.DropDownListFor(x => x.AdminGid, ViewData["adminGroupList"] as List<SelectListItem>) @Html.ValidationMessageFor(x => x.AdminGid)</td>

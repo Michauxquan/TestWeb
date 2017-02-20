@@ -109,6 +109,7 @@
     <Compile Include="controllers\HelpController.cs" />
     <Compile Include="controllers\HomeController.cs" />
     <Compile Include="controllers\LotteryController.cs" />
+    <Compile Include="controllers\AgentController.cs" />
     <Compile Include="controllers\NewsController.cs" />
     <Compile Include="controllers\NWLotteryController.cs" />
     <Compile Include="controllers\ToolController.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="models\UCenterModel.cs" />
     <Compile Include="models\UserLogList.cs" />
     <Compile Include="models\UserChangeList.cs" />
+    <Compile Include="models\UserModel.cs" />
     <Compile Include="models\WareSkuList.cs" />
     <Compile Include="models\WareChangeList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -505,6 +507,7 @@
     <Content Include="images\baseimg\tb_3.jpg" />
     <Content Include="images\baseimg\tb_4.jpg" />
     <Content Include="images\baseimg\toutu.jpg" />
+    <Content Include="images\bg_agent-.png" />
     <Content Include="images\btn.png" />
     <Content Include="images\chips\chips_10000.png" />
     <Content Include="images\chips\chips_100000.png" />
@@ -693,6 +696,7 @@
     <Content Include="views\nwlottery\_content.cshtml" />
     <Content Include="views\nwlottery\_index.cshtml" />
     <Content Include="views\nwlottery\_ltrule.cshtml" />
+    <Content Include="views\agent\list.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

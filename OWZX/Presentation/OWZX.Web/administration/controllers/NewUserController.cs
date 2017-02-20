@@ -28,8 +28,8 @@ namespace OWZX.Web.Admin.Controllers
             ShopUtils.SetAdminRefererCookie(Url.Action("backlist"));
             string where = string.Empty;
             if (Account != string.Empty)
-                where = " where rtrim(b.mobile)='" + Account + "'";
-            List<MD_UserBack> backlist = NewUser.GetBackList(pageNumber, pageSize, where);
+                where = " where rtrim(b.email)='" + Account + "'";
+            List<MD_UserBack> backlist = NewUser.GetBackReportList(pageNumber, pageSize, where);
             UserBackList model = new UserBackList()
             {
                 Account = Account,
@@ -39,7 +39,7 @@ namespace OWZX.Web.Admin.Controllers
 
             return View(model);
         }
-
+         
         /// <summary>
         /// 结算回水
         /// </summary>
@@ -48,14 +48,18 @@ namespace OWZX.Web.Admin.Controllers
         /// <returns></returns>
         public ActionResult EditBack(int backid, string status)
         {
-            List<MD_UserBack> list = NewUser.GetBackList(1, -1, " where a.backid=" + backid);
+            List<MD_UserBack> list = NewUser.GetBackReportList(1, -1, " where a.backid=" + backid);
             if (list.Count == 0)
             {
                 return PromptView("用户回水不存在");
             }
             MD_UserBack bk = list[0];
-            bk.Status = short.Parse(status); bk.Updateuid = WorkContext.Uid;
-            bool result = NewUser.UpdateUserBack(bk);
+            if (bk.Status == 2)
+            {
+                return PromptView("回水已结算不能再次结算");
+            }
+            bk.Status = short.Parse(status); 
+            bool result = NewUser.UpdateUserBackReport(bk);
             if (result)
                 return PromptView("更新成功");
             else
@@ -68,17 +72,17 @@ namespace OWZX.Web.Admin.Controllers
         /// <returns></returns>
         public ActionResult DelBack(int backid)
         {
-            List<MD_UserBack> list = NewUser.GetBackList(1, -1, " where a.backid=" + backid);
+            List<MD_UserBack> list = NewUser.GetBackReportList(1, -1, " where a.backid=" + backid);
             if (list.Count == 0)
             {
                 return PromptView("用户回水不存在");
-            }
-            bool result = NewUser.DeleteUserBack(backid.ToString());
+            } 
+            bool result = NewUser.DeleteUserBackReport(backid.ToString());
             if (result)
                 return PromptView("删除成功");
             else
                 return PromptView("删除失败");
-        }
+        } 
         #endregion
 
         #region 用户充值记录

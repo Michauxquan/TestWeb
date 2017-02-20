@@ -41,6 +41,9 @@ namespace OWZX.Web.Models
         /// 返回地址
         /// </summary>
         public string ReturnUrl { get; set; }
+
+        public string InviteCode { get; set; }
+
         /// <summary>
         /// 影子账号名
         /// </summary>

@@ -292,8 +292,7 @@ namespace OWZX.Web.Admin.Controllers
             {
                 return AjaxResult("error","用户账余修改失败");
             }
-        }
-
+        } 
         /// <summary>
         /// 编辑用户
         /// </summary>
@@ -305,9 +304,9 @@ namespace OWZX.Web.Admin.Controllers
                 return PromptView("用户不存在");
 
 
-            int uid4 = AdminUsers.GetUidByMobile(model.Mobile);
+            int uid4 = AdminUsers.GetUidByEmail(model.Email);
             if (uid4 > 0 && uid4 != uid)
-                ModelState.AddModelError("Mobile", "手机号已经存在");
+                ModelState.AddModelError("Mobile", "邮箱已经存在");
 
             if (ModelState.IsValid)
             {
@@ -325,6 +324,7 @@ namespace OWZX.Web.Admin.Controllers
                 userInfo.NickName = WebHelper.HtmlEncode(nickName);
 
                 userInfo.AdminGid = model.AdminGid;
+                userInfo.UserType = model.UserType;
                 bool result = false;
 
 

@@ -340,7 +340,54 @@ end catch
             ");
             return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
         }
+        /// <summary>
+        /// 更新用户回水
+        /// </summary>
+        /// <param name="back"></param>
+        /// <returns></returns>
+        public string UpdateUserBackReport(MD_UserBack back)
+        {
+            DbParameter[] parms = {
+                                    GenerateInParam("@backid", SqlDbType.Int, 4, back.Backid),
+                                    GenerateInParam("@money", SqlDbType.Decimal, 10, back.Money),
+                                    GenerateInParam("@status", SqlDbType.Int, 4 ,back.Status),
+                                    GenerateInParam("@updateuid", SqlDbType.Int, 4 ,back.Updateuid)
+                                  };
+            string commandText = string.Format(@"
+            begin try
+            begin tran t1
+            if exists(select 1 from owzx_userbackreport where backid=@backid)
+            begin
+            UPDATE owzx_userbackreport
+               SET money = @money,status=@status,updatetime=convert(varchar(25),getdate(),120)
+            where backid=@backid
 
+            if(@status=2)
+            begin
+
+            declare @uid int=0  select @uid=uid from owzx_userbackreport where backid=@backid
+            INSERT INTO owzx_accountchange([uid],[changemoney],[remark].accounted)
+            select @uid,@money,'回水',(select totalmoney from owzx_users where uid=@uid)
+            update owzx_users set totalmoney=totalmoney+@money where uid=@uid) 
+            end
+            
+            select '修改成功' state
+            commit tran t1
+            end
+            else
+            begin
+            select '记录已被删除' state
+            commit tran t1
+            end
+            end try
+            begin catch
+            rollback tran t1
+            select ERROR_MESSAGE() state
+            end catch
+            ");
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+        }
+        
         /// <summary>
         /// 删除用户
         /// </summary>
@@ -367,7 +414,32 @@ end catch
              id);
             return RDBSHelper.ExecuteScalar(commandText).ToString();
         }
-
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string DeleteUserBackReport(string id)
+        {
+            string commandText = string.Format(@"
+            begin try
+            if exists(select 1 from owzx_userbackReport where backid in ({0}))
+            begin
+            delete from owzx_userbackReport where backid in ({0})
+            select '删除成功' state
+            end
+            else
+            begin
+            select '记录已被删除' state
+            end
+            end try
+            begin catch
+            select ERROR_MESSAGE() state
+            end catch
+            ",
+             id);
+            return RDBSHelper.ExecuteScalar(commandText).ToString();
+        }
         /// <summary>
         ///  获取用户回水(分页)
         /// </summary>
@@ -394,6 +466,54 @@ into  #list
 FROM owzx_userback a
 join owzx_users b on a.uid=b.uid 
 join owzx_sys_basetype c on a.roomtype=c.systypeid
+{0}
+
+declare @total int
+select @total=(select count(1)  from #list)
+
+if(@pagesize=-1)
+begin
+select *,@total TotalCount from #list
+end
+else
+begin
+select  *,@total TotalCount from #list where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
+end
+
+end try
+begin catch
+select ERROR_MESSAGE() state
+end catch
+
+", condition);
+
+            return RDBSHelper.ExecuteDataset(CommandType.Text, commandText, parms).Tables[0];
+        }
+        /// <summary>
+        ///  获取用户回水(分页)
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public DataTable GetBackReportList(int pageNumber, int pageSize, string condition = "")
+        {
+            DbParameter[] parms = {
+                                      GenerateInParam("@pagesize", SqlDbType.Int, 4, pageSize),
+                                      GenerateInParam("@pageindex", SqlDbType.Int, 4, pageNumber)
+                                  };
+
+
+            string commandText = string.Format(@"
+begin try
+if OBJECT_ID('tempdb..#list') is not null
+drop table #list
+
+SELECT ROW_NUMBER() over(order by a.backid desc) id,
+a.[backid] ,a.[uid],a.[profitmoney],a.[money],a.[status],a.[backtype],a.[backrate],convert(varchar(25),a.[addtime],120) addtime,b.email account 
+into  #list
+FROM owzx_userbackreport a
+join owzx_users b on a.uid=b.uid   
 {0}
 
 declare @total int

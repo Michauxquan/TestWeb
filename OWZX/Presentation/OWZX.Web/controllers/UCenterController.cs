@@ -44,7 +44,6 @@ namespace OWZX.Web.Controllers
                 ViewData["cityId"] = -1;
                 ViewData["countyId"] = -1;
             }
-
             return View(model);
         }
         /// <summary>
@@ -54,6 +53,7 @@ namespace OWZX.Web.Controllers
         {
             UserInfoModel model = new UserInfoModel();
             model.UserInfo = Users.GetUserById(WorkContext.Uid);
+            ViewData["registerurl"] = BSPConfig.ShopConfig.SiteUrl + "/account/register?invitecode="+ model.UserInfo.InviteCode;
             return View(model);
         }
         /// <summary>

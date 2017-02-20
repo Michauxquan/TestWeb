@@ -81,6 +81,9 @@
                                 <span class="a3" style="font-size: 12px; color: red; height: 24px;"></span><br/>
                                 <input class="b2" type="password" placeholder="确认密码" name="confirmPwd" id="confirmPwd" autocomplete="off"/><br/>
                                 <span class="a4" style="font-size: 12px; color: red; height: 24px;"></span><br/>
+                                <input class="b2" type="text" placeholder="邀请码" name="invitecode" value="@Model.InviteCode" id="invitecode" autocomplete="off" /> <br />
+                                <span   style="font-size: 12px; color: red; height: 24px; display: none;"></span><br />
+
                                 <input class="b2" style="width: 120px;" maxlength="6" name="verifyCode" id="verifyCode" type="text" placeholder="验证码" autocomplete="off"/>
                                 <img onclick="this.src='/tool/verifyimage?time=' + new Date()" src="/tool/verifyimage" alt="验证码" style="cursor:pointer;width:100px; float:right; margin-right:16px;height:36px; "> 
                                 <span class="a5" style="font-size: 12px; color: red; height: 24px;"></span><br/>

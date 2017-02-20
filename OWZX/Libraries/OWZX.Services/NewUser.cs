@@ -89,6 +89,20 @@ namespace OWZX.Services
             return false;
         }
         /// <summary>
+        /// 更新回水规则
+        /// </summary>
+        /// <param name="back"></param>
+        /// <returns></returns>
+        public static bool UpdateUserBackReport(MD_UserBack back)
+        {
+            string result = OWZX.Data.NewUser.UpdateUserBackReport(back);
+            if (result.EndsWith("成功"))
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
         /// 删除用户消息
         /// </summary>
         /// <param name="id"></param>
@@ -96,6 +110,20 @@ namespace OWZX.Services
         public static bool DeleteUserBack(string id)
         {
             string result = OWZX.Data.NewUser.DeleteUserBack(id);
+            if (result.EndsWith("成功"))
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 删除用户回水
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static bool DeleteUserBackReport(string id)
+        {
+            string result = OWZX.Data.NewUser.DeleteUserBackReport(id);
             if (result.EndsWith("成功"))
             {
                 return true;
@@ -112,6 +140,19 @@ namespace OWZX.Services
         public static List<MD_UserBack> GetBackList(int pageIndex, int pageSize, string condition = "")
         {
             DataTable dt = OWZX.Data.NewUser.GetBackList(pageIndex, pageSize, condition);
+            List<MD_UserBack> list = (List<MD_UserBack>)ModelConvertHelper<MD_UserBack>.ConvertToModel(dt);
+            return list;
+        }
+        /// <summary>
+        ///  获取用户回水(分页)
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public static List<MD_UserBack> GetBackReportList(int pageIndex, int pageSize, string condition = "")
+        {
+            DataTable dt = OWZX.Data.NewUser.GetBackReportList(pageIndex, pageSize, condition);
             List<MD_UserBack> list = (List<MD_UserBack>)ModelConvertHelper<MD_UserBack>.ConvertToModel(dt);
             return list;
         }

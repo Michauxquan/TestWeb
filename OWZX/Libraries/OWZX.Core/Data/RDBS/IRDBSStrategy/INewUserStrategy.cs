@@ -87,7 +87,7 @@ namespace OWZX.Core
         /// <param name="condition">没有where</param>
         /// <returns></returns>
         DataTable GetBackList(int pageNumber, int pageSize, string condition = "");
-
+        DataTable GetBackReportList(int pageNumber, int pageSize, string condition = "");
         /// <summary>
         /// 更新用户回水
         /// </summary>
@@ -95,12 +95,15 @@ namespace OWZX.Core
         /// <returns></returns>
         string UpdateUserBack(MD_UserBack back);
 
+        string UpdateUserBackReport(MD_UserBack back);
         /// <summary>
         /// 删除用户消息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         string DeleteUserBack(string id);
+
+        string DeleteUserBackReport(string id);
         #endregion
 
         #region 用户转账记录

@@ -19,6 +19,20 @@ namespace OWZX.Model
             set { backid = value; }
         }
 
+        private int backrate;
+
+        public int BackRate
+        {
+            set { backrate = value; }
+            get { return backrate; }
+        }
+        private int backtype;
+
+        public int BackType
+        {
+            set { backtype = value; }
+            get { return backtype; }
+        }
         private int uid;
         /// <summary>
         /// 用户id

@@ -54,7 +54,7 @@ namespace OWZX.Web.Admin.Models
         public List<SelectListItem> AdminGroupList { get; set; }
     }
 
-   
+
 
     /// <summary>
     /// 用户模型类
@@ -118,6 +118,12 @@ namespace OWZX.Web.Admin.Models
         //[DisplayName("支付积分")]
         public int PayCredits { get; set; }
         /// <summary>
+        /// 性别(0会员，1代理)
+        /// </summary>
+        //[Range(0, 2, ErrorMessage = "请选择代理类别")]
+        //[DisplayName("是否代理")]
+        public int UserType { get; set; }
+        /// <summary>
         /// 性别(0代表未知，1代表男，2代表女)
         /// </summary>
         //[Range(0, 2, ErrorMessage = "请选择确切的性别")]
@@ -153,7 +159,7 @@ namespace OWZX.Web.Admin.Models
         /// </summary>
         [StringLength(150, ErrorMessage = "简介长度不能大于150")]
         public string Bio { get; set; }
-    
+
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

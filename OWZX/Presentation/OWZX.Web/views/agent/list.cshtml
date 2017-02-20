@@ -1,0 +1,53 @@
+﻿@model OWZX.Web.UserListModel
+@{
+    Layout = null;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>兑换列表-@{@WorkContext.ShopConfig.SiteTitle}</title>
+            @Html.Raw(WorkContext.ShopConfig.SEOKeyword)
+            @Html.Raw(WorkContext.ShopConfig.SEODescription)
+            <link href="@{@WorkContext.CSSCDN}/css/base.css" rel="stylesheet" type="text/css" />
+            <link href="@{@WorkContext.CSSCDN}/css/lottery.css" rel="stylesheet" />
+            <script src="@{@WorkContext.ScriptCDN}/scripts/jquery.js" type="text/javascript"></script>
+            <script src="@{@WorkContext.ScriptCDN}/scripts/common.js" type="text/javascript"></script>
+            <script type="text/javascript">
+        uid = @WorkContext.Uid;
+            </script>
+        </head>
+        <body>
+            @Html.Partial("_header")
+            @using (Html.BeginForm())
+            {
+                <div class="bigBox">
+                    <div class="box" style="border: solid 1px #ddd; margin-top: 10px;">
+                        <div style="height: 45px; line-height: 40px; background: #E9454E; color: #fff; font-size: 16px; font-weight: bolder;">
+                            <img src="../images/baseimg/liebiao.png" style="width: 30px; height: 30px;margin-left: 15px; margin-top: 7px; float: left;" /> &nbsp;
+                            <a href="@Url.Action("list","agent")" style="color: #fff;float: left;margin-top: 3px;margin-left: 5px;">合作商家 | Merchants</a>
+                        </div>
+                        <ul style="min-height: 300px;">
+                            @foreach (DataRow info in Model.UserList.Rows)
+                            {
+                                <li style="height: 110px; width: 180px; float: left; margin: 25px 18px 5px 18px; border: solid 1px #ddd;">
+                                    <div style="position: absolute;">
+                                        <div style="width: 180px; height: 110px; position: absolute;">
+                                            <img src="../images/bg_agent-.png"style="width: 180px; height: 110px; z-index: 0; position: absolute;"/>
+                                            <span style="z-index: 0; color: #fff; font-size: 13px; position: absolute; top: 10px; text-align: center; width: 180px; font-weight: bold;">发财网合作代理</span>
+                                            <span style="z-index: 0; color: #fff; font-size: 13px; position: absolute; top: 50px; text-align: center; width: 180px;">@(info["nickname"])</span>
+                                            <span style="z-index: 0; color: #fff; font-size: 13px; position: absolute; bottom: 5px; text-align: center; width: 180px;">@("QQ:"+info["qq"])</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+
+                    </div>
+                </div>
+
+            }
+
+            @Html.Partial("_footer")
+        </body>
+    </html>

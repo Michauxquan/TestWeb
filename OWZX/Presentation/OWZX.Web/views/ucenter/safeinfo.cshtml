@@ -77,7 +77,7 @@
         <div class="clear"></div>
     </div>
 
-    <div class="safe">
+    <div class="safe hide">
         <s class="@if (Model.VerifyMobile == 1){<text>ico1</text>}else{<text>ico2</text>}"></s>
         <b>手机验证</b> 
         <p>@if (Model.VerifyMobile == 0){<text>建议您绑定并验证手机以保护账户安全</text>}else{<text>您验证的手机：<strong>@Html.Raw(CommonHelper.HideMobile(Model.Mobile))</strong> 若已丢失或停用，请立即更换，<span style="color:#cc0000;">避免账户被盗</span></text>}</p> 
