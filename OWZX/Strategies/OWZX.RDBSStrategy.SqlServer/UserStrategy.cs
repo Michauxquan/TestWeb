@@ -639,8 +639,9 @@ delete from owzx_onlineusers where uid={1}", RDBSHelper.RDBSTablePre, uid);
                                        GenerateInParam("@admingid",SqlDbType.SmallInt,2,userInfo.AdminGid),
 									   GenerateInParam("@nickname",SqlDbType.NChar,20,userInfo.NickName),
 									   GenerateInParam("@uid",SqlDbType.Int,4,userInfo.Uid),
-                                       GenerateInParam("@imei",SqlDbType.VarChar,50,userInfo.IMEI)
-								   };
+                                       GenerateInParam("@imei",SqlDbType.VarChar,50,userInfo.IMEI),
+                                        GenerateInParam("@usertype",SqlDbType.SmallInt,2,userInfo.UserType)
+                                   };
 
             string result = RDBSHelper.ExecuteScalar(CommandType.StoredProcedure,
                                        string.Format("{0}updateuserpartinfo", RDBSHelper.RDBSTablePre),
@@ -938,7 +939,7 @@ AND  [{0}admingroups].[admingid]=[{0}users].[admingid] ", RDBSHelper.RDBSTablePr
 if OBJECT_ID('tempdb..#list') is not null
   drop table #list
 
-select ROW_NUMBER() over(order by a.uid desc) id, a.uid,a.username,a.mobile,a.nickname,a.totalmoney,
+select ROW_NUMBER() over(order by a.uid desc) id, a.uid,a.username,a.mobile,a.nickname,a.totalmoney,a.qq ,
 convert(varchar(25),b.registertime,120) registertime,convert(varchar(25),b.lastvisittime,120) lastvisittime,c.title AS admingtitle
 into #list
 from owzx_users a

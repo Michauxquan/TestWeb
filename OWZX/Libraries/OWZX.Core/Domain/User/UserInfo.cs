@@ -26,8 +26,10 @@ namespace OWZX.Core
         private DateTime _liftbantime = new DateTime(1900, 1, 1);//解禁时间
         private string _salt;//盐值
         private string _openid;//微信Openid
-        private string _qqnum;//QQ号
+        private string _qq;//QQ号
         private string _imei;//手机IMEI码
+        private int _parentid;//父级id
+        private int _usertype;//是否代理用户 1是 0否
 
 
         /// <summary>
@@ -45,6 +47,17 @@ namespace OWZX.Core
         {
             set { _username = value.TrimEnd(); }
             get { return _username; }
+        }
+
+        public int Parentid
+        {
+            set { _parentid=value; }
+            get { return _parentid; }
+        }
+        public int UserType
+        {
+            set { _usertype = value; }
+            get { return _usertype; }
         }
 
         public string SafePassWord
@@ -196,10 +209,10 @@ namespace OWZX.Core
         ///<summary>
         ///QQ号
         ///</summary>
-        public string QQNum
+        public string QQ
         {
-            get { return _qqnum; }
-            set { _qqnum = value.TrimEnd(); }
+            get { return _qq; }
+            set { _qq = value.TrimEnd(); }
         }
         /// <summary>
         /// 部门id

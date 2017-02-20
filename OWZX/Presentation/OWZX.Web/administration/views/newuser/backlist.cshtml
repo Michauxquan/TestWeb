@@ -51,9 +51,9 @@
     <th width="60" align="left">时间</th>
     <th width="80" align="left">账号</th>
     <th width="100" align="left">亏损金额</th>
-    <th width="100" align="left">组合比例</th>
+    <th width="100" align="left">回水比例</th>
+      <th width="100" align="left">回水</th>
       <th width="100" align="left">房间类型</th>
-    <th width="100" align="left">回水</th>
     <th width="60" align="left">状态</th>
     <th width ="60" align="left">管理操作</th>
     </tr>
@@ -65,10 +65,10 @@
     <td>@info.Id</td>
       <td>@info.Addtime</td>
     <td>@info.Account</td>
-      <td>@info.ProfitMoney</td><td>@info.CombRatio.ToString()%</td>
-      <td>@info.Room</td>
-    <td>@info.Money</td>
+      <td>@info.ProfitMoney</td><td>@info.BackRate.ToString()%</td>
    
+    <td>@info.Money</td>
+      <td>@(info.BackType==1? "代理抽取回水" : "会员回水")</td>
     <td>@switch (@info.Status)
         { 
             case 0:
@@ -83,10 +83,6 @@
         }</td>
     <td>
         @if(info.Status==0)
-        {
-         @Html.ActionLink("[审核中]", "editback", new { backid = @info.Backid, status = "1" }, new { @class = "editOperate" })
-        }
-        @if(info.Status<2)
         {
           @Html.ActionLink("[结算完成]", "editback", new { backid = @info.Backid, status="2"}, new { @class = "editOperate" })
         }

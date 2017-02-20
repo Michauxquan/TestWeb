@@ -217,6 +217,8 @@ namespace OWZX.Web.Controllers
                 RegisterModel model = new RegisterModel();
 
                 model.ReturnUrl = returnUrl;
+                var code = WebHelper.GetQueryString("invitecode");
+                model.InviteCode = string.IsNullOrEmpty(code)?"": code;
                 model.ShadowName = WorkContext.ShopConfig.ShadowName;
                 model.IsVerifyCode = CommonHelper.IsInArray(WorkContext.PageKey, WorkContext.ShopConfig.VerifyPages);
 
@@ -226,7 +228,7 @@ namespace OWZX.Web.Controllers
             //ajax请求
             string phone = string.Empty;
             string accountName =WebHelper.GetFormString(WorkContext.ShopConfig.ShadowName).Trim().ToLower();
-            string nickname = WebHelper.GetFormString("nickName"); //昵称
+            string nickname = WebHelper.GetFormString("loginname"); //昵称
             string password = WebHelper.GetFormString("password");
             string confirmPwd = WebHelper.GetFormString("confirmPwd");
             string verifyCode = WebHelper.GetFormString("verifyCode");
@@ -437,11 +439,11 @@ namespace OWZX.Web.Controllers
                 userInfo.Salt = Randoms.CreateRandomValue(6);
                 userInfo.Password = Users.CreateUserPassword(password, userInfo.Salt);
                 userInfo.UserRid = UserRanks.GetLowestUserRank().UserRid;
-                userInfo.AdminGid = 1;//非管理员组
-                //if (nickName.Length > 0)
-                //    userInfo.NickName = WebHelper.HtmlEncode(nickName);
-                //else
-                //    userInfo.NickName = "ow" + Randoms.CreateRandomValue(7);
+                userInfo.AdminGid = 1;//非管理员组 
+                if (nickName.Length > 0)
+                    userInfo.NickName = WebHelper.HtmlEncode(nickName);
+                else
+                    userInfo.NickName = "fc" + Randoms.CreateRandomValue(7);
                 userInfo.Avatar = "";
                 userInfo.PayCredits = 0;
                 userInfo.RankCredits = 0;

@@ -67,6 +67,10 @@ namespace OWZX.Data
             return OWZX.Core.BSPData.RDBS.UpdateUserBack(back);
 
         }
+        public static string UpdateUserBackReport(MD_UserBack back)
+        {
+            return OWZX.Core.BSPData.RDBS.UpdateUserBackReport(back);
+        }
 
         /// <summary>
         /// 删除用户消息
@@ -76,6 +80,15 @@ namespace OWZX.Data
         public static string DeleteUserBack(string id)
         {
             return OWZX.Core.BSPData.RDBS.DeleteUserBack(id);
+        }
+        /// <summary>
+        /// 删除用户消息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static string DeleteUserBackReport(string id)
+        {
+            return OWZX.Core.BSPData.RDBS.DeleteUserBackReport(id);
         }
 
         /// <summary>
@@ -89,7 +102,17 @@ namespace OWZX.Data
         {
             return OWZX.Core.BSPData.RDBS.GetBackList(pageNumber, pageSize, condition);
         }
-
+        /// <summary>
+        ///  获取用户回水(分页)
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public static DataTable GetBackReportList(int pageNumber, int pageSize, string condition = "")
+        {
+            return OWZX.Core.BSPData.RDBS.GetBackReportList(pageNumber, pageSize, condition);
+        }
         #endregion
 
         #region 用户账变记录

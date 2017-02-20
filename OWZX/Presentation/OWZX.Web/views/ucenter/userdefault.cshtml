@@ -69,9 +69,14 @@
                 }*@
                 
                 @if (@Model.UserInfo.VerifyEmail == 0)
-                { 
-                  <img src="../images/baseimg/email.png" class="left" style="width:100px; height: 100px;"/><a href="/ucenter/safeinfo"><h3 style="width:120px;margin-top: 40px;" class="left">认证邮箱>></h3></a>
+                {
+                    <img src="../images/baseimg/email.png" class="left" style="width: 100px; height: 100px;"/>
+                    <a href="/ucenter/safeinfo">
+                        <h3 style="width: 120px; margin-top: 40px;" class="left">认证邮箱>></h3></a>
                 }
+                <span style="font-size: 13px;">推广链接:</span><a href="@(ViewData["registerurl"])" style="font-size: 12px;">
+                             @(ViewData["registerurl"])
+                    </a>  
             </td>
           </tr>
           }

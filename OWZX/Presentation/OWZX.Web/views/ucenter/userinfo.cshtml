@@ -55,7 +55,7 @@
           </tr>
               <tr>
            <th width="100" align="right">手机：</th>
-            <td><input type="text" style="border: none;width:200px" value="@Model.UserInfo.Mobile" class="text" @(string.IsNullOrEmpty(Model.UserInfo.Mobile)?"":"readonly=true") maxlength="18" style="width:200px" /><a class="tip" href="@Url.Action("safeinfo")" > @(string.IsNullOrEmpty(Model.UserInfo.Mobile)?"未绑定":"已绑定")</a></td>
+            <td><input type="text" style="border: none;width:200px" value="@Model.UserInfo.Mobile" class="text" @(string.IsNullOrEmpty(Model.UserInfo.Mobile)?"":"readonly=true") maxlength="18" style="width:200px" /> </td>
           </tr>
           <tr>
             <th width="100" align="right">邮箱：</th>
@@ -68,7 +68,7 @@
           </tr> 
         <tr>
             <th width="100" align="right">QQ：</th>
-            <td><input type="text" name="qqNum" value="@Model.UserInfo.QQNum"  @(string.IsNullOrEmpty(Model.UserInfo.QQNum)?"":"readonly=true") class="text" maxlength="15" style="width:200px" /><span class="tip">填后不可修改</span></td>
+            <td><input type="text" name="qqNum" value="@Model.UserInfo.QQ"  @(string.IsNullOrEmpty(Model.UserInfo.QQ)?"":"readonly=true") class="text" maxlength="15" style="width:200px" /><span class="tip">填后不可修改</span></td>
           </tr> 
           <tr>
             <th width="100" align="right">&nbsp;</th>
