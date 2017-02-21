@@ -197,10 +197,6 @@ namespace OWZX.Web.controllers
                 return Content("0");
         }
 
-        public ActionResult LT36Index()
-        {
-            return View();
-        }
 
         /// <summary>
         /// 投注
@@ -209,29 +205,11 @@ namespace OWZX.Web.controllers
         public ActionResult _BettPage()
         {
             int type = WebHelper.GetFormInt("type");
-            int settype = 13;
-            switch (type)
-            {
-                case 1:
-                case 2:
-                case 6:
-                    settype = (int)LotterySetType.number;
-                    break;
-                case 4:
-                case 5:
-                    settype = (int)LotterySetType.sdz;
-                    break;
-                case 9:
-                    settype = (int)LotterySetType.lhb;
-                    break;
-                case 7:
-                    break;
-                case 8:
-                    break;
-            }
-            DataSet ds = LotteryList.GetLotterySet(settype);
+
+            DataSet ds = LotteryList.GetLotSetList(type.ToString());
             ViewData["ltset"] = ds;
             ViewData["exists"] = NewUser.ExistsMode(WorkContext.Uid);
+            ViewData["lotterytype"] = type;
             List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString());
             return View(model);
         }

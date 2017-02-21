@@ -66,7 +66,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
                     clearTimeout(tiner);
                     clearTimeout(traptime);
 
-                    if ($(".sec_head a:eq(0)").hasClass("hot"))
+                    if ($(".sec_head a:eq(0)").hasClass("hot") && isbett==0)
                     {
                         $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });
                     } else
@@ -79,7 +79,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
                 {
                     if (nS == -30)
                     {
-                        if ($(".sec_head a:eq(0)").hasClass("hot"))
+                        if ($(".sec_head a:eq(0)").hasClass("hot") && isbett == 0)
                         {
                             $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });
                             trap(lotterytype, fcnum);

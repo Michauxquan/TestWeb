@@ -70,10 +70,13 @@ background-image:url(../images/ltnumber.png);
 .ltresult {color:#c30000;font-weight:bold;font-size:20px;}
 
 .pcresult {
-    background:rgba(0, 0, 0, 0) url(../images/number/lottery.fw.png) no-repeat scroll 0 0;height:32px;width:32px;
+    background:rgba(0, 0, 0, 0) url(../images/number/lottery.png) no-repeat scroll 0 0;height:32px;width:32px;
     color:#fff;text-align:center;display:inline-block;line-height:32px;text-indent:0;
 }
-
+.lhbresult{
+    background:rgba(0, 0, 0, 0) scroll 0 0;height:32px;width:32px;
+    text-align:center;display:inline-block;line-height:32px;text-indent:0;
+}
 
 .ltwarn {color:#c30000;font-size:15px;font-weight:600;}
 .ltnum1 {
@@ -130,12 +133,144 @@ padding:0 3px;
 }
 
 /*can*/
-.numberl{margin-left:5px;}
+.numberl{margin-left:5px;font-size:14px;}
 .n1{color:#000}
 .n2{color:#0167FF}
 .n3{color:#eca101}
 .n4{color:#ff0000}
 .n5{color:#000}
+
+/*pk*/
+.final {
+    background-position: 0 -497px;
+    height: 23px;
+    width: 26px;
+    position: relative;
+}
+#play  td em {
+    font-style: normal;
+    background: url(../../images/number/pk.png) no-repeat;
+    display: inline-block;
+    width: 23px;
+    height: 21px;
+    text-indent: 0;
+    padding: 0 1px;
+    margin: 0;
+    
+    letter-spacing: normal;
+    word-spacing: normal;
+    float: left;
+}
+#play td em.regular01 {
+	background-position: 0 0
+}
+
+#play td em.regular02 {
+	background-position: 0 -25px
+}
+
+#play td em.regular03 {
+	background-position: 0 -50px
+}
+
+#play td em.regular04 {
+	background-position: 0 -75px
+}
+
+#play td em.regular05 {
+	background-position: 0 -100px
+}
+
+#play td em.regular06 {
+	background-position: 0 -125px
+}
+
+#play td em.regular07 {
+	background-position: 0 -150px
+}
+
+#play td em.regular08 {
+	background-position: 0 -175px
+}
+
+#play td em.regular09 {
+	background-position: 0 -200px
+}
+
+#play td em.regular10 {
+	background-position: 0 -225px
+}
+
+#play td em.light01 {
+	background-position: 0 -250px
+}
+
+#play td em.light02 {
+	background-position: 0 -275px
+}
+
+#play td em.light03 {
+	background-position: 0 -300px
+}
+
+#play td em.light04 {
+	background-position: 0 -325px
+}
+
+#play td em.light05 {
+	background-position: 0 -350px
+}
+
+#play td em.light06 {
+	background-position: 0 -375px
+}
+
+#play td em.light07 {
+	background-position: 0 -400px
+}
+
+#play td em.light08 {
+	background-position: 0 -425px
+}
+
+#play td em.light09 {
+	background-position: 0 -450px
+}
+
+#play td em.light10 {
+	background-position: 0 -475px
+}
+
+#play td em.final {
+	background-position: 0 -497px;
+	height: 23px;
+	width: 26px;
+	position: relative
+}
+
+#play td em.finals {
+	background-position: 0 -497px;
+	height: 26px;
+	width: 30px;
+	position: relative;
+	top: 5px
+}
+
+#play td em.final i {
+    font-size:14px;
+	/*font-size: 88% !important;*/
+	position: absolute;
+	width: 30px;
+	display: block;
+	height: 26px;
+	text-align: center;
+	color: #fff;
+	/*top: -2px;*/
+	left: 0;
+	line-height: 26px
+
+}
+
 
 /*分页*/
 .Paging {
@@ -199,7 +334,7 @@ border:1px solid #cacaca;
         font-style: normal;
         color: #fff;
         font-size: 21px;
-        background: url('../images/number/lottery.fw.png') no-repeat;
+        background: url('../images/number/lottery.png') no-repeat;
         display: inline-block;
         width: 32px;
         height: 32px;
@@ -415,7 +550,7 @@ button {
 .table_rule td em.final{ background-position:1px -497px; height:23px; width:26px; position:relative;}
 .table_rule td em.finals{ background-position:0px -497px; height:26px; width:30px; position:relative; top:5px}
 .table_rule td em.final i{ position:absolute; width:30px; display:block; height:26px; text-align:center; color:#fff; top:0px; left:0; line-height:26px;}
-.table_rule td li.finalbig { font-style:normal; color:#fff; font-size:21px; background:url(../images/number/lottery.fw.png) no-repeat; display:inline-block; width:32px; height:32px; text-indent:0px; line-height:32px; text-align:center; }
+.table_rule td li.finalbig { font-style:normal; color:#fff; font-size:21px; background:url(../images/number/lottery.png) no-repeat; display:inline-block; width:32px; height:32px; text-indent:0px; line-height:32px; text-align:center; }
 .table_rule td.state .open1{ background-position:0 0;}
 .table_rule td.state .open2{ background-position:0 -40px; cursor:pointer; }
 .table_rule td.state .open3{ background-position:0 -80px;}

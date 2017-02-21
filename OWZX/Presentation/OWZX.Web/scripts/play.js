@@ -41,6 +41,91 @@ var mode = new Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 
 					 [3, 8, 13, 18, 23], //5余3
 					 [4, 9, 14, 19, 24]//5余4
 					 );
+var fc36 = new Array(10, 60, 270, 360, 300,0)//豹 顺 对 半 杂
+var pkgj = 10;
+var pkgyj = new Array(2, 2, 4, 4, 6, 6, 8, 8, 10, 8, 8, 6, 6, 4, 4, 2, 2)
+
+var mode36 = new Array([0, 1, 2, 3, 4], //全包 0
+					 [0,2,4], //单 1
+					 [1,3], //双 2
+					 [3,4], //大 3
+					 [0,1], //小 4
+					 [2], //中 5
+					 [0, 4], //边 6
+					 [4], //大单 7 
+					 [0], //小单 8
+					 [3], //大双 9
+					 [1], //小双 10
+					 [3,4], //大边
+					 [0,1], //小边
+					 [1, 3], //单边
+					 [0, 4], //双边
+					 [5], //0尾
+					 [0], //1尾
+					 [1], //2尾
+					 [2], //3尾
+					 [3], //4尾
+					 [0, 1, 2, 3], //小尾
+					 [4], //5尾
+					 [5], //6尾
+					 [5], //7尾
+					 [5], //8尾
+					 [5], //9尾
+					 [4], //大尾
+					 [2], //3余0
+					 [0,3], //3余1
+					 [1,4], //3余2
+					 [3], //4余0
+					 [0, 4], //4余1
+					 [1], //4余2
+					 [2], //4余3
+					 [4], //5余0
+					 [0], //5余1
+					 [1], //5余2
+					 [2], //5余3
+					 [3]//5余4
+					 );
+var modegj = new Array([0, 1, 2, 3, 4,5,6,7,8,9], //全包 0
+					 [0, 2, 4,6,8], //单 1
+					 [1, 3,5,7,9], //双 2
+					 [5, 6, 7, 8, 9], //大 3
+					 [0, 1, 2, 3, 4], //小 4
+					 [3, 4,5,6], //中 5
+					 [0, 1, 2, 7, 8, 9], //边 6
+					 [6,8], //大单 7 
+					 [0,2,4], //小单 8
+					 [5,7,9], //大双 9
+					 [1,3], //小双 10
+					 [7,8,9], //大边
+					 [0,1,2], //小边
+					 [1,7,9], //单边
+					 [0,2,8], //双边
+					 [9], //0尾
+					 [0], //1尾
+					 [1], //2尾
+					 [2], //3尾
+					 [3], //4尾
+					 [0, 1, 2, 3,9], //小尾
+					 [4], //5尾
+					 [5], //6尾
+					 [6], //7尾
+					 [7], //8尾
+					 [8], //9尾
+					 [4,5,6,7,8], //大尾
+					 [2, 5, 8], //3余0
+					 [0,3,6,9], //3余1
+					 [1, 4,7], //3余2
+					 [3,7], //4余0
+					 [0, 4,8], //4余1
+					 [1,5,9], //4余2
+					 [2,6], //4余3
+					 [4,9], //5余0
+					 [0,5], //5余1
+					 [1,6], //5余2
+					 [2,7], //5余3
+					 [3,8]//5余4
+					 );
+
 
 var maxnum = 20000000; //最大投注金额
 var minnum = 10;
@@ -190,15 +275,28 @@ $(document).ready(function ()
 //标准投注模式设定方法
 function setValue(num)
 {
-    for (var i = 0; i < mode[num].length; i++)
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 6)
     {
-        var id_num = mode[num][i];
-        var id_name = "#txt_" + mode[num][i];
-        if (!$(id_name).attr("readonly"))
+        for (var i = 0; i < mode[num].length; i++)
         {
-            $(id_name).val(nub[id_num]);
-            $(id_name).parent().prev("td").children("input").prop("checked", true);
+            var id_num = mode[num][i];
+            var id_name = "#txt_" + mode[num][i];
+            if (!$(id_name).attr("readonly"))
+            {
+                $(id_name).val(nub[id_num]);
+                $(id_name).parent().prev("td").children("input").prop("checked", true);
+            }
         }
+    } else if (lotterytype == 4 || lotterytype == 5)
+    {
+        
+    }
+    else if (lotterytype == 7)
+    {
+
+    } else if (lotterytype == 8)
+    {
+
     }
 }
 //清除方法
@@ -699,4 +797,658 @@ function closelinqu()
 {
     ShowMsgo.cancel();
     window.location.reload(true);
+}
+
+
+function otherMode(num)
+{
+    //全
+    if (o == 0)
+    {
+        $("[name = 'tbChk']:checkbox").attr("checked", true);
+        for (var i = 0; i < cc; i++)
+        {
+            $("#tbNum" + i).val(parseInt(data[i]));
+        }
+    }
+    //双
+    if (o == 1)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 2 == 0)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+        }
+    }
+    //单
+    if (o == 2)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 2 == 1)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+        }
+    }
+    //小
+    if (o == 3)
+    {
+        var num = data.length / 2;
+        for (var i = 0; i < cc; i++)
+        {
+            if (GTYPE == 11 || GTYPE == 7)
+            {
+                if (i < num - 1)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+
+                }
+            }
+            else
+            {
+                if (i < num)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+            }
+        }
+    }
+    //大
+    if (o == 4)
+    {
+        var num = data.length / 2;
+        for (var i = 0; i < cc; i++)
+        {
+            if (GTYPE == 11 || GTYPE == 7)
+            {
+                if (i >= num - 1)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+
+                }
+            }
+            else
+            {
+                if (i >= num)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+
+                }
+            }
+
+        }
+    }
+    //中
+    if (o == 5)
+    {
+        var num = data.length / 3;
+        for (var i = 0; i < cc; i++)
+        {
+            if (GTYPE == 17)
+            {
+                if (i >= num - 1 & i < 2 * num)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+            }
+            else if (GTYPE == 7)
+            {
+                if (i >= num - 1 & i <= 2 * num)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+
+            }
+
+            else if (GTYPE == 11)
+            {
+                if (i > num - 1 && i < 2 * num)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+            }
+            else
+            {
+                if (i >= num & i < 2 * num - 1)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+            }
+        }
+    }
+    //边
+    if (o == 6)
+    {
+        var num = data.length / 4;
+        for (var i = 0; i < cc; i++)
+        {
+            if (GTYPE == 7)
+            {
+                if (i < num || i >= 3 * num - 1)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+            }
+
+            else if (GTYPE == 17)
+            {
+                if (i <= num || i >= 3 * num - 1)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+            }
+            else if (GTYPE == 11)
+            {
+                if (i <= num || i > 2 * num + 2)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+            }
+
+            else
+            {
+                if (i < num + 3 || i > 3 * num - 4)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+            }
+
+        }
+    }
+    //大单
+    if (o == 7)
+    {
+        var num = (data.length + imore) / 2;
+        for (var i = 0; i < cc; i++)
+        {
+
+            if ((i + istart) > num && (i + istart) % 2 == 1)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+
+        }
+    }
+    //小单
+    if (o == 8)
+    {
+        var num = (data.length + imore) / 2;
+        for (var i = 0; i < cc; i++)
+        {
+
+
+            if ((i + istart) < num && (i + istart) % 2 == 1)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+
+        }
+    }
+    //大双
+    if (o == 9)
+    {
+        var num = (data.length + imore) / 2;
+        for (var i = 0; i < cc; i++)
+        {
+
+            if ((i + istart) >= num && (i + istart) % 2 == 0)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+
+        }
+    }
+    //小双
+    if (o == 10)
+    {
+        var num = (data.length + imore) / 2;
+        for (var i = 0; i < cc; i++)
+        {
+
+            if ((i + istart) < num && (i + istart) % 2 == 0)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+
+        }
+    }
+    //大边
+    if (o == 11)
+    {
+        var num = (data.length + imore) / 3;
+        if (GTYPE == 7)
+        {
+            istart--;
+        }
+        for (var i = 0; i < cc; i++)
+        {
+            if (GTYPE == 11)
+            {
+                if ((i + istart) > 2 * num + 1)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+            }
+            else
+            {
+                if ((i + istart) > 2 * num - 1)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+            }
+
+        }
+    }
+    //小边
+    if (o == 12)
+    {
+        var num = (data.length + imore) / 3;
+        for (var i = 0; i < cc; i++)
+        {
+
+            if ((i + istart) <= num)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+
+        }
+    }
+    //单边
+    if (o == 13)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 10 == 0)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //双边
+    if (o == 14)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 10 == 1)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+
+    //0尾
+    if (o == 15)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 10 == 0)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //1尾
+    if (o == 16)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 10 == 1)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //2尾
+    if (o == 17)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 10 == 2)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //3尾
+    if (o == 18)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 10 == 3)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //4尾
+    if (o == 19)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 10 == 4)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //小尾
+    if (o == 20)
+    {
+        if (GTYPE == 10)
+        {
+            for (var i = 0; i < cc; i++)
+            {
+                if ((i + istart) % 10 < 5 && (i + istart) % 10 >= 0)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+
+            }
+        } else
+        {
+            for (var i = 0; i < cc; i++)
+            {
+                if ((i + istart) % 10 < 5)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+
+            }
+        }
+    }
+    //5尾
+    if (o == 21)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 10 == 5)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //6尾
+    if (o == 22)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 10 == 6)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //7尾
+    if (o == 23)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 10 == 7)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //8尾
+    if (o == 24)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 10 == 8)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //9尾
+    if (o == 25)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 10 == 9)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //大尾
+    if (o == 26)
+    {
+        if (GTYPE == 10)
+        {
+            for (var i = 0; i < cc; i++)
+            {
+                if ((i + istart) % 10 >= 5)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+
+            }
+        }
+        else
+        {
+            for (var i = 0; i < cc; i++)
+            {
+                if ((i + istart) % 10 >= 5)
+                {
+                    $("#tbNum" + i).val(parseInt(data[i]));
+                    $("#tbChk" + i).attr("checked", "checked");
+                }
+
+            }
+        }
+    }
+    //3余0
+    if (o == 27)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 3 == 0)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //3余1
+    if (o == 28)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 3 == 1)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //3余2
+    if (o == 29)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 3 == 2)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //4余0
+    if (o == 30)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 4 == 0)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //4余1
+    if (o == 31)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 4 == 1)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //4余2
+    if (o == 32)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 4 == 2)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //4余3
+    if (o == 33)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 4 == 3)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //5余0
+    if (o == 34)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 5 == 0)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //5余1
+    if (o == 35)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 5 == 1)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //5余2
+    if (o == 36)
+    {
+
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 5 == 2)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //5余3
+    if (o == 37)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 5 == 3)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
+    //5余4
+    if (o == 38)
+    {
+        for (var i = 0; i < cc; i++)
+        {
+            if ((i + istart) % 5 == 4)
+            {
+                $("#tbNum" + i).val(parseInt(data[i]));
+                $("#tbChk" + i).attr("checked", "checked");
+            }
+
+        }
+    }
 }

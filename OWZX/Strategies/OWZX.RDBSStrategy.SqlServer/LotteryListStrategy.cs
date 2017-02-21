@@ -31,10 +31,25 @@ namespace OWZX.RDBSStrategy.SqlServer
             string sql = string.Format(@"
 declare @uid int={1},@type int={0}
 
-select  type,expect,orderresult,first,second,three,result,resultnum,resulttype,status 
+if OBJECT_ID('tempdb..#last') is not null
+drop table #last
+
+select type,expect,orderresult,first,second,three,result,resultnum,resulttype,status 
+into #last
 from owzx_lotteryrecord 
 where type=@type and status=2 
 and DATEDIFF(minute,opentime,GETDATE()) between 0 and 5
+
+if not exists(select 1 from #last)
+begin
+select top 1 type,expect,orderresult,first,second,three,result,resultnum,resulttype,status 
+from owzx_lotteryrecord 
+where type=@type and status=2 order by lotteryid desc
+end
+else
+begin
+select * from #last
+end
 
 --用户投注盈亏
 if OBJECT_ID('tempdb..#temp') is not null
@@ -43,22 +58,51 @@ drop table #temp
 select a.lotteryid type,a.lotterynum expect,a.money,b.luckresult
 into #temp
 from owzx_bett a
-join owzx_bettprofitloss b on a.bettid=b.bettid where a.uid=@uid and 
- datediff(day,a.addtime,GETDATE())=0
+join owzx_bettprofitloss b on a.bettid=b.bettid where a.uid=@uid 
+and datediff(day,a.addtime,GETDATE())=0
 
 
 declare @total int=(select COUNT(1) from owzx_lotteryrecord where type=@type)
 
+
+if OBJECT_ID('tempdb..#now') is not null
+drop table #now
+
+declare @temptotal int=0
+set @temptotal=(select COUNT(1) from #temp)
+
+
 select type,expect lastnumber,opentime,status,DATEDIFF(SECOND,GETDATE(),opentime) remains, 
 (select COUNT(1) from owzx_bett where uid=@uid and 
  datediff(day,addtime,GETDATE())=0) tdbettnum,
-(select isnull(SUM(luckresult),0) from #temp) tdprof,
- case when (select COUNT(1) from #temp)=0 then 0 
+ (case when @temptotal=0 then 0 
+ else (select isnull(SUM(luckresult),0) from #temp) end) tdprof,
+ case when @temptotal=0 then 0 
  else (cast((select COUNT(1) from #temp where luckresult>0) /(select COUNT(1) from #temp)as decimal(18,2))) end winpercent,
  @total totalcount
+into #now
 from owzx_lotteryrecord
 where type=@type and status in (0,1)
 and DATEDIFF(SECOND,GETDATE(),opentime) between 0 and 300
+
+if not exists(select 1 from #now)
+begin
+select top 1 type,expect lastnumber,opentime,status,DATEDIFF(SECOND,GETDATE(),opentime) remains, 
+(select COUNT(1) from owzx_bett where uid=@uid and 
+ datediff(day,addtime,GETDATE())=0) tdbettnum,
+(case when @temptotal=0 then 0 
+ else (select isnull(SUM(luckresult),0) from #temp) end) tdprof,
+ case when (select COUNT(1) from #temp)=0 then 0 
+ else (cast((select COUNT(1) from #temp where luckresult>0) /(select COUNT(1) from #temp)as decimal(18,2))) end winpercent,
+ @total totalcount
+ from owzx_lotteryrecord
+where type=@type and status in (0,1) order by lotteryid desc
+end
+else
+begin
+select * from #now
+end
+
 
  
 if OBJECT_ID('tempdb..#lottery') is not null
@@ -262,6 +306,190 @@ end
 ", type);
             return RDBSHelper.ExecuteDataset(sql);
         }
+
+        /// <summary>
+        /// 添加彩票赔率
+        /// </summary>
+        /// <param name="chag"></param>
+        /// <returns></returns>
+        public string AddLotSet(MD_LotSetOdds mode)
+        {
+            try
+            {
+                DbParameter[] parms = {
+                                        GenerateInParam("@lotterytype", SqlDbType.Int,4, mode.Lotterytype),
+                                        GenerateInParam("@bttypeid", SqlDbType.Int,4, mode.Bttypeid),
+                                        GenerateInParam("@odds", SqlDbType.VarChar,20, mode.Odds)
+                                       
+                                    };
+                string commandText = string.Format(@"
+begin try
+begin tran t1
+
+INSERT INTO [owzx_lotsetodds]
+           ([lotterytype]
+           ,[bttypeid]
+           ,[odds]
+           )
+VALUES (@lotterytype,@bttypeid,@settype,@odds)
+
+
+select '添加成功' state
+commit tran t1
+end try
+begin catch
+rollback tran t1
+select ERROR_MESSAGE() state
+end catch
+
+");
+                return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+            }
+            catch (Exception er)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 更新彩票赔率
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public string UpdateLotSet(MD_LotSetOdds mode)
+        {
+            DbParameter[] parms = {
+                                        GenerateInParam("@setid", SqlDbType.Int,4, mode.Bttypeid),
+                                        GenerateInParam("@odds", SqlDbType.VarChar,20, mode.Odds)
+                                       
+                                    };
+            string commandText = string.Format(@"
+begin try
+begin tran t1
+
+if exists(select 1 from owzx_lotsetodds where setid=@setid)
+begin
+update a set a.[odds]=@odds
+from [owzx_lotsetodds] a where  setid=@setid
+       
+select '修改成功' state
+commit tran t1
+
+end
+else
+begin
+select '记录已被删除' state
+commit tran t1
+end
+
+end try
+begin catch
+rollback tran t1
+select ERROR_MESSAGE() state
+end catch
+
+");
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+        }
+
+        /// <summary>
+        /// 删除彩票赔率
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string DelLotSet(int setid)
+        {
+            string commandText = string.Format(@"
+            begin try
+            if exists(select 1 from  owzx_lotsetodds where setid={0})
+            begin
+            delete from owzx_lotsetodds wheresetid={0} 
+            select '删除成功' state
+            end
+            else
+            begin
+            select '记录已被删除' state
+            end
+            end try
+            begin catch
+            select ERROR_MESSAGE() state
+            end catch
+            ", setid);
+            return RDBSHelper.ExecuteScalar(commandText).ToString();
+        }
+
+        /// <summary>
+        ///获取彩票赔率
+        /// </summary>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public DataSet GetLotSetList(string type, string condition = "")
+        {
+            string commandText = string.Format(@"
+
+declare @type int
+set @type={0}
+
+begin try
+SELECT ROW_NUMBER() over(order by a.setid ) id,a.[setid]
+      ,a.[lotterytype]
+      ,a.[bttypeid]
+      ,a.[odds]
+      ,a.[addtime]
+      ,b.item,b.type
+into  #list
+  FROM owzx_lotsetodds a
+  join owzx_lotteryset b on a.bttypeid= b.bttypeid and a.lotterytype= @type
+  {1}
+
+if( @type in (1,2,6))
+begin
+select * from  #list where id>=1 and id<=14
+
+select * from  #list where id>=15 and id<=28
+end
+else if( @type in (9))
+begin
+select * from  #list where type=12
+
+select * from  #list where type=16
+end
+else if( @type in (4,5))
+begin
+select * from  #list where id>=1 and id<=3
+
+select * from  #list where id>=4 and id<=5
+end
+else if( @type in (7))
+begin
+select * from  #list where id>=1 and id<=5
+
+select * from  #list where id>=6 and id<=10
+end
+else if( @type in (8))
+begin
+select * from  #list where id>=1 and id<=9
+
+select * from  #list where id>=10 and id<=17
+end
+else if( @type in (3))
+begin
+select * from  #list --where id>=1 and id<=3
+
+select * from  #list --where id>=4 and id<=5
+end
+
+end try
+begin catch
+select ERROR_MESSAGE() state
+end catch
+
+", type,condition);
+
+            return RDBSHelper.ExecuteDataset(CommandType.Text, commandText, null);
+        }
+        
         #endregion
 
         #region 自动投注

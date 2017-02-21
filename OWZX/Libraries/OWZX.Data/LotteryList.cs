@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OWZX.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -62,6 +63,46 @@ namespace OWZX.Data
        public static DataSet GetLotterySet(int type)
        {
            return OWZX.Core.BSPData.RDBS.GetLotterySet(type);
+       }
+
+       /// <summary>
+       /// 添加彩票赔率
+       /// </summary>
+       /// <param name="chag"></param>
+       /// <returns></returns>
+       public static string AddLotSet(MD_LotSetOdds mode)
+       {
+           return OWZX.Core.BSPData.RDBS.AddLotSet(mode);
+       }
+
+       /// <summary>
+       /// 更新彩票赔率
+       /// </summary>
+       /// <param name="msg"></param>
+       /// <returns></returns>
+       public static string UpdateLotSet(MD_LotSetOdds mode)
+       {
+           return OWZX.Core.BSPData.RDBS.UpdateLotSet(mode);
+       }
+
+       /// <summary>
+       /// 删除彩票赔率
+       /// </summary>
+       /// <param name="id"></param>
+       /// <returns></returns>
+       public static string DelLotSet(int setid)
+       {
+           return OWZX.Core.BSPData.RDBS.DelLotSet(setid);
+       }
+
+       /// <summary>
+       ///获取彩票赔率
+       /// </summary>
+       /// <param name="condition">没有where</param>
+       /// <returns></returns>
+       public static DataSet GetLotSetList(string type, string condition = "")
+       {
+           return OWZX.Core.BSPData.RDBS.GetLotSetList(type, condition);
        }
        #endregion
     }

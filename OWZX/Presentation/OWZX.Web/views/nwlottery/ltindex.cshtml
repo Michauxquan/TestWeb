@@ -110,6 +110,12 @@
                                     <span class="numberl n1">@numbs[18]</span><span class="numberl n1">@numbs[19]</span>
                                 </text>
                             }
+                            else if (@Model.LotteryType == 7 || @Model.LotteryType == 8)
+                            {
+                                string orderresult = @Model.lotterylist.Prev_Lottery.Orderresult;
+                                <span class="numberl n2">@Model.lotterylist.Prev_Lottery.First</span>
+                                <span class="numberl n3">@orderresult.Substring(3, @orderresult.Length - 3)</span>
+                            }
                             @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9)
                             {
                                 <a href="http://www.bwlc.net/bulletin/keno.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
@@ -128,8 +134,13 @@
                             }
                         </div>
                         <div style="border-top:1px solid #ECECEC;padding-left:50px;">
-                            <span style="font-size:15px;">一区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.First</span></span>
-                            <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Second</span></span>
+                            @{
+                            int first = int.Parse(@Model.lotterylist.Prev_Lottery.First);
+                            int second = int.Parse(@Model.lotterylist.Prev_Lottery.Second);
+                            }
+
+                            <span style="font-size:15px;">一区号码: <span class="ltresult">@first</span></span>
+                            <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@second</span></span>
                             @if(@Model.LotteryType != 7 && @Model.LotteryType != 8)
                             {
                                 <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
@@ -194,6 +205,10 @@
                 {
                     @Html.Partial("_contentlhb")
                 }
+                else if (@Model.LotteryType == 7 || @Model.LotteryType == 8)
+                {
+                    @Html.Partial("_contentpk")
+                }
             </div>
 
         </div>
@@ -220,6 +235,14 @@
                     }else if(lotterytype==3)
                     {
                         $(".temp_content").load("/nwlottery/_contentlhb",{"type":lotterytype,"page":1});
+                    }
+                    else if(lotterytype==9)
+                    {
+                        $(".temp_content").load("/nwlottery/_contentlhb",{"type":lotterytype,"page":1});
+                    }
+                    else if(lotterytype==7||lotterytype==8)
+                    {
+                        $(".temp_content").load("/nwlottery/_contentpk",{"type":lotterytype,"page":1});
                     }
                     break;
                 case 'bett':

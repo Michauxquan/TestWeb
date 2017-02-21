@@ -9,12 +9,12 @@
 <table class="con_table" id="play" cellpadding="0" cellspacing="1" align="center"
        style="color: Black; margin-bottom: 4px;margin-top:5px; border-top:2px solid #e4393c;" bgcolor="#CACACA">
     <tr id="trhead">
-        <td width="13%" style="height: 28px;">期号</td>
-        <td width="13%" style="height: 28px">开奖时间</td>
-        <td width="17%" style="height: 28px">开奖结果</td>
-        <td width="15%" style="height: 28px">乐豆总数</td>
-        <td width="12%" style="height: 28px">中奖人数</td>
-        <td width="15%" style="height: 28px">投注额/中奖额</td>
+        <td width="9%" style="height: 28px;">期号</td>
+        <td width="9%" style="height: 28px">开奖时间</td>
+        <td width="31%" style="height: 28px">开奖结果</td>
+        <td width="13%" style="height: 28px">乐豆总数</td>
+        <td width="10%" style="height: 28px">中奖人数</td>
+        <td width="12%" style="height: 28px">投注额/中奖额</td>
         <td width="13%" style="height: 28px">投注</td>
     </tr>
     @foreach (OWZX.Model.MD_LotteryUser lot in @Model.lotterylist.LotteryList)
@@ -22,27 +22,26 @@
         <tr>
             <td>@lot.Expect</td>
             <td>@lot.Opentime.ToString("MM-dd HH:mm")</td>
-            <td>
+            <td valign="middle" style="padding-left:5px;">
                 @if (@lot.Status != 2)
                 {
-                    @:-
-            }
+
+                }
                 else
                 {
-                    if (@lot.Type == 1)
+                    string[] opencodes = @lot.Orderresult.Split(',');
+                    string clfir = "regular" + opencodes[0];
+                    <em class="@clfir"></em>
+                    string clsec = (@lot.Type == 7 ? "light" + opencodes[1] : "regular" + opencodes[1]);
+                    <em class="@clsec"></em>
+                    for (int i = 2; i <= opencodes.Length - 1; i++)
                     {
-                        string resnum = int.Parse(@lot.Resultnum).ToString("d2");
-                        <text><i>@lot.First</i>+<i>@lot.Second</i>+<i>@lot.Three</i>=<span class="ltresult pcresult">
-                            @resnum
-                        </span></text>
+                        clsec = "light" + opencodes[i];
+                        <em class="@clsec"></em>
                     }
-                    else if (@lot.Type == 4)
+                    if (@lot.Type == 8)
                     {
-                        if (@lot.Resultnum == "")
-                        {
-                            <text><i>@lot.First</i>+<i>@lot.Second</i>+<i>@lot.Three</i>=<span class="ltresult sdz">
-                            </span></text>
-                        }
+                        <em class="final"><i>@lot.Resultnum</i></em>
                     }
                 }
             </td>
@@ -86,7 +85,7 @@
             current: @Model.PageModel.PageNumber,
             backFn: function (p)
             {
-                $(".temp_content").load("/nwlottery/_content",{"type":lotterytype,"page":p});
+                $(".temp_content").load("/nwlottery/_contentpk",{"type":lotterytype,"page":p});
             }
         });
     });

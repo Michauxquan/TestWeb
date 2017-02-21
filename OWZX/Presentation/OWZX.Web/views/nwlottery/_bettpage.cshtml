@@ -2,7 +2,7 @@
     ViewBag.Title = "_numberbett";
 }
 @model List<OWZX.Model.MD_BettMode>
-<script src="@{@WorkContext.ScriptCDN}/scripts/play.js"></script>
+<script src="~/scripts/play.js"></script>
 
 
 <script>
@@ -10,6 +10,7 @@
     var num = "";
     var bettmodel = "";
     var mymoney = @WorkContext.PartUserInfo.TotalMoney;//我的余额
+    
 </script>
 <div class="bt_page">
     @if((bool)ViewData["exists"])
@@ -27,6 +28,8 @@
         </div>
     </div>
     }
+    @if ((int)@ViewData["lotterytype"] != 9)
+    {
     <div class="border_out" style="margin-top: -2px; height:120px;">
         <div class="border_out_l">
             <div class="border_out_title"><span style="float: left; width: auto;">标准投注模式</span> <span style="float: right; width: auto;"></span></div>
@@ -78,6 +81,7 @@
             </table>
         </div>
     </div>
+    }
 
     <div class="border_out1">
         <div class="border_out1_l" id="border_out1_l" style="border-right: 1px solid #e4393c;">
@@ -95,10 +99,13 @@
             <div class="touzhu2">清除</div>
         </div>
     </div>
+      
     <div class="content_middle" style="height: auto; width: 910px; margin: auto;" id="panel">
+
         @{
             DataSet ds = (DataSet)ViewData["ltset"];
         }
+       
         <input class="input2" name="SMONEYY" type="hidden" value="ALD" />
         <table style="width:455px;color: Black;border-collapse:collapse; border:1px solid #cacaca;border-top:none;border-right:none;" border="0" cellpadding="0" cellspacing="1" align="left">
             <tr align="center" height="20">
@@ -111,14 +118,22 @@
             </tr>
             @foreach (DataRow row in ds.Tables[0].Rows)
             {
-                string num = @row["nums"].ToString();
+                string num = @row["item"].ToString();
                 <tr align="center" bgcolor="#FFFFFF" height="27">
                     <td>
-                        <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.fw.png'); " 
+                        @if((int)@ViewData["lotterytype"]!=9)
+                        {
+                        <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); " 
                               width="25" height="25">@row["item"]</span>
+                        }
+                        else
+                        {
+                            <span class="ltresult lhbresult btnumber"
+                                  width="25" height="25">@row["item"]</span>
+                        }
                     </td>
                     <td style="display: none;"></td>
-                    <td class="lossrate" data-type=@row["nums"]>@row["odds"]</td>
+                    <td class="lossrate" data-type=@row["item"]>@row["odds"]</td>
                     <td>
                         <input type="checkbox" name="checkboxd" value="checkbox" />
                     </td>
@@ -144,32 +159,40 @@
                 <th width="100">投注</th>
                 <th width="110">倍数</th>
             </tr>
-             @if ((bool) ViewData["exists"])
-             { 
-                     foreach (DataRow row in ds.Tables[1].Rows)
-                     {
-                         string num = @row["nums"].ToString();
-                         <tr align="center" bgcolor="#FFFFFF" height="27">
-                             <td>
-                                 <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.fw.png');" width="25" height="25">@row["item"]</span>
-                             </td>
-                             <td style="display: none;"></td>
-                             <td class="lossrate" data-type=@row["nums"]>@row["odds"]</td>
-                             <td>
-                                 <input type="checkbox" name="checkboxd" value="checkbox"/>
-                             </td>
-                             <td>
-                                 <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id='txt_@num' onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8"/>
-                             </td>
-                             <td style="width: 80px;">
-                                 <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
-                                 <a class="multiple" href="javascript:chgTimes('txt_@num',2)">2</a>
-                                 <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>
-                             </td>
-                         </tr>
-                     } 
-             }
+             
+            @foreach (DataRow row in ds.Tables[1].Rows)
+            {
+                string num = @row["item"].ToString();
+                <tr align="center" bgcolor="#FFFFFF" height="27">
+                    <td>
+                        @if ((int)@ViewData["lotterytype"] != 9)
+                        {
+                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                                  width="25" height="25">@row["item"]</span>
+                        }
+                        else
+                        {
+                            <span class="ltresult lhbresult btnumber"
+                                  width="25" height="25">@row["item"]</span>
+                        }
+                    </td>
+                    <td style="display: none;"></td>
+                    <td class="lossrate" data-type=@row["item"]>@row["odds"]</td>
+                    <td>
+                        <input type="checkbox" name="checkboxd" value="checkbox"/>
+                    </td>
+                    <td>
+                        <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id='txt_@num' onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8"/>
+                    </td>
+                    <td style="width: 80px;">
+                        <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
+                        <a class="multiple" href="javascript:chgTimes('txt_@num',2)">2</a>
+                        <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>
+                    </td>
+                </tr>
+            } 
 
         </table>
+        
     </div>
 </div>
