@@ -104,6 +104,7 @@
 
         @{
             DataSet ds = (DataSet)ViewData["ltset"];
+            int lottype=(int)@ViewData["lotterytype"];
         }
        
         <input class="input2" name="SMONEYY" type="hidden" value="ALD" />
@@ -118,13 +119,14 @@
             </tr>
             @foreach (DataRow row in ds.Tables[0].Rows)
             {
-                string num = @row["item"].ToString();
+                string num =(lottype==4 ||lottype==5)?@row["id"].ToString():@row["item"].ToString();
+            <text>
                 <tr align="center" bgcolor="#FFFFFF" height="27">
                     <td>
                         @if((int)@ViewData["lotterytype"]!=9)
                         {
-                        <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); " 
-                              width="25" height="25">@row["item"]</span>
+                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                                  width="25" height="25">@row["item"]</span>
                         }
                         else
                         {
@@ -138,7 +140,8 @@
                         <input type="checkbox" name="checkboxd" value="checkbox" />
                     </td>
                     <td>
-                        <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id="txt_@num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                        <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled"
+                               id="txt_@num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
                     </td>
                     <td style="width: 80px;">
 
@@ -147,6 +150,7 @@
                         <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>
                     </td>
                 </tr>
+            </text>
             }
 
         </table>
@@ -162,7 +166,7 @@
              
             @foreach (DataRow row in ds.Tables[1].Rows)
             {
-                string num = @row["item"].ToString();
+                string num = (lottype == 4 || lottype == 5) ? @row["id"].ToString() : @row["item"].ToString();
                 <tr align="center" bgcolor="#FFFFFF" height="27">
                     <td>
                         @if ((int)@ViewData["lotterytype"] != 9)

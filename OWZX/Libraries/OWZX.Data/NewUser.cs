@@ -350,9 +350,9 @@ namespace OWZX.Data
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public static bool ExistsMode(int uid)
+        public static bool ExistsMode(int uid, int lotterytype)
         {
-            return OWZX.Core.BSPData.RDBS.ExistsMode(uid);
+            return OWZX.Core.BSPData.RDBS.ExistsMode(uid,lotterytype);
         }
 
         #endregion

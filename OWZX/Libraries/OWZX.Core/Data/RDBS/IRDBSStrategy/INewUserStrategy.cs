@@ -245,7 +245,7 @@ namespace OWZX.Core
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        bool ExistsMode(int uid);
+        bool ExistsMode(int uid, int lotterytype);
         #endregion
 
     }

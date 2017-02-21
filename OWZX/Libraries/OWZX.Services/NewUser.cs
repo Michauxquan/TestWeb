@@ -450,9 +450,9 @@ namespace OWZX.Services
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public static bool ExistsMode(int uid)
+        public static bool ExistsMode(int uid,int lotterytype)
         {
-            return OWZX.Data.NewUser.ExistsMode(uid);
+            return OWZX.Data.NewUser.ExistsMode(uid,lotterytype);
         }
 
         #endregion

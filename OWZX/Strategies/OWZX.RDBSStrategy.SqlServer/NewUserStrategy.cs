@@ -1388,11 +1388,11 @@ end catch
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public bool ExistsMode(int uid)
+        public bool ExistsMode(int uid, int lotterytype)
         {
             string sql = string.Format(@"
-select 1 from owzx_userbettmodel where uid={0}
-",uid);
+select 1 from owzx_userbettmodel where uid={0} and lotterytype={1}
+",uid,lotterytype);
             return RDBSHelper.Exists(sql);
         }
 

@@ -34,7 +34,7 @@ declare @uid int={1},@type int={0}
 if OBJECT_ID('tempdb..#last') is not null
 drop table #last
 
-select type,expect,orderresult,first,second,three,result,resultnum,resulttype,status 
+select top 1  type,expect,orderresult,first,second,three,result,resultnum,resulttype,status 
 into #last
 from owzx_lotteryrecord 
 where type=@type and status=2 
@@ -72,7 +72,7 @@ declare @temptotal int=0
 set @temptotal=(select COUNT(1) from #temp)
 
 
-select type,expect lastnumber,opentime,status,DATEDIFF(SECOND,GETDATE(),opentime) remains, 
+select top 1  type,expect lastnumber,opentime,status,DATEDIFF(SECOND,GETDATE(),opentime) remains, 
 (select COUNT(1) from owzx_bett where uid=@uid and 
  datediff(day,addtime,GETDATE())=0) tdbettnum,
  (case when @temptotal=0 then 0 

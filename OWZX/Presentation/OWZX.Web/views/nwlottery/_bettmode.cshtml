@@ -184,6 +184,7 @@
 </table>
 @{
     DataSet ds = (DataSet)ViewData["ltset"];
+    int lottype = (int)@ViewData["lotterytype"];
 }
 <table style="width: 455px; float: left;margin-top:10px;" bgcolor="#FFB91F" border="0" cellpadding="0" cellspacing="1" align="center">
     <tr>
@@ -199,7 +200,7 @@
     </tr>
     @foreach (DataRow row in ds.Tables[0].Rows)
     {
-        string num = @row["nums"].ToString();
+        string num = (lottype == 4 || lottype == 5) ? @row["id"].ToString() : @row["item"].ToString();
 
         <text>
             <tr>
@@ -243,7 +244,7 @@
     </tr> 
         @foreach (DataRow row in ds.Tables[1].Rows)
         {
-            string num = @row["nums"].ToString();
+            string num = (lottype == 4 || lottype == 5) ? @row["id"].ToString() : @row["item"].ToString();
 
             <text>
                 <tr>

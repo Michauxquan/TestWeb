@@ -18,9 +18,10 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
         nS = nS - 1;
         if (nS > stoptime && nS <= totalime)
         {
+            var rems = nS - 30
             //bett
             $(".remains").html(
-                '第 <i class="bold">' + fcnum + '</i>期  还有<span class="ltwarn">' + (nS - 30).toString() + '</span>秒停止下注!');
+                '第 <i class="bold">' + fcnum + '</i>期  还有<span class="ltwarn">' + rems + '</span>秒停止下注!');
             StrTimeOut = 1;
         }
         else if (nS > 0 && nS <= stoptime)
