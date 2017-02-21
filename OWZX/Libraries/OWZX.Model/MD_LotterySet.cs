@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,11 +66,13 @@ namespace OWZX.Model
             get { return type; }
             set { type = value; }
         }
-
+        
         private string item;
         /// <summary>
         ///投注项 
         /// </summary>
+        [Required(ErrorMessage = "名称不能为空")]
+        [StringLength(100, ErrorMessage = "名称长度不能大于50")]
         public string Item
         {
             get { return item; }
@@ -80,6 +83,8 @@ namespace OWZX.Model
         /// <summary>
         /// 项赔率
         /// </summary>
+        [Required(ErrorMessage = "赔率不能为空")]
+        [StringLength(100, ErrorMessage = "赔率不能大于100000")]
         public string Odds
         {
             get { return odds; }
@@ -90,6 +95,8 @@ namespace OWZX.Model
         /// <summary>
         ///中奖数字 
         /// </summary>
+         [Required(ErrorMessage = "和值不能为空")]
+         [StringLength(100, ErrorMessage = "和值长度不能大于50")]
         public string Nums
         {
             get { return nums; }

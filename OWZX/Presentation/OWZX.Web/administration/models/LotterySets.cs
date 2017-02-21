@@ -22,6 +22,8 @@ namespace OWZX.Web.Admin.Models
         /// 投注类型
         /// </summary>
         public int bttype { get; set; }
+         
+
         /// <summary>
         /// 分页对象
         /// </summary>

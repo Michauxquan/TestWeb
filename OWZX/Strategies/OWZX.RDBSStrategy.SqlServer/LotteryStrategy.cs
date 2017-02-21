@@ -1496,7 +1496,7 @@ end catch
         public string UpdateLotterySet(MD_LotterySet lotset)
         {
             DbParameter[] parms = {
-                                    GenerateInParam("@lotterytype", SqlDbType.VarChar, 20, lotset.Lotterytype),
+                                    GenerateInParam("@bttypeid", SqlDbType.Int, 4, lotset.Bttypeid),
                                     GenerateInParam("@type", SqlDbType.VarChar, 50, lotset.Type),
                                     GenerateInParam("@item", SqlDbType.VarChar, 10, lotset.Item),
                                     GenerateInParam("@odds", SqlDbType.VarChar, 10, lotset.Odds),
@@ -1505,11 +1505,11 @@ end catch
             string commandText = string.Format(@"
 begin try
 begin tran t1
-if exists(select 1 from owzx_lotteryset where lotterytype=@lotterytype and type=@type and item=@item)
+if exists(select 1 from owzx_lotteryset where bttypeid=@bttypeid )
 begin
 UPDATE owzx_lotteryset
    SET odds = @odds,nums=@nums
-where lotterytype=@lotterytype and type=@type and item=@item
+where bttypeid=@bttypeid
 
 
 select '修改成功' state
@@ -1576,13 +1576,15 @@ if OBJECT_ID('tempdb..#list') is not null
 drop table #list
 
 SELECT ROW_NUMBER() over(order by a.bttypeid ) id,
-a.[bttypeid]--,a.[lotterytype],b.type as lottery
-,a.[type],c.type as settype,a.[item],'1:'+a.odds odds,a.[nums],a.[addtime],a.roomtype,d.type as room
+a.[bttypeid], b.lotterytype,e.type as  lottery
+,a.[type],c.type as settype,a.[item],'1:'+a.odds odds,a.[nums],a.[addtime],a.roomtype
+--,d.type as room
 into  #list
-FROM owzx_lotteryset a
---join owzx_sys_basetype b on a.lotterytype=b.systypeid
+ from  owzx_lotteryset a
+join dbo.owzx_lotteryroom b on a.roomtype=b.room
+join dbo.owzx_sys_basetype e on b.lotterytype=e.systypeid
 join owzx_sys_basetype c on a.type=c.systypeid
-join owzx_sys_basetype d on a.roomtype=d.systypeid
+--join owzx_sys_basetype d on a.roomtype=d.systypeid
 {0}
 
 declare @total int

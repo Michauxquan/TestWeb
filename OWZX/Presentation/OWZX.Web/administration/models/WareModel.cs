@@ -137,4 +137,47 @@ namespace OWZX.Web.Admin.Models
             return errorList;
         }
     }
+
+    /// <summary>
+    /// 商品列表模型类
+    /// </summary>
+    public class OrderListModel
+    {
+        /// <summary>
+        /// 分页对象
+        /// </summary>
+        public PageModel PageModel { get; set; }
+        /// <summary>
+        /// 商品列表
+        /// </summary>
+        public DataTable OrderList { get; set; }
+        /// <summary>
+        /// 商品名称
+        /// </summary>
+        public string WareName { get; set; }
+        /// <summary>
+        /// 商品代码
+        /// </summary>
+        public string WareCode { get; set; }
+        /// <summary>
+        /// 用户帐号
+        /// </summary>
+        public string Email { get; set; }
+        /// <summary>
+        /// 用户帐号
+        /// </summary>
+        public string Btime { get; set; }
+        /// <summary>
+        /// 用户帐号
+        /// </summary>
+        public string Etime { get; set; }
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public int Status { get; set; }
+
+        public string Content { get; set; }
+
+        public List<SelectListItem> StatusList { get; set; }
+    }
 }

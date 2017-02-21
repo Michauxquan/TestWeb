@@ -298,7 +298,7 @@ namespace OWZX.Web.Admin.Controllers
         {
             List<SelectListItem> lotterylist = new List<SelectListItem>();
             lotterylist.Add(new SelectListItem() { Text = "请选择", Value = "-1" });
-            foreach (BaseTypeModel info in AdminBaseInfo.GetBaseTypeList("where outtypeid=28"))
+            foreach (BaseTypeModel info in AdminBaseInfo.GetBaseTypeList("where outtypeid=47"))
             {
                 lotterylist.Add(new SelectListItem() { Text = info.Type, Value = info.Systypeid.ToString() });
             }
@@ -312,6 +312,13 @@ namespace OWZX.Web.Admin.Controllers
                 roomlist.Add(new SelectListItem() { Text = info.Type, Value = info.Systypeid.ToString() });
             }
             ViewData["Room"] = roomlist;
+            List<SelectListItem> bettlist = new List<SelectListItem>();
+            bettlist.Add(new SelectListItem() { Text = "请选择", Value = "-1" });
+            foreach (BaseTypeModel info in AdminBaseInfo.GetBaseTypeList("where parentid=29"))
+            {
+                bettlist.Add(new SelectListItem() { Text = info.Type, Value = info.Systypeid.ToString() });
+            }
+            ViewData["Bett"] = bettlist;
         }
         #endregion
 
@@ -402,27 +409,63 @@ namespace OWZX.Web.Admin.Controllers
         #endregion
 
         #region 赔率
-        public ActionResult LotterySetList(int type = -1, int bttype = -1, int roomtype=-1, int pageSize = 15, int pageNumber = 1)
+        public ActionResult LotterySetList(int type = -1, int bttype = -1, int roomtype = -1, int pageSize = 15, int pageNumber = 1)
         {
             StringBuilder strb = new StringBuilder();
             strb.Append("where 1=1");
             if (type > 0)
-                strb.Append(" and a.lotterytype=" + type);
+                strb.Append(" and a.systypeid=" + type);
             if (bttype > 0)
                 strb.Append(" and a.type=" + bttype);
-            if (roomtype > 0)
-                strb.Append(" and a.roomtype=" + roomtype);
+            roomtype = 20;
+            strb.Append(" and a.roomtype= " + roomtype);
             List<MD_LotterySet> listbase = Lottery.GetLotterySetList(pageNumber, pageSize, strb.ToString());
 
             LotterySets list = new LotterySets
             {
                 type = type,
-                roomtype=roomtype,
+                roomtype = roomtype, 
                 bttype = bttype,
                 PageModel = new PageModel(pageSize, pageNumber, listbase.Count > 0 ? listbase[0].TotalCount : 0),
                 SetList = listbase
             };
             return View(list);
+        }
+
+        /// <summary>
+        /// 编辑回水规则
+        /// </summary>
+        /// <param name="baseid"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult EditLotterySet(int bttypeid = -1)
+        {
+            StringBuilder strb = new StringBuilder();
+            if (bttypeid > 0)
+                strb.Append(" where a.bttypeid=" + bttypeid);
+            strb.Append(" and a.roomtype=20 ");
+            List<MD_LotterySet> listbase = Lottery.GetLotterySetList(1, 1, strb.ToString()); ;
+            ViewData["referer"] = ShopUtils.GetAdminRefererCookie();
+            if (listbase.Count == 0)
+                return View(new MD_LotterySet());
+            MD_LotterySet baseinfo = listbase[0];
+            baseinfo.Odds = baseinfo.Odds.Replace("1:", "");
+            LoadRoom();
+            return View(baseinfo);
+        }
+        /// <summary>
+        /// 修改回水规则
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult EditLotterySet(MD_LotterySet ltmd)
+        {
+            ViewData["referer"] = ShopUtils.GetAdminRefererCookie();
+            bool result = Lottery.UpdateLotterySet(ltmd);
+            if (result)
+                return PromptView("保存成功");
+            else
+                return PromptView("保存失败");
         }
         #endregion
     }
