@@ -119,7 +119,11 @@
                 {
                     "title": "商品列表",
                     "url": "/admin/ware/list"
-                } 
+                },
+                {
+                    "title": "订单列表",
+                    "url": "/admin/ware/orderlist"
+                }
 
 
     	    ]

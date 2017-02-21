@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="views\account\login.cshtml" />
+    <None Include="views\baseinfo\editlotteryset.cshtml" />
     <None Include="views\ware\add.cshtml" />
     <None Include="views\admingroup\add.cshtml" />
     <None Include="views\admingroup\edit.cshtml" />
@@ -244,6 +245,7 @@
     <None Include="views\user\editdraw.cshtml" />
     <None Include="views\user\edit.cshtml" />
     <None Include="views\user\list.cshtml" />
+    <None Include="views\ware\orderlist.cshtml" />
     <None Include="views\Web.config" />
     <None Include="views\_ViewStart.cshtml" />
     <None Include="Web.config" />

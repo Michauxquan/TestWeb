@@ -18,8 +18,8 @@
     <script type="text/javascript">
         uid = @WorkContext.Uid;
 
-        function GetOwnerBack(type) {
-            $('/ucenter/GetOwnerBack', {type:type}, function(data) {
+        function GetOwnerBack(type) { 
+            $.post('/Ucenter/GetOwnerBack', {type:type}, function(data) {
                 var result = eval('(' + data + ')');
                 alert(result.content);
             });

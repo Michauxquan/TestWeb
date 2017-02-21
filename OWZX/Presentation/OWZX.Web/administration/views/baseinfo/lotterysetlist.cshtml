@@ -24,21 +24,21 @@
                     <tr>
                         <td width="35"><img id="searchImg" src="/administration/images/search1.gif" /></td>
 
-                        @*<td>
+                        <td>
                             &nbsp;&nbsp;&nbsp;彩票类型：
                         </td>
                         <td width="130">
                             <select data-val="true" id="type" name="type">
                                 <option @if (-1 == Model.type)
                                         { <text> selected="selected" </text>        } value="-1">选择类型</option>
-                                @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where outtypeid=28"))
+                                @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=47"))
                                 {
                                     <option @if (info.Systypeid == Model.type)
                                                 { <text> selected="selected" </text>                } value="@info.Systypeid">@info.Type</option>
                                 }
                             </select>
-                        </td>*@
-                        <td>
+                        </td>
+                  @*      <td>
                             &nbsp;&nbsp;&nbsp;房间类型：
                         </td>
                         <td width="130">
@@ -51,7 +51,7 @@
                                             { <text> selected="selected" </text>                  } value="@info.Systypeid">@info.Type</option>
                                 }
                             </select>
-                        </td>
+                        </td>*@
 
                         <td>
                             &nbsp;&nbsp;投注类型：
@@ -81,12 +81,13 @@
                     <tr>
                         <th width="10"></th>
                         <th width="60" align="left">编号</th>
-                        @*<th width="100" align="left">彩票类型</th>*@
-                        <th width="100" align="left">房间类型</th>
+                        <th width="100" align="left">彩票类型</th>
+                      @*  <th width="100" align="left">房间类型</th>*@
                         <th width="100" align="left">投注类型</th>
                         <th width="80" align="left">投注名称</th>
                         <th width="100" align="left">赔率</th>
                         <th width="180" align="left">中奖和值</th>
+                        <th width="100" align="left">管理操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,13 +97,13 @@
                         <tr>
                             <td></td>
                             <td>@info.Id</td>
-                           @* <td>@info.Lottery</td>*@
-                            <td>@info.Room</td>
+                            <td>@info.Lottery</td>
+                           @* <td>@info.Room</td>*@
                             <td>@info.Settype</td>
                             <td>@info.Item</td>
                             <td>@info.Odds</td>
                             <td>@info.Nums</td>
-                           
+                           <td> @Html.ActionLink("[编辑]", "editlotteryset", new { bttypeid = @info.Bttypeid }, new { @class = "editOperate" })</td>
                         </tr>
                     }
                 </tbody>

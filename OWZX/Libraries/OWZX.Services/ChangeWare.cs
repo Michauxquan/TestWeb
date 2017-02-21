@@ -155,6 +155,12 @@ namespace OWZX.Services
         {
             return OWZX.Core.BSPData.RDBS.UpdateWareSkuStatus(specid, status) > 0;
         }
+
+        public static bool UpdateOrderStatus(string ordercode,int status)
+        {
+            return OWZX.Core.BSPData.RDBS.UpdateOrderStatus(ordercode, status);
+        }
+
         #endregion
     }
 }

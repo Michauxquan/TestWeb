@@ -366,7 +366,7 @@ end catch
             begin
 
             declare @uid int=0  select @uid=uid from owzx_userbackreport where backid=@backid
-            INSERT INTO owzx_accountchange([uid],[changemoney],[remark].accounted)
+            INSERT INTO owzx_accountchange([uid],[changemoney],[remark],accounted)
             select @uid,@money,'回水',(select totalmoney from owzx_users where uid=@uid)
             update owzx_users set totalmoney=totalmoney+@money where uid=@uid) 
             end
@@ -402,17 +402,17 @@ end catch
             begin try
             begin tran t1
             declare @backid int =0,@money decimal(18,2)=0
-            select top 1 @backid=backid,@money=money from owzx_userbackreport where uid=@uid and status=0 and type=@type
+            select top 1 @backid=backid,@money=money from owzx_userbackreport where uid=@uid and status=0 and backtype=@type
             if (@backid>0)
             begin  
 
             update  owzx_userbackreport set status=2 where backid=@backid  
-            INSERT INTO owzx_accountchange([uid],[changemoney],[remark].accounted)
+            INSERT INTO owzx_accountchange([uid],[changemoney],[remark],accounted)
             select @uid,@money,'回水',(select totalmoney from owzx_users where uid=@uid)
-            update owzx_users set totalmoney=totalmoney+@money where uid=@uid) 
+            update owzx_users set totalmoney=totalmoney+@money where uid=@uid 
  
             
-            select '修改成功' state
+            select '领取成功' state
             commit tran t1
             end
             else

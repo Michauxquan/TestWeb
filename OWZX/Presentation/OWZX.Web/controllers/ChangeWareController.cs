@@ -102,7 +102,7 @@ namespace OWZX.Web.controllers
                 order.IssueNum = type == 1 ? parmas["issuenum"] : "";
                 string betres = ChangeWare.AddUserOrder(order);
                 if (string.IsNullOrEmpty(betres))
-                    return APIResult("success", "投注成功");
+                    return APIResult("success", "兑换成功");
                 else
                     return APIResult("error", betres);
             }

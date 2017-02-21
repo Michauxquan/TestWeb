@@ -531,7 +531,9 @@
     <Content Include="images\mall\wei.png" />
     <Content Include="images\mall\zhi.png" />
     <Content Include="images\number\dd36.png" />
-    <Content Include="images\number\lottery.fw.png" />
+    <Content Include="images\number\lottery.png" />
+    <Content Include="images\number\number.fw.png" />
+    <Content Include="images\number\pk.png" />
     <Content Include="images\sdragon.png" />
     <Content Include="images\stiger.png" />
     <Content Include="images\tr.png" />

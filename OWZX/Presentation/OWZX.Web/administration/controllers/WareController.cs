@@ -26,8 +26,7 @@ namespace OWZX.Web.Admin.Controllers
         /// 商品列表
         /// </summary>
         public ActionResult List(string wareName = "", string wareCode = "", int type = -1, int pageNumber = 1, int pageSize = 15)
-        {
-            HashSet<string> actionlist = AdminGroups.GetAdminGroupActionHashSetNoCache(WorkContext.AdminGid);
+        { 
             ShopUtils.SetAdminRefererCookie(string.Format("{0}?pageNumber={1}&pageSize={2}&warename={3}&warecode={4}&type={5}",
                                                           Url.Action("list"), pageNumber, pageSize,
                                                           wareName, wareCode, type));
@@ -54,6 +53,58 @@ namespace OWZX.Web.Admin.Controllers
                 WareList = dt
             };
 
+
+            return View(model);
+        }
+
+        public ActionResult OrderList(string email = "", string warename = "", string warecode = "", string btime = "", string etime = "",string content="",int status = -1,
+            int pageNumber = 1, int pageSize = 15)
+        { 
+            ShopUtils.SetAdminRefererCookie(string.Format("{0}?pageNumber={1}&pageSize={2}&warename={3}&warecode={4}&status={5}&email={6}&btime={7}&etime={8}&content={9}",
+                                                          Url.Action("orderlist"), pageNumber, pageSize,
+                                                          warename, warecode, status, email, btime, etime,content));
+
+            StringBuilder strb = new StringBuilder();
+            strb.Append(" ");
+            if (warename != "")
+                strb.Append(" and a.wareName like '%" + warename + "%' ");
+
+            if (warecode != "")
+                strb.Append(" and a.Warecode='" + warecode + "' ");
+            if (status > -1)
+                strb.Append(" and a.status=" + status); 
+            if (btime != "")
+                strb.Append(" and a.createtime>='" + btime + "' ");
+            if(etime!="")
+                strb.Append(" and a.createtime<'" + etime+"' ");
+            if (content != "")
+                strb.Append(" and a.[content=<'" + content + "' ");
+            if (email != "")
+                strb.Append(" and rtrim(b.email)='" + email + "'");
+            strb.Append(" order by a.ordercode desc");
+
+
+            DataTable dt = ChangeWare.GetUserOrder(pageNumber, pageSize, strb.ToString());
+            if (dt.Columns[0].ColumnName == "error")
+                return PromptView("订单获取失败");
+            List<SelectListItem> statusGroupList = new List<SelectListItem>();
+            statusGroupList.Add(new SelectListItem() { Text = "全部", Value = "-1" });
+            statusGroupList.Add(new SelectListItem() { Text = "未兑换", Value = "0" });
+            statusGroupList.Add(new SelectListItem() { Text = "已兑换", Value = "2" });
+            OrderListModel model = new OrderListModel()
+            {
+                PageModel = new PageModel(pageSize, pageNumber, dt.Rows.Count),
+                OrderList = dt,
+                WareCode = warecode,
+                WareName = warename,
+                Btime = btime,
+                Etime = etime,
+                Status = status,
+                Email = email,
+                Content = content,
+                StatusList = statusGroupList
+            };
+          
 
             return View(model);
         }
@@ -224,18 +275,20 @@ namespace OWZX.Web.Admin.Controllers
 
             return View(model);
         }
-
-        ///// <summary>
-        ///// 添加规格
-        ///// </summary>
-        //[HttpGet]
-        //public ActionResult SkuAdd(string warecode = "")
-        //{
-        //    SkuModel model = new SkuModel();
-        //    model.WareCode = warecode;
-        //    Load();
-        //    return View(model);
-        //}
+        /// <summary>
+        /// 编辑订单状态
+        /// </summary>
+        ///<param name="ordercode">编码</param>
+        ///<param name="status">状态  </param>
+        /// <returns></returns>
+        public ActionResult EditOrder(string ordercode, int status)
+        {
+            bool result = ChangeWare.UpdateOrderStatus(ordercode, status);
+            if (result)
+                return PromptView("订单状态修改成功");
+            else
+                return PromptView("订单状态修改失败");
+        }
         /// <summary>
         /// 添加商品
         /// </summary>
@@ -459,7 +512,7 @@ namespace OWZX.Web.Admin.Controllers
         {
             List<SelectListItem> typeGroupList = new List<SelectListItem>();
             typeGroupList.Add(new SelectListItem() { Text = "兑换商品", Value = "0" });
-            typeGroupList.Add(new SelectListItem() { Text = "夺宝商品", Value = "1" });
+            //typeGroupList.Add(new SelectListItem() { Text = "夺宝商品", Value = "1" });
             ViewData["typeGroupList"] = typeGroupList;
             List<SelectListItem> statusGroupList = new List<SelectListItem>();
             statusGroupList.Add(new SelectListItem() { Text = "销售中", Value = "0" });

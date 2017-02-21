@@ -1,0 +1,117 @@
+﻿ @using System @model OWZX.Web.Admin.Models.OrderListModel
+
+@section header{
+    <title>订单列表</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/administration/scripts/showlist.js"></script>
+    <script type="text/javascript" src="/components/my97datepicker/WdatePicker.js"></script>
+    <script type="text/javascript">
+    </script>
+}
+
+@section body{
+<h1 class="rightH1">
+商品管理 &gt;&gt; 商品列表  
+</h1>
+        <div class="table_top"> </div>
+@using (Html.BeginForm("orderlist", "ware"))
+        {  <div class="dataListSearch">
+            <table height="32">
+                <tbody>
+                <tr>
+                    <td width="35"><img id="searchImg" src="/administration/images/search1.gif"/></td>
+
+                    <td>
+                        用户帐号：
+                    </td>
+                    <td width="130" >
+                        @Html.TextBox("email", Model.Email, new {height = "18"})
+                    </td>
+                    <td >
+                        商品名称：
+                    </td>
+                    <td width="130" >
+                        @Html.TextBox("warename", Model.WareName, new {height = "18"})
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;商品编码：
+                    </td>
+                    <td width="130">
+                        @Html.TextBox("warecode", Model.WareCode, new {height = "18"})
+                    </td>
+                     <td>
+                        &nbsp;&nbsp;&nbsp;卡密：
+                    </td>
+                    <td width="130">
+                        @Html.TextBox("content", Model.Content, new {height = "18"})
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;兑换状态：
+                    </td>
+                    <td width="90">@Html.DropDownListFor(x => x.Status, Model.StatusList)</td>    
+                      <td>
+                        &nbsp;&nbsp;&nbsp;创建时间：
+                    </td>
+                    <td width="400">
+                       <input type="text" class="Wdate" name="btime" id="Start" placeholder="开始时间" onfocus="WdatePicker({ maxDate: '#F{$dp.$D(\'End\')}', dateFmt: 'yyyy-MM-dd'})" value="@Model.Btime" autocomplete="off" />
+                        至
+                        <input type="text" class="Wdate" name="etime" id="End" placeholder="结束时间" onfocus="WdatePicker({ minDate: '#F{$dp.$D(\'Start\')}', dateFmt: 'yyyy-MM-dd'})" value="@Model.Etime" autocomplete="off" />
+                    </td>
+                    <td style="height: 24px;">
+                        <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+            <div class="dataList">
+                <table width="100%">
+                    <thead>
+                    <tr>
+                        <th width="20"></th>
+                        <th align="left">会员帐号</th>
+                        <th align="left">商品编码</th>
+                        <th width="240" align="left">商品名称</th>
+                        <th width="120" align="left">单价</th>
+                        <th width="120" align="left">卡密</th>
+                        <th width="120" align="left">状态</th>
+                        <th width="120" align="left">创建时间</th>
+                        <th width="280" align="center">管理操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (DataRow row in Model.OrderList.Rows)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@row["email"]</td>
+                            <td>@row["ordercode"]</td>
+                            <td>@(row["warecode"] + " " + row["warename"])</td>
+                            <td>@row["price"]</td>
+                            <td>@(row["content"].ToString())</td>
+                            <td>@(row["status"].ToString() == "0" ? "未兑换" :(row["status"].ToString() == "2" ?"已兑换":"已作废"))</td>
+                            <td>@(Convert.ToDateTime(row["createtime"]).ToString("yyyy-MM-dd HH:mm:ss"))</td>
+                            <td align="center">
+                              
+                                    @Html.ActionLink("[作废]", "editorder", new {ordercode = row["ordercode"], status = 9}, @row["status"].ToString()=="0"?new {@class = "editOperate" }:new {@class = "hide" })&nbsp;
+                                    @Html.ActionLink("[审核]", "editorder", new {ordercode = row["ordercode"], status = 2}, @row["status"].ToString()=="0"?new {@class = "editOperate" }:new {@class = "hide" }) 
+                              
+                            </td>
+
+                        </tr>
+                    }
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div>
+        <div class="dataListEdit">
+            <div class="page">
+                @Html.AdminPager(Model.PageModel)
+            </div>
+        </div>
+    }
+ 
+}

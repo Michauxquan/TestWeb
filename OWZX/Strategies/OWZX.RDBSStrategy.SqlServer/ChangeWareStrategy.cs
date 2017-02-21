@@ -203,11 +203,11 @@ if OBJECT_ID('tempdb..#list') is not null
 
 SELECT ROW_NUMBER() over(order by orderid desc) id
       ,a.orderid,a.ordercode,a.warecode,a.warename,a.speccode,a.specname,a.issuenum,a.status,
-       a.totalfee,a.price,a.type,a.num,a.content,a.changeid,a.createtime ,rtrim(b.nickname) nickname 
---,        c.winname,c.winnum,c.usernum,c.playnum 
+       a.totalfee,a.price,a.type,a.num,a.content,a.changeid,a.createtime ,rtrim(b.nickname) nickname ,rtrim(b.email) as email
+ 
   into  #list
   FROM owzx_userorder a join  owzx_users b  on a.userid=b.uid  
---left join owzx_changeware c  on c.changeid =a.changeid
+ 
 where  1=1 
   {0}
 
@@ -244,6 +244,7 @@ end catch
 begin try
 
 declare @usernum int=0, @oldnum int=0,@index int=0,@status int =0,@msg varchar(300)='',@userid int=0,@error int=0
+ declare @changefee decimal(18,2)=0.00
 if({12}=0)
   select @userid=uid from owzx_users where rtrim(mobile)='{11}'
 else
@@ -276,14 +277,20 @@ begin
                       
                         INSERT INTO owzx_userorder ([userid],[ordercode],[warecode],[warename],[speccode],[specname],[issuenum],[totalfee]
                            ,[status] ,[price],[type],[num] ,[content],[changeid])
-                        VALUES( @userid,'{2}' ,'{7}' ,'{8}','{5}','{6}','{0}',{9},0,{4},{10},{3},@content,{1})
+                        VALUES( @userid,'{2}' ,'{7}' ,'{8}','{5}','{6}','{0}',{9},0,{4},{10},{3},@content,{1}) 
+
                     end 
                     else if(@id>0)
                     begin
                             DECLARE @ptrval binary(16) SELECT @ptrval = TEXTPTR([content]) from owzx_userorder where orderid=@id  UPDATETEXT owzx_userorder.[content] @ptrval null 0 @content  
                     end
                     if(@usernum=@oldnum)
-                    begin
+                    begin 
+                    set @changefee=0
+                    set @changefee=0-{9}
+                    insert into owzx_accountchange
+                    select @userid,@changefee,'夺宝投注',getdate(),totalmoney from owzx_users where uid=@userid  
+                        update owzx_users set totalmoney=totalmoney+@changefee where uid=@userid
                         update owzx_changeware set status=1 where changeid='{1}'  
                         update owzx_userorder set status=1 where changeid='{1}' and status=0 and type={10} and issuenum='{0}' 
                     end
@@ -321,12 +328,12 @@ begin
         begin
             INSERT INTO owzx_userorder ([userid],[ordercode],[warecode],[warename],[speccode],[specname],[issuenum],[totalfee]
                 ,[status] ,[price],[type],[num] ,[content],[changeid])
-            VALUES( @userid,'{2}' ,'{7}' ,'{8}','{5}','{6}','{0}',{9},0,{4},{10},{3},@content,{1})
-            declare @changefee decimal(18,2)=0.00
+            VALUES( @userid,'{2}' ,'{7}' ,'{8}','{5}','{6}','{0}',{9},0,{4},{10},{3},newid(),{1})
+            set @changefee=0
             set @changefee=0-{9}
             insert into owzx_accountchange
             select @userid,@changefee,'兑换商品',getdate(),totalmoney from owzx_users where uid=@userid  
-
+            update owzx_users set totalmoney=totalmoney+@changefee where uid=@userid
             select '' state
         end
      end
@@ -490,6 +497,37 @@ end catch
 ", status, specid);
             return Convert.ToInt32(RDBSHelper.ExecuteScalar(CommandType.Text, commandText));
         }
+
+        public bool UpdateOrderStatus(string ordercode, int status)
+        {
+            string commandText = string.Format(@" 
+begin try
+    if((select count(1) from owzx_userorder where ordercode='{1}' and [status]=0)=1 )
+    begin
+        if({0}=9)
+        begin
+             declare @money decimal(18,2)=0,@userid int=0,@totalfee decimal(18,2) =0
+            select @money=totalfee,@userid=userid from owzx_userorder  where   ordercode='{1}'
+            select @totalfee=totalmoney from owzx_users where uid=@userid
+            update  owzx_users set totalmoney =totalmoney+@money where uid=@userid
+            insert into owzx_accountchange ([uid] ,[changemoney] ,[remark] ,[addtime] ,[accounted])  VALUES(@userid,@money,'兑换商品-作废',getdate(),@totalfee)
+        end
+       update owzx_userorder  set  [Status]={0}  where   ordercode='{1}'
+       select @@rowcount state 
+    end
+    else
+    begin
+            select -1 state
+    end
+end try
+begin catch
+    select -1 state
+end catch
+
+", status, ordercode);
+            return Convert.ToInt32(RDBSHelper.ExecuteScalar(CommandType.Text, commandText))>0;
+        }
+
         #endregion
     }
 }
