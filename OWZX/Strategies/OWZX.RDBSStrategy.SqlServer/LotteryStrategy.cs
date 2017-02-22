@@ -966,8 +966,8 @@ select count(1) from #list where DATEDIFF(SECOND,opentime,getdate())>=210
                                     GenerateInParam("@lotteryid", SqlDbType.Int, 4, bett.Lotteryid),
                                     GenerateInParam("@lotterynum", SqlDbType.VarChar, 50, bett.Lotterynum),
                                     GenerateInParam("@money", SqlDbType.Int, 4, bett.Money),
-                                    GenerateInParam("@bettinfo", SqlDbType.VarChar, 500, bett.Bettinfo),
-                                    GenerateInParam("@bettnum", SqlDbType.VarChar, 100, bett.Bettnum),
+                                    GenerateInParam("@bettinfo", SqlDbType.VarChar, 1000, bett.Bettinfo),
+                                    GenerateInParam("@bettnum", SqlDbType.VarChar, 1000, bett.Bettnum),
                                     GenerateInParam("@bettmode", SqlDbType.Int, 4, bett.Bettmode)
                                     
                                     };
@@ -989,18 +989,70 @@ return
 end
 
 begin tran t1
-INSERT INTO owzx_bett([uid],[lotteryid],[lotterynum],[money],[bettinfo],[bettnum],[bettmode],isread)
+
+declare @bettid int=0 
+select @bettid =isnull(bettid,0) from owzx_bett where uid=@uid and lotteryid=@lotteryid and lotterynum=@lotterynum
+if(@bettid=0)
+begin
+    INSERT INTO owzx_bett([uid],[lotteryid],[lotterynum],[money],[bettinfo],[bettnum],[bettmode],isread)
     select @uid,@lotteryid,@lotterynum,@money,@bettinfo,@bettnum,@bettmode,0
-   
+ end  
+else if(@bettid >0)
+begin
+    declare @cusbettinfo varchar(2000)='',@bettNums varchar(2000)='',@tempcusinfo varchar(max)=@bettinfo+';',@tempbettnum varchar(500)=@bettnum+';',
+    @ind int=0,@val varchar(50)='',@v varchar(500)='',@s int=0
+    select @cusbettinfo =a.bettinfo+';' ,@bettNums=a.bettnum+';'      from owzx_bett a  where a.bettid=@bettid 
+    set @ind =CHARINDEX(';',@tempcusinfo)
+    while  @ind>0
+    begin
+		set @val=SUBSTRING (@tempcusinfo,0,@ind) 
+		set  @v = SUBSTRING(@val,1,CHARINDEX(':',@val))  
+		if(CHARINDEX(@v,@cusbettinfo)>0)
+		begin
+			set @v=SUBSTRING(@cusbettinfo,CHARINDEX(@v,@cusbettinfo)+3,LEN(@cusbettinfo)) 
+			set @s=cast(SUBSTRING(@v,0,CHARINDEX(';',@v)) as int)
+			set @v= SUBSTRING(@val,1,CHARINDEX(':',@val))
+			set @cusbettinfo=REPLACE(@cusbettinfo,@v+cast(@s as varchar),@v+CAST((@s+ CAST(SUBSTRING(@val,CHARINDEX(':',@val)+1,LEN(@val)) as int)) as varchar))
+		end 
+		else
+		begin
+			set @cusbettinfo=@cusbettinfo+@val+';' 
+			set @bettNums=@bettNums+ SUBSTRING(@val,0,CHARINDEX(':',@val))+';'
+		end
+		set @tempcusinfo=SUBSTRING(@tempcusinfo,@ind+1,LEN(@tempcusinfo))
+		set @ind=CHARINDEX(';',@tempcusinfo)
+    end
+    set @cusbettinfo= substring(@cusbettinfo,0,len(@cusbettinfo))
+    set @bettNums= substring(@bettNums,0,len(@bettNums))
 
---扣除用户金额
-update a 
-set a.totalmoney=a.totalmoney-@money
-from owzx_users a where a.uid=@uid
+    update a set a.bettinfo=@cusbettinfo ,a.bettnum=@bettNums, a.money=money+@money,a.bettmode=bettmode from owzx_bett a  where a.bettid=@bettid
+ 
+end 
+if not exists(select top 1 uid  from owzx_users where totalmoney<@money  and uid=@uid)
+begin
 
---账变记录
-INSERT INTO [owzx_accountchange]([uid],[changemoney],[remark],accounted)
-select @uid,-@money,'投注',(select totalmoney from owzx_users  where uid=@uid)
+    --账变记录
+    INSERT INTO [owzx_accountchange]([uid],[changemoney],[remark],accounted)
+    select @uid,-@money,'投注',(select totalmoney from owzx_users  where uid=@uid)
+    --扣除用户金额
+    update a 
+    set a.totalmoney=a.totalmoney-@money
+    from owzx_users a where a.uid=@uid
+ 
+    if(@bettid =0)
+    begin 
+        update a set  a.BettNum=ISNULL(a.BettNum,0)+1, a.BettEggNum=ISNULL(a.BettEggNum,0)+@money  from owzx_lotteryrecord a WITH (TABLOCKX)  where a.type=@lotteryid and a.expect=@lotterynum
+    end
+    else
+    begin
+        update a set a.BettEggNum=ISNULL(a.BettEggNum,0)+@money  from owzx_lotteryrecord a WITH (TABLOCKX)  where a.type=@lotteryid and a.expect=@lotterynum
+    end
+end
+else 
+begin 
+    select '3' state
+    return 
+end
 
 select '添加成功' state
 commit tran t1
@@ -1576,13 +1628,14 @@ if OBJECT_ID('tempdb..#list') is not null
 drop table #list
 
 SELECT ROW_NUMBER() over(order by a.bttypeid ) id,
-a.[bttypeid], b.lotterytype,e.type as  lottery
+a.[bttypeid], e.type as  lottery
 ,a.[type],c.type as settype,a.[item],'1:'+a.odds odds,a.[nums],a.[addtime],a.roomtype
---,d.type as room
+--,b.lotterytype ,d.type as room
 into  #list
  from  owzx_lotteryset a
-join dbo.owzx_lotteryroom b on a.roomtype=b.room
-join dbo.owzx_sys_basetype e on b.lotterytype=e.systypeid
+ join dbo.owzx_lotsetodds f on a.bttypeid=f.bttypeid
+--join dbo.owzx_lotteryroom b on a.roomtype=b.room
+join dbo.owzx_sys_basetype e on f.lotterytype=e.outtypeid and e.parentid=47
 join owzx_sys_basetype c on a.type=c.systypeid
 --join owzx_sys_basetype d on a.roomtype=d.systypeid
 {0}
