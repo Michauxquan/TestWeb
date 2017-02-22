@@ -205,7 +205,7 @@
     </tr>
     @foreach (DataRow row in ds.Tables[0].Rows)
     {
-        string num = (lottype == 4 || lottype == 5) ? @row["id"].ToString() : @row["item"].ToString();
+        string num = (lottype == 4 || lottype == 5 || lottype==9) ? @row["id"].ToString() : @row["item"].ToString();
 
         <text>
             <tr>
@@ -257,7 +257,7 @@
     </tr>
     @foreach (DataRow row in ds.Tables[1].Rows)
         {
-            string num = (lottype == 4 || lottype == 5) ? @row["id"].ToString() : @row["item"].ToString();
+            string num = (lottype == 4 || lottype == 5 || lottype == 9) ? @row["id"].ToString() : @row["item"].ToString();
 
         <text>
             <tr>
@@ -317,11 +317,13 @@
             {
                 foreach(OWZX.Model.MD_BettMode item in @Model)
                  {
+                     item.Bettinfo = item.Bettinfo.Replace("豹", "1").Replace("顺", "2").Replace("对", "3").Replace("半", "4").Replace("杂", "5");
                     var arr = item.Bettinfo.Split(';');
 
                     for(int i=0;i<arr.Length;i++)
                     {
                         var sz = arr[i].Split(':');
+                        
                     <text>ModelDatas[@mdindex][parseInt(@sz[0])] = @sz[1];</text>
                     }
                     <text>ModelDatas[@mdindex][27] = @item.Betttotal;

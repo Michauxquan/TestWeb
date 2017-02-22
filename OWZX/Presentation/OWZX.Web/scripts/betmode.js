@@ -17,7 +17,8 @@ var ModeCount = 0;
 var betttype = 0;//1 自定义模式 2组合
 var modelbetttype = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
     "", "", "", "", "", "", "", "", "", "", "", "","", "", "", "", "", "", "", "", "");
-
+var maxnum = 20000000; //最大投注金额
+var minnum = 10;
 
 
 //自定义模式  不同的模式不同的投注金额
@@ -42,56 +43,196 @@ function Change_Modes(ModeId) {
     }
     if (CurrentMode < 1) return;
     betttype = 1;
-    for (var i = 0; i < 28; i++)
+
+    $(".tb_btmode").find("input[name='SMONEY']").each(function (i)
     {
-        document.getElementById("SMONEY_"+i).value = ModelDatas[CurrentMode - 1][i];
+        if (!$(this).attr("readonly"))
+        {
+            $(this).val("");
+        }
+    });
+
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 6)
+    {
+        for (var i = 0; i < 28; i++)
+        {
+            document.getElementById("SMONEY_" + i).value = ModelDatas[CurrentMode - 1][i];
+        }
+    } else if (lotterytype == 4 || lotterytype == 5)
+    {
+        for (var i = 1; i <= 5; i++)
+        {
+            $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
+        }
+    }
+    else if (lotterytype == 7)
+    {
+        for (var i = 1; i <= 10; i++)
+        {
+            $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
+        }
+    }
+    else if (lotterytype == 8)
+    {
+        for (var i = 3; i <= 19; i++)
+        {
+            $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
+        }
+    }
+    else if (lotterytype == 9)
+    {
+        //for (var i = 3; i <= 19; i++)
+        //{
+        //    $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
+        //}
     }
     $("#bttmode").val(ModeNames[CurrentMode - 1]);
 
 
     $(".img_bt1").css("background", "url(../../images/img_bt1.png) left no-repeat");
    
-    //$('.img_bt1').each(function(i, v) {
-    //    if ($(v).html() == bttype) {
-    //        $(v).css("background", "url(../../images/xy28_bg.gif)"); betttype = i;
-    //        return false;
-    //    }
-    //});
-    //switch (bttype)
-    //{
-    //    case "单":
-    //        $(".img_bt1").eq(0).css("background", "url(../img/xy28_bg.gif)"); betttype = "1";
-    //        break;
-    //    case "双":
-    //        $(".img_bt1").eq(1).css("background", "url(../img/xy28_bg.gif)"); betttype = "2";
-    //        break;
-    //    case "大": $(".img_bt1").eq(2).css("background", "url(../img/xy28_bg.gif)"); betttype = "3";
-    //        break;
-    //    case "小": $(".img_bt1").eq(3).css("background", "url(../img/xy28_bg.gif)"); betttype = "4";
-    //        break;
-    //}
+    
 
     document.getElementById("SMONEYSUM").value = ModelDatas[CurrentMode - 1][27];;
     document.getElementById("SMONEYSUM2").value = ModelDatas[CurrentMode - 1][27];
     document.getElementById("m_info").innerHTML = "模式“" + MName + "”的详细情况：";
 }
+//数字加千分符号
+function ver(n)
+{
+    re = /(\d{1,3})(?=(\d{3})+(?:$|\.))/g
+    return n.replace(re, "$1,")
+}
+//取总的投注金币
+function getmodepceggs()
+{
+    var total = 0;
+    $(".tb_btmode").find("input[name='SMONEY']").each(function ()
+    {
+        if (!$(this).attr("readonly"))
+        {
+            var txt_value = $.trim($(this).val()).replace(/,/gi, "");
+            if (txt_value && !isNaN(txt_value))
+            {
+                total += parseInt(txt_value);
+            }
+        }
+    })
+    document.getElementById("SMONEYSUM").value = ver(total + "");
+    document.getElementById("SMONEYSUM2").value = ver(total + "");
 
+}
+/**
+ * 输入投注数据
+ * @param {type} val
+ * @param {type} num
+ */
 function inputsb(val, num)
 {
+    //输入投注数据
+    $(".tb_btmode").find("input[name='SMONEY']").keyup(function ()
+    {
+        var regex = /^[1-9]\d{0,}$/;
+        var val = $(this).val();
+        if (!regex.test(val))
+        {
+            val = val.replace(/\D/g, '');
+            $(this).val(val);
+        }
+        if (!regex.test(val))
+        {
+            $(this).val(val.substring(1));
+            getmodepceggs();
+        } else
+        {
+            $(this).parent().prev("td").children("input").prop("checked", true);
+            getmodepceggs();
+        }
+    }).blur(function ()
+    {
+        $(this).val(ver($(this).val()));
+    }).focus(function ()
+    {
+        if ($(this).val().indexOf(",") > -1)
+        {
+            domvalue = $(this).val().replace(/,/gi, "");
+            $(this).val(domvalue);
+        }
+        try
+        {
+            var obj = event.srcElement;
+            var txt = obj.createTextRange();
+            txt.moveStart('character', obj.value.length);
+            txt.collapse(true);
+            txt.select();
+        } catch (e)
+        {
+        }
+    });
+    return;
+
+
     var regex = /^[1-9]\d{0,}$/;
     var oldsum, sum, thismoney, sm;
     sum = 0;
-
-    for (loop = 0 ; loop < 28 ; loop++)
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 6)
     {
-        sm = document.getElementById("SMONEY_"+loop).value;
-        if (sm == null || sm > 20000000 || sm == "")
+        for (loop = 0 ; loop < 28 ; loop++)
         {
-            sm = 0;
-            document.getElementById("SMONEY_"+loop).value = 0;
+            sm = document.getElementById("SMONEY_" + loop).value;
+            if (sm == null || sm > maxnum || sm == "")
+            {
+                sm = 0;
+                document.getElementById("SMONEY_" + loop).value = 0;
 
+            }
+            sum = sum + parseInt(sm);
         }
-        sum = sum + parseInt(sm);
+    }
+    else if (lotterytype == 4 || lotterytype == 5)
+    {
+        for (var i = 1; i <= 5; i++)
+        {
+            sm = document.getElementById("SMONEY_" + i).value;
+            if (sm == null || sm > maxnum || sm == "")
+            {
+                sm = 0;
+                document.getElementById("SMONEY_" + i).value = 0;
+            }
+            sum = sum + parseInt(sm);
+        }
+    }
+    else if (lotterytype == 7)
+    {
+        for (var i = 1; i <= 10; i++)
+        {
+            sm = document.getElementById("SMONEY_" + i).value;
+            if (sm == null || sm > maxnum || sm == "")
+            {
+                sm = 0;
+                document.getElementById("SMONEY_" + i).value = 0;
+            }
+            sum = sum + parseInt(sm);
+        }
+    }
+    else if (lotterytype == 8)
+    {
+        for (var i = 3; i <= 19; i++)
+        {
+            sm = document.getElementById("SMONEY_" + i).value;
+            if (sm == null || sm > maxnum || sm == "")
+            {
+                sm = 0;
+                document.getElementById("SMONEY_" + i).value = 0;
+            }
+            sum = sum + parseInt(sm);
+        }
+    } else if (lotterytype == 9)
+    {
+        //for (var i = 3; i <= 19; i++)
+        //{
+        //    $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
+        //}
     }
     document.getElementById("SMONEYSUM").value = sum;
     document.getElementById("SMONEYSUM2").value = sum;
@@ -165,28 +306,24 @@ function chgbbb(bbb)
 {
     var abc = 0;
     var smval, cival;
-    for (loop = 0 ; loop < 28 ; loop++)
+
+    $(".tb_btmode").find("input[name='SMONEY']").each(function ()
     {
-
-        smval = document.getElementById("SMONEY_"+loop).value;
-        if ((smval == "") || (smval == null))
+        if (!$(this).attr("readonly"))
         {
-            smval == "0";
-        }
-        else
-        {
-            smval = parseInt(parseInt(smval) * bbb);
-            if(smval.toString().length>9)
+            var txt_value = $.trim($(this).val()).replace(/,/gi, "");
+            if (txt_value && !isNaN(txt_value))
             {
-                return;
+                var new_value = Math.floor(txt_value * peilv);
+                if (new_value.toString().length > 8)
+                    $(this).val(ver(new_value.toString().substr(0, 8) + ""));
+                else
+                    $(this).val(ver(new_value.toString() + ""));
             }
-            document.getElementById("SMONEY_"+loop).value = smval;
-            abc = parseInt(abc) + parseInt(smval);
         }
-
-    }
-    document.getElementById("SMONEYSUM").value = abc;
-    document.getElementById("SMONEYSUM2").value = abc;
+    });
+  
+    getmodepceggs();
 }
 
 var stdMode = new Array(

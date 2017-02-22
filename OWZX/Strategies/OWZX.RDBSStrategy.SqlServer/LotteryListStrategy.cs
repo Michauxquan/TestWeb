@@ -58,7 +58,7 @@ drop table #temp
 select a.lotteryid type,a.lotterynum expect,a.money,b.luckresult
 into #temp
 from owzx_bett a
-join owzx_bettprofitloss b on a.bettid=b.bettid where a.uid=@uid and a.lotteryid=@type
+left join owzx_bettprofitloss b on a.bettid=b.bettid where a.uid=@uid and a.lotteryid=@type
 and datediff(day,a.addtime,GETDATE())=0
 
 
