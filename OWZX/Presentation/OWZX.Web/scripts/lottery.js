@@ -13,7 +13,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
     var nS = parseInt(ctime);
     if (nS > 0)
     {
-        nS = nS - 1;
+        nS = nS - 1; 
         if (nS > stoptime && nS <= totalime)
         {
             var rems = nS - 30
@@ -23,14 +23,14 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
             StrTimeOut = 1;
         }
         else if (nS > 0 && nS <= stoptime)
-        {
-            //stop
+        { 
             if (nS != 0)
             {
                 $(".remains").html(
                     '第 <i class="bold">' + fcnum + '</i>期  停止下注,还有<span class="ltwarn">' + nS + '</span>秒开奖!');
             } else
             {
+                $("#jquery_jplayer_1").jPlayer('play');
                 $(".remains").html(
                                 '第 <i class="bold">' + fcnum + '</i>期  正在开奖,请稍后!');
             }
@@ -51,10 +51,11 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
             $(".remains").html(
                 '第 <i class="bold">' + fcnum + '</i>期  正在开奖,请稍后!');
         }
-
+        if (nS == -1) {
+            $("#jquery_jplayer_1").jPlayer('play');
+        }
         if (nS == -5 || nS == -10 || nS == -15 || nS == -20 || nS == -25 || nS == -30)
         {
-            
             $(".remains").html('Loading......');
             $.post("/nwlottery/lotteryopen", { "type": lotterytype, "expect": fcnum }, function (data)
             {

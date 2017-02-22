@@ -329,9 +329,9 @@ namespace OWZX.Web.Admin.Controllers
         /// <returns></returns>
         public ActionResult BackRuleList(int ruleid = -1)
         {
-            StringBuilder strb = new StringBuilder();
+            StringBuilder strb = new StringBuilder(" where roomtypeid=20 ");
             if (ruleid > 0)
-                strb.Append(" where a.rateid=" + ruleid);
+                strb.Append(" and a.rateid=" + ruleid);
             List<MD_BackRate> listbase = Lottery.GetRateRuleList(1, -1, strb.ToString());
             ShopUtils.SetAdminRefererCookie(Url.Action("backrulelist"));
 
@@ -414,11 +414,11 @@ namespace OWZX.Web.Admin.Controllers
             StringBuilder strb = new StringBuilder();
             strb.Append("where 1=1");
             if (type > 0)
-                strb.Append(" and e.systypeid=" + type);
+                strb.Append(" and f.lotteryid=" + type);
             if (bttype > 0)
                 strb.Append(" and a.type=" + bttype);
             roomtype = 20;
-            strb.Append(" and a.roomtype= " + roomtype);
+            strb.Append(" and a.roomtype= " + roomtype); 
             List<MD_LotterySet> listbase = Lottery.GetLotterySetList(pageNumber, pageSize, strb.ToString());
 
             LotterySets list = new LotterySets
@@ -438,11 +438,10 @@ namespace OWZX.Web.Admin.Controllers
         /// <param name="baseid"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult EditLotterySet(int bttypeid = -1)
+        public ActionResult EditLotterySet(int bttypeid = -1,int outtypeid=-1)
         {
-            StringBuilder strb = new StringBuilder();
-            if (bttypeid > 0)
-                strb.Append(" where a.bttypeid=" + bttypeid);
+            StringBuilder strb = new StringBuilder(); 
+            strb.Append(" where a.bttypeid=" + bttypeid + " and f.lotteryid=" + outtypeid);
             strb.Append(" and a.roomtype=20 ");
             List<MD_LotterySet> listbase = Lottery.GetLotterySetList(1, 1, strb.ToString()); ;
             ViewData["referer"] = ShopUtils.GetAdminRefererCookie();

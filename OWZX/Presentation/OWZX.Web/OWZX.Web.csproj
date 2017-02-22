@@ -535,6 +535,7 @@
     <Content Include="images\number\number.fw.png" />
     <Content Include="images\number\pk.png" />
     <Content Include="images\sdragon.png" />
+    <Content Include="images\security.mp3" />
     <Content Include="images\stiger.png" />
     <Content Include="images\tr.png" />
     <Content Include="images\dlogo.png" />
@@ -543,6 +544,7 @@
     <Content Include="scripts\ad-gallery\jquery.ad-gallery.css" />
     <Content Include="scripts\betmode.js" />
     <Content Include="scripts\common.js" />
+    <Content Include="scripts\cookie.js" />
     <Content Include="scripts\datepicker\calendar.js" />
     <Content Include="scripts\datepicker\lang\en.js" />
     <Content Include="scripts\datepicker\lang\zh-cn.js" />
@@ -569,6 +571,8 @@
     <Content Include="scripts\down\swiper.min.js" />
     <Content Include="scripts\home.js" />
     <Content Include="scripts\ad-gallery\jquery.ad-gallery.js" />
+    <Content Include="scripts\jquery.jplayer.min.js" />
+    <Content Include="scripts\jquery.jplayer.swf" />
     <Content Include="scripts\jquery.jqzoom.css" />
     <Content Include="scripts\jquery.jqzoom.js" />
     <Content Include="scripts\jquery.js" />

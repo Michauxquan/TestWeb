@@ -33,8 +33,8 @@
                                         { <text> selected="selected" </text>        } value="-1">选择类型</option>
                                 @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=47"))
                                 {
-                                    <option @if (info.Systypeid == Model.type)
-                                                { <text> selected="selected" </text>                } value="@info.Systypeid">@info.Type</option>
+                                    <option @if (info.Outtypeid == Model.type)
+                                                { <text> selected="selected" </text>                } value="@info.Outtypeid">@info.Type</option>
                                 }
                             </select>
                         </td>
@@ -103,7 +103,7 @@
                             <td>@info.Item</td>
                             <td>@info.Odds</td>
                             <td>@info.Nums</td>
-                           <td> @Html.ActionLink("[编辑]", "editlotteryset", new { bttypeid = @info.Bttypeid }, new { @class = "editOperate" })</td>
+                           <td> @Html.ActionLink("[编辑]", "editlotteryset", new { bttypeid = @info.Bttypeid,outtypeid= @info.Lotterytype }, new { @class = "editOperate" })</td>
                         </tr>
                     }
                 </tbody>

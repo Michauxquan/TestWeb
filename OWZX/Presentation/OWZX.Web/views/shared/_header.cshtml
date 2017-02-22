@@ -44,7 +44,10 @@
     <div style="border-bottom: 2px solid white;"></div>
     <div class="clear"></div>
 </div>
+<div id="jquery_jplayer_1" style="display: none;"></div>
 <script>
+    var online = new Array();
+    online[0] = 1;
     $(function() {
         if (@WorkContext.Uid > 0) {
             $.post('/ucenter/getusermoney', {}, function(data) {
@@ -52,25 +55,38 @@
                 $('.usertotalmoney').html(result.content.totalmoney);
                 $('.banktotalmoney').html(result.content.bankmoney);
             });
-        }
-    });
+        } 
+        $("#jquery_jplayer_1").jPlayer({ 
+            swfPath: "/script",
+            ready: function () { 
+                $(this).jPlayer("setMedia", { 
+                    mp3: "/images/security.mp3" 
+                }); 
+            }, 
+            supplied: "mp3",
+            wmode: "window"
+        }); 
+    }); 
+    //$(document).ready(function(){ 
+    //    $("#jquery_jplayer_1").jPlayer({
+    //        ready: function () {
+    //            $(this).jPlayer("setMedia", {
+    //                title: "Bubble",
+    //                mp3: "/images/security.mp3"
+    //            });
+    //        },
+    //        swfPath: "/script",
+    //        supplied: "mp3",
+    //        wmode: "window"
+    //    });
+		
+    //});
 </script>
+@*<script src="http://webpresence.qq.com/getonline?Type=1&2244929864:"></script>*@
+<script type="text/javascript" src="@{@WorkContext.CSSCDN}/scripts/cookie.js"></script>
+<script type="text/javascript" src="@{@WorkContext.CSSCDN}/scripts/jquery.jplayer.min.js"></script>
 @{
-    <style >
-        #box-kefu { position: fixed; right: 0; top: 30%; z-index: 100; _position: absolute; _top: expression(eval(document.documentElement.scrollTop+100)); }
-        #box-kefu .kefu-open { position: absolute; top: 0; right: 0; width: 138px; padding: 46px 0 0 0; background: url(../images/kefu_icon.png) no-repeat -46px 0; _background-image: url(../images/kefu_icon.gif); overflow: hidden; }
-        #box-kefu .kefu-open .close{ display: block; position: absolute; width: 22px; height: 22px; right: 0; top: 0; text-indent: -9999px; }
-        #box-kefu .kefu-open div { padding-bottom: 5px; background: url(../images/kefu_bg.png) no-repeat -268px bottom; width: 134px; }
-        #box-kefu .kefu-open ul { background: url(../images/kefu_bg.png) repeat-y 0 0 #939393; }
-        #box-kefu .kefu-open li { height: 32px; line-height: 32px; padding: 0 15px 2px; background: url(../images/kefu_bg.png) no-repeat -134px bottom; }
-        #box-kefu .kefu-open li a { color: #fff; display: block; position: relative; zoom: 1; padding-left: 35px; }
-        #box-kefu .kefu-open li a:hover { text-decoration: none; }
-        #box-kefu .kefu-open li a i { display: inline-block; position: absolute; left: 10px; top: 6px; width: 21px; height: 21px; background: url(../images/kefu_icon.png) no-repeat 9999px 9999px; _background-image: url(../images/kefu_icon.gif); }
-        #box-kefu .kefu-open li a i.qq { background-position: -86px -56px; }
-        #box-kefu .kefu-open li a i.online { background-position: -56px -56px; }
-        #box-kefu .kefu-open li a i.txt { background-position: -56px -86px; }
-        #box-kefu .kefu-close { position: absolute; top: 5px; right: 0; width: 0; height: 127px; padding: 0; background: url(../images/kefu_icon.png) no-repeat 0 0; _background-image: url(../images/kefu_icon.gif); cursor: pointer; overflow: hidden; }
-       </style>
+   <link href="@{@WorkContext.CSSCDN}/css/kefu.css" rel="stylesheet" type="text/css" /> 
 }
     <div id="box-kefu">
         <div class="kefu-close"></div>
@@ -82,11 +98,8 @@
             </div>
             <a href="javascript:;" class="close">关闭</a>
         </div>
-    </div>
-    <script>var online = new Array();
-        online[0] = 1;
-    </script>
-<script src="http://webpresence.qq.com/getonline?Type=1&2244929864:"></script>
+    </div> 
+
 <script>
     (function($){
         for (var i=0; i<online.length; i++) {

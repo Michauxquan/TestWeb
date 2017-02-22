@@ -56,7 +56,7 @@ SELECT ROW_NUMBER() over(order by a.visitid desc) id
       ,a.[visitid]
       ,a.[uid]
       ,a.[ip]
-      ,b.[mobile] account
+      ,b.[email] account
       ,a.[addtime]
   into  #list
   FROM (select distinct * from owzx_visitip) a

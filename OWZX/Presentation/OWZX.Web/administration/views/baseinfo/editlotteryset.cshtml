@@ -25,7 +25,8 @@
     {
         <div class="addTable">
             <table width="100%">
-                 <input type="hidden" name="bttypeid" value="@Model.Bttypeid"/>
+                <input type="hidden" name="bttypeid" value="@Model.Bttypeid"/>
+                <input type="hidden" name="bttypeid" value="@Model.Lotterytype"/>
                 <tr>
                     <td width="100px" align="right">
                         投注类型：
@@ -38,10 +39,10 @@
                                     } value="0">投注类型</option>
                             @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList("where parentid=29"))
                             {
-                                <option @if (info.Systypeid == Model.Type)
+                                <option @if (info.Outtypeid == Model.Type)
                                         {
                                             <text> selected="selected" </text>
-                                        } value="@info.Systypeid">@info.Type</option>
+                                        } value="@info.Outtypeid">@info.Type</option>
                             }
                         </select>
 
