@@ -51,7 +51,7 @@
             <td style="width:30px;">
                 @if (lot.Status == 0)
                 {
-                    <div class="lot_btn_@lot.Expect"><a href="javascript:loadpage('bett')"><div class="ltoperate">竞  猜</div></a></div>
+                    <div class="lot_btn_@lot.Expect"><a href="javascript:loadpage('bett',@lot.Expect)"><div class="ltoperate">竞  猜</div></a></div>
                 }
                 else if (lot.Status == 1)
                 {

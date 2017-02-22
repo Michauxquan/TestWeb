@@ -2,6 +2,7 @@
     ViewBag.Title = "_numberbett";
 }
 @model List<OWZX.Model.MD_BettMode>
+<script src="~/scripts/selmode.js"></script>
 <script src="~/scripts/play.js"></script>
 
 
@@ -10,7 +11,7 @@
     var num = "";
     var bettmodel = "";
     var mymoney = @WorkContext.PartUserInfo.TotalMoney;//我的余额
-    
+    var expect=@ViewData["expect"];
 </script>
 <div class="bt_page">
     @if((bool)ViewData["exists"])

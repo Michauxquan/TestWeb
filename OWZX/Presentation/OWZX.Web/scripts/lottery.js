@@ -9,8 +9,6 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
     {
         trap(type, fcnum - 1);
     }
-
-    num = fcnum;
     //ns 开奖时间
     var nS = ctime;
     if (nS > 0)
@@ -58,7 +56,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
         {
             
             $(".remains").html('Loading......');
-            $.post("/nwlottery/lotteryopen", { "type": lotterytype, "expect": num }, function (data)
+            $.post("/nwlottery/lotteryopen", { "type": lotterytype, "expect": fcnum }, function (data)
             {
                 //是否开奖，开奖且是首页则自动刷新，不是首页则提示刷新
                 //未开奖 显示新一期的倒计时，另起一个计时器，获取未开奖信息直到获取到结果
@@ -82,6 +80,8 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
                     {
                         if ($(".sec_head a:eq(0)").hasClass("hot") && isbett == 0)
                         {
+                            clearTimeout(tiner);
+                            clearTimeout(traptime);
                             $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });
                             trap(lotterytype, fcnum);
                         }else

@@ -245,7 +245,6 @@ function FirstModes(modes)
     document.getElementById("SMONEYSUM").value = 0;
     document.getElementById("SMONEYSUM2").value = 0;
 
-    if (modes < 1 || modes > stdMode.length) modes = 1;
 
     //if ((modes - 1) == 1 || (modes - 1) == 2 || (modes - 1) == 3 || (modes - 1) == 4)
     //{
@@ -256,13 +255,79 @@ function FirstModes(modes)
     //    betttype = (modes - 1).toString();
     //}
 
-    for (loop = 0 ; loop < 28 ; loop++)
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 6)
     {
-        var n = stdMode[modes][loop];
-        document.getElementById("SMONEY_"+loop).value = n;//投注金额
-        sum = sum + n;  //总投注金额
+        if (modes < 1 || modes > stdMode.length) modes = 1;
+        for (loop = 0 ; loop < 28 ; loop++)
+        {
+            var n = stdMode[modes][loop];
+            document.getElementById("SMONEY_" + loop).value = n;//投注金额
+            sum = sum + n;  //总投注金额
 
+        }
     }
+    else if (lotterytype == 4 || lotterytype == 5)
+    {
+        $(".tb_btmode").find("input[name='SMONEY']").each(function (i)
+        {
+            if (!$(this).attr("readonly"))
+            {
+                $(this).val("");
+            }
+        });
+        for (var i = 0; i < mode36[modes].length; i++)
+        {
+            var id_num = mode36[modes][i];
+            var id_name = "#SMONEY_" + mode36[modes][i];
+            if (!$(id_name).attr("readonly"))
+            {
+                $(id_name).val(fc36[id_num - 1]);
+                sum = sum + fc36[id_num - 1];
+            }
+        }
+    }
+    else if (lotterytype == 7)
+    {
+        $(".tb_btmode").find("input[name='SMONEY']").each(function (i)
+        {
+            if (!$(this).attr("readonly"))
+            {
+                $(this).val("");
+            }
+        });
+        for (var i = 0; i < modegj[modes].length; i++)
+        {
+            var id_num = modegj[modes][i];
+            var id_name = "#SMONEY_" + modegj[modes][i];
+            if (!$(id_name).attr("readonly"))
+            {
+                $(id_name).val('10');
+                sum = sum + 10;
+               
+            }
+        }
+    } else if (lotterytype == 8)
+    {
+        $(".tb_btmode").find("input[name='SMONEY']").each(function (i)
+        {
+            if (!$(this).attr("readonly"))
+            {
+                $(this).val("");
+            }
+        });
+        for (var i = 0; i < modegyj[modes].length; i++)
+        {
+            var id_num = modegyj[modes][i];
+            var id_name = "#SMONEY_" + modegyj[modes][i];
+            if (!$(id_name).attr("readonly"))
+            {
+                $(id_name).val(pkgyj[id_num - 3]);
+                sum = sum + pkgyj[id_num - 3];
+            }
+        }
+    }
+
+
     document.getElementById("SMONEYSUM").value = sum;
     document.getElementById("SMONEYSUM2").value = sum;
 }
@@ -295,10 +360,18 @@ function AddMode()
         }
     }
 
-    for (var i = 0; i < 28; i++)
+    //for (var i = 0; i < 28; i++)
+    //{
+    //    document.getElementById("SMONEY_"+i).value = "0";
+    //}
+    $(".tb_btmode").find("input[name='SMONEY']").each(function (i)
     {
-        document.getElementById("SMONEY_"+i).value = "0";
-    }
+        if (!$(this).attr("readonly"))
+        {
+            $(this).val("0");
+        }
+    });
+
     document.getElementById("SMONEYSUM").value = "0";
     document.getElementById("SMONEYSUM2").value = "0";
     document.getElementById("m_info").innerHTML = "新投注模式的详细情况：";
@@ -383,9 +456,16 @@ function DoSave(NewName)
         if (ipval != "0" && ipval.trim() != "")
         {
             var src = $(this).parent().parent().find("td").eq(0).find("span").text();
-            var num =src;// src.split('_')[1].split('.')[0];
-            arrbettnew += (num.length == 1 ? ("0" + num) : num) + ":" + ipval + ";";
-            arrbettnum += (num.length == 1 ? ("0" + num) : num) + ";";
+            var num = src;// src.split('_')[1].split('.')[0];
+            if (isNaN(num))
+            {
+                arrbettnew += num+ ":" + ipval + ";";
+                arrbettnum += num+ ";";
+            } else
+            {
+                arrbettnew += (num.length == 1 ? ("0" + num) : num) + ":" + ipval + ";";
+                arrbettnum += (num.length == 1 ? ("0" + num) : num) + ";";
+            }
         }
     });
         

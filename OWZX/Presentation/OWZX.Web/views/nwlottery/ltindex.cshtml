@@ -215,7 +215,7 @@
         <div class="clear"></div>
     </div>
     <script>
-        function loadpage(type)
+        function loadpage(type,expect)
         {
             if(type=="bett" || type=="bettrecords" ||type=="models" ||type=="autobett" )
             {
@@ -248,7 +248,7 @@
                 case 'bett':
                     isbett=1;
 
-                    $(".temp_content").load("/nwlottery/_bettpage",{"type":lotterytype});
+                    $(".temp_content").load("/nwlottery/_bettpage",{"type":lotterytype,"expect":expect});
                     break;
                 case 'rule':
                     $(".temp_content").load("/nwlottery/_ltrule",{"type":lotterytype});
@@ -260,7 +260,7 @@
                     $(".temp_content").load("/nwlottery/_bettmode",{"type":lotterytype});
                     break;
                 case 'autobett':
-                    //$(".temp_content").load("/nwlottery/_autobett",{"type":lotterytype});
+                    $(".temp_content").load("/nwlottery/_autobett",{"type":lotterytype});
                     break;
 
             }

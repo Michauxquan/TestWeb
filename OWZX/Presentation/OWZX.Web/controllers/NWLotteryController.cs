@@ -31,6 +31,8 @@ namespace OWZX.Web.controllers
             int stop = 0;
             string title = string.Empty;
             InitParms(id, ref total, ref stop,ref title);
+            total = ResetTotalTime(id, list, total);
+
             LotteryModel lot = new LotteryModel()
             {
                 LotteryType = id,
@@ -41,6 +43,39 @@ namespace OWZX.Web.controllers
                 lotterylist = list
             };
             return View(lot);
+        }
+
+        private static int ResetTotalTime(int id, MD_LotteryList list, int total)
+        {
+            //dd28,dd36,ddlhb,pkgj,pkgyj  24:00~9:00 暂停投注
+            //cakeno28,cakeno36  20:00~待定  暂停投注
+            //hg28 5:00~7:00 暂停投注
+            if (id == 1 || id == 4 || id == 9 || id == 7 || id == 8)
+            {
+                if (DateTime.Now > DateTime.Parse("00:00") && DateTime.Now < DateTime.Parse("9:02"))
+                {
+                    total = list.RemainS;
+                }
+            }
+            else if (id == 2 || id == 5)
+            {
+                if (DateTime.Now > DateTime.Parse("20:00") && DateTime.Now < DateTime.Parse("23:00"))
+                {
+                    total = list.RemainS;
+                }
+            }
+            else if (id == 6)
+            {
+                if (DateTime.Now > DateTime.Parse("5:00") && DateTime.Now < DateTime.Parse("7:00"))
+                {
+                    total = list.RemainS;
+                }
+            }
+            else if (id == 3)
+            {
+
+            }
+            return total;
         }
 
         private static void InitParms(int id, ref int total, ref int stop,ref string title)
@@ -103,6 +138,7 @@ namespace OWZX.Web.controllers
             int stop = 0;
             string title = string.Empty;
             InitParms(id, ref total, ref stop, ref title);
+            total = ResetTotalTime(id, list, total);
             LotteryModel lot = new LotteryModel()
             {
                 LotteryType = id,
@@ -126,6 +162,7 @@ namespace OWZX.Web.controllers
             int stop = 0;
             string title = string.Empty;
             InitParms(type, ref total, ref stop, ref title);
+            total = ResetTotalTime(type, list, total);
             LotteryModel lot = new LotteryModel()
             {
                 LotteryType=type,
@@ -149,6 +186,7 @@ namespace OWZX.Web.controllers
             int stop = 0;
             string title = string.Empty;
             InitParms(type, ref total, ref stop, ref title);
+            total = ResetTotalTime(type, list, total);
             LotteryModel lot = new LotteryModel()
             {
                 LotteryType = type,
@@ -172,6 +210,7 @@ namespace OWZX.Web.controllers
             int stop = 0;
             string title = string.Empty;
             InitParms(type, ref total, ref stop, ref title);
+            total = ResetTotalTime(type, list, total);
             LotteryModel lot = new LotteryModel()
             {
                 LotteryType = type,
@@ -205,11 +244,12 @@ namespace OWZX.Web.controllers
         public ActionResult _BettPage()
         {
             int type = WebHelper.GetFormInt("type");
-
+            string expect = WebHelper.GetFormString("expect");
             DataSet ds = LotteryList.GetLotSetList(type.ToString());
             ViewData["ltset"] = ds;
             ViewData["exists"] = NewUser.ExistsMode(WorkContext.Uid,type);
             ViewData["lotterytype"] = type;
+            ViewData["expect"] = expect;
             List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString() + " and a.lotterytype="+type.ToString());
             return View(model);
         }
@@ -297,6 +337,7 @@ namespace OWZX.Web.controllers
         {
             MD_BettMode btmode = new MD_BettMode
             {
+                LotteryType = WebHelper.GetFormInt("lotterytype"),
                 Name = WebHelper.GetFormString("mdname"),
                 Bettinfo = WebHelper.GetFormString("list"),
                 Bettnum = WebHelper.GetFormString("listnum"),
@@ -330,7 +371,11 @@ namespace OWZX.Web.controllers
             int type = WebHelper.GetFormInt("type");
             DataTable dt = LotteryList.NewestLottery(type.ToString());
             ViewData["lastlot"] = dt;
-            return View();
+            ViewData["lotterytype"] = type;
+
+
+            List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString() + " and a.lotterytype=" + type.ToString());
+            return View(model);
         }
         /// <summary>
         /// 自动投注规则
