@@ -414,7 +414,7 @@ namespace OWZX.Web.Admin.Controllers
             StringBuilder strb = new StringBuilder();
             strb.Append("where 1=1");
             if (type > 0)
-                strb.Append(" and a.systypeid=" + type);
+                strb.Append(" and e.systypeid=" + type);
             if (bttype > 0)
                 strb.Append(" and a.type=" + bttype);
             roomtype = 20;

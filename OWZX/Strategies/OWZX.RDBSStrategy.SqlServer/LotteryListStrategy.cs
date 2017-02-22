@@ -55,11 +55,13 @@ end
 if OBJECT_ID('tempdb..#temp') is not null
 drop table #temp
 
-select a.lotteryid type,a.lotterynum expect,a.money,b.luckresult
+select a.lotteryid type,a.lotterynum expect,a.money
+,a.winmoney as luckresult
+--,b.luckresult
 into #temp
 from owzx_bett a
-join owzx_bettprofitloss b on a.bettid=b.bettid where a.uid=@uid and a.lotteryid=@type
-and datediff(day,a.addtime,GETDATE())=0
+--join owzx_bettprofitloss b on a.bettid=b.bettid 
+where a.uid=@uid and a.lotteryid=@type and  datediff(day,a.addtime,GETDATE())=0
 
 
 declare @total int=(select COUNT(1) from owzx_lotteryrecord where type=@type)
@@ -116,9 +118,10 @@ select *
 into #lottery
 from (
 select ROW_NUMBER() over(order by lotteryid desc) id,type,expect,orderresult,first,second,three,result,opentime,
-resultnum,resulttype,status
+resultnum,resulttype,status,luckyuserscount as winperson,betteggnum as totalbett ,bettnum bettperson
 from owzx_lotteryrecord where type=@type 
-) a  where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
+) a  
+where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
 
 
 if OBJECT_ID('tempdb..#bettprof') is not null
@@ -131,21 +134,24 @@ if OBJECT_ID('tempdb..#bettprof') is not null
  left join owzx_bettprofitloss b on a.bettid=b.bettid
 
 
-select a.*,isnull(b.totalbett,0)totalbett,isnull(c.winperson,0) winperson,isnull(d.bettperson,0)bettperson,isnull(e.luckresult,0)luckresult,
+select a.*,isnull(cast(e.luckresult as decimal(18,2)),0)luckresult,
 isnull(e.money,0) money
 from #lottery a
-left join 
-(select a.lotteryid type,a.lotterynum expect,sum(a.money) totalbett 
-from #bettprof a join  #lottery b on a.lotteryid=b.type and a.lotterynum=b.expect 
-group by a.lotteryid,a.lotterynum)  b on a.type=b.type and a.expect=b.expect
-left join (select lotteryid type,lotterynum expect,count(1) winperson from #bettprof 
-where luckresult>=0 group by lotteryid ,lotterynum) c
-on a.type=c.type and a.expect=c.expect
-left join (select lotteryid type,lotterynum expect,count(1) bettperson from #bettprof 
-group by lotteryid ,lotterynum)  d
-on a.type=d.type and a.expect=d.expect
+--left join 
+--(select a.lotteryid type,a.lotterynum expect,sum(a.money) totalbett 
+--from #bettprof a join  #lottery b on a.lotteryid=b.type and a.lotterynum=b.expect 
+--group by a.lotteryid,a.lotterynum)  b on a.type=b.type and a.expect=b.expect
+--left join (select lotteryid type,lotterynum expect,count(1) winperson from #bettprof 
+--where luckresult>=0 group by lotteryid ,lotterynum) c
+--on a.type=c.type and a.expect=c.expect
+--left join (select lotteryid type,lotterynum expect,count(1) bettperson from #bettprof 
+--group by lotteryid ,lotterynum)  d
+--on a.type=d.type and a.expect=d.expect
 left join #temp e 
 on a.type=e.type and a.expect=e.expect
+
+
+
 
 
 ", type,uid);

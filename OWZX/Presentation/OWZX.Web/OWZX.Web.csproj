@@ -689,7 +689,6 @@
     <Content Include="views\ucenter\userbank.cshtml" />
     <Content Include="views\ucenter\loginlimit.cshtml" />
     <Content Include="views\nwlottery\ltindex.cshtml" />
-    <Content Include="views\nwlottery\lt36index.cshtml" />
     <Content Include="views\nwlottery\_ltheader.cshtml" />
     <Content Include="views\changeware\changelist.cshtml" />
     <Content Include="views\changeware\changedetail.cshtml" />
