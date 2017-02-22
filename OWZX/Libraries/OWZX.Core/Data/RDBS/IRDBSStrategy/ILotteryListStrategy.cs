@@ -81,5 +81,36 @@ namespace OWZX.Core
         /// <returns></returns>
         DataSet GetLotSetList(string type, string condition = "");
         #endregion
+
+        #region 自动投注
+        /// <summary>
+        /// 添加自动投注
+        /// </summary>
+        /// <param name="chag"></param>
+        /// <returns></returns>
+        string AddAutoBett(MD_AutoBett mode);
+
+        /// <summary>
+        /// 更新模式信息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+         string UpdateAutoBett(MD_AutoBett mode);
+
+        /// <summary>
+        /// 停止自动投注
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+         string StopAutoBett(int uid, int lotterytype);
+
+        /// <summary>
+        ///获取自动投注
+        /// </summary>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        DataTable GetAutoBett(string condition = "");
+
+        #endregion
     }
 }

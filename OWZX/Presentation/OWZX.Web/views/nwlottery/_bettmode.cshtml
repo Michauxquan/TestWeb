@@ -317,9 +317,10 @@
             {
                 foreach(OWZX.Model.MD_BettMode item in @Model)
                  {
-                     item.Bettinfo = item.Bettinfo.Replace("豹", "1").Replace("顺", "2").Replace("对", "3").Replace("半", "4").Replace("杂", "5");
+                     item.Bettinfo = item.Bettinfo.
+                         Replace("豹", "1").Replace("顺", "2").Replace("对", "3").Replace("半", "4").Replace("杂", "5");
                     var arr = item.Bettinfo.Split(';');
-
+                    
                     for(int i=0;i<arr.Length;i++)
                     {
                         var sz = arr[i].Split(':');

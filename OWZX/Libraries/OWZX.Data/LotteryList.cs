@@ -105,5 +105,48 @@ namespace OWZX.Data
            return OWZX.Core.BSPData.RDBS.GetLotSetList(type, condition);
        }
        #endregion
+
+       #region 自动投注
+       /// <summary>
+       /// 添加自动投注
+       /// </summary>
+       /// <param name="chag"></param>
+       /// <returns></returns>
+       public static string AddAutoBett(MD_AutoBett mode)
+       {
+           return OWZX.Core.BSPData.RDBS.AddAutoBett(mode);
+       }
+
+       /// <summary>
+       /// 更新模式信息
+       /// </summary>
+       /// <param name="msg"></param>
+       /// <returns></returns>
+       public static string UpdateAutoBett(MD_AutoBett mode)
+       {
+           return OWZX.Core.BSPData.RDBS.UpdateAutoBett(mode);
+       }
+
+       /// <summary>
+       /// 停止自动投注
+       /// </summary>
+       /// <param name="id"></param>
+       /// <returns></returns>
+       public static string StopAutoBett(int uid, int lotterytype)
+       {
+           return OWZX.Core.BSPData.RDBS.StopAutoBett(uid,lotterytype);
+       }
+
+       /// <summary>
+       ///获取自动投注
+       /// </summary>
+       /// <param name="condition">没有where</param>
+       /// <returns></returns>
+       public static DataTable GetAutoBett(string condition = "")
+       {
+           return OWZX.Core.BSPData.RDBS.GetAutoBett(condition);
+       }
+
+       #endregion
     }
 }

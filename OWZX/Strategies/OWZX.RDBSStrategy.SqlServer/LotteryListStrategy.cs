@@ -31,25 +31,10 @@ namespace OWZX.RDBSStrategy.SqlServer
             string sql = string.Format(@"
 declare @uid int={1},@type int={0}
 
-if OBJECT_ID('tempdb..#last') is not null
-drop table #last
-
-select top 1  type,expect,orderresult,first,second,three,result,resultnum,resulttype,status 
-into #last
-from owzx_lotteryrecord 
-where type=@type and status=2 
-and DATEDIFF(minute,opentime,GETDATE()) between 0 and 5
-
-if not exists(select 1 from #last)
-begin
 select top 1 type,expect,orderresult,first,second,three,result,resultnum,resulttype,status 
 from owzx_lotteryrecord 
 where type=@type and status=2 order by lotteryid desc
-end
-else
-begin
-select * from #last
-end
+
 
 --用户今日投注盈亏
 if OBJECT_ID('tempdb..#temp') is not null
@@ -92,7 +77,7 @@ select top 1  type,expect lastnumber,opentime,status,DATEDIFF(SECOND,GETDATE(),o
 into #now
 from owzx_lotteryrecord
 where type=@type and status in (0,1)
-and DATEDIFF(SECOND,GETDATE(),opentime) between 0 and 300
+and DATEDIFF(SECOND,GETDATE(),opentime)>=0 and DATEDIFF(SECOND,GETDATE(),opentime)<=300
 
 if not exists(select 1 from #now)
 begin
@@ -516,6 +501,8 @@ end catch
             try
             {
                 DbParameter[] parms = {
+                                          
+                                        GenerateInParam("@autobtid", SqlDbType.Int,4, mode.Autobtid),
                                         GenerateInParam("@uid", SqlDbType.Int,4, mode.Uid),
                                         GenerateInParam("@lotteryid", SqlDbType.Int,4, mode.LotteryId),
                                         GenerateInParam("@selmodeid", SqlDbType.Int,4, mode.SelModeId),
@@ -527,15 +514,50 @@ end catch
                                     };
                 string commandText = string.Format(@"
 begin try
+
+
+--判断条件是否满足 
+if not exists(select 1 from owzx_lotteryrecord where type=@lotteryid and expect=@startexpect and status=0)
+begin
+select 1 --当期竞猜结束
+return 
+end
+
+if not exists(select 1 from owzx_users a 
+  join owzx_userbettmodel b on a.uid=b.uid and a.uid=@uid and b.modeid=@selmodeid 
+  where isnull(a.totalmoney,0)>=b.betttotal)
+begin
+select 2 --余额不足
+return 
+end
+
+if not exists(select 1 from owzx_users a 
+  where a.uid=@uid and isnull(a.totalmoney,0)>@mingold)
+begin
+select 3 --余额达到最小 保留余额数
+return 
+end
+
 begin tran t1
-if exists(select 1 from owzx_userbettmodel where uid=@uid and lotterytype=@lotterytype)
+if exists(select 1 from owzx_userautobett where uid=@uid and autobtid=@autobtid)
 begin
 
+UPDATE [dbo].[owzx_userautobett]
+   SET [lotteryid] = @lotteryid
+      ,[selmodeid] = @selmodeid
+      ,[startexpect] = @startexpect
+      ,[maxbettnum] = @maxbettnum
+      ,[mingold] = @mingold
+      ,[autobettnum] = @autobettnum
+      ,[isstart] = 1
+      ,[updatetime] = convert(varchar(25),getdate(),120)
+      ,[updateuser] = @uid
+ where uid=@uid and autobtid=@autobtid
 
 end
 else
 begin
-INSERT INTO [owzx_userautobett]
+INSERT INTO [dbo].[owzx_userautobett]
            ([uid]
            ,[lotteryid]
            ,[selmodeid]
@@ -544,9 +566,21 @@ INSERT INTO [owzx_userautobett]
            ,[mingold]
            ,[autobettnum]
            ,[isstart]
-          )
-VALUES (@uid,@lotteryid,@selmodeid,@startexpect,@maxbettnum,@mingold,@autobettnum,@isstart)
+           )
+     VALUES
+           (@uid
+           ,@lotteryid
+           ,@selmodeid
+           ,@startexpect
+           ,@maxbettnum
+           ,@mingold
+           ,@autobettnum
+           ,1
+           )
 end
+
+--自动添加 投注 ？？？
+
 
 select '添加成功' state
 commit tran t1
@@ -585,10 +619,10 @@ end catch
         {
             string commandText = string.Format(@"
             begin try
-            if exists(select 1 from owzx_userbettmodel where uid={0} and name='{1}' and lotterytype={2})
+            if exists(select 1 from owzx_userautobett where uid={0} and lotteryid={1})
             begin
-            delete from owzx_userbettmodel where uid={0} and name='{1}'
-            select '删除成功' state
+            update a set a.isstart=0 from owzx_userautobett a where uid={0} and lotteryid={1}
+            select '停止成功' state
             end
             else
             begin

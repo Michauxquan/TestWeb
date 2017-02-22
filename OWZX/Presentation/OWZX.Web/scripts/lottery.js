@@ -10,7 +10,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
         trap(type, fcnum - 1);
     }
     //ns 开奖时间
-    var nS = ctime;
+    var nS = parseInt(ctime);
     if (nS > 0)
     {
         nS = nS - 1;

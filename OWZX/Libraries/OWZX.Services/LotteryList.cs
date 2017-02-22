@@ -110,5 +110,48 @@ namespace OWZX.Services
         }
 
         #endregion
+
+        #region 自动投注
+        /// <summary>
+        /// 添加自动投注
+        /// </summary>
+        /// <param name="chag"></param>
+        /// <returns></returns>
+        public static string AddAutoBett(MD_AutoBett mode)
+        {
+            return OWZX.Data.LotteryList.AddAutoBett(mode);
+        }
+
+        /// <summary>
+        /// 更新模式信息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public static string UpdateAutoBett(MD_AutoBett mode)
+        {
+            return OWZX.Data.LotteryList.UpdateAutoBett(mode);
+        }
+
+        /// <summary>
+        /// 停止自动投注
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static string StopAutoBett(int uid, int lotterytype)
+        {
+            return OWZX.Data.LotteryList.StopAutoBett(uid, lotterytype);
+        }
+
+        /// <summary>
+        ///获取自动投注
+        /// </summary>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public static DataTable GetAutoBett(string condition = "")
+        {
+            return OWZX.Data.LotteryList.GetAutoBett(condition);
+        }
+
+        #endregion
     }
 }

@@ -81,10 +81,10 @@ function Change_Modes(ModeId) {
     }
     else if (lotterytype == 9)
     {
-        //for (var i = 3; i <= 19; i++)
-        //{
-        //    $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
-        //}
+        for (var i = 1; i <= 13; i++)
+        {
+            $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
+        }
     }
     $("#bttmode").val(ModeNames[CurrentMode - 1]);
 
@@ -246,7 +246,6 @@ function AddMONEY(val)
     {
         document.getElementById('SMONEY_'+val).value = "0";
     }
-    alert(obj.value+'_'+ betttype);
     ////组合不允许增加数字
     //if (obj.value == '0' && betttype ==2)
     //    return;
@@ -391,7 +390,11 @@ function FirstModes(modes)
     //{
     //    betttype = (modes - 1).toString();
     //}
-
+    $(".tb_btmode").find("input[name='SMONEY']").each(function (i) {
+        if (!$(this).attr("readonly")) {
+            $(this).val("");
+        }
+    });
     if (lotterytype == 1 || lotterytype == 2 || lotterytype == 6)
     {
         if (modes < 1 || modes > stdMode.length) modes = 1;
@@ -405,13 +408,7 @@ function FirstModes(modes)
     }
     else if (lotterytype == 4 || lotterytype == 5)
     {
-        $(".tb_btmode").find("input[name='SMONEY']").each(function (i)
-        {
-            if (!$(this).attr("readonly"))
-            {
-                $(this).val("");
-            }
-        });
+        
         for (var i = 0; i < mode36[modes].length; i++)
         {
             var id_num = mode36[modes][i];
@@ -425,13 +422,7 @@ function FirstModes(modes)
     }
     else if (lotterytype == 7)
     {
-        $(".tb_btmode").find("input[name='SMONEY']").each(function (i)
-        {
-            if (!$(this).attr("readonly"))
-            {
-                $(this).val("");
-            }
-        });
+       
         for (var i = 0; i < modegj[modes].length; i++)
         {
             var id_num = modegj[modes][i];
@@ -445,13 +436,6 @@ function FirstModes(modes)
         }
     } else if (lotterytype == 8)
     {
-        $(".tb_btmode").find("input[name='SMONEY']").each(function (i)
-        {
-            if (!$(this).attr("readonly"))
-            {
-                $(this).val("");
-            }
-        });
         for (var i = 0; i < modegyj[modes].length; i++)
         {
             var id_num = modegyj[modes][i];
@@ -463,7 +447,6 @@ function FirstModes(modes)
             }
         }
     }
-
 
     document.getElementById("SMONEYSUM").value = sum;
     document.getElementById("SMONEYSUM2").value = sum;

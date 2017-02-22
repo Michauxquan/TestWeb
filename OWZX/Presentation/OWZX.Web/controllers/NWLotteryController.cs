@@ -326,6 +326,20 @@ namespace OWZX.Web.controllers
             ViewData["ltset"] = ds;
             ViewData["lotterytype"] = type;
             List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString() + " and a.lotterytype=" + type.ToString());
+            if (type == 9)
+            {
+                Dictionary<string,int> dic=new Dictionary<string,int>();
+                dic["大"]=1;dic["小"]=2;dic["单"]=3;dic["双"]=4;dic["极大"]=5;dic["大单"]=6;
+                dic["小单"]=7;dic["大双"]=8;dic["小双"]=9;dic["极小"]=10;dic["龙"]=11;dic["虎"]=12;
+                dic["豹"]=13;
+                model.ForEach((x) =>
+                {
+                    foreach (KeyValuePair<string, int> item in dic)
+                    {
+                       x.Bettinfo= x.Bettinfo.Replace(item.Key, item.Value.ToString());
+                    }
+                });
+            }
             return View(model);
         }
 

@@ -175,7 +175,8 @@
                     @if (Model.lotterylist.RemainS > Model.StopTime && Model.lotterylist.RemainS <= Model.TotalS
                         )
                     {
-                        <text>还有<span class="ltwarn">@Model.lotterylist.RemainS-@Model.StopTime</span>秒停止下注!</text>
+                        int rems = @Model.lotterylist.RemainS - @Model.StopTime;
+                        <text>还有<span class="ltwarn">@rems</span>秒停止下注!</text>
                     }
                     else if (@Model.lotterylist.RemainS > 0 && @Model.lotterylist.RemainS <= Model.StopTime)
                     {
