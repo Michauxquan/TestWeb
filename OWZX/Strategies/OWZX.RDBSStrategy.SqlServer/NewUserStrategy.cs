@@ -667,7 +667,7 @@ if OBJECT_ID('tempdb..#list') is not null
   drop table #list
 
 SELECT ROW_NUMBER() over(order by a.achangeid desc) id
-      ,a.[achangeid],a.[uid],a.[changemoney],a.[remark],a.[addtime],b.mobile account
+      ,a.[achangeid],a.[uid],a.[changemoney],a.[remark],a.[addtime],b.email account
   into  #list
   FROM owzx_accountchange a
   join owzx_users b on a.uid=b.uid

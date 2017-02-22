@@ -1549,7 +1549,7 @@ end catch
         {
             DbParameter[] parms = {
                                     GenerateInParam("@bttypeid", SqlDbType.Int, 4, lotset.Bttypeid),
-                                    GenerateInParam("@type", SqlDbType.VarChar, 50, lotset.Type),
+                                    GenerateInParam("@type", SqlDbType.Int, 4, lotset.Type),
                                     GenerateInParam("@item", SqlDbType.VarChar, 10, lotset.Item),
                                     GenerateInParam("@odds", SqlDbType.VarChar, 10, lotset.Odds),
                                     GenerateInParam("@nums", SqlDbType.VarChar, 50, lotset.Nums)
@@ -1557,12 +1557,13 @@ end catch
             string commandText = string.Format(@"
 begin try
 begin tran t1
-if exists(select 1 from owzx_lotteryset where bttypeid=@bttypeid )
+if exists(select 1 from owzx_lotsetodds where bttypeid=@bttypeid and lotterytype=@type )
 begin
-UPDATE owzx_lotteryset
-   SET odds = @odds,nums=@nums
-where bttypeid=@bttypeid
+UPDATE owzx_lotteryset   SET odds = @odds,nums=@nums
+where bttypeid=@bttypeid 
 
+UPDATE owzx_lotsetodds   SET odds = @odds 
+where bttypeid=@bttypeid  and lotterytype=@type
 
 select '修改成功' state
 commit tran t1
@@ -1629,8 +1630,8 @@ drop table #list
 
 SELECT ROW_NUMBER() over(order by a.bttypeid ) id,
 a.[bttypeid], e.type as  lottery
-,a.[type],c.type as settype,a.[item],'1:'+a.odds odds,a.[nums],a.[addtime],a.roomtype
---,b.lotterytype ,d.type as room
+,a.[type],c.type as settype,a.[item],'1:'+f.odds odds,a.[nums],a.[addtime],a.roomtype
+,f.lotterytype --,d.type as room
 into  #list
  from  owzx_lotteryset a
  join dbo.owzx_lotsetodds f on a.bttypeid=f.bttypeid

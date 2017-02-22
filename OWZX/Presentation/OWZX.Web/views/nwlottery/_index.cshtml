@@ -109,10 +109,10 @@
         <text>正在开奖,请稍后!</text>
        }
     </div>
-    <script>
-    $(function(){
-        GetRTime(lotterytype,@Model.lotterylist.RemainS,@Model.lotterylist.LastNumber,@Model.TotalS,@Model.StopTime,@Model.lotterylist.Prev_Lottery.Expect)
-    });
+    <script> 
+        $(function() { 
+            GetRTime(lotterytype, @Model.lotterylist.RemainS, @Model.lotterylist.LastNumber, @Model.TotalS, @Model.StopTime, @Model.lotterylist.Prev_Lottery.Expect)
+        });
     </script>
     <div style="width:30%;display:block;float:left;">
         今日盈亏: <span class="ltwarn">@Model.lotterylist.TdProf</span> 参与: <i class="bold">@Model.lotterylist.TdBettNum</i>期 胜率: <i class="bold">@Model.lotterylist.WinPercent%</i>
