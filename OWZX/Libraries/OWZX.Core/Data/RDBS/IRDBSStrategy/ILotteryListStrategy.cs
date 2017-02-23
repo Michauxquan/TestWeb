@@ -95,22 +95,30 @@ namespace OWZX.Core
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>
-         string UpdateAutoBett(MD_AutoBett mode);
+        string UpdateAutoBett(MD_AutoBett mode);
 
         /// <summary>
         /// 停止自动投注
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-         string StopAutoBett(int uid, int lotterytype);
+        string StopAutoBett(int uid, int lotterytype);
+
 
         /// <summary>
         ///获取自动投注
         /// </summary>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        DataTable GetAutoBett(string condition = "");
+        DataTable GetAutoBett(int pageindex, int pagesize, string condition = "");
 
+        /// <summary>
+        /// 获取用户自动投注信息
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="lotterytype"></param>
+        /// <returns></returns>
+        DataSet GetUserAtBett(int uid, int lotterytype);
         #endregion
     }
 }

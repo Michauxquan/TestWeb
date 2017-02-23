@@ -119,7 +119,32 @@ namespace OWZX.Services
         /// <returns></returns>
         public static string AddAutoBett(MD_AutoBett mode)
         {
-            return OWZX.Data.LotteryList.AddAutoBett(mode);
+            string result= OWZX.Data.LotteryList.AddAutoBett(mode);
+            if (result.EndsWith("成功"))
+                return result;
+            else
+            {
+                switch (result)
+                {
+                    case "1":
+                        result = "已停止竞猜，请重新选择";
+                        break;
+                    case "2":
+                        result = "您的金币小于设置的金币最小值，自动投注停止";
+                        break;
+                    case "3":
+                        result = "您的金币不足，自动投注停止";
+                        break;
+                    case "4":
+                        result = "您输入的期号不存在,请选择未开奖期号";
+                        break;
+                    default:
+                        result = "自动投注失败,请稍后再试";
+                        break;
+                }
+                return result;
+            }
+           
         }
 
         /// <summary>
@@ -137,9 +162,14 @@ namespace OWZX.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static string StopAutoBett(int uid, int lotterytype)
+        public static bool StopAutoBett(int uid, int lotterytype)
         {
-            return OWZX.Data.LotteryList.StopAutoBett(uid, lotterytype);
+            string result= OWZX.Data.LotteryList.StopAutoBett(uid, lotterytype);
+            if (result.EndsWith("成功"))
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -147,11 +177,21 @@ namespace OWZX.Services
         /// </summary>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        public static DataTable GetAutoBett(string condition = "")
+        public static DataTable GetAutoBett(int pageindex, int pagesize, string condition = "")
         {
-            return OWZX.Data.LotteryList.GetAutoBett(condition);
+            return OWZX.Data.LotteryList.GetAutoBett(pageindex, pagesize, condition);
         }
 
+        /// <summary>
+        /// 获取用户自动投注信息
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="lotterytype"></param>
+        /// <returns></returns>
+        public static DataSet GetUserAtBett(int uid, int lotterytype)
+        {
+            return OWZX.Data.LotteryList.GetUserAtBett(uid, lotterytype);
+        }
         #endregion
     }
 }

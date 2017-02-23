@@ -113,344 +113,359 @@
     }
 </style>
 <script type="text/javascript">
-        var lotttime = "";
-        var usergold = "";
-        var userid = "";
-        var nowmdid = "";
-        var mingold = "";
-        var fcnum = "";
-        $(function ()
+    var lotttime = "";
+    var usergold = "";
+    var userid = "";
+    var nowmdid = "";
+    var mingold = "";
+    var fcnum = "";
+    var lotterytype='@ViewData["lotterytype"]';
+    $(function ()
+    {
+        $("#btrule").bind("click", function ()
         {
-            $("#btrule").bind("click", function ()
-            {
-                $("#middlecontent").load("/nwlottery/_autorule");
-            });
-            Init();
+            $("#middlecontent").load("/nwlottery/_autorule");
         });
+        Init();
+    });
 
-        var autonowmdid = "";
+    var autonowmdid = "";
 
-        function Init()
+    function Init()
+    {
+        //获取自动投注信息
+        //$.post("/nwlottery/getuserbett", { "type": lotterytype }, function (data)
+        //{
+        var data='@ViewData["auto"]';
+
+
+        if(data=="-1")
         {
-            //获取自动投注信息
-            $.get("../Data/CusBettOperater.ashx", { "qctype": "gtauto" }, function (data)
+            data="";
+        }
+
+        if (data != "")
+        {
+            $("#addatbt").css("display", "none");
+            $("#atbt").css("display", "");
+            $("#remark").css("display", "none");
+            $("#autoremark").css("display", "");
+            $("#ibtnEnd").css("display", "");
+            $("#ibtnStart").css("display", "none");
+            var dt = JSON.parse(data);
+
+            if (dt.auto.length > 0)
             {
-                if (data != "")
-                {
-                    $("#addatbt").css("display", "none");
-                    $("#atbt").css("display", "");
-                    $("#remark").css("display", "none");
-                    $("#autoremark").css("display", "");
-                    $("#ibtnEnd").css("display", "");
-                    $("#ibtnStart").css("display", "none");
-                    var dt = JSON.parse(data);
 
-                    if (dt.auto.length > 0)
-                    {
+                var autoif = dt.auto[0];
 
-                        var autoif = dt.auto[0];
+                autonowmdid = autoif.selmodeid;
+                var msg = '当前正使用“<strong>' + autoif.name + '</strong>”模式投注，投注额<strong>' + autoif.betttotal
+                    + '</strong>，赢了会使用“<strong>' + autoif.wintype + '</strong>”模式；输了会使用“<strong>' + autoif.losstype + '</strong>”模式继续投注。';
+                $("#autohead").html(msg);
 
-                        autonowmdid = autoif.NowSelectModeID;
-                        var msg = '当前正使用“<strong>' + autoif.Objjc + '</strong>”模式投注，投注额<strong>' + autoif.BettEggs
-                            + '</strong>，赢了会使用“<strong>' + autoif.wintype + '</strong>”模式；输了会使用“<strong>' + autoif.losstype + '</strong>”模式继续投注。';
-                        $("#autohead").html(msg);
+                $("#nowmd").text(autoif.name); $("#btgold").text(autoif.betttotal); $("#winmd").text(autoif.wintype);
+                $("#lossmd").text(autoif.losstype);
 
-                        $("#nowmd").text(autoif.Objjc); $("#btgold").text(autoif.BettEggs); $("#winmd").text(autoif.wintype);
-                        $("#lossmd").text(autoif.losstype);
+                $("#nowfcnum").text(autoif.startexpect); $("#betnum").text("（已投" + autoif.autobettnum.toString() + "期，还剩" + (parseInt(autoif.maxbettnum) - parseInt(autoif.autobettnum)).toString() + "期） ");
+                $("#maxbetnum").text(autoif.maxbettnum.toString());
+            }
 
-                        $("#nowfcnum").text(autoif.NowStartFCNum); $("#betnum").text("（已投" + autoif.AutoBettNum.toString() + "期，还剩" + (parseInt(autoif.MaxBettNumber) - parseInt(autoif.AutoBettNum)).toString() + "期） ");
-                        $("#maxbetnum").text(autoif.MaxBettNumber.toString());
-                    }
+            var base = dt.btmd;
 
-                    var base = dt.btmd;
-
-                    var strb = "";
-                    $(".atnwtr").remove();
-                    for (var i = 0; i <= base.length - 1; i++)
-                    {
-                        var item = base[i];
-                        strb += '<tr class="atnwtr" align="center" bgcolor="#FFFFFF">' +
-            '<td height="32" bgcolor="#FFFaC7"><a >' +
-             chkresult(item.ObjName, autonowmdid)
-            + item.Objjc + '</a></td>' +
-            '<td class="pright">' + item.BettEggs + '<img src="../img/egg.gif" /><input type="hidden" id="mosegg_1" value="' + item.BettEggs + '" /></td><td>' +
-                item.wintype
-                         +
-                    '</td><td>' +
-                        item.losstype +
-                    '</td></tr>';
-                    }
-                    if (strb != "")
-                    {
-                        $(strb).insertAfter("#autotitle");
-                    }
-                } else
-                {
-                    GetData();
-                }
-
-            });
-        }
-
-        function GetData()
-        {
-            $.get("../Data/CusBettOperater.ashx", { "qctype": "setautobett" }, function (data)
-            {
-                if (data != "")
-                {
-                    $("#addatbt").css("display", "");
-                    $("#atbt").css("display", "none");
-                    $("#remark").css("display", "");
-                    $("#autoremark").css("display", "none");
-                    $("#ibtnEnd").css("display", "none");
-                    $("#ibtnStart").css("display", "");
-                    var dt = JSON.parse(data);
-                    var base = dt.base;
-                    if (base.length == 0)
-                    {
-                        alert("设置“投注模式”后，才能够进行自动投注");
-                        return;
-                    }
-
-                    if (dt.fcinfo.length > 0)
-                    {
-                        var fcinfo = dt.fcinfo[0];
-                        $("#STARTISSUE").val(fcinfo.FCNum); $("#spnum1").text(fcinfo.FCNum); $("#spnum").text(fcinfo.FCNum);
-                        lotttime = fcinfo.LotteryTime;
-                        fcnum = fcinfo.FCNum;
-                    }
-                    if (dt.usinfo.length > 0)
-                    {
-                        var usinfo = dt.usinfo[0]
-                        usergold = usinfo.UsGoldNum; userid = usinfo.CusUserID;
-                    }
-                    if (dt.autoinfo.length > 0)
-                    {
-                        var autoinfo = dt.autoinfo[0];
-                        nowmdid = autoinfo.NowSelectModeID;
-                        mingold = autoinfo.MinGoldNumber;
-                        $("#QS").val(autoinfo.MaxBettNumber); $("#MINGOLDEGGS").val(autoinfo.MinGoldNumber);
-                    }
-
-                    var sel = "";
-                    sel = SetOption(base);
-                    if (sel != "")
-                    {
-                        $("#BEGINMODES").append(sel);
-                    }
-                    var strb = "";
-                    $(".atnwtr").remove();
-                    $.each(base, function (i, item)
-                    {
-                        strb += '<tr class="atnwtr" align="center" bgcolor="#FFFFFF">' +
-            '<td height="32" bgcolor="#FFFaC7"><a >[' + item.CheckBettType + "]" + item.Objjc + '</a></td>' +
-            '<td class="pright">' + item.BettEggs + '<img src="../img/egg.gif" /><input type="hidden" id="mosegg_1" value="' + item.BettEggs + '" /></td><td>' +
-                '<select id="MODES' + (i + 1).toString() + '" name="WINMODES" style="width: 90px;">' +
-                 sel +
-                        '</select>'
-                         +
-                    '</td><td>' +
-                        '<select id="MODESW' + (i + 1).toString() + '" name="LOSTMODES" style="width: 90px;">' + sel +
-                        '</select>' +
-                        '<input type="hidden" name="Modes" id="hdmdval' + (i + 1).toString() + '" value="' + item.ObjName + '">' +
-                    '</td></tr>'
-                    });
-                    if (strb != "")
-                    {
-                        $(strb).insertAfter("#autotitle");
-                        Rows = base.length;
-                        $.each(base, function (i, item)
-                        {
-                            ModeSelect(item.SetWinType, (i + 1).toString());
-                            ModeSelect1(item.SetLossType, (i + 1).toString());
-                        });
-                    }
-
-
-                } else
-                    $(".atnwtr").remove();
-
-            });
-        }
-        function chkresult(id, selid)
-        {
-            if (id == selid)
-                return '<img src="../img/jt_red.gif" title="目前正在投注的模式" align="absmiddle">'
-            else
-                return ''
-        }
-        function SetOption(base)
-        {
             var strb = "";
+            $(".atnwtr").remove();
+            for (var i = 0; i <= base.length - 1; i++)
+            {
+                var item = base[i];
+                strb += '<tr class="atnwtr" align="center" bgcolor="#FFFFFF">' +
+    '<td height="32" bgcolor="#FFFaC7"><a >' +
+     chkresult(item.modeid, autonowmdid)
+    + item.name + '</a></td>' +
+    '<td class="pright">' + item.betttotal + '<img src="../img/egg.gif" /><input type="hidden" id="mosegg_1" value="' + item.betttotal + '" /></td><td>' +
+        item.wintype
+                 +
+            '</td><td>' +
+                item.losstype +
+            '</td></tr>';
+            }
+            if (strb != "")
+            {
+                $(strb).insertAfter("#autotitle");
+            }
+        }
+        else
+        {
+            GetData();
+        }
+
+        //});
+    }
+
+    function GetData()
+    {
+        //$.post("/nwlottery/getuserbettmode", { "type": lotterytype }, function (data)
+        //{
+        var data='@ViewData["add"]';
+        if(data=="")
+        {
+            data="";
+        }
+
+        if (data != "")
+        {
+            $("#addatbt").css("display", "");
+            $("#atbt").css("display", "none");
+            $("#remark").css("display", "");
+            $("#autoremark").css("display", "none");
+            $("#ibtnEnd").css("display", "none");
+            $("#ibtnStart").css("display", "");
+            var dt = JSON.parse(data);
+            var base = dt.base;
+            if (base.length == 0)
+            {
+                layer.alert("设置“投注模式”后，才能够进行自动投注", {icon:2,title:"提示"});
+                return;
+            }
+
+            if (dt.fcinfo.length > 0)
+            {
+                var fcinfo = dt.fcinfo[0];
+                $("#STARTISSUE").val(fcinfo.expect); $("#spnum1").text(fcinfo.expect); $("#spnum").text(fcinfo.expect);
+                lotttime = fcinfo.time;
+                fcnum = fcinfo.expect;
+            }
+
+
+            usergold = @WorkContext.PartUserInfo.TotalMoney; userid = @WorkContext.Uid;
+            if (dt.autoinfo.length > 0)
+            {
+                var autoinfo = dt.autoinfo[0];
+                nowmdid = autoinfo.selmodeid;
+                mingold = autoinfo.mingold;
+                $("#QS").val(autoinfo.maxbettnum); $("#MINGOLDEGGS").val(autoinfo.mingold);
+            }
+
+            var sel = "";
+            sel = SetOption(base);
+            if (sel != "")
+            {
+                $("#BEGINMODES").append(sel);
+            }
+            var strb = "";
+            $(".atnwtr").remove();
             $.each(base, function (i, item)
             {
-                strb += "<option value='" + item.ObjName + "'>" + item.Objjc + "</option>";
+                strb += '<tr class="atnwtr" align="center" bgcolor="#FFFFFF">' +
+    '<td height="32" bgcolor="#FFFaC7"><a >' + item.name + '</a></td>' +
+    '<td class="pright">' + item.betttotal + '<img src="../img/egg.gif" /><input type="hidden" id="mosegg_1" value="' + item.betttotal + '" /></td><td>' +
+        '<select id="MODES' + (i + 1).toString() + '" name="WINMODES" style="width: 90px;">' +
+         sel +
+                '</select>'
+                 +
+            '</td><td>' +
+                '<select id="MODESW' + (i + 1).toString() + '" name="LOSTMODES" style="width: 90px;">' + sel +
+                '</select>' +
+                '<input type="hidden" name="Modes" id="hdmdval' + (i + 1).toString() + '" value="' + item.modeid + '">' +
+            '</td></tr>'
             });
-            return strb;
-        }
-        //下拉菜单如何选中
-        function Select(IDname, Value)
-        {
-            for (var pp = 0; pp < document.getElementById(IDname).options.length; pp++)
+            if (strb != "")
             {
-                if (document.getElementById(IDname).options[pp].value == Value)
+                $(strb).insertAfter("#autotitle");
+                Rows = base.length;
+                $.each(base, function (i, item)
                 {
-                    document.getElementById(IDname).options[pp].selected = true;
-                    break;
-                }
+                    ModeSelect(item.wintype, (i + 1).toString());
+                    ModeSelect1(item.losstype, (i + 1).toString());
+                });
+            }
+
+
+        } else
+            $(".atnwtr").remove();
+
+        //});
+    }
+
+    function chkresult(id, selid)
+    {
+        if (id == selid)
+            return '<img src="../../images/jt_red.gif" title="目前正在投注的模式" align="absmiddle">'
+        else
+            return ''
+    }
+    function SetOption(base)
+    {
+        var strb = "";
+        $.each(base, function (i, item)
+        {
+            strb += "<option value='" + item.modeid + "'>" + item.name + "</option>";
+        });
+        return strb;
+    }
+    //下拉菜单如何选中
+    function Select(IDname, Value)
+    {
+        for (var pp = 0; pp < document.getElementById(IDname).options.length; pp++)
+        {
+            if (document.getElementById(IDname).options[pp].value == Value)
+            {
+                document.getElementById(IDname).options[pp].selected = true;
+                break;
             }
         }
+    }
 
-        var Rows = "1";
-        //赢的方法的选中
-        function ModeSelect(getMode, modes)
+    var Rows = "1";
+    //赢的方法的选中
+    function ModeSelect(getMode, modes)
+    {
+        var obj = document.getElementById("MODES" + modes);
+        for (i = 0; i < Rows; i++)
         {
-            var obj = document.getElementById("MODES" + modes);
-            for (i = 0; i < Rows; i++)
+            if (getMode == obj.options[i].value)
             {
-                if (getMode == obj.options[i].value)
-                {
-                    obj.options[i].selected = true;
-                }
+                obj.options[i].selected = true;
             }
         }
+    }
 
-        //输的方法的选中
-        function ModeSelect1(getMode, modes)
+    //输的方法的选中
+    function ModeSelect1(getMode, modes)
+    {
+        var obj = document.getElementById("MODESW" + modes);
+        for (i = 0; i < Rows; i++)
         {
-            var obj = document.getElementById("MODESW" + modes);
-            for (i = 0; i < Rows; i++)
+            if (getMode == obj.options[i].value)
             {
-                if (getMode == obj.options[i].value)
-                {
-                    obj.options[i].selected = true;
-                }
+                obj.options[i].selected = true;
             }
         }
+    }
 
-        function stop()
+    function stop()
+    {
+        $.post("/nwlottery/stopautobett", { "type": lotterytype }, function (data)
         {
-            //获取自动投注信息
-            $.get("../Data/CusBettOperater.ashx", { "qctype": "delauto" }, function (data)
+            if (data == "1")
             {
-                if (data == "True")
-                {
-                    Init();
-                    //window.location.href = "/qcgeass.aspx"
-                }
-            });
+                loadpage('autobett');
+            }
+            else
+            {
+                layer.alert("停止自动投注失败",{icon:2,title:"提示"})
+            }
+        });
+    }
+    //判断
+    function check()
+    {
+        var startissue = fcnum;  //默认的开始期号
+        var endissue = parseInt(fcnum) + parseInt($("#QS").val());  //默认的结束期号
+        var usereggs = usergold;  //用户积分
+        var mode_num = 10;
+        var mode_rows = 1;
+
+
+        var g_startissue = document.getElementById("STARTISSUE").value; //开始期号
+        var QS = $("#QS").val();  //期数
+
+        var MINGOLDEGGS = document.getElementById("MINGOLDEGGS").value; //最小值
+        var v_BEGINMODES = document.getElementById("BEGINMODES").value;
+
+
+        if (g_startissue == "")
+        {
+            showdiv("请填写开始期数！");
+            document.getElementById("STARTISSUE").focus();
+            return false;
         }
-        //判断
-        function check()
+
+        if (startissue != "")
         {
-            var startissue = fcnum;  //默认的开始期号
-            var endissue = parseInt(fcnum) + parseInt($("#QS").val());  //默认的结束期号
-            var usereggs = usergold;  //用户积分
-            var mode_num = 10;
-            var mode_rows = 1;
-
-
-            var g_startissue = document.getElementById("STARTISSUE").value; //开始期号
-            var QS = $("#QS").val();  //期数
-
-            var MINGOLDEGGS = document.getElementById("MINGOLDEGGS").value; //最小值
-            var v_BEGINMODES = document.getElementById("BEGINMODES").value;
-
-
-            if (g_startissue == "")
+            if (g_startissue < startissue)
             {
-                showdiv("请填写开始期数！");
+                showdiv("开始期号必须大于！" + startissue);
                 document.getElementById("STARTISSUE").focus();
                 return false;
             }
-
-            if (startissue != "")
-            {
-                if (g_startissue < startissue)
-                {
-                    showdiv("开始期号必须大于！" + startissue);
-                    document.getElementById("STARTISSUE").focus();
-                    return false;
-                }
-            }
-
-            if (QS == "")
-            {
-                showdiv("请填写结束期数！");
-                document.getElementById("QS").focus();
-                return false;
-            }
-
-            if (parseInt(QS) <= 0)
-            {
-                showdiv("请填写有效的投注期数！");
-                document.getElementById("QS").focus();
-                return false;
-            }
-
-            if (parseInt(QS) > 5000)
-            {
-                showdiv("投注期数不能大于5000！");
-                document.getElementById("QS").focus();
-                return false;
-            }
-
-            //      if(parseInt(mode_num) < parseInt(mode_rows))
-            //      {
-            //          btnmsg = "<a class=\"red_enter\" href=\"/vip/vip_index.aspx\"><span style=\"color:White\">查看VIP</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-            //          btnmsg += "<a class=\"red_enter\" onclick=\"closezNotice(0)\"><span style=\"color:White\">关 闭</span></a>";
-            //          showdiv("您的自定义模式个数超出了，请“投注模式编辑”中删除或升级VIP。",btnmsg,"auto",395);
-            //
-            //        return false;
-            //      }
-
-            if (parseInt(MINGOLDEGGS) >= parseInt(usereggs))
-            {
-                showdiv("您的当前乐豆<=" + MINGOLDEGGS + ",符合停止投注条件！");
-                document.getElementById("MINGOLDEGGS").focus();
-                return false;
-            }
-            //var v_modeseggs = document.getElementById("mosegg_" + v_BEGINMODES).value;
-            //if (parseInt(v_modeseggs) > parseInt(usereggs))
-            //{
-            //    showdiv("您的当前积分不够开始模式的投注，符合停止投注条件！");
-            //    return false;
-            //}
-            var allmd = "";
-            $.each($(".atnwtr"), function (i, item)
-            {
-
-                var win = $(item).find("td").eq(2).find("#MODES" + (i + 1).toString()).val();
-                var losss = $(item).find("td").eq(3).find("#MODESW" + (i + 1).toString()).val();
-                var objname = $(item).find("td").eq(3).find("#hdmdval" + (i + 1).toString()).val();
-                allmd += win + ":" + losss + ":" + objname + ";";
-            });
-            $.post("../Data/CusBettOperater.ashx", {
-                "qctype": "addautobett", "startmd": v_BEGINMODES,
-                "nowfcnum": g_startissue, "maxfcnum": QS, "mingold": MINGOLDEGGS, "allselmd": allmd
-            }, function (data)
-            {
-                if (data != "")
-                {
-                    var dt = JSON.parse(data);
-                    if (dt.Result)
-                    {
-                        window.location = "/qcgeass.aspx"
-                    } else
-                    {
-                        showdiv(dt.Msg);
-                    }
-
-                }
-            });
         }
 
-        function endvip()
+        if (QS == "")
         {
-            //var btnmsg = "<a class=\"red_enter\" href=\"/vip/vip_index.aspx\"><span style=\"color:White\">查看VIP</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-            var btnmsg = "<a class=\"red_enter\" onclick=\"closezNotice(0)\"><span style=\"color:White\">关 闭</span></a>";
-            showdiv("您的自定义投注模式数据已超出。", btnmsg, "auto", 395);
-
+            showdiv("请填写结束期数！");
+            document.getElementById("QS").focus();
+            return false;
         }
-        
+
+        if (parseInt(QS) <= 0)
+        {
+            showdiv("请填写有效的投注期数！");
+            document.getElementById("QS").focus();
+            return false;
+        }
+
+        if (parseInt(QS) > 5000)
+        {
+            showdiv("投注期数不能大于5000！");
+            document.getElementById("QS").focus();
+            return false;
+        }
+
+        //      if(parseInt(mode_num) < parseInt(mode_rows))
+        //      {
+        //          btnmsg = "<a class=\"red_enter\" href=\"/vip/vip_index.aspx\"><span style=\"color:White\">查看VIP</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        //          btnmsg += "<a class=\"red_enter\" onclick=\"closezNotice(0)\"><span style=\"color:White\">关 闭</span></a>";
+        //          showdiv("您的自定义模式个数超出了，请“投注模式编辑”中删除或升级VIP。",btnmsg,"auto",395);
+        //
+        //        return false;
+        //      }
+
+        if (parseInt(MINGOLDEGGS) >= parseInt(usereggs))
+        {
+            showdiv("您的当前乐豆<=" + MINGOLDEGGS + ",符合停止投注条件！");
+            document.getElementById("MINGOLDEGGS").focus();
+            return false;
+        }
+        //var v_modeseggs = document.getElementById("mosegg_" + v_BEGINMODES).value;
+        //if (parseInt(v_modeseggs) > parseInt(usereggs))
+        //{
+        //    showdiv("您的当前积分不够开始模式的投注，符合停止投注条件！");
+        //    return false;
+        //}
+        var allmd = "";
+        $.each($(".atnwtr"), function (i, item)
+        {
+            var win = $(item).find("td").eq(2).find("#MODES" + (i + 1).toString()).val();
+            var losss = $(item).find("td").eq(3).find("#MODESW" + (i + 1).toString()).val();
+            var objname = $(item).find("td").eq(3).find("#hdmdval" + (i + 1).toString()).val();
+            allmd += win + ":" + losss + ":" + objname + ";";
+        });
+        $.post("/nwlottery/addautobett", {
+            "type": lotterytype, "startmd": v_BEGINMODES,
+            "nowfcnum": g_startissue, "maxbetnum": QS, "mingold": MINGOLDEGGS, "allselmd": allmd
+        }, function (data)
+        {
+            if (data != "")
+            {
+                var dt = JSON.parse(data);
+                if (dt.Result)
+                {
+                    $(".temp_content").load("/nwlottery/_autobett",{"type":lotterytype});
+                }
+                else
+                {
+                    layer.alert(dt.Msg,{icon:2,title:"提示"})
+                }
+
+            }
+        });
+    }
+
+    function endvip()
+    {
+        layer.alert("您的自定义投注模式数据已超出。",{icon:2,title:"提示"})
+
+    }
+
 </script>

@@ -142,11 +142,21 @@ namespace OWZX.Data
        /// </summary>
        /// <param name="condition">没有where</param>
        /// <returns></returns>
-       public static DataTable GetAutoBett(string condition = "")
+       public static DataTable GetAutoBett(int pageindex, int pagesize, string condition = "")
        {
-           return OWZX.Core.BSPData.RDBS.GetAutoBett(condition);
+           return OWZX.Core.BSPData.RDBS.GetAutoBett(pageindex,pagesize,condition);
        }
 
+       /// <summary>
+       /// 获取用户自动投注信息
+       /// </summary>
+       /// <param name="uid"></param>
+       /// <param name="lotterytype"></param>
+       /// <returns></returns>
+       public static DataSet GetUserAtBett(int uid, int lotterytype)
+       {
+           return OWZX.Core.BSPData.RDBS.GetUserAtBett(uid,lotterytype);
+       }
        #endregion
     }
 }

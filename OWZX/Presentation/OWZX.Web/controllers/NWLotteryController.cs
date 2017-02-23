@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -30,15 +31,15 @@ namespace OWZX.Web.controllers
             int total = 0;
             int stop = 0;
             string title = string.Empty;
-            InitParms(id, ref total, ref stop,ref title);
+            InitParms(id, ref total, ref stop, ref title);
             total = ResetTotalTime(id, list, total);
 
             LotteryModel lot = new LotteryModel()
             {
                 LotteryType = id,
-                TotalS=total,
-                StopTime=stop,
-                Title=title,
+                TotalS = total,
+                StopTime = stop,
+                Title = title,
                 PageModel = new PageModel(20, 1, list.TotalCount),
                 lotterylist = list
             };
@@ -78,13 +79,13 @@ namespace OWZX.Web.controllers
             return total;
         }
 
-        private static void InitParms(int id, ref int total, ref int stop,ref string title)
+        private static void InitParms(int id, ref int total, ref int stop, ref string title)
         {
             switch (id)
             {
                 case (int)LotteryType.dd28:
                     title = "蛋蛋28首页";
-                     total = 300;
+                    total = 300;
                     stop = 30;
                     break;
                 case (int)LotteryType.dd36: title = "蛋蛋36首页";
@@ -96,7 +97,7 @@ namespace OWZX.Web.controllers
                     stop = 30;
                     break;
                 case (int)LotteryType.cakeno28: title = "加拿大28首页";
-                     total = 210;
+                    total = 210;
                     stop = 30;
                     break;
                 case (int)LotteryType.cakeno36: title = "加拿大36首页";
@@ -104,7 +105,7 @@ namespace OWZX.Web.controllers
                     stop = 30;
                     break;
                 case (int)LotteryType.pkgj: title = "PK冠军首页";
-                     total = 300;
+                    total = 300;
                     stop = 30;
                     break;
                 case (int)LotteryType.pkgyj: title = "PK冠亚军首页";
@@ -124,7 +125,7 @@ namespace OWZX.Web.controllers
             }
         }
 
-        
+
         /// <summary>
         /// 竞猜首页数据（当期，上一次结果，竞猜集合）
         /// </summary>
@@ -132,7 +133,7 @@ namespace OWZX.Web.controllers
         public ActionResult _Index()
         {
             int id = WebHelper.GetFormInt("type");//彩票类型
-            int page = WebHelper.GetFormInt("page",1);
+            int page = WebHelper.GetFormInt("page", 1);
             MD_LotteryList list = LotteryList.GetLotteryByType(id, page, 20, WorkContext.Uid);
             int total = 0;
             int stop = 0;
@@ -165,9 +166,9 @@ namespace OWZX.Web.controllers
             total = ResetTotalTime(type, list, total);
             LotteryModel lot = new LotteryModel()
             {
-                LotteryType=type,
-                TotalS=total,
-                StopTime=stop,
+                LotteryType = type,
+                TotalS = total,
+                StopTime = stop,
                 PageModel = new PageModel(20, pageindex, list.TotalCount),
                 lotterylist = list
             };
@@ -247,10 +248,10 @@ namespace OWZX.Web.controllers
             string expect = WebHelper.GetFormString("expect");
             DataSet ds = LotteryList.GetLotSetList(type.ToString());
             ViewData["ltset"] = ds;
-            ViewData["exists"] = NewUser.ExistsMode(WorkContext.Uid,type);
+            ViewData["exists"] = NewUser.ExistsMode(WorkContext.Uid, type);
             ViewData["lotterytype"] = type;
             ViewData["expect"] = expect;
-            List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString() + " and a.lotterytype="+type.ToString());
+            List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString() + " and a.lotterytype=" + type.ToString());
             return View(model);
         }
         /// <summary>
@@ -283,7 +284,7 @@ namespace OWZX.Web.controllers
             string result = Lottery.AddNewBett(bett);
             if (result.EndsWith("成功"))
                 return Content("1");
-            else 
+            else
                 return Content(result);
         }
 
@@ -328,15 +329,15 @@ namespace OWZX.Web.controllers
             List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString() + " and a.lotterytype=" + type.ToString());
             if (type == 9)
             {
-                Dictionary<string,int> dic=new Dictionary<string,int>();
-                dic["大"]=1;dic["小"]=2;dic["单"]=3;dic["双"]=4;dic["极大"]=5;dic["大单"]=6;
-                dic["小单"]=7;dic["大双"]=8;dic["小双"]=9;dic["极小"]=10;dic["龙"]=11;dic["虎"]=12;
-                dic["豹"]=13;
+                Dictionary<string, int> dic = new Dictionary<string, int>();
+                dic["大"] = 1; dic["小"] = 2; dic["单"] = 3; dic["双"] = 4; dic["极大"] = 5; dic["大单"] = 6;
+                dic["小单"] = 7; dic["大双"] = 8; dic["小双"] = 9; dic["极小"] = 10; dic["龙"] = 11; dic["虎"] = 12;
+                dic["豹"] = 13;
                 model.ForEach((x) =>
                 {
                     foreach (KeyValuePair<string, int> item in dic)
                     {
-                       x.Bettinfo= x.Bettinfo.Replace(item.Key, item.Value.ToString());
+                        x.Bettinfo = x.Bettinfo.Replace(item.Key, item.Value.ToString());
                     }
                 });
             }
@@ -383,13 +384,114 @@ namespace OWZX.Web.controllers
         public ActionResult _AutoBett()
         {
             int type = WebHelper.GetFormInt("type");
-            DataTable dt = LotteryList.NewestLottery(type.ToString());
-            ViewData["lastlot"] = dt;
             ViewData["lotterytype"] = type;
 
+            DataSet ds = LotteryList.GetUserAtBett(WorkContext.Uid, type);
+            ds.Tables[0].TableName = "auto";
+            ds.Tables[1].TableName = "btmd";
+            string json = "-1";
+            if (ds.Tables[0].Rows.Count > 0)
+                json = JsonConvert.SerializeObject(ds);
 
-            List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString() + " and a.lotterytype=" + type.ToString());
-            return View(model);
+            //DataSet dsmode = LotteryList.GetUserAtBett(WorkContext.Uid, type);
+            DataTable dtbase = ds.Tables[1];
+            DataTable dt = LotteryList.NewestLottery(type.ToString());
+            DataTable dtauto = ds.Tables[0];
+
+            StringBuilder strb = new StringBuilder();
+            strb.Append("{");
+            strb.Append("\"base\":" + JsonConvert.SerializeObject(dtbase));
+            strb.Append(",\"fcinfo\":" + JsonConvert.SerializeObject(dt));
+            strb.Append(",\"autoinfo\":" + JsonConvert.SerializeObject(dtauto));
+            strb.Append("}");
+            string result = strb.ToString();
+
+            ViewData["auto"] = json;
+            ViewData["add"] = result.ToString();
+            //List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString() + " and a.lotterytype="+ type.ToString());
+            return View();
+        }
+        /// <summary>
+        /// 获取用户自动投注
+        /// </summary>
+        /// <returns></returns>
+        private  ActionResult GetUserBett()
+        {
+            int type = WebHelper.GetFormInt("type");
+            ViewData["lotterytype"] = type;
+            DataSet ds = LotteryList.GetUserAtBett(WorkContext.Uid, type);
+            ds.Tables[0].TableName = "auto";
+            ds.Tables[1].TableName = "btmd";
+            string json = string.Empty;
+            if (ds.Tables[0].Rows.Count > 0)
+                json = JsonConvert.SerializeObject(ds);
+
+            return Content(json);
+        }
+        /// <summary>
+        /// 获取启动投注基础信息
+        /// </summary>
+        /// <returns></returns>
+        private ActionResult GetUserBettMode()
+        {
+            int type = WebHelper.GetFormInt("type");
+
+            ViewData["lotterytype"] = type;
+            DataSet ds = LotteryList.GetUserAtBett(WorkContext.Uid, type);
+            DataTable dtbase = ds.Tables[1];
+            DataTable dt = LotteryList.NewestLottery(type.ToString());
+            DataTable dtauto = ds.Tables[0];
+
+            StringBuilder strb = new StringBuilder();
+            strb.Append("{");
+            strb.Append("\"base\":" + JsonConvert.SerializeObject(dtbase));
+            strb.Append(",\"fcinfo\":" + JsonConvert.SerializeObject(dt));
+            strb.Append(",\"autoinfo\":" + JsonConvert.SerializeObject(dtauto));
+            strb.Append("}");
+            string result = strb.ToString();
+            return Content(result);
+        }
+        /// <summary>
+        /// 停止自动投注
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult StopAutoBett()
+        {
+            int type = WebHelper.GetFormInt("type");
+            bool result = LotteryList.StopAutoBett(WorkContext.Uid, type);
+            if (result)
+                return Content("1");
+            else
+                return Content("0");
+        }
+        /// <summary>
+        /// 启动自动投注
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AddAutoBett()
+        {
+            MD_AutoBett bett = new MD_AutoBett
+            {
+                Uid = WorkContext.Uid,
+                LotteryId = WebHelper.GetFormInt("type"),
+                SelModeId = WebHelper.GetFormInt("startmd"),
+                StartExpect = WebHelper.GetFormString("nowfcnum"),
+                MaxBettNum = WebHelper.GetFormInt("maxbetnum"),
+                MinGold = WebHelper.GetFormInt("mingold"),
+                AllSelMode = WebHelper.GetFormString("allselmd")
+            };
+            string msg = LotteryList.AddAutoBett(bett);
+            StringBuilder strb = new StringBuilder();
+            if (msg.EndsWith("成功"))
+            {
+                strb.Append("{\"Result\":true,\"Msg\":\"成功\"}");
+            }
+            else
+            {
+                strb.Append("{\"Result\":false,\"Msg\":\"" + msg + "\"}");
+            }
+
+            return Content(strb.ToString());
         }
         /// <summary>
         /// 自动投注规则
