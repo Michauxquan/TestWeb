@@ -428,7 +428,10 @@ namespace OWZX.Web.Admin.Controllers
                 bttype = bttype,
                 PageModel = new PageModel(pageSize, pageNumber, listbase.Count > 0 ? listbase[0].TotalCount : 0),
                 SetList = listbase
-            };
+            }; 
+            ShopUtils.SetAdminRefererCookie(string.Format("{0}?pageNumber={1}&pageSize={2}&type={3}&bttype={4}&roomtype={5}",
+                                                        Url.Action("lotterysetlist"), pageNumber, pageSize,
+                                                        type, bttype, roomtype));
             return View(list);
         }
 
@@ -441,7 +444,7 @@ namespace OWZX.Web.Admin.Controllers
         public ActionResult EditLotterySet(int bttypeid = -1,int outtypeid=-1)
         {
             StringBuilder strb = new StringBuilder(); 
-            strb.Append(" where a.bttypeid=" + bttypeid + " and f.lotteryid=" + outtypeid);
+            strb.Append(" where a.bttypeid=" + bttypeid + " and f.lotterytype=" + outtypeid);
             strb.Append(" and a.roomtype=20 ");
             List<MD_LotterySet> listbase = Lottery.GetLotterySetList(1, 1, strb.ToString()); ;
             ViewData["referer"] = ShopUtils.GetAdminRefererCookie();

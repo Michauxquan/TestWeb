@@ -5,7 +5,7 @@ var traptime;
 function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
 {
     //处理上期未开奖，重启计时处理
-    if (prevnum != undefined && prevnum!=fcnum-1)
+    if (typeof(prevnum)!= 'undefined' && prevnum!=fcnum-1)
     {
         trap(type, fcnum - 1);
     }
@@ -50,10 +50,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
         {
             $(".remains").html(
                 '第 <i class="bold">' + fcnum + '</i>期  正在开奖,请稍后!');
-        }
-        if (nS == -1) {
-            $("#jquery_jplayer_1").jPlayer('play');
-        }
+        } 
         if (nS == -5 || nS == -10 || nS == -15 || nS == -20 || nS == -25 || nS == -30)
         {
             $(".remains").html('Loading......');
@@ -65,7 +62,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
                 {
                     clearTimeout(tiner);
                     clearTimeout(traptime);
-
+                    $("#jquery_jplayer_1").jPlayer('play');
                     if ($(".sec_head a:eq(0)").hasClass("hot") && isbett==0)
                     {
                         $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });
@@ -84,7 +81,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime,prevnum)
                             clearTimeout(tiner);
                             clearTimeout(traptime);
                             $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });
-                            trap(lotterytype, fcnum);
+                            //trap(lotterytype, fcnum);
                         }else
                         {
                             $(".remains").html('第 <i class="bold">' + fcnum + '</i>期  已开奖,请刷新!');
@@ -107,9 +104,11 @@ function trap(type,fcnum)
     {
         if (data == "1")
         {
+            $("#jquery_jplayer_1").jPlayer('play'); 
             clearTimeout(tiner);
             clearTimeout(traptime);
-            $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });
+            if ($(".sec_head a:eq(0)").hasClass("hot") && isbett == 0)
+                $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });
         }else
         {
             traptime = setTimeout("trap(" + type + "," + fcnum + ")", 2000);

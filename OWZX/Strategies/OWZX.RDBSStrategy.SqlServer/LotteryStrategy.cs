@@ -1549,7 +1549,7 @@ end catch
         {
             DbParameter[] parms = {
                                     GenerateInParam("@bttypeid", SqlDbType.Int, 4, lotset.Bttypeid),
-                                    GenerateInParam("@type", SqlDbType.Int, 4, lotset.Type),
+                                    GenerateInParam("@type", SqlDbType.Int, 4, lotset.Lotterytype),
                                     GenerateInParam("@item", SqlDbType.VarChar, 10, lotset.Item),
                                     GenerateInParam("@odds", SqlDbType.VarChar, 10, lotset.Odds),
                                     GenerateInParam("@nums", SqlDbType.VarChar, 50, lotset.Nums)
