@@ -420,10 +420,15 @@ function comform()
         $("#ALLSMONEY").val(str.join(","));
         var message = "确认你投注？将扣除你<span id='postgoldeggs' style='color :Red;font-weight:bold'>" + t + "</span>乐豆！"
 
-        layer.confirm(message, function ()
+        layer.confirm(message, {
+            btn: ['确定', '取消'] //按钮
+        }, function ()
         {
             datapost();
             layer.closeAll('dialog');
+        }, function ()
+        {
+            //必须加上，否则取消不成功
         }, { icon: 3, title: "提示" });
         t = ver(String(t)); //将数字转字符串后千分位 
         $("#postgoldeggs").html(t);

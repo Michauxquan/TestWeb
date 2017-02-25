@@ -441,11 +441,16 @@
             var objname = $(item).find("td").eq(3).find("#hdmdval" + (i + 1).toString()).val();
             allmd += win + ":" + losss + ":" + objname + ";";
         });
+        layer.load(2);
         $.post("/nwlottery/addautobett", {
             "type": lotterytype, "startmd": v_BEGINMODES,
             "nowfcnum": g_startissue, "maxbetnum": QS, "mingold": MINGOLDEGGS, "allselmd": allmd
         }, function (data)
         {
+            setTimeout(function ()
+            {
+                layer.closeAll('loading');
+            }, 2000);
             if (data != "")
             {
                 var dt = JSON.parse(data);
