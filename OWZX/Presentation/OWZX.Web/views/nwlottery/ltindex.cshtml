@@ -231,21 +231,7 @@
             switch(type)
             {
                 case 'lottery':
-                    if(lotterytype==1 || lotterytype==2 || lotterytype==4 || lotterytype==5  || lotterytype==6)
-                    {
-                        $(".temp_content").load("/nwlottery/_content",{"type":lotterytype,"page":1});
-                    }else if(lotterytype==3)
-                    {
-                        $(".temp_content").load("/nwlottery/_contentlhb",{"type":lotterytype,"page":1});
-                    }
-                    else if(lotterytype==9)
-                    {
-                        $(".temp_content").load("/nwlottery/_contentlhb",{"type":lotterytype,"page":1});
-                    }
-                    else if(lotterytype==7||lotterytype==8)
-                    {
-                        $(".temp_content").load("/nwlottery/_contentpk",{"type":lotterytype,"page":1});
-                    }
+                    $(".temp_content").load("/nwlottery/_index",{"type":lotterytype,"page":1});
                     break;
                 case 'bett':
                     isbett=1;
