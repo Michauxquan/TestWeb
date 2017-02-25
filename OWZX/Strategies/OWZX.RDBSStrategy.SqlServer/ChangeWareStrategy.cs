@@ -246,7 +246,7 @@ begin try
 declare @usernum int=0, @oldnum int=0,@index int=0,@status int =0,@msg varchar(300)='',@userid int=0,@error int=0
  declare @changefee decimal(18,2)=0.00
 if({12}=0)
-  select @userid=uid from owzx_users where rtrim(mobile)='{11}'
+  select @userid=uid from owzx_users where rtrim(email)='{11}'
 else
  select @userid={12}
 if({10}=1)
@@ -328,7 +328,7 @@ begin
         begin
             INSERT INTO owzx_userorder ([userid],[ordercode],[warecode],[warename],[speccode],[specname],[issuenum],[totalfee]
                 ,[status] ,[price],[type],[num] ,[content],[changeid])
-            VALUES( @userid,'{2}' ,'{7}' ,'{8}','{5}','{6}','{0}',{9},0,{4},{10},{3},newid(),{1})
+            VALUES( @userid,'{2}' ,'{7}' ,'{8}','{5}','{6}','{0}',{9},0,{4},{10},{3},cast(newid() as varchar(64)),{1}) 
             set @changefee=0
             set @changefee=0-{9}
             insert into owzx_accountchange

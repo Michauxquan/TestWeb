@@ -132,6 +132,7 @@ namespace OWZX.Web.controllers
                     UserID = int.Parse(parmas["uid"]),
                     Status = 0,
                     Type = type,
+                    Account = WorkContext.PartUserInfo.Email.Trim(),
                     WareName = parmas["warename"],
                     WareCode = parmas["warecode"],
                     SpecName = parmas["specname"],

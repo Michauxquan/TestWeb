@@ -79,15 +79,17 @@
                 {
                     <img src="../images/baseimg/email.png" class="left" style="width: 100px; height: 100px;"/>
                     <a href="/ucenter/safeinfo">
-                        <h3 style="width: 120px; margin-top: 40px;" class="left">认证邮箱>></h3></a>
+                        <h3 style="width: 120px; margin-top: 40px;" class="left">&nbsp;&nbsp;认证邮箱>></h3></a>
+                    <br/> <br/> <br/> <br/>
                 }
                 else
                 {
                     <span><a href="javascript:void(0)" class="greenBT" style="font-size: 14px; padding: 3px 20px;" onclick="GetOwnerBack(0)">领取回水</a> </span>
-                    <span><a href="javascript:void(0)" class="greenBT" style="font-size: 14px; padding: 3px 20px; @(Model.UserInfo.UserType==1?"display:block;":"")" onclick="GetOwnerBack(1)">领取下级回水</a> </span>
+                    <span><a href="javascript:void(0)" class="greenBT" style="font-size: 14px; padding: 3px 20px; @(Model.UserInfo.UserType == 1 ? "display:block;" : "")" onclick="GetOwnerBack(1)">领取下级回水</a> </span>
                     <br/>
                     <br/>
                 }
+                     <br/>
                 <span style="font-size: 13px;">推广链接:</span><a href="@(ViewData["registerurl"])" style="font-size: 12px;">
                              @(ViewData["registerurl"])
                     </a>  
