@@ -246,6 +246,14 @@ namespace OWZX.Core
         /// <param name="uid"></param>
         /// <returns></returns>
         bool ExistsMode(int uid, int lotterytype);
+
+         /// <summary>
+        /// 添加投注模式
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="bettid"></param>
+        /// <returns></returns>
+        string AddModeFromRecord(string name, int bettid);
         #endregion
 
     }

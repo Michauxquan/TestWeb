@@ -454,6 +454,16 @@ namespace OWZX.Services
         {
             return OWZX.Data.NewUser.ExistsMode(uid,lotterytype);
         }
+        /// <summary>
+        /// 添加投注模式
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="bettid"></param>
+        /// <returns></returns>
+        public static string AddModeFromRecord(string name, int bettid)
+        {
+            return OWZX.Data.NewUser.AddModeFromRecord(name, bettid);
+        }
 
         #endregion
     }

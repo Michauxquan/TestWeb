@@ -354,7 +354,16 @@ namespace OWZX.Data
         {
             return OWZX.Core.BSPData.RDBS.ExistsMode(uid,lotterytype);
         }
-
+         /// <summary>
+        /// 添加投注模式
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="bettid"></param>
+        /// <returns></returns>
+        public static string AddModeFromRecord(string name, int bettid)
+        {
+            return OWZX.Core.BSPData.RDBS.AddModeFromRecord(name, bettid);
+        }
         #endregion
 
     }

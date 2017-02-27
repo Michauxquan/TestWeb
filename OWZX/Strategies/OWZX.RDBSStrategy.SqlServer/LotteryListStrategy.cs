@@ -460,7 +460,7 @@ SELECT ROW_NUMBER() over(order by a.setid ) id,a.[setid]
       ,a.[bttypeid]
       ,a.[odds]
       ,a.[addtime]
-      ,b.item,b.type
+      ,b.item,b.type,b.nums
 into  #list
   FROM owzx_lotsetodds a
   join owzx_lotteryset b on a.bttypeid= b.bttypeid and a.lotterytype= @type

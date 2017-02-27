@@ -316,6 +316,34 @@ namespace OWZX.Web.controllers
             return View(record);
         }
         /// <summary>
+        /// 投注详情
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _BettDetails()
+        {
+            int type = WebHelper.GetFormInt("type");
+            int betid = WebHelper.GetFormInt("bettid");
+            DataSet ds = LotteryList.GetLotSetList(type.ToString());
+            ViewData["ltset"] = ds;
+            DataTable dt = LotteryList.GetUserBett(type, WorkContext.Uid, 1, 1, " where a.bettid=" + betid.ToString());
+            ViewData["bett"] = dt;
+            return View();
+        }
+        /// <summary>
+        /// 添加投注模式
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AddModeFRecord()
+        {
+            int betid = WebHelper.GetFormInt("bettid");
+            string name = WebHelper.GetFormString("name");
+            string result = NewUser.AddModeFromRecord(name, betid);
+            if (result.EndsWith("成功"))
+                return Content("1");
+            else
+                return Content(result);
+        }
+        /// <summary>
         /// 投注模式
         /// </summary>
         /// <returns></returns>

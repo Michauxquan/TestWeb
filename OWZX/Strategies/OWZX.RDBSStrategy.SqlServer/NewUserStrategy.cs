@@ -1395,7 +1395,45 @@ select 1 from owzx_userbettmodel where uid={0} and lotterytype={1}
 ",uid,lotterytype);
             return RDBSHelper.Exists(sql);
         }
+        /// <summary>
+        /// 添加投注模式
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="bettid"></param>
+        /// <returns></returns>
+        public string AddModeFromRecord(string name, int bettid)
+        {
+            string sql = string.Format(@"
+declare @uid int ,@lotterytype int,@name varchar(50)='{1}',@bettid int={0}
+select @uid=uid,@lotterytype=lotteryid  from owzx_bett where bettid=@bettid
 
+if (select COUNT(1) from owzx_userbettmodel where uid=@uid and lotterytype=@lotterytype)=10
+begin
+select '最多能设置10种投注模式！'
+return 
+end
+
+if exists(select 1 from owzx_userbettmodel where uid=@uid and lotterytype=@lotterytype and name=@name)
+begin
+select '投注模式名称已存在！'
+return 
+end
+
+begin try
+begin tran t1
+insert into owzx_userbettmodel(name, uid, lotterytype, bettnum, bettinfo, betttotal, wintype, losstype)
+select @name,uid,lotteryid,bettnum,bettinfo,money,0,0 from owzx_bett where bettid=@bettid
+
+select '保存成功'
+commit tran t1
+end try
+begin catch
+rollback tran t1
+select ERROR_MESSAGE()
+end catch
+", bettid,name);
+            return RDBSHelper.ExecuteScalar(sql).ToString();
+        }
         #endregion
     }
 }
