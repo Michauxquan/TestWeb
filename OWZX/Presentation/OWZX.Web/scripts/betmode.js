@@ -506,9 +506,9 @@ function trim(data)
 function OnSave()
 {
     var sumgoldeggs = document.getElementById("SMONEYSUM").value;
-    if (sumgoldeggs <= 0 || sumgoldeggs > 20000000)
+    if (sumgoldeggs < 10 || sumgoldeggs > 20000000)
     {
-        m = "<div class='content1' id='Notice_content'>保存失败，投注总额必须为1-2000万乐豆</div>";
+        m = "<div class='content1' id='Notice_content'>保存失败，投注总额必须为10-2000万乐豆</div>";
         layer.alert(m,{icon:2,title:"保存模式"});
         return;
     }
@@ -540,9 +540,9 @@ function DoSave(NewName)
     }
     var m = "";
     var sumgoldeggs = document.getElementById("SMONEYSUM").value;
-    if (sumgoldeggs <= 0 || sumgoldeggs > 20000000)
+    if (sumgoldeggs < 10 || sumgoldeggs > 20000000)
     {
-        m = "<div class='content1' id='Notice_content'>保存失败，投注总额必须为1-2000万乐豆</div>";
+        m = "<div class='content1' id='Notice_content'>保存失败，投注总额必须为10-2000万乐豆</div>";
         layer.alert(m,{icon:2,title:"保存模式"});
         return;
     }

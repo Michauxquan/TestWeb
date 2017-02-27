@@ -210,5 +210,39 @@ function chgTimes(numID, times)
     }
 }
 
+function loadpage(type, expect,betid) {
+    if (type == "bett" || type == "bettrecords" || type == "models" || type == "autobett") {
+        if (uid <= 0) {
+            layer.alert("<div style='text-align:center;'>请登录</div>", { title: "提示" });
+            return;
+        }
+    }
+    isbett = 0;
+    switch (type) {
+        case 'lottery':
+            $(".lot_content").load("/nwlottery/_index", { "type": lotterytype, "page": 1 });
+            break;
+        case 'bett':
+            isbett = 1;
 
+            $(".temp_content").load("/nwlottery/_bettpage", { "type": lotterytype, "expect": expect });
+            break;
+        case 'rule':
+            $(".temp_content").load("/nwlottery/_ltrule", { "type": lotterytype });
+            break;
+        case 'bettrecords':
+            $(".temp_content").load("/nwlottery/_bettrecord", { "type": lotterytype, "page": 1 });
+            break;
+        case 'models':
+            $(".temp_content").load("/nwlottery/_bettmode", { "type": lotterytype });
+            break;
+        case 'autobett':
+            $(".temp_content").load("/nwlottery/_autobett", { "type": lotterytype });
+            break;
+        case 'details':
+            $(".temp_content").load("/nwlottery/_bettdetails", { "type": lotterytype,"bettid":betid });
+            break;
+
+    }
+}
 

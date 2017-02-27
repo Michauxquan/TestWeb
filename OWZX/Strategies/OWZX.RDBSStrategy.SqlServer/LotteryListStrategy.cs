@@ -163,7 +163,7 @@ select 1 from owzx_lotteryrecord where type={0} and expect={1} and status=2
         /// <param name="type"></param>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public DataTable GetUserBett(int type, int uid, int pageindex, int pagesize)
+        public DataTable GetUserBett(int type, int uid, int pageindex, int pagesize,string condition)
         {
             DbParameter[] parms = {
                                       GenerateInParam("@pagesize", SqlDbType.Int, 4, pagesize),
@@ -175,11 +175,15 @@ if OBJECT_ID('tempdb..#lotrecord') is not null
  drop table #lotrecord
 
 select  ROW_NUMBER() over(order by a.bettid desc) id,a.lotterynum,a.addtime,c.resultnum,a.money,a.winmoney,
-case when ISNULL(a.winmoney,0)>=0 then ISNULL(a.winmoney,0)-a.money else ISNULL(a.winmoney,0) end win,a.bettid
+case when c.status=2 then (
+case when ISNULL(a.winmoney,0)>=0 then ISNULL(a.winmoney,0)-a.money else ISNULL(a.winmoney,0) end ) else 0 end win,
+a.bettid,a.bettinfo
+,c.status,c.opentime,a.lotteryid
 into #lotrecord  
 from owzx_bett a
 --left join owzx_bettprofitloss b on a.bettid=b.bettid
 join owzx_lotteryrecord c on a.lotteryid=c.type and a.lotterynum=c.expect and c.type={0} and a.uid={1}
+{2}
 
 declare @total int=(select count(1) from #lotrecord )
 
@@ -192,7 +196,7 @@ begin
 select * ,@total totalcount from #lotrecord where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
 end
 
-", type,uid);
+", type,uid,condition);
             return RDBSHelper.ExecuteTable(sql,parms)[0];
         }
 

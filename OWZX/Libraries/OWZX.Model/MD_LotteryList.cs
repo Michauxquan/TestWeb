@@ -44,7 +44,7 @@ namespace OWZX.Model
     /// <summary>
     /// 彩票类型枚举
     /// </summary>
-    public enum LotteryType
+    public enum LotType
     {
         /// <summary>
         /// 蛋蛋28

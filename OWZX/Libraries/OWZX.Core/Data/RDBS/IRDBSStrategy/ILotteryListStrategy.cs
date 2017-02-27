@@ -35,7 +35,7 @@ namespace OWZX.Core
         /// <param name="type"></param>
         /// <param name="uid"></param>
         /// <returns></returns>
-        DataTable GetUserBett(int type, int uid, int pageindex, int pagesize);
+        DataTable GetUserBett(int type, int uid, int pageindex, int pagesize,string condition);
 
         /// <summary>
         /// 获取最新彩票记录

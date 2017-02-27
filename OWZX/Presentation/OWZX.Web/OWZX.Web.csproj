@@ -508,6 +508,7 @@
     <Content Include="images\baseimg\tb_4.jpg" />
     <Content Include="images\baseimg\toutu.jpg" />
     <Content Include="images\bg_agent-.png" />
+    <Content Include="images\bg_h3.gif" />
     <Content Include="images\btn.png" />
     <Content Include="images\chips\chips_10000.png" />
     <Content Include="images\chips\chips_100000.png" />
@@ -707,6 +708,7 @@
     <Content Include="views\nwlottery\_contentlhb.cshtml" />
     <Content Include="views\agent\list.cshtml" />
     <Content Include="views\nwlottery\_contentpk.cshtml" />
+    <Content Include="views\nwlottery\_bettdetails.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

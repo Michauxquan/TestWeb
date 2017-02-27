@@ -38,9 +38,9 @@ namespace OWZX.Data
        /// <param name="type"></param>
        /// <param name="uid"></param>
        /// <returns></returns>
-       public static DataTable GetUserBett(int type, int uid, int pageindex, int pagesize)
+       public static DataTable GetUserBett(int type, int uid, int pageindex, int pagesize, string condition)
        {
-           return OWZX.Core.BSPData.RDBS.GetUserBett(type, uid,pageindex,pagesize);
+           return OWZX.Core.BSPData.RDBS.GetUserBett(type, uid, pageindex, pagesize, condition);
        }
 
        /// <summary>

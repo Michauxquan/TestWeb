@@ -32,9 +32,12 @@
         </div>
     </div>
     @*<div style="position: relative;">
+            <span id="l" class="pattern left"><img src="./download_pattern_left.png"></span>
+            <span id="r" class="pattern right"><img src="./download_pattern_right.png"></span>
+        </div>*@<div style="position: relative;">
         <span id="l" class="pattern left"><img src="./download_pattern_left.png"></span>
         <span id="r" class="pattern right"><img src="./download_pattern_right.png"></span>
-    </div>*@
+    </div>
     <div class="out-container">
         <div class="main">
             <header>
@@ -48,7 +51,7 @@
                                 </span>
                                 <span class="qrcode" title="">
                                     <canvas width="200" height="200" style="display: none;"></canvas>
-                                    <img alt="Scan me!" src="http://pcdd001.jshfcy.com/ewm/01.png">
+                                    <img alt="Scan me!" src="../upload/pc.png">
                                 </span>
                             </div>
                             <h1 class="name wrapper">
@@ -57,7 +60,7 @@
                                 </span>
                             </h1>
                             <p class="scan-tips">
-                                请扫描二维码下载或手机浏览器输入woaipc28.com下载<br>
+                                请扫描二维码下载或手机浏览器输入pcfc28.com下载<br>
                                 <!--或用手机浏览器输入这个网址:&nbsp;&nbsp;
                                 <span class="text-black">itms-services://?action=download-manifest&url=https://ssl.jshfcy.com/ceshi.plist</span>-->
                             </p>
@@ -65,11 +68,11 @@
                                 <p>
                                     版本 -
                                     <span itemprop="softwareVersion">
-                                        2.9 
+                                        2.9
                                         - 12005.25 KB
                                     </span>
                                 </p>
-                                <p>更新于: <span itemprop="datePublished">2017-01-04 14:00</span></p>
+                                <p>更新于: <span itemprop="datePublished">2017-02-04 14:00</span></p>
                                 <!--<h2 class="title" id="title01" style="position:absolute;bottom:-110px;left:0;display:block;">扫描二维码<img src="jt.png"></h2>-->
                             </div>
                         </div>
@@ -94,13 +97,13 @@
                             <div class="popularize-list" id="popularize-list"></div>
                         </div>
                         <!--10-15修改-->
-                        <h2 class="title" id="title">扫描二维码<img src="../images/jt.png"></h2>
+                        <h2 class="title" id="title">扫描二维码<img src="../upload/pc.png"></h2>
                     </div>
                 </div>
             </header>
             <div id="sweep" class="master-section section">
 
-                <img id="code" src="http://pcdd001.jshfcy.com/ewm/01.png" style="width: 200px;display: none;" alt="">
+                <img id="code" src="../upload/pc.png" style="width: 200px;display: none;" alt="">
             </div>
             <link href="@{@WorkContext.ScriptCDN}/scripts/down/help_fc.css" rel="stylesheet" type="text/css">
             <script src="@{@WorkContext.ScriptCDN}/scripts/down/swiper.min.js" type="text/javascript"></script>
@@ -134,7 +137,7 @@
     </div>
 
     <div id="ft-bottom" class="color-3">
-     
+
     </div>
     <!--<div class="help_fc_bg" style="height: 8634px;"></div>-->
     <!-- Release list -->
@@ -159,21 +162,21 @@
         }
         $("#load").html('');
         //安卓下载地址
-        var an_1 = 'http://pcdd001.jshfcy.com/pcdd_2.9_01.apk';
+        var an_1 = 'http://www.pcfc28.com/down/yy28.apk';
         var an_2 = '';
         var an_3 = '';
         var an_4 = '';
         var an_5 = '';
 
-        //苹果下载地址
-        var iph_1 = 'itms-services://?action=download-manifest&url=https://ssl.jshfcy.com/pcdd/pcdd.plist';
-        var iph_2 = 'itms-services://?action=download-manifest&url=https://ssl.jshfcy.com/pcdd/pcdd01.plist';
-        var iph_3 = 'itms-services://?action=download-manifest&url=https://ssl.jshfcy.com/pcdd/pcdd02.plist';
+        //苹果下载地址  itms-services://?action=download-manifest&url=https://ssl.jshfcy.com/pcdd/pcdd.plist
+        var iph_1 = '';
+        var iph_2 = '';
+        var iph_3 = '';
         var iph_4 = '';
         var iph_5 = '';
 
         //普通链接
-        var pu = 'http://pc28.gg/down/';
+        var pu = 'http://www.pcfc28.com/home/down/';
         var ua = window.navigator.userAgent.toLowerCase();
         function dong()
         {
@@ -235,7 +238,8 @@
                 dong();
             }
             );
-        } else if (/(Android)/i.test(navigator.userAgent))
+        }
+        else if (/(Android)/i.test(navigator.userAgent))
         {
             //安卓浏览器
             $("#load").hide();
@@ -244,12 +248,12 @@
             $("#title").show();
 
             $("#b").html('<button onclick="sub2(an_1)">下载安装</button>');
-        } else
+        }
+        else
         {
             $("#load").hide();
             $("#sweep").hide();
             $("#title").hide();
-
         };
     </script>
     <script type="text/javascript">

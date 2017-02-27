@@ -43,9 +43,9 @@ namespace OWZX.Services
         /// <param name="type"></param>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public static DataTable GetUserBett(int type, int uid, int pageindex, int pagesize)
+        public static DataTable GetUserBett(int type, int uid, int pageindex, int pagesize, string condition="")
         {
-            return OWZX.Data.LotteryList.GetUserBett(type, uid, pageindex, pagesize);
+            return OWZX.Data.LotteryList.GetUserBett(type, uid, pageindex, pagesize,condition);
         }
         /// <summary>
         /// 获取最新彩票记录

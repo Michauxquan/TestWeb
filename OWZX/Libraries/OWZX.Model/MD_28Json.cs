@@ -61,4 +61,13 @@ namespace OWZX.Model
         public string CreateDate { get; set; }
         public int KenoLotteryNo { get; set; }
     }
+
+    //{"time":"2017/02/27 16:43:28","period":1783670,"awardTime":"2017-02-27 16:42:00","result":"1,2,7,17,24,25,29,30,32,35,39,44,48,51,52,59,61,62,65,77",
+    //"next_period":1783671,"next_awardTime":"2017/02/27 16:43:30","awardTimeInterval":"2","mode":"760,小,双,上,奇,木","msg":"","state":"0"}
+    public class MD_HGJson
+    {
+        public string period { get; set; }
+        public string awardTime { get; set; }
+        public string result { get; set; }
+   }
 }

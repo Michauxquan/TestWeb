@@ -83,41 +83,41 @@ namespace OWZX.Web.controllers
         {
             switch (id)
             {
-                case (int)LotteryType.dd28:
+                case (int)LotType.dd28:
                     title = "蛋蛋28首页";
                     total = 300;
                     stop = 30;
                     break;
-                case (int)LotteryType.dd36: title = "蛋蛋36首页";
+                case (int)LotType.dd36: title = "蛋蛋36首页";
                     total = 300;
                     stop = 30;
                     break;
-                case (int)LotteryType.ddlhb: title = "蛋蛋龙虎豹首页";
+                case (int)LotType.ddlhb: title = "蛋蛋龙虎豹首页";
                     total = 300;
                     stop = 30;
                     break;
-                case (int)LotteryType.cakeno28: title = "加拿大28首页";
+                case (int)LotType.cakeno28: title = "加拿大28首页";
                     total = 210;
                     stop = 30;
                     break;
-                case (int)LotteryType.cakeno36: title = "加拿大36首页";
+                case (int)LotType.cakeno36: title = "加拿大36首页";
                     total = 210;
                     stop = 30;
                     break;
-                case (int)LotteryType.pkgj: title = "PK冠军首页";
+                case (int)LotType.pkgj: title = "PK冠军首页";
                     total = 300;
                     stop = 30;
                     break;
-                case (int)LotteryType.pkgyj: title = "PK冠亚军首页";
+                case (int)LotType.pkgyj: title = "PK冠亚军首页";
                     total = 300;
                     stop = 30;
                     break;
-                case (int)LotteryType.hg28:
+                case (int)LotType.hg28:
                     title = "韩国28首页";
                     total = 90;
                     stop = 30;
                     break;
-                case (int)LotteryType.js28:
+                case (int)LotType.js28:
                     title = "急速28首页";
                     total = 0;
                     stop = 0;
