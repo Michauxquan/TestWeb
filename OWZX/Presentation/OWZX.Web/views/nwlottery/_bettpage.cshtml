@@ -94,10 +94,12 @@
                 0
             </div>
             <div class="conform_btn" onclick="comform()" id="conform_btn">确认投注</div>
+            
         </div>
         <div class="border_out1_r">
-            <div class="touzhu2" style="display:none;">反选</div>
+            <div class="touzhu2" style="display: none;">反选</div>
             <div class="touzhu2">清除</div>
+            <div class="touzhu2" style="width: 60px;" data-id="@ViewData["lotterytype"]" id="provbett_btn">上期投注</div>
         </div>
     </div>
       
@@ -114,9 +116,10 @@
                 <th width="50">号码</th>
                 <th width="71" style="display: none;">上期赔率</th>
                 <th width="71">当前赔率</th>
+                <th width="71">已投注</th>
                 <th width="53">请选择</th>
                 <th width="100">投注</th>
-                <th width="110">倍数</th>
+                <th width="120">倍数</th>
             </tr>
             @foreach (DataRow row in ds.Tables[0].Rows)
             {
@@ -137,15 +140,15 @@
                     </td>
                     <td style="display: none;"></td>
                     <td class="lossrate" data-type=@row["item"]>@row["odds"]</td>
+                    <td ><span id="span_@num"></span></td>
                     <td>
                         <input type="checkbox" name="checkboxd" value="checkbox" />
                     </td>
                     <td>
-                        <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled"
+                        <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
                                id="txt_@num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
                     </td>
-                    <td style="width: 80px;">
-
+                    <td style="width: 120px;">
                         <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
                         <a class="multiple" href="javascript:chgTimes('txt_@num',2)">2</a>
                         <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>
@@ -160,14 +163,16 @@
                 <th width="50">号码</th>
                 <th width="71" style="display: none;">上期赔率</th>
                 <th width="71">当前赔率</th>
+                <th width="71">已投注</th>
                 <th width="53">请选择</th>
                 <th width="100">投注</th>
-                <th width="110">倍数</th>
+                <th width="120">倍数</th>
             </tr>
              
             @foreach (DataRow row in ds.Tables[1].Rows)
             {
-                string num = (lottype == 4 || lottype == 5) ? @row["id"].ToString() : @row["item"].ToString();
+                //string num = (lottype == 4 || lottype == 5) ? @row["id"].ToString() : @row["item"].ToString();
+                string num = @row["item"].ToString();
                 <tr align="center" bgcolor="#FFFFFF" height="27">
                     <td>
                         @if ((int)@ViewData["lotterytype"] != 9)
@@ -183,13 +188,14 @@
                     </td>
                     <td style="display: none;"></td>
                     <td class="lossrate" data-type=@row["item"]>@row["odds"]</td>
+                     <td ><span id="span_@num"></span></td>
                     <td>
                         <input type="checkbox" name="checkboxd" value="checkbox"/>
                     </td>
                     <td>
-                        <input type="text" class="input2" name="SMONEY" style="width: 110px; ime-mode: disabled" id='txt_@num' onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8"/>
+                        <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled" id='txt_@num' onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8"/>
                     </td>
-                    <td style="width: 80px;">
+                    <td style="width: 120px;">
                         <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
                         <a class="multiple" href="javascript:chgTimes('txt_@num',2)">2</a>
                         <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>

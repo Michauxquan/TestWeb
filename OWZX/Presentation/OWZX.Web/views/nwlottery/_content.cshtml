@@ -46,11 +46,11 @@
         </td>
         <td>@{string rt = string.Format("{0:n0}",@lot.TotalBett);} @rt</td>
         <td>@lot.WinPerson/@lot.BettPerson</td>
-        <td>@{string bt = string.Format("{0:n0}", @lot.LuckResult); string lk = string.Format("{0:n0}", @lot.Money);} @bt/@lk</td>
+        <td>@{string bt = string.Format("{0:n0}", @lot.LuckResult); string lk = string.Format("{0:n0}", @lot.Money);} @(lk!="0"?"<a style=\"color: #FD6400;cursor:pointer;\" href=\"javascript:loadpage('bett',"+@lot.Expect+")\">":"")@bt/@lk @(lk!="0"?"</a>":"")</td>
         <td style="width:30px;">
             @if (lot.Status == 0)
             {
-                <div class="lot_btn_@lot.Expect"><a href="javascript:loadpage('bett',@lot.Expect)"><div class="ltoperate">竞  猜</div></a></div>
+                <div class="lot_btn_@lot.Expect"><a href="javascript:loadpage('bett',@lot.Expect)"><div class="ltoperate"> @(lot.Money>0?"追  加":"竞  猜")</div></a></div>
             }
             else if (lot.Status == 1)
             {

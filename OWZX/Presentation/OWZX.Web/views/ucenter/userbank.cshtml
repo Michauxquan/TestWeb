@@ -31,7 +31,8 @@
                 $.post('/ucenter/BankChange',
                     { changefee: decimal,dafepassword:$('#safepassword').val() ,type: _this.data("type")},
                     function(data) {
-                        alert(data.content);
+                        var result = eval('('+data+')');
+                        alert(result.content);
                     });
             });
         }); 
@@ -70,7 +71,7 @@
                 <tr>
                     <th height="50" align="right">&nbsp;<br/></th>
                     <td>
-                        <a href="javascript:void(0)" class="greenBT" id="inmoneybtn" data-type="0"style="font-size: 14px; padding: 3px 20px;">存元宝</a>
+                        <a href="javascript:void(0)" class="greenBT" id="inmoneybtn" data-type="0" style="font-size: 14px; padding: 3px 20px;">存元宝</a>
                     </td>
                 </tr>
                 <tr>

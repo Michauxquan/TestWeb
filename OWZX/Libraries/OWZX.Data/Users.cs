@@ -45,7 +45,8 @@ namespace OWZX.Data
             partUserInfo.VerifyLoginRg = TypeHelper.ObjectToInt(reader["verifyloginrg"]);
             partUserInfo.LiftBanTime = TypeHelper.ObjectToDateTime(reader["liftbantime"]);
             partUserInfo.Salt = reader["salt"].ToString();
-
+            if (reader["bankmoney"].ToString() != "")
+                partUserInfo.BankMoney = Decimal.Parse(reader["bankmoney"].ToString());
             if (reader["totalmoney"].ToString() != "")
                 partUserInfo.TotalMoney = Decimal.Parse(reader["totalmoney"].ToString());
             return partUserInfo;
@@ -74,7 +75,7 @@ namespace OWZX.Data
             userInfo.VerifyLoginRg = TypeHelper.ObjectToInt(reader["verifyloginrg"]);
             userInfo.LiftBanTime = TypeHelper.ObjectToDateTime(reader["liftbantime"]);
             userInfo.Salt = reader["salt"].ToString();
-
+            userInfo.BankMoney = Decimal.Parse(reader["bankmoney"].ToString());
             userInfo.TotalMoney = Decimal.Parse(reader["totalmoney"].ToString());
 
             userInfo.LastVisitTime = TypeHelper.ObjectToDateTime(reader["lastvisittime"]);

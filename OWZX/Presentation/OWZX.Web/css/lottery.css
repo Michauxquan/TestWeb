@@ -388,9 +388,9 @@ a.puan_quan_enter:hover, a.puan_quan_enter:active{text-decoration:none;width:26p
 .border_out1_l span{width:63.6px; float:left; text-align:center;letter-spacing: 1px;
                     word-spacing: 1px; cursor:pointer;color:#8d5000;border:1px solid #e4393c;border-right:none;height:31px; }
 .border_out1_c{width:268px;height:29px; border:2px solid #e4393c; float:left;line-height:29px;margin-left:3px;}
-.border_out1_r{width:74px;height:35px; float:left;}
+.border_out1_r{min-width:125px;height:35px; float:left;}
 .touzhu1{width:80px;height:33px;float:left;line-height:33px; text-align:center; color:#8d5000;margin-left:4px; cursor:pointer;}
-.touzhu2{background:#e4393c; width:47px;height:33px;float:left;line-height:33px; text-align:center; color:white;margin-left:4px; cursor:pointer;border-radius:3px;font-size:14px; font-weight:bold;}
+.touzhu2{background:#e4393c;padding: 0px 3px;height:33px;float:left;line-height:33px; text-align:center; color:white;margin-left:4px; cursor:pointer;border-radius:3px;font-size:14px; font-weight:bold;}
 .conform_btn{ width:80px;height:27px;float:right; background:#e4393c;color:white; font-size:14px; font-weight:bold;line-height:25px; text-align:center;border:1px solid #e4393c; cursor:pointer;}
 /*.content_middle { background: url(../img/content-border.gif) repeat-y;
 }*/

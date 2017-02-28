@@ -372,6 +372,13 @@ namespace OWZX.Web.controllers
             return View(model);
         }
 
+        public ActionResult GetProvBettInfo(int type = 0)
+        { 
+            var list = LotteryList.GetUserBett(type,  WorkContext.Uid,1, 2); 
+            string btjson = JsonConvert.SerializeObject(list);
+            return Content(btjson);
+        }
+
         /// <summary>
         /// 添加投注模式
         /// </summary>

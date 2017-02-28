@@ -2,6 +2,7 @@
 
 var maxnum = 20000000; //最大投注金额
 var minnum = 10;
+var BeforePeriods;
 $(document).ready(function ()
 {
     //点击投注模式
@@ -31,6 +32,7 @@ $(document).ready(function ()
   }
 
 );
+
 
     //点击每个栏目倍数
 
@@ -84,7 +86,10 @@ $(document).ready(function ()
     ////刷新赔率
     //$(".touzhu1").eq(0).click(function () { refreshd(Periods); })
     ////上期投注
-    //$(".touzhu1").eq(1).click(function () { personmode(BeforePeriods); })
+    $("#provbett_btn").click(function () {
+        getprovbettinfo(1);
+    });
+    getprovbettinfo(0);
     //点击整体的倍数
     $("#border_out1_l").find("span").click(function ()
     {
@@ -144,6 +149,23 @@ $(document).ready(function ()
     });
 });
 
+function getprovbettinfo(type) {
+    $.post('/nwlottery/getprovbettinfo', { type: $('#provbett_btn').data("id") }, function (data) {
+        var dt = JSON.parse(data); 
+        for (var i = 0; i < dt.length; i++) { 
+            if (dt[i].lotterynum != expect && type == 1 ) {
+                UserMode(dt[i].bettinfo.split(';'));
+            }
+            if (dt[i].lotterynum == expect) {
+                var arr = dt[i].bettinfo.split(';');
+                $.each(arr, function(i) {
+                    var arritem = arr[i].split(':'); 
+                    $('[id="span_'+arritem[0]+""+'"]').html(ver(arritem[1])); 
+                });
+            }
+        } 
+    });
+}
 
 //标准投注模式设定方法
 function setValue(num)
@@ -234,24 +256,18 @@ function setAllvalue(peilv)
     });
 }
 //反选		  
-function ani_select()
-{
-    $("input[name='checkboxd']").each(function (i)
-    {
-        if (!$(this).attr("disabled"))
-        {
-            if (!$(this).attr("checked"))
-            {
+function ani_select() {
+    $("input[name='checkboxd']").each(function(i) {
+        if (!$(this).attr("disabled")) {
+            if (!$(this).attr("checked")) {
                 $(this).parent().next("td").children("input").val(nub1[i]);
                 $(this).attr("checked", true);
-            } else
-            {
+            } else {
                 $(this).parent().next("td").children("input").val("");
                 $(this).attr("checked", false);
             }
         }
-    }
-									  )
+    });
     getAllpceggs();
 }
 
@@ -301,7 +317,11 @@ function UserMode(arr, flag)
             {
                 $("#txt_" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").attr("checked", true);
             }
-            $("#txt_" + (parseInt(arritem[0])).toString()).val(ver(arritem[1]));
+            if (parseInt(arritem[0]) + "" != "NaN") {
+                $("#txt_" + (parseInt(arritem[0])).toString()).val(ver(arritem[1]));
+            } else {
+                $("[id='txt_" +arritem[0]+"']").val(ver(arritem[1]));
+            }
         }
     });
     getAllpceggs();
