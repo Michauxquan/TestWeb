@@ -372,9 +372,14 @@ namespace OWZX.Web.controllers
             return View(model);
         }
 
-        public ActionResult GetProvBettInfo(int type = 0)
-        { 
-            var list = LotteryList.GetUserBett(type,  WorkContext.Uid,1, 2); 
+        public ActionResult GetProvBettInfo(int type = 0,string lotterynum="")
+        {
+            var condition = "";
+            if (!string.IsNullOrEmpty(lotterynum))
+            {
+                condition = " where a.lotterynum='" + lotterynum + "' ";
+            }
+            var list = LotteryList.GetUserBett(type, WorkContext.Uid, 1, 2, condition); 
             string btjson = JsonConvert.SerializeObject(list);
             return Content(btjson);
         }

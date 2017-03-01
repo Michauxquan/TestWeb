@@ -3,9 +3,6 @@
 }
 @model List<OWZX.Model.MD_BettMode>
 <script src="~/scripts/selmode.js"></script>
-<script src="~/scripts/play.js"></script>
-
-
 <script>
     var StrTimeOut = 0;
     var num = "";
@@ -13,6 +10,69 @@
     var mymoney = @WorkContext.PartUserInfo.TotalMoney;//我的余额
     var expect=@ViewData["expect"];
 </script>
+<script src="~/scripts/play.js"></script>
+<style>
+     .chipsul {
+            float: left;
+            margin-right: 5px;
+        }
+        .chipsul li.chips a {
+            width: 31px;
+            height: 31px;
+            display: block;
+            float: left;
+            text-decoration: none;
+        }
+         .chipsul .chips1 {
+            background: url(../../images/chips/chips_10000.png) no-repeat center;
+        }
+        .chipsul .chips2 {
+            background: url(../../images/chips/chips_100000.png) no-repeat center;
+        }
+        .chipsul .chips3 {
+            background: url(../../images/chips/chips_500000.png) no-repeat center;
+        }
+        .chipsul .chips4 {
+            background: url(../../images/chips/chips_1000000.png) no-repeat center;
+        }
+         .chips5 {
+            background: url(../../images/chips/chips_500000.png) no-repeat center;
+        }
+        .self {
+            height: 29px;
+            line-height: 29px; 
+            border: 1px solid #e4393c;
+            float: left;
+            background: #e4393c;
+            color: #fff;
+        }
+        .avinput {
+            border: none;
+            height: 29px;
+            width: 75px;
+            color: #f00;
+            font-size: 16px;
+            margin: -4px 0 0 0px;
+            padding-left: 2px;
+        }
+        .self li {
+            float: left;
+            height: 29px;
+            line-height: 29px;
+            font-size: 13px;
+        }
+        .self li a {
+            float: left;
+            width: 64px;
+            height: 29px; 
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            text-indent: 0px;
+        }
+</style>
+
+
 <div class="bt_page">
     @if((bool)ViewData["exists"])
     {
@@ -36,7 +96,7 @@
             <div class="border_out_title"><span style="float: left; width: auto;">标准投注模式</span> <span style="float: right; width: auto;"></span></div>
             <table border="0" align="left" style="padding-left: 5px;">
                 <tr>
-                    <td class="img_bt1" attr="0">全包</td>
+                    <td class="img_bt1" style="display: none" attr="0">全包</td>
                     <td class="img_bt1" attr="1">单</td>
                     <td class="img_bt1" attr="2">双</td>
                     <td class="img_bt1" attr="3">大</td>
@@ -55,10 +115,10 @@
                     <td class="img_bt1" attr="16">1尾</td>
                     <td class="img_bt1" attr="17">2尾</td>
                     <td class="img_bt1" attr="18">3尾</td>
+                    <td class="img_bt1" attr="19">4尾</td>
 
                 </tr>
                 <tr>
-                    <td class="img_bt1" attr="19">4尾</td>
                     <td class="img_bt1" attr="20">小尾</td>
                     <td class="img_bt1" attr="21">5尾</td>
                     <td class="img_bt1" attr="22">6尾</td>
@@ -80,11 +140,14 @@
                     <td class="img_bt1" attr="38">5余4</td>
                 </tr>
             </table>
+             <div class="border_out1_l" id="border_out1_l" style="border-right: 1px solid #e4393c; margin-left: 7px;">
+             <span>0.1倍</span><span>1.5倍</span><span>2倍</span><span>10倍</span><span>50倍</span><span>100倍</span>
+        </div> 
         </div>
     </div>
     }
 
-    <div class="border_out1">
+@*    <div class="border_out1">
         <div class="border_out1_l" id="border_out1_l" style="border-right: 1px solid #e4393c;">
             <span>0.1倍</span><span>1.5倍</span><span>2倍</span><span>10倍</span><span>50倍</span><span>100倍</span>
         </div>
@@ -101,8 +164,44 @@
             <div class="touzhu2">清除</div>
             <div class="touzhu2" style="width: 60px;" data-id="@ViewData["lotterytype"]" id="provbett_btn">上期投注</div>
         </div>
+    </div>*@
+  @*  <div class="border_out1">
+        <div class="border_out1_l" id="border_out1_l" style="border-right: 1px solid #e4393c;">
+            <span>0.1倍</span><span>1.5倍</span><span>2倍</span><span>10倍</span><span>50倍</span><span>100倍</span>
+        </div> 
+    </div>*@
+       <div class="border_out1">
+            <div style="width: 388px;height: 33px;float: left;color: #515151;line-height: 33px;">
+            <ul class="chipsul" style="float: left;margin:0px 10px 10px;">
+				<li class="chips">
+				<a class="chips1" title="" href="javascript:chips(10000)">&nbsp;</a>
+				<a class="chips2" title="" href="javascript:chips(100000)">&nbsp;</a>
+				<a class="chips3" title="" href="javascript:chips(500000)">&nbsp;</a>
+				<a class="chips4" title="" href="javascript:chips(1000000)">&nbsp;</a>
+				<a class="chips5" title="" href="javascript:chips(5000000)">&nbsp;</a>
+				</li>
+			</ul>
+                <ul class="self">
+		        <li><input id="betsLeft" class="avinput" type="text"/>
+		        </li><li><a href="javascript:usefenpei()">定额梭哈</a></li>
+	        </ul>
+            </div>
+         <div class="border_out1_c">
+            <div style="float: left; width: 72px; padding-left: 5px;">总投注乐豆：</div>
+            <div style="color: #ff0000; width: 108px; float: left; overflow: hidden" id="totalvalue">
+                0
+            </div>
+            <div class="conform_btn" onclick="comform()" id="conform_btn">确认投注</div>
+            
+        </div>
+        <div class="border_out1_r">
+            <div class="touzhu2" style="display: none;">反选</div>
+            <div class="touzhu2">清除</div>
+            <div class="touzhu2" style="width: 60px;" data-id="@ViewData["lotterytype"]" id="provbett_btn">上期投注</div>
+            <div class="touzhu2" id="prevbett" onclick="useSuoha();">梭哈</div>
+            <div class="touzhu2" id="btnall" onclick="setValue(0);">全包</div>  
+        </div>
     </div>
-      
     <div class="content_middle" style="height: auto; width: 910px; margin: auto;" id="panel">
 
         @{
@@ -123,7 +222,8 @@
             </tr>
             @foreach (DataRow row in ds.Tables[0].Rows)
             {
-                string num =(lottype==4 ||lottype==5)?@row["id"].ToString():@row["item"].ToString();
+               // string num =(lottype==4 ||lottype==5)?@row["id"].ToString():@row["item"].ToString();
+                string num = @row["item"].ToString();
             <text>
                 <tr align="center" bgcolor="#FFFFFF" height="27">
                     <td>

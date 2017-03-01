@@ -1,10 +1,12 @@
 ﻿/// <reference path="D:\我的\项目\蛋蛋竞猜\Qg_EggQuiz\Qg_EggQuiz\qcgeass.aspx" />
-
+var PRESSNUM = '1,3,6,10,15,21,28,36,45,55,63,69,73,75,75,73,69,63,55,45,36,28,21,15,10,6,3,1';
+var nub1 = new Array(1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 63, 69, 73, 75, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 63, 69, 73, 75);
 var maxnum = 20000000; //最大投注金额
 var minnum = 10;
 var BeforePeriods;
 $(document).ready(function ()
 {
+     
     //点击投注模式
     $(".img_bt1").click(function ()
     {
@@ -20,7 +22,7 @@ $(document).ready(function ()
         //}
         $(this).css("background", "url(../../images/xy28_bg.gif)");//img_bt2.gif
         setValue(i);
-        getAllpceggs();
+        //getAllpceggs();
     }).hover(
   function ()
   {
@@ -36,14 +38,37 @@ $(document).ready(function ()
 
     //点击每个栏目倍数
 
-    $("input[name='checkboxd']").each(function (i)
-    {
-        $(this).click(function ()
-        {
-            return false;
-        });
+    //$("input[name='checkboxd']").each(function (i)
+    //{
+    //    $(this).click(function ()
+    //    {
+    //        return false;
+    //    });
 
-    })
+    //})
+
+    $('input[type="checkbox"]').each(function (i, v) {
+        $(v).click(function () { 
+            if (!$(v).prop("checked")) {
+                $(v).prop("checked", true);
+                $(v).parent().next("td").children("input").val(nub1[i - 1]);
+            } else {
+                $(v).prop("checked", false);
+                $(v).parent().next("td").children("input").val("");
+            }
+            var total = 0;
+            $("#panel").find("input[name='SMONEY']").each(function () {
+                if (!$(this).attr("readonly")) {
+                    var txt_value = $.trim($(this).val()).replace(/,/gi, "");
+                    if (txt_value && !isNaN(txt_value)) {
+                        total += parseInt(txt_value);
+                    }
+                }
+            });
+            $("#totalvalue").text(ver(total + ""));
+            $("#totalvalue").attr("");
+        });
+    });
     ////点击checkbox,反向选择     不能修改
     //$("input[name='checkboxd']").each(function (i)
     //{
@@ -62,7 +87,7 @@ $(document).ready(function ()
     {
         $(this).click(function ()
         {
-            var dom = $(this).parent().next("td").next("td").next("td").children("input");
+            var dom = $(this).parent().next("td").next("td").next("td").next("td").children("input");
             if (!dom.attr("disabled"))
             {
                 if (!dom.prop("checked"))
@@ -89,13 +114,26 @@ $(document).ready(function ()
     $("#provbett_btn").click(function () {
         getprovbettinfo(1);
     });
+    //setTimeout(function() { getprovbettinfo(0) },800);
     getprovbettinfo(0);
     //点击整体的倍数
     $("#border_out1_l").find("span").click(function ()
     {
         var peilv = $(this).text().replace("倍", "");
-        setAllvalue(peilv);
+        if ($('#betsLeft').val() != "") {
+            var s = parseFloat($('#betsLeft').val()) * peilv
+            if (s == 0) {
+                $('#betsLeft').val('');
+            } else {
+                $('#betsLeft').val(s.toFixed(0));
+            }
+        } else {
+            setAllvalue(peilv);
+        }
         getAllpceggs();
+        //var peilv = $(this).text().replace("倍", "");
+        //setAllvalue(peilv);
+        //getAllpceggs();
     }).hover(
   function ()
   {
@@ -121,9 +159,9 @@ $(document).ready(function ()
         {
             $(this).val(val.substring(1));
             getAllpceggs();
-        } else
-        {
-            $(this).parent().prev("td").children("input").prop("checked", true);
+        } else {
+            console.log(1);
+            $(this).parent().prev("td").children("input").attr("checked", "checked");
             getAllpceggs();
         }
     }).blur(function ()
@@ -150,23 +188,144 @@ $(document).ready(function ()
 });
 
 function getprovbettinfo(type) {
-    $.post('/nwlottery/getprovbettinfo', { 'type': $('#provbett_btn').data("id") }, function (data) {
+    $.post('/nwlottery/getprovbettinfo', { 'type': $('#provbett_btn').data("id"), lotterynum: type ==0 ? expect:"" }, function (data) {
         var dt = JSON.parse(data); 
-        for (var i = 0; i < dt.length; i++) { 
+        for (var i = 0; i < dt.length; i++) {
+            if (dt[i].lotterynum == expect) {
+                var arr = dt[i].bettinfo.split(';'); 
+                $.each(arr, function (i) {
+                    var arritem = arr[i].split(':');  
+                    if (parseInt(arritem[0]) + "" != "NaN") {
+                        $("#span_" + (parseInt(arritem[0])).toString()).html(ver(arritem[1]));
+                    } else {
+                        $("[id='span_" + arritem[0] + "']").html(ver(arritem[1]));
+                    }
+                });
+            }
             if (dt[i].lotterynum != expect && type == 1 ) {
                 UserMode(dt[i].bettinfo.split(';'), false, true);
-            }
-            if (dt[i].lotterynum == expect) {
-                var arr = dt[i].bettinfo.split(';');
-                $.each(arr, function(i) {
-                    var arritem = arr[i].split(':'); 
-                    $('[id="span_'+parseInt(arritem[0])+""+'"]').html(ver(arritem[1])); 
-                });
+                break;
             }
         } 
     });
 }
 
+
+function is_new_game() {
+    var arr = [22, 23, 24, 25, 26, 27, 43, 45, 46, 47, 48, 49, 50, 51, 52, 28];
+    var is_self = false;
+    //for (var i in arr) {
+    //    if (game_id == arr[i]) {
+    //        is_self = true;
+    //    }
+    //}
+    return is_self;
+}
+//判断正整数 
+function checkRate(val) {
+    var re = /^[0-9]*[1-9][0-9]*$/;
+    if (!re.test(val)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+//定格梭分配
+function usefenpei() {
+    var totalScore = 0;
+    var perScore = 0;
+    var totalPressScore = 0;
+    var data = PRESSNUM.split(",");
+    var Input_Score = $('#betsLeft').val();
+    if (isNaN(Input_Score)) {
+        $('#betsLeft').val('');
+        alert('分配分必须为数字!');
+        return;
+    } else {
+        if (Input_Score < 1) {
+            $('#betsLeft').val('');
+            alert('分配分必须大于0!');
+            return;
+        }
+        if (checkRate(Input_Score) == false) {
+            $('#betsLeft').val('');
+            alert('分配分必须正整数!');
+            return;
+        }
+        var checked_num = 0;
+        for (var i = 0; i < data.length; i++) {
+            if ($("#txt_" + i).parent().prev("td").children("input").prop("checked")) {
+                checked_num = checked_num + 1;
+            }
+        }
+        if (Input_Score < checked_num) {
+            alert('分配分不够!');
+            return;
+        }
+        if (Input_Score > maxnum) {
+            $('#betsLeft').val(maxnum);
+            return;
+        }
+    }
+
+    for (var i = 0; i < data.length; i++) {
+        if ($("#txt_" + i).parent().prev("td").children("input").prop("checked")) {
+            var vval = $("#txt_" + i).val();
+            perScore = 0;
+            if (vval != null && vval != "" && !isNaN(parseInt(vval))) {
+                totalScore += parseInt(vval);
+            }
+        }
+    }
+    for (var i = 0; i < data.length; i++) {
+        if ($("#txt_" + i).parent().prev("td").children("input").prop("checked")) {
+            var vval = $("#txt_" + i).val();
+            perScore = 0;
+            if (vval != null && vval != "" &&!isNaN(parseInt(vval))) {
+                if (Input_Score <= maxnum) {
+                    perScore = Input_Score / totalScore * parseInt(vval);
+                } else {
+                    perScore = mymoney / totalScore * parseInt(vval);
+                }
+                $("#txt_" + i).val(parseInt(perScore));
+                totalPressScore += parseInt(perScore);
+            }
+        }
+    }
+    $("#totalvalue").html(totalPressScore);
+}
+function chips(num) { 
+    $("#betsLeft").val(num);
+    if (!is_new_game()) { 
+        usefenpei();
+    }
+}
+ 
+//梭哈
+function useSuoha() {
+    var totalScore = 0;
+    var perScore = 0;
+    var totalPressScore = 0;
+    var data = PRESSNUM.split(",");
+    for (var i = 0; i < data.length; i++) {
+        if ($("#txt_" + i).parent().prev("td").children("input").prop("checked")) {
+            totalScore += parseInt($("#txt_" + i).val());
+        }
+    }
+    for (var i = 0; i < data.length; i++) {
+        if ($("#txt_" + i).parent().prev("td").children("input").prop("checked")) {
+            if (mymoney <= maxnum) {
+                perScore = mymoney / totalScore * parseInt($("#txt_" + i).val());
+            }
+            else {
+                perScore = maxnum / totalScore * parseInt($("#txt_" + i).val());
+            }
+            $("#txt_" + i).val(parseInt(perScore));
+            totalPressScore += parseInt(perScore);
+        }
+    }
+    $("#totalvalue").html(totalPressScore);
+}
 //标准投注模式设定方法
 function setValue(num)
 {
@@ -175,7 +334,7 @@ function setValue(num)
         for (var i = 0; i < mode[num].length; i++)
         {
             var id_num = mode[num][i];
-            var id_name = "#txt_" + mode[num][i];
+            var id_name = "#txt_" + mode[num][i]; 
             if (!$(id_name).attr("readonly"))
             {
                 $(id_name).val(nub[id_num]);
@@ -214,6 +373,7 @@ function setValue(num)
             }
         }
     }
+    getAllpceggs();
 }
 //清除方法
 function clear()
@@ -226,7 +386,7 @@ function clear()
             $(this).val("");
         }
     });
-    $("#panel").find("input[name='checkboxd']").attr("checked", false);
+    $("#panel").find("input[name='checkboxd']").prop("checked", false);
     $("#totalvalue").text("0");
 }
 //数字加千分符号
@@ -259,12 +419,12 @@ function setAllvalue(peilv)
 function ani_select() {
     $("input[name='checkboxd']").each(function(i) {
         if (!$(this).attr("disabled")) {
-            if (!$(this).attr("checked")) {
+            if (!$(this).prop("checked")) {
                 $(this).parent().next("td").children("input").val(nub1[i]);
-                $(this).attr("checked", true);
+                $(this).prop("checked", true);
             } else {
                 $(this).parent().next("td").children("input").val("");
-                $(this).attr("checked", false);
+                $(this).prop("checked", false);
             }
         }
     });
@@ -301,7 +461,7 @@ function UserMode(arr,flag,isprev)
     clear();
     $.each(arr, function (i)
     {
-        var arritem = arr[i].split(':');
+        var arritem = arr[i].split(':'); 
         if (this != "")
         {
             //不可选的号，不处理
@@ -315,8 +475,8 @@ function UserMode(arr,flag,isprev)
                 $("#txt_" + (parseInt(arritem[0])).toString()).attr("readonly", true).attr("disabled", true);
             } else
             {
-                $("#txt_" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").attr("checked", true);
-            }
+                $("#txt_" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").prop("checked", true);
+            } 
             if (parseInt(arritem[0]) + "" != "NaN") {
                 $("#txt_" + (parseInt(arritem[0])).toString()).val(ver(arritem[1]));
             } else {
@@ -350,6 +510,9 @@ var first = 0;
 //取总的投注金币
 function getAllpceggs()
 {
+    if ($('#betsLeft').val() != "") {
+        usefenpei();
+    }
     var total = 0;
     $("#panel").find("input[name='SMONEY']").each(function ()
     {
@@ -375,7 +538,7 @@ function setpeilv(a_cis, a_cis1)
         {
             var v = this + "";
             //		$("#txt"+i).parent().prev("td").prev("td").text(v);	//上期赔率
-            $("#txt" + i).parent().prev("td").prev("td").prev("td").text(v); //上期赔率
+            $("#txt_" + i).parent().prev("td").prev("td").prev("td").text(v); //上期赔率
         })
     }
     if (a_cis1 != "")
@@ -384,7 +547,7 @@ function setpeilv(a_cis, a_cis1)
         {
             var v = this + "";
             //		$("#txt"+i).parent().prev("td").prev("td").prev("td").text(v);	//当前赔率
-            $("#txt" + i).parent().prev("td").prev("td").text(v); //当前赔率
+            $("#txt_" + i).parent().prev("td").prev("td").text(v); //当前赔率
         })
 
     }
@@ -434,7 +597,7 @@ function comform()
         var str = [];
         for (var i = 0; i < 28; i++)
         {
-            var txt_value = $.trim($("#txt" + i).val()).replace(/,/gi, "");
+            var txt_value = $.trim($("#txt_" + i).val()).replace(/,/gi, "");
             str.push(txt_value);
         }
         $("#ALLSMONEY").val(str.join(","));
@@ -747,7 +910,7 @@ function otherMode(num)
     //全
     if (o == 0)
     {
-        $("[name = 'tbChk']:checkbox").attr("checked", true);
+        $("[name = 'tbChk']:checkbox").attr("checked", "checked");
         for (var i = 0; i < cc; i++)
         {
             $("#tbNum" + i).val(parseInt(data[i]));
