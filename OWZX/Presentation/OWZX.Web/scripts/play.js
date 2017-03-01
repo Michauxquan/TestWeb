@@ -150,17 +150,17 @@ $(document).ready(function ()
 });
 
 function getprovbettinfo(type) {
-    $.post('/nwlottery/getprovbettinfo', { type: $('#provbett_btn').data("id") }, function (data) {
+    $.post('/nwlottery/getprovbettinfo', { 'type': $('#provbett_btn').data("id") }, function (data) {
         var dt = JSON.parse(data); 
         for (var i = 0; i < dt.length; i++) { 
             if (dt[i].lotterynum != expect && type == 1 ) {
-                UserMode(dt[i].bettinfo.split(';'));
+                UserMode(dt[i].bettinfo.split(';'), false, true);
             }
             if (dt[i].lotterynum == expect) {
                 var arr = dt[i].bettinfo.split(';');
                 $.each(arr, function(i) {
                     var arritem = arr[i].split(':'); 
-                    $('[id="span_'+arritem[0]+""+'"]').html(ver(arritem[1])); 
+                    $('[id="span_'+parseInt(arritem[0])+""+'"]').html(ver(arritem[1])); 
                 });
             }
         } 
@@ -291,9 +291,9 @@ function personmode(id)
 }
 
 //自定义投注模式
-function UserMode(arr, flag)
+function UserMode(arr,flag,isprev)
 {
-    if (StrTimeOut == "-1")
+    if (StrTimeOut == "-1" && typeof (isprev)==undefined && !isprev)
     {
         layer.alert("该期已经截止投注！", { icon: 2, title: "提示" });
         return false;
