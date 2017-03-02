@@ -144,5 +144,8 @@ namespace OWZX.Model
             set { addtime = value; }
         }
 
+        private int allsec;
+        public int AllSec { get; set; }
+
     }
 }

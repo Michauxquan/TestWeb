@@ -22,7 +22,7 @@
             });
         
             function getResultList(settype) {
-                $.post('/admin/lottery/GetOpenResult',{ lotterynum: @Model.lottery.Expect ,settype:settype},function(data) {
+                $.post('/admin/lottery/GetOpenResult',{ lotterynum: @(Model.lottery!=null?Model.lottery.Expect:"") ,settype:settype},function(data) {
                     var result = eval('(' + data + ')');
                     var html = "<br/>";
                     var rlist = result.content.split(",");

@@ -607,7 +607,8 @@ SELECT ROW_NUMBER() over(order by a.lotteryid {1}) id
       ,a.result
       ,a.resultnum,a.resulttype
       ,a.status
-      ,a.addtime    
+      ,a.addtime 
+      ,case when status=0 then  datediff(SECOND,GETDATE(),opentime) else 0 end  allsec
   into  #list
   FROM owzx_lotteryrecord a
   {0}
@@ -2406,7 +2407,7 @@ end catch
 
         #region 急速28
 
-        public DataTable GetAllMoneyByLotteryNum(string lotterynum = "", int type = 47)
+        public DataTable GetAllMoneyByLotteryNum(string lotterynum = "", int type = 3)
         {
             string commandText = string.Format(@"
 begin try
@@ -2449,7 +2450,7 @@ end catch
                     else
                     begin
                        insert into  owzx_lotteryopen (lotteryid,lotterynum,result,resultnum,one,two,three,opentime) 
-                       values({0},'{3}','{2}',@resultnum,@one,@two,@three,(select opentime from owzx_lotteryrecord where type=47 and expect='{3}')) 
+                       values({0},'{3}','{2}',@resultnum,@one,@two,@three,(select opentime from owzx_lotteryrecord where type={0} and expect='{3}')) 
                     end
                 end
                 select '操作成功' state
@@ -2488,7 +2489,7 @@ end catch
                 else
                 begin
                     insert into  owzx_lotteryopen (lotteryid,lotterynum,result,resultnum,one,two,three,opentime) 
-                    values({0},'{4}','{3}',@resultnum,@one,@two,@three,(select opentime from owzx_lotteryrecord where type=47 and expect='{4}')) 
+                    values({0},'{4}','{3}',@resultnum,@one,@two,@three,(select opentime from owzx_lotteryrecord where type={0} and expect='{4}')) 
                 end
             end
             select '操作成功' state
@@ -2505,7 +2506,7 @@ end catch
             return RDBSHelper.ExecuteScalar(commandText).ToString();
         }
 
-        public DataTable GetLotteryOpenSetList(int type = 47)
+        public DataTable GetLotteryOpenSetList(int type = 3)
         {
             string commandText = string.Format(@"
             begin try

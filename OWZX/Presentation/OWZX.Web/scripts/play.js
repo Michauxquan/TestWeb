@@ -1,6 +1,5 @@
 ﻿/// <reference path="D:\我的\项目\蛋蛋竞猜\Qg_EggQuiz\Qg_EggQuiz\qcgeass.aspx" />
-var PRESSNUM = '1,3,6,10,15,21,28,36,45,55,63,69,73,75,75,73,69,63,55,45,36,28,21,15,10,6,3,1';
-var nub1 = new Array(1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 63, 69, 73, 75, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 63, 69, 73, 75);
+var PRESSNUM = (lotterytype == 4 || lotterytype == 5) ? '10, 60, 270, 360, 300' : (lotterytype == 9 ? '10, 60, 270, 360, 620,870,1020,870,620,360,270,60,10' : '1,3,6,10,15,21,28,36,45,55,63,69,73,75,75,73,69,63,55,45,36,28,21,15,10,6,3,1'); 
 var maxnum = 20000000; //最大投注金额
 var minnum = 10;
 var BeforePeriods;
@@ -159,8 +158,7 @@ $(document).ready(function ()
         {
             $(this).val(val.substring(1));
             getAllpceggs();
-        } else {
-            console.log(1);
+        } else { 
             $(this).parent().prev("td").children("input").attr("checked", "checked");
             getAllpceggs();
         }
@@ -254,7 +252,7 @@ function usefenpei() {
         }
         var checked_num = 0;
         for (var i = 0; i < data.length; i++) {
-            if ($("#txt_" + i).parent().prev("td").children("input").prop("checked")) {
+            if ($("[id='txt_" + i+"']").parent().prev("td").children("input").prop("checked")) {
                 checked_num = checked_num + 1;
             }
         }
@@ -269,8 +267,8 @@ function usefenpei() {
     }
 
     for (var i = 0; i < data.length; i++) {
-        if ($("#txt_" + i).parent().prev("td").children("input").prop("checked")) {
-            var vval = $("#txt_" + i).val();
+        if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
+            var vval = $("[id='txt_" + getindname(i) + "']").val();
             perScore = 0;
             if (vval != null && vval != "" && !isNaN(parseInt(vval))) {
                 totalScore += parseInt(vval);
@@ -278,8 +276,8 @@ function usefenpei() {
         }
     }
     for (var i = 0; i < data.length; i++) {
-        if ($("#txt_" + i).parent().prev("td").children("input").prop("checked")) {
-            var vval = $("#txt_" + i).val();
+        if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
+            var vval = $("[id='txt_" + getindname(i) + "']").val();
             perScore = 0;
             if (vval != null && vval != "" &&!isNaN(parseInt(vval))) {
                 if (Input_Score <= maxnum) {
@@ -287,7 +285,7 @@ function usefenpei() {
                 } else {
                     perScore = mymoney / totalScore * parseInt(vval);
                 }
-                $("#txt_" + i).val(parseInt(perScore));
+                $("[id='txt_" + getindname(i) + "']").val(parseInt(perScore));
                 totalPressScore += parseInt(perScore);
             }
         }
@@ -300,7 +298,16 @@ function chips(num) {
         usefenpei();
     }
 }
- 
+
+function getindname(i) {
+    if (lotterytype == 4 || lotterytype == 5) {
+        return mode36[0][i];
+    } else if(lotterytype == 9){
+        return modelhb[0][i];
+    }
+    return i;
+}
+
 //梭哈
 function useSuoha() {
     var totalScore = 0;
@@ -308,19 +315,19 @@ function useSuoha() {
     var totalPressScore = 0;
     var data = PRESSNUM.split(",");
     for (var i = 0; i < data.length; i++) {
-        if ($("#txt_" + i).parent().prev("td").children("input").prop("checked")) {
-            totalScore += parseInt($("#txt_" + i).val());
+        if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
+            totalScore += parseInt($("[id='txt_" + getindname(i) + "']").val());
         }
     }
     for (var i = 0; i < data.length; i++) {
-        if ($("#txt_" + i).parent().prev("td").children("input").prop("checked")) {
+        if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
             if (mymoney <= maxnum) {
-                perScore = mymoney / totalScore * parseInt($("#txt_" + i).val());
+                perScore = mymoney / totalScore * parseInt($("[id='txt_" + getindname(i) + "']").val());
             }
             else {
-                perScore = maxnum / totalScore * parseInt($("#txt_" + i).val());
+                perScore = maxnum / totalScore * parseInt($("[id='txt_" + getindname(i) + "']").val());
             }
-            $("#txt_" + i).val(parseInt(perScore));
+            $("[id='txt_" + getindname(i) + "']").val(parseInt(perScore));
             totalPressScore += parseInt(perScore);
         }
     }
@@ -337,17 +344,18 @@ function setValue(num)
             var id_name = "#txt_" + mode[num][i]; 
             if (!$(id_name).attr("readonly"))
             {
+
                 $(id_name).val(nub[id_num]);
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
         }
-    } else if (lotterytype == 4 || lotterytype == 5)
-    {
+    } else if (lotterytype == 4 || lotterytype == 5) { 
         for (var i = 0; i < mode36[num].length; i++) {
             var id_num = mode36[num][i];
-            var id_name = "#txt_" + mode36[num][i];
+            var id_name = "[id='txt_" + mode36[num][i]+"']";
             if (!$(id_name).attr("readonly")) {
-                $(id_name).val(fc36[id_num-1]);
+                //$(id_name).val(fc36[id_num-1]);
+                $(id_name).val(fc36[i]);
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
         }
@@ -358,7 +366,7 @@ function setValue(num)
             var id_num = modegj[num][i];
             var id_name = "#txt_" + modegj[num][i];
             if (!$(id_name).attr("readonly")) {
-                $(id_name).val('10');
+                $(id_name).val(pkgj);
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
         }
@@ -369,6 +377,15 @@ function setValue(num)
             var id_name = "#txt_" + modegyj[num][i];
             if (!$(id_name).attr("readonly")) {
                 $(id_name).val(pkgyj[id_num-3]);
+                $(id_name).parent().prev("td").children("input").prop("checked", true);
+            }
+        }
+    } else if (lotterytype ==9) {
+        for (var i = 0; i < modelhb[num].length; i++) {
+            var id_num = modelhb[num][i];
+            var id_name = "[id='txt_" + modelhb[num][i] + "']";
+            if (!$(id_name).attr("readonly")) { 
+                $(id_name).val(ddlhb[i]);
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
         }
@@ -468,14 +485,18 @@ function UserMode(arr,flag,isprev)
             if ($("#txt_" + (parseInt(arritem[0])).toString()).attr("readonly"))
             {
                 return;
-            }
+            } 
             if (flag)
             {
                 $("#txt_" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").attr("disabled", true);
                 $("#txt_" + (parseInt(arritem[0])).toString()).attr("readonly", true).attr("disabled", true);
             } else
             {
-                $("#txt_" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").prop("checked", true);
+                if (!isNaN(parseInt(arritem[0]))) {
+                    $("#txt_" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").prop("checked", true);
+                } else {
+                    $("[id='txt_" +arritem[0]+"']").parent().prev("td").children("input").prop("checked", true);
+                }
             } 
             if (parseInt(arritem[0]) + "" != "NaN") {
                 $("#txt_" + (parseInt(arritem[0])).toString()).val(ver(arritem[1]));

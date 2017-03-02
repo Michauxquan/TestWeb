@@ -582,6 +582,7 @@
     <Content Include="scripts\play.js" />
     <Content Include="scripts\region.js" />
     <Content Include="scripts\resize.js" />
+    <Content Include="scripts\selmode.js" />
     <Content Include="scripts\ucenter.safe.js" />
     <Content Include="scripts\ucenter.user.js" />
     <Content Include="css\account.css" />

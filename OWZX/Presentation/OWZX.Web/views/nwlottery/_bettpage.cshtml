@@ -89,11 +89,12 @@
         </div>
     </div>
     }
-    @if ((int)@ViewData["lotterytype"] != 9)
-    {
-    <div class="border_out" style="margin-top: -2px; height:120px;">
+ 
+    <div class="border_out" style="margin-top: -2px; height:@(((int)@ViewData["lotterytype"] != 9 && (int)@ViewData["lotterytype"] != 5 && (int)@ViewData["lotterytype"] != 4)?"120px":"75px");">
         <div class="border_out_l">
             <div class="border_out_title"><span style="float: left; width: auto;">标准投注模式</span> <span style="float: right; width: auto;"></span></div>
+            @if ((int)@ViewData["lotterytype"] != 9 && (int)@ViewData["lotterytype"] != 5 && (int)@ViewData["lotterytype"] != 4)
+            {
             <table border="0" align="left" style="padding-left: 5px;">
                 <tr>
                     <td class="img_bt1" style="display: none" attr="0">全包</td>
@@ -139,37 +140,13 @@
                     <td class="img_bt1" attr="37">5余3</td>
                     <td class="img_bt1" attr="38">5余4</td>
                 </tr>
-            </table>
+            </table> 
+            }
              <div class="border_out1_l" id="border_out1_l" style="border-right: 1px solid #e4393c; margin-left: 7px;">
              <span>0.1倍</span><span>1.5倍</span><span>2倍</span><span>10倍</span><span>50倍</span><span>100倍</span>
         </div> 
         </div>
-    </div>
-    }
-
-@*    <div class="border_out1">
-        <div class="border_out1_l" id="border_out1_l" style="border-right: 1px solid #e4393c;">
-            <span>0.1倍</span><span>1.5倍</span><span>2倍</span><span>10倍</span><span>50倍</span><span>100倍</span>
-        </div>
-        <div class="border_out1_c">
-            <div style="float: left; width: 72px; padding-left: 5px;">总投注乐豆：</div>
-            <div style="color: #ff0000; width: 108px; float: left; overflow: hidden" id="totalvalue">
-                0
-            </div>
-            <div class="conform_btn" onclick="comform()" id="conform_btn">确认投注</div>
-            
-        </div>
-        <div class="border_out1_r">
-            <div class="touzhu2" style="display: none;">反选</div>
-            <div class="touzhu2">清除</div>
-            <div class="touzhu2" style="width: 60px;" data-id="@ViewData["lotterytype"]" id="provbett_btn">上期投注</div>
-        </div>
-    </div>*@
-  @*  <div class="border_out1">
-        <div class="border_out1_l" id="border_out1_l" style="border-right: 1px solid #e4393c;">
-            <span>0.1倍</span><span>1.5倍</span><span>2倍</span><span>10倍</span><span>50倍</span><span>100倍</span>
-        </div> 
-    </div>*@
+    </div> 
        <div class="border_out1">
             <div style="width: 388px;height: 33px;float: left;color: #515151;line-height: 33px;">
             <ul class="chipsul" style="float: left;margin:0px 10px 10px;">

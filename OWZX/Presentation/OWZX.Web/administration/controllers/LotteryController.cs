@@ -93,10 +93,10 @@ namespace OWZX.Web.Admin.Controllers
 
         #region 急速28后台设置
 
-        public ActionResult OpenSet(int type = 47)
+        public ActionResult OpenSet(int type = 3)
         {
-            List<MD_LotteryOpenSet> openlist = Lottery.GetLotteryOpenSetList(47);
-            List<MD_Lottery> lottery = Lottery.GetLotteryList(1, 1, " where a.status=0 and a.type=47", "asc");
+            List<MD_LotteryOpenSet> openlist = Lottery.GetLotteryOpenSetList(type);
+            List<MD_Lottery> lottery = Lottery.GetLotteryList(1, 1, " where a.status=0 and a.type="+type, "asc");
             LotteryOpenListModel list = new LotteryOpenListModel
             {
                 type = type,
@@ -106,24 +106,24 @@ namespace OWZX.Web.Admin.Controllers
             return View(list);
         }
 
-        public ActionResult UpdateOpenSetStatus(int status, string result = "", string lotterynum = "", int lottery = 47)
+        public ActionResult UpdateOpenSetStatus(int status, string result = "", string lotterynum = "", int lottery = 3)
         {
             string msg = Lottery.UpdateSetStaus(lottery, status, result, lotterynum);
             return AjaxResult("sussece", msg);
         }
 
-        public ActionResult UpdateSetDetailStaus(int status, int detailid, int lottery = 47, string result = "", string lotterynum = "")
+        public ActionResult UpdateSetDetailStaus(int status, int detailid, int lottery = 3, string result = "", string lotterynum = "")
         {
             string msg = Lottery.UpdateSetDetailStaus(lottery, detailid, status, result, lotterynum);
             return AjaxResult("sussece", msg);
         }
 
-        public ActionResult GetOpenResult(string lotterynum, int settype = -1, int type = 47)
+        public ActionResult GetOpenResult(string lotterynum, int settype = -1, int type = 3)
         {
             var list = Lottery.GetAllMoneyByLotteryNum(lotterynum, type);
             if (settype == -1)
             {
-                List<MD_LotteryOpenSet> openlist = Lottery.GetLotteryOpenSetList(47);
+                List<MD_LotteryOpenSet> openlist = Lottery.GetLotteryOpenSetList(3);
                 settype = openlist.Where(x => x.isdefault == 1).FirstOrDefault().settype;
             }
             //庄家最大赚   0--也可能是最小赔付

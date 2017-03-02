@@ -67,10 +67,10 @@ namespace OWZX.Web.Admin.Controllers
             StringBuilder strb = new StringBuilder();
             strb.Append(" ");
             if (warename != "")
-                strb.Append(" and a.wareName like '%" + warename + "%' ");
+                strb.Append(" and a.wareName like '%" + warename.Trim() + "%' ");
 
             if (warecode != "")
-                strb.Append(" and a.Warecode='" + warecode + "' ");
+                strb.Append(" and a.Warecode='" + warecode.Trim() + "' ");
             if (status > -1)
                 strb.Append(" and a.status=" + status); 
             if (btime != "")
@@ -78,7 +78,7 @@ namespace OWZX.Web.Admin.Controllers
             if(etime!="")
                 strb.Append(" and a.createtime<'" + etime+"' ");
             if (content != "")
-                strb.Append(" and a.[content=<'" + content + "' ");
+                strb.Append(" and cast(a.[content] as varchar(max))='" + content.Trim() + "' ");
             if (email != "")
                 strb.Append(" and rtrim(b.email)='" + email + "'");
             strb.Append(" order by a.ordercode desc");
