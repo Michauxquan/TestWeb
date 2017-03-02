@@ -256,7 +256,7 @@ function chgbbb(bbb) {
         if (!$(this).attr("readonly")) {
             var txt_value = $.trim($(this).val()).replace(/,/gi, "");
             if (txt_value && !isNaN(txt_value)) {
-                var new_value = Math.floor(txt_value * peilv);
+                var new_value = Math.floor(txt_value * bbb);//倍数
                 if (new_value.toString().length > 8)
                     $(this).val(ver(new_value.toString().substr(0, 8) + ""));
                 else
@@ -499,11 +499,14 @@ function DoSave(NewName) {
         }
     });
 
+    var bettotal = document.getElementById("SMONEYSUM").value;
+    if (bettotal <= 0)
+        return;
 
     $.post("/nwlottery/addbettmode",
         {
             "lotterytype": lotterytype, "list": arrbettnew.substr(0, arrbettnew.length - 1), "listnum": arrbettnum.substr(0, arrbettnum.length - 1),
-            "mdname": NewName, "sum": document.getElementById("SMONEYSUM").value
+            "mdname": NewName, "sum": $.trim(bettotal).replace(/,/gi, "")
         },
         function (data) {
             if (data == "1") {
