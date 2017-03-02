@@ -98,9 +98,9 @@ namespace OWZX.Data
         /// <param name="pageSize">-1 取全部</param>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        public static  DataTable GetLotteryList(int pageNumber, int pageSize, string condition = "")
+        public static  DataTable GetLotteryList(int pageNumber, int pageSize, string condition = "",string orderby="")
         {
-            return OWZX.Core.BSPData.RDBS.GetLotteryList(pageNumber, pageSize, condition);
+            return OWZX.Core.BSPData.RDBS.GetLotteryList(pageNumber, pageSize, condition,orderby);
         }
 
         /// <summary>
@@ -525,6 +525,27 @@ namespace OWZX.Data
         {
             return OWZX.Core.BSPData.RDBS.GetProfitListNoLottery(type, pageSize, pageNumber, condition);
         }
+        #endregion
+
+        #region 急速28 
+
+        public static DataTable GetAllMoneyByLotteryNum(string lotterynum = "", int type = 47)
+        {
+            return OWZX.Core.BSPData.RDBS.GetAllMoneyByLotteryNum(lotterynum, type);
+        }
+        public static DataTable GetLotteryOpenSetList(int type = 47)
+        {
+            return OWZX.Core.BSPData.RDBS.GetLotteryOpenSetList(type);
+        }
+        public static string UpdateSetStaus(int lotteryid, int status, string result, string lotterynum = "")
+        {
+            return OWZX.Core.BSPData.RDBS.UpdateSetStaus(lotteryid, status, result, lotterynum);
+        }
+        public static string UpdateSetDetailStaus(int lotteryid, int detailid, int isdefault, string result, string lotterynum)
+        {
+            return OWZX.Core.BSPData.RDBS.UpdateSetDetailStaus(lotteryid, detailid, isdefault, result, lotterynum);
+        }
+
         #endregion
     }
 }

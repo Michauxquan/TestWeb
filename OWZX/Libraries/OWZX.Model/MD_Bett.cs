@@ -176,4 +176,52 @@ namespace OWZX.Model
         /// </summary>
         public int Bettmode { get; set; }
     }
+
+    public class MD_LotteryOpenSet
+    {
+        public int autoid { get; set; }
+        public int detailid { get; set; }
+        /// <summary>
+        /// 彩票类型
+        /// </summary>
+        public int lottypeid { get; set; }
+        /// <summary>
+        /// 期号
+        /// </summary>
+        public string lotterynum { get; set; }
+        /// <summary>
+        /// 彩票类型
+        /// </summary>
+        public string type { get; set; }
+        /// <summary>
+        /// 投注项
+        /// </summary>
+        public string setname { get; set; }
+        /// <summary>
+        /// 投注项
+        /// </summary>
+        public string result { get; set; }
+        /// <summary>
+        /// 状态0 未开启 1已开启
+        /// </summary>
+        public int start { get; set; }
+        /// <summary>
+        /// 状态0 不默认 1默认
+        /// </summary>
+        public int isdefault { get; set; }
+        /// <summary>
+        /// 投注项
+        /// </summary>
+        public int settype { get; set; }
+    }
+
+    public class MD_LotteryAllMoney
+    {
+        //投注号码
+        public string item { get; set; }
+        //本体此号要赔的钱
+        public decimal lossmoney { get; set; }
+        //本体此号所投注的钱
+        public int totalmoney { get; set; }
+    }
 }

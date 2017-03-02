@@ -9,6 +9,7 @@ using System.Text;
 using System.Collections.Generic;
 using OWZX.Model;
 using System.Data;
+using System.Linq;
 
 namespace OWZX.Web.Admin.Controllers
 {
@@ -88,6 +89,186 @@ namespace OWZX.Web.Admin.Controllers
 
             ViewData["statlist"] = statlist;
         }
+        #endregion
+
+        #region 急速28后台设置
+
+        public ActionResult OpenSet(int type = 47)
+        {
+            List<MD_LotteryOpenSet> openlist = Lottery.GetLotteryOpenSetList(47);
+            List<MD_Lottery> lottery = Lottery.GetLotteryList(1, 1, " where a.status=0 and a.type=47", "asc");
+            LotteryOpenListModel list = new LotteryOpenListModel
+            {
+                type = type,
+                lottery = lottery.FirstOrDefault(),
+                OpenList = openlist
+            };
+            return View(list);
+        }
+
+        public ActionResult UpdateOpenSetStatus(int status, string result = "", string lotterynum = "", int lottery = 47)
+        {
+            string msg = Lottery.UpdateSetStaus(lottery, status, result, lotterynum);
+            return AjaxResult("sussece", msg);
+        }
+
+        public ActionResult UpdateSetDetailStaus(int status, int detailid, int lottery = 47, string result = "", string lotterynum = "")
+        {
+            string msg = Lottery.UpdateSetDetailStaus(lottery, detailid, status, result, lotterynum);
+            return AjaxResult("sussece", msg);
+        }
+
+        public ActionResult GetOpenResult(string lotterynum, int settype = -1, int type = 47)
+        {
+            var list = Lottery.GetAllMoneyByLotteryNum(lotterynum, type);
+            if (settype == -1)
+            {
+                List<MD_LotteryOpenSet> openlist = Lottery.GetLotteryOpenSetList(47);
+                settype = openlist.Where(x => x.isdefault == 1).FirstOrDefault().settype;
+            }
+            //庄家最大赚   0--也可能是最小赔付
+            //庄家最小赚   1--也可能是最小赔付 
+            //庄家最小赔   2--也可能收支平衡
+            //庄家最大赔   3--最大赔付
+            List<int> reusltlist = new List<int>();
+            string nums = "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,";
+
+            List<int> resultlist = new List<int>();
+            if (list.Count > 0)
+            {
+                if (settype == 0 || settype == 3)
+                {
+                    //最大赔付不用计算是否包含投注结果
+                    if (settype == 0)
+                    {
+                        foreach (var item in list)
+                        {
+                            if (!nums.Contains(item.item))
+                            {
+                                resultlist.Add(int.Parse(item.item));
+                            }
+                        }
+                    }
+                    if (resultlist.Count == 0)
+                    {
+                        var maxmoney = settype == 0
+                            ? (from s in list orderby (s.totalmoney - s.lossmoney) descending select s)
+                            : (from s in list orderby (s.lossmoney - s.totalmoney) descending select s);
+                        foreach (var item in maxmoney)
+                        {
+                            if (resultlist.Count == 0)
+                            {
+                                resultlist.Add(int.Parse(item.item));
+                            }
+                            else
+                            {
+                                if (resultlist[0] != int.Parse(item.item))
+                                {
+                                    break;
+                                }
+                                resultlist.Add(int.Parse(item.item));
+                            }
+                        }
+
+                    }
+                }
+                else if (settype == 1 || settype == 2)
+                {
+                    var maxmoney = settype == 1
+                        ? (from s in list
+                           where (s.totalmoney - s.lossmoney) > 0
+                           orderby (s.totalmoney - s.lossmoney) ascending
+                           select s)
+                        : (from s in list
+                           where (s.lossmoney - s.totalmoney) < 0
+                           orderby (s.lossmoney - s.totalmoney) descending
+                           select s);
+                    if (settype == 1 && !maxmoney.Any())
+                    {
+                        //店家赚最小值 如果投注金额与赔付金额都是<0的 则 去 赔付-总价 最小值
+                        maxmoney = from s in list
+                                   where (s.lossmoney - s.totalmoney) > 0
+                                   orderby (s.lossmoney - s.totalmoney) ascending
+                                   select s;
+                    }
+                    if (settype == 2 && !maxmoney.Any())
+                    {
+                        //店家最小赔 如果投注的中奖数量都是>0的 则 去 总价-赔付 最小值
+                        maxmoney = from s in list
+                                   where (s.lossmoney - s.totalmoney) > 0
+                                   orderby (s.lossmoney - s.totalmoney) ascending
+                                   select s;
+                    }
+                    foreach (var item in maxmoney)
+                    {
+                        if (resultlist.Count == 0)
+                        {
+                            resultlist.Add(int.Parse(item.item));
+                        }
+                        else
+                        {
+                            if (resultlist[0] != int.Parse(item.item))
+                            {
+                                break;
+                            }
+                            resultlist.Add(int.Parse(item.item));
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i <= 27; i++)
+                {
+                    resultlist.Add(i);
+                }
+            }
+            string resultNumList = "";
+            Random random1 = new Random();
+            for (var i = 0; i < 8; i++)
+            {
+                resultNumList += getResult(resultlist[random1.Next(0, resultlist.Count)]) + ",";
+            }
+            return AjaxResult("sussece", resultNumList);
+        }
+        Random _random = new Random();
+        //生成随机数
+        public string getResult(int resultnum)
+        {
+            List<string> str = new List<string>();
+            for (int i = 0; i <= 9; i++)
+            {
+                for (int j = 0; j <= 9; j++)
+                {
+                    if (i + j > resultnum)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        for (int k = 0; k <= 9; k++)
+                        {
+                            if (i + j + k == resultnum)
+                            {
+                                str.Add(i + "+" + j + "+" + k + "=" + resultnum);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            string[] result = new string[str.Count];
+            for (int mm = 0; mm < str.Count; mm++)
+            {
+                int pos = _random.Next(str.Count);
+                var temp = str[mm];
+                result[mm] = str[pos];
+                result[pos] = temp;
+            }
+            int tt = _random.Next(result.Length);
+            return result[tt];
+        }
+
         #endregion
 
     }

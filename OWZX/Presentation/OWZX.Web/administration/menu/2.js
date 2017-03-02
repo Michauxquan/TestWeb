@@ -21,6 +21,10 @@
             {
                 "title": "下注记录",
                 "url": "/admin/lottery/lotterylist"
+            },
+            {
+                "title": "急速28开奖设置",
+                "url": "/admin/lottery/openset"
             }
      ]
      },

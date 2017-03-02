@@ -44,4 +44,17 @@ namespace OWZX.Web.Admin.Models
         /// </summary>
         public List<MD_Bett> bettList { get; set; }
     }
+
+    public class LotteryOpenListModel
+    {
+        public int type { get; set; }
+        public PageModel PageModel { get; set; }
+
+        public MD_Lottery lottery { get; set; }
+
+        /// <summary>
+        /// 赔率列表
+        /// </summary>
+        public List<MD_LotteryOpenSet> OpenList { get; set; }
+    }
 }
