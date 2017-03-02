@@ -1,0 +1,103 @@
+﻿@model OWZX.Web.Admin.Models.LotteryOpenListModel
+
+@section header{
+    <title>开奖管理</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('.updstatus').click(function() {
+                var _this = $(this);
+                $.post('/admin/lottery/UpdateOpenSetStatus',
+                    { lotterynum: _this.data("num"), status: _this.data("status") },
+                    function(data) {
+                        var result = eval('(' + data + ')');
+                        alert(result.content);
+                        window.parent.frames["frameRight"].location.reload();
+                    });
+            });
+
+            $('input[name="isdefault"]').change(function() {
+                getResultList($('input[name="isdefault"]:checked').data("settype"));
+            });
+        
+            function getResultList(settype) {
+                $.post('/admin/lottery/GetOpenResult',{ lotterynum: @Model.lottery.Expect ,settype:settype},function(data) {
+                    var result = eval('(' + data + ')');
+                    var html = "<br/>";
+                    var rlist = result.content.split(",");
+                    for (var s = 0; s < rlist.length; s++) {
+                        if (rlist[s] != "") {
+                            html +=
+                                "<span style='margin-right:80px;font-size:16px;'><input type='radio' name='isresult' value='" + rlist[s] + "' >" + rlist[s] + "</span>";
+                        }
+                    }
+                    html +=
+                        "<br/><br/><a class='editOperate setsesult' style='cursor:pointer; font-size:16px;'>[设为开奖结果]</span>";
+                    $('#resultlist').html(html);
+                    $('.setsesult').click(function() {
+                        $.post('/admin/lottery/UpdateSetDetailStaus',
+                            {
+                                lotterynum: $('.updstatus').data("num"),
+                                result: $('input[name="isresult"]:checked').val(),
+                                detailid: $('input[name="isdefault"]:checked').val(),
+                                status: 1
+                            },
+                            function(data) {
+                                var result = eval('(' + data + ')');
+                                alert(result.content);
+                                window.parent.frames["frameRight"].location.reload();
+                            });
+                    });
+                });
+            }
+            getResultList(-1);
+        });
+    </script>
+}
+
+@section body{
+    <h1 class="rightH1">
+        开奖管理 &gt;&gt; 开奖设置
+        <div class="right">
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </h1>
+    @using (Html.BeginForm("OpenSet", "lottery"))
+    { 
+        <div class="dataList">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <th width="10" colspan="4">&nbsp;
+                            <h5 style="width: 60px; float: left;"> @(Model.OpenList.Count > 0 ? Model.OpenList[0].type : "")</h5>
+                        @if (Model.OpenList.Count > 0)
+                        {
+                            <span style="margin-left: 20px; float: left; color: red;">@(Model.OpenList[0].start == 0 ? "未开启自动开奖模式" : "已开启自动开奖模式")</span> 
+                            <a class="editOperate updstatus" style="float: left;margin-left: 10px;" href="javascript:void(0);" data-num="@(Model.lottery!=null?Model.lottery.Expect:"")" data-id="@Model.OpenList[0].lottypeid" data-status="@(Model.OpenList[0].start == 0 ? 1 : 0)">[@(Model.OpenList[0].start == 0 ? "开启" : "关闭")]</a>
+                            <span id="lotteryid" style="margin-left: 100px;"></span>
+                            <span id="lotteryresult" style="margin-left: 100px;float: left;">@(string.IsNullOrEmpty(Model.OpenList[0].result)?"暂未设置开奖结果":"设置开奖结果为:"+ Model.OpenList[0].result)</span>
+                        }
+                            <span style="float: right; margin-right: 400px;">@(Model.lottery!=null?("当前期:"+ Model.lottery.Expect+" 剩余投注时间:"+Model.lottery.AllSec):"")</span>
+                            <span class="clear"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr> 
+                    @foreach (OWZX.Model.MD_LotteryOpenSet info in Model.OpenList)
+                    {
+                        <td align="center"><input type="radio" name="isdefault" data-settype="@info.settype" value="@info.detailid" @(info.isdefault==1?"checked='checked'":"") >@info.setname</td>
+                    }
+                </tr>
+                </tbody>
+                <tfoot>
+                    <td align="center" id="resultlist" colspan="4"></td> 
+                </tfoot>
+            </table>
+        </div> 
+ 
+    }
+    
+}

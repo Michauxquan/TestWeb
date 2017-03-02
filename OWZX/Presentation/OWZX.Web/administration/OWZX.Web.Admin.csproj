@@ -132,6 +132,7 @@
   <ItemGroup>
     <None Include="views\account\login.cshtml" />
     <None Include="views\baseinfo\editlotteryset.cshtml" />
+    <None Include="views\lottery\openset.cshtml" />
     <None Include="views\ware\add.cshtml" />
     <None Include="views\admingroup\add.cshtml" />
     <None Include="views\admingroup\edit.cshtml" />

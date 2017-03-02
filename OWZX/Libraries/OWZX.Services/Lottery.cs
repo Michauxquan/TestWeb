@@ -578,9 +578,9 @@ namespace OWZX.Services
         /// <param name="pageSize">-1 取全部</param>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        public static List<MD_Lottery> GetLotteryList(int pageIndex, int pageSize, string condition = "")
+        public static List<MD_Lottery> GetLotteryList(int pageIndex, int pageSize, string condition = "", string orderby = "desc")
         {
-            DataTable dt = OWZX.Data.Lottery.GetLotteryList(pageIndex, pageSize, condition);
+            DataTable dt = OWZX.Data.Lottery.GetLotteryList(pageIndex, pageSize, condition,orderby);
             List<MD_Lottery> list = (List<MD_Lottery>)ModelConvertHelper<MD_Lottery>.ConvertToModel(dt);
             return list;
         }
@@ -1098,6 +1098,33 @@ namespace OWZX.Services
         {
             return OWZX.Data.Lottery.GetProfitListNoLottery(type, pageSize, pageNumber, condition);
         }
+        #endregion
+
+
+        #region 急速28 
+
+        public static List<MD_LotteryAllMoney> GetAllMoneyByLotteryNum(string lotterynum = "", int type = 47)
+        {
+            DataTable dt = OWZX.Data.Lottery.GetAllMoneyByLotteryNum(lotterynum, type);
+            List<MD_LotteryAllMoney> list = (List<MD_LotteryAllMoney>)ModelConvertHelper<MD_LotteryAllMoney>.ConvertToModel(dt);
+            return list;
+        }
+        public static List<MD_LotteryOpenSet> GetLotteryOpenSetList(int type = 47)
+        {
+            DataTable dt = OWZX.Data.Lottery.GetLotteryOpenSetList(type);
+            List<MD_LotteryOpenSet> list = (List<MD_LotteryOpenSet>)ModelConvertHelper<MD_LotteryOpenSet>.ConvertToModel(dt);
+            return list;
+        }
+
+        public static string UpdateSetStaus(int lotteryid, int status, string result, string lotterynum)
+        {
+            return OWZX.Data.Lottery.UpdateSetStaus(lotteryid, status, result, lotterynum);
+        }
+        public static string UpdateSetDetailStaus(int lotteryid, int detailid, int isdefault, string result = "", string lotterynum = "")
+        {
+            return OWZX.Data.Lottery.UpdateSetDetailStaus(lotteryid, detailid, isdefault, result, lotterynum);
+        }
+
         #endregion
     }
 }

@@ -581,7 +581,7 @@ end catch
         /// <param name="pageSize">-1 取全部</param>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        public DataTable GetLotteryList(int pageNumber, int pageSize, string condition = "")
+        public DataTable GetLotteryList(int pageNumber, int pageSize, string condition = "",string orderby="desc")
         {
             DbParameter[] parms = {
                                       GenerateInParam("@pagesize", SqlDbType.Int, 4, pageSize),
@@ -594,7 +594,7 @@ begin try
 if OBJECT_ID('tempdb..#list') is not null
   drop table #list
 
-SELECT ROW_NUMBER() over(order by a.lotteryid desc) id
+SELECT ROW_NUMBER() over(order by a.lotteryid {1}) id
       ,a.lotteryid
       ,a.type
       ,a.expect
@@ -629,7 +629,7 @@ begin catch
 select ERROR_MESSAGE() state
 end catch
 
-", condition);
+", condition,orderby);
 
             return RDBSHelper.ExecuteTable(CommandType.Text, commandText, parms)[0];
         }
@@ -2402,6 +2402,125 @@ end catch
             return dt;
 
         }
+        #endregion
+
+        #region 急速28
+
+        public DataTable GetAllMoneyByLotteryNum(string lotterynum = "", int type = 47)
+        {
+            string commandText = string.Format(@"
+begin try
+
+select b.item, sum(money*cast(odds as decimal(18,2))) lossmoney,SUM(money) totalmoney 
+from owzx_bett a 
+join owzx_lotteryset b on a.bttypeid=b.bttypeid 
+where a.isread=0  and lotteryid={1} and lotterynum='{0}'
+group by item  
+order by LEN(item),item asc
+
+end try
+begin catch
+select ERROR_MESSAGE() state
+end catch
+
+", lotterynum, type);
+            return RDBSHelper.ExecuteDataset(CommandType.Text, commandText, null).Tables[0];
+        }
+
+        public string UpdateSetStaus(int lotteryid, int status, string result, string lotterynum)
+        {
+            string commandText = string.Format(@"
+            begin try
+            if exists(select 1 from owzx_lotteryopensetman  where lotteryid ={0} )
+            begin
+                update  owzx_lotteryopensetman set start={1},result='{2}' where lotteryid={0}
+
+                if('{3}'!='')
+                begin
+                    declare @one varchar(50)='', @two varchar(50)='', @three varchar(50)='',@resultnum varchar(50)=''
+                    if('{2}'!='')
+                    begin
+                        select @one=substring('{2}',1,1),@two=substring('{2}',3,1),@three=substring('{2}',5,1),@resultnum=REVERSE(replace(substring(REVERSE('{2}'),1,2),'=',''))
+                    end
+                    if( exists(select 1  from owzx_lotteryopen where lotteryid={0} and lotterynum='{3}'))
+                    begin                        
+                        update owzx_lotteryopen set result='{2}',one=@one,two=@two,three=@three,resultnum=@resultnum where lotteryid={0} and lotterynum={3}
+                    end
+                    else
+                    begin
+                       insert into  owzx_lotteryopen (lotteryid,lotterynum,result,resultnum,one,two,three,opentime) 
+                       values({0},'{3}','{2}',@resultnum,@one,@two,@three,(select opentime from owzx_lotteryrecord where type=47 and expect='{3}')) 
+                    end
+                end
+                select '操作成功' state
+            end
+            else
+            begin
+             select '操作失败' state
+            end
+            end try
+            begin catch
+            select ERROR_MESSAGE() state
+            end catch
+            ", lotteryid, status, result, lotterynum);
+            return RDBSHelper.ExecuteScalar(commandText).ToString();
+        }
+
+        public string UpdateSetDetailStaus(int lotteryid, int detailid, int isdefault, string result, string lotterynum)
+        {
+            string commandText = string.Format(@"
+            begin try
+            if exists(select 1 from owzx_lotteryopenset  where detailid ={1} )
+            begin
+            update  owzx_lotteryopenset set isdefault={2}  where lotteryid={0} and detailid={1}
+            update  owzx_lotteryopensetman set result='{3}' where lotteryid={0}
+            if('{4}'!='')
+            begin
+                declare @one varchar(50)='', @two varchar(50)='', @three varchar(50)='',@resultnum varchar(50)=''
+                if('{3}'!='')
+                begin
+                    select @one=substring('{3}',1,1),@two=substring('{3}',3,1),@three=substring('{3}',5,1),@resultnum=REVERSE(replace(substring(REVERSE('{3}'),1,2),'=',''))
+                end
+                if( exists(select 1  from owzx_lotteryopen where lotteryid={0} and lotterynum='{4}'))
+                begin
+                    update  owzx_lotteryopen set result='{3}',one=@one,two=@two,three=@three,resultnum=@resultnum where lotteryid={0} and lotterynum={4}
+                end
+                else
+                begin
+                    insert into  owzx_lotteryopen (lotteryid,lotterynum,result,resultnum,one,two,three,opentime) 
+                    values({0},'{4}','{3}',@resultnum,@one,@two,@three,(select opentime from owzx_lotteryrecord where type=47 and expect='{4}')) 
+                end
+            end
+            select '操作成功' state
+            end
+            else
+            begin
+             select '操作失败' state
+            end
+            end try
+            begin catch
+            select ERROR_MESSAGE() state
+            end catch
+            ", lotteryid, detailid, isdefault, result, lotterynum);
+            return RDBSHelper.ExecuteScalar(commandText).ToString();
+        }
+
+        public DataTable GetLotteryOpenSetList(int type = 47)
+        {
+            string commandText = string.Format(@"
+            begin try
+            select  a.*,b.*,c.type from  owzx_lotteryopensetman a 
+ join owzx_lotteryopenset b  on a.lotteryid =b.lotteryid
+ join owzx_sys_basetype c on a.lotteryid=c.systypeid
+ where c.systypeid={0} 
+            end try
+            begin catch
+            select ERROR_MESSAGE() state
+            end catch
+            ", type);
+            return RDBSHelper.ExecuteDataset(CommandType.Text, commandText).Tables[0];
+        }
+
         #endregion
     }
 }

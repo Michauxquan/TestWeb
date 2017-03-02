@@ -77,7 +77,7 @@ namespace OWZX.Core
         /// <param name="pageSize">-1 取全部</param>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        DataTable GetLotteryList(int pageNumber, int pageSize, string condition = "");
+        DataTable GetLotteryList(int pageNumber, int pageSize, string condition = "",string orderby="desc");
 
         /// <summary>
         ///获取彩票记录(分页)
@@ -386,6 +386,13 @@ namespace OWZX.Core
         /// <param name="condition"></param>
         /// <returns></returns>
         DataTable GetProfitListNoLottery(string type, int pageSize, int pageNumber, string condition = "");
+        #endregion
+
+        #region 急速28
+        DataTable GetAllMoneyByLotteryNum(string lotterynum = "", int type = 47);
+        string UpdateSetStaus(int lotteryid, int status, string result, string lotterynum);
+        string UpdateSetDetailStaus(int lotteryid, int detailid, int isdefault, string result, string lotterynum);
+        DataTable GetLotteryOpenSetList(int type = 47);
         #endregion
 
     }
