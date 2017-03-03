@@ -70,7 +70,7 @@
                 <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
             }
 
-            @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 6
+            @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 3 || @Model.LotteryType == 6
                 || @Model.LotteryType == 9 || @Model.LotteryType == 7 || @Model.LotteryType == 8)
             {
                 <span style="margin-left:60px;font-size:15px;">
@@ -96,18 +96,19 @@
 <div class="dv">
     <div style="width:30%; display:block;float:left;" class="remains">
         第 <i class="bold">@Model.lotterylist.LastNumber</i>期
-       @if (@Model.lotterylist.RemainS > 30 && @Model.lotterylist.RemainS <= 300)
-       {
-        <text>还有<span class="ltwarn">@Model.lotterylist.RemainS-30</span>秒停止下注!</text>
-       }
-       else if (@Model.lotterylist.RemainS > 0 && @Model.lotterylist.RemainS <= 30)
-       {
-        <text>停止下注,还有<span class="ltwarn">@Model.lotterylist.RemainS</span>秒开奖!</text>
-       }
-       else if (@Model.lotterylist.RemainS > -60 && @Model.lotterylist.RemainS <= 0)
-       {
-        <text>正在开奖,请稍后!</text>
-       }
+        @if (Model.lotterylist.RemainS > Model.StopTime && Model.lotterylist.RemainS <= Model.TotalS)
+        {
+            int rems = @Model.lotterylist.RemainS - @Model.StopTime;
+            <text>还有<span class="ltwarn">@rems</span>秒停止下注!</text>
+        }
+        else if (@Model.lotterylist.RemainS > 0 && @Model.lotterylist.RemainS <= Model.StopTime)
+        {
+            <text>停止下注,还有<span class="ltwarn">@Model.lotterylist.RemainS</span>秒开奖!</text>
+        }
+        else if (@Model.lotterylist.RemainS > -60 && @Model.lotterylist.RemainS <= 0)
+        {
+            <text>正在开奖,请稍后!</text>
+        }
     </div>
     <script> 
         $(function() { 
@@ -120,7 +121,7 @@
     <div style="width:40%; display:block;float:left;text-align:right;">最高投注<span class="ltwarn">2,000</span>万豆,最高中奖 <span class="ltwarn">100,0000</span>万豆</div>
 </div>
 <div class="temp_content">
-    @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 6 || @Model.LotteryType == 4 || @Model.LotteryType == 5)
+    @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 3 || @Model.LotteryType == 6 || @Model.LotteryType == 4 || @Model.LotteryType == 5)
     {
         @Html.Partial("_content")
     }

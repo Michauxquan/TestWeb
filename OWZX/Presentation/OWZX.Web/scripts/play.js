@@ -336,7 +336,7 @@ function useSuoha() {
 //标准投注模式设定方法
 function setValue(num)
 {
-    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 6)
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6)
     {
         for (var i = 0; i < mode[num].length; i++)
         {
@@ -686,12 +686,9 @@ function datapost()
                    {
                        //成功
                        layer.alert("第<span  style='color :Red;'>" + expect + "</span>期投注成功！", { icon: 1, title: "提示" })
-                       if (lotterytype == 1 || lotterytype == 2 || lotterytype == 4 || lotterytype == 5 || lotterytype == 6)
+                       if (lotterytype == 1 || lotterytype == 2 ||lotterytype == 3|| lotterytype == 4 || lotterytype == 5 || lotterytype == 6)
                        {
                            $(".temp_content").load("/nwlottery/_content", { "type": lotterytype, "page": 1 });
-                       } else if (lotterytype == 3)
-                       {
-                           $(".temp_content").load("/nwlottery/", { "type": lotterytype, "page": 1 });
                        }
                        else if (lotterytype == 9)
                        {

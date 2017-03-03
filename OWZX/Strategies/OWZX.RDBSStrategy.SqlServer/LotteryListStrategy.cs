@@ -252,7 +252,7 @@ order by lotteryid
 select @expect expect,@totalsec time
 --select @expect expect,(replicate('0',2-len(@min))+rtrim(@min)) +'分'+(replicate('0',2-len(@sec))+rtrim(@sec)) +'秒' time
 end
-if(@type in (6)) 
+else if(@type in (6)) 
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status !=2 and 
@@ -263,6 +263,20 @@ select top 1 @expect=expect,
 --@sec=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))%60),
 @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
 from owzx_lotteryrecord where type=@type and status  !=2  and (DATEDIFF(second,opentime,getdate()) >= -90 and DATEDIFF(second,opentime,getdate())<0)
+order by lotteryid
+
+select @expect expect,@totalsec time
+--select @expect expect,(replicate('0',2-len(@min))+rtrim(@min)) +'分'+(replicate('0',2-len(@sec))+rtrim(@sec)) +'秒' time
+end
+else if(@type in (3)) 
+begin
+
+if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status !=2 and 
+(DATEDIFF(second,opentime,getdate()) >= -100 and DATEDIFF(second,opentime,getdate())<0) order by lotteryid )
+begin
+select top 1 @expect=expect, 
+@totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
+from owzx_lotteryrecord where type=@type and status !=2  and (DATEDIFF(second,opentime,getdate()) >= -100 and DATEDIFF(second,opentime,getdate())<0)
 order by lotteryid
 
 select @expect expect,@totalsec time
@@ -466,7 +480,7 @@ into  #list
   join owzx_lotteryset b on a.bttypeid= b.bttypeid and a.lotterytype= @type
   {1}
 
-if( @type in (1,2,6))
+if( @type in (1,2,3,6))
 begin
 select * from  #list where id>=1 and id<=14
 
@@ -496,12 +510,7 @@ select * from  #list where id>=1 and id<=9
 
 select * from  #list where id>=10 and id<=17
 end
-else if( @type in (3))
-begin
-select * from  #list --where id>=1 and id<=3
 
-select * from  #list --where id>=4 and id<=5
-end
 
 end try
 begin catch

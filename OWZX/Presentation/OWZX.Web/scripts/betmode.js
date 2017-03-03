@@ -47,7 +47,7 @@ function Change_Modes(ModeId) {
         }
     });
 
-    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 6) {
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype ==3 || lotterytype == 6) {
         for (var i = 0; i < 28; i++) {
             document.getElementById("SMONEY_" + i).value = ModelDatas[CurrentMode - 1][i];
         }
@@ -145,7 +145,7 @@ function inputsb(val, num) {
     var regex = /^[1-9]\d{0,}$/;
     var oldsum, sum, thismoney, sm;
     sum = 0;
-    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 6) {
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6) {
         for (loop = 0 ; loop < 28 ; loop++) {
             sm = document.getElementById("SMONEY_" + loop).value;
             if (sm == null || sm > maxnum || sm == "") {
@@ -337,7 +337,7 @@ function FirstModes(modes) {
             $(this).val("");
         }
     });
-    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 6) {
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6) {
         if (modes < 1 || modes > stdMode.length) modes = 1;
         for (loop = 0 ; loop < 28 ; loop++) {
             var n = stdMode[modes][loop];

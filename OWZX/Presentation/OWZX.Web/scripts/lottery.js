@@ -12,7 +12,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum) {
     if (nS > 0) {
         nS = nS - 1;
         if (nS > stoptime && nS <= totalime) {
-            var rems = nS - 30
+            var rems = nS - stoptime
             //bett
             $(".remains").html(
                 '第 <i class="bold">' + fcnum + '</i>期  还有<span class="ltwarn">' + rems + '</span>秒停止下注!');

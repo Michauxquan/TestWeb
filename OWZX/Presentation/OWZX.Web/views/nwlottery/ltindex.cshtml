@@ -144,7 +144,7 @@
                                 <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
                             }
 
-                            @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 6
+                            @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 3 || @Model.LotteryType == 6
                                 || @Model.LotteryType == 9 || @Model.LotteryType == 7 || @Model.LotteryType == 8)
                             {<span style="margin-left:60px;font-size:15px;">
                                 结果:
@@ -197,7 +197,7 @@
             </div>
             <div class="temp_content">
             
-                @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 6 ||@Model.LotteryType == 4 || @Model.LotteryType == 5)
+                @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType ==3 || @Model.LotteryType == 6 || @Model.LotteryType == 4 || @Model.LotteryType == 5)
                 {
                     @Html.Partial("_content")
                 }

@@ -74,7 +74,7 @@ namespace OWZX.Web.controllers
             }
             else if (id == 3)
             {
-
+                total = list.RemainS;
             }
             return total;
         }
@@ -119,8 +119,8 @@ namespace OWZX.Web.controllers
                     break;
                 case (int)LotType.js28:
                     title = "急速28首页";
-                    total = 0;
-                    stop = 0;
+                    total = 120;
+                    stop = 20;
                     break;
             }
         }
