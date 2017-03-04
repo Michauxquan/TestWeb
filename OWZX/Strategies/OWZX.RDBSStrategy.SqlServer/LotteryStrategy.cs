@@ -1206,7 +1206,7 @@ end catch
 begin try
 if OBJECT_ID('tempdb..#list') is not null
 drop table #list
-
+/*
 SELECT ROW_NUMBER() over(order by a.bettid desc) id,
 a.[bettid],a.[uid],a.[lotteryid],a.[bttypeid],a.[money],a.[lotterynum],a.isread,a.[addtime],b.mobile account,e.type lottery,d.type room,g.type vip,f.type bttype,c.item,cc.luckresult
 into  #list
@@ -1219,6 +1219,18 @@ join owzx_sys_basetype d on a.roomid=d.systypeid
 join owzx_sys_basetype e on a.lotteryid=e.systypeid
 join owzx_sys_basetype f on c.type=f.systypeid
 join owzx_sys_basetype g on a.vipid=g.systypeid
+{0}
+*/
+SELECT ROW_NUMBER() over(order by a.bettid desc) id,
+a.[bettid],a.[uid],a.[lotteryid],a.[money],a.[lotterynum],
+a.isread,a.[addtime],
+b.email account,a.bettnum as item,
+e.type lottery ,cast(isnull(a.winmoney,0) as decimal(18,2)) as luckresult
+into  #list
+  from  owzx_bett a
+join owzx_users b on a.uid=b.uid 
+join owzx_lotteryrecord aa on a.lotterynum=aa.expect 
+join owzx_sys_basetype e on a.lotteryid=e.outtypeid and e.parentid=47 
 {0}
 
 declare @total int

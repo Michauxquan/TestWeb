@@ -21,32 +21,23 @@ namespace OWZX.Web.Admin.Controllers
         /// <summary>
         /// 投注记录
         /// </summary>
-        public ActionResult LotteryList(string account = "", int lottype = -1, string expect = "", int roomtype = -1, int vip = -1, int bttype = -1, int pageSize = 15, int pageNumber = 1)
+        public ActionResult LotteryList(string account = "", int lottype = -1, string expect = "",  int pageSize = 15, int pageNumber = 1)
         {
             StringBuilder strb = new StringBuilder();
             strb.Append(" where 1=1");
             if (account != "")
-                strb.Append(" and rtrim(b.mobile)='" + account + "'");
+                strb.Append(" and rtrim(b.email)='" + account + "'");
             if (lottype != -1)
                 strb.Append(" and a.lotteryid=" + lottype);
             if (expect != "")
                 strb.Append(" and a.lotterynum='" + expect + "'");
-            if (roomtype != -1)
-                strb.Append(" and a.roomid=" + roomtype);
-            if (vip != -1)
-                strb.Append(" and a.vipid=" + vip);
-            if (bttype != -1)
-                strb.Append(" and c.type=" + bttype);
 
             List<MD_Bett> btlist = Lottery.GetBettList(pageNumber, pageSize, strb.ToString());
             LotteryListModel list = new LotteryListModel
             {
                 account = account,
                 lottype = lottype,
-                expect = expect,
-                roomtype = roomtype,
-                vip = vip,
-                bttype = bttype,
+                expect = expect, 
                 PageModel = new PageModel(pageSize, pageNumber, btlist.Count > 0 ? btlist[0].TotalCount : 0),
                 bettList = btlist
             };
