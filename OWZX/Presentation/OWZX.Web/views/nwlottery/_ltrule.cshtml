@@ -139,7 +139,42 @@
 		          @(ViewData["ltruletype"].ToString() == "7" ?"<li class='finalbig'>6</li>":"<em class='regular06'></em> + <em class='regular05'></em> = <li class='finalbig'>11</li>")
 		    </td>
 	
-        </tr> 
+        </tr>
+    }
+    else if (ViewData["ltruletype"].ToString() == "3")
+    {
+        <tr><td colspan="4">计算机系统随机产生3个数字,每个数字范围0-9,每2分钟一期，24小时开奖</td></tr>
+        <tr>
+            <td width="120">如第449159期</td>
+            <td>
+                0-9随机数
+            </td>
+            <td>
+                0-9随机数
+            </td>
+            <td>
+                0-9随机数
+            </td>
+        </tr>
+        <tr>
+            <td>结果</td>
+            <td>
+                <li class="finalbig">3</li>
+            </td>
+            <td>
+                <li class="finalbig">6</li>
+            </td>
+            <td>
+                <li class="finalbig">1</li>
+            </td>
+
+        </tr>
+        <tr>
+            <td>开奖</td>
+            <td colspan="3"><li class="finalbig">3</li> + <li class="finalbig">6</li> + <li class="finalbig">1</li> = <li class="finalbig">10</li></td>
+
+
+        </tr>
     }
 
     @if (ViewData["ltruletype"].ToString() == "4" || ViewData["ltruletype"].ToString() == "5")

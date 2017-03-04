@@ -77,7 +77,8 @@ select top 1  type,expect lastnumber,opentime,status,DATEDIFF(SECOND,GETDATE(),o
 into #now
 from owzx_lotteryrecord
 where type=@type and status in (0,1)
-and DATEDIFF(SECOND,GETDATE(),opentime)>=0 and DATEDIFF(SECOND,GETDATE(),opentime)<=300
+and DATEDIFF(SECOND,GETDATE(),opentime)>=0 and DATEDIFF(SECOND,GETDATE(),opentime)<=(case when type in(1,4,9,6,7,8) then 300 
+when type in(2,5) then 210 when type=3 then 120)
 
 if not exists(select 1 from #now)
 begin
@@ -211,91 +212,74 @@ end
             {
                 string sql = string.Format(@" 
                 
-                declare @type int ={0}
+              declare @type int ={0}
 declare @min varchar(5), @sec varchar(5),@expect varchar(50),@totalsec varchar(5)
 
 if(@type in (1,4,9,7,8)) 
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status !=2 and 
-(DATEDIFF(second,opentime,getdate()) >= -270 and DATEDIFF(second,opentime,getdate())<0) order by lotteryid )
+(DATEDIFF(second,opentime,getdate()) >= -300 and DATEDIFF(second,opentime,getdate())<-30) order by lotteryid )
 begin
 select top 1 @expect=expect, 
---@min=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))/60),
---@sec=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))%60),
 @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
-from owzx_lotteryrecord where type=@type and status  !=2  and (DATEDIFF(second,opentime,getdate()) >= -270 and DATEDIFF(second,opentime,getdate())<0)
+from owzx_lotteryrecord where type=@type and status  !=2  and (DATEDIFF(second,opentime,getdate()) >= -300 and DATEDIFF(second,opentime,getdate())<-30)
 order by lotteryid
 
 select @expect expect,@totalsec time
---select @expect expect,(replicate('0',2-len(@min))+rtrim(@min)) +'分'+(replicate('0',2-len(@sec))+rtrim(@sec)) +'秒' time
+
 end
-else
-begin
-select '?' expect,'维护中' time
-end
+
 
 end
 else if(@type in (2,5)) 
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status  !=2  and 
-(DATEDIFF(second,opentime,getdate()) >= -180 and DATEDIFF(second,opentime,getdate())<0) order by lotteryid )
+(DATEDIFF(second,opentime,getdate()) >= -210 and DATEDIFF(second,opentime,getdate())<-30) order by lotteryid )
 begin
 select top 1 @expect=expect, 
---@min=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))/60),
---@sec=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))%60),
+
 @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
-from owzx_lotteryrecord where type=@type and status  !=2 and (DATEDIFF(second,opentime,getdate()) >= -180 and DATEDIFF(second,opentime,getdate())<0)
+from owzx_lotteryrecord where type=@type and status  !=2 and (DATEDIFF(second,opentime,getdate()) >= -210 and DATEDIFF(second,opentime,getdate())<-30)
 order by lotteryid
 
 select @expect expect,@totalsec time
---select @expect expect,(replicate('0',2-len(@min))+rtrim(@min)) +'分'+(replicate('0',2-len(@sec))+rtrim(@sec)) +'秒' time
+end
 end
 else if(@type in (6)) 
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status !=2 and 
-(DATEDIFF(second,opentime,getdate()) >= -90 and DATEDIFF(second,opentime,getdate())<0) order by lotteryid )
+(DATEDIFF(second,opentime,getdate()) >= -90 and DATEDIFF(second,opentime,getdate())<-30) order by lotteryid )
 begin
 select top 1 @expect=expect, 
---@min=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))/60),
---@sec=CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),dateadd(SECOND,-30,opentime))%60),
+
 @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
-from owzx_lotteryrecord where type=@type and status  !=2  and (DATEDIFF(second,opentime,getdate()) >= -90 and DATEDIFF(second,opentime,getdate())<0)
+from owzx_lotteryrecord where type=@type and status  !=2  and (DATEDIFF(second,opentime,getdate()) >= -90 and DATEDIFF(second,opentime,getdate())<-30)
 order by lotteryid
 
 select @expect expect,@totalsec time
---select @expect expect,(replicate('0',2-len(@min))+rtrim(@min)) +'分'+(replicate('0',2-len(@sec))+rtrim(@sec)) +'秒' time
+end
 end
 else if(@type in (3)) 
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status !=2 and 
-(DATEDIFF(second,opentime,getdate()) >= -100 and DATEDIFF(second,opentime,getdate())<0) order by lotteryid )
+(DATEDIFF(second,opentime,getdate()) >= -120 and DATEDIFF(second,opentime,getdate())<-20) order by lotteryid )
 begin
 select top 1 @expect=expect, 
 @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
-from owzx_lotteryrecord where type=@type and status !=2  and (DATEDIFF(second,opentime,getdate()) >= -100 and DATEDIFF(second,opentime,getdate())<0)
+from owzx_lotteryrecord where type=@type and status !=2  and (DATEDIFF(second,opentime,getdate()) >= -120 and DATEDIFF(second,opentime,getdate())<-20)
 order by lotteryid
 
 select @expect expect,@totalsec time
---select @expect expect,(replicate('0',2-len(@min))+rtrim(@min)) +'分'+(replicate('0',2-len(@sec))+rtrim(@sec)) +'秒' time
+end
 end
 else
 begin
 select '?' expect,'维护中' time
-end
-
-end
-else
-begin
-
-select '?' expect,'维护中' time
-end
-
-end
-                ", type);
+end           ", type);
                 return RDBSHelper.ExecuteTable(sql, null)[0];
             }
         }
