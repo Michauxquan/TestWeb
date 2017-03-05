@@ -77,7 +77,8 @@ select top 1  type,expect lastnumber,opentime,status,DATEDIFF(SECOND,GETDATE(),o
 into #now
 from owzx_lotteryrecord
 where type=@type and status in (0,1)
-and DATEDIFF(SECOND,GETDATE(),opentime)>=0 and DATEDIFF(SECOND,GETDATE(),opentime)<=(case when type in(1,4,9,6,7,8) then 300 
+and DATEDIFF(SECOND,GETDATE(),opentime)>=0 and DATEDIFF(SECOND,GETDATE(),opentime)<=(case when type in(1,4,9,7,8) then 300 
+when type =6 then 90 
 --Michaux 修改
 --when type in(2,5) then 210 when type=3 then 120)
 when type in(2,5) then 210 else 120 end)

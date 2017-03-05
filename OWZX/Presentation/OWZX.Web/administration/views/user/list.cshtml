@@ -79,8 +79,8 @@
                     <tr>
                         <td></td>
                         <td>@row["id"]</td>
-                        <td>@row["email"]</td>
-                        <td>@row["mobile"]</td>
+                        <td>@{string email = @row["email"].ToString(); email = CommonHelper.HideMobile(email);} @email</td>
+                        <td>@{string mobile = @row["mobile"].ToString(); mobile = CommonHelper.HideMobile(mobile);} @mobile</td>
                         <td>@row["nickname"]</td>
                         <td>@row["totalmoney"]</td>
                         <td>@row["registertime"]</td>
