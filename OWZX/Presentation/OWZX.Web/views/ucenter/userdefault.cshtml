@@ -55,12 +55,12 @@
           
 
           <tr style="background: #fff7f0; ">
-            <td align="right" style="width:370px;padding-top:10px;text-indent: 24px;height:26px; line-height: 24px;">您的当前乐豆：  <span  class="usertotalmoney Fred bold" >0</span>  <a href="/ucenter/accountdetail" style="color: #FF6B6B;">消费明细</a></td> 
+            <td align="right" style="width:370px;padding-top:10px;text-indent: 24px;height:26px; line-height: 24px;">您的当前元宝：  <span  class="usertotalmoney Fred bold" >0</span>  <a href="/ucenter/accountdetail" style="color: #FF6B6B;">消费明细</a></td> 
             <td width="240">最后一次登录时间：<span value="@Model.UserInfo.LastVisitTime.ToString("yyyy-MM-dd HH:mm:ss")"  style="width:200px" /></td>
           </tr>
   
           <tr style="background: #fff7f0;">
-              <td width="370" align="right"  style="padding-bottom:10px;text-indent: 24px;height:26px; line-height: 24px;">您当前银行乐豆： <span  class="banktotalmoney Fred bold" >0</span> &nbsp;当前经验： <span   >0</span></td>
+              <td width="370" align="right"  style="padding-bottom:10px;text-indent: 24px;height:26px; line-height: 24px;">您当前银行元宝： <span  class="banktotalmoney Fred bold" >0</span> &nbsp;当前经验： <span   >0</span></td>
             <td width="240" align="right">最后一次登录IP： <span style="width:120px" >@Model.UserInfo.LastVisitIP</span></td>
           </tr>
           @if(@Model.UserInfo.VerifyEmail==0 ||@Model.UserInfo.VerifyMobile==0)

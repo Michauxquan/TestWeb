@@ -855,6 +855,21 @@ namespace OWZX.Web.Controllers
             return View(userlist);
         }
 
+        public ActionResult GetCardcode(string orderid)
+        {
+           MD_UserOrder order= ChangeWare.GetOrderDetail(" and orderid='" + orderid + "'");
+            if (order != null && order.OrderID > -1)
+            {
+                //发送验证邮件
+                Emails.SendEmail(WorkContext.UserEmail, "卡号为:" + order.OrderCode + "的卡密是:" + order.Content);
+                return AjaxResult("success", "邮件已经发送,请前往你的邮箱进行验证");
+            }
+            else
+            {
+                return AjaxResult("error", "暂未获取到对应卡密信息");
+            }
+        }
+
         /// <summary>
         /// 兑换明细
         /// </summary>

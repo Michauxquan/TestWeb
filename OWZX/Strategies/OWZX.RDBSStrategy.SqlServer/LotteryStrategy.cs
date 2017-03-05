@@ -2210,7 +2210,7 @@ declare @type varchar(20)='{0}'
 
 if OBJECT_ID('tempdb..#list') is not null
 drop table #list
-
+/*
 select a.uid,b.expect,a.betttotal,b.luckresult,convert(varchar(10),b.opentime,120) opentime,b.type
 into #list
 from (
@@ -2223,7 +2223,15 @@ where luckresult>0 group by uid,lotteryid) a
 join owzx_lotteryrecord b on a.lotteryid=b.lotteryid
 ) b on a.uid=b.uid and a.lotterynum=b.expect
 {1}
+*/
 
+select a.uid,b.expect,a.betttotal,a.luckresult,convert(varchar(10),b.opentime,120) opentime,b.type
+into #list
+from (
+select lotteryid,uid,lotterynum,SUM(money) betttotal,sum(winmoney) as luckresult from owzx_bett
+where isread=1 group by uid,lotterynum,lotteryid ) a
+join  owzx_lotteryrecord b on a.lotterynum=b.expect and a.lotteryid=b.type
+{1}
 
 if OBJECT_ID('tempdb..#listday') is not null
 drop table #listday
@@ -2321,7 +2329,7 @@ declare @type varchar(20)='{0}'
 
 if OBJECT_ID('tempdb..#list') is not null
 drop table #list
-
+/*
 select a.uid,b.expect,a.betttotal,b.luckresult,convert(varchar(10),b.opentime,120) opentime,b.type
 into #list
 from (
@@ -2333,6 +2341,15 @@ select a.luckresult,b.expect,a.uid,b.opentime,b.type from
 where luckresult>0 group by uid,lotteryid) a 
 join owzx_lotteryrecord b on a.lotteryid=b.lotteryid
 ) b on a.uid=b.uid and a.lotterynum=b.expect
+{1}
+*/
+
+select a.uid,b.expect,a.betttotal,a.luckresult,convert(varchar(10),b.opentime,120) opentime,b.type
+into #list
+from (
+select lotteryid,uid,lotterynum,SUM(money) betttotal,sum(winmoney) as luckresult from owzx_bett
+where isread=1 group by uid,lotterynum,lotteryid ) a
+join  owzx_lotteryrecord b on a.lotterynum=b.expect and a.lotteryid=b.type
 {1}
 
 
@@ -2353,16 +2370,16 @@ profitresult decimal(18,2),
 )
 
 
-select a.*,money backtotal 
+select a.*,isnull(money,0) backtotal 
 into #listday
 from (
 select opentime,SUM(betttotal) betttotal,SUM(luckresult) luckresult
 from #list a
 group by opentime )a
-join (
+left join (
 select sum(money) money,addtime from 
 (select money,convert(varchar(10),addtime,120) addtime 
-from owzx_userback where status=2)  a  group by addtime
+from owzx_userbackreport )  a  group by addtime
 ) b on a.opentime=b.addtime
 
 if(@type='每日盈亏')

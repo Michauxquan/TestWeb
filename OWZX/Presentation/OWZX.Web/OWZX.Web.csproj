@@ -541,6 +541,7 @@
     <Content Include="images\tr.png" />
     <Content Include="images\dlogo.png" />
     <Content Include="images\word.fw.png" />
+    <Content Include="images\yuanbao.png" />
     <Content Include="scripts\account.js" />
     <Content Include="scripts\ad-gallery\jquery.ad-gallery.css" />
     <Content Include="scripts\betmode.js" />

@@ -18,6 +18,7 @@ namespace OWZX.Core
         DataTable GetWareSkuList(int pageIndex, int pageSize, string condition = "");
         DataTable GetChangeWare(int pageNumber, int pageSize, string condition = "");
         DataTable GetUserOrder(int pageNumber, int pageSize, string condition = "");
+        DataTable GetUserOrderDetail(string condition = "");
         DataTable GetWareByCode(string condition = "");
         DataTable GetWareSkuByCode(string speccode = "");
         DataTable GetWareSkuByID(int specid = -1);

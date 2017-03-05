@@ -5,6 +5,8 @@
     <link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
     <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
     <script type="text/javascript">
+        var allsce = @(Model.lottery != null ? Model.lottery.AllSec : 0);
+        var expect = @(Model.lottery != null ? Model.lottery.Expect : "");
         $(function() {
             $('.updstatus').click(function() {
                 var _this = $(this);
@@ -20,9 +22,9 @@
             $('input[name="isdefault"]').change(function() {
                 getResultList($('input[name="isdefault"]:checked').data("settype"));
             });
-        
+
             function getResultList(settype) {
-                $.post('/admin/lottery/GetOpenResult',{ lotterynum: @(Model.lottery!=null?Model.lottery.Expect:"") ,settype:settype},function(data) {
+                $.post('/admin/lottery/GetOpenResult', { lotterynum: expect, settype: settype }, function(data) {
                     var result = eval('(' + data + ')');
                     var html = "<br/>";
                     var rlist = result.content.split(",");
@@ -51,8 +53,27 @@
                     });
                 });
             }
+
             getResultList(-1);
         });
+
+        var sh;
+        sh = setInterval(refshscend, 1000);
+
+        function refshscend() {
+            allsce = allsce - 1;
+            if (allsce < 20) {
+                $('.setsesult').hide();
+            }
+            if (allsce < 0) {
+                clearInterval(sh);
+                window.parent.frames["frameRight"].location.reload();
+            } else {
+                if (expect != "") {
+                    $('#expectinfo').html("当前期:" + expect + " 剩余投注时间:" + allsce);
+                }
+            }
+        }
     </script>
 }
 
@@ -79,7 +100,7 @@
                             <span id="lotteryid" style="margin-left: 100px;"></span>
                             <span id="lotteryresult" style="margin-left: 100px;float: left;">@(string.IsNullOrEmpty(Model.OpenList[0].result)?"暂未设置开奖结果":"设置开奖结果为:"+ Model.OpenList[0].result)</span>
                         }
-                            <span style="float: right; margin-right: 400px;">@(Model.lottery!=null?("当前期:"+ Model.lottery.Expect+" 剩余投注时间:"+Model.lottery.AllSec):"")</span>
+                            <span id="expectinfo" style="float: right; margin-right: 400px;">@(Model.lottery!=null?("当前期:"+ Model.lottery.Expect+" 剩余投注时间:"+Model.lottery.AllSec):"")</span>
                             <span class="clear"></span>
                         </th>
                     </tr>

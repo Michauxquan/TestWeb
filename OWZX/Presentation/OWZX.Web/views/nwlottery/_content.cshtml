@@ -11,7 +11,7 @@
         <td width="13%" style="height: 28px;">期号</td>
         <td width="13%" style="height: 28px">开奖时间</td>
         <td width="17%" style="height: 28px">开奖结果</td>
-        <td width="15%" style="height: 28px">乐豆总数</td>
+        <td width="15%" style="height: 28px">元宝总数</td>
         <td width="12%" style="height: 28px">中奖人数</td>
         <td width="15%" style="height: 28px">中奖额/投注额</td>
         <td width="13%" style="height: 28px">投注</td>
@@ -44,7 +44,7 @@
                 }
             }
         </td>
-        <td>@{string rt = string.Format("{0:n0}",@lot.TotalBett);} @rt</td>
+        <td>@{string rt = string.Format("{0:n0}", @lot.TotalBett);}<img style="float: right; margin-top: 5px; margin-right: 20px; width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span style="float: right;">@rt</span><span class="clear"></span></td>
         <td>@lot.WinPerson/@lot.BettPerson</td>
         <td>@{string bt = string.Format("{0:n0}", @lot.LuckResult); string lk = string.Format("{0:n0}", @lot.Money);} @(lk!="0"?"<a style=\"color: #FD6400;cursor:pointer;\" href=\"javascript:loadpage('bett',"+@lot.Expect+")\">":"")@bt/@lk @(lk!="0"?"</a>":"")</td>
         <td style="width:30px;">

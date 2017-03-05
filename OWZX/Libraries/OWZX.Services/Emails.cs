@@ -138,5 +138,21 @@ namespace OWZX.Services
 
             return _iemailstrategy.Send(to, subject, body.ToString());
         }
+        /// <summary>
+        /// 发送自定义内容邮件
+        /// </summary>
+        /// <param name="to">接收邮箱</param>
+        /// <returns></returns>
+        public static bool SendEmail(string to,string msg)
+        {
+            string subject = string.Format("{0}卡密获取", _shopconfiginfo.WebName);
+
+            StringBuilder body = new StringBuilder("&lt;p&gt;{shopname}{regtime}&lt;br /&gt;{code}&lt;/p&gt;");
+            body.Replace("{shopname}", _shopconfiginfo.WebName);
+            body.Replace("{regtime}", CommonHelper.GetDateTime());
+            body.Replace("{code}", msg);
+
+            return _iemailstrategy.Send(to, subject, body.ToString());
+        }
     }
 }

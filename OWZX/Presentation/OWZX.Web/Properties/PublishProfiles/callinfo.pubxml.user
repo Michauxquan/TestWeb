@@ -61,13 +61,13 @@
       <publishTime>02/06/2017 19:05:47</publishTime>
     </File>
     <File Include="bin/OWZX.Core.dll">
-      <publishTime>03/03/2017 00:22:47</publishTime>
+      <publishTime>03/05/2017 23:29:16</publishTime>
     </File>
     <File Include="bin/OWZX.Core.pdb">
       <publishTime>11/17/2016 18:05:41</publishTime>
     </File>
     <File Include="bin/OWZX.Data.dll">
-      <publishTime>03/03/2017 00:22:47</publishTime>
+      <publishTime>03/05/2017 23:29:16</publishTime>
     </File>
     <File Include="bin/OWZX.Data.pdb">
       <publishTime>11/17/2016 18:05:42</publishTime>
@@ -79,16 +79,16 @@
       <publishTime>11/17/2016 18:05:41</publishTime>
     </File>
     <File Include="bin/OWZX.Services.dll">
-      <publishTime>03/03/2017 00:22:48</publishTime>
+      <publishTime>03/05/2017 23:29:16</publishTime>
     </File>
     <File Include="bin/OWZX.Services.pdb">
       <publishTime>11/17/2016 18:05:42</publishTime>
     </File>
     <File Include="bin/OWZX.Web.dll">
-      <publishTime>03/03/2017 00:22:49</publishTime>
+      <publishTime>03/05/2017 23:29:17</publishTime>
     </File>
     <File Include="bin/OWZX.Web.Framework.dll">
-      <publishTime>03/03/2017 00:22:48</publishTime>
+      <publishTime>03/05/2017 23:29:17</publishTime>
     </File>
     <File Include="bin/OWZX.Web.Framework.pdb">
       <publishTime>11/17/2016 18:05:43</publishTime>
@@ -1177,13 +1177,13 @@
       <publishTime>02/16/2017 23:57:03</publishTime>
     </File>
     <File Include="controllers/NWLotteryController.cs">
-      <publishTime>03/01/2017 21:29:42</publishTime>
+      <publishTime>03/04/2017 22:14:40</publishTime>
     </File>
     <File Include="controllers/ToolController.cs">
       <publishTime>02/06/2017 19:05:47</publishTime>
     </File>
     <File Include="controllers/UCenterController.cs">
-      <publishTime>02/20/2017 23:16:13</publishTime>
+      <publishTime>03/05/2017 22:03:41</publishTime>
     </File>
     <File Include="css/account.css">
       <publishTime>02/06/2017 19:05:47</publishTime>
@@ -1491,6 +1491,9 @@
     <File Include="images/word.fw.png">
       <publishTime>02/21/2017 00:13:48</publishTime>
     </File>
+    <File Include="images/yuanbao.png">
+      <publishTime>03/05/2017 18:16:15</publishTime>
+    </File>
     <File Include="models/AccountModel.cs">
       <publishTime>02/20/2017 22:16:44</publishTime>
     </File>
@@ -1510,7 +1513,7 @@
       <publishTime>02/06/2017 19:05:47</publishTime>
     </File>
     <File Include="models/UserChangeList.cs">
-      <publishTime>02/15/2017 22:40:33</publishTime>
+      <publishTime>03/05/2017 21:33:28</publishTime>
     </File>
     <File Include="models/UserLogList.cs">
       <publishTime>02/15/2017 23:04:58</publishTime>
@@ -1525,10 +1528,10 @@
       <publishTime>02/12/2017 23:17:41</publishTime>
     </File>
     <File Include="OWZX.Web.csproj">
-      <publishTime>03/02/2017 21:49:10</publishTime>
+      <publishTime>03/05/2017 18:18:03</publishTime>
     </File>
     <File Include="OWZX.Web.csproj.user">
-      <publishTime>03/02/2017 21:49:10</publishTime>
+      <publishTime>03/05/2017 18:18:03</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>02/06/2017 19:05:47</publishTime>
@@ -1552,7 +1555,7 @@
       <publishTime>02/06/2017 19:05:47</publishTime>
     </File>
     <File Include="scripts/betmode.js">
-      <publishTime>03/02/2017 19:37:23</publishTime>
+      <publishTime>03/05/2017 19:01:24</publishTime>
     </File>
     <File Include="scripts/common.js">
       <publishTime>02/06/2017 19:05:47</publishTime>
@@ -1648,10 +1651,10 @@
       <publishTime>02/06/2017 19:05:47</publishTime>
     </File>
     <File Include="scripts/lottery.js">
-      <publishTime>02/28/2017 00:07:17</publishTime>
+      <publishTime>03/04/2017 22:14:40</publishTime>
     </File>
     <File Include="scripts/play.js">
-      <publishTime>03/02/2017 23:10:03</publishTime>
+      <publishTime>03/05/2017 19:01:38</publishTime>
     </File>
     <File Include="scripts/region.js">
       <publishTime>02/06/2017 19:05:47</publishTime>
@@ -1693,7 +1696,7 @@
       <publishTime>02/14/2017 01:22:02</publishTime>
     </File>
     <File Include="views/changeware/changelist.cshtml">
-      <publishTime>02/26/2017 00:43:20</publishTime>
+      <publishTime>03/05/2017 16:30:17</publishTime>
     </File>
     <File Include="views/Error/index.cshtml">
       <publishTime>10/15/2016 09:36:29</publishTime>
@@ -1717,7 +1720,7 @@
       <publishTime>02/06/2017 19:05:47</publishTime>
     </File>
     <File Include="views/home/index.cshtml">
-      <publishTime>02/20/2017 22:49:39</publishTime>
+      <publishTime>03/05/2017 23:20:15</publishTime>
     </File>
     <File Include="views/home/notice.cshtml">
       <publishTime>02/06/2017 19:05:47</publishTime>
@@ -1732,43 +1735,43 @@
       <publishTime>02/12/2017 19:46:08</publishTime>
     </File>
     <File Include="views/nwlottery/ltindex.cshtml">
-      <publishTime>02/28/2017 00:07:17</publishTime>
+      <publishTime>03/04/2017 22:14:40</publishTime>
     </File>
     <File Include="views/nwlottery/_autobett.cshtml">
-      <publishTime>02/25/2017 19:17:57</publishTime>
+      <publishTime>03/05/2017 19:02:34</publishTime>
     </File>
     <File Include="views/nwlottery/_autorule.cshtml">
       <publishTime>02/23/2017 00:31:46</publishTime>
     </File>
     <File Include="views/nwlottery/_bettdetails.cshtml">
-      <publishTime>02/28/2017 00:07:17</publishTime>
+      <publishTime>03/05/2017 18:59:42</publishTime>
     </File>
     <File Include="views/nwlottery/_bettmode.cshtml">
       <publishTime>02/28/2017 00:07:17</publishTime>
     </File>
     <File Include="views/nwlottery/_bettpage.cshtml">
-      <publishTime>03/02/2017 22:07:37</publishTime>
+      <publishTime>03/05/2017 19:02:40</publishTime>
     </File>
     <File Include="views/nwlottery/_bettrecord.cshtml">
-      <publishTime>02/28/2017 00:07:17</publishTime>
+      <publishTime>03/05/2017 18:46:02</publishTime>
     </File>
     <File Include="views/nwlottery/_content.cshtml">
-      <publishTime>02/28/2017 23:18:09</publishTime>
+      <publishTime>03/05/2017 18:44:13</publishTime>
     </File>
     <File Include="views/nwlottery/_contentlhb.cshtml">
       <publishTime>02/28/2017 23:18:12</publishTime>
     </File>
     <File Include="views/nwlottery/_contentpk.cshtml">
-      <publishTime>02/28/2017 23:18:16</publishTime>
+      <publishTime>03/05/2017 18:27:37</publishTime>
     </File>
     <File Include="views/nwlottery/_index.cshtml">
-      <publishTime>02/23/2017 00:31:51</publishTime>
+      <publishTime>03/04/2017 22:14:40</publishTime>
     </File>
     <File Include="views/nwlottery/_ltheader.cshtml">
-      <publishTime>02/20/2017 22:16:44</publishTime>
+      <publishTime>03/04/2017 22:14:40</publishTime>
     </File>
     <File Include="views/nwlottery/_ltrule.cshtml">
-      <publishTime>02/21/2017 00:22:15</publishTime>
+      <publishTime>03/04/2017 22:14:40</publishTime>
     </File>
     <File Include="views/shared/prompt.cshtml">
       <publishTime>02/06/2017 19:05:47</publishTime>
@@ -1780,7 +1783,7 @@
       <publishTime>08/24/2016 15:34:50</publishTime>
     </File>
     <File Include="views/shared/_header.cshtml">
-      <publishTime>02/23/2017 00:31:51</publishTime>
+      <publishTime>03/05/2017 23:20:11</publishTime>
     </File>
     <File Include="views/shared/_layout.cshtml">
       <publishTime>02/06/2017 19:05:47</publishTime>
@@ -1792,10 +1795,10 @@
       <publishTime>09/08/2016 09:04:51</publishTime>
     </File>
     <File Include="views/ucenter/accountdetail.cshtml">
-      <publishTime>02/15/2017 22:40:33</publishTime>
+      <publishTime>03/05/2017 20:06:27</publishTime>
     </File>
     <File Include="views/ucenter/changerecord.cshtml">
-      <publishTime>03/02/2017 20:12:56</publishTime>
+      <publishTime>03/05/2017 22:05:33</publishTime>
     </File>
     <File Include="views/ucenter/favoriteproductlist.cshtml">
       <publishTime>02/06/2017 19:05:47</publishTime>
@@ -1819,13 +1822,13 @@
       <publishTime>02/28/2017 22:56:00</publishTime>
     </File>
     <File Include="views/ucenter/userdefault.cshtml">
-      <publishTime>02/25/2017 20:29:51</publishTime>
+      <publishTime>03/05/2017 19:03:01</publishTime>
     </File>
     <File Include="views/ucenter/userinfo.cshtml">
       <publishTime>02/20/2017 22:16:44</publishTime>
     </File>
     <File Include="views/ucenter/_menu.cshtml">
-      <publishTime>02/20/2017 22:16:44</publishTime>
+      <publishTime>03/05/2017 19:02:46</publishTime>
     </File>
     <File Include="views/Web.config">
       <publishTime>02/06/2017 19:05:47</publishTime>

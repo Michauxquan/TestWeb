@@ -18,8 +18,8 @@
                     <a class="cblock" href="@Url.Action("userdefault", "ucenter")">@lgname</a>@:&nbsp; &nbsp; 
                     <a class="cblock" href="@Url.Action("logout", "account")">[退出]</a>@:&nbsp; &nbsp; | &nbsp; &nbsp;
                     <a class="cblock" href="@Url.Action("userdefault", "ucenter")">我的帐户</a>@:&nbsp; &nbsp; | &nbsp; &nbsp;
-                    <span class="cblock" >元宝: <i class="usertotalmoney Fred bold">0</i> </span>@:&nbsp; &nbsp; | &nbsp; &nbsp;
-                    <span class="cblock" >银行: <i class="banktotalmoney Fred bold">0</i></span>@:&nbsp; &nbsp; 
+                    <span class="cblock" >元宝: <i class="usertotalmoney Fred bold">0</i><img style="margin-bottom: -2px; display: inline-block; width: 20px; height: 16px;" src="../../images/yuanbao.png"/> </span>@:&nbsp; &nbsp; | &nbsp; &nbsp;
+                    <span class="cblock" >银行: <i class="banktotalmoney Fred bold">0</i><img style="margin-bottom: -2px; display: inline-block; width: 20px; height: 16px;" src="../../images/yuanbao.png"/></span>@:&nbsp; &nbsp; 
                 }
             </div>
 
@@ -36,7 +36,7 @@
             <li onclick="javascript: window.location.href = '/'"><a href="/" class="index">首页</a></li>
             <li onclick="javascript:window.location.href = '@Url.Action("list", "agent")'"><a href="javascript:void(0);">商务合作</a></li>
             <li onclick="javascript: window.location.href = '@Url.Action("list", "news")'"><a href="javascript:void(0);">活动专区</a></li>
-            <li onclick="javascript: window.location.href = '/nwlottery/ltindex/1'"><a href="javascript:void(0);">游戏乐园</a></li>
+            <li onclick="javascript: window.location.href = '/nwlottery/ltindex/3'"><a href="javascript:void(0);">游戏乐园</a></li>
             <li onclick="javascript: window.location.href = '@Url.Action("changelist", "changeware")'"><a href="javascript:void(0);">兑换中心</a></li>
             <li onclick="javascript: window.location.href = '@Url.Action("userdefault", "ucenter")'"><a href="javascript:void(0);">用户中心</a></li>
         </ul>
@@ -66,21 +66,7 @@
             supplied: "mp3",
             wmode: "window"
         }); 
-    }); 
-    //$(document).ready(function(){ 
-    //    $("#jquery_jplayer_1").jPlayer({
-    //        ready: function () {
-    //            $(this).jPlayer("setMedia", {
-    //                title: "Bubble",
-    //                mp3: "/images/security.mp3"
-    //            });
-    //        },
-    //        swfPath: "/script",
-    //        supplied: "mp3",
-    //        wmode: "window"
-    //    });
-		
-    //});
+    });  
 </script>
 @*<script src="http://webpresence.qq.com/getonline?Type=1&2244929864:"></script>*@
 <script type="text/javascript" src="@{@WorkContext.CSSCDN}/scripts/cookie.js"></script>

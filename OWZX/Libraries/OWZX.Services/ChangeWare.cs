@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.SessionState;
 using OWZX.Core;
 using OWZX.Model;
 
@@ -114,6 +115,12 @@ namespace OWZX.Services
         {
             return OWZX.Core.BSPData.RDBS.GetUserOrder(pageNumber, pageSize, condition);
         }
+
+        public static DataTable GetUserOrderDetail(string condition = "")
+        {
+            return OWZX.Core.BSPData.RDBS.GetUserOrderDetail(condition);
+        }
+
         /// <summary>
         ///获取用户兑换信息(分页)
         /// </summary>
@@ -125,6 +132,12 @@ namespace OWZX.Services
         {
             DataTable dt = GetUserOrder(pageIndex, pageSize, condition);
             List<MD_UserOrder> list = (List<MD_UserOrder>)ModelConvertHelper<MD_UserOrder>.ConvertToModel(dt);
+            return list;
+        }
+        public static MD_UserOrder GetOrderDetail(string condition = "")
+        {
+            DataTable dt = GetUserOrderDetail(condition);
+            MD_UserOrder list = ModelConvertHelper<MD_UserOrder>.DataTableToModel(dt);
             return list;
         }
         public static int CreateWare(Ware ware)

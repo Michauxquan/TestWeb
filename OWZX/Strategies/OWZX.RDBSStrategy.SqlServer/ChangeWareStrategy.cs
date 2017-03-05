@@ -232,6 +232,26 @@ end catch
             );
             return RDBSHelper.ExecuteTable(CommandType.Text, commandText, parms)[0];
         }
+
+
+        public DataTable GetUserOrderDetail(string condition = "")
+        { 
+            string commandText = string.Format(@"
+begin try
+ 
+
+SELECT top 1 a.orderid,a.ordercode,a.warecode,a.warename,a.speccode,a.specname,a.issuenum,a.status,
+       a.totalfee,a.price,a.type,a.num,a.content,a.changeid,a.createtime , a.content  FROM owzx_userorder a  where  1=1 
+  {0} 
+end try
+begin catch
+select ERROR_MESSAGE() state
+end catch
+
+", condition
+            );
+            return RDBSHelper.ExecuteTable(CommandType.Text, commandText, null)[0];
+        }
         /// <summary>
         /// 添加投注或兑换订单
         /// </summary>
