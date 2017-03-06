@@ -20,31 +20,13 @@
         lotterytype=@Model.LotteryType;
         isbett=0;
         $(function () {
-            $("#navItme li").removeClass("hot");
-            $("#navItme li:eq(3)").addClass("hot");
-            $("#ltItme li div").removeClass("hot");
-            switch (lotterytype) {
-                case 1: $("#ltItme li:eq(1) a div").addClass("hot");
-                    break;
-                case 2:
-                    $("#ltItme li:eq(3) a div").addClass("hot");
-                    break;
-                case 3: $("#ltItme li:eq(0) a div").addClass("hot");
-                    break;
-                case 4: $("#ltItme li:eq(2) a div").addClass("hot");
-                    break;
-                case 5: $("#ltItme li:eq(4) a div").addClass("hot");
-                    break;
-                case 6: $("#ltItme li:eq(5) a div").addClass("hot");
-                    break;
-                case 7: $("#ltItme li:eq(6) a div").addClass("hot");
-                    break;
-                case 8: $("#ltItme li:eq(7) a div").addClass("hot");
-                    break;
-                case 9: $("#ltItme li:eq(8) a div").addClass("hot");
-                    break;
-            }
-
+            $("#navItme li").removeClass("hot"); 
+            $(".ltItme li div").removeClass("hot");
+            $(".ltItme li").each(function(i, v) {
+                if ($(v).data("type") == lotterytype) {
+                    $(v).find("div").addClass("hot");
+                }
+            }); 
             $(".sec_head a").click(function () {
                 if ($(this).index() > 3 && uid <= 0) {
                     layer.alert("<div style='text-align:center;'>请登录</div>", { title: "提示" });
@@ -95,7 +77,7 @@
                                     <span class="ltnum3">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(36, 17)</span>
                                 </text>
                                  }
-                            else if (@Model.LotteryType == 2 || @Model.LotteryType == 5)
+                            else if (@Model.LotteryType == 2 || @Model.LotteryType == 5 || @Model.LotteryType == 6)
                             {
                                 string[] numbs = @Model.lotterylist.Prev_Lottery.Orderresult.Split(',');
                                 <text>
@@ -193,7 +175,9 @@
                 <div style="width:30%;display:block;float:left;">
                     今日盈亏: <span class="ltwarn">@Model.lotterylist.TdProf</span> 参与: <i class="bold">@Model.lotterylist.TdBettNum</i>期 胜率: <i class="bold">@Model.lotterylist.WinPercent%</i>
                 </div>
-                <div style="width:40%; display:block;float:left;text-align:right;">最高投注<span class="ltwarn">2,000</span>万豆,最高中奖 <span class="ltwarn">1,000,000</span>万豆</div>
+                <div style="width: 40%; display: block; float: left; text-align: right;">投注无上限,中奖无上限
+               @*     最高投注<span class="ltwarn">2,000</span>万豆,最高中奖 <span class="ltwarn">1,000,000</span>万豆*@
+                </div>
             </div>
             <div class="temp_content">
             

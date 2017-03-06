@@ -122,6 +122,21 @@ namespace OWZX.Web.controllers
                     total = 120;
                     stop = 20;
                     break;
+                case (int)LotType.js10:
+                    title = "急速10首页";
+                    total = 120;
+                    stop = 20;
+                    break;
+                case (int)LotType.js11:
+                    title = "急速11首页";
+                    total = 120;
+                    stop = 20;
+                    break;
+                case (int)LotType.js16:
+                    title = "急速16首页";
+                    total = 120;
+                    stop = 20;
+                    break;
             }
         }
 
