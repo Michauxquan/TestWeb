@@ -110,9 +110,18 @@
 
         </tr>
     }
-    else if (ViewData["ltruletype"].ToString() == "7" || ViewData["ltruletype"].ToString() == "8")
-    { 
-		<tr><td colspan="2">采用北京福彩中心PK10数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
+    else if (ViewData["ltruletype"].ToString() == "7" || ViewData["ltruletype"].ToString() == "8" || ViewData["ltruletype"].ToString() == "10")
+    {
+        <tr><td colspan="2">
+            @if (ViewData["ltruletype"].ToString() == "10")
+            {
+                @: 采用北京福彩中心PK10数据，每5分钟一期，每天179期，每天0 - 9点暂停开奖
+            }
+            else
+            {
+                @: 计算机系统随机产生10个数字,数字范围1-10各不相同,每2分钟一期，24小时开奖
+            }
+        </td></tr>
 		<tr>
 			<td width="120">如第449159期</td>
 			<td><em class="regular06"></em>
@@ -128,15 +137,15 @@
         </tr>
 		<tr>
 			<td>计算</td>
-		    <td>
-		        @(ViewData["ltruletype"].ToString() == "7" ?"取开奖号码首位":"取开奖号码前两位之和")
+		    <td colspan="3">
+		        @(ViewData["ltruletype"].ToString() == "8" ?"取开奖号码前两位之和":"取开奖号码首位")
 		    </td>
 	
         </tr>
 		<tr>
 			<td>开奖</td>
 		    <td colspan="3">
-		          @(ViewData["ltruletype"].ToString() == "7" ?"<li class='finalbig'>6</li>":"<em class='regular06'></em> + <em class='regular05'></em> = <li class='finalbig'>11</li>")
+		          @(ViewData["ltruletype"].ToString() == "8" ?"<em class='regular06'></em> + <em class='regular05'></em> = <li class='finalbig'>11</li>":"<li class='finalbig'>6</li>")
 		    </td>
 	
         </tr>
@@ -172,8 +181,39 @@
         <tr>
             <td>开奖</td>
             <td colspan="3"><li class="finalbig">3</li> + <li class="finalbig">6</li> + <li class="finalbig">1</li> = <li class="finalbig">10</li></td>
+        </tr>
+    }
+    else if (ViewData["ltruletype"].ToString() == "11" || ViewData["ltruletype"].ToString() == "12")
+    {
+        <tr><td colspan="@(ViewData["ltruletype"].ToString()=="12"?"4":"3")">计算机系统随机产生@(ViewData["ltruletype"].ToString()=="12"?"3":"2")个数字,每个数字范围1-6,每2分钟一期，24小时开奖</td></tr>
+         <tr>
+            <td width="120">如第449159期</td>
+            <td>
+                1-6随机数
+            </td>
+            <td>
+                1-6随机数
+            </td>
+            <td style="@(ViewData["ltruletype"].ToString()=="12"?"":"display:none;")">
+                1-6随机数
+            </td>
+        </tr>
+        <tr>
+            <td>结果</td>
+            <td>
+                <li class="finalbig">3</li>
+            </td>
+            <td>
+                <li class="finalbig">6</li>
+            </td>
+            <td style="@(ViewData["ltruletype"].ToString()=="12"?"":"display:none;")">
+                <li class="finalbig">1</li>
+            </td>
 
-
+        </tr>
+        <tr>
+            <td>开奖</td>
+            <td colspan="@(ViewData["ltruletype"].ToString()=="12"?"3":"4")"><li class="finalbig">3</li> + <li class="finalbig">6</li> @(ViewData["ltruletype"].ToString() == "12"?"+ <li class='finalbig'>1</li>":"") = <li class="finalbig"> @(ViewData["ltruletype"].ToString()=="12"?"10":"9")</li></td>
         </tr>
     }
 

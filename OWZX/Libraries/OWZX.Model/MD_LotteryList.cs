@@ -81,7 +81,19 @@ namespace OWZX.Model
         /// <summary>
         /// 蛋蛋龙虎豹
         /// </summary>
-        ddlhb = 9
+        ddlhb = 9,
+        /// <summary>
+        /// 蛋蛋龙虎豹
+        /// </summary>
+        js10 = 10,
+        /// <summary>
+        /// 蛋蛋龙虎豹
+        /// </summary>
+        js11 = 11,
+        /// <summary>
+        /// 蛋蛋龙虎豹
+        /// </summary>
+        js16 = 12
     }
     /// <summary>
     /// 投注类型

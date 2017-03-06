@@ -429,8 +429,8 @@ function trim(data) {
 
 function OnSave() {
     var sumgoldeggs = document.getElementById("SMONEYSUM").value;
-    if (sumgoldeggs < 10 || sumgoldeggs > 20000000) {
-        m = "<div class='content1' id='Notice_content'>保存失败，投注总额必须为10-2000万元宝</div>";
+    if (sumgoldeggs < 10) {/*|| sumgoldeggs > 20000000   -2000万*/
+        m = "<div class='content1' id='Notice_content'>保存失败，投注总额必须大于10元宝</div>";
         layer.alert(m, { icon: 2, title: "保存模式" });
         return;
     }
@@ -458,8 +458,8 @@ function DoSave(NewName) {
     }
     var m = "";
     var sumgoldeggs = document.getElementById("SMONEYSUM").value;
-    if (sumgoldeggs < 10 || sumgoldeggs > 20000000) {
-        m = "<div class='content1' id='Notice_content'>保存失败，投注总额必须为10-2000万元宝</div>";
+    if (sumgoldeggs < 10) { //|| sumgoldeggs > 20000000   -2000万
+        m = "<div class='content1' id='Notice_content'>保存失败，投注总额必须大于10元宝</div>";
         layer.alert(m, { icon: 2, title: "保存模式" });
         return;
     }
