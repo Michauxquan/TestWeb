@@ -27,8 +27,8 @@
                         <td width="230" height="30" align="left">开奖时间：@opentime</td>
                         <td width="225" align="left">开奖结果：
                         @if (row["status"].ToString() == "2")
-                        { 
-                           if (lotterytype == 1 || lotterytype == 2 || lotterytype == 6
+                        {
+                            if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6
                                 || lotterytype == 9 || lotterytype == 7 || lotterytype == 8)
                         {<span style="font-size:15px;">
                             
@@ -51,9 +51,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td width="235" height="30" align="left"><span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;我的投注额：@row["money"]</span><img style="float: left;margin-top:6px; margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
-                        <td width="230" height="30" align="left"><span style="float: left;">获得金额：@row["winmoney"]</span><img style="float: left;margin-top:6px;  margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
-                        <td width="230" height="30" align="left"><span style="float: left;">我的盈亏：<font color="red">@row["win"]</font> </span><img style="float: left;margin-top:6px;  margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
+                        @{string mybett = string.Format("{0:n0}", @row["money"]);
+                          string winmoney = string.Format("{0:n0}", @row["winmoney"]);
+                          string mywin = string.Format("{0:n0}", @row["win"]);
+                        }
+                        <td width="235" height="30" align="left"><span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;我的投注额：@mybett</span><img style="float: left;margin-top:6px; margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
+                        <td width="230" height="30" align="left"><span style="float: left;">获得金额：@winmoney</span><img style="float: left;margin-top:6px;  margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
+                        <td width="230" height="30" align="left"><span style="float: left;">我的盈亏：<font color="red">@mywin</font> </span><img style="float: left;margin-top:6px;  margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
                     </tr>
                 </tbody>
             </table>
@@ -94,7 +98,7 @@ margin-bottom: 4px;margin-top:5px;  " >
             <td>@rw["odds"]</td>
             <td>@if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
                 { 
-                @dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())]
+                  @dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())].ToString("n0")
                 }else
                 {
                 @:-
@@ -106,7 +110,7 @@ margin-bottom: 4px;margin-top:5px;  " >
                         ||(","+rw["nums"].ToString()+",").Contains(","+row["resultnum"].ToString()+","))
                     {
                         int win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * float.Parse(rw["odds"].ToString()));
-                        @win
+                        @win.ToString("n0")
                     }
                     else
                     {
@@ -146,7 +150,7 @@ margin-bottom: 4px;margin-top:5px;  " >
             <td>
                 @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
                 {
-                    @dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())]
+                    @dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())].ToString("n0")
                 }
                 else
                 {
@@ -160,7 +164,7 @@ margin-bottom: 4px;margin-top:5px;  " >
                     ||(","+rw["nums"].ToString()+",").Contains(","+row["resultnum"].ToString()+","))
                 {
                     int win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * float.Parse(rw["odds"].ToString()));
-                    @win
+                    @win.ToString("n0")
                 }
                 else
                 {

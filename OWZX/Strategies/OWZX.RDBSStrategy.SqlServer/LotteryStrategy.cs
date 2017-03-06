@@ -975,7 +975,8 @@ select count(1) from #list where DATEDIFF(SECOND,opentime,getdate())>=210
             string commandText = string.Format(@"
 begin try
 
-if not exists(select 1 from owzx_lotteryrecord where type=@lotteryid and expect=@lotterynum and status=0)
+if not exists(select 1 from owzx_lotteryrecord where type=@lotteryid and expect=@lotterynum and status=0 
+and datediff(second,getdate(),opentime)>0)
 begin
 --select '第'+@lotterynum+'期投注已截止！' state
 select '2' state

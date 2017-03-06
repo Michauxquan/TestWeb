@@ -664,5 +664,155 @@ join owzx_users b on a.uid=b.uid  and b.uid=@uid and a.lotterytype=@lotteryid
         }
         
         #endregion
+
+        #region 竞猜管理
+        /// <summary>
+        /// 添加彩票信息
+        /// </summary>
+        /// <param name="chag"></param>
+        /// <returns></returns>
+        public string AddLottery(MD_LotteryInfo mode)
+        {
+            try
+            {
+                DbParameter[] parms = {
+                                        GenerateInParam("@lotterytype", SqlDbType.Int,4, mode.lotterytype),
+                                        GenerateInParam("@lotteryname", SqlDbType.VarChar,50, mode.lotteryname),
+                                        GenerateInParam("@isstart", SqlDbType.Bit,1, mode.isstart==true?1:0)
+                                       
+                                    };
+                string commandText = string.Format(@"
+begin try
+begin tran t1
+
+INSERT INTO [owzx_lotteryinfo]
+           ([lotterytype]
+           ,[lotteryname]
+           ,[isstart]
+           )
+VALUES (@lotterytype,@lotteryname,@isstart)
+
+
+select '添加成功' state
+commit tran t1
+end try
+begin catch
+rollback tran t1
+select ERROR_MESSAGE() state
+end catch
+
+");
+                return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+            }
+            catch (Exception er)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 更新彩票信息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public string UpdateLottery(MD_LotteryInfo mode)
+        {
+            DbParameter[] parms = {
+                                        GenerateInParam("@lotid", SqlDbType.Int,4, mode.lotid),
+                                        GenerateInParam("@isstart", SqlDbType.Bit,20, mode.isstart)
+                                       
+                                    };
+            string commandText = string.Format(@"
+begin try
+begin tran t1
+
+if exists(select 1 from owzx_lotteryinfo where lotid=@lotid)
+begin
+update a set a.[lotteryname]=@lotteryname,a.isstart=@isstart
+from [owzx_lotteryinfo] a where  lotid=@lotid
+       
+select '修改成功' state
+commit tran t1
+
+end
+else
+begin
+select '记录已被删除' state
+commit tran t1
+end
+
+end try
+begin catch
+rollback tran t1
+select ERROR_MESSAGE() state
+end catch
+
+");
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+        }
+
+        /// <summary>
+        /// 删除彩票信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string DelLottery(int setid)
+        {
+            string commandText = string.Format(@"
+            begin try
+            if exists(select 1 from  owzx_lotteryinfo where lotid={0})
+            begin
+            delete from owzx_lotteryinfo where lotid={0} 
+            select '删除成功' state
+            end
+            else
+            begin
+            select '记录已被删除' state
+            end
+            end try
+            begin catch
+            select ERROR_MESSAGE() state
+            end catch
+            ", setid);
+            return RDBSHelper.ExecuteScalar(commandText).ToString();
+        }
+
+        /// <summary>
+        ///获取彩票信息
+        /// </summary>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public DataSet GetLotteryList(string condition = "")
+        {
+            string commandText = string.Format(@"
+
+declare @type int
+set @type={0}
+
+begin try
+if OBJECT_ID('tempdb..#list') is not null
+drop table #list
+
+SELECT ROW_NUMBER() over(order by a.lotid ) id,a.[lotid]
+      ,a.[lotterytype]
+      ,a.[lotteryname]
+      ,a.[isstart]
+      ,a.[addtime]
+      ,a.[updatetime]
+into  #list
+  FROM owzx_lotteryinfo a
+ 
+end try
+begin catch
+select ERROR_MESSAGE() state
+end catch
+
+", condition);
+
+            return RDBSHelper.ExecuteDataset(CommandType.Text, commandText, null);
+        }
+        
+        #endregion
     }
 }
