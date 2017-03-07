@@ -389,10 +389,10 @@ namespace OWZX.Core
         #endregion
 
         #region 急速28
-        DataTable GetAllMoneyByLotteryNum(string lotterynum = "", int type = 47);
+        DataTable GetAllMoneyByLotteryNum(string lotterynum = "", int type = 3);
         string UpdateSetStaus(int lotteryid, int status, string result, string lotterynum);
         string UpdateSetDetailStaus(int lotteryid, int detailid, int isdefault, string result, string lotterynum);
-        DataTable GetLotteryOpenSetList(int type = 47);
+        DataTable GetLotteryOpenSetList(int type = 3);
         #endregion
 
     }

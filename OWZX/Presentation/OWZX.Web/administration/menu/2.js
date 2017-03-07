@@ -25,6 +25,18 @@
             {
                 "title": "急速28开奖设置",
                 "url": "/admin/lottery/openset"
+            },
+            {
+                "title": "急速10开奖设置",
+                "url": "/admin/lottery/openset?type=10"
+            },
+            {
+                "title": "急速11开奖设置",
+                "url": "/admin/lottery/openset?type=11"
+            },
+            {
+                "title": "急速16开奖设置",
+                "url": "/admin/lottery/openset?type=12"
             }
      ]
      },

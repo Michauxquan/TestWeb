@@ -1103,13 +1103,13 @@ namespace OWZX.Services
 
         #region 急速28 
 
-        public static List<MD_LotteryAllMoney> GetAllMoneyByLotteryNum(string lotterynum = "", int type = 47)
+        public static List<MD_LotteryAllMoney> GetAllMoneyByLotteryNum(string lotterynum = "", int type = 3)
         {
             DataTable dt = OWZX.Data.Lottery.GetAllMoneyByLotteryNum(lotterynum, type);
             List<MD_LotteryAllMoney> list = (List<MD_LotteryAllMoney>)ModelConvertHelper<MD_LotteryAllMoney>.ConvertToModel(dt);
             return list;
         }
-        public static List<MD_LotteryOpenSet> GetLotteryOpenSetList(int type = 47)
+        public static List<MD_LotteryOpenSet> GetLotteryOpenSetList(int type = 3)
         {
             DataTable dt = OWZX.Data.Lottery.GetLotteryOpenSetList(type);
             List<MD_LotteryOpenSet> list = (List<MD_LotteryOpenSet>)ModelConvertHelper<MD_LotteryOpenSet>.ConvertToModel(dt);

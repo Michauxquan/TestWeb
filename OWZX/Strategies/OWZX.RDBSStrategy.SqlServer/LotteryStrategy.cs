@@ -2542,8 +2542,8 @@ end catch
             begin try
             select  a.*,b.*,c.type from  owzx_lotteryopensetman a 
  join owzx_lotteryopenset b  on a.lotteryid =b.lotteryid
- join owzx_sys_basetype c on a.lotteryid=c.systypeid
- where c.systypeid={0} 
+ join owzx_sys_basetype c on a.lotteryid=c.outtypeid and parentid=47
+ where c.outtypeid={0} 
             end try
             begin catch
             select ERROR_MESSAGE() state

@@ -6,7 +6,7 @@
     <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
     <script type="text/javascript">
         var allsce = @(Model.lottery != null ? Model.lottery.AllSec : 0);
-        var expect = @(Model.lottery != null ? Model.lottery.Expect : "");
+        var expect = '@(Model.lottery != null ? Model.lottery.Expect : "")';
         $(function() {
             $('.updstatus').click(function() {
                 var _this = $(this);
@@ -65,7 +65,7 @@
             if (allsce < 20) {
                 $('.setsesult').hide();
             }
-            if (allsce < 0) {
+            if (allsce < 0 && expect!='') {
                 clearInterval(sh);
                 window.parent.frames["frameRight"].location.reload();
             } else {

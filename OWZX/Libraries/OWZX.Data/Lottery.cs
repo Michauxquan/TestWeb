@@ -529,11 +529,11 @@ namespace OWZX.Data
 
         #region 急速28 
 
-        public static DataTable GetAllMoneyByLotteryNum(string lotterynum = "", int type = 47)
+        public static DataTable GetAllMoneyByLotteryNum(string lotterynum = "", int type = 3)
         {
             return OWZX.Core.BSPData.RDBS.GetAllMoneyByLotteryNum(lotterynum, type);
         }
-        public static DataTable GetLotteryOpenSetList(int type = 47)
+        public static DataTable GetLotteryOpenSetList(int type = 3)
         {
             return OWZX.Core.BSPData.RDBS.GetLotteryOpenSetList(type);
         }
