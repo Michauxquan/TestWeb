@@ -123,7 +123,18 @@ namespace OWZX.Web.Admin.Controllers
             //庄家最大赔   3--最大赔付
             List<int> reusltlist = new List<int>();
             string nums = "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,";
-
+            if (type == 10)
+            {
+                nums = "1,2,3,4,5,6,7,8,9,10,";
+            }
+            else if (type == 12)
+            {
+                nums = "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,";
+            }
+            else if (type == 11)
+            {
+                nums = "2,3,4,5,6,7,8,9,10,11,12,";
+            }
             List<int> resultlist = new List<int>();
             if (list.Count > 0)
             {
@@ -209,21 +220,45 @@ namespace OWZX.Web.Admin.Controllers
             }
             else
             {
-                for (int i = 0; i <= 27; i++)
+                if (type == 3)
                 {
-                    resultlist.Add(i);
+                    for (int i = 0; i <= 27; i++)
+                    {
+                        resultlist.Add(i);
+                    }
+                }
+                else if (type == 10)
+                {
+                    for (int i = 1; i <= 10; i++)
+                    {
+                        resultlist.Add(i);
+                    }
+                }
+                else if (type == 11)
+                {
+                    for (int i = 2; i <= 12; i++)
+                    {
+                        resultlist.Add(i);
+                    }
+                }
+                else if (type == 12)
+                {
+                    for (int i = 3; i <= 18; i++)
+                    {
+                        resultlist.Add(i);
+                    }
                 }
             }
             string resultNumList = "";
             Random random1 = new Random();
-            for (var i = 0; i < 8; i++)
+            for (var i = 0; i < 7; i++)
             {
                 resultNumList += getResult(resultlist[random1.Next(0, resultlist.Count)]) + ",";
             }
             return AjaxResult("sussece", resultNumList);
         }
         Random _random = new Random();
-        //生成随机数
+        //急速28生成随机数
         public string getResult(int resultnum)
         {
             List<string> str = new List<string>();
@@ -259,7 +294,77 @@ namespace OWZX.Web.Admin.Controllers
             int tt = _random.Next(result.Length);
             return result[tt];
         }
+        //急速11,急速16 生成随机数
+        public string getJSResult(int resultnum,int layer=2)
+        {
+            List<string> str = new List<string>();
+            for (int i = 1; i <= 6; i++)
+            {
+                for (int j = 1; j <= 6; j++)
+                {
 
+                    if (i + j > resultnum)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if (layer == 2)
+                        {
+                             if (i + j  == resultnum)  
+                             {
+                                 str.Add(i + "+" + j+ "=" + resultnum);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            for (int k = 1; k <= 6; k++)
+                            {
+                                if (i + j + k == resultnum)
+                                {
+                                    str.Add(i + "+" + j + "+" + k + "=" + resultnum);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            string[] result = new string[str.Count];
+            for (int mm = 0; mm < str.Count; mm++)
+            {
+                int pos = _random.Next(str.Count);
+                var temp = str[mm];
+                result[mm] = str[pos];
+                result[pos] = temp;
+            }
+            int tt = _random.Next(result.Length);
+            return result[tt];
+        }
+        //急速10 生成随机数
+        public string getJSTwoResult(int resultnum)
+        {
+            List<string> str = new List<string>();
+            for (int i = 1; i <= 10; i++)
+            {
+                if (resultnum != i)
+                {
+                    str.Add(i.ToString());
+                }
+            }
+            string[] result = new string[str.Count];
+            for (int mm = 0; mm < str.Count; mm++)
+            {
+                int pos = _random.Next(str.Count);
+                var temp = str[mm];
+                result[mm] = str[pos];
+                result[pos] = temp;
+            }
+            string resultstr = resultnum.ToString();
+            str.ForEach(x => { resultstr += resultstr + "," + x.ToString(); });
+            return resultstr;
+        }
         #endregion
 
     }

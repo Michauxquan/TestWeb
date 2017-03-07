@@ -486,7 +486,7 @@ select * from  #list where id>=1 and id<=3
 
 select * from  #list where id>=4 and id<=5
 end
-else if( @type in (7))
+else if( @type in (7,10))
 begin
 select * from  #list where id>=1 and id<=5
 
@@ -498,8 +498,18 @@ select * from  #list where id>=1 and id<=9
 
 select * from  #list where id>=10 and id<=17
 end
+else if( @type in (11))
+begin
+select * from  #list where id>=2 and id<=7
 
+select * from  #list where id>=8 and id<=12
+end
+else if( @type in (12))
+begin
+select * from  #list where id>=3 and id<=10
 
+select * from  #list where id>=11 and id<=18
+end
 end try
 begin catch
 select ERROR_MESSAGE() state

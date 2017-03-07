@@ -32,7 +32,7 @@
                     string[] opencodes = @lot.Orderresult.Split(',');
                     string clfir = "regular" + opencodes[0];
                     <em class="@clfir"></em>
-                    string clsec = (@lot.Type == 7 ? "light" + opencodes[1] : "regular" + opencodes[1]);
+                    string clsec = (@lot.Type == 8 ? "regular" + opencodes[1] : "light" + opencodes[1]);
                     <em class="@clsec"></em>
                     for (int i = 2; i <= opencodes.Length - 1; i++)
                     {

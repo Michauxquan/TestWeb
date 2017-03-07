@@ -2468,19 +2468,30 @@ end catch
 
                 if('{3}'!='')
                 begin
-                    declare @one varchar(50)='', @two varchar(50)='', @three varchar(50)='',@resultnum varchar(50)=''
+                    declare @one varchar(50)='', @two varchar(50)='', @three varchar(50)='0',@resultnum varchar(50)='',@opencode varchar(50)=''
                     if('{2}'!='')
                     begin
-                        select @one=substring('{2}',1,1),@two=substring('{2}',3,1),@three=substring('{2}',5,1),@resultnum=REVERSE(replace(substring(REVERSE('{2}'),1,2),'=',''))
+                        if({0}=3 or {0}=12 )
+                        begin
+                            select @one=substring('{2}',1,1),@two=substring('{2}',3,1),@three=substring('{2}',5,1),@resultnum=REVERSE(replace(substring(REVERSE('{2}'),1,2),'=',''))
+                        end
+                        else if({0}=10) 
+                        begin
+                            select @one=replace(substring('{2}',1,2),',',''),@resultnum=replace(substring('{2}',1,2),',','') 
+                        end
+                        else if({0}=11) 
+                        begin
+                             select @one=substring('{2}',1,1),@two=substring('{2}',3,1),@resultnum=REVERSE(replace(substring(REVERSE('{2}'),1,2),'=',''))
+                        end
                     end
                     if( exists(select 1  from owzx_lotteryopen where lotteryid={0} and lotterynum='{3}'))
                     begin                        
-                        update owzx_lotteryopen set result='{2}',one=@one,two=@two,three=@three,resultnum=@resultnum where lotteryid={0} and lotterynum={3}
+                        update owzx_lotteryopen set result='{2}',one=@one,two=@two,three=@three,resultnum=@resultnum,opencode=@opencode where lotteryid={0} and lotterynum={3}
                     end
                     else
                     begin
-                       insert into  owzx_lotteryopen (lotteryid,lotterynum,result,resultnum,one,two,three,opentime) 
-                       values({0},'{3}','{2}',@resultnum,@one,@two,@three,(select opentime from owzx_lotteryrecord where type={0} and expect='{3}')) 
+                       insert into  owzx_lotteryopen (lotteryid,lotterynum,result,resultnum,one,two,three,opentime,opencode) 
+                       values({0},'{3}','{2}',@resultnum,@one,@two,@three,(select opentime from owzx_lotteryrecord where type={0} and expect='{3}'),@opencode) 
                     end
                 end
                 select '操作成功' state
@@ -2507,19 +2518,31 @@ end catch
             update  owzx_lotteryopensetman set result='{3}' where lotteryid={0}
             if('{4}'!='')
             begin
-                declare @one varchar(50)='', @two varchar(50)='', @three varchar(50)='',@resultnum varchar(50)=''
+                declare @one varchar(50)='', @two varchar(50)='', @three varchar(50)='0',@resultnum varchar(50)=''
                 if('{3}'!='')
                 begin
-                    select @one=substring('{3}',1,1),@two=substring('{3}',3,1),@three=substring('{3}',5,1),@resultnum=REVERSE(replace(substring(REVERSE('{3}'),1,2),'=',''))
+                    if({0}=3 or {0}=12 )
+                    begin
+                        select @one=substring('{3}',1,1),@two=substring('{3}',3,1),@three=substring('{3}',5,1),@resultnum=REVERSE(replace(substring(REVERSE('{3}'),1,2),'=','')) 
+                    end
+                    else if({0}=10) 
+                    begin
+                        select @one=replace(substring('{3}',1,2),',',''),@resultnum=replace(substring('{3}',1,2),',','') 
+                    end
+                    else if({0}=11) 
+                    begin
+                            select @one=substring('{3}',1,1),@two=substring('{3}',3,1),@resultnum=REVERSE(replace(substring(REVERSE('{3}'),1,2),'=',''))
+                    end
                 end
+              
                 if( exists(select 1  from owzx_lotteryopen where lotteryid={0} and lotterynum='{4}'))
                 begin
-                    update  owzx_lotteryopen set result='{3}',one=@one,two=@two,three=@three,resultnum=@resultnum where lotteryid={0} and lotterynum={4}
+                    update  owzx_lotteryopen set result='{3}',one=@one,two=@two,three=@three,resultnum=@resultnum ,opencode=@opencode where lotteryid={0} and lotterynum={4}
                 end
                 else
                 begin
-                    insert into  owzx_lotteryopen (lotteryid,lotterynum,result,resultnum,one,two,three,opentime) 
-                    values({0},'{4}','{3}',@resultnum,@one,@two,@three,(select opentime from owzx_lotteryrecord where type={0} and expect='{4}')) 
+                    insert into  owzx_lotteryopen (lotteryid,lotterynum,result,resultnum,one,two,three,opentime,opencode) 
+                    values({0},'{4}','{3}',@resultnum,@one,@two,@three,(select opentime from owzx_lotteryrecord where type={0} and expect='{4}'),@opencode) 
                 end
             end
             select '操作成功' state

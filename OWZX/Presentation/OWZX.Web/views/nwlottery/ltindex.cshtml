@@ -169,7 +169,7 @@
                 </div>
                 <script>
                     $(function(){
-                        GetRTime(lotterytype,@Model.lotterylist.RemainS,@Model.lotterylist.LastNumber,@Model.TotalS,@Model.StopTime,@Model.lotterylist.Prev_Lottery.Expect)
+                        GetRTime(lotterytype,@(string.IsNullOrEmpty(Model.lotterylist.RemainS.ToString())?-1:Model.lotterylist.RemainS),@(string.IsNullOrEmpty(Model.lotterylist.LastNumber)?"0":Model.lotterylist.LastNumber) ,@Model.TotalS,@Model.StopTime,@Model.lotterylist.Prev_Lottery.Expect)
                     });
                 </script>
                 <div style="width:30%;display:block;float:left;">
@@ -189,7 +189,7 @@
                 {
                     @Html.Partial("_contentlhb")
                 }
-                else if (@Model.LotteryType == 7 || @Model.LotteryType == 8)
+                else if (@Model.LotteryType == 7 || @Model.LotteryType == 8 || @Model.LotteryType == 10)
                 {
                     @Html.Partial("_contentpk")
                 }

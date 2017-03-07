@@ -357,21 +357,21 @@ function FirstModes(modes) {
             }
         }
     }
-    else if (lotterytype == 7) {
+    else if (lotterytype == 7 || lotterytype == 10) {
 
-        for (var i = 0; i < modegj[modes].length; i++) {
-            var id_num = modegj[modes][i];
-            var id_name = "#SMONEY_" + modegj[modes][i];
+        for (var i = 0; i < modegj[modes-1].length; i++) {
+            var id_num = modegj[modes-1][i];
+            var id_name = "#SMONEY_" + modegj[modes-1][i];
             if (!$(id_name).attr("readonly")) {
-                $(id_name).val('10');
-                sum = sum + 10;
+                $(id_name).val('100');
+                sum = sum + 100;
 
             }
         }
-    } else if (lotterytype == 8) {
-        for (var i = 0; i < modegyj[modes].length; i++) {
-            var id_num = modegyj[modes][i];
-            var id_name = "#SMONEY_" + modegyj[modes][i];
+    } else if (lotterytype == 8 ) {
+        for (var i = 0; i < modegyj[modes-1].length; i++) {
+            var id_num = modegyj[modes-1][i];
+            var id_name = "#SMONEY_" + modegyj[modes-1][i];
             if (!$(id_name).attr("readonly")) {
                 $(id_name).val(pkgyj[id_num - 3]);
                 sum = sum + pkgyj[id_num - 3];

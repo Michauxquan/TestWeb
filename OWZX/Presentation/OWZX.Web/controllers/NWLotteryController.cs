@@ -72,7 +72,7 @@ namespace OWZX.Web.controllers
                     total = list.RemainS;
                 }
             }
-            else if (id == 3)
+            else if (id == 3 || id == 10 || id == 11 || id == 12)
             {
                 total = list.RemainS;
             }
