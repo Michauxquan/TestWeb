@@ -44,6 +44,7 @@ namespace OWZX.Web.Admin.Controllers
             return View(list);
         }
 
+
         #region 财务报表
         public ActionResult ProfitList(int lottery = -1, string type = "每日盈亏", string start = "", string end = "", int pageSize = 15, int pageNumber = 1)
         {
