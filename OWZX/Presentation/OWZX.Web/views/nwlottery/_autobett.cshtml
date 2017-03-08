@@ -182,7 +182,7 @@
     '<td height="32" bgcolor="#FFFaC7"><a >' +
      chkresult(item.modeid, autonowmdid)
     + item.name + '</a></td>' +
-    '<td class="pright">' + item.betttotal + '<img src="../img/egg.gif" /><input type="hidden" id="mosegg_1" value="' + item.betttotal + '" /></td><td>' +
+    '<td class="pright">' + item.betttotal + '<img src="../../images/yuanbao.png" style="width: 20px; height: 16px;vertical-align:middle;padding-bottom:2px;"><input type="hidden" id="mosegg_1" value="' + item.betttotal + '" /></td><td>' +
         item.wintype
                  +
             '</td><td>' +
@@ -231,6 +231,7 @@
             if (dt.fcinfo.length > 0)
             {
                 var fcinfo = dt.fcinfo[0];
+               
                 $("#STARTISSUE").val(fcinfo.expect); $("#spnum1").text(fcinfo.expect); $("#spnum").text(fcinfo.expect);
                 lotttime = fcinfo.time;
                 fcnum = fcinfo.expect;
@@ -258,7 +259,7 @@
             {
                 strb += '<tr class="atnwtr" align="center" bgcolor="#FFFFFF">' +
     '<td height="32" bgcolor="#FFFaC7"><a >' + item.name + '</a></td>' +
-    '<td class="pright">' + item.betttotal + '<img src="../img/egg.gif" /><input type="hidden" id="mosegg_1" value="' + item.betttotal + '" /></td><td>' +
+    '<td class="pright">' + item.betttotal + '<img src="../../images/yuanbao.png" style="width: 20px; height: 16px;vertical-align:middle;padding-bottom:2px;"><input type="hidden" id="mosegg_1" value="' + item.betttotal + '" /></td><td>' +
         '<select id="MODES' + (i + 1).toString() + '" name="WINMODES" style="width: 90px;">' +
          sel +
                 '</select>'

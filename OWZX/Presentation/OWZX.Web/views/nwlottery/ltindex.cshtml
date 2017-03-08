@@ -127,7 +127,7 @@
                             }
 
                             @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 3 || @Model.LotteryType == 6
-                                || @Model.LotteryType == 9 || @Model.LotteryType == 7 || @Model.LotteryType == 8 )
+                                || @Model.LotteryType == 9 || @Model.LotteryType == 7 || @Model.LotteryType == 8 || @Model.LotteryType == 10)
                             {<span style="margin-left:60px;font-size:15px;">
                                 结果:
                                 <span class="ltresult pcresult">
@@ -181,7 +181,8 @@
             </div>
             <div class="temp_content">
             
-                @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType ==3 || @Model.LotteryType == 6 || @Model.LotteryType == 4 || @Model.LotteryType == 5)
+                @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType ==3 
+                    || @Model.LotteryType == 6 || @Model.LotteryType == 4 || @Model.LotteryType == 5)
                 {
                     @Html.Partial("_content")
                 }

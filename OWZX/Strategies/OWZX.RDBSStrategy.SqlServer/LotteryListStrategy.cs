@@ -223,11 +223,11 @@ if(@type in (1,4,9,7,8))
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status !=2 and 
-(DATEDIFF(second,opentime,getdate()) >= -300 and DATEDIFF(second,opentime,getdate())<-30) order by lotteryid )
+(DATEDIFF(second,opentime,getdate()) >= -300 and DATEDIFF(second,opentime,getdate())<=0) order by lotteryid )
 begin
 select top 1 @expect=expect, 
 @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
-from owzx_lotteryrecord where type=@type and status  !=2  and (DATEDIFF(second,opentime,getdate()) >= -300 and DATEDIFF(second,opentime,getdate())<-30)
+from owzx_lotteryrecord where type=@type and status  !=2  and (DATEDIFF(second,opentime,getdate()) >= -300 and DATEDIFF(second,opentime,getdate())<=0)
 order by lotteryid
 
 select @expect expect,@totalsec time
@@ -240,12 +240,12 @@ else if(@type in (2,5))
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status  !=2  and 
-(DATEDIFF(second,opentime,getdate()) >= -210 and DATEDIFF(second,opentime,getdate())<-30) order by lotteryid )
+(DATEDIFF(second,opentime,getdate()) >= -210 and DATEDIFF(second,opentime,getdate())<=0) order by lotteryid )
 begin
 select top 1 @expect=expect, 
 
 @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
-from owzx_lotteryrecord where type=@type and status  !=2 and (DATEDIFF(second,opentime,getdate()) >= -210 and DATEDIFF(second,opentime,getdate())<-30)
+from owzx_lotteryrecord where type=@type and status  !=2 and (DATEDIFF(second,opentime,getdate()) >= -210 and DATEDIFF(second,opentime,getdate())<=0)
 order by lotteryid
 
 select @expect expect,@totalsec time
@@ -255,12 +255,12 @@ else if(@type in (6))
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status !=2 and 
-(DATEDIFF(second,opentime,getdate()) >= -90 and DATEDIFF(second,opentime,getdate())<-30) order by lotteryid )
+(DATEDIFF(second,opentime,getdate()) >= -90 and DATEDIFF(second,opentime,getdate())<=0) order by lotteryid )
 begin
 select top 1 @expect=expect, 
 
 @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
-from owzx_lotteryrecord where type=@type and status  !=2  and (DATEDIFF(second,opentime,getdate()) >= -90 and DATEDIFF(second,opentime,getdate())<-30)
+from owzx_lotteryrecord where type=@type and status  !=2  and (DATEDIFF(second,opentime,getdate()) >= -90 and DATEDIFF(second,opentime,getdate())<=0)
 order by lotteryid
 
 select @expect expect,@totalsec time
@@ -270,11 +270,11 @@ else if(@type in (3))
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status !=2 and 
-(DATEDIFF(second,opentime,getdate()) >= -120 and DATEDIFF(second,opentime,getdate())<-20) order by lotteryid )
+(DATEDIFF(second,opentime,getdate()) >= -120 and DATEDIFF(second,opentime,getdate())<=0) order by lotteryid )
 begin
 select top 1 @expect=expect, 
 @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
-from owzx_lotteryrecord where type=@type and status !=2  and (DATEDIFF(second,opentime,getdate()) >= -120 and DATEDIFF(second,opentime,getdate())<-20)
+from owzx_lotteryrecord where type=@type and status !=2  and (DATEDIFF(second,opentime,getdate()) >= -120 and DATEDIFF(second,opentime,getdate())<=0)
 order by lotteryid
 
 select @expect expect,@totalsec time
