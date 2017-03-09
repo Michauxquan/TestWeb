@@ -65,8 +65,9 @@ select @tdbettnum=COUNT(1) from owzx_bett where uid=@uid and lotteryid=@type and
  select @tdprof=(case when @temptotal=0 then 0 
  else (select isnull(SUM(luckresult),0) from #temp) end)
 
- select @winpercent=(case when @temptotal=0 then 0 
- else (cast((select COUNT(1) from #temp where luckresult>0) /(select COUNT(1) from #temp)as decimal(18,2))) end )
+ select @winpercent= (case when @temptotal=0 then 0 
+ else  (cast ((select COUNT(1) from #temp where luckresult>0) as decimal(18,2))  / 
+ cast ((select COUNT(1) from #temp) as decimal(18,2))) *100 end ) 
 
  
 select top 1  type,expect lastnumber,opentime,status,DATEDIFF(SECOND,GETDATE(),opentime) remains, 

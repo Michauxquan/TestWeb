@@ -35,7 +35,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum) {
         }
 
     }
-    else if( nS <= -30){
+    else if( nS >= -30){
         nS = nS - 1;
         StrTimeOut = -1;
         if (nS > -30) {
