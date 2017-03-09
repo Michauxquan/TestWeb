@@ -66,9 +66,13 @@
     <td align="right">手机号码：</td>
     <td>@Html.TextBoxFor(x => x.Mobile, new { @class = "input", size = "35" })@Html.ValidationMessageFor(x => x.Mobile)</td>
     </tr>
-          <tr>
-    <td align="right">昵称：</td>
-    <td>@Html.TextBoxFor(x => x.NickName, new { @class = "input", size = "35" })@Html.ValidationMessageFor(x => x.NickName)</td>
+    <tr>
+        <td align="right">昵称：</td>
+        <td>@Html.TextBoxFor(x => x.NickName, new {@class = "input", size = "35"})@Html.ValidationMessageFor(x => x.NickName)</td>
+    </tr>
+           <tr>
+    <td align="right">QQ：</td>
+    <td>@Html.TextBoxFor(x => x.QQ, new { @class = "input", size = "35" })@Html.ValidationMessageFor(x => x.QQ)</td>
     </tr>
       <tr>
     <td align="right">密码：</td>

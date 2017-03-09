@@ -73,6 +73,7 @@ namespace OWZX.Web.Admin.Models
         //[Email]
         //[StringLength(50, ErrorMessage = "邮箱长度不能大于50")]
         public string Email { get; set; }
+        public string QQ { get; set; }
         /// <summary>
         /// 手机
         /// </summary>

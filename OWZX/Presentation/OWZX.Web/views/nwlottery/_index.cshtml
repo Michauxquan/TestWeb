@@ -115,10 +115,10 @@
             GetRTime(lotterytype, @(string.IsNullOrEmpty(Model.lotterylist.RemainS.ToString())?-40:Model.lotterylist.RemainS),@(string.IsNullOrEmpty(Model.lotterylist.LastNumber)?"0":Model.lotterylist.LastNumber) , @Model.TotalS, @Model.StopTime, @Model.lotterylist.Prev_Lottery.Expect)
         });
     </script>
-    <div style="width:30%;display:block;float:left;">
+    <div style="width:40%;display:block;float:left;">
         今日盈亏: <span class="ltwarn">@Model.lotterylist.TdProf</span> 参与: <i class="bold">@Model.lotterylist.TdBettNum</i>期 胜率: <i class="bold">@Model.lotterylist.WinPercent%</i>
     </div>
-    <div style="width: 40%; display: block; float: left; text-align: right;">投注无上限,中奖无上限
+    <div style="width: 30%; display: block; float: left; text-align: right;">投注无上限,中奖无上限
         @*最高投注<span class="ltwarn">2,000</span>万豆,最高中奖 <span class="ltwarn">100,0000</span>万豆*@
 
     </div>

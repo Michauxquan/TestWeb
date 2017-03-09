@@ -497,9 +497,9 @@ namespace OWZX.Data
         /// <param name="address">所在地</param>
         /// <param name="bio">简介</param>
         /// <returns></returns>
-        public static bool UpdateUser(int uid, string userName, string nickName, string avatar, int gender, string realName, DateTime bday, string idCard, int regionId, string address, string bio)
+        public static bool UpdateUser(int uid, string nickName, string avatar, int gender, string realName, string mobile, string qq)
         {
-            bool result = OWZX.Core.BSPData.RDBS.UpdateUser(uid, userName, nickName, avatar, gender, realName, bday, idCard, regionId, address, bio);
+            bool result = OWZX.Core.BSPData.RDBS.UpdateUser(uid,  nickName, avatar, gender, realName,  mobile, qq );
 
             return result;
         }
