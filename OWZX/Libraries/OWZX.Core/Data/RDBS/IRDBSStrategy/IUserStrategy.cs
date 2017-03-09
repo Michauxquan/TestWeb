@@ -328,7 +328,7 @@ namespace OWZX.Core
         /// <param name="address">所在地</param>
         /// <param name="bio">简介</param>
         /// <returns></returns>
-        bool UpdateUser(int uid, string userName, string nickName, string avatar, int gender, string realName, DateTime bday, string idCard, int regionId, string address, string bio);
+        bool UpdateUser(int uid, string nickName, string avatar, int gender, string realName, string mobile, string qq);
 
         /// <summary>
         /// 更新用户邮箱

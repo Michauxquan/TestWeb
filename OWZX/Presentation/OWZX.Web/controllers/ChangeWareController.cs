@@ -148,7 +148,7 @@ namespace OWZX.Web.controllers
                 order.IssueNum = type == 1 ? parmas["issuenum"] : "";
                 string betres = ChangeWare.AddUserOrder(order);
                 if (string.IsNullOrEmpty(betres))
-                    return AjaxResult("success", "投注成功");
+                    return AjaxResult("success", "兑换成功");
                 else
                     return AjaxResult("error", betres);
             }

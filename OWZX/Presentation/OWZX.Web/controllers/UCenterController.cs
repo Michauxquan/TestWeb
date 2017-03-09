@@ -60,63 +60,15 @@ namespace OWZX.Web.Controllers
         /// 编辑用户信息
         /// </summary>
         public ActionResult EditUser()
-        {
-            string userName = WebHelper.GetFormString("userName");
+        { 
             string nickName = WebHelper.GetFormString("nickName");
             string avatar = WebHelper.GetFormString("avatar");
             string realName = WebHelper.GetFormString("realName");
             int gender = WebHelper.GetFormInt("gender");
-            string idCard = WebHelper.GetFormString("idCard");
-            string bday = WebHelper.GetFormString("bday");
-            int regionId = WebHelper.GetFormInt("regionId");
-            string address = WebHelper.GetFormString("address");
-            string bio = WebHelper.GetFormString("bio");
+            string mobile = WebHelper.GetFormString("mobile");
+            string QQ = WebHelper.GetFormString("qqNum"); 
 
-            StringBuilder errorList = new StringBuilder("[");
-            //验证用户名
-            if (WorkContext.UserName.Length == 0 && userName.Length > 0)
-            {
-                if (userName.Length < 4 || userName.Length > 10)
-                {
-                    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "userName", "用户名必须大于3且不大于10个字符", "}");
-                }
-                else if (userName.Contains(" "))
-                {
-                    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "userName", "用户名中不允许包含空格", "}");
-                }
-                else if (userName.Contains(":"))
-                {
-                    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "userName", "用户名中不允许包含冒号", "}");
-                }
-                else if (userName.Contains("<"))
-                {
-                    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "userName", "用户名中不允许包含'<'符号", "}");
-                }
-                else if (userName.Contains(">"))
-                {
-                    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "userName", "用户名中不允许包含'>'符号", "}");
-                }
-                else if ((!SecureHelper.IsSafeSqlString(userName)))
-                {
-                    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "userName", "用户名不符合系统要求", "}");
-                }
-                else if (CommonHelper.IsInArray(userName, WorkContext.ShopConfig.ReservedName, "\n"))
-                {
-                    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "userName", "用户名已经存在", "}");
-                }
-                else if (FilterWords.IsContainWords(userName))
-                {
-                    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "userName", "用户名包含禁止单词", "}");
-                }
-                else if (Users.IsExistUserName(userName))
-                {
-                    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "userName", "用户名已经存在", "}");
-                }
-            }
-            else
-            {
-                userName = WorkContext.UserName;
-            }
+            StringBuilder errorList = new StringBuilder("["); 
 
             //验证昵称
             if (nickName.Length > 10)
@@ -138,56 +90,13 @@ namespace OWZX.Web.Controllers
             if (gender < 0 || gender > 2)
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "gender", "请选择正确的性别", "}");
 
-            //验证身份证号
-            if (idCard.Length > 0 && !ValidateHelper.IsIdCard(idCard))
-            {
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "idCard", "请输入正确的身份证号", "}");
-            }
-
-            //验证出生日期
-            if (bday.Length == 0)
-            {
-                string bdayY = WebHelper.GetFormString("bdayY");
-                string bdayM = WebHelper.GetFormString("bdayM");
-                string bdayD = WebHelper.GetFormString("bdayD");
-                bday = string.Format("{0}-{1}-{2}", bdayY, bdayM, bdayD);
-            }
-            if (bday.Length > 0 && bday != "--" && !ValidateHelper.IsDate(bday))
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "bday", "请选择正确的日期", "}");
-
-            //验证区域
-            if (regionId > 0)
-            {
-                RegionInfo regionInfo = Regions.GetRegionById(regionId);
-                if (regionInfo == null || regionInfo.Layer != 3)
-                    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "regionId", "请选择正确的地址", "}");
-            }
-
-            //验证详细地址
-            if (address.Length > 75)
-            {
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "address", "详细地址的长度不能大于75", "}");
-            }
-
-            //验证简介
-            if (bio.Length > 150)
-            {
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "bio", "简介的长度不能大于150", "}");
-            }
+           
 
             if (errorList.Length == 1)
             {
-                if (bday.Length == 0 || bday == "--")
-                    bday = "1900-1-1";
 
-                if (regionId < 1)
-                    regionId = 0;
-
-                Users.UpdateUser(WorkContext.Uid, userName, WebHelper.HtmlEncode(nickName), WebHelper.HtmlEncode(avatar), gender, WebHelper.HtmlEncode(realName), TypeHelper.StringToDateTime(bday), idCard, regionId, WebHelper.HtmlEncode(address), WebHelper.HtmlEncode(bio));
-                if (userName.Length > 0 && nickName.Length > 0 && avatar.Length > 0 && realName.Length > 0 && bday != "1900-1-1" && idCard.Length > 0 && regionId > 0 && address.Length > 0)
-                {
-                    //Credits.SendCompleteUserInfoCredits(ref WorkContext.PartUserInfo, DateTime.Now);
-                }
+                Users.UpdateUser(WorkContext.Uid, WebHelper.HtmlEncode(nickName), WebHelper.HtmlEncode(avatar), gender, WebHelper.HtmlEncode(realName), mobile, QQ);
+     
                 return AjaxResult("success", "信息更新成功");
             }
             else

@@ -267,10 +267,13 @@ namespace OWZX.Web.Admin.Controllers
 
             UserModel model = new UserModel();
             model.UserName = userInfo.UserName;
+            model.Email = userInfo.Email;
             model.Mobile = userInfo.Mobile;
             model.NickName = userInfo.NickName;
             model.Password = userInfo.Password;
             model.UserRid = userInfo.UserRid;
+            model.UserType = userInfo.UserType;
+            model.QQ = userInfo.QQ;
             model.AdminGid = userInfo.AdminGid;
             Load(model.RegionId);
             return View(model);
@@ -316,15 +319,15 @@ namespace OWZX.Web.Admin.Controllers
                 else
                     nickName = model.NickName;
 
-                userInfo.UserName = model.Mobile;
-                userInfo.Mobile = model.Mobile;
+                userInfo.UserName = string.IsNullOrEmpty(model.UserName) ? "" : model.UserName;
+                userInfo.Mobile = string.IsNullOrEmpty(model.Mobile) ? "" : model.Mobile;
                 if (!string.IsNullOrWhiteSpace(model.Password))
                     userInfo.Password = Users.CreateUserPassword(model.Password, userInfo.Salt);
                 userInfo.UserRid = model.UserRid;
                 userInfo.NickName = WebHelper.HtmlEncode(nickName);
-
-                userInfo.AdminGid = model.AdminGid;
                 userInfo.UserType = model.UserType;
+                userInfo.QQ = string.IsNullOrEmpty(model.QQ) ? "" : model.QQ;
+                userInfo.AdminGid = model.AdminGid; 
                 bool result = false;
 
 

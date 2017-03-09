@@ -88,7 +88,7 @@ namespace OWZX.Web.Admin.Controllers
         public ActionResult OpenSet(int type = 3)
         {
             List<MD_LotteryOpenSet> openlist = Lottery.GetLotteryOpenSetList(type);
-            List<MD_Lottery> lottery = Lottery.GetLotteryList(1, 1, " where a.status=0 and a.type="+type, "asc");
+            List<MD_Lottery> lottery = Lottery.GetLotteryList(1, 1, " where a.status=0 and a.type="+type +" and a.opentime >='"+DateTime.Now.AddMinutes(-12).ToString("yyyy-MM-dd HH:mm:ss")+"'", "asc");
             LotteryOpenListModel list = new LotteryOpenListModel
             {
                 type = type,

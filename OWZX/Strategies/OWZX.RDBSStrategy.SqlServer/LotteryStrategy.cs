@@ -2518,7 +2518,7 @@ end catch
             update  owzx_lotteryopensetman set result='{3}' where lotteryid={0}
             if('{4}'!='')
             begin
-                declare @one varchar(50)='', @two varchar(50)='', @three varchar(50)='0',@resultnum varchar(50)=''
+                declare @one varchar(50)='', @two varchar(50)='', @three varchar(50)='0',@resultnum varchar(50)='',@opencode varchar(50)=''
                 if('{3}'!='')
                 begin
                     if({0}=3 or {0}=12 )

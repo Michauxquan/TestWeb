@@ -523,6 +523,7 @@
     <Content Include="images\kefu_bg.png" />
     <Content Include="images\kefu_icon.gif" />
     <Content Include="images\kefu_icon.png" />
+    <Content Include="images\logo.ico" />
     <Content Include="images\ltnumber.png" />
     <Content Include="images\mall\dui.png" />
     <Content Include="images\mall\gg.png" />
@@ -542,6 +543,7 @@
     <Content Include="images\dlogo.png" />
     <Content Include="images\word.fw.png" />
     <Content Include="images\yuanbao.png" />
+    <Content Include="images\logo.png" />
     <Content Include="scripts\account.js" />
     <Content Include="scripts\ad-gallery\jquery.ad-gallery.css" />
     <Content Include="scripts\betmode.js" />

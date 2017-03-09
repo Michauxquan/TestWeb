@@ -638,9 +638,10 @@ delete from owzx_onlineusers where uid={1}", RDBSHelper.RDBSTablePre, uid);
 									   GenerateInParam("@userrid",SqlDbType.SmallInt,2,userInfo.UserRid),
                                        GenerateInParam("@admingid",SqlDbType.SmallInt,2,userInfo.AdminGid),
 									   GenerateInParam("@nickname",SqlDbType.NChar,20,userInfo.NickName),
-									   GenerateInParam("@uid",SqlDbType.Int,4,userInfo.Uid),
+									   GenerateInParam("@uid",SqlDbType.Int,4,userInfo.Uid), 
+                                       GenerateInParam("@qq",SqlDbType.VarChar,50,userInfo.QQ), 
                                        GenerateInParam("@imei",SqlDbType.VarChar,50,userInfo.IMEI),
-                                        GenerateInParam("@usertype",SqlDbType.SmallInt,2,userInfo.UserType)
+                                       GenerateInParam("@usertype",SqlDbType.SmallInt,2,userInfo.UserType)
                                    };
 
             string result = RDBSHelper.ExecuteScalar(CommandType.StoredProcedure,
@@ -1131,19 +1132,15 @@ end", condition);
         /// <param name="address">所在地</param>
         /// <param name="bio">简介</param>
         /// <returns></returns>
-        public bool UpdateUser(int uid, string userName, string nickName, string avatar, int gender, string realName, DateTime bday, string idCard, int regionId, string address, string bio)
+        public bool UpdateUser(int uid,  string nickName, string avatar, int gender, string realName,  string mobile, string qq )
         {
-            DbParameter[] parms = {
-									   GenerateInParam("@username",SqlDbType.NChar,20,userName),
+            DbParameter[] parms = { 
 									   GenerateInParam("@nickname",SqlDbType.NChar,20,nickName),
 									   GenerateInParam("@avatar",SqlDbType.Char,40,avatar),
 									   GenerateInParam("@gender",SqlDbType.TinyInt,1,gender),
                                        GenerateInParam("@realname",SqlDbType.NVarChar,10,realName),
-									   GenerateInParam("@bday",SqlDbType.DateTime,8,bday),
-									   GenerateInParam("@idcard",SqlDbType.VarChar,18,idCard),
-									   GenerateInParam("@regionid",SqlDbType.SmallInt,2,regionId),
-									   GenerateInParam("@address",SqlDbType.NVarChar,150,address),
-									   GenerateInParam("@bio",SqlDbType.NVarChar,300,bio),
+									   GenerateInParam("@qq",SqlDbType.VarChar,18,qq),
+									   GenerateInParam("@mobile",SqlDbType.VarChar,18,mobile),  
 									   GenerateInParam("@uid",SqlDbType.Int,4,uid),
 								   };
 
