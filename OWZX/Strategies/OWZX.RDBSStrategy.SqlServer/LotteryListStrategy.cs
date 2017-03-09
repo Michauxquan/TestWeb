@@ -92,7 +92,7 @@ select top 1 type,expect lastnumber,opentime,status,DATEDIFF(SECOND,GETDATE(),op
  @winpercent winpercent,
  @total totalcount
  from owzx_lotteryrecord
-where type=@type and status in (0,1) order by lotteryid
+where type=@type and status in (0,1) and DATEDIFF(second,getdate(),opentime)>0  order by lotteryid
 end
 else
 begin
