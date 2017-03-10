@@ -56,7 +56,7 @@ function Change_Modes(ModeId) {
             $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
         }
     }
-    else if (lotterytype == 7) {
+    else if (lotterytype == 7 || lotterytype == 10) {
         for (var i = 1; i <= 10; i++) {
             $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
         }
@@ -68,6 +68,15 @@ function Change_Modes(ModeId) {
     }
     else if (lotterytype == 9) {
         for (var i = 1; i <= 13; i++) {
+            $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
+        }
+    }
+    else if (lotterytype == 11) {
+        for (var i = 1; i <= 11; i++) {
+            $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
+        }
+    } else if (lotterytype == 12) {
+        for (var i = 1; i <= 16; i++) {
             $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
         }
     }
@@ -345,8 +354,7 @@ function FirstModes(modes) {
             sum = sum + n;  //总投注金额
 
         }
-    }
-    else if (lotterytype == 4 || lotterytype == 5) {
+    }else if (lotterytype == 4 || lotterytype == 5) {
 
         for (var i = 0; i < mode36[modes].length; i++) {
             var id_num = mode36[modes][i];
@@ -356,8 +364,7 @@ function FirstModes(modes) {
                 sum = sum + fc36[id_num - 1];
             }
         }
-    }
-    else if (lotterytype == 7 || lotterytype == 10) {
+    } else if (lotterytype == 7 || lotterytype == 10) {
 
         for (var i = 0; i < modegj[modes-1].length; i++) {
             var id_num = modegj[modes-1][i];
@@ -375,6 +382,24 @@ function FirstModes(modes) {
             if (!$(id_name).attr("readonly")) {
                 $(id_name).val(pkgyj[id_num - 3]);
                 sum = sum + pkgyj[id_num - 3];
+            }
+        }
+    } else if (lotterytype == 11) {
+        for (var i = 0; i < modejs11[modes - 1].length; i++) {
+            var id_num = modejs11[modes - 1][i];
+            var id_name = "#SMONEY_" + modejs11[modes - 1][i];
+            if (!$(id_name).attr("readonly")) {
+                $(id_name).val(js11[id_num - 2]);
+                sum = sum + js11[id_num - 2];
+            }
+        }
+    } else if (lotterytype == 12) {
+        for (var i = 0; i < modejs16[modes - 1].length; i++) {
+            var id_num = modejs16[modes - 1][i];
+            var id_name = "#SMONEY_" + modejs16[modes - 1][i];
+            if (!$(id_name).attr("readonly")) {
+                $(id_name).val(js16[id_num - 3]);
+                sum = sum + js16[id_num - 3];
             }
         }
     }

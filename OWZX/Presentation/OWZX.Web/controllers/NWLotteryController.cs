@@ -114,8 +114,8 @@ namespace OWZX.Web.controllers
                     break;
                 case (int)LotType.hg28:
                     title = "韩国28首页";
-                    total = 90;
-                    stop = 30;
+                    total = 115;
+                    stop = 25;
                     break;
                 case (int)LotType.js28:
                     title = "急速28首页";

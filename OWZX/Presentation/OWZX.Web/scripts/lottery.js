@@ -10,12 +10,18 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum)
     {
         trap(type, fcnum - 1);
     }
+
     //ns 开奖时间
-  
+    nS = nS - 1;
+    if (nS <= -30)
+        clearTimeout(tiner);
+    if (nS > -30)
+        tiner = setTimeout("GetRTime(" + type + "," + nS + "," + fcnum + "," + totalime + "," + stoptime + ")", 1000);
+
     if (nS > 0) {
-        nS = nS - 1;
+       
         if (nS > stoptime && nS <= totalime) {
-            var rems = nS - stoptime
+            var rems = nS - stoptime;
             //bett
             $(".remains").html(
                 '第 <i class="bold">' + fcnum + '</i>期  还有<span class="ltwarn">' + rems + '</span>秒停止下注!');
@@ -38,7 +44,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum)
 
     }
     else if( nS >= -30 && nS <=0){
-        nS = nS - 1;
+        //nS = nS - 1;
         StrTimeOut = -1;
         if (nS > -30) {
             $(".remains").html(
@@ -72,10 +78,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum)
             });
         }
     }
-    if (nS <= -30)
-        clearTimeout(tiner);
-    if (nS > -30)
-        tiner = setTimeout("GetRTime(" + type + "," + nS + "," + fcnum + "," + totalime + "," + stoptime + ")", 1000);
+   
 }
 function trap(type, fcnum) {
     $.post("/nwlottery/lotteryopen", { "type": lotterytype, "expect": fcnum }, function (data) {

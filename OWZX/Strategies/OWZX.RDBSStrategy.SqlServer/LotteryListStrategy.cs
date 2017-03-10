@@ -70,7 +70,7 @@ select @tdbettnum=COUNT(1) from owzx_bett where uid=@uid and lotteryid=@type and
  cast ((select COUNT(1) from #temp) as decimal(18,2))) *100 end ) 
 
  
-select top 1  type,expect lastnumber,opentime,status,DATEDIFF(SECOND,GETDATE(),opentime) remains, 
+select top 1  type,expect lastnumber,opentime,status,case when @type=6 then DATEDIFF(SECOND,GETDATE(),opentime)+25 else DATEDIFF(SECOND,GETDATE(),opentime) end remains, 
 @tdbettnum tdbettnum,
  @tdprof tdprof,
  @winpercent winpercent,
@@ -79,15 +79,13 @@ into #now
 from owzx_lotteryrecord
 where type=@type and status in (0,1)
 and DATEDIFF(SECOND,GETDATE(),opentime)>=0 and DATEDIFF(SECOND,GETDATE(),opentime)<=(case when type in(1,4,9,7,8) then 300 
-when type =6 then 90 
---Michaux 修改
---when type in(2,5) then 210 when type=3 then 120)
+when type =6 then 115
 when type in(2,5) then 210 else 120 end)
 
 
 if not exists(select 1 from #now)
 begin
-select top 1 type,expect lastnumber,opentime,status,DATEDIFF(SECOND,GETDATE(),opentime) remains, 
+select top 1 type,expect lastnumber,opentime,status,case when @type=6 then DATEDIFF(SECOND,GETDATE(),opentime)+25 else DATEDIFF(SECOND,GETDATE(),opentime) end remains, 
 @tdbettnum tdbettnum,
  @tdprof tdprof,
  @winpercent winpercent,
@@ -127,17 +125,7 @@ if OBJECT_ID('tempdb..#bettprof') is not null
 
 select a.*,isnull(cast(e.luckresult as decimal(18,2)),0)luckresult,
 isnull(e.money,0) money
-from #lottery a
---left join 
---(select a.lotteryid type,a.lotterynum expect,sum(a.money) totalbett 
---from #bettprof a join  #lottery b on a.lotteryid=b.type and a.lotterynum=b.expect 
---group by a.lotteryid,a.lotterynum)  b on a.type=b.type and a.expect=b.expect
---left join (select lotteryid type,lotterynum expect,count(1) winperson from #bettprof 
---where luckresult>=0 group by lotteryid ,lotterynum) c
---on a.type=c.type and a.expect=c.expect
---left join (select lotteryid type,lotterynum expect,count(1) bettperson from #bettprof 
---group by lotteryid ,lotterynum)  d
---on a.type=d.type and a.expect=d.expect
+from #lottery a 
 left join #temp e 
 on a.type=e.type and a.expect=e.expect
 
@@ -186,8 +174,7 @@ case when ISNULL(a.winmoney,0)>=0 then ISNULL(a.winmoney,0)-a.money else ISNULL(
 a.bettid,a.bettinfo
 ,c.status,c.opentime,a.lotteryid
 into #lotrecord  
-from owzx_bett a
---left join owzx_bettprofitloss b on a.bettid=b.bettid
+from owzx_bett a 
 join owzx_lotteryrecord c on a.lotteryid=c.type and a.lotterynum=c.expect and c.type={0} and a.uid={1}
 {2}
 
@@ -256,12 +243,12 @@ else if(@type in (6))
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status !=2 and 
-(DATEDIFF(second,opentime,getdate()) >= -90 and DATEDIFF(second,opentime,getdate())<=0) order by lotteryid )
+(DATEDIFF(second,opentime,getdate()) >= -115 and DATEDIFF(second,opentime,getdate())<=0) order by lotteryid )
 begin
 select top 1 @expect=expect, 
 
 @totalsec= CONVERT(VARCHAR(10),DATEDIFF(SECOND,getdate(),opentime))
-from owzx_lotteryrecord where type=@type and status  !=2  and (DATEDIFF(second,opentime,getdate()) >= -90 and DATEDIFF(second,opentime,getdate())<=0)
+from owzx_lotteryrecord where type=@type and status  !=2  and (DATEDIFF(second,opentime,getdate()) >= -115 and DATEDIFF(second,opentime,getdate())<=0)
 order by lotteryid
 
 select @expect expect,@totalsec time
@@ -501,15 +488,15 @@ select * from  #list where id>=10 and id<=17
 end
 else if( @type in (11))
 begin
-select * from  #list where id>=2 and id<=7
+select * from  #list where id>=1 and id<=6
 
-select * from  #list where id>=8 and id<=12
+select * from  #list where id>=7 and id<=12
 end
 else if( @type in (12))
 begin
-select * from  #list where id>=3 and id<=10
+select * from  #list where id>=1 and id<=8
 
-select * from  #list where id>=11 and id<=18
+select * from  #list where id>=9 and id<=18
 end
 end try
 begin catch
