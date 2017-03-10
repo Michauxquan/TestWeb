@@ -3,8 +3,10 @@
 * html body{ overflow:visible;-webkit-text-size-adjust:none;}
 * html iframe, * html frame{ overflow:auto;}
 * html frameset{ overflow:hidden;}
-body{ font:12px/22px 'Microsoft Yahei',Verdana,Arial,sans-serif,"Times New Roman"; text-align:center;word-wrap:break-word;color: #666;}
-body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,tr{ margin:0; padding:0;}
+body{ font:12px/22px 'Microsoft Yahei',Verdana,Arial,sans-serif,"Times New Roman"; text-align:center;word-wrap:break-word;color: #666; 
+ overflow-y:scroll;
+}
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,tr{ margin:0; padding:0;   }
 input,select,textarea{ font-size:12px; vertical-align:middle;}
 body div{ text-align:left;}
 textarea,input{ word-wrap:break-word; word-break:break-all; padding:0px;}
