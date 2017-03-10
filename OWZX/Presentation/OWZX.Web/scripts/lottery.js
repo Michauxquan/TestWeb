@@ -2,14 +2,16 @@
 /*倒计时 剩余总时间，期号，总时间，封盘时间,结果期数*/
 var tiner;
 var traptime;
-function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum) {
+function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum)
+{
+    var nS = parseInt(ctime);
     //处理上期未开奖，重启计时处理
     if (typeof (prevnum) != 'undefined' && prevnum != fcnum - 1 && nS >= -30)
     {
         trap(type, fcnum - 1);
     }
     //ns 开奖时间
-    var nS = parseInt(ctime);
+  
     if (nS > 0) {
         nS = nS - 1;
         if (nS > stoptime && nS <= totalime) {
@@ -35,7 +37,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum) {
         }
 
     }
-    else if( nS >= -30){
+    else if( nS >= -30 && nS <=0){
         nS = nS - 1;
         StrTimeOut = -1;
         if (nS > -30) {
@@ -45,8 +47,7 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum) {
         if (nS == -5 || nS == -10 || nS == -15 || nS == -20 || nS == -25 || nS == -30) {
             $(".remains").html('Loading......');
             $.post("/nwlottery/lotteryopen", { "type": lotterytype, "expect": fcnum }, function (data) {
-                //是否开奖，开奖且是首页则自动刷新，不是首页则提示刷新
-                //未开奖 显示新一期的倒计时，另起一个计时器，获取未开奖信息直到获取到结果
+               
                 if (data == "1") {
                     clearTimeout(tiner);
                     clearTimeout(traptime);
@@ -55,28 +56,24 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum) {
                         $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });
                     } else {
                         $(".remains").html('第 <i class="bold">' + fcnum + '</i>期  已开奖,请刷新!');
-                        //$(".temp_content").load("/nwlottery/_content", { "type": lotterytype, "page": 1 });
                     }
-                    return;
+                    //return;
                 } else {
                     if (nS == -30) {
                         if ($(".sec_head a:eq(0)").hasClass("hot") && isbett == 0) {
                             clearTimeout(tiner);
                             clearTimeout(traptime);
                             $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });
-                            //trap(lotterytype, fcnum);
                         } else {
                             $(".remains").html('第 <i class="bold">' + fcnum + '</i>期  已开奖,请刷新!');
-                            //$(".temp_content").load("/nwlottery/_content", { "type": lotterytype, "page": 1 });
                         }
                     }
                 }
             });
         }
-
-        if (nS <= -30)
-            clearTimeout(tiner);
     }
+    if (nS <= -30)
+        clearTimeout(tiner);
     if (nS > -30)
         tiner = setTimeout("GetRTime(" + type + "," + nS + "," + fcnum + "," + totalime + "," + stoptime + ")", 1000);
 }
