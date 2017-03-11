@@ -55,7 +55,7 @@ declare @total int=(select COUNT(1) from owzx_lotteryrecord where type=@type)
 if OBJECT_ID('tempdb..#now') is not null
 drop table #now
 
-declare @temptotal int=0,@tdbettnum int=0,@tdprof int=0
+declare @temptotal int=0,@tdbettnum int=0,@tdprof bigint=0
 declare @winpercent decimal(18,2)
 set @temptotal=(select COUNT(1) from #temp)
 
@@ -63,7 +63,7 @@ select @tdbettnum=COUNT(1) from owzx_bett where uid=@uid and lotteryid=@type and
  datediff(day,addtime,GETDATE())=0
 
  select @tdprof=(case when @temptotal=0 then 0 
- else (select isnull(SUM(luckresult),0) from #temp) end)
+ else (select isnull(SUM(cast(luckresult as bigint)),0) from #temp) end)
 
  select @winpercent= (case when @temptotal=0 then 0 
  else  (cast ((select COUNT(1) from #temp where luckresult>0) as decimal(18,2))  / 
@@ -254,7 +254,7 @@ order by lotteryid
 select @expect expect,@totalsec time
 end
 end
-else if(@type in (3)) 
+else if(@type in (3,10,11,12)) 
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status !=2 and 

@@ -966,7 +966,7 @@ select count(1) from #list where DATEDIFF(SECOND,opentime,getdate())>=210
                                     GenerateInParam("@uid", SqlDbType.VarChar, 20, bett.Uid),
                                     GenerateInParam("@lotteryid", SqlDbType.Int, 4, bett.Lotteryid),
                                     GenerateInParam("@lotterynum", SqlDbType.VarChar, 50, bett.Lotterynum),
-                                    GenerateInParam("@money", SqlDbType.Int, 4, bett.Money),
+                                    GenerateInParam("@money", SqlDbType.BigInt,64, bett.Money),
                                     GenerateInParam("@bettinfo", SqlDbType.VarChar, 1000, bett.Bettinfo),
                                     GenerateInParam("@bettnum", SqlDbType.VarChar, 1000, bett.Bettnum),
                                     GenerateInParam("@bettmode", SqlDbType.Int, 4, bett.Bettmode)
@@ -1002,7 +1002,7 @@ begin
 else if(@bettid >0)
 begin
     declare @cusbettinfo varchar(2000)='',@bettNums varchar(2000)='',@tempcusinfo varchar(max)=@bettinfo+';',@tempbettnum varchar(500)=@bettnum+';',
-    @ind int=0,@val varchar(50)='',@v varchar(500)='',@s int=0
+    @ind int=0,@val varchar(50)='',@v varchar(500)='',@s bigint=0
     select @cusbettinfo =a.bettinfo+';' ,@bettNums=a.bettnum+';'      from owzx_bett a  where a.bettid=@bettid 
     set @ind =CHARINDEX(';',@tempcusinfo)
     while  @ind>0
@@ -1012,7 +1012,7 @@ begin
 		if(CHARINDEX(@v,@cusbettinfo)>0)
 		begin
 			set @v=SUBSTRING(@cusbettinfo,CHARINDEX(@v,@cusbettinfo)+3,LEN(@cusbettinfo)) 
-			set @s=cast(SUBSTRING(@v,0,CHARINDEX(';',@v)) as int)
+			set @s=cast(SUBSTRING(@v,0,CHARINDEX(';',@v)) as bigint)
 			set @v= SUBSTRING(@val,1,CHARINDEX(':',@val))
 			set @cusbettinfo=REPLACE(@cusbettinfo,@v+cast(@s as varchar),@v+CAST((@s+ CAST(SUBSTRING(@val,CHARINDEX(':',@val)+1,LEN(@val)) as int)) as varchar))
 		end 
@@ -1079,7 +1079,7 @@ end catch
                                     GenerateInParam("@room", SqlDbType.VarChar, 20, bett.Room),
                                     GenerateInParam("@vip", SqlDbType.VarChar, 20, bett.Vip),
                                     GenerateInParam("@lotterynum", SqlDbType.VarChar, 50, bett.Lotterynum),
-                                    GenerateInParam("@money", SqlDbType.Int, 4, bett.Money),
+                                    GenerateInParam("@money", SqlDbType.BigInt, 64, bett.Money),
                                      GenerateInParam("@bttypeid", SqlDbType.Int, 4, bett.Bttypeid),
                                     };
             string commandText = string.Format(@"
@@ -2215,11 +2215,11 @@ drop table #list
 select a.uid,b.expect,a.betttotal,b.luckresult,convert(varchar(10),b.opentime,120) opentime,b.type
 into #list
 from (
-select uid,lotterynum,SUM(money) betttotal from owzx_bett
+select uid,lotterynum,SUM(cast(money as bigint)) betttotal from owzx_bett
 where isread=1 group by uid,lotterynum ) a
 join (
 select a.luckresult,b.expect,a.uid,b.opentime,b.type from 
-(select uid,lotteryid,SUM(luckresult) luckresult from owzx_bettprofitloss 
+(select uid,lotteryid,SUM(cast(luckresult as bigint)) luckresult from owzx_bettprofitloss 
 where luckresult>0 group by uid,lotteryid) a 
 join owzx_lotteryrecord b on a.lotteryid=b.lotteryid
 ) b on a.uid=b.uid and a.lotterynum=b.expect
@@ -2229,7 +2229,7 @@ join owzx_lotteryrecord b on a.lotteryid=b.lotteryid
 select a.uid,b.expect,a.betttotal,a.luckresult,convert(varchar(10),b.opentime,120) opentime,b.type
 into #list
 from (
-select lotteryid,uid,lotterynum,SUM(money) betttotal,sum(winmoney) as luckresult from owzx_bett
+select lotteryid,uid,lotterynum,SUM(cast(money as bigint)) betttotal,sum(cast(winmoney as bigint)) as luckresult from owzx_bett
 where isread=1 group by uid,lotterynum,lotteryid ) a
 join  owzx_lotteryrecord b on a.lotterynum=b.expect and a.lotteryid=b.type
 {1}
@@ -2334,7 +2334,7 @@ drop table #list
 select a.uid,b.expect,a.betttotal,b.luckresult,convert(varchar(10),b.opentime,120) opentime,b.type
 into #list
 from (
-select uid,lotterynum,SUM(money) betttotal from owzx_bett
+select uid,lotterynum,SUM(cast(money as bigint)) betttotal from owzx_bett
 where isread=1 group by uid,lotterynum ) a
 join (
 select a.luckresult,b.expect,a.uid,b.opentime,b.type from 
@@ -2348,7 +2348,7 @@ join owzx_lotteryrecord b on a.lotteryid=b.lotteryid
 select a.uid,b.expect,a.betttotal,a.luckresult,convert(varchar(10),b.opentime,120) opentime,b.type
 into #list
 from (
-select lotteryid,uid,lotterynum,SUM(money) betttotal,sum(winmoney) as luckresult from owzx_bett
+select lotteryid,uid,lotterynum,SUM(cast(money as bigint)) betttotal,sum(cast(winmoney as bigint)) as luckresult from owzx_bett
 where isread=1 group by uid,lotterynum,lotteryid ) a
 join  owzx_lotteryrecord b on a.lotterynum=b.expect and a.lotteryid=b.type
 {1}
@@ -2378,7 +2378,7 @@ select opentime,SUM(betttotal) betttotal,SUM(luckresult) luckresult
 from #list a
 group by opentime )a
 left join (
-select sum(money) money,addtime from 
+select sum( cast( money as bigint)) money,addtime from 
 (select money,convert(varchar(10),addtime,120) addtime 
 from owzx_userbackreport )  a  group by addtime
 ) b on a.opentime=b.addtime
@@ -2395,7 +2395,7 @@ begin
 insert into #listresult(opentime, betttotal,luckresult,backtotal, profitresult)
 select opentime,betttotal,luckresult,backtotal,betttotal-luckresult-backtotal profitresult 
 from (
-select opentime, SUM(betttotal) betttotal,SUM(luckresult) luckresult,SUM(backtotal) backtotal  from (
+select opentime, SUM(cast(betttotal as bigint)) betttotal,SUM(cast(luckresult as bigint)) luckresult,SUM(backtotal) backtotal  from (
 select datepart(WK,opentime) opentime, betttotal, luckresult,backtotal from #listday 
 ) a group by opentime
 ) a order by opentime
@@ -2405,7 +2405,7 @@ begin
 insert into #listresult(opentime, betttotal,luckresult,backtotal,profitresult)
 select opentime,betttotal,luckresult,backtotal,betttotal-luckresult-backtotal profitresult 
 from (
-select opentime,SUM(betttotal) betttotal,SUM(luckresult) luckresult,SUM(backtotal) backtotal  from (
+select opentime,SUM(cast(betttotal as bigint)) betttotal,SUM(cast(luckresult as bigint)) luckresult,SUM(backtotal) backtotal  from (
 select datepart(month,opentime) opentime, betttotal,luckresult,backtotal from #listday 
 ) a group by opentime
 ) a order by opentime

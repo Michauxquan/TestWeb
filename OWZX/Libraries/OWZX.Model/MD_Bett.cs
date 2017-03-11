@@ -123,11 +123,11 @@ namespace OWZX.Model
             set { lotterynum = value; }
         }
 
-        private int money;
+        private Int64 money;
         /// <summary>
         /// 投注金额
         /// </summary>
-        public int Money
+        public Int64 Money
         {
             get { return money; }
             set { money = value; }

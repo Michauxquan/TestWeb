@@ -881,7 +881,7 @@ end catch
         public DataTable HomeData()
         {
             string sql = string.Format(@"
-select (select COUNT(1) from owzx_users where admingid=1) users,(select isnull(sum(luckresult),0) from owzx_bettprofitloss where luckresult>0) money
+select (select COUNT(1) from owzx_users where admingid=1) users,(select isnull(sum(cast(luckresult as bigint)),0) from owzx_bettprofitloss where luckresult>0) money
 ");
             return RDBSHelper.ExecuteTable(sql, null)[0];
         }

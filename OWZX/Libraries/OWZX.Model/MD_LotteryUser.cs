@@ -11,7 +11,7 @@ namespace OWZX.Model
        /// <summary>
        /// 每期投注金额
        /// </summary>
-        public int TotalBett { get; set; }
+       public Int64 TotalBett { get; set; }
        /// <summary>
         /// 每期中奖人数
        /// </summary>
@@ -27,6 +27,6 @@ namespace OWZX.Model
         /// <summary>
         /// 当前用户投注金额
         /// </summary>
-        public int Money { get; set; }
+        public Int64 Money { get; set; }
     }
 }
