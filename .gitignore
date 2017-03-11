@@ -29,7 +29,7 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
-
+App_Data/
 *.dll
 Debug/
 Relase/
