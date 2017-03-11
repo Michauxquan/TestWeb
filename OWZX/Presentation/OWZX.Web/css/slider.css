@@ -1,0 +1,67 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 498px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.bg-white {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 62px;
+  background-color: #fff;
+} 
+
+
+/* ======== 幻灯片样式 ======== */
+.slider-box {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
+
+.slider {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.slider-item {
+  float: left;
+  cursor: default;
+}
+
+.slider-box .btn-box {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 0;
+}
+.slider-box .btn-item {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 12px;
+  border-radius: 50%;
+  background-color: #fef6e1;
+}
+.slider-box .btn-item__cur {
+  width: 12px;
+  height: 12px;
+  margin-bottom: -2px;
+  border: 1px solid #fef6e1;
+  background-color: transparent;
+}
+
+
+.btn, .slider-title, .btn-box {
+  z-index: 999;
+}
+
+
+

@@ -456,12 +456,15 @@
     <Content Include="css\lgstyle.css" />
     <Content Include="css\lottery.css" />
     <Content Include="css\service.css" />
+    <Content Include="css\slider.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="App_Data\installedplugin.config" />
     <Content Include="App_Data\memcachedcache.config" />
     <Content Include="App_Data\memcachedsession.config" />
-    <Content Include="App_Data\rdbs.config" />
+    <Content Include="App_Data\rdbs.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\web.config" />
     <Content Include="images\ad_next.png" />
     <Content Include="images\ad_prev.png" />
@@ -487,7 +490,8 @@
     <Content Include="images\baseimg\gg2.jpg" />
     <Content Include="images\baseimg\gg3.jpg" />
     <Content Include="images\baseimg\gg4.jpg" />
-    <Content Include="images\baseimg\hb.jpg" />
+    <Content Include="images\baseimg\hb1.jpg" />
+    <Content Include="images\baseimg\hb2.jpg" />
     <Content Include="images\baseimg\hg28.png" />
     <Content Include="images\baseimg\jnd28.png" />
     <Content Include="images\baseimg\jnd36.png" />
@@ -582,10 +586,12 @@
     <Content Include="scripts\jquery.js" />
     <Content Include="scripts\jquery.soChange.js" />
     <Content Include="scripts\lottery.js" />
+    <Content Include="scripts\navChange.js" />
     <Content Include="scripts\play.js" />
     <Content Include="scripts\region.js" />
     <Content Include="scripts\resize.js" />
     <Content Include="scripts\selmode.js" />
+    <Content Include="scripts\slider.js" />
     <Content Include="scripts\ucenter.safe.js" />
     <Content Include="scripts\ucenter.user.js" />
     <Content Include="css\account.css" />

@@ -9,9 +9,11 @@
     <link href="@{@WorkContext.CSSCDN}/css/base.css" rel="stylesheet" type="text/css" />
     <link href="@{@WorkContext.CSSCDN}/css/home.css" rel="stylesheet" type="text/css" />
     <link href="@{@WorkContext.CSSCDN}/css/index.css"  rel="stylesheet" type="text/css" />
+    <link href="@{@WorkContext.CSSCDN}/css/slider.css" rel="stylesheet" type="text/css" />
     <script src="@{@WorkContext.ScriptCDN}/scripts/jquery.js" type="text/javascript"></script>
     <script src="@{@WorkContext.ScriptCDN}/scripts/common.js" type="text/javascript"></script>
     <script src="@{@WorkContext.ScriptCDN}/scripts/home.js"></script>
+    <script src="@{@WorkContext.ScriptCDN}/scripts/slider.js"></script> 
     <script>
     shadowName = "@WorkContext.ShopConfig.ShadowName";
     uid=@WorkContext.Uid;
@@ -37,7 +39,20 @@
                     window.location.href = '/news/details?newsId=' + _this.data("id");
                 });
             });
+        }); 
+
+        var slider1 = new Slider();
+        var doc_h = $(document.body).width();
+        slider1.inital('sliderBox', {
+            slider_num: 2,
+            w: doc_h,
+            h: 498
         });
+        setInterval(function() {
+            var obj = $('.btn-item__cur').next(); 
+            if(typeof(obj)!='undefined' && obj.length==1){obj.click();}
+            else{$('.btn-item').eq(0).click();}
+        }, 5000);
     });
     </script>
 
@@ -45,8 +60,8 @@
 <body>
 @Html.Partial("_header")
 
-<div class="mid" style="background-image: url('/images/baseimg/hb.jpg'); height: 498px;">
-    <div id="banner" class="basecontent" style="display: none;">
+<div class="mid wrapper" id="wrapper" >
+    <div id="banner" class="basecontent" style="position: absolute; right: 18%;display: none; z-index: 999;">
         <div id="order">
             <div style="width: 300px; height: 330px; float: right; margin-top: 50px; background-color: #000000; opacity: 0.8;">
                 <div class="ind_reserve" style="margin-left: 24px; width: 85%; text-align: left; height: 38px; line-height: 38px;">
@@ -129,6 +144,7 @@
         <div style="text-indent: 24px; font-size: 14px;">    发财28游戏站点，国内28行业龙头大站，蛋蛋28,蛋蛋龙虎豹,加拿大28,蛋蛋36,韩国28,加拿大36,pk冠军，pk冠亚军，急速28，多种28平台，通过各种有奖游戏获得礼品。</div>
     </div>
     @Html.Partial("_footer")
+
 </body>
 </html>
 
