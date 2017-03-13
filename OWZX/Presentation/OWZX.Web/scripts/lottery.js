@@ -4,6 +4,9 @@ var tiner;
 var traptime;
 function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum)
 {
+    clearTimeout(tiner);
+    clearTimeout(traptime);
+
     var nS = parseInt(ctime);
     //处理上期未开奖，重启计时处理
     if (typeof (prevnum) != 'undefined' && prevnum != fcnum - 1 && nS >= -30)

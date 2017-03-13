@@ -65,13 +65,12 @@
         <div style="border-top:1px solid #ECECEC;padding-left:50px;">
             <span style="font-size:15px;">一区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.First</span></span>
             <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Second</span></span>
-            @if (@Model.LotteryType != 7 && @Model.LotteryType != 8)
+            @if (@Model.LotteryType != 7 && @Model.LotteryType != 8 && @Model.LotteryType != 11)
             {
                 <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
             }
 
-            @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 3 || @Model.LotteryType == 6
-                || @Model.LotteryType == 9 || @Model.LotteryType == 7 || @Model.LotteryType == 8 || @Model.LotteryType == 10)
+            @if (@Model.LotteryType != 4 || @Model.LotteryType != 5)
             {
                 <span style="margin-left:60px;font-size:15px;">
                     结果:
@@ -81,7 +80,7 @@
                     </span>
                 </span>
             }
-            else if (@Model.LotteryType == 4 || @Model.LotteryType == 5 )
+            else
             {
                 string type = @Model.lotterylist.Prev_Lottery.Resultnum;
                 string cltype = type == "豹" ? "z1" : (type == "顺" ? "z3" : (type == "对" ? "z2" : (type == "半" ? "z4" : "z5")));
@@ -124,8 +123,8 @@
     </div>
 </div>
 <div class="temp_content">
-    @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 3 || @Model.LotteryType == 6 
-        || @Model.LotteryType == 4 || @Model.LotteryType == 5)
+    @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 3 || @Model.LotteryType == 6
+        || @Model.LotteryType == 4 || @Model.LotteryType == 5 || @Model.LotteryType == 11 || @Model.LotteryType == 12)
     {
         @Html.Partial("_content")
     }

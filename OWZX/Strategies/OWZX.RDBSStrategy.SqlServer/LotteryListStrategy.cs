@@ -127,7 +127,8 @@ select a.*,isnull(cast(e.luckresult as decimal(18,2)),0)luckresult,
 isnull(e.money,0) money
 from #lottery a 
 left join #temp e 
-on a.type=e.type and a.expect=e.expect
+on a.type=e.type and a.expect=e.expect  
+order by expect desc
 
 
 
