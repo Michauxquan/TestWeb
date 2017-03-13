@@ -361,7 +361,7 @@ function setValue(num)
             }
         }
     }
-    else if (lotterytype == 7)
+    else if (lotterytype == 7 || lotterytype == 10)
     {
         for (var i = 0; i < modegj[num].length; i++) {
             var id_num = modegj[num][i];
@@ -387,6 +387,24 @@ function setValue(num)
             var id_name = "[id='txt_" + modelhb[num][i] + "']";
             if (!$(id_name).attr("readonly")) { 
                 $(id_name).val(ddlhb[i]);
+                $(id_name).parent().prev("td").children("input").prop("checked", true);
+            }
+        }
+    } else if (lotterytype == 11) {
+        for (var i = 0; i < modejs11[num].length; i++) {
+            var id_num = modejs11[num][i];
+            var id_name = "[id='txt_" + modejs11[num][i] + "']";
+            if (!$(id_name).attr("readonly")) {
+                $(id_name).val(js11[i]);
+                $(id_name).parent().prev("td").children("input").prop("checked", true);
+            }
+        }
+    } else if (lotterytype == 12) {
+        for (var i = 0; i < modejs16[num].length; i++) {
+            var id_num = modejs16[num][i];
+            var id_name = "[id='txt_" + modejs16[num][i] + "']";
+            if (!$(id_name).attr("readonly")) {
+                $(id_name).val(js16[i]);
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
         }
@@ -687,7 +705,7 @@ function datapost()
                    {
                        //成功
                        layer.alert("第<span  style='color :Red;'>" + expect + "</span>期投注成功！", { icon: 1, title: "提示" })
-                       if (lotterytype == 1 || lotterytype == 2 ||lotterytype == 3|| lotterytype == 4 || lotterytype == 5 || lotterytype == 6)
+                       if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 4 || lotterytype == 5 || lotterytype == 6 || lotterytype == 11 || lotterytype == 12)
                        {
                            $(".temp_content").load("/nwlottery/_content", { "type": lotterytype, "page": 1 });
                        }
@@ -695,7 +713,7 @@ function datapost()
                        {
                            $(".temp_content").load("/nwlottery/_contentlhb", { "type": lotterytype, "page": 1 });
                        }
-                       else if (lotterytype == 7 || lotterytype == 8)
+                       else if (lotterytype == 7 || lotterytype == 8 || lotterytype == 10)
                        {
                            $(".temp_content").load("/nwlottery/_contentpk", { "type": lotterytype, "page": 1 });
                        }
