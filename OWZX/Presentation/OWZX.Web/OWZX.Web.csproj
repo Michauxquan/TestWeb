@@ -586,7 +586,6 @@
     <Content Include="scripts\jquery.js" />
     <Content Include="scripts\jquery.soChange.js" />
     <Content Include="scripts\lottery.js" />
-    <Content Include="scripts\navChange.js" />
     <Content Include="scripts\play.js" />
     <Content Include="scripts\region.js" />
     <Content Include="scripts\resize.js" />
