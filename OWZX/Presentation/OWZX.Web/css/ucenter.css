@@ -12,9 +12,9 @@
 /*菜单项*/
 #conter{width:1000px;margin:0 auto}
 #conter #help-left{width: 250px; height: 500px; border: solid 1px #ccc; background: #f5f5f5;font-family:'microsoft YaHei';float: left;border-top: solid 3px #E8454E;}
-#uinfobox #imgbox{ margin: 30px 0 40px 22px;float: left;border: solid 2px #E8454E;width: 64px;height:64px;padding: 3px;background: #fff;}
+#uinfobox #imgbox{ margin: 30px 0 40px 18px;float: left;border: solid 2px #E8454E;width: 64px;height:64px;padding: 3px;background: #fff;}
 #imgbox img{ width: 64px;height:64px;border-radius: 2px;}
-#uinfobox #infobox{ margin: 30px 0 40px 20px;float: left;}
+#uinfobox #infobox{ margin: 30px 0 40px 10px;float: left;}
 /*#conter .menu{border-left:1px solid #ccc;border-right:1px solid #ccc}*/
 /*#conter .menu:last-child{border-bottom:1px solid #ccc}*/
 #conter .menu summary{height:38px;line-height:38px;text-indent:10px;outline:0;font-size:16px;font-weight:700; 

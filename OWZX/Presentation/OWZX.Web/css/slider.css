@@ -1,7 +1,8 @@
 .wrapper {
   position: relative;
   width: 100%;
-  height: 498px;
+  /*height: 498px;*/
+   height: 350px;
   z-index: 1;
   overflow: hidden;
 }
@@ -37,23 +38,32 @@
 
 .slider-box .btn-box {
   position: absolute;
-  bottom: 10px;
+  /*bottom: 10px;*/
+    bottom: 2px;
+    height: 30px;
   width: 100%;
   text-align: center;
-  font-size: 0;
+  font-size: 0;  
+    z-index: 1;
+    bottom: 0;
+    left: 0; 
+    line-height: 30px;
+    background: url(../images/touming.png) repeat-x;
+    text-align: center;
 }
 .slider-box .btn-item {
   display: inline-block;
   width: 10px;
   height: 10px;
-  margin: 0 12px;
+    margin: 0 10px;
+  margin-top:8px;
   border-radius: 50%;
   background-color: #fef6e1;
 }
 .slider-box .btn-item__cur {
   width: 12px;
   height: 12px;
-  margin-bottom: -2px;
+  /*margin-bottom: -2px;*/
   border: 1px solid #fef6e1;
   background-color: transparent;
 }

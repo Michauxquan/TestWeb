@@ -26,45 +26,23 @@ a{
 .TEL{
 	margin-left: 38px;
 }
-
-/*#header .nav .a1 li{
-	float: left;
-	padding: 12px 45px;
-}
-#header .nav ul li a{
-	color: #1f1f1f;
-	font-size: 16px;
-}
-#header .nav ul li a:hover{
-	
-	color: #ffffff;
-
-}
-#header .nav ul li:hover{
-	background: #00af62;
-	color: #ffffff;
-
-}
-#header .nav .sub_nav{
-	float:left;
-	display: none;
-}*/ 
-#order .Message{
+ 
+.order .Message{
 	text-align: left;
     margin-left: 24px;
 	margin-top: 20px;}
-#order .Message ul li {
+.order .Message ul li {
     height: 55px;
     line-height: 55px;
 }
-#order .Message ul li input{
+.order .Message ul li input{
 	width: 250px;
 	height: 34px;
     font-size: 13px;
 	border: 1px solid #ebebeb; 
 	outline: medium; }
 
-#order .Message ul li em {
+/*.order .Message ul li em {
             float: left;
             margin-right: 3px;
             width: 15px;
@@ -73,18 +51,46 @@ a{
             top: 4px;
             background: url('../images/error.png') no-repeat;
             overflow: hidden;
-        }
-#order .reg {float: right; color: #ffffff; cursor: pointer;}
-#order .reg:hover{ color: #E23B45;}
-#order #reserve {
+        }*/
+.order .reg {float: right; color: #ffffff; cursor: pointer;}
+.order .reg:hover{ color: #E23B45;}
+.order .reserve {
    cursor:pointer; border: none;background:#E43846; width:255px;color:#ffffff;padding:0;margin-top:12px;font-size: 16px;font-weight: bold; letter-spacing: 8px;
 }
-#order #reserve:hover {
+.order .reserve:hover {
     cursor:pointer;background:#d23335;
 }
-#order .contact a:hover {
+.order .contact a:hover {
     cursor:pointer;color:#d23335;
 }
+.orderli {
+    height: 35px !important;
+    line-height: 35px !important;
+    margin: 3px 0 0 0;
+    border: 1px solid #999;
+    color: white;
+}
+.orderli span {
+    float: left;
+    width: 60px;
+    text-align: center;
+    border-right: 1px solid #ccc;
+    height: 35px;
+    line-height: 35px;
+}
+.orderli i {
+    font-style: normal;
+    width: 139px;
+    text-align: center;
+    float: left;
+}
+.orderli i em{
+        background: url(../../images/yuanbao.png) no-repeat right center;
+        background-size:20px 13px;
+        display: inline-block;
+        padding-right: 20px;
+        font-style: normal;
+    }
 .FAB ul li h6{
 	font-size: 12px;
 	color: #666666;

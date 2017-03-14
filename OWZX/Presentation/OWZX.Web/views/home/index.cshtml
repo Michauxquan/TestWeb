@@ -13,15 +13,19 @@
     <script src="@{@WorkContext.ScriptCDN}/scripts/jquery.js" type="text/javascript"></script>
     <script src="@{@WorkContext.ScriptCDN}/scripts/common.js" type="text/javascript"></script>
     <script src="@{@WorkContext.ScriptCDN}/scripts/home.js"></script>
-    <script src="@{@WorkContext.ScriptCDN}/scripts/slider.js"></script> 
-    <script>
+    <script src="@{@WorkContext.ScriptCDN}/scripts/slider.js"></script>
+    <script src="@{@WorkContext.ScriptCDN}/components/layer/layer.js"></script>
+                                  <script>
     shadowName = "@WorkContext.ShopConfig.ShadowName";
     uid=@WorkContext.Uid;
 
     $(function(){
-        if(uid<1)
-        {
+        if (uid < 1) {
             $("#banner").show();
+            $("#banner2").hide();
+        } else {
+            $("#banner2").show();
+            $("#banner").hide();
         }
         $('.goods').click(function() {
             window.location.href = '/changeware/changelist';
@@ -46,7 +50,8 @@
         slider1.inital('sliderBox', {
             slider_num: 2,
             w: doc_h,
-            h: 498
+            //h: 498
+            h: 350
         });
         setInterval(function() {
             var obj = $('.btn-item__cur').next(); 
@@ -61,39 +66,57 @@
 @Html.Partial("_header")
 
 <div class="mid wrapper" id="wrapper" >
-    <div id="banner" class="basecontent" style="position: absolute; right: 18%;display: none; z-index: 999;">
-        <div id="order">
-            <div style="width: 300px; height: 330px; float: right; margin-top: 50px; background-color: #000000; opacity: 0.8;">
+    <div id="banner" class="basecontent" style="position: absolute; right: 18%; display: none; z-index: 999;width:400px;">
+        <div id="order" class="order">
+            <div style="width: 300px; height: 330px; float: right; margin-top: 20px; background-color: #000000; opacity: 0.8;">
                 <div class="ind_reserve" style="margin-left: 24px; width: 85%; text-align: left; height: 38px; line-height: 38px;">
                     <h3 style="border-bottom: solid 1px #fff; color: white;">注册邮箱登录</h3>
                 </div>
                 <div class="clear"></div>
                 <div class="Message">
-                   
-                        <ul>
-                            <li>
-                                <input type="text" id="name" placeholder=" 请输入邮箱" autocomplete="off" />
-                            </li>
-                            <li>
-                                <input type="password" id="password" placeholder=" 密码" autocomplete="off" />
-                            </li>
-                            <li><div style="display:inline-block;">
-                                <input type="text" id="code" placeholder=" 验证码" style="width: 126px;" autocomplete="off" /><img id="verifyImage" style="cursor:pointer;margin:0 0 0 15px; width: 108px;height:36px;vertical-align:middle;"  title="点击刷新验证码" onclick="this.src = '/tool/verifyimage?time=' + new Date()" src="/tool/verifyimage" />
+                    <ul>
+                        <li>
+                            <input type="text" id="name" placeholder=" 请输入邮箱" autocomplete="off"/>
+                        </li>
+                        <li>
+                            <input type="password" id="password" placeholder=" 密码" autocomplete="off"/>
+                        </li>
+                        <li>
+                            <div style="display: inline-block;">
+                                <input type="text" id="code" placeholder=" 验证码" style="width: 126px;" autocomplete="off"/><img id="verifyImage" style="cursor: pointer; margin: 0 0 0 15px; width: 108px; height: 36px; vertical-align: middle;" title="点击刷新验证码" onclick="this.src = '/tool/verifyimage?time=' + new Date()" src="/tool/verifyimage"/>
                             </div>
-                            </li>
-                            <li><input type="button" id="reserve" name="submit" value="登录" /></li>
-                            <li><a class="reg" href="@Url.Action("findpwd","account")" style=" margin: 0 20px;">忘记密码</a>&nbsp; &nbsp; &nbsp;<a class="reg A_b" href="@Url.Action("register","account")">注册</a></li>
-                        </ul>
-             
+                        </li>
+                        <li><input type="button" id="reserve" class="reserve" name="submit" value="登录"/></li>
+                        <li><a class="reg" href="@Url.Action("findpwd", "account")" style="margin: 0 20px;">忘记密码</a>&nbsp; &nbsp; &nbsp;<a class="reg A_b" href="@Url.Action("register", "account")">注册</a></li>
+                    </ul>
                 </div>
-
             </div>
-            
+            <div class="clear"></div>
+        </div>
+    </div> 
+    <div id="banner2" class="basecontent" style="position: absolute; right: 18%;display: none; z-index: 999;width:400px;">
+        <div class="order">
+            <div style="width: 300px; height: 330px; float: right; margin-top: 20px; background-color: #000; opacity: 0.8;">
+                <div class="ind_reserve" style="margin-left: 24px; width: 85%; text-align: left; height: 38px; line-height: 38px;">
+                    <h3 style="border-bottom: solid 1px #fff; color: white; margin-top: 10px; opacity: 1;">欢迎来发财|28行业的龙头站点</h3>
+                </div>
+                <div class="clear"></div>
+                <div class="Message">
+                    <ul style="width: 250px;">
+                        @if (WorkContext.Uid >0){
+                            <li class="orderli"><span>帐号</span><i>@WorkContext.UserEmail</i></li>
+                            <li class="orderli"><span>昵称</span><i>@WorkContext.NickName</i></li>
+                        }
+                        <li class="orderli"><span>元宝</span><i><em class="usertotalmoney"></em></i></li>
+                        <li class="orderli"><span>银行</span><i><em class="banktotalmoney"></em></i></li>
+                        <li><a  href="@Url.Action("logout", "account")" onclick=""><input type="button" class="reserve" name="submit" value="退出"/></a></li>
+                    </ul>
+                </div>
+            </div>
             <div class="clear"></div>
         </div>
     </div>
-    <script src="@{@WorkContext.ScriptCDN}/components/layer/layer.js"></script>
-    </div>
+</div>
 
 
     <div class="basecontent">

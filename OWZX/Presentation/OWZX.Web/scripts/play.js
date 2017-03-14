@@ -104,10 +104,10 @@ $(document).ready(function ()
         })
     }).css("cursor", "pointer");
 
-    ////点击反选按钮
-    //$(".touzhu2").eq(0).click(function () { ani_select(); })
+    //点击反选按钮
+    $(".reversebtn").click(function() { ani_select(); });
     //点击清除按钮
-    $(".touzhu2").eq(1).click(function () { bettmodel = ""; clear(); })
+    $(".clearbtn").click(function () { bettmodel = ""; clear(); });
     ////刷新赔率
     //$(".touzhu1").eq(0).click(function () { refreshd(Periods); })
     ////上期投注
@@ -466,7 +466,20 @@ function ani_select() {
     });
     getAllpceggs();
 }
-
+$("input[name='checkboxd']").each(function (i, v) {
+    $(v).click(function() {
+        if (!$(this).attr("disabled")) {
+            if (!$(this).prop("checked")) {
+                $(this).parent().next("td").children("input").val(nub1[i]);
+                $(this).prop("checked", true);
+            } else {
+                $(this).parent().next("td").children("input").val("");
+                $(this).prop("checked", false);
+            }
+            getAllpceggs();
+        }
+    });
+});
 
 //选择自定义模式 
 function personmode(id)

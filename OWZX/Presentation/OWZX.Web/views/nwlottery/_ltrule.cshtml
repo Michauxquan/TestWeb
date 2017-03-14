@@ -113,7 +113,7 @@
     else if (ViewData["ltruletype"].ToString() == "7" || ViewData["ltruletype"].ToString() == "8" || ViewData["ltruletype"].ToString() == "10")
     {
         <tr><td colspan="2">
-            @if (ViewData["ltruletype"].ToString() == "10")
+            @if (ViewData["ltruletype"].ToString() != "10")
             {
                 @: 采用北京福彩中心PK10数据，每5分钟一期，每天179期，每天0 - 9点暂停开奖
             }
