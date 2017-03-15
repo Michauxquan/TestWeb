@@ -28,8 +28,7 @@
                         <td width="225" align="left">开奖结果：
                         @if (row["status"].ToString() == "2")
                         {
-                            if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6
-                                || lotterytype == 9 || lotterytype == 7 || lotterytype == 8)
+                            if (lotterytype != 4 && lotterytype != 5)
                         {<span style="font-size:15px;">
                             
                             <span class="ltresult pcresult">

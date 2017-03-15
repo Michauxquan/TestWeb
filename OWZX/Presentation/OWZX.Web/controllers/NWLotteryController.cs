@@ -165,6 +165,34 @@ namespace OWZX.Web.controllers
             };
             return View(lot);
         }
+
+        /// <summary>
+        /// 通用页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _TabCommon()
+        {
+            int id = WebHelper.GetFormInt("type");//彩票类型
+            int page = WebHelper.GetFormInt("page", 1);
+            MD_LotteryList list = LotteryList.GetLotteryByType(id, 1, 20, WorkContext.Uid);
+            int total = 0;
+            int stop = 0;
+            string title = string.Empty;
+            InitParms(id, ref total, ref stop, ref title);
+            total = ResetTotalTime(id, list, total);
+
+            LotteryModel lot = new LotteryModel()
+            {
+                LotteryType = id,
+                TotalS = total,
+                StopTime = stop,
+                Title = title,
+                PageModel = new PageModel(20, 1, list.TotalCount),
+                lotterylist = list
+            };
+            return View(lot);
+        }
+
         /// <summary>
         /// dd28获取数据
         /// </summary>
