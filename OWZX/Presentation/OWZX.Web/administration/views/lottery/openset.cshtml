@@ -24,10 +24,10 @@
             });
 
             function getResultList(settype) {
-                $.post('/admin/lottery/GetOpenResult', { lotterynum: expect, settype: settype }, function(data) {
+                $.post('/admin/lottery/GetOpenResult', { lotterynum: expect, settype: settype,type: $('.updstatus').data("id")}, function(data) {
                     var result = eval('(' + data + ')');
                     var html = "<br/>";
-                    var rlist = result.content.split(",");
+                    var rlist = result.content.split(";");
                     for (var s = 0; s < rlist.length; s++) {
                         if (rlist[s] != "") {
                             html +=
@@ -43,6 +43,7 @@
                                 lotterynum: $('.updstatus').data("num"),
                                 result: $('input[name="isresult"]:checked').val(),
                                 detailid: $('input[name="isdefault"]:checked').val(),
+                                lottery:$('.updstatus').data("id"),
                                 status: 1
                             },
                             function(data) {
@@ -96,7 +97,7 @@
                         @if (Model.OpenList.Count > 0)
                         {
                             <span style="margin-left: 20px; float: left; color: red;">@(Model.OpenList[0].start == 0 ? "未开启自动开奖模式" : "已开启自动开奖模式")</span> 
-                            <a class="editOperate updstatus" style="float: left;margin-left: 10px;" href="javascript:void(0);" data-num="@(Model.lottery!=null?Model.lottery.Expect:"")" data-id="@Model.OpenList[0].lottypeid" data-status="@(Model.OpenList[0].start == 0 ? 1 : 0)">[@(Model.OpenList[0].start == 0 ? "开启" : "关闭")]</a>
+                            <a class="editOperate updstatus" style="float: left;margin-left: 10px;" href="javascript:void(0);" data-num="@(Model.lottery!=null?Model.lottery.Expect:"")" data-id="@Model.OpenList[0].lotteryid" data-status="@(Model.OpenList[0].start == 0 ? 1 : 0)">[@(Model.OpenList[0].start == 0 ? "开启" : "关闭")]</a>
                             <span id="lotteryid" style="margin-left: 100px;"></span>
                             <span id="lotteryresult" style="margin-left: 100px;float: left;">@(string.IsNullOrEmpty(Model.OpenList[0].result)?"暂未设置开奖结果":"设置开奖结果为:"+ Model.OpenList[0].result)</span>
                         }

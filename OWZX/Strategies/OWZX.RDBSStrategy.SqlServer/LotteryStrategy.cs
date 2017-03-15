@@ -2514,6 +2514,7 @@ end catch
             begin try
             if exists(select 1 from owzx_lotteryopenset  where detailid ={1} )
             begin
+            update  owzx_lotteryopenset set isdefault=0  where lotteryid={0}  
             update  owzx_lotteryopenset set isdefault={2}  where lotteryid={0} and detailid={1}
             update  owzx_lotteryopensetman set result='{3}' where lotteryid={0}
             if('{4}'!='')

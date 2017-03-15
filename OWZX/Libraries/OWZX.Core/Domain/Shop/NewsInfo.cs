@@ -17,7 +17,9 @@ namespace OWZX.Core
         private string _title = "";//标题
         private string _url = "";//网址
         private string _body = "";//内容
-
+        private DateTime _btime;//开始时间
+        private DateTime _etime;//结束时间
+        private int _status = 0;//状态
 
         /// <summary>
         /// 新闻id
@@ -27,6 +29,15 @@ namespace OWZX.Core
             set { _newsid = value; }
             get { return _newsid; }
         }
+        /// <summary>
+        /// 状态 0 正常 1 作废
+        /// </summary>
+        public int Status
+        {
+            set { _status = value; }
+            get { return _status; }
+        }
+        /// <summary>
         /// <summary>
         /// 新闻类型id
         /// </summary>
@@ -98,6 +109,16 @@ namespace OWZX.Core
         {
             set { _body = value; }
             get { return _body; }
+        }
+        public DateTime BTime
+        {
+            set { _btime = value; }
+            get { return _btime; }
+        }
+        public DateTime ETime
+        {
+            set { _etime = value; }
+            get { return _etime; }
         }
     }
 }

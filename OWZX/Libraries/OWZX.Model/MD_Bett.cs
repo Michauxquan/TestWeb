@@ -184,7 +184,7 @@ namespace OWZX.Model
         /// <summary>
         /// 彩票类型
         /// </summary>
-        public int lottypeid { get; set; }
+        public int lotteryid { get; set; }
         /// <summary>
         /// 期号
         /// </summary>

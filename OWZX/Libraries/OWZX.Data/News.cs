@@ -44,7 +44,9 @@ namespace OWZX.Data
             newsInfo.Title = reader["title"].ToString();
             newsInfo.Url = reader["url"].ToString();
             newsInfo.Body = reader["body"].ToString();
-
+            newsInfo.BTime = TypeHelper.ObjectToDateTime(reader["btime"]);
+            newsInfo.ETime = TypeHelper.ObjectToDateTime(reader["etime"]);
+            newsInfo.Status = TypeHelper.ObjectToInt(reader["status"]); ;
             return newsInfo;
         }
 

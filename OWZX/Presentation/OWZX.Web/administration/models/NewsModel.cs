@@ -98,6 +98,10 @@ namespace OWZX.Web.Admin.Models
         /// 是否显示
         /// </summary>
         public int IsShow { get; set; }
+         [DisplayName("活动日期")]
+        public DateTime? BTime { get; set; }
+        [DisplayName("活动日期")]
+        public DateTime? ETime { get; set; }
         /// <summary>
         /// 是否置顶
         /// </summary>
