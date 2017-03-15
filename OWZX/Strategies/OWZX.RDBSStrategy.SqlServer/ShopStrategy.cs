@@ -1124,9 +1124,11 @@ FROM [{1}adverts] WHERE [adposid]={3} AND [adid] NOT IN (SELECT TOP {2} [adid] F
                                         GenerateInParam("@addtime", SqlDbType.DateTime,8,newsInfo.AddTime),
                                         GenerateInParam("@title", SqlDbType.NVarChar,100,newsInfo.Title),
                                         GenerateInParam("@url", SqlDbType.NVarChar,200,newsInfo.Url),
-                                        GenerateInParam("@body", SqlDbType.NText, 0, newsInfo.Body)
+                                        GenerateInParam("@body", SqlDbType.NText, 0, newsInfo.Body),
+                                        GenerateInParam("@btime", SqlDbType.DateTime, 0, newsInfo.BTime),
+                                        GenerateInParam("@etime", SqlDbType.DateTime, 0, newsInfo.ETime)
                                     };
-            string commandText = string.Format("INSERT INTO [{0}news]([newstypeid],[isshow],[istop],[ishome],[displayorder],[addtime],[title],[url],[body]) VALUES(@newstypeid,@isshow,@istop,@ishome,@displayorder,@addtime,@title,@url,@body)",
+            string commandText = string.Format("INSERT INTO [{0}news]([newstypeid],[isshow],[istop],[ishome],[displayorder],[addtime],[title],[url],[body],[btime],[etime]) VALUES(@newstypeid,@isshow,@istop,@ishome,@displayorder,@addtime,@title,@url,@body,@btime,@etime)",
                                                 RDBSHelper.RDBSTablePre);
             RDBSHelper.ExecuteNonQuery(CommandType.Text, commandText, parms);
         }
@@ -1159,8 +1161,10 @@ FROM [{1}adverts] WHERE [adposid]={3} AND [adid] NOT IN (SELECT TOP {2} [adid] F
                                         GenerateInParam("@url", SqlDbType.NVarChar,200,newsInfo.Url),
                                         GenerateInParam("@body", SqlDbType.NText, 0, newsInfo.Body),
                                         GenerateInParam("@newsid", SqlDbType.Int, 4, newsInfo.NewsId),
+                                        GenerateInParam("@btime", SqlDbType.DateTime, 0, newsInfo.BTime),
+                                        GenerateInParam("@etime", SqlDbType.DateTime, 0, newsInfo.ETime)
                                     };
-            string commandText = string.Format("UPDATE [{0}news] SET [newstypeid]=@newstypeid,[isshow]=@isshow,[istop]=@istop,[ishome]=@ishome,[displayorder]=@displayorder,[addtime]=@addtime,[title]=@title,[url]=@url,[body]=@body WHERE [newsid]=@newsid",
+            string commandText = string.Format("UPDATE [{0}news] SET [newstypeid]=@newstypeid,[isshow]=@isshow,[istop]=@istop,[ishome]=@ishome,[displayorder]=@displayorder,[addtime]=@addtime,[title]=@title,[url]=@url,[body]=@body,[btime]=@btime,[etime]=@btime WHERE [newsid]=@newsid",
                                                 RDBSHelper.RDBSTablePre);
             return RDBSHelper.ExecuteNonQuery(CommandType.Text, commandText, parms) == 1 ? true : false;
         }

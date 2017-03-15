@@ -230,7 +230,9 @@ namespace OWZX.Web.Admin.Controllers
                     AddTime = DateTime.Now,
                     Title = model.Title,
                     Url = model.Url == null ? "" : model.Url,
-                    Body = model.Body ?? ""
+                    Body = model.Body ?? "",
+                    BTime = model.BTime ?? DateTime.Now,
+                    ETime = model.ETime ?? DateTime.Now
                 };
 
                 AdminNews.CreateNews(newsInfo);
@@ -261,7 +263,8 @@ namespace OWZX.Web.Admin.Controllers
             model.Title = newsInfo.Title;
             model.Url = newsInfo.Url;
             model.Body = newsInfo.Body;
-
+            model.BTime = newsInfo.BTime;
+            model.ETime = newsInfo.ETime;
             Load();
             return View(model);
         }
@@ -290,7 +293,8 @@ namespace OWZX.Web.Admin.Controllers
                 newsInfo.Title = model.Title;
                 newsInfo.Url = model.Url == null ? "" : model.Url;
                 newsInfo.Body = model.Body ?? "";
-
+                newsInfo.BTime = model.BTime ?? DateTime.Now;
+                newsInfo.ETime = model.ETime ?? DateTime.Now;
                 AdminNews.UpdateNews(newsInfo);
                 AddAdminOperateLog("修改公告", "修改公告,公告ID为:" + newsId);
                 return PromptView("公告修改成功");

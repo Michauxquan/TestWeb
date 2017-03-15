@@ -254,7 +254,18 @@ namespace OWZX.Web.Admin.Controllers
             Random random1 = new Random();
             for (var i = 0; i < 7; i++)
             {
-                resultNumList += getResult(resultlist[random1.Next(0, resultlist.Count)]) + ",";
+                if (type == 10)
+                {
+                    resultNumList += getJSTwoResult(resultlist[random1.Next(0, resultlist.Count)]) + ";";
+                }
+                else if (type == 11 || type == 12)
+                {
+                    resultNumList += getJSResult(resultlist[random1.Next(0, resultlist.Count)], type == 11 ? 2 : 3) +";";
+                }
+                else
+                {
+                    resultNumList += getResult(resultlist[random1.Next(0, resultlist.Count)]) + ";";
+                }
             }
             return AjaxResult("sussece", resultNumList);
         }
@@ -353,17 +364,31 @@ namespace OWZX.Web.Admin.Controllers
                 {
                     str.Add(i.ToString());
                 }
-            }
+            } 
             string[] result = new string[str.Count];
-            for (int mm = 0; mm < str.Count; mm++)
-            {
-                int pos = _random.Next(str.Count);
-                var temp = str[mm];
-                result[mm] = str[pos];
-                result[pos] = temp;
-            }
+            int count = str.Count;
+            int cbRandCount = 0;// 索引  
+            int cbPosition = 0;// 位置  
+            int k = 0;
+            do
+            { 
+                int r = count - cbRandCount;
+                cbPosition = _random.Next(r);
+                result[k++] = str[cbPosition];
+                cbRandCount++;
+                str[cbPosition] = str[r - 1];// 将最后一位数值赋值给已经被使用的cbPosition  
+            } while (cbRandCount < count);  
+
+            //string[] result = new string[str.Count];
+            //for (int mm = 0; mm < str.Count; mm++)
+            //{
+            //    int pos = _random.Next(str.Count);
+            //    var temp = str[mm];
+            //    result[mm] = str[pos];
+            //    result[pos] = temp;
+            //}
             string resultstr = resultnum.ToString();
-            str.ForEach(x => { resultstr += resultstr + "," + x.ToString(); });
+            result.ToList().ForEach(x => { resultstr += "," + x.ToString(); });
             return resultstr;
         }
         #endregion

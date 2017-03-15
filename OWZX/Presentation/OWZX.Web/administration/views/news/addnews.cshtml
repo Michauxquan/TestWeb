@@ -4,12 +4,24 @@
     <title>添加公告</title>
     <link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
     <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
-    <link href="/components/ueditor/themes/default/css/ueditor.css" rel="stylesheet" />
+    <link href="/components/ueditor/themes/default/css/ueditor.css" rel="stylesheet"/>
     <script src="/components/ueditor/ueditor.config.js"></script>
     <script src="/components/ueditor/ueditor.all.js"></script>
     <script src="/components/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" src="/components/my97datepicker/WdatePicker.js"></script>
     <script type="text/javascript" src="/administration/scripts/jquery.validate.js"></script>
     <script type="text/javascript" src="/administration/scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $(function() {
+            $('#NewsTypeId').change(function() {
+                if ($(this).val()== '2') {
+                    $('#actime').show();
+                } else {
+                    $('#actime').hide();
+                }
+            });
+        });
+    </script>
 }
 
 @section body{
@@ -41,27 +53,54 @@
     <td>@Html.TextBoxFor(x => x.Url, new { @class = "input", size = "45" })@Html.ValidationMessageFor(x => x.Url)</td>
     </tr>
 
-          <tr>
-    <td align="right">内容：</td>
-    <td>
-         <script name="Body" id="bspEditor">@Html.Raw(@Model.Body)</script>
-         <script type="text/javascript">
-             $(function(){
-                 window.UEDITOR_CONFIG.imageUrl = "" + "/admin/tool/upload?operation=uploadnewseditorimage";
-                 UE.getEditor("bspEditor", {
-                     toolbars: [['bold', 'italic',
-                       'underline', 'fontborder', 'backcolor', 'fontsize', 'fontfamily',
-                       'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify',
-                       'removeformat', '|',
-                        'forecolor', 'backcolor', '|', 'undo', 'redo']]
-            , initialFrameWidth: 800, maximumWords: 300, elementPathEnabled: false, enableAutoSave: false
-                 });
-             })
-             
-        </script>
-    </td>
-    </tr>
+    <tr>
+        <td align="right">内容：</td>
+        <td>
+            <script name="Body" id="bspEditor">@Html.Raw(@Model.Body)</script>
+            <script type="text/javascript">
+                $(function() {
+                    window.UEDITOR_CONFIG.imageUrl = "" + "/admin/tool/upload?operation=uploadnewseditorimage";
+                    UE.getEditor("bspEditor", {
+                        toolbars: [
+                            [
+                                'bold', 'italic',
+                                'underline', 'fontborder', 'backcolor', 'fontsize', 'fontfamily',
+                                'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify',
+                                'removeformat', '|',
+                                'forecolor', 'backcolor', '|', 'undo', 'redo'
+                            ]
+                        ],
+                        initialFrameWidth: 800,
+                        maximumWords: 300,
+                        elementPathEnabled: false,
+                        enableAutoSave: false
+                    });
+                })
 
+            </script>
+        </td>
+    </tr>
+      <tr id="actime">
+        <td align="right">活动日期：</td>
+        <td>@Html.TextBoxFor(x => x.BTime, new { @class = "input", size = "18", onfocus = "WdatePicker({el:'BTime', dateFmt:'yyyy/MM/dd'})" }) @Html.ValidationMessageFor(x => x.BTime)
+            @if (Model.BTime != null)
+            {
+                    <script type="text/javascript">
+                        var fmtDate = "@Model.BTime.Value.ToString("yyyy/MM/dd")";
+                        $("#BTime").val(fmtDate);
+                    </script>
+            }
+           至 @Html.TextBoxFor(x => x.ETime, new { @class = "input", size = "18", onfocus = "WdatePicker({el:'ETime', dateFmt:'yyyy/MM/dd'})" }) @Html.ValidationMessageFor(x => x.ETime)
+            @if (Model.BTime != null)
+            {
+                    <script type="text/javascript">
+                        var fmtDate = "@Model.ETime.Value.ToString("yyyy/MM/dd")";
+                        $("#ETime").val(fmtDate);
+                    </script>
+            }
+        </td>
+    </tr>
+       
 
       <tr>
     <td align="right">排序：</td>

@@ -165,7 +165,7 @@ namespace OWZX.Core
         /// <summary>
         /// 新闻表
         /// </summary>
-        public const string NEWS = "[newsid],[newstypeid],[isshow],[istop],[ishome],[displayorder],[addtime],[title],[url],[body]";
+        public const string NEWS = "[newsid],[newstypeid],[isshow],[istop],[ishome],[displayorder],[addtime],[title],[url],[body],[btime],[etime],[status]";
 
         /// <summary>
         /// 新闻类型表
