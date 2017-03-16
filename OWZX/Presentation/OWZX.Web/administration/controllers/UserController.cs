@@ -20,6 +20,7 @@ namespace OWZX.Web.Admin.Controllers
     public partial class UserController : BaseAdminController
     {
         #region 用户列表
+        /*
         /// <summary>
         /// 用户列表
         /// </summary>
@@ -67,16 +68,16 @@ namespace OWZX.Web.Admin.Controllers
                                                           userName, email, mobile, userRid, adminGid));
             return View(model);
         }
-
+        */
         /// <summary>
         /// 用户列表
         /// </summary>
-        public ActionResult List(string userName = "", string mobile = "", int userrid = -1, int pageNumber = 1, int pageSize = 15)
+        public ActionResult List(string userName = "", string mobile = "", int usertype = -1, int pageNumber = 1, int pageSize = 15)
         {
             HashSet<string> actionlist = AdminGroups.GetAdminGroupActionHashSetNoCache(WorkContext.AdminGid);
-            ShopUtils.SetAdminRefererCookie(string.Format("{0}?pageNumber={1}&pageSize={2}&userName={3}&mobile={4}&userrid={5}",
+            ShopUtils.SetAdminRefererCookie(string.Format("{0}?pageNumber={1}&pageSize={2}&userName={3}&mobile={4}&usertype={5}",
                                                           Url.Action("list"), pageNumber, pageSize,
-                                                          userName, mobile, userrid));
+                                                          userName, mobile, usertype));
 
             StringBuilder strb = new StringBuilder();
             strb.Append(" where 1=1");
@@ -85,8 +86,11 @@ namespace OWZX.Web.Admin.Controllers
 
             if (mobile != "")
                 strb.Append(" and a.mobile='" + mobile + "'");
-
-            strb.Append("order by a.uid desc");
+            if (usertype > -1)
+            {
+                strb.Append(" and a.usertype=" + usertype+ " ");
+            }
+            strb.Append(" order by a.uid desc");
 
 
             DataTable dt = AdminUsers.GetUserList(pageSize, pageNumber, strb.ToString());
@@ -99,7 +103,7 @@ namespace OWZX.Web.Admin.Controllers
                 UserList = dt,
                 UserName = userName,
                 Mobile = mobile,
-                UserRid = userrid
+                UserType = usertype
             };
 
 

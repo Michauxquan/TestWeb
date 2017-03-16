@@ -27,21 +27,21 @@
                 <tr>
                     <td width="35"><img id="searchImg" src="/administration/images/search1.gif" /></td>
 
-                    @*<td>
+                    <td>
                         &nbsp;&nbsp;&nbsp;彩票类型：
                     </td>
                     <td width="130">
-                        <select data-val="true" id="lottype" name="lottype">
+                        <select data-val="true" id="lottery" name="lottery">
                             <option @if (-1 == Model.Lottery)
                                     { <text> selected="selected" </text>           } value="-1">选择类型</option>
-                            @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where outtypeid=28"))
+                            @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=47"))
                             {
-                                <option @if (info.Systypeid == Model.Lottery)
-                                        { <text> selected="selected" </text>       } value="@info.Systypeid">@info.Type</option>
+                                <option @if (info.Outtypeid == Model.Lottery)
+                                        { <text> selected="selected" </text>       } value="@info.Outtypeid">@info.Type</option>
                             }
                         </select>
 
-                    </td>*@
+                    </td>
                     <td>
                         &nbsp;&nbsp;&nbsp;报表类型：
                     </td>

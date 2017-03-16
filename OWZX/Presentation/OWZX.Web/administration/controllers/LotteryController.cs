@@ -26,11 +26,11 @@ namespace OWZX.Web.Admin.Controllers
             StringBuilder strb = new StringBuilder();
             strb.Append(" where 1=1");
             if (account != "")
-                strb.Append(" and rtrim(b.email)='" + account + "'");
+                strb.Append(" and rtrim(b.email)='" + account.Trim() + "'");
             if (lottype != -1)
                 strb.Append(" and a.lotteryid=" + lottype);
             if (expect != "")
-                strb.Append(" and a.lotterynum='" + expect + "'");
+                strb.Append(" and a.lotterynum='" + expect.Trim() + "'");
 
             List<MD_Bett> btlist = Lottery.GetBettList(pageNumber, pageSize, strb.ToString());
             LotteryListModel list = new LotteryListModel
@@ -53,8 +53,8 @@ namespace OWZX.Web.Admin.Controllers
             strb.Append(" where 1=1");
             if (lottery > 0)
                 strb.Append(" and type=" + lottery);
-            if (type != string.Empty && end != "")
-                strb.Append(" and convert(varchar(10),b.opentime,120) between " + start+" and "+end);
+            if (!string.IsNullOrEmpty(start) &!string.IsNullOrEmpty(end))
+                strb.Append(" and convert(varchar(10),b.opentime,120) between '" + start+"' and '"+end+"' ");
             DataTable dt = Lottery.GetProfitListNoLottery(type, pageSize, pageNumber, strb.ToString());
 
             ProfitStatList list = new ProfitStatList

@@ -47,7 +47,16 @@
                     <td width="130">
                         @Html.TextBox("Mobile", Model.Mobile, new {height = "18"})
                     </td>
-
+                     <td>
+                        &nbsp;&nbsp;&nbsp;用户类型：
+                    </td>
+                      <td width="130">
+                          <select data-val="true" id="usertype" name="usertype">
+                              <option value="-1">请选择</option>
+                              <option value="0" @(Model.UserType==0?"selected='selected'":"")>会员</option>
+                              <option value="1" @(Model.UserType==1?"selected='selected'":"")>代理</option>
+                          </select>
+                    </td>
                     <td style="height: 24px;">
                         <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24"/>
                     </td>
@@ -66,10 +75,10 @@
                     <th width="80" align="left">手机</th>
                     <th width="80" align="left">昵称</th>
                     <th width="80" align="left">账户余额</th>
+                    <th width="80" align="left">类别</th>
                     <th width="80" align="left">注册时间</th>
                     <th width="80" align="left">访问时间</th>
                     <th width="80" align="left">权限</th>
-
                     <th width="86" align="left">管理操作</th>
                 </tr>
                 </thead>
@@ -83,14 +92,15 @@
                         <td>@{string mobile = @row["mobile"].ToString(); mobile = CommonHelper.HideMobile(mobile);} @mobile</td>
                         <td>@row["nickname"]</td>
                         <td>@row["totalmoney"]</td>
+                        <td>@(row["usertype"].ToString() == "1" ? "代理" : "会员")</td> 
                         <td>@row["registertime"]</td>
-                        <td>@row["lastvisittime"]</td><td>@row["admingtitle"]</td>
-
+                        <td>@row["lastvisittime"]</td>
+                        <td>@row["admingtitle"]</td>
                         <td>
                             <a class="editOperate UpdAccount" data-id="@row["uid"]" href="javascript:void(0);">[上下分]</a>|
-                            @Html.ActionLink("[编辑]", "edit", new {uid = row["uid"]}, new {@class = "editOperate"})|
-                            @Html.ActionLink("[重置提现密码]", "editdraw", new {uid = row["uid"]}, new {@class = "editOperate"})|
-                            @Html.ActionLink("[删除]", "del", new {uid = row["uid"]}, new {@class = "deleteOperate"})
+                            @Html.ActionLink("[编辑]", "edit", new { uid = row["uid"] }, new { @class = "editOperate" })|
+                            @Html.ActionLink("[重置提现密码]", "editdraw", new { uid = row["uid"] }, new { @class = "editOperate" })|
+                            @Html.ActionLink("[删除]", "del", new { uid = row["uid"] }, new { @class = "deleteOperate" })
                         </td>
 
                     </tr>

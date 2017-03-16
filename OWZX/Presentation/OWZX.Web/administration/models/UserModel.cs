@@ -39,7 +39,7 @@ namespace OWZX.Web.Admin.Models
         /// <summary>
         /// 用户等级id
         /// </summary>
-        public int UserRid { get; set; }
+        public int UserType { get; set; }
         /// <summary>
         /// 用户等级列表
         /// </summary>

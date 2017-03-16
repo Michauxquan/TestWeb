@@ -940,7 +940,7 @@ AND  [{0}admingroups].[admingid]=[{0}users].[admingid] ", RDBSHelper.RDBSTablePr
 if OBJECT_ID('tempdb..#list') is not null
   drop table #list
 
-select ROW_NUMBER() over(order by a.uid desc) id, a.uid,a.username,a.mobile,a.nickname,a.totalmoney,a.qq ,a.email,
+select ROW_NUMBER() over(order by a.uid desc) id, a.uid,a.username,a.mobile,a.nickname,a.totalmoney,a.qq ,a.email,a.usertype,
 convert(varchar(25),b.registertime,120) registertime,convert(varchar(25),b.lastvisittime,120) lastvisittime,c.title AS admingtitle
 into #list
 from owzx_users a
