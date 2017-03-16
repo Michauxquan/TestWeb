@@ -76,7 +76,7 @@
                             <td style="text-align: center; height: 24px; line-height: 24px; border-bottom: solid 1px #ddd;">@info.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
                             <td style="text-align: center; border-bottom: solid 1px #ddd;">@(info.WareName+" "+info.SpecName)</td>
                             <td style="text-align: center; border-bottom: solid 1px #ddd;">@info.Num</td>
-                            <td style="text-align: center; border-bottom: solid 1px #ddd;"><a id="getCardcode" style="@(info.Status==2?"":"display:none;")" href="javascript:void(0);" onclick="getCardcode(@info.OrderID)" >[获取卡密]</a></td>
+                            <td style="text-align: center; border-bottom: solid 1px #ddd;"><a id="getCardcode" style="@(info.Status==0?"":"display:none;")" href="javascript:void(0);" onclick="getCardcode(@info.OrderID)" >[获取卡密]</a></td>
                         </tr>
                     }
                     </tbody>
