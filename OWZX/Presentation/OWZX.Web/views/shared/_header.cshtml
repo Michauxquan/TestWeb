@@ -52,8 +52,8 @@
         if (@WorkContext.Uid > 0) {
             $.post('/ucenter/getusermoney', {}, function(data) {
                 var result = eval("(" + data + ")");
-                $('.usertotalmoney').html(transStr(result.content.totalmoney));
-                $('.banktotalmoney').html(transStr(result.content.bankmoney));
+                $('.usertotalmoney').html(transStr(parseFloat(result.content.totalmoney).toFixed(0)));
+                $('.banktotalmoney').html(transStr(parseFloat(result.content.bankmoney).toFixed(0)));
             });
         } 
         $("#jquery_jplayer_1").jPlayer({ 
