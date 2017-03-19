@@ -548,7 +548,7 @@ delete from owzx_onlineusers where uid={1}", RDBSHelper.RDBSTablePre, uid);
 									   GenerateInParam("@email",SqlDbType.Char,50,userInfo.Email),
                                        GenerateInParam("@mobile",SqlDbType.Char,15,userInfo.Mobile),
 									   GenerateInParam("@password",SqlDbType.Char,32,userInfo.Password),
-									   GenerateInParam("@userrid",SqlDbType.SmallInt,2,userInfo.UserRid),
+									   GenerateInParam("@userrid",SqlDbType.Int,4,userInfo.UserRid),
                                        GenerateInParam("@admingid",SqlDbType.SmallInt,2,userInfo.AdminGid),
 									   GenerateInParam("@nickname",SqlDbType.NChar,20,userInfo.NickName),
 									   GenerateInParam("@avatar",SqlDbType.Char,40,userInfo.Avatar),
@@ -940,7 +940,7 @@ AND  [{0}admingroups].[admingid]=[{0}users].[admingid] ", RDBSHelper.RDBSTablePr
 if OBJECT_ID('tempdb..#list') is not null
   drop table #list
 
-select ROW_NUMBER() over(order by a.uid desc) id, a.uid,a.username,a.mobile,a.nickname,a.totalmoney,a.qq ,a.email,a.usertype,
+select ROW_NUMBER() over(order by a.uid desc) id, a.uid,a.username,a.mobile,a.nickname,a.totalmoney,a.qq ,a.email,a.usertype,a.bankmoney,
 convert(varchar(25),b.registertime,120) registertime,convert(varchar(25),b.lastvisittime,120) lastvisittime,c.title AS admingtitle
 into #list
 from owzx_users a

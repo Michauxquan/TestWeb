@@ -96,6 +96,8 @@ function trap(type, fcnum) {
         }
     });
 }
+
+
 /*数字增加，分割*/
 function transStr(str) {
     str = str.toString()

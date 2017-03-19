@@ -719,6 +719,7 @@
     <Content Include="views\agent\list.cshtml" />
     <Content Include="views\nwlottery\_contentpk.cshtml" />
     <Content Include="views\nwlottery\_bettdetails.cshtml" />
+    <Content Include="views\nwlottery\_tabcommon.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

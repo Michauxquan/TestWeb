@@ -1,4 +1,5 @@
-﻿@model OWZX.Web.Admin.Models.UserListModel
+﻿@using System
+@model OWZX.Web.Admin.Models.UserListModel
 
 @section header{
     <title>用户列表</title>
@@ -71,10 +72,12 @@
                 <tr>
                     <th width="10"></th>
                     <th width="60" align="left">编号</th>
+                    <th width="80" align="left">登录帐号</th>
                     <th width="80" align="left">用户名</th>
                     <th width="80" align="left">手机</th>
                     <th width="80" align="left">昵称</th>
                     <th width="80" align="left">账户余额</th>
+                    <th width="80" align="left">银行余额</th>
                     <th width="80" align="left">类别</th>
                     <th width="80" align="left">注册时间</th>
                     <th width="80" align="left">访问时间</th>
@@ -88,10 +91,12 @@
                     <tr>
                         <td></td>
                         <td>@row["id"]</td>
-                        <td>@{string email = @row["email"].ToString(); email = CommonHelper.HideMobile(email);} @email</td>
+                        <td>@{string email = @row["email"].ToString();email = CommonHelper.HideMobile(email);} @email</td>
+                        <td>@row["username"].ToString()</td>
                         <td>@{string mobile = @row["mobile"].ToString(); mobile = CommonHelper.HideMobile(mobile);} @mobile</td>
                         <td>@row["nickname"]</td>
-                        <td>@row["totalmoney"]</td>
+                        <td>@Convert.ToInt64(row["totalmoney"]).ToString("N0")</td>
+                        <td>@Convert.ToInt64(row["bankmoney"]).ToString("N0")</td>
                         <td>@(row["usertype"].ToString() == "1" ? "代理" : "会员")</td> 
                         <td>@row["registertime"]</td>
                         <td>@row["lastvisittime"]</td>
@@ -128,11 +133,12 @@
                 });
                 $('.okbtn').click(function() {
                     var r = /^[-+]?\d*$/;
-                    if (!r.test($("#iptaccount").val()) || $("#iptaccount").val() == '') {
+                    var moneyipt = $("#iptaccount").val().replace(/,/g,'');
+                    if (!r.test(moneyipt) || moneyipt == '') {
                         alert('上下分只能输入数字');
                         return;
                     } else {
-                        $.post('/admin/user/updaccount', { id: $('.okbtn').data('id'), fee: $('#iptaccount').val() }, function(data) {
+                        $.post('/admin/user/updaccount', { id: $('.okbtn').data('id'), fee: moneyipt }, function (data) {
                             var result = eval('(' + data + ')');
                             alert(result.content);
                             self.location.reload();

@@ -299,12 +299,12 @@ function verifyRegister(accountName, loginname, password, confirmPwd, verifyCode
         $(".a2").html("<em></em>用户名不能为空");
         return false;
     }
-    else if (!isRegisterUserName(loginname))
-    {
-        $("#loginname").css("border-color", "red");
-        $(".a2").html("<em></em>用户名由英文、数字及'_'组成，5-20位字符");
-        return false;
-    }
+    //else if (!isRegisterUserName(loginname))
+    //{
+    //    $("#loginname").css("border-color", "red");
+    //    $(".a2").html("<em></em>用户名由英文、数字及'_'组成，5-20位字符");
+    //    return false;
+    //}
 
     if (password.length == 0)
     {

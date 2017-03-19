@@ -27,7 +27,7 @@ namespace OWZX.Model
         /// <summary>
         /// 胜率
         /// </summary>
-        public decimal WinPercent { get; set; }
+        public decimal WinPercent { get; set; } 
         /// <summary>
         /// 总记录数
         /// </summary>

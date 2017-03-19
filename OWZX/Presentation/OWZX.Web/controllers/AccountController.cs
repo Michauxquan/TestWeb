@@ -106,13 +106,13 @@ namespace OWZX.Web.Controllers
                     if (partUserInfo == null)
                         errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "手机不存在", "}");
                 }
-                else if (BSPConfig.ShopConfig.LoginType.Contains("1")) //用户名登陆
-                {
-                    partUserInfo = Users.GetPartUserByName(accountName);
-                    if (partUserInfo == null)
-                        errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "用户名不存在",
-                            "}");
-                }
+                //else if (BSPConfig.ShopConfig.LoginType.Contains("1")) //用户名登陆
+                //{
+                //    partUserInfo = Users.GetPartUserByName(accountName);
+                //    if (partUserInfo == null)
+                //        errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "用户名不存在",
+                //            "}");
+                //}
                 else
                 {  
                     errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账号格式输入不正确",
@@ -228,7 +228,7 @@ namespace OWZX.Web.Controllers
             //ajax请求
             string phone = string.Empty;
             string accountName =WebHelper.GetFormString(WorkContext.ShopConfig.ShadowName).Trim().ToLower();
-            string nickname = WebHelper.GetFormString("loginname"); //昵称
+            string nickName = WebHelper.GetFormString("loginname"); //昵称
             string password = WebHelper.GetFormString("password");
             string confirmPwd = WebHelper.GetFormString("confirmPwd");
             string verifyCode = WebHelper.GetFormString("verifyCode");
@@ -317,7 +317,7 @@ namespace OWZX.Web.Controllers
             if (gender < 0 || gender > 2)
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "gender", "请选择正确的性别", "}");
 
-            string nickName = WebHelper.GetFormString("nickName");
+            //string nickName = WebHelper.GetFormString("nickName");
             if (nickName.Length > 10)
             {
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "nickName", "昵称的长度不能大于10", "}");

@@ -1,7 +1,7 @@
 ﻿/// <reference path="D:\我的\项目\蛋蛋竞猜\Qg_EggQuiz\Qg_EggQuiz\qcgeass.aspx" />
 var PRESSNUM = (lotterytype == 4 || lotterytype == 5) ? '10, 60, 270, 360, 300' : (lotterytype == 9 ? '10, 60, 270, 360, 620,870,1020,870,620,360,270,60,10' : '1,3,6,10,15,21,28,36,45,55,63,69,73,75,75,73,69,63,55,45,36,28,21,15,10,6,3,1'); 
 ///var maxnum = 20000000; //最大投注金额
-var maxnum = 99999999999;
+var maxnum = 99999999999999999;
 var minnum = 10;
 var BeforePeriods;
 $(document).ready(function ()
@@ -59,7 +59,7 @@ $(document).ready(function ()
             var total = 0;
             $("#panel").find("input[name='SMONEY']").each(function () {
                 if (!$(this).attr("readonly")) {
-                    var txt_value = $.trim($(this).val()).replace(/,/gi, "");
+                    var txt_value = $.trim($(this).val()).replace(/,/gi, ""); 
                     if (txt_value && !isNaN(txt_value)) {
                         total += parseInt(txt_value);
                     }
@@ -235,7 +235,7 @@ function usefenpei() {
     var perScore = 0;
     var totalPressScore = 0;
     var data = PRESSNUM.split(",");
-    var Input_Score = $('#betsLeft').val();
+    var Input_Score = $('#betsLeft').val(); 
     if (isNaN(Input_Score)) {
         $('#betsLeft').val('');
         alert('分配分必须为数字!');
@@ -263,6 +263,7 @@ function usefenpei() {
         }
         if (Input_Score > maxnum) {
             $('#betsLeft').val(maxnum);
+            usefenpei();
             return;
         }
     }
@@ -439,12 +440,13 @@ function setAllvalue(peilv)
     {
         if (!$(this).attr("readonly"))
         {
+           // 847442060446041
             var txt_value = $.trim($(this).val()).replace(/,/gi, "");
             if (txt_value && !isNaN(txt_value))
             {
                 var new_value = Math.floor(txt_value * peilv);
-                if (new_value.toString().length > 8)
-                    $(this).val(ver(new_value.toString().substr(0, 8) + ""));
+                if (new_value.toString().length > 15)
+                    $(this).val(ver(new_value.toString().substr(0, 15) + ""));
                 else
                     $(this).val(ver(new_value.toString() + ""));
             }

@@ -46,7 +46,7 @@ select a.lotteryid type,a.lotterynum expect,a.money
 into #temp
 from owzx_bett a
 --join owzx_bettprofitloss b on a.bettid=b.bettid 
-where a.uid=@uid and a.lotteryid=@type and  datediff(day,a.addtime,GETDATE())=0
+where a.uid=@uid and a.lotteryid=@type and  datediff(day,a.addtime,GETDATE())=0 and isread=1
 
 
 declare @total int=(select COUNT(1) from owzx_lotteryrecord where type=@type)

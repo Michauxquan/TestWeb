@@ -22,8 +22,7 @@ namespace OWZX.Services
             DataSet ds = OWZX.Data.LotteryList.GetLotteryByType(type, pageindex, pagesize, uid);
             MD_LotteryList list = ModelConvertHelper<MD_LotteryList>.DataTableToModel(ds.Tables[1]);
             list.Prev_Lottery = ModelConvertHelper<MD_Lottery>.DataTableToModel(ds.Tables[0]);
-            list.LotteryList = (List<MD_LotteryUser>)ModelConvertHelper<MD_LotteryUser>.ConvertToModel(ds.Tables[2]);
-
+            list.LotteryList = (List<MD_LotteryUser>)ModelConvertHelper<MD_LotteryUser>.ConvertToModel(ds.Tables[2]); 
             return list;
         }
 
