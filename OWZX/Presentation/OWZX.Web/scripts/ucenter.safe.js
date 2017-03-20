@@ -160,7 +160,7 @@ function updateSafePassword() {
         return;
     }
 
-    $.post("/ucenter/updatesafepassword?v=" + v, { 'password': password, 'confirmPwd': confirmPwd, 'verifyCode': verifyCode }, function (data) {
+    $.post("/ucenter/updatesafepassword?v=" + v, { 'safepassword': password, 'confirmSafePwd': confirmPwd, 'verifyCode': verifyCode }, function (data) {
         var result = eval("(" + data + ")");
         if (result.state == "success") {
             window.location.href = result.content;

@@ -300,7 +300,7 @@ namespace OWZX.Web.Controllers
             string action = WebHelper.GetQueryString("act").ToLower();
             string verifyCode = WebHelper.GetFormString("verifyCode");
 
-            if (action.Length == 0 || !CommonHelper.IsInArray(action, new string[3] { "updatepassword", "updatemobile", "updateemail" }))
+            if (action.Length == 0 || !CommonHelper.IsInArray(action, new string[4] { "updatesafepassword","updatepassword", "updatemobile", "updateemail" }))
                 return AjaxResult("noaction", "动作不存在");
             if (WorkContext.PartUserInfo.VerifyEmail == 0)
                 return AjaxResult("unverifyemail", "邮箱没有通过验证,所以不能发送验证邮件");
@@ -820,7 +820,7 @@ namespace OWZX.Web.Controllers
         public ActionResult BankChange(decimal changefee, int type = 0, string safepassword = "")
         {
             string msg = "";
-            if (!string.IsNullOrEmpty(safepassword) || type == 1)
+            if (!string.IsNullOrEmpty(safepassword) && type == 1)
             {
                 return AjaxResult("data", "安全密码错误"); 
             }

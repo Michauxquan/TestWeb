@@ -352,8 +352,8 @@ begin
             set @changefee=0
             set @changefee=0-{9}
             insert into owzx_accountchange
-            select @userid,@changefee,'兑换商品',getdate(),totalmoney from owzx_users where uid=@userid  
-            update owzx_users set totalmoney=totalmoney+@changefee where uid=@userid
+            select @userid,@changefee,'兑换商品-扣除银行余额',getdate(),bankmoney from owzx_users where uid=@userid  
+            update owzx_users set bankmoney=bankmoney+@changefee where uid=@userid
             select '' state
         end
      end

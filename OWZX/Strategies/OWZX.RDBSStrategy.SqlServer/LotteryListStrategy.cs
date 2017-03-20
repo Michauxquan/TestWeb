@@ -41,12 +41,12 @@ if OBJECT_ID('tempdb..#temp') is not null
 drop table #temp
 
 select a.lotteryid type,a.lotterynum expect,a.money
-,a.winmoney as luckresult
+,a.winmoney as luckresult,a.isread
 --,b.luckresult
 into #temp
 from owzx_bett a
 --join owzx_bettprofitloss b on a.bettid=b.bettid 
-where a.uid=@uid and a.lotteryid=@type and  datediff(day,a.addtime,GETDATE())=0 and isread=1
+where a.uid=@uid and a.lotteryid=@type and  datediff(day,a.addtime,GETDATE())=0  
 
 
 declare @total int=(select COUNT(1) from owzx_lotteryrecord where type=@type)
@@ -57,13 +57,13 @@ drop table #now
 
 declare @temptotal int=0,@tdbettnum int=0,@tdprof bigint=0
 declare @winpercent decimal(18,2)
-set @temptotal=(select COUNT(1) from #temp)
+set @temptotal=(select COUNT(1) from #temp )
 
 select @tdbettnum=COUNT(1) from owzx_bett where uid=@uid and lotteryid=@type and 
  datediff(day,addtime,GETDATE())=0
 
  select @tdprof=(case when @temptotal=0 then 0 
- else (select isnull(SUM(cast(luckresult as bigint)),0)-isnull(SUM(cast(money as bigint)),0) from #temp) end)
+ else (select isnull(SUM(cast(luckresult as bigint)),0)-isnull(SUM(cast(money as bigint)),0) from #temp where isread=1 ) end)
 
  select @winpercent= (case when @temptotal=0 then 0 
  else  (cast ((select COUNT(1) from #temp where luckresult>0) as decimal(18,2))  / 

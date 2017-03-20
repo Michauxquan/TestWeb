@@ -49,13 +49,19 @@
     var online = new Array();
     online[0] = 1;
     $(function() {
-        if (@WorkContext.Uid > 0) {
+        $.post('/ucenter/getusermoney', {}, function(data) {
+            var result = eval("(" + data + ")");
+            $('.usertotalmoney').html(transStr(parseFloat(result.content.totalmoney).toFixed(0)));
+            $('.banktotalmoney').html(transStr(parseFloat(result.content.bankmoney).toFixed(0)));
+        });
+        setInterval(function() {  if (@WorkContext.Uid > 0) {
             $.post('/ucenter/getusermoney', {}, function(data) {
                 var result = eval("(" + data + ")");
                 $('.usertotalmoney').html(transStr(parseFloat(result.content.totalmoney).toFixed(0)));
                 $('.banktotalmoney').html(transStr(parseFloat(result.content.bankmoney).toFixed(0)));
             });
-        } 
+        } }, 8000);
+      
         $("#jquery_jplayer_1").jPlayer({ 
             swfPath: "/script",
             ready: function () { 
