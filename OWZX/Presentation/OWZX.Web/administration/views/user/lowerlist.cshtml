@@ -17,7 +17,7 @@
 @section body{
     <h1 class="rightH1">
         用户管理 &gt;&gt; 用户列表
-        <div class="right">
+      @*  <div class="right">
             @{HashSet<string> actionlist = AdminGroups.GetAdminGroupActionHashSetNoCache(WorkContext.AdminGid);}
             @if (actionlist.Contains("user_add") || WorkContext.AdminGid == 2)
             {
@@ -26,9 +26,9 @@
 
             <div class="clear"></div>
         </div>
-        <div class="clear"></div>
+        <div class="clear"></div>*@
     </h1>
-    @using (Html.BeginForm("list", "user"))
+    @using (Html.BeginForm("lowerlist", "user"))
     {
         <div class="dataListSearch">
             <table height="32">
@@ -43,7 +43,7 @@
                         @Html.TextBox("UserName", Model.UserName, new {height = "18"})
                     </td>
                     <td>
-                        &nbsp;&nbsp;&nbsp;手机：
+                        &nbsp;&nbsp;&nbsp;上级代理：
                     </td>
                     <td width="130">
                         @Html.TextBox("Mobile", Model.Mobile, new {height = "18"})
@@ -72,6 +72,8 @@
                 <tr>
                     <th width="10"></th>
                     <th width="60" align="left">编号</th>
+                    <th width="80" align="left">上级帐号</th>
+                    <th width="80" align="left">上级昵称</th>
                     <th width="80" align="left">登录帐号</th>
                     <th width="80" align="left">用户名</th>
                     <th width="80" align="left">手机</th>
@@ -81,7 +83,6 @@
                     <th width="80" align="left">类别</th>
                     <th width="80" align="left">注册时间</th>
                     <th width="80" align="left">访问时间</th>
-                    <th width="80" align="left">权限</th>
                     <th width="186" align="center">管理操作</th>
                 </tr>
                 </thead>
@@ -91,6 +92,8 @@
                     <tr>
                         <td></td>
                         <td>@row["id"]</td>
+                        <td>@{string pemail = @row["Pemail"].ToString();pemail = CommonHelper.HideMobile(pemail);} @pemail</td>
+                        <td>@row["Pnickname"].ToString()</td>
                         <td>@{string email = @row["email"].ToString();email = CommonHelper.HideMobile(email);} @email</td>
                         <td>@row["username"].ToString()</td>
                         <td>@{string mobile = @row["mobile"].ToString(); mobile = CommonHelper.HideMobile(mobile);} @mobile</td>
@@ -99,15 +102,11 @@
                         <td>@Convert.ToInt64(row["bankmoney"]).ToString("N0")</td>
                         <td>@(row["usertype"].ToString() == "1" ? "代理" : "会员")</td> 
                         <td>@row["registertime"]</td>
-                        <td>@row["lastvisittime"]</td>
-                        <td>@row["admingtitle"]</td>
-                        <td>
-                            <a class="editOperate UpdAccount" data-id="@row["uid"]" href="javascript:void(0);">[上下分]</a>|
-                            @Html.ActionLink("[编辑]", "edit", new { uid = row["uid"] }, new { @class = "editOperate" })|
-                            @Html.ActionLink("[重置提现密码]", "editdraw", new { uid = row["uid"] }, new { @class = "editOperate" })|
-                            @Html.ActionLink("[删除]", "del", new {uid = row["uid"]}, new {@class = "deleteOperate"})|
+                        <td>@row["lastvisittime"]</td> 
+                        <td> 
                             <a class="editOperate" href="/admin/newuser/ChangeList?Account=@row["email"]">[帐变记录]</a>|
                             <a class="editOperate" data-id="@row["uid"]" href="/admin/lottery/lotterylist?Account=@row["email"]">[投注记录]</a>|
+                            <a class="editOperate" href="/admin/newuser/backlist?Account=@row["email"]">[回水记录]</a>|
                         </td>
 
                     </tr>

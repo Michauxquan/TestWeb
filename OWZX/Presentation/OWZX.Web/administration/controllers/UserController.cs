@@ -3,7 +3,7 @@ using System.Web;
 using System.Data;
 using System.Web.Mvc;
 using System.Collections.Generic;
-
+using System.Net.NetworkInformation;
 using OWZX.Core;
 using OWZX.Services;
 using OWZX.Web.Framework;
@@ -99,7 +99,46 @@ namespace OWZX.Web.Admin.Controllers
 
             UserListModel model = new UserListModel()
             {
-                PageModel = new PageModel(pageSize, pageNumber, dt.Rows.Count),
+                PageModel = new PageModel(pageSize, pageNumber, (dt != null && dt.Rows != null && dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["TotalCount"]) : 0)),
+                UserList = dt,
+                UserName = userName,
+                Mobile = mobile,
+                UserType = usertype
+            };
+
+
+            return View(model);
+        }
+
+
+        public ActionResult LowerList(string userName = "", string mobile = "", int usertype = -1, int pageNumber = 1, int pageSize = 15)
+        {
+            HashSet<string> actionlist = AdminGroups.GetAdminGroupActionHashSetNoCache(WorkContext.AdminGid);
+            ShopUtils.SetAdminRefererCookie(string.Format("{0}?pageNumber={1}&pageSize={2}&userName={3}&mobile={4}&usertype={5}",
+                                                          Url.Action("list"), pageNumber, pageSize,
+                                                          userName, mobile, usertype));
+
+            StringBuilder strb = new StringBuilder();
+            strb.Append(" where 1=1");
+            if (userName != "")
+                strb.Append(" and a.nickname like '%" + userName + "%'");
+
+            if (mobile != "")
+                strb.Append(" and a.parentid=(select top 1 uid from owzx_users where rtrim(email)=' " + mobile + "' ) ");
+            if (usertype > -1)
+            {
+                strb.Append(" and a.usertype=" + usertype + " ");
+            }
+            strb.Append(" order by a.uid desc");
+
+
+            DataTable dt = AdminUsers.GetUserParentList(pageSize, pageNumber, strb.ToString());
+            if (dt.Columns[0].ColumnName == "error")
+                return PromptView("用户获取失败");
+
+            UserListModel model = new UserListModel()
+            {
+                PageModel = new PageModel(pageSize, pageNumber, (dt != null && dt.Rows != null && dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["TotalCount"]) : 0)),
                 UserList = dt,
                 UserName = userName,
                 Mobile = mobile,
@@ -292,6 +331,13 @@ namespace OWZX.Web.Admin.Controllers
             var result = Users.UpdateUserAccount(id,fee);
             if (result)
             {
+                MD_Change achange=new MD_Change(){
+                    Account = userInfo.Email,
+                    Accounted = userInfo.TotalMoney,
+                    Changemoney = fee,
+                    Remark = "上线分"
+                };
+                var s= NewUser.AddAChange(achange);
                 AddAdminOperateLog("修改用户账余", "修改用户账余,用户ID为:" + id);
                 return AjaxResult("success","修改用户账余成功");
             }

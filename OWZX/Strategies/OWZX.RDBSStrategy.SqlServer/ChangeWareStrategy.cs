@@ -340,7 +340,7 @@ else if({10}=0)
 begin
     if((select count(1) from owzx_ware a join owzx_waresku b on a.warecode=b.warecode where a.status=0 and b.status=0)>0)
     begin
-        if((select count(1) from owzx_users where uid=@userid and isnull(bankmoney,0)>{9})=0)
+        if((select count(1) from owzx_users where uid=@userid and isnull(bankmoney,0)>={9})=0)
         begin
             select '账户银行余额不足' state
         end

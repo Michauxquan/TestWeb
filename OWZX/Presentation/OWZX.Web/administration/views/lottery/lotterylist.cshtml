@@ -84,10 +84,13 @@
                             <td></td>
                             <td>@info.id</td>
                             <td>@info.Account</td>
-                            <td>@info.Lottery</td><td>@info.Lotterynum</td>
+                            <td>@info.Lottery</td>
+                            <td>@info.Lotterynum</td>
                             @*<td>@info.Room</td><td>@info.Vip</td><td>@info.Bttype</td>*@
                             <td>@info.Item</td>
-                            <td>@info.Money</td><td>@(info.IsRead?"是":"否")</td><td>@info.LuckResult</td>
+                            <td>@info.Money.ToString("N0")</td>
+                            <td>@(info.IsRead ? "是" : "否")</td>
+                            <td>@info.LuckResult.ToString("N0")</td>
                         </tr>
                     }
                 </tbody>

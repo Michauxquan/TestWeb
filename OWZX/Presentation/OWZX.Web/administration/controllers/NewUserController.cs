@@ -262,7 +262,7 @@ namespace OWZX.Web.Admin.Controllers
             StringBuilder strb = new StringBuilder();
             strb.Append(" where 1=1");
             if (Account != string.Empty)
-                strb.Append(" and rtrim(b.mobile)='" + Account + "'");
+                strb.Append(" and rtrim(b.email)='" + Account + "'");
             if(start!=string.Empty )
                 strb.Append(" and a.addtime between '" + start + "' and '"+end+"'");
 

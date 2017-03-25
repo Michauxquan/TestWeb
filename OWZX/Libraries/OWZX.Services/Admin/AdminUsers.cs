@@ -57,7 +57,10 @@ namespace OWZX.Services
         {
             return OWZX.Data.Users.GetUserList(pageSize, pageNumber, condition);
         }
-
+        public static DataTable GetUserParentList(int pageSize, int pageNumber, string condition = "")
+        {
+            return OWZX.Data.Users.GetUserParentList(pageSize, pageNumber, condition);
+        }
         /// <summary>
         /// 获取团队列表
         /// </summary>

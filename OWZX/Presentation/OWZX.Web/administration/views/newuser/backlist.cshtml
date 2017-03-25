@@ -65,7 +65,8 @@
     <td>@info.Id</td>
       <td>@info.Addtime</td>
     <td>@info.Account</td>
-      <td>@info.ProfitMoney</td><td>@info.BackRate.ToString()%</td>
+      <td>@info.ProfitMoney.ToString("N0")</td>
+      <td>@info.BackRate.ToString()%</td>
    
     <td>@info.Money</td>
       <td>@(info.BackType==1? "代理抽取回水" : "会员回水")</td>

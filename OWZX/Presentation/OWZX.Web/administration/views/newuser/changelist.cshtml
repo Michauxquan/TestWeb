@@ -1,4 +1,5 @@
-﻿@model OWZX.Web.Admin.Models.UserChangeList
+﻿@using System
+@model OWZX.Web.Admin.Models.UserChangeList
 
 @section header{
 <title>账变记录</title>
@@ -66,7 +67,7 @@
   <tr><td></td>
     <td>@info.Id</td>
     <td>@info.Account</td>
-    <td>@info.Changemoney</td>
+    <td>@Convert.ToInt64(info.Changemoney).ToString("N0")</td>
     <td>@info.Remark</td>
     <td>@info.Addtime.ToString("yyyy-MM-dd HH:mm:ss")</td>
     </tr>

@@ -93,7 +93,7 @@ namespace OWZX.Web.Admin.Controllers
             statusGroupList.Add(new SelectListItem() { Text = "已兑换", Value = "2" });
             OrderListModel model = new OrderListModel()
             {
-                PageModel = new PageModel(pageSize, pageNumber, dt.Rows.Count),
+                PageModel = new PageModel(pageSize, pageNumber, (dt != null && dt.Rows != null && dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["TotalCount"]) : 0)),
                 OrderList = dt,
                 WareCode = warecode,
                 WareName = warename,

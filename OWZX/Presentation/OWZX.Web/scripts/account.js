@@ -263,7 +263,8 @@ function register()
     var password = registerForm.elements["password"].value;
     var confirmPwd = registerForm.elements["confirmPwd"].value;
     var verifyCode = registerForm.elements["verifyCode"] ? registerForm.elements["verifyCode"].value : undefined;
-   // var chkservice = registerForm.elements["chkservice"].value;
+    // var chkservice = registerForm.elements["chkservice"].value;
+    var invitecode = registerForm.elements["invitecode"].value;
     if (!verifyRegister(accountName, loginname, password, confirmPwd, verifyCode))
     {
         return;
@@ -275,7 +276,8 @@ function register()
     parms["password"] = password;
     parms["confirmPwd"] = confirmPwd;
     parms["verifyCode"] = verifyCode;
-    $.post("/account/register", parms, registerResponse)
+    parms["invitecode"] = (invitecode == null || invitecode.trim() == "") ? 0 : invitecode;
+    $.post("/account/register", parms, registerResponse);
 }
 
 //验证注册

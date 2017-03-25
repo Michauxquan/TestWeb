@@ -451,6 +451,11 @@ namespace OWZX.Data
         {
             return OWZX.Core.BSPData.RDBS.GetUserList(pageSize, pageNumber, condition);
         }
+
+        public static DataTable GetUserParentList(int pageSize, int pageNumber, string condition = "")
+        {
+            return OWZX.Core.BSPData.RDBS.GetUserParentList(pageSize, pageNumber, condition);
+        }
         /// <summary>
         /// 获取团队列表
         /// </summary>

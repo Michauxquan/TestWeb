@@ -74,10 +74,10 @@
                         <th align="left">商品编码</th>
                         <th width="240" align="left">商品名称</th>
                         <th width="120" align="left">单价</th>
-                        <th width="120" align="left">卡密</th>
+                        <th width="360" align="left">卡密</th>
                         <th width="120" align="left">状态</th>
                         <th width="120" align="left">创建时间</th>
-                        <th width="280" align="center">管理操作</th>
+                        <th width="180" align="center">管理操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -88,7 +88,7 @@
                             <td>@row["email"]</td>
                             <td>@row["ordercode"]</td>
                             <td>@(row["warecode"] + " " + row["warename"])</td>
-                            <td>@row["price"]</td>
+                            <td>@Convert.ToInt64(row["price"]).ToString("N0")</td>
                             <td>@(row["content"].ToString())</td>
                             <td>@(row["status"].ToString() == "0" ? "未兑换" :(row["status"].ToString() == "2" ?"已兑换":"已作废"))</td>
                             <td>@(Convert.ToDateTime(row["createtime"]).ToString("yyyy-MM-dd HH:mm:ss"))</td>

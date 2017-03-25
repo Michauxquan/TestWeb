@@ -589,16 +589,16 @@ end catch
         {
             DbParameter[] parms = {
                                        
-                                        GenerateInParam("@account", SqlDbType.VarChar,15, chag.Account),
-                                        GenerateInParam("@changemoney", SqlDbType.Decimal,10, chag.Changemoney),
+                                        GenerateInParam("@account", SqlDbType.VarChar,25, chag.Account),
+                                        GenerateInParam("@changemoney", SqlDbType.Decimal,18, chag.Changemoney),
                                         GenerateInParam("@remark", SqlDbType.VarChar, 100, chag.Remark)
                                        
                                     };
             string commandText = string.Format(@"
 begin try
 
-INSERT INTO owzx_accountchange([uid],[changemoney],[remark])
-VALUES ((select uid from owzx_users where rtrim(mobile)=@account),@changemoney,@remark)
+INSERT INTO owzx_accountchange([uid],[changemoney],[remark],accounted)
+VALUES ((select uid from owzx_users where rtrim(email)=@account),@changemoney,@remark,(select totalmoney from owzx_users where rtrim(email)=@account))
 
 select '添加成功' state
 end try

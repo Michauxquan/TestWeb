@@ -74,11 +74,14 @@
                 "title": "管理员组",
                 "url": "/admin/admingroup/list"
             },
-            {
-                "title": "银行卡列表",
-                "url": "/admin/newuser/userbanklist"
-            },
-            
+            //{
+            //    "title": "银行卡列表",
+            //    "url": "/admin/newuser/userbanklist"
+            //},
+             {
+                 "title": "代理信息",
+                 "url": "/admin/user/lowerlist"
+             },
             {
                 "title": "访问IP列表",
                 "url": "/admin/stat/visitiplist"
