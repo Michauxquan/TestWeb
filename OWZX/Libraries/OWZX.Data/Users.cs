@@ -591,6 +591,11 @@ namespace OWZX.Data
           return  OWZX.Core.BSPData.RDBS.UpdateUserAccount(uid, userRid);
         }
 
+        public static bool UpdateUserLower(int uid, string logaccount)
+        {
+            return OWZX.Core.BSPData.RDBS.UpdateUserLower(uid, logaccount);
+        }
+
         /// <summary>
         /// 更新用户在线时间
         /// </summary>

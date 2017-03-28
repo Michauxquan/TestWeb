@@ -335,7 +335,7 @@ namespace OWZX.Web.Admin.Controllers
                     Account = userInfo.Email,
                     Accounted = userInfo.TotalMoney,
                     Changemoney = fee,
-                    Remark = "上线分"
+                    Remark = "上下分"
                 };
                 var s= NewUser.AddAChange(achange);
                 AddAdminOperateLog("修改用户账余", "修改用户账余,用户ID为:" + id);
@@ -345,7 +345,26 @@ namespace OWZX.Web.Admin.Controllers
             {
                 return AjaxResult("error","用户账余修改失败");
             }
-        } 
+        }
+
+        public ActionResult UpdLower(int id,string logaccount)
+        { 
+            if (string.IsNullOrEmpty(logaccount))
+            {
+                return AjaxResult("success", "用户帐号或用户ID不能为空");
+            }
+            var result = Users.UpdateUserLower(id, logaccount);
+            if (result)
+            {
+                AddAdminOperateLog("用户转移", "用户ID:" + id + "已转移到用户" + logaccount+"名下");
+                return AjaxResult("success", "转移下级成功");
+            }
+            else
+            {
+                return AjaxResult("error", "转移下级失败");
+            }
+        }
+
         /// <summary>
         /// 编辑用户
         /// </summary>

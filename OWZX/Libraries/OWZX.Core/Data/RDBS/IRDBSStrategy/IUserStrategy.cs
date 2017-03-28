@@ -386,6 +386,7 @@ namespace OWZX.Core
         void UpdateUserRankByUid(int uid, int userRid);
 
         bool UpdateUserAccount(int uid, decimal fee);
+        bool UpdateUserLower(int uid, string logaccount);
         /// <summary>
         /// 更新用户在线时间
         /// </summary>

@@ -503,6 +503,11 @@ namespace OWZX.Services
            return  OWZX.Data.Users.UpdateUserAccount(uid, fee);
         }
 
+        public static bool UpdateUserLower(int uid, string logaccount)
+        {
+            return OWZX.Data.Users.UpdateUserLower(uid, logaccount);
+        }
+
         /// <summary>
         /// 更新用户在线时间
         /// </summary>

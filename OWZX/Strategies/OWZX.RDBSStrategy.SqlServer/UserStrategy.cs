@@ -1328,6 +1328,68 @@ end", condition);
                                                RDBSHelper.RDBSTablePre, fee, uid);
            return  RDBSHelper.ExecuteNonQuery(CommandType.Text, commandText)>0;
         }
+
+        public bool UpdateUserLower(int uid, string logaccount)
+        {
+            string commandText = string.Format(@"
+begin try
+ begin tran
+declare @pid int =0,@pids varchar(100)='',@pids2 varchar(100)=''
+
+select @pid=uid from owzx_users where rtrim(email)='{1}'
+if(@pid=0)
+begin
+    select @pid=uid from owzx_users where uid='{1}'
+end
+if(@pid=0)
+select 0
+else
+begin
+
+UPDATE [{0}users] SET parentid=@pid WHERE [uid]={2} 
+select @pids=ltrim(rtrim(puid)) from [{0}userdetails] WHERE [uid]={2} 
+declare @tempp varchar(100)='',@str varchar(100)=''
+select  @str=ltrim(rtrim(puid)) from [{0}userdetails] where uid= @pid
+
+if( charindex(',' ,@pids)>0)
+begin
+--下级代理
+    if(@str='0')  begin  set @str=cast(@pid as varchar)  end 
+    else begin  set @str=@str+','+cast(@pid as varchar) end  
+    UPDATE [{0}userdetails] SET puid=@str WHERE [uid]={2}  
+    set @tempp=','+@pids+','+ ltrim(rtrim(cast({2} as varchar)))+','
+    update [{0}userdetails] set puid=replace(puid,','+@pids+','+ltrim(rtrim(cast({2} as varchar)))+',' , @tempp) WHERE puid like '%'+@tempp
+end
+else 
+begin
+--总代   
+     if(@str='0')  begin  set @str=cast(@pid as varchar)  end 
+    else begin  set @str=@str+','+cast(@pid as varchar) end  
+    UPDATE [{0}userdetails] SET puid=@str WHERE [uid]={2}  
+    set @str=@str+','+ltrim(rtrim(cast({2} as varchar))) 
+    update [{0}userdetails] set puid=@str WHERE [uid] in (select uid from [{0}users] where parentid={2})
+    update [{0}userdetails] set puid=replace(puid,@pids+','+ltrim(rtrim(cast({2} as varchar)))+',',@str+',') WHERE puid like '%'+ltrim(rtrim(cast(@pid as varchar)))+','+ltrim(rtrim(cast({2} as varchar)))+','
+end 
+end 
+  if (@@error<>0 )
+    begin
+        select 0
+        Rollback Tran
+    end
+    else
+    begin 
+        select 1
+        commit tran    
+    end
+end try
+begin catch
+	select 0
+	Rollback Tran
+end catch
+",
+                                               RDBSHelper.RDBSTablePre, logaccount, uid);
+            return RDBSHelper.ExecuteNonQuery(CommandType.Text, commandText) > 0;
+        }
         /// <summary>
         /// 更新用户在线时间
         /// </summary>

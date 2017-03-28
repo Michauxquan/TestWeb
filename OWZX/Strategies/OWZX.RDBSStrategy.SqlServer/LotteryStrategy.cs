@@ -1035,7 +1035,7 @@ begin
 
     --账变记录
     INSERT INTO [owzx_accountchange]([uid],[changemoney],[remark],accounted)
-    select @uid,-@money,'投注',(select totalmoney from owzx_users  where uid=@uid)
+    select @uid,-@money,'第'+@lotterynum+'期投注',(select totalmoney from owzx_users  where uid=@uid)
     --扣除用户金额
     update a 
     set a.totalmoney=a.totalmoney-@money
@@ -1101,7 +1101,7 @@ from owzx_users a where rtrim(a.mobile)=@account
 
 --账变记录
 INSERT INTO [owzx_accountchange]([uid],[changemoney],[remark])
-select (select uid from owzx_users where rtrim(mobile)=@account),-@money,'投注'
+select (select uid from owzx_users where rtrim(mobile)=@account),-@money,'第'+@lotterynum+'期投注'
 
 select '添加成功' state
 commit tran t1

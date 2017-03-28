@@ -565,9 +565,9 @@ var first = 0;
 //取总的投注金币
 function getAllpceggs()
 {
-    if ($('#betsLeft').val() != "") {
-        usefenpei();
-    }
+    //if ($('#betsLeft').val() != "") {
+    //    usefenpei();
+    //}
     var total = 0;
     $("#panel").find("input[name='SMONEY']").each(function ()
     {

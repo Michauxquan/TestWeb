@@ -82,7 +82,7 @@
                     <th width="80" align="left">注册时间</th>
                     <th width="80" align="left">访问时间</th>
                     <th width="80" align="left">权限</th>
-                    <th width="186" align="center">管理操作</th>
+                    <th width="236" align="center">管理操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -103,6 +103,7 @@
                         <td>@row["admingtitle"]</td>
                         <td>
                             <a class="editOperate UpdAccount" data-id="@row["uid"]" href="javascript:void(0);">[上下分]</a>|
+                            <a class="editOperate UpdLogAccount" data-id="@row["uid"]" href="javascript:void(0);">[转会员]</a>|
                             @Html.ActionLink("[编辑]", "edit", new { uid = row["uid"] }, new { @class = "editOperate" })|
                             @Html.ActionLink("[重置提现密码]", "editdraw", new { uid = row["uid"] }, new { @class = "editOperate" })|
                             @Html.ActionLink("[删除]", "del", new {uid = row["uid"]}, new {@class = "deleteOperate"})|
@@ -124,14 +125,27 @@
             $(function() {
                 $('.UpdAccount').each(function(i, v) {
                     var _this = $(v);
-                    _this.click(function() {
+                    _this.click(function () {
+                        $('.cancelbtn').click();
                         $('#updaccountdiv').show();
                         $('.okbtn').data('id', _this.data("id"));
                     });
                 });
-                $('.cancelbtn').click(function () { $('#updaccountdiv').hide();
+                $('.UpdLogAccount').each(function (i, v) {
+                    var _this = $(v);
+                    _this.click(function () {
+                        $('.cancelbtn').click();
+                        $('#updlower').show();
+                        $('.okbtn1').data('id', _this.data("id"));
+                    });
+                });
+                $('.cancelbtn').click(function () {
+                    $('#updaccountdiv').hide();
+                    $('#updlower').hide();
                     $('#iptaccount').val('');
                     $('.okbtn').data('id', '');
+                    $('#LogAccount').val('');
+                    $('.okbtn1').data('id', '');
                 });
                 $('.okbtn').click(function() {
                     var r = /^[-+]?\d*$/;
@@ -145,9 +159,22 @@
                             alert(result.content);
                             self.location.reload();
                         });
-                        $('#updaccountdiv').hide();
-                        $('#iptaccount').val('');
-                        $('.okbtn').data('id', '');
+                        $('.cancelbtn').click();
+                    }
+                });
+
+                $('.okbtn1').click(function () {
+                    var ipt = $("#LogAccount").val();
+                    if (ipt == "" || ipt == null) {
+                        alert('请输入用户帐号或用户ID');
+                        return;
+                    } else {
+                        $.post('/admin/user/updlower', { id: $('.okbtn1').data('id'), logaccount: ipt }, function (data) {
+                            var result = eval('(' + data + ')');
+                            alert(result.content);
+                            self.location.reload();
+                        });
+                        $('.cancelbtn').click();
                     }
                 });
             })
@@ -159,5 +186,15 @@
         <div style="width: 97%; height: 24px; line-height: 22px; padding: 5px;"> &nbsp;&nbsp;上下分: &nbsp;<input id="iptaccount" style="line-height: 22px; width: 120px;" value=""/>
         </div>
         <div style="width: 100%; margin-top: 5px;"><span  class="greenBT okbtn"> 确 定 </span><span  class="greenBT cancelbtn"> 取 消 </span></div>
+    </div>
+
+    <div id="updlower" style="display: none; position: absolute; top: 20%; left: 40%; background: #f0f0f0; z-index: 100; border: solid 2px #ddd; border-radius: 5px; -webkit-box-shadow: 0 0 10px rgba(0, 204, 204, .5); -moz-box-shadow: 0 0 10px rgba(0, 204, 204, .5); box-shadow: 0 0 10px rgba(0, 204, 204, .5); width: 240px; height: 160px;">
+        <div style="padding: 7px 0;"><h4 style="text-align: center;">会员转移</h4>
+        </div>
+        <div style="width: 100%; height: 74px; line-height: 22px; padding: 5px;">
+           <input id="LogAccount" placeholder="将下线转移到其他用户名下" style="margin-left: 12px; line-height: 22px; width: 200px;" value=""/><br/>
+            <p style="text-indent:12px; padding-top: 8px;">系统将会把当前用户转移到指定的用户ID下。 是否确定？</p>
+        </div>
+        <div style="width: 100%; margin-top: 5px;"><span  class="greenBT okbtn1"> 确 定 </span><span  class="greenBT cancelbtn"> 取 消 </span></div>
     </div>
 }
