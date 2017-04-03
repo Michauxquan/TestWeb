@@ -24,6 +24,15 @@ namespace OWZX.Model
        /// 当前用户中奖金额
        /// </summary>
         public decimal LuckResult { get; set; }
+
+        /// <summary>
+        /// 每期投注假人数
+        /// </summary>
+        public int FakeUsersCount { get; set; }
+        /// <summary>
+        /// 每期假人金额
+        /// </summary>
+        public Int64 FakeEggNum { get; set; }
         /// <summary>
         /// 当前用户投注金额
         /// </summary>

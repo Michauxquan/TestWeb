@@ -1230,7 +1230,7 @@ e.type lottery ,cast(isnull(a.winmoney,0) as decimal(18,2)) as luckresult
 into  #list
   from  owzx_bett a
 join owzx_users b on a.uid=b.uid 
-join owzx_lotteryrecord aa on a.lotterynum=aa.expect 
+--join owzx_lotteryrecord aa on a.lotterynum=aa.expect 
 join owzx_sys_basetype e on a.lotteryid=e.outtypeid and e.parentid=47 
 {0}
 

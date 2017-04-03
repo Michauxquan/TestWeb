@@ -41,11 +41,9 @@ if OBJECT_ID('tempdb..#temp') is not null
 drop table #temp
 
 select a.lotteryid type,a.lotterynum expect,a.money
-,a.winmoney as luckresult,a.isread
---,b.luckresult
+,a.winmoney as luckresult,a.isread 
 into #temp
-from owzx_bett a
---join owzx_bettprofitloss b on a.bettid=b.bettid 
+from owzx_bett a 
 where a.uid=@uid and a.lotteryid=@type and  datediff(day,a.addtime,GETDATE())=0  
 
 
@@ -99,6 +97,38 @@ select * from #now
 end
 
 
+--添加假人
+declare @jiaren varchar(50)='' , @jiaren2 varchar(50)='',@jiaren3 varchar(50)=''
+
+select  @jiaren=isnull(remark ,'') from owzx_sys_basetype where  outtypeid=@type and parentid=47
+if(@jiaren<>'')
+begin
+    declare @expectnum varchar(50)
+    select @expectnum=lastnumber from #now where type=@type
+    if((select top 1 fakeeggnum from owzx_lotteryrecord where type=@type and status in (0) and expect=@expectnum order by lotteryid)=0)
+    begin
+        declare @jnum int=0 ,@jnum1 int=0,@jenum bigint=0,@avfee decimal(18,2)=0.00,@jenum1 bigint=0
+
+        set @jiaren2=substring(@jiaren,0,charindex('_',@jiaren))
+        set @jiaren3=substring(@jiaren,charindex('_',@jiaren)+1,len(@jiaren))
+        set @jnum= cast(substring(@jiaren2,0,charindex('|',@jiaren2)) as int)  
+        set @jenum= cast(substring(@jiaren2,charindex('|',@jiaren2)+1,len(@jiaren2)) as bigint)
+        set @jnum1=cast(isnull(substring(@jiaren3,0,charindex('|',@jiaren3)),0) as int) 
+        if(@jnum1>0)
+        begin
+            set @jenum1= cast(isnull(substring(@jiaren3,charindex('|',@jiaren3)+1,len(@jiaren3)),0) as bigint)
+            set @avfee=cast((@jenum1/@jnum1) as decimal(18,2))
+            set @jnum1=cast(ceiling(rand() * @jnum1) as int)
+            set @jnum= @jnum1+@jnum
+            set @jenum=@jenum+ cast( (@jnum1*@avfee) as bigint)
+        end
+        update owzx_lotteryrecord set fakeuserscount=@jnum, fakeeggnum=@jenum  where type=@type and status =0 and expect=@expectnum
+    end
+
+end
+
+
+
  
 if OBJECT_ID('tempdb..#lottery') is not null
  drop table #lottery
@@ -107,7 +137,7 @@ select *
 into #lottery
 from (
 select ROW_NUMBER() over(order by lotteryid desc) id,type,expect,orderresult,first,second,three,result,opentime,
-resultnum,resulttype,status,luckyuserscount as winperson,betteggnum as totalbett ,bettnum bettperson
+resultnum,resulttype,status,luckyuserscount as winperson,betteggnum as totalbett ,bettnum bettperson,fakeuserscount, fakeeggnum 
 from owzx_lotteryrecord where type=@type 
 ) a  
 where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex

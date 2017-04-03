@@ -91,7 +91,10 @@
                     <tr>
                         <td></td>
                         <td>@row["id"]</td>
-                        <td>@{string email = @row["email"].ToString();email = CommonHelper.HideMobile(email);} @email</td>
+                        <td>@{string email = @row["email"].ToString();
+                                email = CommonHelper.HideMobile(email);}
+                            <a class="editOperate" href="/admin/newuser/ChangeList?Account=@row["email"]"> @email</a>
+                        </td>
                         <td>@row["username"].ToString()</td>
                         <td>@{string mobile = @row["mobile"].ToString(); mobile = CommonHelper.HideMobile(mobile);} @mobile</td>
                         <td>@row["nickname"]</td>

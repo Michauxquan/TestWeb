@@ -45,8 +45,8 @@
                     }
                 }
             </td>
-            <td>@{string rt = string.Format("{0:n0}", @lot.TotalBett);} @rt</td>
-            <td>@lot.WinPerson/@lot.BettPerson</td> 
+            <td>@{string rt = string.Format("{0:n0}", (@lot.TotalBett + @lot.FakeEggNum));} @rt</td>
+            <td>@lot.WinPerson/@(lot.BettPerson+lot.FakeUsersCount)</td> 
             <td>@{string bt = string.Format("{0:n0}", @lot.LuckResult); string lk = string.Format("{0:n0}", @lot.Money);} @(lk!="0"?"<a style=\"color: #FD6400;cursor:pointer;\" href=\"javascript:loadpage('bett',"+@lot.Expect+")\">":"")@bt/@lk @(lk!="0"?"</a>":"")</td>
             <td style="width:30px;">
                 @if (lot.Status == 0)
