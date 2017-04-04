@@ -34,6 +34,10 @@ namespace OWZX.Model
         /// </summary>
         public Int64 FakeEggNum { get; set; }
         /// <summary>
+        /// 每期假人中奖数
+        /// </summary>
+        public Int64 FakeWinNum { get; set; }
+        /// <summary>
         /// 当前用户投注金额
         /// </summary>
         public Int64 Money { get; set; }

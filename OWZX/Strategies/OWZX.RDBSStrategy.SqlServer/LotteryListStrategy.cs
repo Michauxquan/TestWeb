@@ -107,7 +107,7 @@ begin
     select @expectnum=lastnumber from #now where type=@type
     if((select top 1 fakeeggnum from owzx_lotteryrecord where type=@type and status in (0) and expect=@expectnum order by lotteryid)=0)
     begin
-        declare @jnum int=0 ,@jnum1 int=0,@jenum bigint=0,@avfee decimal(18,2)=0.00,@jenum1 bigint=0
+        declare @jnum int=0 ,@jnum1 int=0,@jnum2 int=0,@jenum bigint=0,@avfee decimal(18,2)=0.00,@jenum1 bigint=0
 
         set @jiaren2=substring(@jiaren,0,charindex('_',@jiaren))
         set @jiaren3=substring(@jiaren,charindex('_',@jiaren)+1,len(@jiaren))
@@ -116,13 +116,14 @@ begin
         set @jnum1=cast(isnull(substring(@jiaren3,0,charindex('|',@jiaren3)),0) as int) 
         if(@jnum1>0)
         begin
-            set @jenum1= cast(isnull(substring(@jiaren3,charindex('|',@jiaren3)+1,len(@jiaren3)),0) as bigint)
+            set @jenum1= cast(isnull(substring(@jiaren3,charindex('|',@jiaren3)+1,len(@jiaren3)),0) as bigint)     
             set @avfee=cast((@jenum1/@jnum1) as decimal(18,2))
             set @jnum1=cast(ceiling(rand() * @jnum1) as int)
+            set @jnum2=cast(@jnum1*6/5 as int)
             set @jnum= @jnum1+@jnum
             set @jenum=@jenum+ cast( (@jnum1*@avfee) as bigint)
         end
-        update owzx_lotteryrecord set fakeuserscount=@jnum, fakeeggnum=@jenum  where type=@type and status =0 and expect=@expectnum
+        update owzx_lotteryrecord set fakeuserscount=@jnum, fakeeggnum=@jenum , fakewinnum=@jnum2 where type=@type and status =0 and expect=@expectnum
     end
 
 end
@@ -137,7 +138,7 @@ select *
 into #lottery
 from (
 select ROW_NUMBER() over(order by lotteryid desc) id,type,expect,orderresult,first,second,three,result,opentime,
-resultnum,resulttype,status,luckyuserscount as winperson,betteggnum as totalbett ,bettnum bettperson,fakeuserscount, fakeeggnum 
+resultnum,resulttype,status,luckyuserscount as winperson,betteggnum as totalbett ,bettnum bettperson,fakeuserscount, fakeeggnum , fakewinnum 
 from owzx_lotteryrecord where type=@type 
 ) a  
 where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
