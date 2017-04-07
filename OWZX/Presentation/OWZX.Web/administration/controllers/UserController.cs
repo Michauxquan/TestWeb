@@ -245,12 +245,13 @@ namespace OWZX.Web.Admin.Controllers
 
                 UserInfo userInfo = new UserInfo()
                 {
-                    UserName = parms["Mobile"],
-                    Email = "",
+                    UserName = parms["UserName"],
+                    Email = parms["Email"],
                     Mobile = parms["Mobile"],
                     Salt = salt,
                     Password = Users.CreateUserPassword(parms["Password"].ToString(), salt),
-                    UserRid = int.Parse(parms["UserRid"].ToString()),
+                    //UserRid = int.Parse(parms["UserRid"].ToString()),
+                    UserRid = UserRanks.GetLowestUserRank().UserRid,
                     AdminGid = int.Parse(parms["AdminGid"]),
                     NickName = parms["NickName"],
                     Avatar = "",
@@ -290,7 +291,7 @@ namespace OWZX.Web.Admin.Controllers
                     NickName = parms["NickName"],
                     Password = parms["Password"],
                     ConfirmPassword = parms["ConfirmPassword"],
-                    UserRid = int.Parse(parms["UserRid"])
+                    UserRid = UserRanks.GetLowestUserRank().UserRid
 
                 };
             }

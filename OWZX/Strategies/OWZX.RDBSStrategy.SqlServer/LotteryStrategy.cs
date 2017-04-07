@@ -2420,7 +2420,15 @@ select *,@total TotalCount from #listresult
 end
 else
 begin
-select *,@total TotalCount from #listresult where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
+--select  *,@total TotalCount from #listresult where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
+
+if OBJECT_ID('tempdb..#list22') is not null
+drop table #list22
+
+SELECT ROW_NUMBER() over(order by id  desc ) nweid, *,@total TotalCount into #list22 from #listresult  
+
+select  *,@total TotalCount from #list22 where nweid>@pagesize*(@pageindex-1) and nweid <=@pagesize*@pageindex
+
 end
 
 end try
