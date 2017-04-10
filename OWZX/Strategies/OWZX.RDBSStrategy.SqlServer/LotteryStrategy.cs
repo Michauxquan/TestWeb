@@ -2449,13 +2449,36 @@ end catch
         {
             string commandText = string.Format(@"
 begin try
+ 
+select a.odds,case when len(b.item)=1 then '0'+b.item  else b.item end item ,
+cast(0.00 as decimal(18,2)) as totalmoney   ,cast(0.00 as decimal(18,2)) as lossmoney   
+ into #JStable 
+ from owzx_lotsetodds a
+join owzx_lotteryset b on a.bttypeid=b.bttypeid and b.roomtype=20 
+ where lotterytype={0} order by item  asc 
+ 
+select bettid, bettinfo,0 status 
+into #jsbettinfo
+ from owzx_bett a   
+ where   lotteryid={1} and lotterynum='{0}' 
+declare @i int=0
+select top 1 @i=bettid from #jsbettinfo a   where  status=0
+ while @i>0
+ begin
+	 declare @bettinfo varchar(4000)
+	 select @bettinfo=bettinfo from #jsbettinfo a   where  bettid=@i
+	 update a set  lossmoney=lossmoney+(cast(a.odds as decimal(18,2))*b.betteggNum),totalmoney=totalmoney+b.betteggNum  from 
+	 #JStable a 
+	 join( select * from SplitForBett(@bettinfo,';')) b 
+	 on CHARINDEX(a.item,cast(b.number as varchar(4000)))>0
 
-select b.item, sum(money*cast(odds as decimal(18,2))) lossmoney,SUM(money) totalmoney 
-from owzx_bett a 
-join owzx_lotteryset b on a.bttypeid=b.bttypeid 
-where a.isread=0  and lotteryid={1} and lotterynum='{0}'
-group by item  
-order by LEN(item),item asc
+	 update  #jsbettinfo set status=1 where bettid=@i
+	 set @i=0 
+	 select top 1 @i=bettid from #jsbettinfo  where  status=0 
+ end 
+ select  *  from #JStable order by item asc 
+ drop table #JStable
+ drop table #jsbettinfo
 
 end try
 begin catch
