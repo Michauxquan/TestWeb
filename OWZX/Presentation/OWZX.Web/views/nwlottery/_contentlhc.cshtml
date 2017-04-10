@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "_contentlhc";
+}
+
+@model LotteryModel
+<script src="~/components/pager/jquery.page.js"></script>
+<link href="~/components/pager/page.css" rel="stylesheet" />
+
+<table class="con_table" id="play" cellpadding="0" cellspacing="1" align="center"
+       style="color: Black; margin-bottom: 4px;margin-top:5px; border-top:2px solid #e4393c;" bgcolor="#CACACA">
+    <tr id="trhead">
+        <td width="13%" style="height: 28px;">期号</td>
+        <td width="13%" style="height: 28px">开奖时间</td>
+        <td width="17%" style="height: 28px">开奖结果</td>
+        <td colspan="3" width="27%" style="height: 28px">中奖</td>
+        <td width="15%" style="height: 28px">中奖额/投注额</td>
+        <td width="13%" style="height: 28px">投注</td>
+    </tr>
+    @foreach (OWZX.Model.MD_LotteryUser lot in @Model.lotterylist.LotteryList)
+    {
+        <tr>
+            <td>@lot.Expect</td>
+            <td>@lot.Opentime.ToString("MM-dd HH:mm")</td>
+            <td>
+                @if (@lot.Status != 2)
+                {
+                    
+                }
+                else
+                {
+                    <text><i>@lot.First</i>+<i>@lot.Second</i>+<i>@lot.Three</i>=</text>
+                    string resnum = string.Empty;
+                   
+                        resnum = int.Parse(@lot.Resultnum).ToString("d2");
+                        <span class="ltresult pcresult">
+                            @resnum
+                        </span>
+                    
+                }
+            </td>
+            @if(lot.ResultType!=null &&lot.ResultType!=string.Empty)
+            {
+            string[] resulttype = lot.ResultType.Split(',');
+            <td>
+            @if (@resulttype[0]=="大")
+            {
+            <span class="da">@resulttype[0]</span>
+            }
+            else if (@resulttype[0] == "小")
+            {
+                <span class="xiao">@resulttype[0]</span>
+            }</td><td>
+            @if (@resulttype[1] == "单")
+            {
+                <span class="dan">@resulttype[1]</span>
+            }
+            else if (@resulttype[1] == "双")
+            {
+                <span class="shuang">@resulttype[1]</span>
+            }
+            </td>
+            <td>@if (@resulttype[2] == "红波")
+            {
+                <span class="shuang">@resulttype[2]</span>
+            }
+                      else if (@resulttype[2] == "蓝波")
+                      {
+                        <span class="xiaos">@resulttype[2]</span>
+                      }
+                      else if (@resulttype[2] == "绿波")
+                      {
+                        <span class="green">@resulttype[2]</span>
+                      }
+                      else if (@resulttype[2] == "和局")
+                      {
+                        <span class="dan">@resulttype[2]</span>
+                      }</td>
+            
+            
+            }else
+            { 
+              <td></td><td></td><td></td>
+            }
+                
+            <td>@{string bt = string.Format("{0:n0}", @lot.LuckResult); string lk = string.Format("{0:n0}", @lot.Money);} @(lk!="0"?"<a style=\"color: #FD6400;cursor:pointer;\" href=\"javascript:loadpage('bett',"+@lot.Expect+")\">":"")@bt/@lk @(lk!="0"?"</a>":"")</td>
+            <td style="width:30px;">
+                @if (lot.Status == 0)
+                {
+                    <div class="lot_btn_@lot.Expect"><a href="javascript:loadpage('bett',@lot.Expect)"><div class="ltoperate"> @(lot.Money>0?"追  加":"竞  猜")</div></a></div>
+                }
+                else if (lot.Status == 1)
+                {
+                    <div class="lot_btn_@lot.Expect"><a href="#"><div class="ltoperate">正在开奖</div></a></div>
+                }
+                else if (lot.Status == 2)
+                {
+                    <div class="lot_btn_@lot.Expect"><a href="#"><div class="ltclose">- 已开奖 -</div></a></div>
+                }
+            </td>
+        </tr>
+    }
+    <tr align="center" bgcolor="#FFFFFF" id="pagetr">
+        <td height="28" colspan="10" bgcolor="#FFFFFF">
+
+            <div class="tcdPageCode">
+
+            </div>
+        </td>
+    </tr>
+</table>
+<script>
+    function ajax_page(page)
+    {
+
+    }
+    $(function ()
+    {
+        $(".tcdPageCode").createPage({
+            pageCount: @Model.PageModel.TotalPages> 20 ? 20 : @Model.PageModel.TotalPages,
+            current: @Model.PageModel.PageNumber,
+            backFn: function (p)
+            {
+                $(".temp_content").load("/nwlottery/_contentlhc",{"type":lotterytype,"page":p});
+            }
+        });
+    });
+</script>

@@ -93,7 +93,11 @@ namespace OWZX.Model
         /// <summary>
         /// 蛋蛋龙虎豹
         /// </summary>
-        js16 = 12
+        js16 = 12,
+        /// <summary>
+        /// 六合彩
+        /// </summary>
+        hk6 = 13
     }
     /// <summary>
     /// 投注类型

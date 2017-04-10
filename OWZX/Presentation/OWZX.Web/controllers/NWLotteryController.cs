@@ -137,6 +137,11 @@ namespace OWZX.Web.controllers
                     total = 120;
                     stop = 20;
                     break;
+                case (int)LotType.hk6:
+                    title = "六合彩首页";
+                    total = 120;
+                    stop = 600;
+                    break;
             }
         }
 
