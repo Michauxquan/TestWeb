@@ -28,10 +28,9 @@
                 }
                 else
                 {
-                    <text><i>@lot.First</i>+<i>@lot.Second</i>+<i>@lot.Three</i>=</text>
-                    string resnum = string.Empty;
+
+                    string resnum = lot.ResultType.Split(',')[0];
                    
-                        resnum = int.Parse(@lot.Resultnum).ToString("d2");
                         <span class="ltresult pcresult">
                             @resnum
                         </span>
@@ -42,38 +41,38 @@
             {
             string[] resulttype = lot.ResultType.Split(',');
             <td>
-            @if (@resulttype[0]=="大")
+            @if (@resulttype[1]=="大")
             {
-            <span class="da">@resulttype[0]</span>
+            <span class="da">@resulttype[1]</span>
             }
-            else if (@resulttype[0] == "小")
+            else if (@resulttype[1] == "小")
             {
-                <span class="xiao">@resulttype[0]</span>
+                <span class="xiao">@resulttype[1]</span>
             }</td><td>
-            @if (@resulttype[1] == "单")
+            @if (@resulttype[2] == "单")
             {
-                <span class="dan">@resulttype[1]</span>
+                <span class="dan">@resulttype[2]</span>
             }
-            else if (@resulttype[1] == "双")
-            {
-                <span class="shuang">@resulttype[1]</span>
-            }
-            </td>
-            <td>@if (@resulttype[2] == "红波")
+            else if (@resulttype[2] == "双")
             {
                 <span class="shuang">@resulttype[2]</span>
             }
-                      else if (@resulttype[2] == "蓝波")
+            </td>
+            <td>@if (@resulttype[3] == "红波")
+            {
+                <span class="shuang">@resulttype[3]</span>
+            }
+                      else if (@resulttype[3] == "蓝波")
                       {
-                        <span class="xiaos">@resulttype[2]</span>
+                        <span class="xiaos">@resulttype[3]</span>
                       }
-                      else if (@resulttype[2] == "绿波")
+                      else if (@resulttype[3] == "绿波")
                       {
-                        <span class="green">@resulttype[2]</span>
+                        <span class="green">@resulttype[3]</span>
                       }
-                      else if (@resulttype[2] == "和局")
+                      else if (@resulttype[3] == "和局")
                       {
-                        <span class="dan">@resulttype[2]</span>
+                        <span class="dan">@resulttype[3]</span>
                       }</td>
             
             

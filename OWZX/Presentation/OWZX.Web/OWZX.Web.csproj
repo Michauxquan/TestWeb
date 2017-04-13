@@ -462,9 +462,6 @@
     <Content Include="App_Data\installedplugin.config" />
     <Content Include="App_Data\memcachedcache.config" />
     <Content Include="App_Data\memcachedsession.config" />
-    <Content Include="App_Data\rdbs.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="App_Data\web.config" />
     <Content Include="images\ad_next.png" />
     <Content Include="images\ad_prev.png" />
@@ -695,6 +692,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\baseset.config" />
+    <Content Include="App_Data\rdbs.config" />
     <None Include="Properties\PublishProfiles\callinfo.pubxml" />
     <Content Include="views\news\details.cshtml" />
     <Content Include="views\home\down.cshtml" />
@@ -720,6 +718,7 @@
     <Content Include="views\nwlottery\_contentpk.cshtml" />
     <Content Include="views\nwlottery\_bettdetails.cshtml" />
     <Content Include="views\nwlottery\_tabcommon.cshtml" />
+    <Content Include="views\nwlottery\_contentlhc.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

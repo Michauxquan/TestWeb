@@ -26,14 +26,30 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum)
         if (nS > stoptime && nS <= totalime) {
             var rems = nS - stoptime;
             //bett
-            $(".remains").html(
-                '第 <i class="bold">' + fcnum + '</i>期  还有<span class="ltwarn">' + rems + '</span>秒停止下注!');
+            if (type != 13)
+            {
+                $(".remains").html(
+                    '第 <i class="bold">' + fcnum + '</i>期  还有<span class="ltwarn">' + rems + '</span>秒停止下注!');
+            } else
+            {
+                $(".remains").html(
+                    '第 <i class="bold">' + fcnum + '</i>期  还有<span class="ltwarn">' + formatSeconds(rems) + '</span>停止下注!');
+            }
             StrTimeOut = 1;
         }
         else if (nS > 0 && nS <= stoptime) {
-            if (nS != 0) {
-                $(".remains").html(
-                    '第 <i class="bold">' + fcnum + '</i>期  停止下注,还有<span class="ltwarn">' + nS + '</span>秒开奖!');
+            if (nS != 0)
+            {
+                if (type != 13)
+                {
+                    $(".remains").html(
+                   '第 <i class="bold">' + fcnum + '</i>期  停止下注,还有<span class="ltwarn">' + nS + '</span>秒开奖!');
+                } else
+                {
+                    $(".remains").html(
+                   '第 <i class="bold">' + fcnum + '</i>期  停止下注,还有<span class="ltwarn">' + formatSeconds(nS) + '</span>秒开奖!');
+                }
+               
             } else {
                 $("#jquery_jplayer_1").jPlayer('play');
                 $(".remains").html(
@@ -82,6 +98,35 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum)
         }
     }
    
+}
+
+function formatSeconds(value)
+{
+    var theTime = parseInt(value);// 秒 
+    var theTime1 = 0;// 分 
+    var theTime2 = 0;// 小时 
+    // alert(theTime); 
+    if (theTime > 60)
+    {
+        theTime1 = parseInt(theTime / 60);
+        theTime = parseInt(theTime % 60);
+        // alert(theTime1+"-"+theTime); 
+        if (theTime1 > 60)
+        {
+            theTime2 = parseInt(theTime1 / 60);
+            theTime1 = parseInt(theTime1 % 60);
+        }
+    }
+    var result = "" + parseInt(theTime) + "秒";
+    if (theTime1 > 0)
+    {
+        result = "" + parseInt(theTime1) + "分" + result;
+    }
+    if (theTime2 > 0)
+    {
+        result = "" + parseInt(theTime2) + "时" + result;
+    }
+    return result;
 }
 function trap(type, fcnum) {
     $.post("/nwlottery/lotteryopen", { "type": lotterytype, "expect": fcnum }, function (data) {

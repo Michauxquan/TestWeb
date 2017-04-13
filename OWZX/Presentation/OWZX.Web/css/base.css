@@ -32,6 +32,7 @@ s{text-decoration:none;}
 .bold{ font-weight: bold;}
 .cblock{ color: #000;}
 .font10{ font-size: 10px;}
+
 .pLeft10{ padding-left: 10px;}
 .pLeft20{ padding-left: 20px;}
 .pRight10{ padding-right: 10px;}
@@ -39,7 +40,7 @@ s{text-decoration:none;}
 .mLeft10{ margin-left:  10px;}
 .mLeft20{margin-left: 20px;} 
 .mRight10{ margin-right: 10px;}
-.mRight20{ margin-right: 20px;}
+.mRight20{ margin-right: 20px;}.mRight15{ margin-right: 15px;}
 .mRight40{ margin-right: 40px;}
 html body .show{ display:block;}
 .bigBox{ width:100%; text-align:center;}

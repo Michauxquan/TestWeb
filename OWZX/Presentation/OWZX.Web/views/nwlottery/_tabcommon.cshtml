@@ -14,6 +14,12 @@
             $(".sec_head a").removeClass("hot");
             $(this).addClass("hot");
         });
+        @*var type=@Model.LotteryType;
+        if(type==3 || type==10||type==11||type==12||type==13)
+        {
+            $("#div_code").addClass("hide")
+            $("#div_result").css("border-top","none")
+        }*@
     });
 </script>
 
@@ -43,7 +49,7 @@
                 <h4 style="padding-top:10px;">第 @Model.lotterylist.Prev_Lottery.Expect 期</h4>开奖结果
             </div>
             <div style="width:80%;display:block;float:left;line-height:35px;border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;font-weight:600;">
-                <div style="padding-left:50px;">
+                <div id="div_code" style="padding-left:50px;">
                     @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9)
                     {
                         <text>
@@ -71,6 +77,21 @@
                         <span class="numberl n2">@Model.lotterylist.Prev_Lottery.First</span>
                         <span class="numberl n3">@orderresult.Substring(3, @orderresult.Length - 3)</span>
                     }
+                    else if (@Model.LotteryType == 13)
+                    {
+                        string orderresult = @Model.lotterylist.Prev_Lottery.Orderresult;
+                        <h3>
+                            <span class="n3">@orderresult.Remove(@orderresult.LastIndexOf(',') + 1, 2)</span>
+                            <span class="n2">@orderresult.Remove(0, @orderresult.LastIndexOf(',') + 1)</span>
+                        </h3>
+                    }
+
+                    @if (@Model.LotteryType == 3 || @Model.LotteryType == 10 || @Model.LotteryType == 11 || @Model.LotteryType == 12)
+                    {
+                        <span class="numberl">系统开奖</span>
+                    }
+
+
                     @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9)
                     {
                         <a href="http://www.bwlc.net/bulletin/keno.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
@@ -87,37 +108,93 @@
                     {
                         <a href="http://www.knlotto.kr/keno.aspx?method=kenoWinNoList" target="_blank" style="color:#666;float:right;">[官方查询]</a>
                     }
+
                 </div>
-                <div style="border-top:1px solid #ECECEC;padding-left:50px;">
+               
+                <div id="div_result" style="border-top:1px solid #ECECEC;padding-left:50px;">
                     @{
                     int first = int.Parse(@Model.lotterylist.Prev_Lottery.First);
                     int second = int.Parse(@Model.lotterylist.Prev_Lottery.Second);
                     }
 
-                    <span style="font-size:15px;">一区号码: <span class="ltresult">@first</span></span>
-                    <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@second</span></span>
-                    @if (@Model.LotteryType != 7 && @Model.LotteryType != 8 && @Model.LotteryType != 11)
+                    @if (@Model.LotteryType != 13)
                     {
-                        <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
-                    }
+                        <span style="font-size:15px;">一区号码: <span class="ltresult">@first</span></span>
+                        <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@second</span></span>
 
-                    @if (@Model.LotteryType != 4 && @Model.LotteryType != 5)
-                    {<span style="margin-left:60px;font-size:15px;">
-                        结果:
-                        <span class="ltresult pcresult">
-                            @{string resnum = int.Parse(@Model.lotterylist.Prev_Lottery.Resultnum).ToString("d2");}
-                            @resnum
+                        if (@Model.LotteryType != 7 && @Model.LotteryType != 8 && @Model.LotteryType != 11)
+                        {
+                            <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
+                        }
+
+                        if (@Model.LotteryType != 4 && @Model.LotteryType != 5)
+                        {<span style="margin-left:60px;font-size:15px;">
+                            结果:
+                            <span class="ltresult pcresult">
+                                @{string resnum = int.Parse(@Model.lotterylist.Prev_Lottery.Resultnum).ToString("d2");}
+                                @resnum
+                            </span>
                         </span>
-                    </span>
+                        }
+                        else
+                        {
+                            string type = @Model.lotterylist.Prev_Lottery.Resultnum;
+                            string cltype = type == "豹" ? "z1" : (type == "顺" ? "z3" : (type == "对" ? "z2" : (type == "半" ? "z4" : "z5")));
+                            <span style="margin-left:60px;font-size:15px;">
+                                结果:
+                            </span>
+                        }
                     }
                     else
                     {
-                        string type = @Model.lotterylist.Prev_Lottery.Resultnum;
-                        string cltype = type == "豹" ? "z1" : (type == "顺" ? "z3" : (type == "对" ? "z2" : (type == "半" ? "z4" : "z5")));
-                        <span style="margin-left:60px;font-size:15px;">
-                            结果:<span class="ltresult pcresult">@type</span>
+                        string resulttype = @Model.lotterylist.Prev_Lottery.ResultType;
+                        <span style="font-size:18px;">
+                            结果:
+                            @if (resulttype != null && resulttype != string.Empty)
+                            {
+                                string[] type = resulttype.Split(',');
+
+                                <span class="ltresult pcresult mRight20 bold">@type[0]</span>
+                                if (@type[1] == "大")
+                                {
+                                    <span class="da mRight20 bold">@type[1]</span>
+                                }
+                                else if (@type[1] == "小")
+                                {
+                                    <span class="xiao mRight20 bold">@type[1]</span>
+                                }
+
+                                if (@type[2] == "单")
+                                {
+                                    <span class="dan mRight20 bold">@type[2]</span>
+                                }
+                                else if (@type[2] == "双")
+                                {
+                                    <span class="shuang mRight20 bold">@type[2]</span>
+                                }
+
+                                if (@type[3] == "红波")
+                                {
+                                    <span class="shuang mRight20 bold">@type[3]</span>
+                                }
+                                else if (@type[3] == "蓝波")
+                                {
+                                    <span class="xiaos mRight20 bold">@type[3]</span>
+                                }
+                                else if (@type[3] == "绿波")
+                                {
+                                    <span class="green mRight20 bold">@type[3]</span>
+                                }
+                                else if (@type[3] == "和局")
+                                {
+                                    <span class="dan mRight20 bold">@type[3]</span>
+                                }
+
+                            }
+
                         </span>
                     }
+                    
                 </div>
             </div>
         }
