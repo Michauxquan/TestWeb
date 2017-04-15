@@ -403,7 +403,7 @@ end catch
             begin tran t1
             declare @backid int =0,@money decimal(18,2)=0
             select top 1 @backid=backid,@money=money from owzx_userbackreport where uid=@uid and status=0 and backtype=@type 
-and addtime <CONVERT(varchar(100), GETDATE(), 23)+' 00:00:00'  and addtime>=CONVERT(varchar(10), DATEADD(day,-1,getdate()), 23)+' 00:00:00'
+and addtime <CONVERT(varchar(10), DATEADD(day,1,getdate()), 23)+' 00:00:00'  and addtime>=CONVERT(varchar(100), GETDATE(), 23)+' 00:00:00'
             if (@backid>0)
             begin  
 

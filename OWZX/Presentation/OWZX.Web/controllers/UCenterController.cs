@@ -107,9 +107,17 @@ namespace OWZX.Web.Controllers
 
         public ActionResult GetUserMoney()
         {
-            PartUserInfo pu = Users.GetPartUserById(WorkContext.Uid);
-            var content = "{\"totalmoney\":\""+pu.TotalMoney+"\",\"bankmoney\":\""+pu.BankMoney+"\"}";
-            return AjaxResult("sussace", content,true);
+            if (WorkContext.Uid > 0)
+            {
+                PartUserInfo pu = Users.GetPartUserById(WorkContext.Uid);
+                var content = "{\"totalmoney\":\"" + pu.TotalMoney + "\",\"bankmoney\":\"" + pu.BankMoney + "\"}";
+                return AjaxResult("sussace", content, true);
+            }
+            else
+            {
+                var content = "{\"totalmoney\":\"" +0 + "\",\"bankmoney\":\"" + 0 + "\"}";
+                return AjaxResult("sussace", content, true);
+            }
         }
 
         #endregion
@@ -936,7 +944,7 @@ namespace OWZX.Web.Controllers
             {
                 if (WorkContext.IsHttpAjax)//如果为ajax请求
                     filterContext.Result = Content("nologin");
-                else//如果为普通请求
+                else//如果为普通请求 
                     filterContext.Result = RedirectToAction("login", "account", new RouteValueDictionary { { "returnUrl", WorkContext.Url } });
             }
         }
