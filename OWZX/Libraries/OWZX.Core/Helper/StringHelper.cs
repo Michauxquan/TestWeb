@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace OWZX.Core
 {
@@ -239,6 +240,27 @@ namespace OWZX.Core
             return sourceStr;
         }
 
+        #endregion
+
+        #region dic to string
+        /// <summary>
+        /// 把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
+        /// </summary>
+        /// <param name="sArray">需要拼接的数组</param>
+        /// <returns>拼接完成以后的字符串</returns>
+        public static string CreateLinkString(Dictionary<string, string> dicArray)
+        {
+            StringBuilder prestr = new StringBuilder();
+            foreach (KeyValuePair<string, string> temp in dicArray)
+            {
+                prestr.Append(temp.Key + "=" + temp.Value + "&");
+            }
+
+            //去掉最後一個&字符
+            prestr.Remove(prestr.Length - 1, 1);
+
+            return prestr.ToString();
+        }
         #endregion
     }
 }

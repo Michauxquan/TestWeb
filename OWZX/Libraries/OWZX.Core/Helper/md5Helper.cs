@@ -9,6 +9,7 @@ namespace OWZX.Core
 {
     public class md5Helper
     {
+        #region MD5
         /// <summary>
         /// MD5 16位加密
         /// </summary>
@@ -54,6 +55,8 @@ namespace OWZX.Core
             }
             return sb.ToString();
         }
+
+        #endregion
 
         #region DESEncrypt DES加密
         /// <summary>
@@ -114,6 +117,57 @@ namespace OWZX.Core
                 string str = Encoding.UTF8.GetString(ms.ToArray());
                 ms.Close();
                 return str;
+            }
+        }
+        #endregion
+
+        #region SHA
+        /// <summary>
+        /// sha-256 小写加密
+        /// </summary>
+        /// <param name="strData"></param>
+        /// <returns></returns>
+        public static string GetSHA256S(string strData)
+        {
+            byte[] bytValue = System.Text.Encoding.UTF8.GetBytes(strData);
+            try
+            {
+                SHA256 sha256 = new SHA256CryptoServiceProvider();
+                byte[] retVal = sha256.ComputeHash(bytValue);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < retVal.Length; i++)
+                {
+                    sb.Append(retVal[i].ToString("x2"));
+                }
+                return sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("GetSHA256HashFromString() fail,error:" + ex.Message);
+            }
+        }
+        /// <summary>
+        /// sha-256 大写加密
+        /// </summary>
+        /// <param name="strData"></param>
+        /// <returns></returns>
+        public static string GetSHA256B(string strData)
+        {
+            byte[] bytValue = System.Text.Encoding.UTF8.GetBytes(strData);
+            try
+            {
+                SHA256 sha256 = new SHA256CryptoServiceProvider();
+                byte[] retVal = sha256.ComputeHash(bytValue);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < retVal.Length; i++)
+                {
+                    sb.Append(retVal[i].ToString("X2"));
+                }
+                return sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("GetSHA256HashFromString() fail,error:" + ex.Message);
             }
         }
         #endregion

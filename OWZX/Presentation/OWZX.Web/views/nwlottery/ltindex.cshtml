@@ -173,7 +173,8 @@
                             {
                                 string orderresult = @Model.lotterylist.Prev_Lottery.Orderresult;
                                 <span style="margin-left:60px;font-size:15px;">
-                                    结果:<span>@Model.lotterylist.Prev_Lottery.ResultType</span>
+                                    特码:<span>@Model.lotterylist.Prev_Lottery.ResultType.Split(',')[0]</span>
+                                    大小单双:<span>@Model.lotterylist.Prev_Lottery.ResultType.Split(',')[0]</span>
                                 </span>
                             }
                         </div>

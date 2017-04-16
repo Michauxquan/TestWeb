@@ -942,10 +942,10 @@ namespace OWZX.Web.Controllers
             //不允许游客访问
             if (WorkContext.Uid < 1)
             {
-                if (WorkContext.IsHttpAjax)//如果为ajax请求
-                    filterContext.Result = Content("nologin");
-                else//如果为普通请求 
-                    filterContext.Result = RedirectToAction("login", "account", new RouteValueDictionary { { "returnUrl", WorkContext.Url } });
+                //if (WorkContext.IsHttpAjax)//如果为ajax请求
+                //    filterContext.Result = Content("nologin");
+                //else//如果为普通请求
+                filterContext.Result = RedirectToAction("login", "account", new RouteValueDictionary { { "returnUrl", WorkContext.Url } });
             }
         }
     }
