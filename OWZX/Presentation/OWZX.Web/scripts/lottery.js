@@ -234,8 +234,12 @@ function loadpage(type, expect, betid) {
             break;
         case 'bett':
             isbett = 1;
-
-            $(".temp_content").load("/nwlottery/_bettpage", { "type": lotterytype, "expect": expect });
+            if (lotterytype == 13) {
+                $(".temp_content").load("/nwlottery/_bettpagelhc", { "type": lotterytype, "expect": expect });
+            } else {
+                $(".temp_content").load("/nwlottery/_bettpage", { "type": lotterytype, "expect": expect });
+            }
+           
             break;
         case 'rule':
             $(".temp_content").load("/nwlottery/_ltrule", { "type": lotterytype });
@@ -244,7 +248,11 @@ function loadpage(type, expect, betid) {
             $(".temp_content").load("/nwlottery/_bettrecord", { "type": lotterytype, "page": 1 });
             break;
         case 'models':
-            $(".temp_content").load("/nwlottery/_bettmode", { "type": lotterytype });
+            if (lotterytype == 13) {
+                $(".temp_content").load("/nwlottery/_bettmodelhc", { "type": lotterytype });
+            } else {
+                $(".temp_content").load("/nwlottery/_bettmode", { "type": lotterytype });
+            }
             break;
         case 'autobett':
             $(".temp_content").load("/nwlottery/_autobett", { "type": lotterytype });

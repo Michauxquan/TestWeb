@@ -530,6 +530,27 @@ select * from  #list where id>=1 and id<=8
 
 select * from  #list where id>=9 and id<=18
 end
+else if( @type in (13))
+begin
+select * from 
+(
+select top 17 * from  #list where (bttypeid>=12 and bttypeid <=28 ) order by bttypeid  ) a
+union all
+select * from  #list where setid=249 or setid=251 or setid=256
+
+select * from (
+select top 17 * from  #list where (bttypeid>=29 and bttypeid <=38) 
+or (bttypeid>=135 and bttypeid <=141) order by bttypeid) a
+union all
+select * from  #list where  setid=252 or setid=254 or setid=253
+
+select * from 
+(
+select top 17 * from  #list where (bttypeid>=142 and bttypeid <=156 ) order by bttypeid  ) a
+union all
+select * from  #list where  setid=250 or setid=255 order by bttypeid
+
+end
 end try
 begin catch
 select ERROR_MESSAGE() state

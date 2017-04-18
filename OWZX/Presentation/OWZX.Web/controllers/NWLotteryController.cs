@@ -285,7 +285,7 @@ namespace OWZX.Web.controllers
                 return Content("0");
         }
 
-
+        #region 投注
         /// <summary>
         /// 投注
         /// </summary>
@@ -302,6 +302,19 @@ namespace OWZX.Web.controllers
             List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString() + " and a.lotterytype=" + type.ToString());
             return View(model);
         }
+        public ActionResult _BettPageLHC()
+        {
+            int type = WebHelper.GetFormInt("type");
+            string expect = WebHelper.GetFormString("expect");
+            DataSet ds = LotteryList.GetLotSetList(type.ToString());
+            ViewData["ltset"] = ds;
+            ViewData["exists"] = NewUser.ExistsMode(WorkContext.Uid, type);
+            ViewData["lotterytype"] = type;
+            ViewData["expect"] = expect;
+            List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString() + " and a.lotterytype=" + type.ToString());
+            return View(model);
+        }
+        #endregion
         /// <summary>
         /// 获取投注模式
         /// </summary>
@@ -391,6 +404,7 @@ namespace OWZX.Web.controllers
             else
                 return Content(result);
         }
+        #region 模式
         /// <summary>
         /// 投注模式
         /// </summary>
@@ -419,6 +433,33 @@ namespace OWZX.Web.controllers
             }
             return View(model);
         }
+
+        
+        public ActionResult _BettModeLHC()
+        {
+            int type = WebHelper.GetFormInt("type");
+
+            DataSet ds = LotteryList.GetLotSetList(type.ToString());
+            ViewData["ltset"] = ds;
+            ViewData["lotterytype"] = type;
+            List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString() + " and a.lotterytype=" + type.ToString());
+            if (type == 9)
+            {
+                Dictionary<string, int> dic = new Dictionary<string, int>();
+                dic["大"] = 1; dic["小"] = 2; dic["单"] = 3; dic["双"] = 4; dic["极大"] = 5; dic["大单"] = 6;
+                dic["小单"] = 7; dic["大双"] = 8; dic["小双"] = 9; dic["极小"] = 10; dic["龙"] = 11; dic["虎"] = 12;
+                dic["豹"] = 13;
+                model.ForEach((x) =>
+                {
+                    foreach (KeyValuePair<string, int> item in dic)
+                    {
+                        x.Bettinfo = x.Bettinfo.Replace(item.Key, item.Value.ToString());
+                    }
+                });
+            }
+            return View(model);
+        }
+        #endregion
 
         public ActionResult GetProvBettInfo(int type = 0,string lotterynum="")
         {
