@@ -542,13 +542,15 @@ select * from (
 select top 17 * from  #list where (bttypeid>=29 and bttypeid <=38) 
 or (bttypeid>=135 and bttypeid <=141) order by bttypeid) a
 union all
-select * from  #list where  setid=252 or setid=254 or setid=253
+select * from  #list where setid=252 or setid=254 
+union all
+select * from  #list where setid=253 
 
 select * from 
 (
 select top 17 * from  #list where (bttypeid>=142 and bttypeid <=156 ) order by bttypeid  ) a
 union all
-select * from  #list where  setid=250 or setid=255 order by bttypeid
+select * from  #list where  setid=250 or setid=255
 
 end
 end try

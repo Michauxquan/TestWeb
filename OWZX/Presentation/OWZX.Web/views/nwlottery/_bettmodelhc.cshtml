@@ -210,7 +210,7 @@
         <text>
             <tr>
                 <td align="center" bgcolor="#FFFFFF" height="30">
-                    @if ((int)@ViewData["lotterytype"] != 9)
+                    @if (ValidateHelper.IsNumeric(@row["item"].ToString()))
                     {
                         <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
                               width="25" height="25">@row["item"]</span>
@@ -262,8 +262,8 @@
         <text>
             <tr>
                 <td align="center" bgcolor="#FFFFFF" height="30">
-                    @if ((int)@ViewData["lotterytype"] != 9)
-                       {
+                    @if (ValidateHelper.IsNumeric(@row["item"].ToString()))
+                    {
                         <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
                               width="25" height="25">@row["item"]</span>
                        }
@@ -307,14 +307,14 @@
             投注
         </td>
     </tr>
-    @foreach (DataRow row in ds.Tables[1].Rows)
+    @foreach (DataRow row in ds.Tables[2].Rows)
     {
         string num = (lottype == 4 || lottype == 5 || lottype == 9) ? @row["id"].ToString() : @row["item"].ToString();
 
         <text>
             <tr>
                 <td align="center" bgcolor="#FFFFFF" height="30">
-                    @if ((int)@ViewData["lotterytype"] != 9)
+                    @if (ValidateHelper.IsNumeric(@row["item"].ToString()))
                     {
                         <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
                               width="25" height="25">@row["item"]</span>
