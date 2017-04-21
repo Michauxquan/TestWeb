@@ -257,7 +257,7 @@
     </tr>
     @foreach (DataRow row in ds.Tables[1].Rows)
         {
-            string num = (lottype == 4 || lottype == 5 || lottype == 9) ? @row["id"].ToString() : @row["item"].ToString();
+            string num = @row["item"].ToString().Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57"); 
 
         <text>
             <tr>
@@ -309,7 +309,7 @@
     </tr>
     @foreach (DataRow row in ds.Tables[2].Rows)
     {
-        string num = (lottype == 4 || lottype == 5 || lottype == 9) ? @row["id"].ToString() : @row["item"].ToString();
+        string num = @row["item"].ToString().Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57"); 
 
         <text>
             <tr>
@@ -361,7 +361,7 @@
 
         if(index=="save")
         {
-            $(".temp_content").load("/nwlottery/_bettmode",{"type":lotterytype});
+            $(".temp_content").load("/nwlottery/_bettmodelhc",{"type":lotterytype});
 
         }else
         {
@@ -371,7 +371,7 @@
                 foreach(OWZX.Model.MD_BettMode item in @Model)
                  {
                      item.Bettinfo = item.Bettinfo.
-                         Replace("豹", "1").Replace("顺", "2").Replace("对", "3").Replace("半", "4").Replace("杂", "5");
+                         Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57"); 
                     var arr = item.Bettinfo.Split(';');
                     
                     for(int i=0;i<arr.Length;i++)
@@ -380,7 +380,7 @@
                         
                     <text>ModelDatas[@mdindex][parseInt(@sz[0])] = @sz[1];</text>
                     }
-                    <text>ModelDatas[@mdindex][28] = @item.Betttotal;
+                    <text>ModelDatas[@mdindex][57] = @item.Betttotal;
                          ModeNames[@mdindex] = '@item.Name';</text>
                     mdindex++;
               }

@@ -1,5 +1,8 @@
 ﻿/// <reference path="D:\我的\项目\蛋蛋竞猜\Qg_EggQuiz\Qg_EggQuiz\qcgeass.aspx" />
-var PRESSNUM = (lotterytype == 4 || lotterytype == 5) ? '10, 60, 270, 360, 300' : (lotterytype == 9 ? '10, 60, 270, 360, 620,870,1020,870,620,360,270,60,10' : '1,3,6,10,15,21,28,36,45,55,63,69,73,75,75,73,69,63,55,45,36,28,21,15,10,6,3,1'); 
+var PRESSNUM = (lotterytype == 4 || lotterytype == 5) ? '10, 60, 270, 360, 300' :
+    (lotterytype == 9 ? '10, 60, 270, 360, 620,870,1020,870,620,360,270,60,10' :
+    (lotterytype == 13 ? '6, 8, 10, 14, 16, 18, 27, 32, 36, 38, 40, 43, 48,50, 51,53,55,57,58,60,62,64,66,68, 72,72, 68, 66, 64, 62, 60, 58, 57, 55, 53, 51, 50, 48, 43, 40, 38, 36, 32, 27, 18, 16, 14, 10, 8, 6' :
+    '1,3,6,10,15,21,28,36,45,55,63,69,73,75,75,73,69,63,55,45,36,28,21,15,10,6,3,1'));
 ///var maxnum = 20000000; //最大投注金额
 var maxnum = 99999999999999999;
 var minnum = 10;
@@ -409,6 +412,18 @@ function setValue(num)
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
         }
+    } else if (lotterytype == 13)
+    {
+        for (var i = 0; i < modelhc[num].length; i++)
+        {
+            var id_num = modelhc[num][i];
+            var id_name = "[id='txt_" + modelhc[num][i] + "']";
+            if (!$(id_name).attr("readonly"))
+            {
+                $(id_name).val(lhc[i]);
+                $(id_name).parent().prev("td").children("input").prop("checked", true);
+            }
+        }
     }
     getAllpceggs();
 }
@@ -739,6 +754,8 @@ function datapost()
                            msg = "投注失败，第<span  style='color :Red;'>" + expect + "</span>期投注已截止！";
                        else if (data == "3")
                            msg = "您的元宝不足,请充值！";
+                       else if (data == "4")
+                           msg = "最小投注额[" + minnum + "]元宝！";
 
                        layer.alert(msg, { icon: 2, title: "提示" })
                    }

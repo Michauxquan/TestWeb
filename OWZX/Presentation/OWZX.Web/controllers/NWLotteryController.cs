@@ -315,6 +315,7 @@ namespace OWZX.Web.controllers
             return View(model);
         }
         #endregion
+
         /// <summary>
         /// 获取投注模式
         /// </summary>
@@ -342,6 +343,10 @@ namespace OWZX.Web.controllers
                 Money = WebHelper.GetFormInt("bettTotalEggs"),
                 Bettmode = WebHelper.GetFormInt("bettmodel")
             };
+            if (bett.Money< 10)
+            {
+                return Content("4");
+            }
             string result = Lottery.AddNewBett(bett);
             if (result.EndsWith("成功"))
                 return Content("1");

@@ -1,16 +1,16 @@
 ﻿var tzmscount = 10;//投注模式最大数设置
 //投注模式 号码的元宝数
 var ModelDatas = new Array(
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 var ModeNames = new Array("", "", "", "", "", "", "", "", "", "");
 var CurrentMode = 0;
 var ModeCount = 0;
@@ -79,6 +79,12 @@ function Change_Modes(ModeId) {
         for (var i = 1; i <= 16; i++) {
             $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
         }
+    } else if (lotterytype == 13)
+    {
+        for (var i = 1; i <= 57; i++)
+        {
+            $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
+        }
     }
     $("#bttmode").val(ModeNames[CurrentMode - 1]);
 
@@ -86,9 +92,15 @@ function Change_Modes(ModeId) {
     $(".img_bt1").css("background", "url(../../images/img_bt1.png) left no-repeat");
 
 
-
-    document.getElementById("SMONEYSUM").value = ModelDatas[CurrentMode - 1][28];;
-    document.getElementById("SMONEYSUM2").value = ModelDatas[CurrentMode - 1][28];
+    if (lotterytype != 13)
+    {
+        document.getElementById("SMONEYSUM").value = ModelDatas[CurrentMode - 1][28];;
+        document.getElementById("SMONEYSUM2").value = ModelDatas[CurrentMode - 1][28];
+    } else
+    {
+        document.getElementById("SMONEYSUM").value = ModelDatas[CurrentMode - 1][57];;
+        document.getElementById("SMONEYSUM2").value = ModelDatas[CurrentMode - 1][57];
+    }
     document.getElementById("m_info").innerHTML = "模式“" + MName + "”的详细情况：";
 }
 //数字加千分符号
@@ -199,6 +211,19 @@ function inputsb(val, num) {
         //{
         //    $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
         //}
+    }
+    else if (lotterytype == 13)
+    {
+        for (var i = 1; i <= 57; i++)
+        {
+            sm = document.getElementById("SMONEY_" + i).value;
+            if (sm == null || sm > maxnum || sm == "")
+            {
+                sm = 0;
+                document.getElementById("SMONEY_" + i).value = 0;
+            }
+            sum = sum + parseInt(sm);
+        }
     }
     document.getElementById("SMONEYSUM").value = sum;
     document.getElementById("SMONEYSUM2").value = sum;
@@ -400,6 +425,18 @@ function FirstModes(modes) {
             if (!$(id_name).attr("readonly")) {
                 $(id_name).val(js16[id_num - 3]);
                 sum = sum + js16[id_num - 3];
+            }
+        }
+    } else if (lotterytype == 13)
+    {
+        for (var i = 0; i < modelhc[modes - 1].length; i++)
+        {
+            var id_num = modelhc[modes - 1][i];
+            var id_name = "#SMONEY_" + modelhc[modes - 1][i];
+            if (!$(id_name).attr("readonly"))
+            {
+                $(id_name).val(lhc[id_num - 3]);
+                sum = sum + lhc[id_num - 3];
             }
         }
     }
