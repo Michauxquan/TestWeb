@@ -258,7 +258,13 @@ function loadpage(type, expect, betid) {
             $(".temp_content").load("/nwlottery/_autobett", { "type": lotterytype });
             break;
         case 'details':
-            $(".temp_content").load("/nwlottery/_bettdetails", { "type": lotterytype, "bettid": betid });
+            if (lotterytype == 13)
+            {
+                $(".temp_content").load("/nwlottery/_bettdetailslhc", { "type": lotterytype, "bettid": betid });
+            } else
+            {
+                $(".temp_content").load("/nwlottery/_bettdetails", { "type": lotterytype, "bettid": betid });
+            }
             break;
 
     }

@@ -54,7 +54,15 @@ $(document).ready(function ()
         $(v).click(function () { 
             if (!$(v).prop("checked")) {
                 $(v).prop("checked", true);
-                $(v).parent().next("td").children("input").val(nub1[i - 1]);
+                if (lotterytype != 13)
+                {
+                    $(v).parent().next("td").children("input").val(nub1[i - 1]); //改了
+                }
+                else
+                {
+                    $(v).parent().next("td").children("input").val(lhc[i - 1]);
+                }
+                
             } else {
                 $(v).prop("checked", false);
                 $(v).parent().next("td").children("input").val("");
@@ -95,7 +103,14 @@ $(document).ready(function ()
             {
                 if (!dom.prop("checked"))
                 {
-                    dom.parent().next("td").children("input").val(nub1[i]); //改了
+                    if (lotterytype != 13)
+                    {
+                        dom.parent().next("td").children("input").val(nub1[i]); //改了
+                    }
+                    else
+                    {
+                        dom.parent().next("td").children("input").val(lhc[i]); 
+                    }
                     dom.prop("checked", true);
                 } else
                 {
@@ -309,6 +324,9 @@ function getindname(i) {
         return mode36[0][i];
     } else if(lotterytype == 9){
         return modelhb[0][i];
+    } else if (lotterytype == 13)
+    {
+        return modelhc[0][i];
     }
     return i;
 }
@@ -472,8 +490,17 @@ function setAllvalue(peilv)
 function ani_select() {
     $("input[name='checkboxd']").each(function(i) {
         if (!$(this).attr("disabled")) {
-            if (!$(this).prop("checked")) {
-                $(this).parent().next("td").children("input").val(nub1[i]);
+            if (!$(this).prop("checked"))
+            {
+                if (lotterytype != 13)
+                {
+                    $(this).parent().next("td").children("input").val(nub1[i]); //改了
+                }
+                else
+                {
+                    $(this).parent().next("td").children("input").val(lhc[i]);
+                }
+                
                 $(this).prop("checked", true);
             } else {
                 $(this).parent().next("td").children("input").val("");
@@ -486,8 +513,17 @@ function ani_select() {
 $("input[name='checkboxd']").each(function (i, v) {
     $(v).click(function() {
         if (!$(this).attr("disabled")) {
-            if (!$(this).prop("checked")) {
-                $(this).parent().next("td").children("input").val(nub1[i]);
+            if (!$(this).prop("checked"))
+            {
+                if (lotterytype != 13)
+                {
+                    $(this).parent().next("td").children("input").val(nub1[i]); //改了
+                }
+                else
+                {
+                    $(this).parent().next("td").children("input").val(lhc[i]);
+                }
+                
                 $(this).prop("checked", true);
             } else {
                 $(this).parent().next("td").children("input").val("");
@@ -665,7 +701,7 @@ function comform()
     else
     {
         var str = [];
-        for (var i = 0; i < 28; i++)
+        for (var i = 0; i < 58; i++)
         {
             var txt_value = $.trim($("#txt_" + i).val()).replace(/,/gi, "");
             str.push(txt_value);
@@ -746,6 +782,9 @@ function datapost()
                        else if (lotterytype == 7 || lotterytype == 8 || lotterytype == 10)
                        {
                            $(".temp_content").load("/nwlottery/_contentpk", { "type": lotterytype, "page": 1 });
+                       } else if (lotterytype == 13)
+                       {
+                           $(".temp_content").load("/nwlottery/_contentlhc", { "type": lotterytype, "page": 1 });
                        }
                    } else
                    {

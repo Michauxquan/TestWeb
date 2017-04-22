@@ -79,7 +79,7 @@ namespace OWZX.Core
         /// </summary>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        DataSet GetLotSetList(string type, string condition = "");
+        DataSet GetLotSetList(string type, string condition = "", bool islhcbett = false);
         #endregion
 
         #region 自动投注

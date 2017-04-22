@@ -103,9 +103,9 @@ namespace OWZX.Services
         /// </summary>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        public static DataSet GetLotSetList(string type, string condition = "")
+        public static DataSet GetLotSetList(string type, string condition = "", bool islhcbett = false)
         {
-            return OWZX.Data.LotteryList.GetLotSetList(type, condition);
+            return OWZX.Data.LotteryList.GetLotSetList(type, condition, islhcbett);
         }
 
         #endregion

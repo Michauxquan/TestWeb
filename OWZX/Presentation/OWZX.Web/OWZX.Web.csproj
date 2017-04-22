@@ -721,6 +721,7 @@
     <Content Include="views\nwlottery\_contentlhc.cshtml" />
     <Content Include="views\nwlottery\_bettpagelhc.cshtml" />
     <Content Include="views\nwlottery\_bettmodelhc.cshtml" />
+    <Content Include="views\nwlottery\_bettdetailslhc.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

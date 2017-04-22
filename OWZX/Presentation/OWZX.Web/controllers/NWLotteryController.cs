@@ -306,7 +306,7 @@ namespace OWZX.Web.controllers
         {
             int type = WebHelper.GetFormInt("type");
             string expect = WebHelper.GetFormString("expect");
-            DataSet ds = LotteryList.GetLotSetList(type.ToString());
+            DataSet ds = LotteryList.GetLotSetList(type.ToString(),"",true);
             ViewData["ltset"] = ds;
             ViewData["exists"] = NewUser.ExistsMode(WorkContext.Uid, type);
             ViewData["lotterytype"] = type;
@@ -314,19 +314,7 @@ namespace OWZX.Web.controllers
             List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString() + " and a.lotterytype=" + type.ToString());
             return View(model);
         }
-        #endregion
 
-        /// <summary>
-        /// 获取投注模式
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetBettMode()
-        {
-            int id = WebHelper.GetQueryInt("id");
-            MD_BettMode btmode = NewUser.GetModeList(1, 1, " where a.modeid=" + id.ToString())[0];
-            string btjson = JsonConvert.SerializeObject(btmode);
-            return Content(btjson);
-        }
         /// <summary>
         /// 投注
         /// </summary>
@@ -343,7 +331,7 @@ namespace OWZX.Web.controllers
                 Money = WebHelper.GetFormInt("bettTotalEggs"),
                 Bettmode = WebHelper.GetFormInt("bettmodel")
             };
-            if (bett.Money< 10)
+            if (bett.Money < 10)
             {
                 return Content("4");
             }
@@ -353,6 +341,20 @@ namespace OWZX.Web.controllers
             else
                 return Content(result);
         }
+        #endregion
+
+        /// <summary>
+        /// 获取投注模式
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetBettMode()
+        {
+            int id = WebHelper.GetQueryInt("id");
+            MD_BettMode btmode = NewUser.GetModeList(1, 1, " where a.modeid=" + id.ToString())[0];
+            string btjson = JsonConvert.SerializeObject(btmode);
+            return Content(btjson);
+        }
+       
 
         /// <summary>
         /// 游戏规则
@@ -364,6 +366,7 @@ namespace OWZX.Web.controllers
             ViewData["ltruletype"] = type;
             return View();
         }
+        #region 投注记录
         /// <summary>
         /// 投注记录
         /// </summary>
@@ -395,6 +398,24 @@ namespace OWZX.Web.controllers
             ViewData["bett"] = dt;
             return View();
         }
+
+         /// <summary>
+        /// 投注详情
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _BettDetailsLHC()
+        {
+            int type = WebHelper.GetFormInt("type");
+            int betid = WebHelper.GetFormInt("bettid");
+            DataSet ds = LotteryList.GetLotSetList(type.ToString(),"",true);
+            ViewData["ltset"] = ds;
+            DataTable dt = LotteryList.GetUserBett(type, WorkContext.Uid, 1, 1, " where a.bettid=" + betid.ToString());
+            ViewData["bett"] = dt;
+            return View();
+        }
+        
+        #endregion
+
         /// <summary>
         /// 添加投注模式
         /// </summary>
@@ -409,6 +430,7 @@ namespace OWZX.Web.controllers
             else
                 return Content(result);
         }
+       
         #region 模式
         /// <summary>
         /// 投注模式

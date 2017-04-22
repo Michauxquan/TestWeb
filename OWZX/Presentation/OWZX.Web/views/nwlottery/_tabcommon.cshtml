@@ -33,8 +33,11 @@
     <a href="javascript:loadpage('bettrecords')" target="_parent">投注记录</a>
     <span class="wh12">|</span>
     <a href="javascript:loadpage('models')" target="_parent">模式编辑</a>
-    <span class="wh12">|</span>
-    <a href="javascript:loadpage('autobett')" target="_parent">自动投注</a>
+    @if (@Model.LotteryType != 13)
+    {
+        <span class="wh12">|</span>
+        <a href="javascript:loadpage('autobett')" target="_parent">自动投注</a>
+    }
 </div>
 <div class="lot_content">
 
@@ -201,7 +204,7 @@
 
     </div>
     <div class="dv">
-        <div style="width:30%; display:block;float:left;" class="remains">
+        <div style="width:31%; display:block;float:left;" class="remains">
             第 <i class="bold">@Model.lotterylist.LastNumber</i>期
             @if (Model.lotterylist.RemainS > Model.StopTime && Model.lotterylist.RemainS <= Model.TotalS
                         )
@@ -223,10 +226,10 @@
                         GetRTime(lotterytype,@(string.IsNullOrEmpty(Model.lotterylist.RemainS.ToString())?-40:Model.lotterylist.RemainS),@(string.IsNullOrEmpty(Model.lotterylist.LastNumber)?"0":Model.lotterylist.LastNumber) ,@Model.TotalS,@Model.StopTime,@Model.lotterylist.Prev_Lottery.Expect)
                     });
         </script>
-        <div style="width:50%;display:block;float:left;">
+        <div style="width:47%;display:block;float:left;">
             今日盈亏: <span class="ltwarn">@Model.lotterylist.TdProf.ToString("N0")</span> 参与: <i class="bold">@Model.lotterylist.TdBettNum</i>期 胜率: <i class="bold">@Model.lotterylist.WinPercent%</i>
         </div>
-        <div style="width: 20%; display: block; float: left; text-align: right;">
+        <div style="width: 22%; display: block; float: left; text-align: right;">
             投注无上限,中奖无上限
             @*     最高投注<span class="ltwarn">2,000</span>万豆,最高中奖 <span class="ltwarn">1,000,000</span>万豆*@
         </div>

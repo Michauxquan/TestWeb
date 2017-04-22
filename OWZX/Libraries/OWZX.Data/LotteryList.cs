@@ -100,9 +100,9 @@ namespace OWZX.Data
        /// </summary>
        /// <param name="condition">没有where</param>
        /// <returns></returns>
-       public static DataSet GetLotSetList(string type, string condition = "")
+       public static DataSet GetLotSetList(string type, string condition = "", bool islhcbett = false)
        {
-           return OWZX.Core.BSPData.RDBS.GetLotSetList(type, condition);
+           return OWZX.Core.BSPData.RDBS.GetLotSetList(type, condition, islhcbett);
        }
        #endregion
 

@@ -205,7 +205,7 @@
     </tr>
     @foreach (DataRow row in ds.Tables[0].Rows)
     {
-        string num = (lottype == 4 || lottype == 5 || lottype==9) ? @row["id"].ToString() : @row["item"].ToString();
+        string num = @row["item"].ToString().Trim().Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57"); 
 
         <text>
             <tr>
@@ -257,7 +257,7 @@
     </tr>
     @foreach (DataRow row in ds.Tables[1].Rows)
         {
-            string num = @row["item"].ToString().Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57"); 
+            string num = @row["item"].ToString().Trim().Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57"); 
 
         <text>
             <tr>
@@ -309,33 +309,47 @@
     </tr>
     @foreach (DataRow row in ds.Tables[2].Rows)
     {
-        string num = @row["item"].ToString().Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57"); 
-
-        <text>
-            <tr>
-                <td align="center" bgcolor="#FFFFFF" height="30">
-                    @if (ValidateHelper.IsNumeric(@row["item"].ToString()))
+        string num = @row["item"].ToString().Trim().Replace("大", "50").Replace("小", "51").Replace("单", "52").
+            Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
+       <tr>
+            <td align="center" bgcolor="#FFFFFF" height="30">
+                @if (ValidateHelper.IsNumeric(@row["item"].ToString()))
                     {
-                        <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
-                              width="25" height="25">@row["item"]</span>
+                    <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                          width="25" height="25">@row["item"]</span>
                     }
                     else
                     {
-                        <span class="ltresult lhbresult btnumber"
-                              width="25" height="25">@row["item"]</span>
+                    <span class="ltresult lhbresult btnumber"
+                          width="25" height="25">@row["item"]</span>
                     }
-                </td>
-                <td align="center" class="lossrate" bgcolor="#FFFFFF" height="30" data-type="@num">@row["odds"]</td>
-                <td align="center" bgcolor="#FFFFFF">
-                    <input class="input3" id="SMONEY_@num" name="SMONEY" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))"
-                           onkeyup="if (event.keyCode != 37 && event.keyCode != 39) value = value.replace(/\D/g, '');inputsb(this.value, 0);"
-                           size="15" type="text" value="0" maxlength="9" />
-                    <input class="input3" name="Add" onclick="AddMONEY(@num);" type="button" value="+" />
-                    <input class="input3" name="Decrease" onclick="DecreaseMONEY(@num);" type="button" value="-" />
-                </td>
-            </tr>
-        </text>
+            </td>
+            <td align="center" class="lossrate" bgcolor="#FFFFFF" height="30" data-type="@num">@row["odds"]</td>
+            <td align="center" bgcolor="#FFFFFF">
+                <input class="input3" id="SMONEY_@num" name="SMONEY" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))"
+                       onkeyup="if (event.keyCode != 37 && event.keyCode != 39) value = value.replace(/\D/g, '');inputsb(this.value, 0);"
+                       size="15" type="text" value="0" maxlength="9" />
+                <input class="input3" name="Add" onclick="AddMONEY(@num);" type="button" value="+" />
+                <input class="input3" name="Decrease" onclick="DecreaseMONEY(@num);" type="button" value="-" />
+            </td>
+        </tr>
+       
     }
+    <tr>
+        <td align="center" bgcolor="#FFFFFF" height="32"></td>
+        <td align="center" class="lossrate" bgcolor="#FFFFFF" height="32"></td>
+        <td align="center" bgcolor="#FFFFFF"></td>
+    </tr>
+    <tr>
+        <td align="center" bgcolor="#FFFFFF" height="32"></td>
+        <td align="center" class="lossrate" bgcolor="#FFFFFF" height="32"></td>
+        <td align="center" bgcolor="#FFFFFF"></td>
+    </tr>
+    <tr>
+        <td align="center" bgcolor="#FFFFFF" height="32"></td>
+        <td align="center" class="lossrate" bgcolor="#FFFFFF" height="32"></td>
+        <td align="center" bgcolor="#FFFFFF"></td>
+    </tr>
     <tr>
         <td align="center" bgcolor="#FFFFFF" colspan="3" height="30">
             <button value="submit" type="button" class="submitBtn_tz" onclick="OnSave()"><span>&nbsp;保&nbsp;存&nbsp;</span></button>&nbsp;&nbsp;&nbsp;
@@ -370,7 +384,7 @@
             {
                 foreach(OWZX.Model.MD_BettMode item in @Model)
                  {
-                     item.Bettinfo = item.Bettinfo.
+                     item.Bettinfo = item.Bettinfo.Trim().
                          Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57"); 
                     var arr = item.Bettinfo.Split(';');
                     
@@ -380,7 +394,7 @@
                         
                     <text>ModelDatas[@mdindex][parseInt(@sz[0])] = @sz[1];</text>
                     }
-                    <text>ModelDatas[@mdindex][57] = @item.Betttotal;
+                    <text>ModelDatas[@mdindex][58] = @item.Betttotal;
                          ModeNames[@mdindex] = '@item.Name';</text>
                     mdindex++;
               }

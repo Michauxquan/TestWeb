@@ -204,7 +204,7 @@ select  ROW_NUMBER() over(order by a.bettid desc) id,a.lotterynum,a.addtime,c.re
 case when c.status=2 then (
 case when ISNULL(a.winmoney,0)>=0 then ISNULL(a.winmoney,0)-a.money else ISNULL(a.winmoney,0) end ) else 0 end win,
 a.bettid,a.bettinfo
-,c.status,c.opentime,a.lotteryid
+,c.status,c.opentime,a.lotteryid,isnull(c.resulttype,'') resulttype
 into #lotrecord  
 from owzx_bett a 
 join owzx_lotteryrecord c on a.lotteryid=c.type and a.lotterynum=c.expect and c.type={0} and a.uid={1}
@@ -466,9 +466,10 @@ end catch
         /// </summary>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        public DataSet GetLotSetList(string type, string condition = "")
+        public DataSet GetLotSetList(string type, string condition = "",bool islhcbett=false)
         {
-            string commandText = string.Format(@"
+            StringBuilder strb = new StringBuilder();
+            strb.AppendFormat(@"
 
 declare @type int
 set @type={0}
@@ -530,6 +531,38 @@ select * from  #list where id>=1 and id<=8
 
 select * from  #list where id>=9 and id<=18
 end
+
+
+", type,condition);
+            if (islhcbett)
+            {
+                strb.AppendFormat(@"
+else if( @type in (13))
+begin
+select * from 
+(
+select top 17 * from  #list where (bttypeid>=12 and bttypeid <=28 ) order by bttypeid  ) a
+union all
+select * from (
+select top 17 * from  #list where (bttypeid>=29 and bttypeid <=38) 
+or (bttypeid>=135 and bttypeid <=137) order by bttypeid) a
+
+
+select * from (
+select top 17 * from  #list where (bttypeid>=138 and bttypeid <=141) order by bttypeid) a
+union all
+select * from 
+(
+select top 17 * from  #list where (bttypeid>=142 and bttypeid <=156 ) order by bttypeid  ) a
+union all
+select * from (
+select top 8 * from  #list where setid between 249 and 256 order by bttypeid  ) a
+end
+");
+            }
+            else
+            {
+                strb.AppendFormat(@"
 else if( @type in (13))
 begin
 select * from 
@@ -551,16 +584,22 @@ select * from
 select top 17 * from  #list where (bttypeid>=142 and bttypeid <=156 ) order by bttypeid  ) a
 union all
 select * from  #list where  setid=250 or setid=255
-
 end
+");
+            }
+
+            strb.AppendFormat(@"
+
 end try
 begin catch
 select ERROR_MESSAGE() state
 end catch
+");
 
-", type,condition);
 
-            return RDBSHelper.ExecuteDataset(CommandType.Text, commandText, null);
+
+
+            return RDBSHelper.ExecuteDataset(CommandType.Text, strb.ToString(), null);
         }
         
         #endregion

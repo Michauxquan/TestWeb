@@ -58,8 +58,11 @@
             <a href="javascript:loadpage('bettrecords')" target="_parent">投注记录</a>
             <span class="wh12">|</span>
             <a href="javascript:loadpage('models')" target="_parent">模式编辑</a>
+            @if (@Model.LotteryType != 13)
+            {
             <span class="wh12">|</span>
             <a href="javascript:loadpage('autobett')" target="_parent">自动投注</a>
+            }
         </div>
         <div class="lot_content">
 
@@ -171,10 +174,51 @@
                             }
                             else
                             {
-                                string orderresult = @Model.lotterylist.Prev_Lottery.Orderresult;
-                                <span style="margin-left:60px;font-size:15px;">
-                                    特码:<span>@Model.lotterylist.Prev_Lottery.ResultType.Split(',')[0]</span>
-                                    大小单双:<span>@Model.lotterylist.Prev_Lottery.ResultType.Split(',')[0]</span>
+                                string resulttype = @Model.lotterylist.Prev_Lottery.ResultType;
+                                <span style="font-size:18px;">
+                                    结果:
+                                    @if (resulttype != null && resulttype != string.Empty)
+                                    {
+                                        string[] type = resulttype.Split(',');
+
+                                        <span class="ltresult pcresult mRight20 bold">@type[0]</span>
+                                        if (@type[1] == "大")
+                                        {
+                                            <span class="da mRight20 bold">@type[1]</span>
+                                        }
+                                        else if (@type[1] == "小")
+                                        {
+                                            <span class="xiao mRight20 bold">@type[1]</span>
+                                        }
+
+                                        if (@type[2] == "单")
+                                        {
+                                            <span class="dan mRight20 bold">@type[2]</span>
+                                        }
+                                        else if (@type[2] == "双")
+                                        {
+                                            <span class="shuang mRight20 bold">@type[2]</span>
+                                        }
+
+                                        if (@type[3] == "红波")
+                                        {
+                                            <span class="shuang mRight20 bold">@type[3]</span>
+                                        }
+                                        else if (@type[3] == "蓝波")
+                                        {
+                                            <span class="xiaos mRight20 bold">@type[3]</span>
+                                        }
+                                        else if (@type[3] == "绿波")
+                                        {
+                                            <span class="green mRight20 bold">@type[3]</span>
+                                        }
+                                        else if (@type[3] == "和局")
+                                        {
+                                            <span class="dan mRight20 bold">@type[3]</span>
+                                        }
+
+                                    }
+
                                 </span>
                             }
                         </div>
@@ -183,7 +227,7 @@
 
             </div>
             <div class="dv">
-                <div style="width:30%; display:block;float:left;" class="remains">
+                <div style="width:31%; display:block;float:left;" class="remains">
                     第 <i class="bold">@Model.lotterylist.LastNumber</i>期
                     @if (Model.lotterylist.RemainS > Model.StopTime && Model.lotterylist.RemainS <= Model.TotalS
                         )
@@ -205,7 +249,7 @@
                         GetRTime(lotterytype,@(string.IsNullOrEmpty(Model.lotterylist.RemainS.ToString())?-40:Model.lotterylist.RemainS),@(string.IsNullOrEmpty(Model.lotterylist.LastNumber)?"0":Model.lotterylist.LastNumber) ,@Model.TotalS,@Model.StopTime,@Model.lotterylist.Prev_Lottery.Expect)
                     });
                 </script>
-                <div style="width:48%;display:block;float:left;">
+                <div style="width:47%;display:block;float:left;">
                     今日盈亏: <span class="ltwarn">@Model.lotterylist.TdProf.ToString("N0")</span> 参与: <i class="bold">@Model.lotterylist.TdBettNum</i>期 胜率: <i class="bold">@Model.lotterylist.WinPercent%</i>
                 </div>
                 <div style="width: 22%; display: block; float: left; text-align: right;">投注无上限,中奖无上限
