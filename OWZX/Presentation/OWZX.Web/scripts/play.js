@@ -494,7 +494,12 @@ function ani_select() {
             {
                 if (lotterytype != 13)
                 {
-                    $(this).parent().next("td").children("input").val(nub1[i]); //改了
+                    if (lotterytype == 7)
+                        $(this).parent().next("td").children("input").val(pkgj); //改了
+                    else if (lotterytype == 10)
+                        $(this).parent().next("td").children("input").val(pkgyj[i]); //改了
+                    else
+                        $(this).parent().next("td").children("input").val(nub1[i]); //改了
                 }
                 else
                 {
@@ -517,7 +522,12 @@ $("input[name='checkboxd']").each(function (i, v) {
             {
                 if (lotterytype != 13)
                 {
-                    $(this).parent().next("td").children("input").val(nub1[i]); //改了
+                    if (lotterytype == 7)
+                        $(this).parent().next("td").children("input").val(pkgj); //改了
+                    else if (lotterytype == 10)
+                        $(this).parent().next("td").children("input").val(pkgyj[i]); //改了
+                    else
+                        $(this).parent().next("td").children("input").val(nub1[i]); //改了
                 }
                 else
                 {
