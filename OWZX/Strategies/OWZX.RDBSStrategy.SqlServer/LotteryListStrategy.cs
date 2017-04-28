@@ -534,8 +534,7 @@ end
 
 
 ", type,condition);
-            if (islhcbett)
-            {
+            
                 strb.AppendFormat(@"
 else if( @type in (13))
 begin
@@ -544,49 +543,26 @@ select * from
 select top 17 * from  #list where (bttypeid>=12 and bttypeid <=28 ) order by bttypeid  ) a
 union all
 select * from (
-select top 17 * from  #list where (bttypeid>=29 and bttypeid <=38) 
-or (bttypeid>=135 and bttypeid <=137) order by bttypeid) a
+select top 17 * from  #list where (bttypeid>=29 and bttypeid <=36) 
+ order by bttypeid) a
 
 
 select * from (
-select top 17 * from  #list where (bttypeid>=138 and bttypeid <=141) order by bttypeid) a
+select top 17 * from  #list where (bttypeid>=37 and bttypeid <=38) or (bttypeid>=135 and bttypeid <=141) order by bttypeid) a
 union all
 select * from 
 (
 select top 17 * from  #list where (bttypeid>=142 and bttypeid <=156 ) order by bttypeid  ) a
-union all
+
+
+
 select * from (
 select top 8 * from  #list where setid between 249 and 256 order by bttypeid  ) a
-end
-");
-            }
-            else
-            {
-                strb.AppendFormat(@"
-else if( @type in (13))
-begin
-select * from 
-(
-select top 17 * from  #list where (bttypeid>=12 and bttypeid <=28 ) order by bttypeid  ) a
-union all
-select * from  #list where setid=249 or setid=251 or setid=256
 
 select * from (
-select top 17 * from  #list where (bttypeid>=29 and bttypeid <=38) 
-or (bttypeid>=135 and bttypeid <=141) order by bttypeid) a
-union all
-select * from  #list where setid=252 or setid=254 
-union all
-select * from  #list where setid=253 
-
-select * from 
-(
-select top 17 * from  #list where (bttypeid>=142 and bttypeid <=156 ) order by bttypeid  ) a
-union all
-select * from  #list where  setid=250 or setid=255
+select top 12 * from  #list where bttypeid between 161 and 172 order by bttypeid  ) a
 end
 ");
-            }
 
             strb.AppendFormat(@"
 
@@ -595,9 +571,6 @@ begin catch
 select ERROR_MESSAGE() state
 end catch
 ");
-
-
-
 
             return RDBSHelper.ExecuteDataset(CommandType.Text, strb.ToString(), null);
         }

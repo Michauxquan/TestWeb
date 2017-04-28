@@ -58,6 +58,21 @@
     .newtr a:hover {
     cursor:pointer;
     }
+    .bt_state {
+    float:right; cursor:pointer;
+    }
+  #tb_num h4 b,#tb_dxds h4 b,#tb_sx h4 b {
+display: inline-block;
+cursor: pointer;
+right: 15px;
+top: 7px;
+width: 26px;
+height: 26px;
+text-align: center;
+color: #666;
+float: right;
+font-size: 20px;
+}
 </style>
 <script src="~/scripts/selmode.js"></script>
 <script src="~/scripts/betmode.js"></script>
@@ -191,34 +206,37 @@
     DataSet ds = (DataSet)ViewData["ltset"];
     int lottype = (int)@ViewData["lotterytype"];
 }
-<table style="width: 303px; float: left;margin-top:10px;" bgcolor="#FFB91F" border="0" cellpadding="0" cellspacing="1" align="center" class="tb_btmode">
-    <tr>
-        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" height="28"
-            width="18%">
-            预测结果
-        </td>
-        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" height="28"
-            width="18%">
-            当前赔率
-        </td>
-        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" width="64%">投注</td>
-    </tr>
-    @foreach (DataRow row in ds.Tables[0].Rows)
+<div id="tb_num" style="width:910px;background-color:#eee;margin-top:20px;cursor:pointer;" onclick="change('tb_num')">
+    <h4 style="font-size:15px;padding-left:10px;">特码<b>-</b></h4>
+</div>
+<table style="width: 455px; float: left;" bgcolor="#FFB91F" border="0" cellpadding="0" cellspacing="1" align="center" class="tb_btmode tb_num">
+        <tr>
+            <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" height="28"
+                width="18%">
+                预测结果
+            </td>
+            <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" height="28"
+                width="18%">
+                当前赔率
+            </td>
+            <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" width="64%">投注</td>
+        </tr>
+        @foreach (DataRow row in ds.Tables[0].Rows)
     {
-        string num = @row["item"].ToString().Trim().Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57"); 
+        string num = @row["item"].ToString().Trim().Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
 
-        <text>
-            <tr>
-                <td align="center" bgcolor="#FFFFFF" height="30">
-                    @if (ValidateHelper.IsNumeric(@row["item"].ToString()))
+            <text>
+                <tr>
+                    <td align="center" bgcolor="#FFFFFF" height="30">
+                        @if (ValidateHelper.IsNumeric(@row["item"].ToString()))
                     {
-                        <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
-                              width="25" height="25">@row["item"]</span>
+                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                                  width="25" height="25">@row["item"]</span>
                     }
                     else
                     {
-                        <span class="ltresult lhbresult btnumber"
-                              width="25" height="25">@row["item"]</span>
+                            <span class="ltresult lhbresult btnumber"
+                                  width="25" height="25">@row["item"]</span>
                     }
                     </td>
                     <td align="center" class="lossrate" bgcolor="#FFFFFF" height="30" data-type="@num">@row["odds"]</td>
@@ -230,17 +248,17 @@
                         <input class="input3" name="Decrease" onclick="DecreaseMONEY(@num);" type="button" value="-" />
                     </td>
                 </tr>
-        </text>
+            </text>
     }
-    <tr>
-        <td align="center" bgcolor="#F4F4F4" colspan="3" height="30">
-            <span class="STYLE1">总投注额：</span>
-            <input id="SMONEYSUM" class="input1" name="SMONEYSUM" readonly="readonly" type="text"
-                   value="0" />
-        </td>
-    </tr>
-</table>
-<table style="width: 303px; float: left;margin-top:10px;" bgcolor="#FFB91F" border="0" cellpadding="0" cellspacing="1" align="center" class="tb_btmode">
+        <tr>
+            <td align="center" bgcolor="#F4F4F4" colspan="3" height="30">
+                <span class="STYLE1">总投注额：</span>
+                <input id="SMONEYSUM" class="input1" name="SMONEYSUM" readonly="readonly" type="text"
+                       value="0" />
+            </td>
+        </tr>
+    </table>
+<table style="width: 455px; float: left;" bgcolor="#FFB91F" border="0" cellpadding="0" cellspacing="1" align="center" class="tb_btmode tb_num">
     <tr>
         <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" height="28"
             width="18%">
@@ -250,14 +268,11 @@
             width="18%">
             当前赔率
         </td>
-        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF"
-            width="64%">
-            投注
-        </td>
+        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" width="64%">投注</td>
     </tr>
     @foreach (DataRow row in ds.Tables[1].Rows)
-        {
-            string num = @row["item"].ToString().Trim().Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57"); 
+    {
+        string num = @row["item"].ToString().Trim().Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
 
         <text>
             <tr>
@@ -266,14 +281,93 @@
                     {
                         <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
                               width="25" height="25">@row["item"]</span>
-                       }
-                       else
-                       {
+                    }
+                    else
+                    {
                         <span class="ltresult lhbresult btnumber"
                               width="25" height="25">@row["item"]</span>
-                       }
+                    }
                 </td>
                 <td align="center" class="lossrate" bgcolor="#FFFFFF" height="30" data-type="@num">@row["odds"]</td>
+                <td align="center" bgcolor="#FFFFFF">
+                    <input class="input3" id="SMONEY_@num" name="SMONEY" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))"
+                           onkeyup="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');inputsb(this.value,0);"
+                           size="15" type="text" value="0" maxlength="9" />
+                    <input class="input3" name="Add" onclick="AddMONEY(@num);" type="button" value="+" />
+                    <input class="input3" name="Decrease" onclick="DecreaseMONEY(@num);" type="button" value="-" />
+                </td>
+            </tr>
+        </text>
+    }
+    <tr>
+        <td align="center" bgcolor="#FFFFFF" colspan="3" height="32">
+            <span class="STYLE1"></span>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" bgcolor="#F4F4F4" colspan="3" height="30">
+            <button value="submit" type="button" class="submitBtn_tz" onclick="OnSave()"><span>&nbsp;保&nbsp;存&nbsp;</span></button>&nbsp;&nbsp;&nbsp;
+            <button value="submit" type="button" class="submitBtn_tz" onclick="OnDelete()"><span>&nbsp;删&nbsp;除&nbsp;</span></button>
+        </td>
+
+    </tr>
+</table>
+
+<div id="tb_dxds" style="width:910px;background-color:#eee;margin-top:20px;cursor:pointer;" onclick="change('tb_dxds')">
+    <h4 style="font-size:15px;padding-left:10px;">色波<b>-</b></h4>
+</div>
+<table style="width: 910px; float: left;" bgcolor="#FFB91F" border="0" cellpadding="0" cellspacing="1" align="center" class="tb_btmode tb_dxds">
+    <tr>
+        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" height="28"
+            width="9%">
+            预测结果
+        </td>
+        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" height="28"
+            width="9%">
+            当前赔率
+        </td>
+        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF"
+            width="32%">
+            投注
+        </td>
+        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" height="28"
+            width="9%">
+            预测结果
+        </td>
+        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" height="28"
+            width="9%">
+            当前赔率
+        </td>
+        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF"
+            width="32%">
+            投注
+        </td>
+    </tr>
+    @{
+        DataRowCollection qsb = ds.Tables[2].Rows;
+        int qsb_num1 = 0; int qsb_num2 = 4;
+    }
+    @for (int i = 0; i < 4;i++ )
+    {
+        
+        string num =qsb[qsb_num1]["item"].ToString().Trim().Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
+        string num2 = qsb[qsb_num2]["item"].ToString().Trim().Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
+
+        <text>
+            <tr>
+                <td align="center" bgcolor="#FFFFFF" height="30">
+                    @if (ValidateHelper.IsNumeric(qsb[qsb_num1]["item"].ToString()))
+                    {
+                        <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                              width="25" height="25">@qsb[qsb_num1]["item"]</span>
+                    }
+                    else
+                    {
+                        <span class="ltresult lhbresult btnumber"
+                              width="25" height="25">@qsb[qsb_num1]["item"]</span>
+                    }
+                </td>
+                <td align="center" class="lossrate" bgcolor="#FFFFFF" height="30" data-type="@num">@qsb[qsb_num1]["odds"]</td>
                 <td align="center" bgcolor="#FFFFFF">
                     <input class="input3" id="SMONEY_@num" name="SMONEY" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))"
                            onkeyup="if (event.keyCode != 37 && event.keyCode != 39) value = value.replace(/\D/g, '');inputsb(this.value, 0);"
@@ -281,50 +375,100 @@
                     <input class="input3" name="Add" onclick="AddMONEY(@num);" type="button" value="+" />
                     <input class="input3" name="Decrease" onclick="DecreaseMONEY(@num);" type="button" value="-" />
                 </td>
+                <td align="center" bgcolor="#FFFFFF" height="30">
+                    @if (ValidateHelper.IsNumeric(qsb[qsb_num2]["item"].ToString()))
+                    {
+                        <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                              width="25" height="25">@qsb[qsb_num2]["item"]</span>
+                    }
+                    else
+                    {
+                        <span class="ltresult lhbresult btnumber"
+                              width="25" height="25">@qsb[qsb_num2]["item"]</span>
+                    }
+                </td>
+                <td align="center" class="lossrate" bgcolor="#FFFFFF" height="30" data-type="@num2">@qsb[qsb_num2]["odds"]</td>
+                <td align="center" bgcolor="#FFFFFF">
+                    <input class="input3" id="SMONEY_@num2" name="SMONEY" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))"
+                           onkeyup="if (event.keyCode != 37 && event.keyCode != 39) value = value.replace(/\D/g, '');inputsb(this.value, 0);"
+                           size="15" type="text" value="0" maxlength="9" />
+                    <input class="input3" name="Add" onclick="AddMONEY(@num2);" type="button" value="+" />
+                    <input class="input3" name="Decrease" onclick="DecreaseMONEY(@num2);" type="button" value="-" />
+                </td>
             </tr>
         </text>
-        }
+                    qsb_num1 ++;  qsb_num2 ++;
+    }
     <tr>
-        <td align="center" bgcolor="#FFFFFF" colspan="3" height="30">
+        <td align="center" bgcolor="#F4F4F4" colspan="3" height="30">
+            <span class="STYLE1">总投注额：</span>
+            <input id="SMONEYSUM" class="input1" name="SMONEYSUM" readonly="readonly" type="text"
+                   value="0" />
+        </td>
+        <td align="center" bgcolor="#F4F4F4" colspan="3" height="30">
             <button value="submit" type="button" class="submitBtn_tz" onclick="OnSave()"><span>&nbsp;保&nbsp;存&nbsp;</span></button>&nbsp;&nbsp;&nbsp;
             <button value="submit" type="button" class="submitBtn_tz" onclick="OnDelete()"><span>&nbsp;删&nbsp;除&nbsp;</span></button>
         </td>
 
     </tr>
 </table>
-<table style="width: 303px; float: left;margin-top:10px;" bgcolor="#FFB91F" border="0" cellpadding="0" cellspacing="1" align="center" class="tb_btmode">
+
+<div id="tb_sx" style="width:910px;background-color:#eee;margin-top:20px;cursor:pointer;" onclick="change('tb_sx')">
+    <h4 style="font-size:15px;padding-left:10px;">特码生肖<b>-</b></h4>
+</div>
+<table style="width: 910px; float: left;" bgcolor="#FFB91F" border="0" cellpadding="0" cellspacing="1" align="center" class="tb_btmode tb_sx">
     <tr>
         <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" height="28"
-            width="18%">
+            width="9%">
             预测结果
         </td>
         <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" height="28"
-            width="18%">
+            width="9%">
             当前赔率
         </td>
         <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF"
-            width="64%">
+            width="32%">
+            投注
+        </td>
+        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" height="28"
+            width="9%">
+            预测结果
+        </td>
+        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF" height="28"
+            width="9%">
+            当前赔率
+        </td>
+        <td align="center" background="../../images/xy28_bg.gif" bgcolor="#FFFFFF"
+            width="32%">
             投注
         </td>
     </tr>
-    @foreach (DataRow row in ds.Tables[2].Rows)
+@{
+        DataRowCollection tmsx = ds.Tables[3].Rows;
+        int tmsx_num1 = 0; int tmsx_num2 = 6;
+}
+    @for (int i = 0; i < 6;i++ )
     {
-        string num = @row["item"].ToString().Trim().Replace("大", "50").Replace("小", "51").Replace("单", "52").
-            Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
-       <tr>
+        string num = tmsx[tmsx_num1]["item"].ToString().Trim().Replace("鼠", "58").Replace("牛", "59").Replace("虎", "60").
+            Replace("兔", "61").Replace("龙", "62").Replace("蛇", "63").Replace("马", "64").Replace("羊", "65")
+            .Replace("猴", "66").Replace("鸡", "67").Replace("狗", "68").Replace("猪", "69");
+        string num2 = tmsx[tmsx_num2]["item"].ToString().Trim().Replace("鼠", "58").Replace("牛", "59").Replace("虎", "60").
+                Replace("兔", "61").Replace("龙", "62").Replace("蛇", "63").Replace("马", "64").Replace("羊", "65")
+                .Replace("猴", "66").Replace("鸡", "67").Replace("狗", "68").Replace("猪", "69");
+        <tr>
             <td align="center" bgcolor="#FFFFFF" height="30">
-                @if (ValidateHelper.IsNumeric(@row["item"].ToString()))
-                    {
+                @if (ValidateHelper.IsNumeric(@tmsx[tmsx_num1]["item"].ToString()))
+                {
                     <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
-                          width="25" height="25">@row["item"]</span>
-                    }
-                    else
-                    {
+                          width="25" height="25">@tmsx[tmsx_num1]["item"]</span>
+                }
+                else
+                {
                     <span class="ltresult lhbresult btnumber"
-                          width="25" height="25">@row["item"]</span>
-                    }
+                          width="25" height="25">@tmsx[tmsx_num1]["item"]</span>
+                }
             </td>
-            <td align="center" class="lossrate" bgcolor="#FFFFFF" height="30" data-type="@num">@row["odds"]</td>
+            <td align="center" class="lossrate" bgcolor="#FFFFFF" height="30" data-type="@num">@tmsx[tmsx_num1]["odds"]</td>
             <td align="center" bgcolor="#FFFFFF">
                 <input class="input3" id="SMONEY_@num" name="SMONEY" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))"
                        onkeyup="if (event.keyCode != 37 && event.keyCode != 39) value = value.replace(/\D/g, '');inputsb(this.value, 0);"
@@ -332,32 +476,45 @@
                 <input class="input3" name="Add" onclick="AddMONEY(@num);" type="button" value="+" />
                 <input class="input3" name="Decrease" onclick="DecreaseMONEY(@num);" type="button" value="-" />
             </td>
+            <td align="center" bgcolor="#FFFFFF" height="30">
+                @if (ValidateHelper.IsNumeric(@tmsx[tmsx_num2]["item"].ToString()))
+                {
+                    <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                          width="25" height="25">@tmsx[tmsx_num2]["item"]</span>
+                }
+                else
+                {
+                    <span class="ltresult lhbresult btnumber"
+                          width="25" height="25">@tmsx[tmsx_num2]["item"]</span>
+                }
+            </td>
+            <td align="center" class="lossrate" bgcolor="#FFFFFF" height="30" data-type="@num2">@tmsx[tmsx_num2]["odds"]</td>
+            <td align="center" bgcolor="#FFFFFF">
+                <input class="input3" id="SMONEY_@num2" name="SMONEY" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))"
+                       onkeyup="if (event.keyCode != 37 && event.keyCode != 39) value = value.replace(/\D/g, '');inputsb(this.value, 0);"
+                       size="15" type="text" value="0" maxlength="9" />
+                <input class="input3" name="Add" onclick="AddMONEY(@num2);" type="button" value="+" />
+                <input class="input3" name="Decrease" onclick="DecreaseMONEY(@num2);" type="button" value="-" />
+            </td>
         </tr>
-       
+                tmsx_num1++; tmsx_num2++;
     }
+    
     <tr>
-        <td align="center" bgcolor="#FFFFFF" height="32"></td>
-        <td align="center" class="lossrate" bgcolor="#FFFFFF" height="32"></td>
-        <td align="center" bgcolor="#FFFFFF"></td>
-    </tr>
-    <tr>
-        <td align="center" bgcolor="#FFFFFF" height="32"></td>
-        <td align="center" class="lossrate" bgcolor="#FFFFFF" height="32"></td>
-        <td align="center" bgcolor="#FFFFFF"></td>
-    </tr>
-    <tr>
-        <td align="center" bgcolor="#FFFFFF" height="32"></td>
-        <td align="center" class="lossrate" bgcolor="#FFFFFF" height="32"></td>
-        <td align="center" bgcolor="#FFFFFF"></td>
-    </tr>
-    <tr>
-        <td align="center" bgcolor="#FFFFFF" colspan="3" height="30">
+        <td align="center" bgcolor="#F4F4F4" colspan="3" height="30">
+            <span class="STYLE1">总投注额：</span>
+            <input id="SMONEYSUM" class="input1" name="SMONEYSUM" readonly="readonly" type="text"
+                   value="0" />
+        </td>
+        <td align="center" bgcolor="#F4F4F4" colspan="3" height="30">
             <button value="submit" type="button" class="submitBtn_tz" onclick="OnSave()"><span>&nbsp;保&nbsp;存&nbsp;</span></button>&nbsp;&nbsp;&nbsp;
             <button value="submit" type="button" class="submitBtn_tz" onclick="OnDelete()"><span>&nbsp;删&nbsp;除&nbsp;</span></button>
         </td>
 
     </tr>
 </table>
+
+
 
 <div style="height:0;overflow:hidden;clear:both;"></div>
 
@@ -402,6 +559,18 @@
         }
 
 
+    }
+
+    function change(name)
+    {  
+        $("."+name).toggle()
+        if($("#"+name+" b").text()=="-")
+        {
+            $("#"+name+" b").text("+")
+        }else
+        {
+            $("#"+name+" b").text("-")
+        }
     }
 </script>
 
