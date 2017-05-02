@@ -70,6 +70,21 @@
             font-size: 14px;
             text-indent: 0px;
         }
+        .bt_state {
+    float:right; cursor:pointer;
+    }
+  #tb_num h4 b,#tb_dxds h4 b,#tb_sx h4 b {
+display: inline-block;
+cursor: pointer;
+right: 15px;
+top: 7px;
+width: 26px;
+height: 26px;
+text-align: center;
+color: #666;
+float: right;
+font-size: 20px;
+}
 </style>
 
 
@@ -186,7 +201,11 @@
         }
        
         <input class="input2" name="SMONEYY" type="hidden" value="ALD" />
-        <table style="width:455px;color: Black;border-collapse:collapse; border:1px solid #cacaca;border-top:none;border-right:none;" border="0" cellpadding="0" cellspacing="1" align="left">
+        <div id="tb_num" style="width:910px;background-color:#eee;margin-top:20px;cursor:pointer;" onclick="change('tb_num')">
+            <h4 style="font-size:15px;padding-left:10px;">特码<b>-</b></h4>
+        </div>
+        <table style="width:455px;color: Black;border-collapse:collapse; border:1px solid #cacaca;border-top:none;border-right:none;" border="0"
+               cellpadding="0" cellspacing="1" align="left" class="tb_btmode tb_num">
             <tr align="center" height="20">
                 <th width="50">号码</th>
                 <th width="71" style="display: none;">上期赔率</th>
@@ -198,43 +217,43 @@
             </tr>
             @foreach (DataRow row in ds.Tables[0].Rows)
             {
-                string num = @row["item"].ToString().Trim().Replace("大", "50").Replace("小", "51").Replace("单", "52").
-              Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
-            <text>
-                <tr align="center" bgcolor="#FFFFFF" height="27">
-                    <td>
-                        @if (ValidateHelper.IsNumeric(@row["item"].ToString()))
+                string num = @row["item"].ToString().Trim();
+                <text>
+                    <tr align="center" bgcolor="#FFFFFF" height="27">
+                        <td>
+                            @if (ValidateHelper.IsNumeric(@row["item"].ToString()))
                         {
-                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
-                                  width="25" height="25">@row["item"]</span>
+                        <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                              width="25" height="25">@row["item"]</span>
                         }
                         else
                         {
-                            <span class="ltresult lhbresult btnumber"
-                                  width="25" height="25">@row["item"]</span>
+                        <span class="ltresult lhbresult btnumber"
+                              width="25" height="25">@row["item"]</span>
                         }
-                    </td>
-                    <td style="display: none;"></td>
-                    <td class="lossrate" data-type=@row["item"]>@row["odds"]</td>
-                    <td ><span id="span_@num"></span></td>
-                    <td>
-                        <input type="checkbox" name="checkboxd" value="checkbox" />
-                    </td>
-                    <td>
-                        <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
-                               id="txt_@num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
-                    </td>
-                    <td style="width: 120px;">
-                        <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
-                        <a class="multiple" href="javascript:chgTimes('txt_@num',2)">2</a>
-                        <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>
-                    </td>
-                </tr>
-            </text>
+                        </td>
+                        <td style="display: none;"></td>
+                        <td class="lossrate" data-type=@row["item"]>@row["odds"]</td>
+                        <td><span id="span_@num"></span></td>
+                        <td>
+                            <input type="checkbox" name="checkboxd" value="checkbox" />
+                        </td>
+                        <td>
+                            <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
+                                   id="txt_@num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                        </td>
+                        <td style="width: 120px;">
+                            <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
+                            <a class="multiple" href="javascript:chgTimes('txt_@num',2)">2</a>
+                            <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>
+                        </td>
+                    </tr>
+                </text>
             }
-
+           
         </table>
-        <table style="width:455px;color: Black;border-collapse:collapse;border:1px solid #cacaca;border-top:none;border-left:none;" border="0" cellpadding="0" cellspacing="1" align="right">
+        <table style="width:455px;color: Black;border-collapse:collapse;border:1px solid #cacaca;border-top:none;border-left:none;"
+               border="0" cellpadding="0" cellspacing="1" align="right" class="tb_btmode tb_num">
             <tr align="center" height="20">
                 <th width="50">号码</th>
                 <th width="71" style="display: none;">上期赔率</th>
@@ -244,32 +263,31 @@
                 <th width="100">投注</th>
                 <th width="120">倍数</th>
             </tr>
-             
+
             @foreach (DataRow row in ds.Tables[1].Rows)
             {
-                string num = @row["item"].ToString().Trim().Replace("大", "50").Replace("小", "51").Replace("单", "52").
-            Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
+                string num = @row["item"].ToString().Trim();
                 <tr align="center" bgcolor="#FFFFFF" height="27">
                     <td>
                         @if (ValidateHelper.IsNumeric(@row["item"].ToString()))
                         {
-                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
-                                  width="25" height="25">@row["item"]</span>
+                        <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                              width="25" height="25">@row["item"]</span>
                         }
                         else
                         {
-                            <span class="ltresult lhbresult btnumber"
-                                  width="25" height="25">@row["item"]</span>
+                        <span class="ltresult lhbresult btnumber"
+                              width="25" height="25">@row["item"]</span>
                         }
                     </td>
                     <td style="display: none;"></td>
                     <td class="lossrate" data-type=@row["item"]>@row["odds"]</td>
-                     <td ><span id="span_@num"></span></td>
+                    <td><span id="span_@num"></span></td>
                     <td>
-                        <input type="checkbox" name="checkboxd" value="checkbox"/>
+                        <input type="checkbox" name="checkboxd" value="checkbox" />
                     </td>
                     <td>
-                        <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled" id='txt_@num' onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8"/>
+                        <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled" id='txt_@num' onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
                     </td>
                     <td style="width: 120px;">
                         <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
@@ -277,9 +295,253 @@
                         <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>
                     </td>
                 </tr>
-            } 
+            }
+            <tr>
+                <td align="center" bgcolor="#FFFFFF" colspan="6" height="32">
+                    <span class="STYLE1"></span>
+                </td>
+            </tr>
+           
+        </table>
+
+        <div id="tb_dxds" style="width:910px;background-color:#eee;margin-top:20px;cursor:pointer;" onclick="change('tb_dxds')" >
+            <h4 style="font-size:15px;padding-left:10px;">色波<b>-</b></h4>
+        </div>
+        <table style="width:455px;color: Black;border-collapse:collapse; border:1px solid #cacaca;border-top:none;border-right:none;"
+               border="0" cellpadding="0" cellspacing="1" align="left" class="tb_btmode tb_dxds">
+            <tr align="center" height="20">
+                <th width="50">号码</th>
+                <th width="71" style="display: none;">上期赔率</th>
+                <th width="71">当前赔率</th>
+                <th width="71">已投注</th>
+                <th width="53">请选择</th>
+                <th width="100">投注</th>
+                <th width="120">倍数</th>
+              
+            </tr>
+            @{
+                DataRowCollection qsb = ds.Tables[2].Rows;
+                int qsb_num1 = 0; int qsb_num2 = 4;
+            }
+            @for (int i = 0; i < 4; i++)
+            {
+
+                string num = qsb[qsb_num1]["item"].ToString().Trim();//.Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
+
+                <text>
+                    <tr align="center" bgcolor="#FFFFFF" height="27">
+                        <td>
+                            @if (ValidateHelper.IsNumeric(qsb[qsb_num1]["item"].ToString()))
+                            {
+                                <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                                      width="25" height="25">@qsb[qsb_num1]["item"]</span>
+                            }
+                            else
+                            {
+                                <span class="ltresult lhbresult btnumber"
+                                      width="25" height="25">@qsb[qsb_num1]["item"]</span>
+                            }
+                        </td>
+                        <td style="display: none;"></td>
+                        <td class="lossrate" data-type=@qsb[qsb_num1]["item"]>@qsb[qsb_num1]["odds"]</td>
+                        <td><span id="span_@num"></span></td>
+                        <td>
+                            <input type="checkbox" name="checkboxd" value="checkbox" />
+                        </td>
+                        <td>
+                            <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
+                                   id="txt_@num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                        </td>
+                        <td style="width: 120px;">
+                            <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
+                            <a class="multiple" href="javascript:chgTimes('txt_@num',2)">2</a>
+                            <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>
+                        </td>
+                        
+                    </tr>
+                </text>
+                            qsb_num1++; 
+            }
+            
+        </table>
+        <table style="width:455px;color: Black;border-collapse:collapse; border:1px solid #cacaca;border-top:none;border-right:none;"
+               border="0" cellpadding="0" cellspacing="1" align="left" class="tb_btmode tb_dxds">
+            <tr align="center" height="20">
+                <th width="50">号码</th>
+                <th width="71" style="display: none;">上期赔率</th>
+                <th width="71">当前赔率</th>
+                <th width="71">已投注</th>
+                <th width="53">请选择</th>
+                <th width="100">投注</th>
+                <th width="120">倍数</th>
+               
+            </tr>
+            
+            @for (int i = 0; i < 4; i++)
+            {
+                string num2 = qsb[qsb_num2]["item"].ToString().Trim();//.Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
+
+                <text>
+                    <tr align="center" bgcolor="#FFFFFF" height="27">
+                        
+                        <td>
+                            @if (ValidateHelper.IsNumeric(qsb[qsb_num2]["item"].ToString()))
+                            {
+                                <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                                      width="25" height="25">@qsb[qsb_num2]["item"]</span>
+                            }
+                            else
+                            {
+                                <span class="ltresult lhbresult btnumber"
+                                      width="25" height="25">@qsb[qsb_num2]["item"]</span>
+                            }
+                        </td>
+                        <td style="display: none;"></td>
+                        <td class="lossrate" data-type=@qsb[qsb_num2]["item"]>@qsb[qsb_num2]["odds"]</td>
+                        <td><span id="span_@num2"></span></td>
+                        <td>
+                            <input type="checkbox" name="checkboxd" value="checkbox" />
+                        </td>
+                        <td>
+                            <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
+                                   id="txt_@num2" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                        </td>
+                        <td style="width: 120px;">
+                            <a class="multiple" href="javascript:chgTimes('txt_@num2',0.5)">.5</a>
+                            <a class="multiple" href="javascript:chgTimes('txt_@num2',2)">2</a>
+                            <a class="multiple" href="javascript:chgTimes('txt_@num2',10)">10</a>
+                        </td>
+                    </tr>
+                </text>
+                          qsb_num2++;
+            }
 
         </table>
-       
+
+        <div id="tb_sx" style="width:910px;background-color:#eee;margin-top:20px;cursor:pointer;" onclick="change('tb_sx')">
+            <h4 style="font-size:15px;padding-left:10px;">特码生肖<b>-</b></h4>
+        </div>
+        <table style="width:455px;color: Black;border-collapse:collapse; border:1px solid #cacaca;border-top:none;border-right:none;"
+               border="0" cellpadding="0" cellspacing="1" align="left" class="tb_btmode tb_sx">
+            <tr align="center" height="20">
+                <th width="50">号码</th>
+                <th width="71" style="display: none;">上期赔率</th>
+                <th width="71">当前赔率</th>
+                <th width="71">已投注</th>
+                <th width="53">请选择</th>
+                <th width="100">投注</th>
+                <th width="120">倍数</th>
+            </tr>
+            @{
+                DataRowCollection tmsx = ds.Tables[3].Rows;
+                int tmsx_num1 = 0; int tmsx_num2 = 6;
+            }
+            @for (int i = 0; i < 6; i++)
+            {
+                string num = tmsx[tmsx_num1]["item"].ToString().Trim();//.Replace("鼠", "58").Replace("牛", "59").Replace("虎", "60").
+                   // Replace("兔", "61").Replace("龙", "62").Replace("蛇", "63").Replace("马", "64").Replace("羊", "65")
+                    //.Replace("猴", "66").Replace("鸡", "67").Replace("狗", "68").Replace("猪", "69");
+                <text>
+                    <tr align="center" bgcolor="#FFFFFF" height="27">
+                        <td>
+                            @if (ValidateHelper.IsNumeric(tmsx[tmsx_num1]["item"].ToString()))
+                            {
+                                <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                                      width="25" height="25">@tmsx[tmsx_num1]["item"]</span>
+                            }
+                            else
+                            {
+                                <span class="ltresult lhbresult btnumber"
+                                      width="25" height="25">@tmsx[tmsx_num1]["item"]</span>
+                            }
+                        </td>
+                        <td style="display: none;"></td>
+                        <td class="lossrate" data-type=@tmsx[tmsx_num1]["item"]>@tmsx[tmsx_num1]["odds"]</td>
+                        <td><span id="span_@num"></span></td>
+                        <td>
+                            <input type="checkbox" name="checkboxd" value="checkbox" />
+                        </td>
+                        <td>
+                            <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
+                                   id="txt_@num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                        </td>
+                        <td style="width: 120px;">
+                            <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
+                            <a class="multiple" href="javascript:chgTimes('txt_@num',2)">2</a>
+                            <a class="multiple" href="javascript:chgTimes('txt_@num',10)">10</a>
+                        </td>
+                       
+                    </tr>
+                </text>
+                            tmsx_num1++; 
+            }
+
+        </table>
+        <table style="width:455px;color: Black;border-collapse:collapse; border:1px solid #cacaca;border-top:none;border-right:none;"
+               border="0" cellpadding="0" cellspacing="1" align="left" class="tb_btmode tb_sx">
+            <tr align="center" height="20">
+                <th width="50">号码</th>
+                <th width="71" style="display: none;">上期赔率</th>
+                <th width="71">当前赔率</th>
+                <th width="71">已投注</th>
+                <th width="53">请选择</th>
+                <th width="100">投注</th>
+                <th width="120">倍数</th>
+            </tr>
+           
+            @for (int i = 0; i < 6; i++)
+            {
+
+                string num2 = tmsx[tmsx_num2]["item"].ToString().Trim();//.Replace("鼠", "58").Replace("牛", "59").Replace("虎", "60").
+                       // Replace("兔", "61").Replace("龙", "62").Replace("蛇", "63").Replace("马", "64").Replace("羊", "65")
+                       // .Replace("猴", "66").Replace("鸡", "67").Replace("狗", "68").Replace("猪", "69");
+                <text>
+                    <tr align="center" bgcolor="#FFFFFF" height="27">
+                        <td>
+                            @if (ValidateHelper.IsNumeric(tmsx[tmsx_num2]["item"].ToString()))
+                            {
+                                <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                                      width="25" height="25">@tmsx[tmsx_num2]["item"]</span>
+                            }
+                            else
+                            {
+                                <span class="ltresult lhbresult btnumber"
+                                      width="25" height="25">@tmsx[tmsx_num2]["item"]</span>
+                            }
+                        </td>
+                        <td style="display: none;"></td>
+                        <td class="lossrate" data-type=@tmsx[tmsx_num2]["item"]>@tmsx[tmsx_num2]["odds"]</td>
+                        <td><span id="span_@num2"></span></td>
+                        <td>
+                            <input type="checkbox" name="checkboxd" value="checkbox" />
+                        </td>
+                        <td>
+                            <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
+                                   id="txt_@num2" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                        </td>
+                        <td style="width: 120px;">
+                            <a class="multiple" href="javascript:chgTimes('txt_@num2',0.5)">.5</a>
+                            <a class="multiple" href="javascript:chgTimes('txt_@num2',2)">2</a>
+                            <a class="multiple" href="javascript:chgTimes('txt_@num2',10)">10</a>
+                        </td>
+                    </tr>
+                </text>
+                          tmsx_num2++;
+            }
+
+        </table>
     </div>
 </div>
+<script>
+    function change(name)
+    {  
+        $("."+name).toggle()
+        if($("#"+name+" b").text()=="-")
+        {
+            $("#"+name+" b").text("+")
+        }else
+        {
+            $("#"+name+" b").text("-")
+        }
+    }
+</script>

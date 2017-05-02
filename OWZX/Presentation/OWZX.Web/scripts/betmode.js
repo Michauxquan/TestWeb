@@ -1,16 +1,6 @@
 ﻿var tzmscount = 10;//投注模式最大数设置
 //投注模式 号码的元宝数
-var ModelDatas = new Array(
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+var ModelDatas = new Array();
 var ModeNames = new Array("", "", "", "", "", "", "", "", "", "");
 var CurrentMode = 0;
 var ModeCount = 0;
@@ -20,7 +10,17 @@ var modelbetttype = new Array("", "", "", "", "", "", "", "", "", "", "", "", ""
 var maxnum = 20000000; //最大投注金额
 var minnum = 10;
 
-
+$(function ()
+{
+    for (var i = 0; i < tzmscount; i++)
+    {
+        ModelDatas[i] = new Array();
+        for (var j = 0; j <= 70; j++)
+        {
+            ModelDatas[i][j] = 0;
+        }
+    }
+});
 //自定义模式  不同的模式不同的投注金额
 function Change_Modes(ModeId) {
     //console.log(ModeId);
@@ -82,7 +82,7 @@ function Change_Modes(ModeId) {
     } else if (lotterytype == 13)
     {
         //modeldatas 按照 投注编号进行保存
-        for (var i = 1; i < 58; i++)
+        for (var i = 1; i <= 70; i++)
         {
             $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
         }
@@ -99,8 +99,8 @@ function Change_Modes(ModeId) {
         document.getElementById("SMONEYSUM2").value = ModelDatas[CurrentMode - 1][28];
     } else
     {
-        document.getElementById("SMONEYSUM").value = ModelDatas[CurrentMode - 1][58];;
-        document.getElementById("SMONEYSUM2").value = ModelDatas[CurrentMode - 1][58];
+        document.getElementById("SMONEYSUM").value = ModelDatas[CurrentMode - 1][70];;
+        document.getElementById("SMONEYSUM2").value = ModelDatas[CurrentMode - 1][70];
     }
     document.getElementById("m_info").innerHTML = "模式“" + MName + "”的详细情况：";
 }
@@ -430,21 +430,21 @@ function FirstModes(modes) {
         }
     } else if (lotterytype == 13)
     {
-        for (var i = 0; i < modelhc[modes - 1].length+8; i++)
+        for (var i = 0; i < modelhc[modes - 1].length; i++)
         {
             var id_num = modelhc[modes - 1][i];
             var id_name = "#SMONEY_" + modelhc[modes - 1][i];
             if (!$(id_name).attr("readonly"))
             {
-                if (i >= 49)
-                {
-                    $(id_name).val(20);
-                    sum = sum + 20;
-                } else
-                {
+                //if (i >= 49)
+                //{
+                //    $(id_name).val(20);
+                //    sum = sum + 20;
+                //} else
+                //{
                     $(id_name).val(lhc[id_num - 1]);
                     sum = sum + lhc[id_num - 1];
-                }
+                //}
             }
         }
     }

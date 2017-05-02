@@ -1187,8 +1187,8 @@ end
                                         GenerateInParam("@name", SqlDbType.VarChar,50, mode.Name),
                                         GenerateInParam("@uid", SqlDbType.Int,4, mode.Uid),
                                         GenerateInParam("@lotterytype", SqlDbType.Int,4, mode.LotteryType),
-                                        GenerateInParam("@bettnum", SqlDbType.VarChar, 100, mode.Bettnum),
-                                        GenerateInParam("@bettinfo", SqlDbType.VarChar,500, mode.Bettinfo),
+                                        GenerateInParam("@bettnum", SqlDbType.VarChar, 500, mode.Bettnum),
+                                        GenerateInParam("@bettinfo", SqlDbType.VarChar,1000, mode.Bettinfo),
                                         GenerateInParam("@betttotal", SqlDbType.Int,4, mode.Betttotal),
                                         GenerateInParam("@wintype", SqlDbType.Int,4, mode.Wintype),
                                         GenerateInParam("@losstype", SqlDbType.Int,4, mode.Losstype)
@@ -1255,8 +1255,8 @@ end catch
                                       GenerateInParam("@modeid", SqlDbType.Int,4, mode.Modeid),
                                         GenerateInParam("@name", SqlDbType.VarChar,50, mode.Name),
                                         GenerateInParam("@uid", SqlDbType.Int,4, mode.Uid),
-                                        GenerateInParam("@bettnum", SqlDbType.VarChar, 100, mode.Bettnum),
-                                        GenerateInParam("@bettinfo", SqlDbType.VarChar,500, mode.Bettinfo),
+                                        GenerateInParam("@bettnum", SqlDbType.VarChar, 500, mode.Bettnum),
+                                        GenerateInParam("@bettinfo", SqlDbType.VarChar,1000, mode.Bettinfo),
                                         GenerateInParam("@betttotal", SqlDbType.Int,4, mode.Betttotal),
                                         GenerateInParam("@wintype", SqlDbType.Int,4, mode.Wintype),
                                         GenerateInParam("@losstype", SqlDbType.Int,4, mode.Losstype)
