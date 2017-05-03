@@ -18,13 +18,21 @@
         <th width="9%" style="height: 28px">保存模式</th>
     </tr>
     @foreach (DataRow row in @Model.Records.Rows)
-    { 
-        
+    {
+        string result = string.Empty;
+        if (@Model.LotteryType == 13)
+        {
+            result = row["resulttype"].ToString();
+        }
+        else
+        {
+            result = row["resultnum"].ToString();
+        }
        <tr>
            <td>@row["lotterynum"]</td>
            <td>@{DateTime dt = DateTime.Parse(@row["addtime"].ToString());
     } @dt.ToString("MM-dd HH:mm:ss")</td>
-           <td>@row["resultnum"]</td>
+           <td>@result</td>
            <td><img style="float: right; margin-top:5px; margin-right: 20px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span style="float: right;">@Int64.Parse(@row["money"].ToString()).ToString("n0")</span><span class="clear"></span></td>
            <td><img style="float: right; margin-top:5px; margin-right: 20px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span style="float: right;">@Int64.Parse(@row["winmoney"].ToString()).ToString("n0")</span><span class="clear"></span></td>
            <td><img style="float: right; margin-top:5px; margin-right: 10px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span style="float: right;">@Int64.Parse(@row["win"].ToString()).ToString("n0")</span><span class="clear"></span></td>

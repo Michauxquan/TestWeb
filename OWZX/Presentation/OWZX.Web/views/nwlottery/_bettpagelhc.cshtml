@@ -326,8 +326,8 @@ font-size: 20px;
             @for (int i = 0; i < 4; i++)
             {
 
-                string num = qsb[qsb_num1]["item"].ToString().Trim();//.Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
-
+                string num = qsb[qsb_num1]["item"].ToString().Trim();
+                string sb_num = num.Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
                 <text>
                     <tr align="center" bgcolor="#FFFFFF" height="27">
                         <td>
@@ -350,7 +350,7 @@ font-size: 20px;
                         </td>
                         <td>
                             <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
-                                   id="txt_@num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                   id="txt_@num" data-type="@sb_num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
                         </td>
                         <td style="width: 120px;">
                             <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
@@ -379,7 +379,8 @@ font-size: 20px;
             
             @for (int i = 0; i < 4; i++)
             {
-                string num2 = qsb[qsb_num2]["item"].ToString().Trim();//.Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
+                string num2 = qsb[qsb_num2]["item"].ToString().Trim();
+                string sb_num = num2.Replace("大", "50").Replace("小", "51").Replace("单", "52").Replace("双", "53").Replace("红波", "54").Replace("蓝波", "55").Replace("绿波", "56").Replace("和局", "57");
 
                 <text>
                     <tr align="center" bgcolor="#FFFFFF" height="27">
@@ -404,7 +405,7 @@ font-size: 20px;
                         </td>
                         <td>
                             <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
-                                   id="txt_@num2" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                   id="txt_@num2" data-type="@sb_num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
                         </td>
                         <td style="width: 120px;">
                             <a class="multiple" href="javascript:chgTimes('txt_@num2',0.5)">.5</a>
@@ -438,9 +439,10 @@ font-size: 20px;
             }
             @for (int i = 0; i < 6; i++)
             {
-                string num = tmsx[tmsx_num1]["item"].ToString().Trim();//.Replace("鼠", "58").Replace("牛", "59").Replace("虎", "60").
-                   // Replace("兔", "61").Replace("龙", "62").Replace("蛇", "63").Replace("马", "64").Replace("羊", "65")
-                    //.Replace("猴", "66").Replace("鸡", "67").Replace("狗", "68").Replace("猪", "69");
+                string num = tmsx[tmsx_num1]["item"].ToString().Trim();
+                string tmsx_num =num.Replace("鼠", "58").Replace("牛", "59").Replace("虎", "60").
+                Replace("兔", "61").Replace("龙", "62").Replace("蛇", "63").Replace("马", "64").Replace("羊", "65")
+                .Replace("猴", "66").Replace("鸡", "67").Replace("狗", "68").Replace("猪", "69");
                 <text>
                     <tr align="center" bgcolor="#FFFFFF" height="27">
                         <td>
@@ -463,7 +465,7 @@ font-size: 20px;
                         </td>
                         <td>
                             <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
-                                   id="txt_@num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                   id="txt_@num" data-type="@tmsx_num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
                         </td>
                         <td style="width: 120px;">
                             <a class="multiple" href="javascript:chgTimes('txt_@num',0.5)">.5</a>
@@ -492,9 +494,10 @@ font-size: 20px;
             @for (int i = 0; i < 6; i++)
             {
 
-                string num2 = tmsx[tmsx_num2]["item"].ToString().Trim();//.Replace("鼠", "58").Replace("牛", "59").Replace("虎", "60").
-                       // Replace("兔", "61").Replace("龙", "62").Replace("蛇", "63").Replace("马", "64").Replace("羊", "65")
-                       // .Replace("猴", "66").Replace("鸡", "67").Replace("狗", "68").Replace("猪", "69");
+                string num2 = tmsx[tmsx_num2]["item"].ToString().Trim();
+                string tmsx_num = num2.Replace("鼠", "58").Replace("牛", "59").Replace("虎", "60").
+               Replace("兔", "61").Replace("龙", "62").Replace("蛇", "63").Replace("马", "64").Replace("羊", "65")
+               .Replace("猴", "66").Replace("鸡", "67").Replace("狗", "68").Replace("猪", "69");
                 <text>
                     <tr align="center" bgcolor="#FFFFFF" height="27">
                         <td>
@@ -517,7 +520,7 @@ font-size: 20px;
                         </td>
                         <td>
                             <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
-                                   id="txt_@num2" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                                   id="txt_@num2" data-type="@tmsx_num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
                         </td>
                         <td style="width: 120px;">
                             <a class="multiple" href="javascript:chgTimes('txt_@num2',0.5)">.5</a>

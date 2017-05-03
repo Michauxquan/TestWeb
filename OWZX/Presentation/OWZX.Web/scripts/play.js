@@ -436,6 +436,14 @@ function setValue(num)
         {
             var id_num = modelhc[num][i];
             var id_name = "[id='txt_" + modelhc[num][i] + "']";
+            if ($(id_name).length > 0)
+            {
+               
+            } else
+            {
+                id_name = "[data-type='" + modelhc[num][i] + "']";
+            }
+
             if (!$(id_name).attr("readonly"))
             {
                 $(id_name).val(lhc[i]);

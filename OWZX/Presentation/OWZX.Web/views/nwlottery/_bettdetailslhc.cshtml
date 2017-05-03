@@ -1,7 +1,23 @@
 ﻿@{
     ViewBag.Title = "_bettdetailslhc";
 }
-
+<style>
+     .bt_state {
+    float:right; cursor:pointer;
+    }
+  #tb_num h4 b,#tb_dxds h4 b,#tb_sx h4 b {
+display: inline-block;
+cursor: pointer;
+right: 15px;
+top: 7px;
+width: 26px;
+height: 26px;
+text-align: center;
+color: #666;
+float: right;
+font-size: 20px;
+}
+</style>
 @{
     
     DataSet ds = (DataSet)@ViewData["ltset"];
@@ -13,8 +29,18 @@
     int isnumber = 0;
 
     string resulttype = row["resulttype"].ToString();
-    
 }
+
+    @{
+        Dictionary<object, int> dic = new Dictionary<object, int>();
+    foreach (string bt_item in row["bettinfo"].ToString().Split(';'))
+    {
+        string[] betitem = bt_item.Split(':');
+
+        isnumber = ValidateHelper.IsNumeric(betitem[0]) == true ? 1 : 0;
+        dic[(isnumber == 0 ? betitem[0] : int.Parse(betitem[0]).ToString())] = int.Parse(betitem[1]);
+    }
+    }
 <div class="tzbanner touzhutop">
     <div class="tzbanner_z touzhutop_n">
         <div class="tzbanner_fk fk_wz touzhutop_t">
@@ -24,9 +50,9 @@
                         <td height="9" colspan="4" align="left"></td>
                     </tr>
                     <tr>
-                        <td width="235" height="30" align="left">&nbsp;&nbsp;&nbsp;&nbsp;期号：<font color="red">@row["lotterynum"]</font></td>
-                        <td width="230" align="left">开奖状态：@status</td>
-                        <td width="230" height="30" align="left">开奖时间：@opentime</td>
+                        <td width="215" height="30" align="left">&nbsp;&nbsp;&nbsp;&nbsp;期号：<font color="red">@row["lotterynum"]</font></td>
+                        <td width="220" align="left">开奖状态：@status</td>
+                        <td width="220" height="30" align="left">开奖时间：@opentime</td>
                         <td width="225" align="left">开奖结果：
                         @if (row["status"].ToString() == "2")
                         {
@@ -34,42 +60,42 @@
                           {
                               string[] type = resulttype.Split(',');
 
-                            <span class="ltresult pcresult mRight20 bold">@type[0]</span>
+                            <span class="ltresult pcresult mRight10 bold">@type[0]</span>
                               if (@type[1] == "大")
                               {
-                                <span class="da mRight20 bold">@type[1]</span>
+                                <span class="da mRight10 bold">@type[1]</span>
                               }
                               else if (@type[1] == "小")
                               {
-                                <span class="xiao mRight20 bold">@type[1]</span>
+                                <span class="xiao mRight10 bold">@type[1]</span>
                               }
 
                               if (@type[2] == "单")
                               {
-                                <span class="dan mRight20 bold">@type[2]</span>
+                                <span class="dan mRight10 bold">@type[2]</span>
                               }
                               else if (@type[2] == "双")
                               {
-                                <span class="shuang mRight20 bold">@type[2]</span>
+                                <span class="shuang mRight10 bold">@type[2]</span>
                               }
 
                               if (@type[3] == "红波")
                               {
-                                <span class="shuang mRight20 bold">@type[3]</span>
+                                <span class="shuang mRight10 bold">@type[3]</span>
                               }
                               else if (@type[3] == "蓝波")
                               {
-                                <span class="xiaos mRight20 bold">@type[3]</span>
+                                <span class="xiaos mRight10 bold">@type[3]</span>
                               }
                               else if (@type[3] == "绿波")
                               {
-                                <span class="green mRight20 bold">@type[3]</span>
+                                <span class="green mRight10 bold">@type[3]</span>
                               }
                               else if (@type[3] == "和局")
                               {
-                                <span class="dan mRight20 bold">@type[3]</span>
+                                <span class="dan mRight10 bold">@type[3]</span>
                               }
-
+                            <span class="dan mRight10 bold">@type[4]</span>
                           }
                         }
                          
@@ -80,19 +106,22 @@
                           string winmoney = string.Format("{0:n0}", @row["winmoney"]);
                           string mywin = string.Format("{0:n0}", @row["win"]);
                         }
-                        <td width="235" height="30" align="left"><span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;我的投注额：@mybett</span><img style="float: left;margin-top:6px; margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
-                        <td width="230" height="30" align="left"><span style="float: left;">获得金额：@winmoney</span><img style="float: left;margin-top:6px;  margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
-                        <td width="230" height="30" align="left"><span style="float: left;">我的盈亏：<font color="red">@mywin</font> </span><img style="float: left;margin-top:6px;  margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
+                        <td width="215" height="30" align="left"><span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;我的投注额：@mybett</span><img style="float: left;margin-top:6px; margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
+                        <td width="220" height="30" align="left"><span style="float: left;">获得金额：@winmoney</span><img style="float: left;margin-top:6px;  margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
+                        <td width="220" height="30" align="left"><span style="float: left;">我的盈亏：<font color="red">@mywin</font> </span><img style="float: left;margin-top:6px;  margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-<table class="con_table" id="bettdetails"  cellpadding="0" cellspacing="1" align="center"
-       style="width:900px; color: Black; border:1px solid #cacaca;border-top:none;border-right:none;
+<div id="tb_num" style="width:910px;background-color:#eee;margin-top:20px;cursor:pointer;" onclick="change('tb_num')">
+    <h4 style="font-size:15px;padding-left:10px;">特码<b>-</b></h4>
+</div>
+<table class="con_table tb_btmode tb_num" id="bettdetails" cellpadding="0" cellspacing="1" align="center"
+       style="width:455px;float:left; color: Black; border:1px solid #cacaca;border-top:none;border-right:none;
 margin-bottom: 4px;margin-top:5px;  " >
-    <tr >
+    <tr>
         <th width="15%" style="height: 28px;text-align:center;">号码</th>
         <th width="20%" style="height: 28px;text-align:center;">赔率</th>
         <th width="20%" style="height: 28px;text-align:center;">我的投注</th>
@@ -101,75 +130,72 @@ margin-bottom: 4px;margin-top:5px;  " >
     @foreach (DataRow rw in @ds.Tables[0].Rows)
     {
         int itemisnum = ValidateHelper.IsNumeric(rw["item"].ToString()) == true ? 1 : 0;
-        
-        Dictionary<object, int> dic = new Dictionary<object, int>();
-        foreach (string item in row["bettinfo"].ToString().Split(';'))
-        {
-            string[] betitem = item.Split(':');
-            isnumber = ValidateHelper.IsNumeric(betitem[0]) == true ? 1 : 0;
-            dic[(isnumber == 0 ? betitem[0] : int.Parse(betitem[0]).ToString())] = int.Parse(betitem[1]);
-          
-        }
+        string tm = rw["item"].ToString();
+        string tm_num = tm.Length == 1 ? "0" + tm : tm;
         <tr align="center" bgcolor="#FFFFFF" height="27">
             <td>
-                @if (itemisnum==1)
+                @if (itemisnum == 1)
                 {
                     <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
-                          width="25" height="25">@rw["item"]</span>
+                          width="25" height="25">@tm</span>
                 }
                 else
                 {
                     <span class="ltresult lhbresult btnumber"
-                          width="25" height="25">@rw["item"]</span>
+                          width="25" height="25">@tm</span>
                 }
             </td>
             <td>@rw["odds"]</td>
-        <td>
-            @if (dic.ContainsKey((itemisnum == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
-            {
-                @dic[(itemisnum == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())].ToString("n0")
+            <td>
+                @if (dic.ContainsKey(tm))
+                {
+                    @dic[tm].ToString("n0")
+                }
+                else
+                {
+                    @:-
             }
-            else
-            {
-                @:-
+            </td>
+            <td>
+                @if (dic.ContainsKey(tm))
+                {
+                    if (("," + @row["resulttype"].ToString() + ",").Contains("," + tm_num + ","))
+                    {
+                        int win = (int)(dic[tm] * float.Parse(rw["odds"].ToString()));
+                        @win.ToString("n0");
+                    }
+                    else
+                    {
+                        @:-
             }
-    </td>
-    <td>
-        @if (dic.ContainsKey((itemisnum == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
-        {
-            if (("," + @row["resulttype"].ToString() + ",").Contains("," + @rw["item"].ToString() + ","))
-            {
-                int win = (int)(dic[(itemisnum == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * float.Parse(rw["odds"].ToString()));
-                @win.ToString("n0");
-            }
-            else
-            {
-                @:-
-            }
-           
+
+                }
+                else
+                {
+                    @:-
         }
-        else
-        {
-            @:-
-        }
-    </td>
-    </tr>
+            </td>
+        </tr>
     }
+</table>
+
+<table class="con_table tb_btmode tb_num" id="bettdetails" cellpadding="0" cellspacing="1" align="center"
+       style="width:455px;float:left; color: Black; border:1px solid #cacaca;border-top:none;
+margin-bottom: 4px;margin-top:5px;  " >
+    <tr>
+        <th width="15%" style="height: 28px;text-align:center;">号码</th>
+        <th width="20%" style="height: 28px;text-align:center;">赔率</th>
+        <th width="20%" style="height: 28px;text-align:center;">我的投注</th>
+        <th width="20%" style="height: 28px;text-align:center;">获得金额</th>
+    </tr>
     @foreach (DataRow rw in @ds.Tables[1].Rows)
     {
         int itemisnum = ValidateHelper.IsNumeric(rw["item"].ToString()) == true ? 1 : 0;
-
-        Dictionary<object, int> dic = new Dictionary<object, int>();
-        foreach (string item in row["bettinfo"].ToString().Split(';'))
-        {
-            string[] betitem = item.Split(':');
-            isnumber = ValidateHelper.IsNumeric(betitem[0]) == true ? 1 : 0;
-            dic[(isnumber == 0 ? betitem[0] : int.Parse(betitem[0]).ToString())] = int.Parse(betitem[1]);
-
-        }
+        string tm=rw["item"].ToString();
+        string tm_num = tm.Length == 1 ? "0" + tm : tm;
         <tr align="center" bgcolor="#FFFFFF" height="27">
             <td>
-                @if (itemisnum==1)
+                @if (itemisnum == 1)
                 {
                     <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
                           width="25" height="25">@rw["item"]</span>
@@ -181,34 +207,257 @@ margin-bottom: 4px;margin-top:5px;  " >
                 }
             </td>
             <td>@rw["odds"]</td>
-    <td>
-        @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
-        {
-            @dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())].ToString("n0")
-        }
-        else
-        {
-            @:-
-        }
-    </td>
-    <td>
-        @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
-        {
-            if (("," + @row["resulttype"].ToString() + ",").Contains("," + @rw["item"].ToString() + ","))
-            {
-                int win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * float.Parse(rw["odds"].ToString()));
-                @win.ToString("n0")
+            <td>
+                @if (dic.ContainsKey(tm))
+                {
+                    @dic[tm].ToString("n0")
+                }
+                else
+                {
+                    @:-
             }
-            else
-            {
-                @:-
-            }
+            </td>
+            <td>
+                @if (dic.ContainsKey(tm))
+                {
+                    if (("," + @row["resulttype"].ToString() + ",").Contains("," + tm_num + ","))
+                    {
+                        int win = (int)(dic[tm] * float.Parse(rw["odds"].ToString()));
+                        @win.ToString("n0");
+                    }
+                    else
+                    {
+                        @:-
+                    }
+
+                }
+                else
+                {
+                    @:-
         }
-        else
-        {
-            @:-
-        }
-    </td>
+            </td>
         </tr>
     }
-    </table>
+    <tr align="center" bgcolor="#FFFFFF" height="33"><td colspan="4"></td></tr>
+</table>
+
+<div id="tb_dxds" style="width:910px;background-color:#eee;margin-top:20px;cursor:pointer;" onclick="change('tb_dxds')">
+    <h4 style="font-size:15px;padding-left:10px;">色波<b>-</b></h4>
+</div>
+<table class="con_table tb_btmode tb_num" id="bettdetails" cellpadding="0" cellspacing="1" align="center"
+       style="width:910px; color: Black; border:1px solid #cacaca;border-top:none;border-right:none;
+margin-bottom: 4px;margin-top:5px;  ">
+    <tr>
+        <th width="7%" style="height: 28px;text-align:center;">号码</th>
+        <th width="10%" style="height: 28px;text-align:center;">赔率</th>
+        <th width="10%" style="height: 28px;text-align:center;">我的投注</th>
+        <th width="10%" style="height: 28px;text-align:center;">获得金额</th>
+        <th width="7%" style="height: 28px;text-align:center;">号码</th>
+        <th width="10%" style="height: 28px;text-align:center;">赔率</th>
+        <th width="10%" style="height: 28px;text-align:center;">我的投注</th>
+        <th width="10%" style="height: 28px;text-align:center;">获得金额</th>
+    </tr>
+@{
+    DataRowCollection qsb = ds.Tables[2].Rows;
+    int qsb_num1 = 0; int qsb_num2 = 4;
+}
+    @for (int i = 0; i < 4; i++)
+    {
+        string item=qsb[qsb_num1]["item"].ToString();
+        string item2 = qsb[qsb_num2]["item"].ToString();
+
+        <tr align="center" bgcolor="#FFFFFF" height="27">
+            <td>
+               
+                    <span class="ltresult lhbresult btnumber"
+                          width="25" height="25">@item</span>
+            </td>
+            <td>@qsb[qsb_num1]["odds"]</td>
+            <td>
+                @if (dic.ContainsKey((item)))
+                {
+                    @dic[item].ToString("n0")
+                }
+                else
+                {
+                    @:-
+            }
+            </td>
+            <td>
+                @if (dic.ContainsKey(( item)))
+                {
+                    
+                    if (("," + @qsb[qsb_num1]["resulttype"].ToString() + ",").Contains("," + item + ","))
+                    {
+                        int win = (int)(dic[(item )] * float.Parse(qsb[qsb_num1]["odds"].ToString()));
+                        @win.ToString("n0");
+                    
+                    }
+                    else
+                    {
+                        @:-
+                    }
+
+                }
+                else
+                {
+                    @:-
+        }
+            </td>
+            <td>
+               
+                    <span class="ltresult lhbresult btnumber"
+                          width="25" height="25">@item2</span>
+            </td>
+            <td>@qsb[qsb_num2]["odds"]</td>
+            <td>
+                @if (dic.ContainsKey((item2)))
+                {
+                    @dic[(item2)].ToString("n0")
+                }
+                else
+                {
+                    @:-
+            }
+            </td>
+            <td>
+                @if (dic.ContainsKey((item2 )))
+                {
+                    if (("," + @qsb[qsb_num1]["resulttype"].ToString() + ",").Contains("," + item2 + ","))
+                    {
+                        int win = (int)(dic[(item2)] * float.Parse(qsb[qsb_num2]["odds"].ToString()));
+                        @win.ToString("n0");
+                    }
+                    else
+                    {
+                        @:-
+            }
+
+                }
+                else
+                {
+                    @:-
+        }
+            </td>
+        </tr>
+                qsb_num1++; qsb_num2++;
+    }
+   
+</table>
+
+<div id="tb_sx" style="width:910px;background-color:#eee;margin-top:20px;cursor:pointer;" onclick="change('tb_sx')">
+    <h4 style="font-size:15px;padding-left:10px;">特码生肖<b>-</b></h4>
+</div>
+<table class="con_table tb_btmode tb_num" id="bettdetails" cellpadding="0" cellspacing="1" align="center"
+       style="width:910px; color: Black; border:1px solid #cacaca;border-top:none;border-right:none;
+margin-bottom: 4px;margin-top:5px;  ">
+    <tr>
+        <th width="7%" style="height: 28px;text-align:center;">号码</th>
+        <th width="10%" style="height: 28px;text-align:center;">赔率</th>
+        <th width="10%" style="height: 28px;text-align:center;">我的投注</th>
+        <th width="10%" style="height: 28px;text-align:center;">获得金额</th>
+        <th width="7%" style="height: 28px;text-align:center;">号码</th>
+        <th width="10%" style="height: 28px;text-align:center;">赔率</th>
+        <th width="10%" style="height: 28px;text-align:center;">我的投注</th>
+        <th width="10%" style="height: 28px;text-align:center;">获得金额</th>
+    </tr>
+   @{
+                DataRowCollection tmsx = ds.Tables[3].Rows;
+                int tmsx_num1 = 0; int tmsx_num2 = 6;
+}
+@for (int i = 0; i < 6; i++)
+{
+       string item=tmsx[tmsx_num1]["item"].ToString();
+     string item2=tmsx[tmsx_num2]["item"].ToString();
+    
+           
+        <tr align="center" bgcolor="#FFFFFF" height="27">
+            <td>
+                
+                    <span class="ltresult lhbresult btnumber"
+                          width="25" height="25">@item</span>
+            </td>
+            <td>@tmsx[tmsx_num1]["odds"]</td>
+            <td>
+                @if (dic.ContainsKey((item)))
+                {
+                    @dic[(item)].ToString("n0")
+                }
+                else
+                {
+                    @:-
+            }
+            </td>
+            <td>
+                @if (dic.ContainsKey(item))
+                {
+                    if (("," + @tmsx[tmsx_num1]["resulttype"].ToString() + ",").Contains("," + item + ","))
+                    {
+                        int win = (int)(dic[item] * float.Parse(tmsx[tmsx_num1]["odds"].ToString()));
+                        @win.ToString("n0");
+                    }
+                    else
+                    {
+                        @:-
+            }
+
+                }
+                else
+                {
+                    @:-
+        }
+            </td>
+            <td>
+
+                <span class="ltresult lhbresult btnumber"
+                      width="25" height="25">@item2</span>
+                </td>
+                <td>@tmsx[tmsx_num2]["odds"]</td>
+                <td>
+                    @if (dic.ContainsKey((item2)))
+                    {
+                        @dic[(item2)].ToString("n0")
+                    }
+                    else
+                    {
+                        @:-
+            }
+                </td>
+                <td>
+                    @if (dic.ContainsKey(item2))
+                    {
+                        if (("," + @tmsx[tmsx_num2]["resulttype"].ToString() + ",").Contains("," + item2 + ","))
+                        {
+                            int win = (int)(dic[item2] * float.Parse(tmsx[tmsx_num2]["odds"].ToString()));
+                            @win.ToString("n0");
+                        }
+                        else
+                        {
+                            @:-
+            }
+
+                    }
+                    else
+                    {
+                        @:-
+        }
+                </td>
+        </tr>
+                    tmsx_num1++; tmsx_num2++;
+    }
+    
+</table>
+
+<script>
+    function change(name)
+    {
+        $("." + name).toggle()
+        if ($("#" + name + " b").text() == "-")
+        {
+            $("#" + name + " b").text("+")
+        } else
+        {
+            $("#" + name + " b").text("-")
+        }
+    }
+</script>

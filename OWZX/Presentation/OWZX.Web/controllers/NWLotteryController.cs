@@ -379,6 +379,7 @@ namespace OWZX.Web.controllers
             DataTable dt = LotteryList.GetUserBett(type, WorkContext.Uid, pageindex, pagesize);
             LotteryRecord record = new LotteryRecord()
             {
+                LotteryType=type,
                 PageModel = new PageModel(20, pageindex, dt.Rows.Count > 0 ? int.Parse(dt.Rows[0]["totalcount"].ToString()) : 0),
                 Records = dt
             };
