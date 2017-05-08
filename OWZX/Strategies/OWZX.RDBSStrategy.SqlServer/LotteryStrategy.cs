@@ -975,6 +975,12 @@ select count(1) from #list where DATEDIFF(SECOND,opentime,getdate())>=210
             string commandText = string.Format(@"
 begin try
 
+if not exists(select 1 from owzx_users where uid=@uid and isfreeze=0)
+begin
+select '2' state
+return 
+end
+
 if not exists(select 1 from owzx_lotteryrecord where type=@lotteryid and expect=@lotterynum and status=0 
 and datediff(second,getdate(),opentime)>0)
 begin
