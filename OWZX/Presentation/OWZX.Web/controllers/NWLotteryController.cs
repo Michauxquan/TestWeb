@@ -86,36 +86,36 @@ namespace OWZX.Web.controllers
                 case (int)LotType.dd28:
                     title = "蛋蛋28首页";
                     total = 300;
-                    stop = 30;
+                    stop = 40;
                     break;
                 case (int)LotType.dd36: title = "蛋蛋36首页";
                     total = 300;
-                    stop = 30;
+                    stop = 40;
                     break;
                 case (int)LotType.ddlhb: title = "蛋蛋龙虎豹首页";
                     total = 300;
-                    stop = 30;
+                    stop = 40;
                     break;
                 case (int)LotType.cakeno28: title = "加拿大28首页";
                     total = 210;
-                    stop = 30;
+                    stop = 40;
                     break;
                 case (int)LotType.cakeno36: title = "加拿大36首页";
                     total = 210;
-                    stop = 30;
+                    stop = 40;
                     break;
                 case (int)LotType.pkgj: title = "PK冠军首页";
                     total = 300;
-                    stop = 30;
+                    stop = 40;
                     break;
                 case (int)LotType.pkgyj: title = "PK冠亚军首页";
                     total = 300;
-                    stop = 30;
+                    stop = 40;
                     break;
                 case (int)LotType.hg28:
                     title = "韩国28首页";
                     total = 115;
-                    stop = 25;
+                    stop = 40;
                     break;
                 case (int)LotType.js28:
                     title = "急速28首页";
