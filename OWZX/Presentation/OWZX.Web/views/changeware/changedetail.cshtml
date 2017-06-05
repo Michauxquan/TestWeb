@@ -19,10 +19,11 @@
       
         $(function() {  
           
-            $('.greenBT').click(function() {  
+            $('.greenBT').click(function() {
+                var tdate = new Date();
                 var list = {};  
                 var _this = $('#sptitle');
-                list.ordercode = _this.data("rcode");
+                list.ordercode =tdate.getFullYear()+''+tdate.getMonth() + 1+''+tdate.getDate()+''+tdate.getHours()+''+tdate.getMinutes()+''+tdate.getSeconds()+''+tdate.getMilliseconds()+ _this.data("rcode");
                 list.price = _this.data("price"); 
                 list.uid = _this.data("uid");
                 list.speccode = _this.data("scode");
@@ -56,7 +57,7 @@
                     <span style="z-index: 0; color: #fff; font-size: 13px; position: absolute; bottom: 5px; font-size: 20px; text-align: center; width: 250px;">@(info.WareName + info.SpecName.Replace("万", "W"))</span>
                 </div>
                 <div style="float: left; height: 236px; margin-left: 265px; position: absolute; font-weight: bold; font-size: 16px; margin-top: 20px;">
-                    <p style="text-align: center; width: 160px; color: #000;" id="sptitle" data-sid="specid" data-rcode="@(DateTime.Now.ToString("yyyyMMddHHmmssfff")+WorkContext.Uid)" data-uid="@WorkContext.Uid"
+                    <p style="text-align: center; width: 160px; color: #000;" id="sptitle" data-sid="specid" data-rcode="@(WorkContext.Uid)" data-uid="@WorkContext.Uid"
                          data-scode="@info.SpecCode" data-code="@info.WareCode" data-sname="@info.SpecName" data-name="@info.WareName" data-price="@info.Price">@(info.WareName + info.SpecName)</p>
                     <p style="text-align: center; width: 160px;" id="price" class="Fred">@(info.Price)</p>
 

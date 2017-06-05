@@ -90,12 +90,13 @@
                             <td>@(row["warecode"] + " " + row["warename"])</td>
                             <td>@Convert.ToInt64(row["price"]).ToString("N0")</td>
                             <td>@(row["content"].ToString())</td>
-                            <td>@(row["status"].ToString() == "0" ? "未兑换" :(row["status"].ToString() == "2" ?"已兑换":"已作废"))</td>
+                            <td>@(row["status"].ToString() == "0" ? "未兑换" :(row["status"].ToString() == "2" ? "已兑换":(row["status"].ToString() == "3" ? "已删除" : "已作废")))</td>
                             <td>@(Convert.ToDateTime(row["createtime"]).ToString("yyyy-MM-dd HH:mm:ss"))</td>
                             <td align="center">
                               
-                                    @Html.ActionLink("[作废]", "editorder", new {ordercode = row["ordercode"], status = 9}, @row["status"].ToString()=="0"?new {@class = "editOperate" }:new {@class = "hide" })&nbsp;
-                                    @Html.ActionLink("[审核]", "editorder", new {ordercode = row["ordercode"], status = 2}, @row["status"].ToString()=="0"?new {@class = "editOperate" }:new {@class = "hide" }) 
+                                @Html.ActionLink("[作废]", "editorder", new {ordercode = row["ordercode"], status = 9}, @row["status"].ToString()=="0"?new {@class = "editOperate" }:new {@class = "hide" })&nbsp;
+                                @Html.ActionLink("[删除]", "editorder", new { ordercode = row["ordercode"], status = 3 }, @row["status"].ToString() == "0" ? new { @class = "editOperate" } : new { @class = "hide" })&nbsp;
+                                @Html.ActionLink("[审核]", "editorder", new {ordercode = row["ordercode"], status = 2}, @row["status"].ToString()=="0"?new {@class = "editOperate" }:new {@class = "hide" }) 
                               
                             </td>
 

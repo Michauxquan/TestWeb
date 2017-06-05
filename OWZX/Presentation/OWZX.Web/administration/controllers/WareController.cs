@@ -91,6 +91,8 @@ namespace OWZX.Web.Admin.Controllers
             statusGroupList.Add(new SelectListItem() { Text = "全部", Value = "-1" });
             statusGroupList.Add(new SelectListItem() { Text = "未兑换", Value = "0" });
             statusGroupList.Add(new SelectListItem() { Text = "已兑换", Value = "2" });
+            statusGroupList.Add(new SelectListItem() { Text = "删除", Value = "0" });
+            statusGroupList.Add(new SelectListItem() { Text = "作废", Value = "9" });
             OrderListModel model = new OrderListModel()
             {
                 PageModel = new PageModel(pageSize, pageNumber, (dt != null && dt.Rows != null && dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["TotalCount"]) : 0)),
