@@ -547,5 +547,37 @@ namespace OWZX.Data
         }
 
         #endregion
+
+        #region app
+        /// <summary>
+        /// 添加信息
+        /// </summary>
+        /// <param name="chag"></param>
+        /// <returns></returns>
+        public static string AddLimit(MD_AppLimit mode)
+        {
+            return OWZX.Core.BSPData.RDBS.AddLimit(mode);
+        }
+
+        /// <summary>
+        /// 更新信息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public static string UpdateLimit(MD_AppLimit mode)
+        {
+            return OWZX.Core.BSPData.RDBS.UpdateLimit(mode);
+        }
+
+        /// <summary>
+        ///获取信息
+        /// </summary>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public static DataTable GetLimitList(string condition = "")
+        {
+            return OWZX.Core.BSPData.RDBS.GetLimitList(condition);
+        }
+        #endregion
     }
 }

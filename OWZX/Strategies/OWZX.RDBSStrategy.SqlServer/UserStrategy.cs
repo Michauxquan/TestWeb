@@ -1743,5 +1743,147 @@ end catch
 
         #endregion
 
+        #region app
+        /// <summary>
+        /// 添加信息
+        /// </summary>
+        /// <param name="chag"></param>
+        /// <returns></returns>
+        public string AddLimit(MD_AppLimit mode)
+        {
+            try
+            {
+                DbParameter[] parms = {
+                                        GenerateInParam("@ip", SqlDbType.VarChar,50, mode.Ip),
+                                        GenerateInParam("@domin", SqlDbType.VarChar,50, mode.Domin),
+                                        GenerateInParam("@port", SqlDbType.VarChar,50, mode.Port),
+                                        GenerateInParam("@limittime", SqlDbType.DateTime,25, mode.Limittime),
+                                        GenerateInParam("@remark", SqlDbType.VarChar,50, mode.Remark)
+                                       
+                                    };
+                string commandText = string.Format(@"
+begin try
+begin tran t1
+if not exists(select 1 from owzx_applimit where ip=@ip and domin=@domin and port=@port)
+begin
+INSERT INTO [owzx_applimit]([ip] ,[domin],[port],[limittime],[remark],[addtime])
+VALUES (@ip,@domin,@port,@limittime,@remark,convert(varchar(25),getdate(),120))
+
+select '添加成功' state
+commit tran t1
+end
+else
+begin
+select '已存在' state
+commit tran t1
+end
+
+end try
+begin catch
+rollback tran t1
+select ERROR_MESSAGE() state
+end catch
+
+");
+                return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+            }
+            catch (Exception er)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 更新信息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public string UpdateLimit(MD_AppLimit mode)
+        {
+            DbParameter[] parms = {
+                                        GenerateInParam("@ip", SqlDbType.VarChar,50, mode.Ip),
+                                        GenerateInParam("@domin", SqlDbType.VarChar,50, mode.Domin),
+                                        GenerateInParam("@port", SqlDbType.VarChar,50, mode.Port),
+                                        GenerateInParam("@limittime", SqlDbType.DateTime,25, mode.Limittime),
+                                        GenerateInParam("@remark", SqlDbType.VarChar,50, mode.Remark)
+                                    };
+            string commandText = string.Format(@"
+begin try
+begin tran t1
+
+if exists(select 1 from owzx_applimit where ip=@ip and domin=@domin and port=@port)
+begin
+UPDATE a
+   SET --[ip] = @ip
+      --,[domin] = @domin
+      --,[port] = @port
+      --,
+       [limittime] = @limittime
+      ,[remark] = @remark
+      ,[updatetime] =convert(varchar(25),getdate(),120)
+from [owzx_applimit] a where ip=@ip and domin=@domin and port=@port
+       
+select '修改成功' state
+commit tran t1
+
+end
+else
+begin
+select '记录已被删除' state
+commit tran t1
+end
+
+end try
+begin catch
+rollback tran t1
+select ERROR_MESSAGE() state
+end catch
+
+");
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+        }
+
+        
+
+        /// <summary>
+        ///获取信息
+        /// </summary>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public DataTable GetLimitList(string condition = "")
+        {
+            string commandText = string.Format(@"
+
+begin try
+if OBJECT_ID('tempdb..#list') is not null
+drop table #list
+
+SELECT ROW_NUMBER() over(order by limitid ) id,
+      [limitid]
+      ,[ip]
+      ,[domin]
+      ,[port]
+      ,[limittime]
+      ,[remark]
+      , addtime
+      ,updatetime 
+  into #list
+  FROM [owzx_applimit]
+ {0}
+
+select * from #list
+ 
+end try
+begin catch
+select ERROR_MESSAGE() state
+end catch
+
+", condition);
+
+            return RDBSHelper.ExecuteTable(CommandType.Text, commandText, null)[0];
+        }
+        #endregion
+
     }
 }

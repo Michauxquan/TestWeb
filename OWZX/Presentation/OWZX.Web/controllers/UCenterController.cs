@@ -10,6 +10,8 @@ using OWZX.Services;
 using OWZX.Web.Framework;
 using OWZX.Web.Models;
 using OWZX.Model;
+using Newtonsoft.Json;
+using System.Collections.Specialized;
 
 namespace OWZX.Web.Controllers
 {
@@ -917,6 +919,7 @@ namespace OWZX.Web.Controllers
         }
 
         #endregion
+
         #region 用户回水
         public ActionResult GetOwnerBack(int type)
         {
@@ -935,12 +938,174 @@ namespace OWZX.Web.Controllers
 
         }
         #endregion
+
+        #region app
+        public ActionResult AddLimit()
+        {
+            NameValueCollection parms = WorkContext.postparms;
+             string ip =string.Empty;
+             if (parms["ip"] != null)
+             {
+                 ip = parms["ip"];
+             }
+            string domin = "";
+            string port = "";
+            string limittime = "";
+            string remark = "";
+            if (parms["domin"] != null)
+            {
+                domin = parms["domin"];
+            }
+            if (parms["port"] != null)
+            {
+                port = parms["port"];
+            }
+            if (parms["limittime"] != null)
+            {
+                limittime = parms["limittime"];
+            }
+            if (parms["remark"] != null)
+            {
+                remark = parms["remark"];
+            }
+
+            MD_AppLimit app = new MD_AppLimit { 
+             Ip=ip,Domin=domin,
+             Port=port,Limittime=DateTime.Parse(limittime),Remark=remark
+            };
+            string result=Lottery.AddLimit(app);
+            if (result.EndsWith("成功"))
+            {
+                return APIResult("success", "成功");
+            }
+            else
+            {
+                return APIResult("error", "失败");
+            }
+        }
+        public ActionResult EditLimit()
+        {
+            NameValueCollection parms = WorkContext.postparms;
+            string ip = string.Empty;
+            if (parms["ip"] != null)
+            {
+                ip = parms["ip"];
+            }
+            string domin = "";
+            string port = "";
+            string limittime = "";
+            string remark = "";
+            if (parms["domin"] != null)
+            {
+                domin = parms["domin"];
+            }
+            if (parms["port"] != null)
+            {
+                port = parms["port"];
+            }
+            if (parms["limittime"] != null)
+            {
+                limittime = parms["limittime"];
+            }
+            if (parms["remark"] != null)
+            {
+                remark = parms["remark"];
+            }
+            List<MD_AppLimit> list=Lottery.GetLimitList(" where ip='" + ip + "' and domin='" + domin + "' and port='" + port + "'");
+            MD_AppLimit app = new MD_AppLimit
+            {
+                Ip = ip,
+                Domin = domin,
+                Port = port,
+                Limittime = DateTime.Parse(limittime==""?list[0].Limittime.ToString("yyyy-MM-dd HH:mm:ss"):limittime),
+                Remark = remark
+            };
+            string result = Lottery.UpdateLimit(app);
+            if (result.EndsWith("成功"))
+            {
+                return APIResult("success", "成功");
+            }
+            else
+            {
+                return APIResult("error", "失败");
+            }
+        }
+        public ActionResult LimitList()
+        {
+            NameValueCollection parms = WorkContext.postparms;
+            if (parms.Count == 0)
+            {
+                return APIResult("error", "失败");
+            }
+            string ip = string.Empty;
+            string domin = "";
+            string port = "";
+            string limittime = "";
+            string remark = "";
+            if (parms["ip"] != null)
+            {
+                ip = parms["ip"];
+            }
+            if (parms["domin"] != null)
+            {
+                domin = parms["domin"];
+            }
+            if (parms["port"] != null)
+            {
+                port = parms["port"];
+            }
+            if (parms["limittime"] != null)
+            {
+                limittime = parms["limittime"];
+            }
+            if (parms["remark"] != null)
+            {
+                remark = parms["remark"];
+            }
+            StringBuilder strb = new StringBuilder();
+            strb.Append(" where 1=1 ");
+            if (ip != "")
+            {
+                strb.Append(" and ip='"+ip+"'");
+            }
+            if (domin != "")
+            {
+                strb.Append(" and domin='" + domin + "'");
+            }
+            if (port != "")
+            {
+                strb.Append(" and port='" + port + "'");
+            }
+            if (limittime != "")
+            {
+                strb.Append(" and limittime='" + limittime + "'");
+            }
+            if (remark != "")
+            {
+                strb.Append(" and remark='" + remark + "'");
+            }
+
+            List<MD_AppLimit> list = Lottery.GetLimitList(strb.ToString());
+            if (list.Count == 0)
+            {
+                return APIResult("error", @"亲,您的体验资格已到期,请记得续费哦!
+版权归属:白水非凡工作室 
+联系方式:QQ476008383
+");
+            }
+            else
+            {
+                return APIResult("success", "成功");
+            }
+        }
+        #endregion
         protected sealed override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
-
+            List<string> actionlist=new List<string>();
+            actionlist.AddRange(new string[] { "addlimit", "editlimit", "limitlist"});
             //不允许游客访问
-            if (WorkContext.Uid < 1)
+            if (WorkContext.Uid < 1 && !actionlist.Contains(filterContext.ActionDescriptor.ActionName.ToLower()))
             {
                 //if (WorkContext.IsHttpAjax)//如果为ajax请求
                 //    filterContext.Result = Content("nologin");

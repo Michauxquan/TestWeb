@@ -1126,5 +1126,39 @@ namespace OWZX.Services
         }
 
         #endregion
+
+        #region app
+        /// <summary>
+        /// 添加信息
+        /// </summary>
+        /// <param name="chag"></param>
+        /// <returns></returns>
+        public static string AddLimit(MD_AppLimit mode)
+        {
+            return OWZX.Data.Lottery.AddLimit(mode);
+        }
+
+        /// <summary>
+        /// 更新信息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public static string UpdateLimit(MD_AppLimit mode)
+        {
+            return OWZX.Data.Lottery.UpdateLimit(mode);
+        }
+
+        /// <summary>
+        ///获取信息
+        /// </summary>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        public static List<MD_AppLimit> GetLimitList(string condition = "")
+        {
+            DataTable dt= OWZX.Data.Lottery.GetLimitList(condition);
+            List<MD_AppLimit> list = (List<MD_AppLimit>)ModelConvertHelper<MD_AppLimit>.ConvertToModel(dt);
+            return list;
+        }
+        #endregion
     }
 }

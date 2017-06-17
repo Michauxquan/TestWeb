@@ -545,5 +545,28 @@ namespace OWZX.Core
         #endregion
 
 
+        #region app
+        /// <summary>
+        /// 添加信息
+        /// </summary>
+        /// <param name="chag"></param>
+        /// <returns></returns>
+        string AddLimit(MD_AppLimit mode);
+
+        /// <summary>
+        /// 更新信息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        string UpdateLimit(MD_AppLimit mode);
+
+        /// <summary>
+        ///获取信息
+        /// </summary>
+        /// <param name="condition">没有where</param>
+        /// <returns></returns>
+        DataTable GetLimitList(string condition = "");
+        #endregion
+
     }
 }
