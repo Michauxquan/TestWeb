@@ -1906,7 +1906,7 @@ end", RDBSHelper.RDBSTablePre);
 
             string sql = string.Format(@"SELECT [systypeid],outtypeid
       ,[type]
-      ,[parentid],ishide,
+      ,[parentid],ishide
       ,(select type from {0}sys_basetype where systypeid=parentid) parenttype
       ,[remark],[displayorder]
   FROM {0}sys_basetype  {1}  order by displayorder", RDBSHelper.RDBSTablePre, condition);

@@ -75,7 +75,7 @@ namespace OWZX.Model
         /// <summary>
         /// 是否隐藏
         /// </summary>
-        public int IsHide { get; set; }
+        public bool IsHide { get; set; }
 
         private int displayorder;
         /// <summary>
