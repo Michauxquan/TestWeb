@@ -971,7 +971,7 @@ namespace OWZX.Web.Controllers
 
             MD_AppLimit app = new MD_AppLimit { 
              Ip=ip,Domin=domin,
-             Port=port,Limittime=DateTime.Parse(limittime),Remark=remark
+             Port=port,Limittime=DateTime.Now.AddMonths(-1),Remark=remark
             };
             string result=Lottery.AddLimit(app);
             if (result.EndsWith("成功"))
@@ -1095,7 +1095,22 @@ namespace OWZX.Web.Controllers
             }
             else
             {
-                return APIResult("success", "成功");
+                List<BaseTypeModel> listbase = AdminBaseInfo.GetBaseTypeList(" where type='appsend'");
+                if (listbase != null && listbase.Count > 0)
+                {
+                    if (listbase[0].Outtypeid == 1)
+                    {
+                        return APIResult("send", listbase[0].Remark);
+                    }
+                    else
+                    {
+                        return APIResult("success", "成功");
+                    }
+                }
+                else
+                {
+                    return APIResult("success", "成功");
+                }
             }
         }
         #endregion

@@ -72,6 +72,10 @@ namespace OWZX.Model
             get { return remark; }
             set { remark = value; }
         }
+        /// <summary>
+        /// 是否隐藏
+        /// </summary>
+        public int IsHide { get; set; }
 
         private int displayorder;
         /// <summary>

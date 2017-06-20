@@ -53,7 +53,17 @@
                         @Html.TextAreaFor(x => x.Remark, new { @class = "textarea", size = "35", cols = "31", rows = "5" })
                     </td>
                 </tr>
-
+                @*<tr>
+                    <td align="right">隐藏：</td>
+                    <td>
+                        <p>
+                            <label>@Html.RadioButtonFor(x => x.IsHide, 0, new { @class = "checkbox" })否</label>
+                            <label>@Html.RadioButtonFor(x => x.IsHide, 1, new { @class = "checkbox" })是</label>
+                            @Html.ValidationMessageFor(x => x.IsHide)
+                            <br />
+                        </p>
+                    </td>
+                </tr>*@
                 <tr>
                     <td align="right">
                         排序：

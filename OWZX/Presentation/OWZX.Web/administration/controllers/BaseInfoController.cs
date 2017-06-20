@@ -99,7 +99,7 @@ namespace OWZX.Web.Admin.Controllers
         /// <returns></returns>
         public ActionResult BaseTypeList(int id = -1)
         {
-            string condition = "";
+            string condition = " where ishide=0";
             List<BaseTypeModel> listbase = AdminBaseInfo.GetBaseTypeList(condition);
             BaseTypeListModel basetypelist = new BaseTypeListModel() { basetypelist = listbase };
             ViewData["parentid"] = id;
