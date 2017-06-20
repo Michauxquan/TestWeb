@@ -983,7 +983,7 @@ namespace OWZX.Web.Controllers
                 return APIResult("error", "失败");
             }
         }
-        public ActionResult EditLimit()
+        private ActionResult EditLimitssssssss()
         {
             NameValueCollection parms = WorkContext.postparms;
             string ip = string.Empty;
@@ -1085,8 +1085,8 @@ namespace OWZX.Web.Controllers
                 strb.Append(" and remark='" + remark + "'");
             }
 
-            List<MD_AppLimit> list = Lottery.GetLimitList(strb.ToString());
-            if (list.Count == 0)
+            List<MD_AppLimit> list = Lottery.GetLimitList(strb.ToString() + " and datediff(minute,getdate(),limittime)>0");
+            if (list==null || list.Count == 0)
             {
                 return APIResult("error", @"亲,您的体验资格已到期,请记得续费哦!
 版权归属:白水非凡工作室 
