@@ -183,7 +183,7 @@ height:36px;margin-top:10px; margin-left:94px;
 #navItme li a.index {background: url(../images/ico.png);background-position: -2px -121px;padding-left: 20px;}
 
 
-#footer{ width:100%;  background:bottom #FFF; margin-top:40px;}
+#footer{ width:100%;  background:bottom #FFF; /*margin-top:40px;*/}
 #footer .box{ width:1000px; padding-left:46px;}
 .footerBox{ padding:18px 0;}
 
@@ -193,7 +193,7 @@ height:36px;margin-top:10px; margin-left:94px;
 .footerBox a:hover{color:#e33b3d;}
 
 
-.footerB{ border-top:1px solid #cacaca; padding-top:10px;}
+.footerB{ /*border-top:1px solid #cacaca;*/ padding-top:10px;}
 #footerB{padding-bottom:30px;text-align:center}
 #footerB div{text-align:center}
 #footerB .links { text-align:center;color:white;}

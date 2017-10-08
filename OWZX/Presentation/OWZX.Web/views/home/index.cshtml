@@ -34,7 +34,7 @@
             var result=eval('('+data+')');
             var html='';
             for (var i = 0; i < result.content.length; i++) {
-                html += ' <li data-id="'+ result.content[i].newsid+'" title="'+result.content[i].title+'">【赏金28】' + result.content[i].title + '</li>';
+                html += ' <li data-id="'+ result.content[i].newsid+'" title="'+result.content[i].title+'">【幸运28】' + result.content[i].title + '</li>';
             }
             $('.news').html(html);
             $('.news li').each(function (i,v) {
@@ -62,7 +62,7 @@
     </script>
 
 </head>
-<body>
+<body style="background: url('/images/bg.jpg') no-repeat;background-size:  100% 93%; background-position: top;">
 @Html.Partial("_header")
 
 <div class="mid wrapper" id="wrapper" >
@@ -98,7 +98,7 @@
         <div class="order">
             <div style="width: 300px; height: 330px; float: right; margin-top: 20px; background-color: #000; opacity: 0.8;">
                 <div class="ind_reserve" style="margin-left: 24px; width: 85%; text-align: left; height: 38px; line-height: 38px;">
-                    <h3 style="border-bottom: solid 1px #fff; color: white; margin-top: 10px; opacity: 1;">欢迎来赏金|28行业的龙头站点</h3>
+                    <h3 style="border-bottom: solid 1px #fff; color: white; margin-top: 10px; opacity: 1;">欢迎来幸运28|行业的龙头站点</h3>
                 </div>
                 <div class="clear"></div>
                 <div class="Message">
@@ -121,7 +121,7 @@
 
     <div class="basecontent">
         <div class="title">
-            <img src="/images/baseimg/tb_1.jpg"/> 礼品兑换 resent <a href="@Url.Action("changelist","changeware")" class="more">更多>></a>
+            <img src="/images/baseimg/tb_1.png"/> 礼品兑换 resent <a href="@Url.Action("changelist","changeware")" class="more">更多>></a>
         </div>
         <div class="goods">
             <img src="~/images/baseimg/gg1.jpg" style="cursor: pointer;"/>
@@ -133,7 +133,7 @@
     <div class="games basecontent">
         <div style="float: left; width: 700px; ">
             <div class="title" >
-                <img src="/images/baseimg/tb_2.jpg"/> 热门游戏 games  <a href="/nwlottery/ltindex/1"  class="more">更多>></a>
+                <img src="/images/baseimg/tb_2.png"/> 热门游戏 games  <a href="/nwlottery/ltindex/1"  class="more">更多>></a>
             </div>
             <div style="border: solid 1px #eee;">
                  <a href="/nwlottery/ltindex/3" title="急速28"><img src="~/images/baseimg/js28.png" data-type="1"/></a>
@@ -149,7 +149,7 @@
         </div>
         <div style="float: right; width: 264px;">
             <div class="title">
-                <img src="/images/baseimg/tb_3.jpg"/> 新闻公告 news <a href="/news/list" class="more">更多>></a>
+                <img src="/images/baseimg/tb_3.png"/> 新闻公告 news <a href="/news/list" class="more">更多>></a>
                 <div class="clear"></div>
             </div>
             <div style="border: solid 1px #eee;">
@@ -162,9 +162,9 @@
     </div>
     <div class="companyinfo basecontent">
         <div class="title">
-            <img src="/images/baseimg/tb_4.jpg"/> 公司介绍 company profile
+            <img src="/images/baseimg/tb_4.png"/> 公司介绍 company profile
         </div>
-        <div style="text-indent: 24px; font-size: 14px;">    赏金28游戏站点，国内28行业龙头大站，蛋蛋28,蛋蛋龙虎豹,加拿大28,蛋蛋36,韩国28,加拿大36,pk冠军，pk冠亚军，急速28，多种28平台，通过各种有奖游戏获得礼品。</div>
+        <div style="text-indent: 24px; font-size: 14px;">    幸运28游戏站点，国内28行业龙头大站，蛋蛋28,蛋蛋龙虎豹,加拿大28,蛋蛋36,韩国28,加拿大36,pk冠军，pk冠亚军，急速28，多种28平台，通过各种有奖游戏获得礼品。</div>
     </div>
     @Html.Partial("_footer")
 

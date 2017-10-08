@@ -90,7 +90,7 @@ namespace OWZX.EmailStrategy.DotNet
                 client.EnableSsl = true;
                 client.UseDefaultCredentials = false; 
                 client.Credentials = new System.Net.NetworkCredential(_from, _password);
-                MailAddress from = new MailAddress(_from, "赏金28", Encoding.UTF8);//初始化发件人  
+                MailAddress from = new MailAddress(_from, "幸运28", Encoding.UTF8);//初始化发件人  
                 MailAddress toadd = new MailAddress(to, "", Encoding.UTF8);//初始化收件人  
                 //设置邮件内容  
                 MailMessage message = new MailMessage(from, toadd);
