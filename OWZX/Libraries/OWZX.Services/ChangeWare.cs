@@ -169,9 +169,9 @@ namespace OWZX.Services
             return OWZX.Core.BSPData.RDBS.UpdateWareSkuStatus(specid, status) > 0;
         }
 
-        public static bool UpdateOrderStatus(string ordercode,int status)
+        public static bool UpdateOrderStatus(string ordercode,int status,string username)
         {
-            return OWZX.Core.BSPData.RDBS.UpdateOrderStatus(ordercode, status);
+            return OWZX.Core.BSPData.RDBS.UpdateOrderStatus(ordercode, status, username);
         }
 
         #endregion

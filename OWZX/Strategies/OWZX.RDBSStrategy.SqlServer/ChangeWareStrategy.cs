@@ -309,7 +309,7 @@ begin
                     set @changefee=0
                     set @changefee=0-{9}
                     insert into owzx_accountchange
-                    select @userid,@changefee,'夺宝投注',getdate(),totalmoney from owzx_users where uid=@userid  
+                    select @userid,@changefee,'夺宝投注',getdate(),totalmoney,'' from owzx_users where uid=@userid  
                         update owzx_users set totalmoney=totalmoney+@changefee where uid=@userid
                         update owzx_changeware set status=1 where changeid='{1}'  
                         update owzx_userorder set status=1 where changeid='{1}' and status=0 and type={10} and issuenum='{0}' 
@@ -352,7 +352,7 @@ begin
             set @changefee=0
             set @changefee=0-{9}
             insert into owzx_accountchange
-            select @userid,@changefee,'兑换商品-扣除银行余额',getdate(),bankmoney from owzx_users where uid=@userid  
+            select @userid,@changefee,'兑换商品-扣除银行余额',getdate(),bankmoney,'' from owzx_users where uid=@userid  
             update owzx_users set bankmoney=bankmoney+@changefee where uid=@userid
             select '' state
         end
@@ -518,7 +518,7 @@ end catch
             return Convert.ToInt32(RDBSHelper.ExecuteScalar(CommandType.Text, commandText));
         }
 
-        public bool UpdateOrderStatus(string ordercode, int status)
+        public bool UpdateOrderStatus(string ordercode, int status, string username)
         {
             string commandText = string.Format(@" 
 begin try
@@ -530,7 +530,7 @@ begin try
             select @money=totalfee,@userid=userid from owzx_userorder  where   ordercode='{1}'
             select @totalfee=totalmoney from owzx_users where uid=@userid
             update  owzx_users set totalmoney =totalmoney+@money where uid=@userid
-            insert into owzx_accountchange ([uid] ,[changemoney] ,[remark] ,[addtime] ,[accounted])  VALUES(@userid,@money,'兑换商品-作废',getdate(),@totalfee)
+            insert into owzx_accountchange ([uid] ,[changemoney] ,[remark] ,[addtime] ,[accounted],[operater])  VALUES(@userid,@money,'兑换商品-作废',getdate(),@totalfee,'{2}')
         end
        update owzx_userorder  set  [Status]={0}  where   ordercode='{1}'
        select @@rowcount state 
@@ -544,7 +544,7 @@ begin catch
     select -1 state
 end catch
 
-", status, ordercode);
+", status, ordercode, username);
             return Convert.ToInt32(RDBSHelper.ExecuteScalar(CommandType.Text, commandText))>0;
         }
 

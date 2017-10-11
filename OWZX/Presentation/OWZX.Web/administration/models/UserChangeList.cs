@@ -11,6 +11,7 @@ namespace OWZX.Web.Admin.Models
     public class UserChangeList
     {
         public string Account { get; set; }
+        public string Operater { get; set; }
         public string Start { get; set; }
         public string End { get; set; }
         /// <summary>

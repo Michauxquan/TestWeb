@@ -366,9 +366,10 @@ end catch
             begin
 
             declare @uid int=0  select @uid=uid from owzx_userbackreport where backid=@backid
-            INSERT INTO owzx_accountchange([uid],[changemoney],[remark],accounted)
-            select @uid,@money,'回水',(select totalmoney from owzx_users where uid=@uid)
-            update owzx_users set totalmoney=totalmoney+@money where uid=@uid) 
+            declare @uname varchar(50)  select @uname=isnull(email,'') from owzx_users where uid=@updateuid
+            INSERT INTO owzx_accountchange([uid],[changemoney],[remark],accounted,operater)
+            select @uid,@money,'回水',(select totalmoney from owzx_users where uid=@uid),@uname
+            update owzx_users set totalmoney=totalmoney+@money where uid=@uid
             end
             
             select '修改成功' state
@@ -592,14 +593,15 @@ end catch
                                        
                                         GenerateInParam("@account", SqlDbType.VarChar,25, chag.Account),
                                         GenerateInParam("@changemoney", SqlDbType.Decimal,18, chag.Changemoney),
-                                        GenerateInParam("@remark", SqlDbType.VarChar, 100, chag.Remark)
+                                        GenerateInParam("@remark", SqlDbType.VarChar, 100, chag.Remark),
+                                         GenerateInParam("@operater", SqlDbType.VarChar, 100, chag.Operater)
                                        
                                     };
             string commandText = string.Format(@"
 begin try
 
-INSERT INTO owzx_accountchange([uid],[changemoney],[remark],accounted)
-VALUES ((select uid from owzx_users where rtrim(email)=@account),@changemoney,@remark,(select totalmoney from owzx_users where rtrim(email)=@account))
+INSERT INTO owzx_accountchange([uid],[changemoney],[remark],accounted,operater)
+VALUES ((select uid from owzx_users where rtrim(email)=@account),@changemoney,@remark,(select totalmoney from owzx_users where rtrim(email)=@account),@operater)
 
 select '添加成功' state
 end try
@@ -668,7 +670,7 @@ if OBJECT_ID('tempdb..#list') is not null
   drop table #list
 
 SELECT ROW_NUMBER() over(order by a.achangeid desc) id
-      ,a.[achangeid],a.[uid],a.[changemoney],a.[remark],a.[addtime],b.email account ,a.Accounted 
+      ,a.[achangeid],a.[uid],a.[changemoney],a.[remark],a.[addtime],b.email account ,a.Accounted ,a.operater
   into  #list
   FROM owzx_accountchange a
   join owzx_users b on a.uid=b.uid

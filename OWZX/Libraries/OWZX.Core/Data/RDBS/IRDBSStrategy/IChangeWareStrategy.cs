@@ -29,6 +29,6 @@ namespace OWZX.Core
         int UpdateWareSku(Sku sku);
         int UpdateWareStatus(string warecode, int status);
         int UpdateWareSkuStatus(int specid, int status);
-        bool UpdateOrderStatus(string ordercode, int status);
+        bool UpdateOrderStatus(string ordercode, int status, string username);
     }
 }

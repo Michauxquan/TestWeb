@@ -285,7 +285,7 @@ namespace OWZX.Web.Admin.Controllers
         /// <returns></returns>
         public ActionResult EditOrder(string ordercode, int status)
         {
-            bool result = ChangeWare.UpdateOrderStatus(ordercode, status);
+            bool result = ChangeWare.UpdateOrderStatus(ordercode, status,WorkContext.UserEmail);
             if (result)
                 return PromptView("订单状态修改成功");
             else

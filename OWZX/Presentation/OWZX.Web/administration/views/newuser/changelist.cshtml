@@ -36,9 +36,15 @@
                     </td>
                     <td align="right">&nbsp;&nbsp;&nbsp;时间：</td>
                     <td>
-                        <input type="text" class="Wdate" name="Start" id="Start" placeholder="开始时间" onfocus="WdatePicker({ maxDate: '#F{$dp.$D(\'End\')}', dateFmt: 'yyyy-MM-dd'})" value="@Model.Start" autocomplete="off" />
+                        <input type="text" class="Wdate" name="Start" id="Start" placeholder="开始时间" onfocus="WdatePicker({ maxDate: '#F{$dp.$D(\'End\')}', dateFmt: 'yyyy-MM-dd' })" value="@Model.Start" autocomplete="off"/>
                         至
-                        <input type="text" class="Wdate" name="End" id="End" placeholder="结束时间" onfocus="WdatePicker({ minDate: '#F{$dp.$D(\'Start\')}', dateFmt: 'yyyy-MM-dd'})" value="@Model.End" autocomplete="off" />
+                        <input type="text" class="Wdate" name="End" id="End" placeholder="结束时间" onfocus="WdatePicker({ minDate: '#F{$dp.$D(\'Start\')}', dateFmt: 'yyyy-MM-dd' })" value="@Model.End" autocomplete="off"/>
+                    </td>
+                     <td>
+                        操作人：
+                    </td>
+                    <td width="130">
+                        @Html.TextBox("Operater", Model.Operater, new { height = "18" })
                     </td>
                     <td style="height:24px;">
                         <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24" />
@@ -59,6 +65,7 @@
     <th width="200" align="left">变动金额</th>
     <th width="60" align="left">变动记录</th>
     <th width="60" align="left">时间</th>
+    <th width="60" align="left">操作人</th>
     </tr>
 </thead>
   <tbody>
@@ -69,7 +76,8 @@
     <td>@info.Account</td>
     <td>@Convert.ToInt64(info.Changemoney).ToString("N0")</td>
     <td>@info.Remark</td>
-    <td>@info.Addtime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+      <td>@info.Addtime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+       <td>@info.Operater</td>
     </tr>
   }
 </tbody>

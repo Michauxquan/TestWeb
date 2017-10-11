@@ -257,12 +257,14 @@ namespace OWZX.Web.Admin.Controllers
         #endregion
 
         #region 用户账变记录
-        public ActionResult ChangeList(string Account = "", string start = "", string end = "", int pageSize = 15, int pageNumber = 1)
+        public ActionResult ChangeList(string Account = "",string Operater="", string start = "", string end = "", int pageSize = 15, int pageNumber = 1)
         {
             StringBuilder strb = new StringBuilder();
             strb.Append(" where 1=1");
             if (Account != string.Empty)
                 strb.Append(" and rtrim(b.email)='" + Account + "'");
+            if (Operater != string.Empty)
+                strb.Append(" and rtrim(isnull(a.operater,''))='" + Operater + "'");
             if(start!=string.Empty )
                 strb.Append(" and a.addtime between '" + start + "' and '"+end+"'");
 
@@ -270,6 +272,7 @@ namespace OWZX.Web.Admin.Controllers
             UserChangeList userlist = new UserChangeList
             {
                 Account = Account,
+                Operater = Operater,
                 Start = start,
                 End = end,
                 PageModel = new PageModel(pageSize, pageNumber, list.Count > 0 ? list[0].TotalCount : 0),

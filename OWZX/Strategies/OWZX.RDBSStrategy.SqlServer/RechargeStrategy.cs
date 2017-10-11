@@ -548,8 +548,8 @@ update a set  a.totalmoney=a.totalmoney+b.money+b.money*1*0.01
 from {0}users a 
 join {0}userdraw b on a.uid=b.uid and b.drawid=@drawid
 
-INSERT INTO owzx_accountchange([uid],[changemoney],[remark])
-select uid ,money+money*1*0.01,'提现失败'
+INSERT INTO owzx_accountchange([uid],[changemoney],[remark],[operater])
+select uid ,money+money*1*0.01,'提现失败',@updateuser
 from owzx_userdraw where drawid=@drawid
 
 end
@@ -559,8 +559,8 @@ update a set  a.totalmoney=a.totalmoney+b.money
 from {0}users a 
 join {0}userdraw b on a.uid=b.uid and b.drawid=@drawid
 
-INSERT INTO owzx_accountchange([uid],[changemoney],[remark])
-select uid ,money,'提现失败'
+INSERT INTO owzx_accountchange([uid],[changemoney],[remark],[operater])
+select uid ,money,'提现失败',@updateuser
 from owzx_userdraw where drawid=@drawid
 
 end

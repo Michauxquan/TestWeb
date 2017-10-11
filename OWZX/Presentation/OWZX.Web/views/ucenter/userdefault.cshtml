@@ -85,7 +85,7 @@
                 else
                 {
                     <span><a href="javascript:void(0)" class="greenBT" style="font-size: 14px; padding: 3px 20px;" onclick="GetOwnerBack(0)">领取回水</a> </span>
-                    <span><a href="javascript:void(0)" class="greenBT" style="font-size: 14px; padding: 3px 20px; @(Model.UserInfo.UserType == 1 ? "display:block;" : "")" onclick="GetOwnerBack(1)">领取下级回水</a> </span>
+                    <span><a href="javascript:void(0)" class="greenBT" style="font-size: 14px; padding: 3px 20px; @(Model.UserInfo.UserType == 1 ? "display:inherit;" : "")" onclick="GetOwnerBack(1)">领取下级回水</a> </span>
                     <br/>
                     <br/>
                 }

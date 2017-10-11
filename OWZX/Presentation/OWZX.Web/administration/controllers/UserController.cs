@@ -336,7 +336,8 @@ namespace OWZX.Web.Admin.Controllers
                     Account = userInfo.Email,
                     Accounted = userInfo.TotalMoney,
                     Changemoney = fee,
-                    Remark = "上下分"
+                    Remark = "上下分",
+                    Operater=WorkContext.UserEmail
                 };
                 var s= NewUser.AddAChange(achange);
                 AddAdminOperateLog("修改用户账余", "修改用户账余,用户ID为:" + id);

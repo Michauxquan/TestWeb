@@ -43,6 +43,12 @@ namespace OWZX.Model
             get { return changemoney; }
             set { changemoney = value; }
         }
+        private string operater;
+        public string Operater
+        {
+            get { return operater; }
+            set { operater = value; }
+        }
         private decimal accounted;
         /// <summary>
         /// 变更金额
