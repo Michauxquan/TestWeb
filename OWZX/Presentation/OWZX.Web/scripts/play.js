@@ -56,7 +56,8 @@ $(document).ready(function ()
                 $(v).prop("checked", true);
                 if (lotterytype != 13)
                 {
-                    $(v).parent().next("td").children("input").val(nub1[i - 1]); //改了
+                    //$(v).parent().next("td").children("input").val(nub1[i - 1]); //改了
+                    $(v).parent().next("td").children("input").val(nub[i - 1]); //改了
                 }
                 else
                 {
@@ -105,7 +106,8 @@ $(document).ready(function ()
                 {
                     if (lotterytype != 13)
                     {
-                        dom.parent().next("td").children("input").val(nub1[i]); //改了
+                        //dom.parent().next("td").children("input").val(nub1[i]); //改了
+                        dom.parent().next("td").children("input").val(nub[i]); //改了
                     }
                     else
                     {
@@ -289,27 +291,35 @@ function usefenpei() {
     for (var i = 0; i < data.length; i++) {
         if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
             var vval = $("[id='txt_" + getindname(i) + "']").val();
-            perScore = 0;
-            if (vval != null && vval != "" && !isNaN(parseInt(vval))) {
-                totalScore += parseInt(vval);
+            perScore = 0; 
+            if (vval != null && vval != "" ) {
+            	vval=vval.replace(/,/g,'');
+	            if(!isNaN(parseInt(vval))){
+	            	totalScore += parseInt(vval);
+	            }
+                
             }
         }
-    }
+    } 
+    console.log(totalScore);
     for (var i = 0; i < data.length; i++) {
-        if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
+        if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) { 
             var vval = $("[id='txt_" + getindname(i) + "']").val();
             perScore = 0;
-            if (vval != null && vval != "" &&!isNaN(parseInt(vval))) {
-                if (Input_Score <= maxnum) {
-                    perScore = Input_Score / totalScore * parseInt(vval);
-                } else {
-                    perScore = mymoney / totalScore * parseInt(vval);
-                }
-                $("[id='txt_" + getindname(i) + "']").val(parseInt(perScore));
-                totalPressScore += parseInt(perScore);
+            if (vval != null && vval != "" ) { 
+            	vval=vval.replace(/,/g,'');
+            	if(!isNaN(parseInt(vval))){
+	                if (Input_Score <= maxnum) {
+	                    perScore = Input_Score * parseInt(vval) / totalScore;
+	                } else {
+	                    perScore = mymoney* parseInt(vval) / totalScore ;
+	                } 
+	                $("[id='txt_" + getindname(i) + "']").val(parseInt(perScore));
+	                totalPressScore += parseInt(perScore);
+	            }
             }
         }
-    }
+    } 
     $("#totalvalue").html(totalPressScore);
 }
 function chips(num) { 
@@ -345,10 +355,10 @@ function useSuoha() {
     for (var i = 0; i < data.length; i++) {
         if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
             if (mymoney <= maxnum) {
-                perScore = mymoney / totalScore * parseInt($("[id='txt_" + getindname(i) + "']").val());
+                perScore = mymoney* parseInt($("[id='txt_" + getindname(i) + "']").val()) / totalScore ;
             }
             else {
-                perScore = maxnum / totalScore * parseInt($("[id='txt_" + getindname(i) + "']").val());
+                perScore = maxnum* parseInt($("[id='txt_" + getindname(i) + "']").val()) / totalScore ;
             }
             $("[id='txt_" + getindname(i) + "']").val(parseInt(perScore));
             totalPressScore += parseInt(perScore);
@@ -506,8 +516,10 @@ function ani_select() {
                         $(this).parent().next("td").children("input").val(pkgj); //改了
                     else if (lotterytype == 10)
                         $(this).parent().next("td").children("input").val(pkgyj[i]); //改了
-                    else
-                        $(this).parent().next("td").children("input").val(nub1[i]); //改了
+                    else {
+                        $(this).parent().next("td").children("input").val(nub[i]); //改了
+                    }
+                    //$(this).parent().next("td").children("input").val(nub1[i]); //改了
                 }
                 else
                 {
@@ -534,8 +546,11 @@ $("input[name='checkboxd']").each(function (i, v) {
                         $(this).parent().next("td").children("input").val(pkgj); //改了
                     else if (lotterytype == 10)
                         $(this).parent().next("td").children("input").val(pkgyj[i]); //改了
-                    else
-                        $(this).parent().next("td").children("input").val(nub1[i]); //改了
+                    else {
+                        // $(this).parent().next("td").children("input").val(nub1[i]); //改了
+                        $(this).parent().next("td").children("input").val(nub[i]); //改了
+                    }
+                    
                 }
                 else
                 {
