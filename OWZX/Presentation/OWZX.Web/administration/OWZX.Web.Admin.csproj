@@ -133,6 +133,7 @@
     <None Include="views\account\login.cshtml" />
     <None Include="views\baseinfo\editlotteryset.cshtml" />
     <None Include="views\lottery\openset.cshtml" />
+    <None Include="views\newuser\userrptday.cshtml" />
     <None Include="views\user\lowerlist.cshtml" />
     <None Include="views\ware\add.cshtml" />
     <None Include="views\admingroup\add.cshtml" />

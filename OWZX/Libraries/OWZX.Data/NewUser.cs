@@ -164,7 +164,12 @@ namespace OWZX.Data
         }
 
         #endregion
-
+        #region 用户日报表
+           public static DataTable GetUserRptList(int pageNumber, int pageSize, string condition = "")
+        {
+            return OWZX.Core.BSPData.RDBS.GetUserRptList(pageNumber, pageSize, condition);
+        }
+        #endregion
         #region 用户转账记录
         /// <summary>
         /// 添加用户转账记录

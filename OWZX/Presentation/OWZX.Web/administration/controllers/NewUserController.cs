@@ -85,6 +85,29 @@ namespace OWZX.Web.Admin.Controllers
         } 
         #endregion
 
+        #region 用户日报表 
+     public ActionResult UserRptDay(string Account = "", string start = "", string end = "", int pageSize = 15, int pageNumber = 1)
+        {
+            StringBuilder strb = new StringBuilder();
+            strb.Append(" where 1=1");
+            if (Account != string.Empty)
+                strb.Append(" and rtrim(a.email)='" + Account + "'"); 
+            if(start!=string.Empty )
+                strb.Append(" and a.addtime between '" + start + "' and '"+end+"'");
+
+            List<MD_UserRptDay> list = NewUser.GetUserRptList(pageNumber, pageSize, strb.ToString());
+            UserRPTDayList userlist = new UserRPTDayList
+            {
+                Account = Account, 
+                Start = start,
+                End = end,
+                PageModel = new PageModel(pageSize, pageNumber, list.Count > 0 ? list[0].TotalCount : 0),
+                RPTList = list
+            };
+            return View(userlist);
+        }
+        #endregion
+
         #region 用户充值记录
         /// <summary>
         /// 用户充值记录

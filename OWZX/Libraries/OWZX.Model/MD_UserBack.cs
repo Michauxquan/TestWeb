@@ -3,106 +3,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace OWZX.Model
 {
     /// <summary>
     /// 用户回水
     /// </summary>
-    public class MD_UserBack
+    public class MD_UserRptDay
     {
         public Int64 Id { get; set; }
-        private int backid;
-        public int Backid
-        {
-            get { return backid; }
-            set { backid = value; }
-        }
-
-        private int backrate;
-
-        public int BackRate
-        {
-            set { backrate = value; }
-            get { return backrate; }
-        }
-        private int backtype;
-
-        public int BackType
-        {
-            set { backtype = value; }
-            get { return backtype; }
-        }
+        
         private int uid;
-        /// <summary>
-        /// 用户id
-        /// </summary>
         public int Uid
         {
             get { return uid; }
             set { uid = value; }
         }
-        public string Account { get; set; }
+        /// <summary>
+        /// 账户
+        /// </summary>
+        public string Email { get; set; }
 
-        private decimal money;
+        private decimal bettfee;
         /// <summary>
-        /// 回水金额
+        /// 变更金额
         /// </summary>
-        public decimal Money
+        [JsonProperty(PropertyName = "Money")]
+        public decimal BettFee
         {
-            get { return money; }
-            set { money = value; }
+            get { return bettfee; }
+            set { bettfee = value; }
         }
-        /// <summary>
-        /// 亏损金额
-        /// </summary>
-        public decimal ProfitMoney { get; set; }
-        /// <summary>
-        /// 组合比例
-        /// </summary>
-        public decimal CombRatio { get; set; }
-
-        private int roomtype;
-        /// <summary>
-        /// 房间类型id
-        /// </summary>
-        public int Roomtype
+        private decimal winfee;
+        public decimal WinFee
         {
-            get { return roomtype; }
-            set { roomtype = value; }
+            get { return winfee; }
+            set { winfee = value; }
         }
-        private string room;
+        private decimal ylfee;
         /// <summary>
-        /// 房间类型
+        /// 变更金额
         /// </summary>
-        public string Room
+        [JsonProperty(PropertyName = "YLFee")]
+        public decimal YLFee
         {
-            get { return room; }
-            set { room = value; }
+            get { return ylfee; }
+            set { ylfee = value; }
         }
-        private short status;
+        private decimal backfee;
         /// <summary>
-        /// 状态：0 未结算 1审核中 2已结算 3结算失败
+        /// 变更记录
         /// </summary>
-        public short Status
+        public decimal BackFee
         {
-            get { return status; }
-            set { status = value; }
+            get { return backfee; }
+            set { backfee = value; }
         }
 
-        public int Updateuid { get; set; }
-
-        private string addtime;
-        public string Addtime
+        private DateTime addtime;
+        [JsonProperty(PropertyName = "Time")]
+        public DateTime Addtime
         {
             get { return addtime; }
             set { addtime = value; }
-        }
-        private DateTime updatetime;
-        public DateTime Updatetime
-        {
-            get { return updatetime; }
-            set { updatetime = value; }
         }
 
         public int TotalCount { get; set; }

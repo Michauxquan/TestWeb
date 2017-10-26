@@ -700,6 +700,49 @@ end catch
 
         #endregion
 
+        #region 用户日报表
+          public DataTable GetUserRptList(int pageNumber, int pageSize, string condition = "")
+        {
+            DbParameter[] parms = {
+                                      GenerateInParam("@pagesize", SqlDbType.Int, 4, pageSize),
+                                      GenerateInParam("@pageindex", SqlDbType.Int, 4, pageNumber)
+                                  };
+
+
+            string commandText = string.Format(@"
+begin try
+if OBJECT_ID('tempdb..#list') is not null
+  drop table #list
+
+SELECT ROW_NUMBER() over(order by a.addtime desc,a.ylfee asc) id
+      ,a.[uid],a.[bettfee],a.[email],a.[backfee],a.winfee ,a.ylfee ,a.addtime
+  into  #list
+  FROM owzx_Usersreportday a 
+  {0}
+
+declare @total int
+select @total=(select count(1)  from #list)
+
+if(@pagesize=-1)
+begin
+select *,@total TotalCount from #list
+end
+else
+begin
+select *,@total TotalCount from #list where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
+end
+
+end try
+begin catch
+select ERROR_MESSAGE() state
+end catch
+
+", condition);
+
+            return RDBSHelper.ExecuteTable(CommandType.Text, commandText, parms)[0];
+        }
+        #endregion
+
         #region 用户转账记录
         /// <summary>
         /// 添加用户转账记录

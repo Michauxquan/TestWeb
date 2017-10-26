@@ -46,7 +46,11 @@
                {
                    "title": "盈利报表",
                    "url": "/admin/lottery/profitlist"
-               }
+               },
+                {
+                    "title": "用户日报表",
+                    "url": "/admin/newuser/userrptday"
+                }
            ]
        },
          {

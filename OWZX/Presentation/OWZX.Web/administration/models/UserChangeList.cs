@@ -24,4 +24,20 @@ namespace OWZX.Web.Admin.Models
         /// </summary>
         public List<MD_Change> ChangeList { get; set; }
     }
+
+    public class UserRPTDayList
+    {
+        public string Account { get; set; } 
+        public string Start { get; set; }
+        public string End { get; set; }
+        /// <summary>
+        /// 分页对象
+        /// </summary>
+        public PageModel PageModel { get; set; }
+
+        /// <summary>
+        /// 账变记录列表
+        /// </summary>
+        public List<MD_UserRptDay> RPTList { get; set; }
+    }
 }

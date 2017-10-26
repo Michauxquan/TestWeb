@@ -271,6 +271,14 @@ namespace OWZX.Services
 
         #endregion
 
+        #region 用户日报表
+        public static List<MD_UserRptDay> GetUserRptList(int pageIndex, int pageSize, string condition = "")
+        {
+            DataTable dt = OWZX.Data.NewUser.GetUserRptList(pageIndex, pageSize, condition);
+            List<MD_UserRptDay> list = (List<MD_UserRptDay>)ModelConvertHelper<MD_UserRptDay>.ConvertToModel(dt);
+            return list;
+        }
+        #endregion
         /// <summary>
         /// 获取首页数据
         /// </summary>

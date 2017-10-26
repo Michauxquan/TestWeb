@@ -87,6 +87,7 @@
     <Compile Include="System\SystemRoleModel.cs" />
     <Compile Include="UserCallInfoModel.cs" />
     <Compile Include="MD_Ware.cs" />
+    <Compile Include="MD_UserRptDay.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

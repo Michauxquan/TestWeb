@@ -106,7 +106,11 @@ namespace OWZX.Core
 
         string DeleteUserBackReport(string id);
         #endregion
+        #region 用户日报表
 
+        DataTable GetUserRptList(int pageNumber, int pageSize, string condition = "");
+ 
+        #endregion
         #region 用户转账记录
         /// <summary>
         /// 添加用户转账记录
