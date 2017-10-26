@@ -480,12 +480,10 @@ namespace OWZX.Web.Admin.Controllers
                 strb.Append(" and a.username like '" + username + "%'");
 
             if (mobile != "")
-                strb.Append(" and a.mobile='" + mobile + "'");
+                strb.Append(" and a.mobile='" + mobile + "'"); 
+            long SumFee = 0;
 
-            strb.Append("order by a.uid desc");
-
-
-            DataTable dt = AdminUsers.GetUserList(-1, 1, strb.ToString());
+            DataTable dt = AdminUsers.GetUserList(-1, 1,ref SumFee, strb.ToString());
 
             Dictionary<string, string> listcol = new Dictionary<string, string>() { };
             listcol["编号"] = "uid"; listcol["用户名"] = "username"; listcol["手机"] = "mobile"; listcol["姓名"] = "nickname"; listcol["职位"] = "userrank"; listcol["推荐人"] = "recomuser";

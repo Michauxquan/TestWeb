@@ -40,6 +40,7 @@ namespace OWZX.Web.Admin.Models
         /// 用户等级id
         /// </summary>
         public int UserType { get; set; }
+        public long SumFee { get; set; }
         /// <summary>
         /// 用户等级列表
         /// </summary>

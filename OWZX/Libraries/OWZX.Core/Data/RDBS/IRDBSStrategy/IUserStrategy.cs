@@ -290,7 +290,7 @@ namespace OWZX.Core
         /// <param name="pageNumber"></param>
         /// <param name="condition"></param>
         /// <returns></returns>
-        DataTable GetUserList(int pageSize, int pageNumber, string condition = "");
+        DataTable GetUserList(int pageSize, int pageNumber, ref long SumFee, string condition = "");
 
         DataTable GetUserParentList(int pageSize, int pageNumber, string condition = "");
         /// <summary>

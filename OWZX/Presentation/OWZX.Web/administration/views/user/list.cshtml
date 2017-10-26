@@ -43,7 +43,7 @@
                         @Html.TextBox("UserName", Model.UserName, new {height = "18"})
                     </td>
                     <td>
-                        &nbsp;&nbsp;&nbsp;手机：
+                        &nbsp;&nbsp;&nbsp;登陆账号：
                     </td>
                     <td width="130">
                         @Html.TextBox("Mobile", Model.Mobile, new {height = "18"})
@@ -60,6 +60,9 @@
                     </td>
                     <td style="height: 24px;">
                         <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24"/>
+                    </td>
+					 <td width="230">
+                          &nbsp; &nbsp; &nbsp; &nbsp;积分总计：@Model.SumFee
                     </td>
                 </tr>
                 </tbody>

@@ -85,15 +85,15 @@ namespace OWZX.Web.Admin.Controllers
                 strb.Append(" and a.nickname like '%" + userName + "%'");
 
             if (mobile != "")
-                strb.Append(" and a.mobile='" + mobile + "'");
+                strb.Append(" and a.Email='" + mobile + "'");
             if (usertype > -1)
             {
                 strb.Append(" and a.usertype=" + usertype+ " ");
             }
-            strb.Append(" order by a.uid desc");
+            
 
-
-            DataTable dt = AdminUsers.GetUserList(pageSize, pageNumber, strb.ToString());
+            long SumFee = 0;
+            DataTable dt = AdminUsers.GetUserList(pageSize, pageNumber,ref SumFee, strb.ToString());
             if (dt.Columns[0].ColumnName == "error")
                 return PromptView("用户获取失败");
 
@@ -103,7 +103,8 @@ namespace OWZX.Web.Admin.Controllers
                 UserList = dt,
                 UserName = userName,
                 Mobile = mobile,
-                UserType = usertype
+                UserType = usertype,
+                SumFee= SumFee
             };
 
 
@@ -504,9 +505,9 @@ namespace OWZX.Web.Admin.Controllers
                 strb.Append(" and a.mobile='" + mobile + "'");
 
             strb.Append("order by a.uid desc");
+            long SumFee = 0;
 
-
-            DataTable dt = AdminUsers.GetUserList(-1, 1, strb.ToString());
+            DataTable dt = AdminUsers.GetUserList(-1, 1,ref SumFee, strb.ToString());
 
             Dictionary<string, string> listcol = new Dictionary<string, string>() { };
             listcol["编号"] = "uid"; listcol["用户名"] = "username"; listcol["手机"] = "mobile"; listcol["姓名"] = "nickname"; listcol["职位"] = "userrank"; listcol["推荐人"] = "recomuser";

@@ -447,9 +447,9 @@ namespace OWZX.Data
         /// <param name="pageNumber"></param>
         /// <param name="condition"></param>
         /// <returns></returns>
-        public static DataTable GetUserList(int pageSize, int pageNumber, string condition = "")
+        public static DataTable GetUserList(int pageSize, int pageNumber, ref long SumFee, string condition = "")
         {
-            return OWZX.Core.BSPData.RDBS.GetUserList(pageSize, pageNumber, condition);
+            return OWZX.Core.BSPData.RDBS.GetUserList(pageSize, pageNumber, ref  SumFee, condition);
         }
 
         public static DataTable GetUserParentList(int pageSize, int pageNumber, string condition = "")

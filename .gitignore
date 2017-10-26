@@ -19,6 +19,7 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
+*.cache
 *.config
 *.txt
 [Bb]in
@@ -41,3 +42,6 @@ Relase/
 *.dll
 *.cache
 *.txt
+*.dll
+
+#ignore thumbnails created by windows

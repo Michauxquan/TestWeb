@@ -21,9 +21,9 @@ namespace OWZX.Web.Controllers
         public ActionResult List(int page=1)
         {
             StringBuilder strb = new StringBuilder();
-            strb.Append(" where a.usertype=1  and a.isfreeze=0 ");  
-            strb.Append("order by a.uid desc"); 
-            DataTable dt = AdminUsers.GetUserList(15, page, strb.ToString());
+            strb.Append(" where a.usertype=1  and a.isfreeze=0 ");   
+            long SumFee = 0;
+            DataTable dt = AdminUsers.GetUserList(15, page,ref SumFee, strb.ToString());
             UserListModel model = new UserListModel()
             {
                 PageModel = new PageModel(15, page, dt.Rows.Count),

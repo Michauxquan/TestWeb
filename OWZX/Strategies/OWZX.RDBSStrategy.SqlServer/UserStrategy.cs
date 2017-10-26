@@ -928,7 +928,7 @@ AND  [{0}admingroups].[admingid]=[{0}users].[admingid] ", RDBSHelper.RDBSTablePr
         /// <param name="pageNumber"></param>
         /// <param name="condition"></param>
         /// <returns></returns>
-        public DataTable GetUserList(int pageSize, int pageNumber, string condition = "")
+        public DataTable GetUserList(int pageSize, int pageNumber, ref long SumFee, string condition = "")
         {
             DbParameter[] parms = {
                                       GenerateInParam("@pagesize", SqlDbType.Int, 4, pageSize),
@@ -940,7 +940,7 @@ AND  [{0}admingroups].[admingid]=[{0}users].[admingid] ", RDBSHelper.RDBSTablePr
 if OBJECT_ID('tempdb..#list') is not null
   drop table #list
 
-select ROW_NUMBER() over(order by a.uid desc) id, a.uid,a.username,a.mobile,a.nickname,a.totalmoney,a.qq ,a.email,a.usertype,a.bankmoney,
+select ROW_NUMBER() over(order by a.totalmoney desc,a.uid desc) id, a.uid,a.username,a.mobile,a.nickname,a.totalmoney,a.qq ,a.email,a.usertype,a.bankmoney,
 convert(varchar(25),b.registertime,120) registertime,convert(varchar(25),b.lastvisittime,120) lastvisittime,c.title AS admingtitle
 into #list
 from owzx_users a
@@ -957,6 +957,7 @@ begin
 select * ,(select count(1) from #list) TotalCount from #list where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
 end
 
+select  sum(isnull(totalmoney,0))+ sum(isnull(bankmoney,0)) SumFee from  owzx_users  a  {0}
 
 end try
 begin catch
@@ -969,10 +970,20 @@ end catch
 ", condition);
 
             DataSet ds = RDBSHelper.ExecuteDataset(CommandType.Text, sql, parms);
-            if (ds == null || ds.Tables.Count == 0)
+            if (ds == null || ds.Tables.Count < 1)
+            {
+                SumFee = 0;
                 return new DataTable();
+            }
             else
+            {
+                if (ds.Tables[1].Rows.Count > 0)
+                {
+                    SumFee = Convert.ToInt64(ds.Tables[1].Rows[0][0]);
+                }
+                else { SumFee = 0; }
                 return ds.Tables[0];
+            }
         }
 
         /// <summary>
