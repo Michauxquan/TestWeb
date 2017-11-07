@@ -62,8 +62,8 @@ input[type="button"], input[type="submit"] {
 }
 .radio{ vertical-align:-2px;}
 
-#headerBar{ height:30px; line-height:30px; background:#f4f4f4; border-bottom:1px solid #d8e1e6;}
-#headerBar a{ color:#4c4c4c;}
+#headerBar{ height:30px; line-height:30px; background:#363636;     color: #b0b0b0;border-bottom:1px solid #d8e1e6;}
+#headerBar a{ color:#b0b0b0;}
 #headerBar a:hover{ color:#d23335;}
 #headerBar .box{ position:relative;}
 #headerBar .headerLink{ position:absolute; right:0; top:0;}
@@ -164,23 +164,24 @@ height:36px;margin-top:10px; margin-left:94px;
 
 /*导航*/
 /*#nav{ background:#da383a;} #cc0000*/
-#navs {background: #e4393c;}
+#navs {background: #b0b0b0;}
 
 #navItme{ width:1000px;margin:0 auto;text-align:center;height:45px; overflow:hidden;display:block; }
-#navItme  li{ display:inline-block;width:155px;}
+#navItme  li{ display:inline-block;width:125px;    margin-top: 25px;}
 #navItme  li a{
     width:100%;
-    color: #fff;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    color: #333333; 
+    padding-left: 2px 10px 5px;
     text-align:center;
     height:40px;
-    line-height: 45px !important;font-size:15px;}
+    line-height: 40px !important;font-size:15px;}
     #navItme li:hover {
     cursor:pointer;
     }
-#navItme li:hover,#navItme li.hot{ background:#990000;}
-#navItme li a.index {background: url(../images/ico.png);background-position: -2px -121px;padding-left: 20px;}
+#navItme li:hover,#navItme li a:hover,#navItme li.hot,#navItme li .hot{ color:#990000;}
+.active_head {}
+.active_head a{ color: #fe8700!important;border-bottom: 2px solid #ff8700 !important;}
+#navItme li a.index {background: url(../images/ico.png);background-position: -2px -121px;padding:2px 10px 5px;}
 
 
 #footer{ width:100%;  background:bottom #FFF; /*margin-top:40px;*/}

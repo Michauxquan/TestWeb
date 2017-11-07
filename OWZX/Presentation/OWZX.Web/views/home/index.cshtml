@@ -33,11 +33,12 @@
         $.post('/home/GetHomeNewsList', null, function(data) {
             var result=eval('('+data+')');
             var html='';
-            for (var i = 0; i < result.content.length; i++) {
-                html += ' <li data-id="'+ result.content[i].newsid+'" title="'+result.content[i].title+'">【幸运28】' + result.content[i].title + '</li>';
+            var lenth =result.content.length>8?8:result.content.length;
+            for (var i = 0; i < lenth; i++) {
+                html += '<li class="list_new" data-id="'+ result.content[i].newsid+'" title="'+result.content[i].title+'"><span class="list_new_con">【幸运28】' + result.content[i].title + '</span></li>';
             }
-            $('.news').html(html);
-            $('.news li').each(function (i,v) {
+            $('.list_left').html(html);
+            $('.list_left li').each(function (i,v) {
                 var _this = $(v);
                 _this.click(function() {
                     window.location.href = '/news/details?newsId=' + _this.data("id");
@@ -118,8 +119,48 @@
     </div>
 </div>
 
-
-    <div class="basecontent">
+    <div class="new_public">
+        <p class="new_title">新闻公告</p>
+        <p class="tit">News bulletin</p>
+        <div class="new_left">
+            <ul class="list_left"> </ul>
+        </div>
+    </div>
+    <div class="prize">
+        <p class="prize_title">奖品兑换</p>
+        <p class="tit">Prize exchange</p>
+        <ul class="prize_ul">
+            <li class="prize_li left_clear">
+                <img src="/images/ipad.png" alt="" />
+                <div class="lucency"></div>
+                <div class="prize_font">
+                    ipad3                        <p>70000</p>
+                </div>
+            </li>
+            <li class="prize_li">
+                <img src="/images/wurenji.png" alt="" />
+                <div class="lucency"></div>
+                <div class="prize_font">
+                    大疆无人机                        <p>80000</p>
+                </div>
+            </li>
+            <li class="prize_li">
+                <img src="~/images/iphone8.png" alt="" />
+                <div class="lucency"></div>
+                <div class="prize_font">
+                    iphone7                        <p>90000</p>
+                </div>
+            </li>
+            <li class="prize_li">
+                <img src="/images/iwatch.png" alt="" />
+                <div class="lucency"></div>
+                <div class="prize_font">
+                    iwatch                        <p>4000</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    @*<div class="basecontent">
         <div class="title">
             <img src="/images/baseimg/tb_1.png"/> 礼品兑换 resent <a href="@Url.Action("changelist","changeware")" class="more">更多>></a>
         </div>
@@ -138,7 +179,7 @@
             <div style="border: solid 1px #eee;">
                  <a href="/nwlottery/ltindex/3" title="急速28"><img src="~/images/baseimg/js28.png" data-type="1"/></a>
                 <a href="/nwlottery/ltindex/1" title="蛋蛋28"><img src="~/images/baseimg/dd28.png" data-type="1"/></a>
-                @*<a href="/nwlottery/ltindex/9" title="蛋蛋龙虎豹"><img src="~/images/baseimg/ddlhb.png" data-type="48"/></a>*@
+                <a href="/nwlottery/ltindex/9" title="蛋蛋龙虎豹"><img src="~/images/baseimg/ddlhb.png" data-type="48"/></a>
                 <a href="/nwlottery/ltindex/2" title="加拿大28"><img src="~/images/baseimg/jnd28.png" data-type="11"/></a>
                 <a href="/nwlottery/ltindex/6" title="韩国28"><img src="~/images/baseimg/hg28.png" data-type="47"/></a>
                 <a href="/nwlottery/ltindex/4" title="蛋蛋36"> <img src="~/images/baseimg/dd36.png" data-type="49"/></a>
@@ -159,7 +200,7 @@
             </div>
         </div>
         <div class="clear"></div>
-    </div>
+    </div>*@
     <div class="companyinfo basecontent">
         <div class="title">
             <img src="/images/baseimg/tb_4.png"/> 公司介绍 company profile

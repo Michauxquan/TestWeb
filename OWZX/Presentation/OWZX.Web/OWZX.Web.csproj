@@ -528,7 +528,10 @@
     <Content Include="images\error\500.jpg" />
     <Content Include="images\hmkdownload.png" />
     <Content Include="images\ico.png" />
+    <Content Include="images\ipad.png" />
+    <Content Include="images\iphone8.png" />
     <Content Include="images\iphone_help.png" />
+    <Content Include="images\iwatch.png" />
     <Content Include="images\kefu_bg.png" />
     <Content Include="images\kefu_icon.gif" />
     <Content Include="images\kefu_icon.png" />
@@ -552,6 +555,7 @@
     <Content Include="images\tr.png" />
     <Content Include="images\dlogo.png" />
     <Content Include="images\word.fw.png" />
+    <Content Include="images\wurenji.png" />
     <Content Include="images\yuanbao.png" />
     <Content Include="images\logo.png" />
     <Content Include="scripts\account.js" />

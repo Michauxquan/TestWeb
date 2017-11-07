@@ -27,20 +27,17 @@
     </div>
     <div style="width: 100%;">
         <div id="imglogo">
-            <img src="/images/baseimg/logo_dz.jpg"/>
-            <img src="~/images/baseimg/toutu.jpg"/>
+            <img src="/images/baseimg/logo_dz.jpg" style="float:left;"/> 
+            <ul id="navItme" style="float:right;width:800px;height:74px;">
+                <li class="active_head" onclick="javascript: window.location.href = '/'"><a href="/" class="index">首页</a></li>
+                <li onclick="javascript:window.location.href = '@Url.Action("list", "agent")'"><a href="javascript:void(0);">商务合作</a></li>
+                <li onclick="javascript: window.location.href = '@Url.Action("list", "news")'"><a href="javascript:void(0);">活动专区</a></li>
+                <li onclick="javascript: window.location.href = '/nwlottery/ltindex/3'"><a href="javascript:void(0);">游戏乐园</a></li>
+                <li onclick="javascript: window.location.href = '@Url.Action("changelist", "changeware")'"><a href="javascript:void(0);">兑换中心</a></li>
+                <li onclick="javascript: window.location.href = '@Url.Action("userdefault", "ucenter")'"><a href="javascript:void(0);">用户中心</a></li>
+            </ul>
         </div>
-    </div>
-    <div id="navs">
-        <ul id="navItme">
-            <li onclick="javascript: window.location.href = '/'"><a href="/" class="index">首页</a></li>
-            <li onclick="javascript:window.location.href = '@Url.Action("list", "agent")'"><a href="javascript:void(0);">商务合作</a></li>
-            <li onclick="javascript: window.location.href = '@Url.Action("list", "news")'"><a href="javascript:void(0);">活动专区</a></li>
-            <li onclick="javascript: window.location.href = '/nwlottery/ltindex/3'"><a href="javascript:void(0);">游戏乐园</a></li>
-            <li onclick="javascript: window.location.href = '@Url.Action("changelist", "changeware")'"><a href="javascript:void(0);">兑换中心</a></li>
-            <li onclick="javascript: window.location.href = '@Url.Action("userdefault", "ucenter")'"><a href="javascript:void(0);">用户中心</a></li>
-        </ul>
-    </div>
+    </div> 
     <div style="border-bottom: 2px solid white;"></div>
     <div class="clear"></div>
 </div>
