@@ -15,11 +15,11 @@
                 {
 
                     string lgname = (string.IsNullOrEmpty(WorkContext.NickName) ? WorkContext.UserEmail : WorkContext.NickName) + " (" + WorkContext.Uid + ")";
-                    <a class="cblock" href="@Url.Action("userdefault", "ucenter")">@lgname</a>@:&nbsp; &nbsp; 
-                    <a class="cblock" href="@Url.Action("logout", "account")">[退出]</a>@:&nbsp; &nbsp; | &nbsp; &nbsp;
-                    <a class="cblock" href="@Url.Action("userdefault", "ucenter")">我的帐户</a>@:&nbsp; &nbsp; | &nbsp; &nbsp;
-                    <span class="cblock" >元宝: <i class="usertotalmoney Fred bold">0</i><img style="margin-bottom: -2px; display: inline-block; width: 20px; height: 16px;" src="../../images/yuanbao.png"/> </span>@:&nbsp; &nbsp; | &nbsp; &nbsp;
-                    <span class="cblock" >银行: <i class="banktotalmoney Fred bold">0</i><img style="margin-bottom: -2px; display: inline-block; width: 20px; height: 16px;" src="../../images/yuanbao.png"/></span>@:&nbsp; &nbsp; 
+                    <a class="cblock" href="@Url.Action("userdefault", "ucenter")">@lgname</a>@:&nbsp; &nbsp; | &nbsp; &nbsp;
+                    <a class="cblock" style="color:#ff8700" href="@Url.Action("userdefault", "ucenter")">我的帐户</a>@:&nbsp; &nbsp; | &nbsp; &nbsp;
+                    <span class="cblock" style="color:#b0b0b0" >元宝: <i class="usertotalmoney Fred bold">0</i><img style="margin-bottom: -2px; display: inline-block; width: 20px; height: 16px;" src="../../images/yuanbao.png"/> </span>@:&nbsp; &nbsp; | &nbsp; &nbsp;
+                    <span class="cblock" style="color:#b0b0b0" >银行: <i class="banktotalmoney Fred bold">0</i><img style="margin-bottom: -2px; display: inline-block; width: 20px; height: 16px;" src="../../images/yuanbao.png"/></span>@:&nbsp; &nbsp; 
+                    <a class="cblock" style="color:#ff8700"  href="@Url.Action("logout", "account")">[退出]</a>@:&nbsp; &nbsp; 
                 }
             </div>
 
@@ -38,7 +38,7 @@
             </ul>
         </div>
     </div> 
-    <div style="border-bottom: 2px solid white;"></div>
+    <div style="border-bottom: 1px solid gainsboro;"></div>
     <div class="clear"></div>
 </div>
 <div id="jquery_jplayer_1" style="display: none;"></div>

@@ -97,7 +97,59 @@ namespace OWZX.Model
         /// <summary>
         /// 六合彩
         /// </summary>
-        hk6 = 13
+        hk6 = 13,
+        /// <summary>
+        /// 蛋蛋28浮动
+        /// </summary>
+        dd28fd = 14,
+        /// <summary>
+        /// 加拿大28浮动
+        /// </summary>
+        cakeno28fd = 15,
+        /// <summary>
+        /// 北京28
+        /// </summary>
+        bj28 = 16,
+        /// <summary>
+        /// 幸运28
+        /// </summary>
+        xy28 = 17,
+        /// <summary>
+        /// 广西快3
+        /// </summary>
+        gxk3 = 18,
+        /// <summary>
+        /// 广西快乐十分
+        /// </summary>
+        gxklsf = 19,
+        /// <summary>
+        /// 湖南快乐十分
+        /// </summary>
+        hnklsf = 20,
+        /// <summary>
+        /// 江苏骰宝
+        /// </summary>
+        jsgb = 21,
+        /// <summary>
+        /// 江西时时彩
+        /// </summary>
+        jxssc = 22,
+        /// <summary>
+        /// 天津时时彩
+        /// </summary>
+        tjssc = 23,
+        /// <summary>
+        /// 新疆时时彩
+        /// </summary>
+        xjssc = 24,
+        /// <summary>
+        /// 重庆时时彩
+        /// </summary>
+        cqssc = 25,
+        /// <summary>
+        /// 重庆幸运农场
+        /// </summary>
+        cqxync = 26 
     }
     /// <summary>
     /// 投注类型

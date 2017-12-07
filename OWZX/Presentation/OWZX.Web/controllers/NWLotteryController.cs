@@ -51,14 +51,21 @@ namespace OWZX.Web.controllers
             //dd28,dd36,ddlhb,pkgj,pkgyj  24:00~9:00 暂停投注
             //cakeno28,cakeno36  20:00~待定  暂停投注
             //hg28 5:00~7:00 暂停投注
-            if (id == 1 || id == 4 || id == 9 || id == 7 || id == 8)
+            //jsgb 22:10-08:40 暂停投注
+            //gxk3 每日20:30-09:30 暂停投注
+            //gxklsf 每日22:30-09:30 暂停投注
+            //tjssc jxssc 23:00-9:00 暂停投注
+            //hnklsf  23:30-09:00 暂停投注
+            //cqssc cqxync 02:00-10:00 暂停投注
+            //xjssc 22:00-09:00 暂停投注
+            if (id == 1 || id == 4 || id == 9 || id == 7 || id == 8 || id == 14 || id == 16 || id == 17)
             {
                 if (DateTime.Now > DateTime.Parse("00:00") && DateTime.Now < DateTime.Parse("9:02"))
                 {
                     total = list.RemainS;
                 }
             }
-            else if (id == 2 || id == 5)
+            else if (id == 2 || id == 5 || id == 15)
             {
                 if (DateTime.Now > DateTime.Parse("20:00") && DateTime.Now < DateTime.Parse("23:00"))
                 {
@@ -75,6 +82,55 @@ namespace OWZX.Web.controllers
             else if (id == 3 || id == 10 || id == 11 || id == 12)
             {
                 total = list.RemainS;
+            }
+            else if (id == 18)
+            {
+                if (DateTime.Now > DateTime.Parse("23:30") && DateTime.Now < DateTime.Parse("9:30"))
+                {
+                    total = list.RemainS;
+                }
+            }
+            else if (id == 19)
+            {
+                if (DateTime.Now > DateTime.Parse("22:30") && DateTime.Now < DateTime.Parse("9:30"))
+                {
+                    total = list.RemainS;
+                }
+            }
+            else if (id == 20)
+            {
+                if (DateTime.Now > DateTime.Parse("23:30") && DateTime.Now < DateTime.Parse("8:40"))
+                {
+                    total = list.RemainS;
+                }
+            }
+            else if (id == 21)
+            {
+                if (DateTime.Now > DateTime.Parse("22:10") && DateTime.Now < DateTime.Parse("9:00"))
+                {
+                    total = list.RemainS;
+                }
+            }
+            else if (id == 22 || id == 23)
+            {
+                if (DateTime.Now > DateTime.Parse("23:00") && DateTime.Now < DateTime.Parse("9:00"))
+                {
+                    total = list.RemainS;
+                }
+            }
+            else if (id == 24)
+            {
+                if (DateTime.Now > DateTime.Parse("22:00") && DateTime.Now < DateTime.Parse("9:00"))
+                {
+                    total = list.RemainS;
+                }
+            }
+            else if (id == 25 || id==26)
+            {
+                if (DateTime.Now > DateTime.Parse("2:00") && DateTime.Now < DateTime.Parse("10:00"))
+                {
+                    total = list.RemainS;
+                }
             }
             return total;
         }
@@ -142,6 +198,71 @@ namespace OWZX.Web.controllers
                     total = 60*60*24*2;
                     stop = 600;
                     break;
+                case (int)LotType.dd28fd:
+                    title = "蛋蛋28浮动首页";
+                    total = 300;
+                    stop = 40;
+                    break;
+                case (int)LotType.cakeno28fd:
+                    title = "加拿大28浮动首页";
+                    total = 210;
+                    stop = 40;
+                    break;
+                case (int)LotType.bj28:
+                    title = "北京28首页";
+                    total = 300;
+                    stop = 40;
+                    break;
+                case (int)LotType.xy28:
+                    title = "幸运28首页";
+                    total = 300;
+                    stop = 40;
+                    break;
+                case (int)LotType.gxk3:
+                    title = "广西快3首页";
+                    total = 600;
+                    stop = 40;
+                    break;
+                case (int)LotType.gxklsf:
+                    title = "广西快乐十分首页";
+                    total = 600;
+                    stop = 40;
+                    break;
+                case (int)LotType.hnklsf:
+                    title = "湖南快乐十分首页";
+                    total = 600;
+                    stop = 40;
+                    break;
+                case (int)LotType.jsgb:
+                    title = "江苏骰宝首页";
+                    total = 600;
+                    stop = 40;
+                    break;
+                case (int)LotType.jxssc:
+                    title = "江西时时彩首页";
+                    total = 600;
+                    stop = 40;
+                    break;
+                case (int)LotType.tjssc:
+                    title = "天津时时彩首页";
+                    total = 600;
+                    stop = 40;
+                    break;
+                case (int)LotType.xjssc:
+                    title = "新疆时时彩首页";
+                    total = 600;
+                    stop = 40;
+                    break;
+                case (int)LotType.cqssc:
+                    title = "重庆时时彩首页";
+                    total = 600;
+                    stop = 40;
+                    break;
+                case (int)LotType.cqxync:
+                    title = "重庆幸运农场";
+                    total = 600;
+                    stop = 40;
+                    break; 
             }
         }
 

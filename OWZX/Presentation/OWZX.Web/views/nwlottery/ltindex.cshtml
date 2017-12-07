@@ -20,13 +20,13 @@
         lotterytype=@Model.LotteryType;
         isbett=0;
         $(function () {
-            $("#navItme li").removeClass("hot"); 
+            $("#navItme li").removeClass("hot");
             $(".ltItme li div").removeClass("hot");
             $(".ltItme li").each(function(i, v) {
                 if ($(v).data("type") == lotterytype) {
                     $(v).find("div").addClass("hot");
                 }
-            }); 
+            });
             $(".sec_head a").click(function () {
                 if ($(this).index() > 3 && uid <= 0) {
                     layer.alert("<div style='text-align:center;'>请登录</div>", { title: "提示" });
@@ -40,11 +40,11 @@
             {
                 $("#div_code").addClass("hide")
                 $("#div_result").css("border-top","none")
-            }*@
+            }url('/images/bg.jpg') no-repeat*@
         });
     </script>
 </head>
-<body style="background: url('/images/bg.jpg') no-repeat;background-size:  100% 90%; background-position: bottom;">
+<body style="background: #fff;background-size:  100% 90%; background-position: bottom;">
     @Html.Partial("_header")
     @Html.Partial("_ltheader")
     <div class="content">

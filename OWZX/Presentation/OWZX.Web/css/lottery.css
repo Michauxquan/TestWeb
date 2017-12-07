@@ -1,7 +1,7 @@
 ﻿
 /*头部*/
 #ltheader,#ltnavs,.content{
-    height: 110px;
+    height: 150px;
     line-height: 30px;
     width: 1000px;
     margin: 0 auto;
@@ -9,15 +9,15 @@
 }
 #ltnavs {
  /*height:47px;*/
- border-bottom:1px solid #c30000;
+ /*border-bottom:1px solid #c30000;*/
 }
 #ltnavs{
-    width:910px;
+    width:960px;
     padding-bottom:5px;
 }
 .ltItme {
 
-border-bottom:1px solid #c30000;
+border-bottom:1px solid #fff;
 }
     #ltheader .ltItme li {
         display: inline-block;
@@ -26,22 +26,21 @@ border-bottom:1px solid #c30000;
     }
 
         #ltheader .ltItme li a div {
-            width: 80px;
+            width: 98px;
             height: 32px;
             line-height:32px;
-            border: 1px solid #c30000;
+            border: 1px solid #ff7528;
             border-radius: 10px;
             text-align: center;
-            margin:10px 7.5px 10px 7px;
-            font-size:14.5px;
+            margin:5px 1px 5px 2px;
+            font-size:14px;
             /*font-weight:bold;*/
         }
-            #ltheader .ltItme li a div.hot {background:#e4393c;color:white;
-            }
+            #ltheader .ltItme li a div.hot {    background: #293e8f;    color: white;    border: 1px solid #fff;            }
 /*内容*/
 .content {
 height:auto;
-width:910px;
+width:960px;
 }
 .sec_head {
     height:40px;
