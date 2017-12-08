@@ -12,9 +12,9 @@ body div{ text-align:left;}
 textarea,input{ word-wrap:break-word; word-break:break-all; padding:0px;}
 ul,ol,li { list-style-type:none;}
 img{ border:0 none;}
-a:hover{ color:#d23335;}
+a:hover{ color:#fd8724;}
  
-a:link, a:visited{ text-decoration:none; color:#666;}
+a:link, a:visited{ text-decoration:none; color:#333;}
 a { outline:none;color:#000;}
 h1{ font-size:24px;}
 h2{ font-size:20px;}

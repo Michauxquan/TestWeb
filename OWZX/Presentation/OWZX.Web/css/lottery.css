@@ -44,10 +44,11 @@ width:960px;
 }
 .sec_head {
     height:40px;
+    font-size:13px;
 }
 
 .sec_head a:hover, .sec_head a.hot {
-        color:#e4393c;
+        color:#fd8724;
     }
 
  /*#tbhead {
@@ -58,12 +59,13 @@ border-bottom:2px solid #ECECEC;
 }*/
 
 .dv {
-display:inline-block;width:910px;margin-bottom:10px;
+display:inline-block;width:960px;margin-bottom:10px;
 }
 .ltnumber {
 width:20%;display:block;float:left;
 text-align:center;color:white;height:75px;vertical-align:middle;
-background-image:url(../images/ltnumber.png);
+background: #fd8724;
+/*background-image:url(../images/ltnumber.png);*/
 
 }
 .ltresult {color:#c30000;font-weight:bold;font-size:20px;}
@@ -317,12 +319,10 @@ padding:0 3px;
 
 /*table*/
 .lot_content table {
-width:910px; border:0;
+width:960px; border:0;
 }
 
-#play i {
-    font-size:18px;font-weight:600;color:#c30000;
-}
+#play i {        font-size: 30px;    font-weight: bolder;    color: #c30000;    font-family: monospace;}
 
 #play td,.table_rule td {
 background:#FFFFFF;text-align:center;}
@@ -351,11 +351,11 @@ height:40px;
 }
 
 #play .ltoperate {
-background:#e4393c;color:white;border-radius:40px;text-align:center;width:80%;margin:3px auto;font-weight:bold;font-size:14px;
+background:#fd8724;color:white; text-align:center;width:65%;margin:3px auto;font-weight:bold;font-size:14px;    line-height: 30px;    height: 30px
 }
 
-.ltclose {color:#666;border-radius:40px;text-align:center;width:80%;margin:3px auto;font-weight:bold;font-size:14px;
-box-shadow:2px 3px 3px 3px  rgba(0,0,0,.3) inset;
+.ltclose {color:#666; text-align:center;width:65%;margin:3px auto;font-weight:bold;font-size:14px;
+box-shadow:2px 3px 3px 3px  rgba(0,0,0,.3) inset;    line-height: 30px;    height: 30px
 }
 
 /*投注*/
