@@ -1,4 +1,15 @@
-﻿
+﻿<style>
+    .title_div li{
+        display:inline-block;width:193px;text-align:center;height: 58px;font-size: 18px;
+    }
+    .title_div li a{
+        color:white;
+
+    }
+        .title_div li a:hover {
+            cursor:pointer;
+        }
+</style>
 
 <div id="headercontent" style="background: #FFF; color: #666;">
     <div id="headerBar" class="bigBox">
@@ -25,13 +36,27 @@
 
         </div>
     </div>
-    <div style="width: 100%;">
-        <div id="imglogo">
+    <div style="width: 100%;padding-top: 15px;" class="title_div">
+        @*<div id="imglogo">
             <img src="/images/baseimg/logo_dz.jpg"/>
             <img src="~/images/baseimg/toutu.jpg"/>
+        </div>*@
+        @*<ul style="width:1000px;margin:0 auto;display:block;">
+            <li style="background:url(../../images/new/title2.png) no-repeat;
+    "><a href="/" class="index">蛋蛋28</a></li>
+            <li style="background:url(../../images/new/title1.png) no-repeat;"><a href="/" class="index">加拿大28</a></li>
+        </ul>*@
+        <div class="dv_title" style="width:1000px;margin:0 auto;height:58px;display:block;background:url(../../images/new/t1.png) no-repeat;">
+
+            <ul style="width:1000px;margin:0 auto;display:block;">
+                <li onclick="seltitle(1)"></li>
+                <li onclick="seltitle(2)" style="margin-left: 8px;"></li>
+            </ul>
+           
         </div>
+        
     </div>
-    <div id="navs">
+    <div id="navs" >
         <ul id="navItme">
             <li onclick="javascript: window.location.href = '/'"><a href="/" class="index">首页</a></li>
             <li onclick="javascript:window.location.href = '@Url.Action("list", "agent")'"><a href="javascript:void(0);">商务合作</a></li>
@@ -73,6 +98,21 @@
             wmode: "window"
         }); 
     });  
+
+    function seltitle(type)
+    {
+        switch(type)
+        {
+            case 1:
+                window.location.href = '/nwlottery/ltindex/1'
+                $(".dv_title").css("background","url(../../images/new/t1.png) no-repeat");
+                break;
+            case 2:
+                window.location.href = '/nwlottery/ltindex/2';
+                $(".dv_title").css("background","url(../../images/new/t2.png) no-repeat");
+                break;
+        }
+    }
 </script>
 @*<script src="http://webpresence.qq.com/getonline?Type=1&3503560500n   :"></script>*@
 <script type="text/javascript" src="@{@WorkContext.CSSCDN}/scripts/cookie.js"></script>
