@@ -221,7 +221,7 @@ function chgTimes(numID, times) {
 }
 
 function loadpage(type, expect, betid) {
-    if (type == "bett" || type == "bettrecords" || type == "models" || type == "autobett") {
+    if (type == "bett" || type == "bettrecords" || type == "models" || type == "autobett" ) {
         if (uid <= 0) {
             layer.alert("<div style='text-align:center;'>请登录</div>", { title: "提示" });
             return;
@@ -261,10 +261,14 @@ function loadpage(type, expect, betid) {
             if (lotterytype == 13)
             {
                 $(".temp_content").load("/nwlottery/_bettdetailslhc", { "type": lotterytype, "bettid": betid });
-            } else
+            }
+            else
             {
                 $(".temp_content").load("/nwlottery/_bettdetails", { "type": lotterytype, "bettid": betid });
             }
+            break;
+        case "lottrend":
+            $(".temp_content").load("/nwlottery/lottrend", { "type": lotterytype });
             break;
 
     }

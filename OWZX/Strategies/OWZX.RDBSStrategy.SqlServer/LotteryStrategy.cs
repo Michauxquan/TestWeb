@@ -829,7 +829,11 @@ max(type) FOR item in ([大],[小],[单],[双],[大单],[小单],[大双],[小�
  )a
 order by expect desc
 
-select id, expect,resultnum,[大] big,[小] small,[单] single,[双] dble,[大单] lsingle,[小单] ssingle,[大双] ldble,[小双] sdble  from #listpage where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
+declare @total int
+select @total=count(1) from #listpage
+
+select id, expect,resultnum,[大] big,[小] small,[单] single,[双] dble,[大单] lsingle,[小单] ssingle,[大双] ldble,[小双] sdble ,@total totalcount
+from #listpage where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
 ", type);
             return RDBSHelper.ExecuteTable(sql, parms)[0];
         }
@@ -2613,6 +2617,42 @@ end catch
             return RDBSHelper.ExecuteDataset(CommandType.Text, commandText).Tables[0];
         }
 
+        #endregion
+
+        #region 盈利报表
+        public DataTable GetWeekProfit(int uid)
+        {
+            string sql = string.Format(@"
+if object_id('tempdb..#list') is not null
+drop table #list
+
+select lotteryid,b.type,(case when addtime=convert(varchar(10),getdate(),120) then 'day' 
+when addtime=convert(varchar(10),dateadd(day,-1,getdate()),120) then 'prevday' else addtime end ) addtime,winmoney 
+into #list
+from (select a.lotteryid,convert(varchar(10),b.addtime,120) addtime,sum(b.luckresult) winmoney from owzx_bett a
+join owzx_bettprofitloss b on a.bettid=b.bettid
+where a.uid={0} and convert(varchar(10),b.addtime,120)>= convert(varchar(10),getdate() - 7,120)
+group by a.lotteryid,convert(varchar(10),b.addtime,120) ) a
+join (select * from owzx_sys_basetype where parentid=47 ) b on a.lotteryid=b.outtypeid
+order by lotteryid,addtime desc
+
+
+DECLARE @sql VARCHAR(8000),@index int=0
+while(@index<=6)
+begin
+SELECT @sql=isnull(@sql+',','')+'['+convert(varchar(10),dateadd(day,-@index,getdate()),120) +']'
+set @index=@index+1
+end
+
+select @sql=replace(replace(@sql,convert(varchar(10),getdate(),120),'day'),convert(varchar(10),dateadd(day,-1,getdate()),120),'prevday')
+
+SET @sql='select * from #list pivot (max(winmoney) for addtime in ('+@sql+'))a'
+
+exec(@sql)
+", uid);
+
+            return RDBSHelper.ExecuteTable(sql, null)[0];
+        }
         #endregion
     }
 }

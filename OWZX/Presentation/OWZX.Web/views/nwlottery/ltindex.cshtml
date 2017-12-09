@@ -1,5 +1,4 @@
 ﻿@model LotteryModel
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -46,7 +45,7 @@
 </head>
 <body style="background: url('/images/bg.jpg') no-repeat;background-size:  100% 90%; background-position: bottom;">
     @Html.Partial("_header")
-    @*@Html.Partial("_ltheader")*@
+    @Html.Partial("_ltheader")
     <div class="content">
         <div class="sec_head">
             <a href="javascript:loadpage('lottery')" target="_parent" class="hot">
@@ -57,12 +56,13 @@
             <span class="wh12">|</span>
             <a href="javascript:loadpage('bettrecords')" target="_parent">投注记录</a>
             <span class="wh12">|</span>
-            <a href="javascript:loadpage('models')" target="_parent">模式编辑</a>
+            <a href="javascript:loadpage('lottrend')" target="_parent">走势图</a>
+            @*<a href="javascript:loadpage('models')" target="_parent">模式编辑</a>
             @if (@Model.LotteryType != 13)
             {
             <span class="wh12">|</span>
             <a href="javascript:loadpage('autobett')" target="_parent">自动投注</a>
-            }
+            }*@
         </div>
         <div class="lot_content">
 

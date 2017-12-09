@@ -1,15 +1,15 @@
 ﻿
 /*头部*/
 #ltheader,#ltnavs,.content{
-    height: 110px;
+    /*height: 110px;*/
     line-height: 30px;
-    width: 1000px;
+    width: 910px;
     margin: 0 auto;
     overflow:hidden;
 }
 #ltnavs {
  /*height:47px;*/
- border-bottom:1px solid #c30000;
+ /*border-bottom:1px solid #c30000;*/
 }
 #ltnavs{
     width:910px;
@@ -17,7 +17,7 @@
 }
 .ltItme {
 
-border-bottom:1px solid #c30000;
+/*border-bottom:1px solid #c30000;*/
 }
     #ltheader .ltItme li {
         display: inline-block;

@@ -14,7 +14,7 @@ namespace OWZX.Web
             //默认路由(此路由不能删除)
             routes.MapRoute("default",
                             "{controller}/{action}/{id}",
-                            new { controller = "home", action = "index", id = UrlParameter.Optional },
+                            new { controller = "nwlottery", action = "ltindex", id = UrlParameter.Optional },
                             new[] { "OWZX.Web.Controllers" });
         }
     }

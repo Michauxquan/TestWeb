@@ -1160,5 +1160,13 @@ namespace OWZX.Services
             return list;
         }
         #endregion
+
+        #region 盈利报表
+        public static DataTable GetWeekProfit(int uid)
+        {
+            return OWZX.Data.Lottery.GetWeekProfit(uid);
+        }
+
+        #endregion
     }
 }

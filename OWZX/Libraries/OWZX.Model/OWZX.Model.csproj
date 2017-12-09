@@ -64,6 +64,7 @@
     <Compile Include="MD_Change.cs" />
     <Compile Include="MD_LotSetOdds.cs" />
     <Compile Include="MD_LotteryInfo.cs" />
+    <Compile Include="MD_LotTrend.cs" />
     <Compile Include="MD_UsersLog.cs" />
     <Compile Include="MD_DrawAccount.cs" />
     <Compile Include="MD_Lottery.cs" />

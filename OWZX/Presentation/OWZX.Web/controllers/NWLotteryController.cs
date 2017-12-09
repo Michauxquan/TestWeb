@@ -3,6 +3,7 @@ using OWZX.Core;
 using OWZX.Model;
 using OWZX.Services;
 using OWZX.Web.Framework;
+using OWZX.Web.models;
 using OWZX.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace OWZX.Web.controllers
         /// dd28
         /// </summary>
         /// <returns></returns>
-        public ActionResult LTIndex(int id)
+        public ActionResult LTIndex(int id = 1)
         {
             MD_LotteryList list = LotteryList.GetLotteryByType(id, 1, 20, WorkContext.Uid);
             int total = 0;
@@ -139,7 +140,7 @@ namespace OWZX.Web.controllers
                     break;
                 case (int)LotType.hk6:
                     title = "六合彩首页";
-                    total = 60*60*24*2;
+                    total = 60 * 60 * 24 * 2;
                     stop = 600;
                     break;
             }
@@ -306,7 +307,7 @@ namespace OWZX.Web.controllers
         {
             int type = WebHelper.GetFormInt("type");
             string expect = WebHelper.GetFormString("expect");
-            DataSet ds = LotteryList.GetLotSetList(type.ToString(),"",true);
+            DataSet ds = LotteryList.GetLotSetList(type.ToString(), "", true);
             ViewData["ltset"] = ds;
             ViewData["exists"] = NewUser.ExistsMode(WorkContext.Uid, type);
             ViewData["lotterytype"] = type;
@@ -354,7 +355,7 @@ namespace OWZX.Web.controllers
             string btjson = JsonConvert.SerializeObject(btmode);
             return Content(btjson);
         }
-       
+
 
         /// <summary>
         /// 游戏规则
@@ -379,7 +380,7 @@ namespace OWZX.Web.controllers
             DataTable dt = LotteryList.GetUserBett(type, WorkContext.Uid, pageindex, pagesize);
             LotteryRecord record = new LotteryRecord()
             {
-                LotteryType=type,
+                LotteryType = type,
                 PageModel = new PageModel(20, pageindex, dt.Rows.Count > 0 ? int.Parse(dt.Rows[0]["totalcount"].ToString()) : 0),
                 Records = dt
             };
@@ -400,7 +401,7 @@ namespace OWZX.Web.controllers
             return View();
         }
 
-         /// <summary>
+        /// <summary>
         /// 投注详情
         /// </summary>
         /// <returns></returns>
@@ -408,13 +409,13 @@ namespace OWZX.Web.controllers
         {
             int type = WebHelper.GetFormInt("type");
             int betid = WebHelper.GetFormInt("bettid");
-            DataSet ds = LotteryList.GetLotSetList(type.ToString(),"",true);
+            DataSet ds = LotteryList.GetLotSetList(type.ToString(), "", true);
             ViewData["ltset"] = ds;
             DataTable dt = LotteryList.GetUserBett(type, WorkContext.Uid, 1, 1, " where a.bettid=" + betid.ToString());
             ViewData["bett"] = dt;
             return View();
         }
-        
+
         #endregion
 
         /// <summary>
@@ -431,7 +432,7 @@ namespace OWZX.Web.controllers
             else
                 return Content(result);
         }
-       
+
         #region 模式
         /// <summary>
         /// 投注模式
@@ -462,7 +463,7 @@ namespace OWZX.Web.controllers
             return View(model);
         }
 
-        
+
         public ActionResult _BettModeLHC()
         {
             int type = WebHelper.GetFormInt("type");
@@ -489,14 +490,14 @@ namespace OWZX.Web.controllers
         }
         #endregion
 
-        public ActionResult GetProvBettInfo(int type = 0,string lotterynum="")
+        public ActionResult GetProvBettInfo(int type = 0, string lotterynum = "")
         {
             var condition = "";
             if (!string.IsNullOrEmpty(lotterynum))
             {
                 condition = " where a.lotterynum='" + lotterynum + "' ";
             }
-            var list = LotteryList.GetUserBett(type, WorkContext.Uid, 1, 2, condition); 
+            var list = LotteryList.GetUserBett(type, WorkContext.Uid, 1, 2, condition);
             string btjson = JsonConvert.SerializeObject(list);
             return Content(btjson);
         }
@@ -572,7 +573,7 @@ namespace OWZX.Web.controllers
         /// 获取用户自动投注
         /// </summary>
         /// <returns></returns>
-        private  ActionResult GetUserBett()
+        private ActionResult GetUserBett()
         {
             int type = WebHelper.GetFormInt("type");
             ViewData["lotterytype"] = type;
@@ -657,6 +658,35 @@ namespace OWZX.Web.controllers
         public ActionResult _AutoRule()
         {
             return View();
+        }
+
+        public ActionResult WeekProfit()
+        {
+            DataTable dt = new DataTable();
+            if (WorkContext.Uid > 0)
+            {
+                 dt = Lottery.GetWeekProfit(WorkContext.Uid);
+            }
+            ViewData["week"] = dt;
+            return View();
+        }
+
+        public ActionResult LotTrend(int type, int page = 1)
+        {
+            LotteryTrend lottrd = new LotteryTrend();
+
+            DataTable dt = Lottery.LotteryTrend(page, 20, type.ToString());
+            List<MD_LotTrend> list = (List<MD_LotTrend>)ModelConvertHelper<MD_LotTrend>.ConvertToModel(dt);
+            lottrd = new LotteryTrend
+            {
+                Type = type,
+                Page = page,
+                List = list,
+                PageModel = new PageModel(20, page, list.Count > 0 ? list[0].TotalCount : 0)
+            };
+
+
+            return View(lottrd);
         }
     }
 }

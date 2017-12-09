@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "LotTrend";
+}
+@model OWZX.Web.models.LotteryTrend
+<script src="~/components/pager/jquery.page.js"></script>
+<script src="~/scripts/betmode.js"></script>
+<link href="~/components/pager/page.css" rel="stylesheet" />
+<table class="con_table" id="bettrecord" cellpadding="0" cellspacing="1" align="center"
+       style="width:910px; color: Black; margin-bottom: 4px;margin-top:5px; border:1px solid #eee;border-left:none; border-top:2px solid #e4393c;">
+    <tr>
+        <th width="10%" style="height: 28px;">期号</th>
+        <th width="10%" style="height: 28px">开奖</th>
+        <th width="9%" style="height: 28px">单</th>
+        <th width="9%" style="height: 28px">双</th>
+        <th width="9%" style="height: 28px">大</th>
+        <th width="9%" style="height: 28px">小</th>
+        <th width="9%" style="height: 28px">大单</th>
+        <th width="9%" style="height: 28px">小单</th>
+        <th width="9%" style="height: 28px">大双</th>
+        <th width="9%" style="height: 28px">小双</th>
+    </tr>
+    @foreach (OWZX.Model.MD_LotTrend info in @Model.List)
+    {
+        string result = string.Empty;
+
+        result = info.ResultNum;
+        <tr>
+            <td>@info.Expect</td>
+        <td style="color: blue; font-size: 13px; font-weight: bold;">@result</td>
+            @if (info.Single != "")
+            {
+                <td style="background:#00a0e9;color:white;">@info.Single</td>
+            }
+            else
+            {
+                <td></td>
+            }
+            @if (info.Dble != "")
+            {
+                <td style="background:#e60012;color:white;">@info.Dble</td>
+            }
+            else
+            {
+                <td></td>
+            }
+            @if (info.Big != "")
+            {
+                <td style="background:#00a0e9;color:white;">@info.Big</td>
+            }
+            else
+            {
+                <td></td>
+            }
+            @if (info.Small != "")
+            {
+                <td style="background:#e60012;color:white;">@info.Small</td>
+            }
+            else
+            {
+                <td></td>
+            }
+            @if (info.LSingle != "")
+            {
+                <td style="background:#00a0e9;color:white;">@info.LSingle</td>
+            }
+            else
+            {
+                <td></td>
+            }
+            @if (info.SSingle != "")
+            {
+                <td style="background:#e60012;color:white;">@info.SSingle</td>
+            }
+            else
+            {
+                <td></td>
+            }
+           @if (info.LDble != "")
+           {
+              <td style="background:#00a0e9;color:white;">@info.LDble</td>
+           }
+           else
+           {
+            <td></td>
+           }
+            @if (info.SDble != "")
+            {
+                <td style="background:#e60012;color:white;">@info.SDble</td>
+            }
+            else
+            {
+                <td></td>
+            }
+            
+            
+    </tr>
+    }
+    <tr align="center" bgcolor="#FFFFFF" id="pagetr">
+        <td height="28" colspan="8" bgcolor="#FFFFFF">
+            <div class="tcdPageCode">
+                @*@Html.WebPager(Model.PageModel)*@
+            </div>
+        </td>
+    </tr>
+</table>
+<script>
+
+    $(function ()
+    {
+        $(".tcdPageCode").createPage({
+            pageCount: @Model.PageModel.TotalPages,
+            current: @Model.PageModel.PageNumber,
+            backFn: function (p)
+            {
+                $(".temp_content").load("/nwlottery/LotTrend",{"type":lotterytype,"page":p});
+            }
+        });
+    });
+
+
+
+</script>

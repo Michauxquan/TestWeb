@@ -568,5 +568,7 @@ namespace OWZX.Core
         DataTable GetLimitList(string condition = "");
         #endregion
 
+        DataTable GetWeekProfit(int uid);
+
     }
 }

@@ -21,7 +21,7 @@
                     <ul style="margin-top: 5px;">
                         <li class="cblock"> 您好，@WorkContext.NickName</li>
                         <li style="width: 143px;"><span style="float: left">元宝：</span><span id="usertotalmoney" style="float: left;width:107px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;" class="usertotalmoney Fred bold font10">0.00</span> <span class="clear"></span></li>
-                        <li style="width: 143px;"><span style="float: left">银行：</span><span id="banktotalmoney" style="float: left;width:107px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;" class="banktotalmoney Fred bold font10">0</span><span class="clear"></span></li>
+                        @*<li style="width: 143px;"><span style="float: left">银行：</span><span id="banktotalmoney" style="float: left;width:107px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;" class="banktotalmoney Fred bold font10">0</span><span class="clear"></span></li>*@
                     </ul>
 
                 </div>
@@ -33,7 +33,7 @@
                     <li><a href="@Url.Action("userinfo")">我的资料</a></li>
                     <li><a href="@Url.Action("accountdetail")">元宝明细</a></li>
                     <li><a href="@Url.Action("changerecord")">兑换记录</a></li>
-                    <li><a href="@Url.Action("userbank")">我的银行</a></li> 
+                    @*<li><a href="@Url.Action("userbank")">我的银行</a></li>*@ 
                 </ul>
             </details> 
             <details class="menu" open>

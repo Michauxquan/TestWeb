@@ -1,17 +1,4 @@
-﻿<style>
-    .title_div li{
-        display:inline-block;width:193px;text-align:center;height: 58px;font-size: 18px;
-    }
-    .title_div li a{
-        color:white;
-
-    }
-        .title_div li a:hover {
-            cursor:pointer;
-        }
-</style>
-
-<div id="headercontent" style="background: #FFF; color: #666;">
+﻿<div id="headercontent" style="background: #FFF; color: #666;">
     <div id="headerBar" class="bigBox">
         <div class="box">
             <div class="headerLink">
@@ -20,48 +7,49 @@
                 {
                     @:欢迎来到幸运28&nbsp;&nbsp;|
                     <a href="@Url.Action("login", "account", new RouteValueDictionary {{"returnUrl", WorkContext.Url}})">登录</a>@:&nbsp;&nbsp;|
-                    <a href="@Url.Action("register", "account")" class="A_b">注册</a>@:&nbsp; &nbsp; 
+                    <a href="@Url.Action("register", "account")" class="A_b">注册</a>@:&nbsp; &nbsp;
                 }
                 else
                 {
 
                     string lgname = (string.IsNullOrEmpty(WorkContext.NickName) ? WorkContext.UserEmail : WorkContext.NickName) + " (" + WorkContext.Uid + ")";
-                    <a class="cblock" href="@Url.Action("userdefault", "ucenter")">@lgname</a>@:&nbsp; &nbsp; 
+                    <a class="cblock" href="@Url.Action("userdefault", "ucenter")">@lgname</a>@:&nbsp; &nbsp;
                     <a class="cblock" href="@Url.Action("logout", "account")">[退出]</a>@:&nbsp; &nbsp; | &nbsp; &nbsp;
                     <a class="cblock" href="@Url.Action("userdefault", "ucenter")">我的帐户</a>@:&nbsp; &nbsp; | &nbsp; &nbsp;
-                    <span class="cblock" >元宝: <i class="usertotalmoney Fred bold">0</i><img style="margin-bottom: -2px; display: inline-block; width: 20px; height: 16px;" src="../../images/yuanbao.png"/> </span>@:&nbsp; &nbsp; | &nbsp; &nbsp;
-                    <span class="cblock" >银行: <i class="banktotalmoney Fred bold">0</i><img style="margin-bottom: -2px; display: inline-block; width: 20px; height: 16px;" src="../../images/yuanbao.png"/></span>@:&nbsp; &nbsp; 
+                    <span class="cblock">元宝: <i class="usertotalmoney Fred bold">0</i><img style="margin-bottom: -2px; display: inline-block; width: 20px; height: 16px;" src="../../images/yuanbao.png" /> </span>@:&nbsp; &nbsp; | &nbsp; &nbsp;
+                    <span class="cblock">银行: <i class="banktotalmoney Fred bold">0</i><img style="margin-bottom: -2px; display: inline-block; width: 20px; height: 16px;" src="../../images/yuanbao.png" /></span>@:&nbsp; &nbsp;
                 }
             </div>
 
         </div>
     </div>
     <div style="width: 100%;padding-top: 15px;" class="title_div">
-        @*<div id="imglogo">
-            <img src="/images/baseimg/logo_dz.jpg"/>
-            <img src="~/images/baseimg/toutu.jpg"/>
-        </div>*@
-        @*<ul style="width:1000px;margin:0 auto;display:block;">
-            <li style="background:url(../../images/new/title2.png) no-repeat;
-    "><a href="/" class="index">蛋蛋28</a></li>
-            <li style="background:url(../../images/new/title1.png) no-repeat;"><a href="/" class="index">加拿大28</a></li>
-        </ul>*@
-        <div class="dv_title" style="width:1000px;margin:0 auto;height:58px;display:block;background:url(../../images/new/t1.png) no-repeat;">
-
-            <ul style="width:1000px;margin:0 auto;display:block;">
-                <li onclick="seltitle(1)"></li>
-                <li onclick="seltitle(2)" style="margin-left: 8px;"></li>
-            </ul>
-           
+        <div id="imglogo">
+            <img src="/images/baseimg/logo_dz.jpg" />
+            <img src="~/images/baseimg/toutu.jpg" />
         </div>
-        
+        @*@*<ul style="width:1000px;margin:0 auto;display:block;">
+                    <li style="background:url(../../images/new/title2.png) no-repeat;
+            "><a href="/" class="index">蛋蛋28</a></li>
+                    <li style="background:url(../../images/new/title1.png) no-repeat;"><a href="/" class="index">加拿大28</a></li>
+                </ul>
+                <div class="dv_title" style="width:1000px;margin:0 auto;height:58px;display:block;background:url(../../images/new/t1.png) no-repeat;">
+
+                    <ul style="width:1000px;margin:0 auto;display:block;">
+                        <li onclick="seltitle(1)"></li>
+                        <li onclick="seltitle(2)" style="margin-left: 8px;"></li>
+                    </ul>
+
+                </div>*@
+
     </div>
-    <div id="navs" >
+    <div id="navs">
         <ul id="navItme">
-            <li onclick="javascript: window.location.href = '/'"><a href="/" class="index">首页</a></li>
-            <li onclick="javascript:window.location.href = '@Url.Action("list", "agent")'"><a href="javascript:void(0);">商务合作</a></li>
+            <li onclick="javascript: window.location.href = '/nwlottery/ltindex/1'"><a href="javascript:void(0);">游戏乐园</a></li>
+            <li class="weekprofit"><a href="#">一周盈利榜</a></li>
+            @*<li onclick="javascript: window.location.href = '/'"><a href="/" class="index">首页</a></li>*@
+            @*<li onclick="javascript:window.location.href = '@Url.Action("list", "agent")'"><a href="javascript:void(0);">商务合作</a></li>*@
             <li onclick="javascript: window.location.href = '@Url.Action("list", "news")'"><a href="javascript:void(0);">活动专区</a></li>
-            <li onclick="javascript: window.location.href = '/nwlottery/ltindex/3'"><a href="javascript:void(0);">游戏乐园</a></li>
             <li onclick="javascript: window.location.href = '@Url.Action("changelist", "changeware")'"><a href="javascript:void(0);">兑换中心</a></li>
             <li onclick="javascript: window.location.href = '@Url.Action("userdefault", "ucenter")'"><a href="javascript:void(0);">用户中心</a></li>
         </ul>
@@ -73,31 +61,42 @@
 <script>
     var online = new Array();
     online[0] = 1;
+    uid=@WorkContext.Uid;
     $(function() {
-        $.post('/ucenter/getusermoney', {}, function(data) {
-            var result = eval("(" + data + ")");
-            $('.usertotalmoney').html(transStr(parseFloat(result.content.totalmoney).toFixed(0)));
-            $('.banktotalmoney').html(transStr(parseFloat(result.content.bankmoney).toFixed(0)));
-        });
-        setInterval(function() {  if (@WorkContext.Uid > 0) {
+        if(uid>0)
+        {
             $.post('/ucenter/getusermoney', {}, function(data) {
                 var result = eval("(" + data + ")");
                 $('.usertotalmoney').html(transStr(parseFloat(result.content.totalmoney).toFixed(0)));
                 $('.banktotalmoney').html(transStr(parseFloat(result.content.bankmoney).toFixed(0)));
             });
-        } }, 8000);
-      
-        $("#jquery_jplayer_1").jPlayer({ 
+            setInterval(function() {  if (@WorkContext.Uid > 0) {
+                $.post('/ucenter/getusermoney', {}, function(data) {
+                    var result = eval("(" + data + ")");
+                    $('.usertotalmoney').html(transStr(parseFloat(result.content.totalmoney).toFixed(0)));
+                    $('.banktotalmoney').html(transStr(parseFloat(result.content.bankmoney).toFixed(0)));
+                });
+            } }, 8000);
+        }
+        $("#jquery_jplayer_1").jPlayer({
             swfPath: "/script",
-            ready: function () { 
-                $(this).jPlayer("setMedia", { 
-                    mp3: "/images/security.mp3" 
-                }); 
-            }, 
+            ready: function () {
+                $(this).jPlayer("setMedia", {
+                    mp3: "/images/security.mp3"
+                });
+            },
             supplied: "mp3",
             wmode: "window"
-        }); 
-    });  
+        });
+
+        $(".weekprofit").click(function () {
+            if (uid <= 0) {
+                layer.alert("<div style='text-align:center;'>请登录</div>", { title: "提示" });
+                return;
+            }
+            window.location.href="/nwlottery/weekprofit";
+        });
+    });
 
     function seltitle(type)
     {
@@ -118,19 +117,19 @@
 <script type="text/javascript" src="@{@WorkContext.CSSCDN}/scripts/cookie.js"></script>
 <script type="text/javascript" src="@{@WorkContext.CSSCDN}/scripts/jquery.jplayer.min.js"></script>
 @{
-   <link href="@{@WorkContext.CSSCDN}/css/kefu.css" rel="stylesheet" type="text/css" /> 
+    <link href="@{@WorkContext.CSSCDN}/css/kefu.css" rel="stylesheet" type="text/css" />
 }
-    <div id="box-kefu">
-        <div class="kefu-close"></div>
-        <div class="kefu-open">
-            <div>
+<div id="box-kefu">
+    <div class="kefu-close"></div>
+    <div class="kefu-open">
+        <div>
             <ul>
-                <li><a href="http://wpa.qq.com/msgrd?v=3&uin=3503560500&site=qq&menu=yes" target="_blank"><i class="qq"></i>在线客服1</a></li> 
+                <li><a href="http://wpa.qq.com/msgrd?v=3&uin=3503560500&site=qq&menu=yes" target="_blank"><i class="qq"></i>在线客服1</a></li>
             </ul>
-            </div>
-            <a href="javascript:;" class="close">关闭</a>
         </div>
-    </div> 
+        <a href="javascript:;" class="close">关闭</a>
+    </div>
+</div>
 
 <script>
     (function($){
@@ -144,7 +143,7 @@
         },function(){
             $(this).stop(true,true).animate({paddingLeft:35},200).find("i").stop(true,true).animate({left:10},200);
         });
-    
+
 
         _open.find(".close").click(function(){
             _open.animate({width:148},200,function(){

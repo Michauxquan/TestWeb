@@ -46,7 +46,7 @@ namespace OWZX.Data
         /// </summary>
         /// <param name="lot"></param>
         /// <returns></returns>
-        public static  string AddLottery(MD_Lottery lot)
+        public static string AddLottery(MD_Lottery lot)
         {
             return OWZX.Core.BSPData.RDBS.AddLottery(lot);
         }
@@ -60,14 +60,14 @@ namespace OWZX.Data
         /// <returns></returns>
         public static string AddLottery(int type, string starttime, string endtime)
         {
-            return OWZX.Core.BSPData.RDBS.AddLottery(type,starttime, endtime);
+            return OWZX.Core.BSPData.RDBS.AddLottery(type, starttime, endtime);
         }
         /// <summary>
         /// 更新彩票记录 (更新开奖信息)
         /// </summary>
         /// <param name="lot"></param>
         /// <returns></returns>
-        public static  string UpdateLottery(MD_Lottery lot)
+        public static string UpdateLottery(MD_Lottery lot)
         {
             return OWZX.Core.BSPData.RDBS.UpdateLottery(lot);
         }
@@ -85,7 +85,7 @@ namespace OWZX.Data
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static  string DeleteLottery(string id)
+        public static string DeleteLottery(string id)
         {
             return OWZX.Core.BSPData.RDBS.DeleteLottery(id);
         }
@@ -98,9 +98,9 @@ namespace OWZX.Data
         /// <param name="pageSize">-1 取全部</param>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        public static  DataTable GetLotteryList(int pageNumber, int pageSize, string condition = "",string orderby="")
+        public static DataTable GetLotteryList(int pageNumber, int pageSize, string condition = "", string orderby = "")
         {
-            return OWZX.Core.BSPData.RDBS.GetLotteryList(pageNumber, pageSize, condition,orderby);
+            return OWZX.Core.BSPData.RDBS.GetLotteryList(pageNumber, pageSize, condition, orderby);
         }
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace OWZX.Data
         /// <returns></returns>
         public static string ValidateBett(string account, string expect, string money, string room, string vip, int bttypeid)
         {
-            return OWZX.Core.BSPData.RDBS.ValidateBett(account, expect, money, room,vip,bttypeid);
+            return OWZX.Core.BSPData.RDBS.ValidateBett(account, expect, money, room, vip, bttypeid);
         }
         #endregion
 
@@ -218,7 +218,7 @@ namespace OWZX.Data
         /// </summary>
         /// <param name="bett"></param>
         /// <returns></returns>
-        public static  string AddBett(MD_Bett bett)
+        public static string AddBett(MD_Bett bett)
         {
             return OWZX.Core.BSPData.RDBS.AddBett(bett);
         }
@@ -237,7 +237,7 @@ namespace OWZX.Data
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static  string DeleteBett(string id)
+        public static string DeleteBett(string id)
         {
             return OWZX.Core.BSPData.RDBS.DeleteBett(id);
         }
@@ -249,7 +249,7 @@ namespace OWZX.Data
         /// <param name="pageSize">-1 取全部</param>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        public static  DataTable GetBettList(int pageNumber, int pageSize, string condition = "")
+        public static DataTable GetBettList(int pageNumber, int pageSize, string condition = "")
         {
             return OWZX.Core.BSPData.RDBS.GetBettList(pageNumber, pageSize, condition);
         }
@@ -271,7 +271,7 @@ namespace OWZX.Data
         /// <param name="money">投注金额</param>
         /// <param name="type">房间类型</param>
         /// <returns></returns>
-        public static string ValidateBetMoney(string expect, int bttypeid, int money,string type)
+        public static string ValidateBetMoney(string expect, int bttypeid, int money, string type)
         {
             return OWZX.Core.BSPData.RDBS.ValidateBetMoney(expect, bttypeid, money, type);
         }
@@ -292,7 +292,7 @@ namespace OWZX.Data
         /// </summary>
         /// <param name="lotset"></param>
         /// <returns></returns>
-        public static  string AddLotterySet(MD_LotterySet lotset)
+        public static string AddLotterySet(MD_LotterySet lotset)
         {
             return OWZX.Core.BSPData.RDBS.AddLotterySet(lotset);
         }
@@ -301,7 +301,7 @@ namespace OWZX.Data
         /// </summary>
         /// <param name="lotset"></param>
         /// <returns></returns>
-        public static  string UpdateLotterySet(MD_LotterySet lotset)
+        public static string UpdateLotterySet(MD_LotterySet lotset)
         {
             return OWZX.Core.BSPData.RDBS.UpdateLotterySet(lotset);
         }
@@ -311,7 +311,7 @@ namespace OWZX.Data
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static  string DeleteLotterySet(string id)
+        public static string DeleteLotterySet(string id)
         {
             return OWZX.Core.BSPData.RDBS.DeleteLotterySet(id);
         }
@@ -323,7 +323,7 @@ namespace OWZX.Data
         /// <param name="pageSize">-1 取全部</param>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        public static  DataTable GetLotterySetList(int pageNumber, int pageSize, string condition = "")
+        public static DataTable GetLotterySetList(int pageNumber, int pageSize, string condition = "")
         {
             return OWZX.Core.BSPData.RDBS.GetLotterySetList(pageNumber, pageSize, condition);
         }
@@ -397,7 +397,7 @@ namespace OWZX.Data
         /// </summary>
         /// <param name="lotterynum"></param>
         /// <returns></returns>
-        public static  string ExcuteBJBettResult(string lotterynum)
+        public static string ExcuteBJBettResult(string lotterynum)
         {
             return OWZX.Core.BSPData.RDBS.ExcuteBJBettResult(lotterynum);
         }
@@ -406,7 +406,7 @@ namespace OWZX.Data
         /// </summary>
         /// <param name="lotterynum"></param>
         /// <returns></returns>
-        public static  string ExcuteCanadaBettResult(string lotterynum)
+        public static string ExcuteCanadaBettResult(string lotterynum)
         {
             return OWZX.Core.BSPData.RDBS.ExcuteCanadaBettResult(lotterynum);
         }
@@ -452,7 +452,7 @@ namespace OWZX.Data
         /// <returns></returns>
         public static DataTable GetRoomList(int pageNumber, int pageSize, string condition = "")
         {
-            return OWZX.Core.BSPData.RDBS.GetRoomList(pageNumber,pageSize,condition);
+            return OWZX.Core.BSPData.RDBS.GetRoomList(pageNumber, pageSize, condition);
         }
         #endregion
 
@@ -527,7 +527,7 @@ namespace OWZX.Data
         }
         #endregion
 
-        #region 急速28 
+        #region 急速28
 
         public static DataTable GetAllMoneyByLotteryNum(string lotterynum = "", int type = 3)
         {
@@ -578,6 +578,14 @@ namespace OWZX.Data
         {
             return OWZX.Core.BSPData.RDBS.GetLimitList(condition);
         }
+        #endregion
+
+        #region 盈利报表
+        public static DataTable GetWeekProfit(int uid)
+        {
+            return OWZX.Core.BSPData.RDBS.GetWeekProfit(uid);
+        }
+
         #endregion
     }
 }
