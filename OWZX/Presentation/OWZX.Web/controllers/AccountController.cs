@@ -58,10 +58,10 @@ namespace OWZX.Web.Controllers
             {
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名不能为空", "}");
             }
-            else if (accountName.Length < 5 || accountName.Length > 20)
-            {
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名必须大于5且不大于20个字符", "}");
-            }
+            //else if (accountName.Length < 5 || accountName.Length > 20)
+            //{
+            //    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名必须大于5且不大于20个字符", "}");
+            //}
             else if ((!SecureHelper.IsSafeSqlString(accountName, false)))
             {
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名不存在", "}");
@@ -72,10 +72,10 @@ namespace OWZX.Web.Controllers
             {
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码不能为空", "}");
             }
-            else if (password.Length < 5 || password.Length > 16)
-            {
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码必须大于5且不大于16个字符", "}");
-            }
+            //else if (password.Length < 5 || password.Length > 16)
+            //{
+            //    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码必须大于5且不大于16个字符", "}");
+            //}
 
             //验证验证码
             if (CommonHelper.IsInArray(WorkContext.PageKey, WorkContext.ShopConfig.VerifyPages))
@@ -106,13 +106,13 @@ namespace OWZX.Web.Controllers
                     if (partUserInfo == null)
                         errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "手机不存在", "}");
                 }
-                //else if (BSPConfig.ShopConfig.LoginType.Contains("1")) //用户名登陆
-                //{
-                //    partUserInfo = Users.GetPartUserByName(accountName);
-                //    if (partUserInfo == null)
-                //        errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "用户名不存在",
-                //            "}");
-                //}
+                else if (BSPConfig.ShopConfig.LoginType.Contains("1")) //用户名登陆
+                {
+                    partUserInfo = Users.GetPartUserByName(accountName);
+                    if (partUserInfo == null)
+                        errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "用户名不存在",
+                            "}");
+                }
                 else
                 {  
                     errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账号格式输入不正确",
@@ -240,10 +240,10 @@ namespace OWZX.Web.Controllers
             StringBuilder errorList = new StringBuilder("[");
             
 
-            if (!ValidateHelper.IsEmail(accountName))
-            {
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "邮箱格式错误", "}");
-            }
+            //if (!ValidateHelper.IsEmail(accountName))
+            //{
+            //    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "邮箱格式错误", "}");
+            //}
             
 
             #region 验证
@@ -290,10 +290,10 @@ namespace OWZX.Web.Controllers
             {
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码不能为空", "}");
             }
-            else if (password.Length < 4 || password.Length > 32)
-            {
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码由6~16位字母、数字或_组成", "}");
-            }
+            //else if (password.Length < 4 || password.Length > 32)
+            //{
+            //    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码由6~16位字母、数字或_组成", "}");
+            //}
             else if (password != confirmPwd)
             {
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "两次输入的密码不一样", "}");
@@ -366,7 +366,7 @@ namespace OWZX.Web.Controllers
             }
 
             //当以上验证都通过时
-            UserInfo userInfo = null;
+            UserInfo userInfo = new UserInfo(); 
             if (errorList.Length == 1)
             {
                 if (WorkContext.ShopConfig.RegType.Contains("2") && ValidateHelper.IsEmail(accountName))//验证邮箱
@@ -408,11 +408,12 @@ namespace OWZX.Web.Controllers
                 }
                 else if (WorkContext.ShopConfig.RegType.Contains("1"))//验证用户名
                 {
-                    if (accountName.Length > 15)
-                    {
-                        errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "用户名长度不能超过15个字符", "}");
-                    }
-                    else if (OWZX.Services.Users.IsExistUserName(accountName))
+                    //if (accountName.Length > 15)
+                    //{
+                    //    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "用户名长度不能超过15个字符", "}");
+                    //}
+                    //else 
+                        if (OWZX.Services.Users.IsExistUserName(accountName))
                     {
                         errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "用户名已经存在", "}");
                     }

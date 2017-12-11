@@ -298,7 +298,7 @@ namespace OWZX.Web.Admin.Controllers
         {
             List<SelectListItem> lotterylist = new List<SelectListItem>();
             lotterylist.Add(new SelectListItem() { Text = "请选择", Value = "-1" });
-            foreach (BaseTypeModel info in AdminBaseInfo.GetBaseTypeList("where outtypeid=47"))
+            foreach (BaseTypeModel info in AdminBaseInfo.GetBaseTypeList("where outtypeid=47  and ishide=0"))
             {
                 lotterylist.Add(new SelectListItem() { Text = info.Type, Value = info.Systypeid.ToString() });
             }
@@ -307,14 +307,14 @@ namespace OWZX.Web.Admin.Controllers
 
             List<SelectListItem> roomlist = new List<SelectListItem>();
             roomlist.Add(new SelectListItem() { Text = "请选择", Value = "-1" });
-            foreach (BaseTypeModel info in AdminBaseInfo.GetBaseTypeList("where parentid=19"))
+            foreach (BaseTypeModel info in AdminBaseInfo.GetBaseTypeList("where parentid=19  and ishide=0"))
             {
                 roomlist.Add(new SelectListItem() { Text = info.Type, Value = info.Systypeid.ToString() });
             }
             ViewData["Room"] = roomlist;
             List<SelectListItem> bettlist = new List<SelectListItem>();
             bettlist.Add(new SelectListItem() { Text = "请选择", Value = "-1" });
-            foreach (BaseTypeModel info in AdminBaseInfo.GetBaseTypeList("where parentid=29"))
+            foreach (BaseTypeModel info in AdminBaseInfo.GetBaseTypeList("where parentid=29  and ishide=0"))
             {
                 bettlist.Add(new SelectListItem() { Text = info.Type, Value = info.Systypeid.ToString() });
             }

@@ -5,7 +5,7 @@
                 您好，
                 @if (WorkContext.Uid < 1)
                 {
-                    @:欢迎来到幸运28&nbsp;&nbsp;|
+                    @:欢迎来到好利28&nbsp;&nbsp;|
                     <a href="@Url.Action("login", "account", new RouteValueDictionary {{"returnUrl", WorkContext.Url}})">登录</a>@:&nbsp;&nbsp;|
                     <a href="@Url.Action("register", "account")" class="A_b">注册</a>@:&nbsp; &nbsp;
                 }
@@ -25,7 +25,7 @@
     </div>
     <div style="width: 100%;padding-top: 15px;" class="title_div">
         <div id="imglogo">
-            <img src="/images/baseimg/logo_dz.jpg" />
+            @*<img src="/images/baseimg/logo_dz.jpg" />*@
             <img src="~/images/baseimg/toutu.jpg" />
         </div>
         @*@*<ul style="width:1000px;margin:0 auto;display:block;">

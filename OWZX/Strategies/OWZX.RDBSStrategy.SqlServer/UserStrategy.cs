@@ -1601,12 +1601,20 @@ end catch
         /// <returns></returns>
         public IDataReader GetAdminActionList()
         {
-            string commandText = string.Format("SELECT {0} FROM [{1}adminactions] ORDER BY [displayorder] DESC",
+            string commandText = string.Format("SELECT {0} FROM [{1}adminactions] ORDER BY [displayorder] ",
                                                 RDBSFields.ADMIN_ACTIONS,
                                                 RDBSHelper.RDBSTablePre);
             return RDBSHelper.ExecuteReader(CommandType.Text, commandText);
         }
-
+        /// <summary>
+        /// 获得后台操作列表
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetAdminActions()
+        {
+            string commandText = string.Format("SELECT * FROM [owzx_adminactions] ORDER BY [displayorder]");
+            return RDBSHelper.ExecuteTable(commandText, null)[0];
+        }
         #endregion
 
         #region 收藏夹

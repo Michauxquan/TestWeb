@@ -269,7 +269,7 @@ namespace OWZX.Web.controllers
         {
             try
             {
-                List<BaseTypeModel> list =AdminBaseInfo.GetBaseTypeList("where parentid=31");
+                List<BaseTypeModel> list = AdminBaseInfo.GetBaseTypeList("where parentid=31  and ishide=0");
 
                 JsonSerializerSettings jsetting = new JsonSerializerSettings();
                 jsetting.ContractResolver = new JsonLimitOutPut(new string[] { "Type"}, true);

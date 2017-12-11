@@ -569,6 +569,6 @@ namespace OWZX.Core
         #endregion
 
         DataTable GetWeekProfit(int uid);
-
+        DataTable GetAdminActions();
     }
 }

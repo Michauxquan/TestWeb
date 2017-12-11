@@ -31,7 +31,7 @@
                             <select data-val="true" id="type" name="type">
                                 <option @if (-1 == Model.type)
                                         { <text> selected="selected" </text>        } value="-1">选择类型</option>
-                                @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=47"))
+                                @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=47 and ishide=0"))
                                 {
                                     <option @if (info.Outtypeid == Model.type)
                                                 { <text> selected="selected" </text>                } value="@info.Outtypeid">@info.Type</option>
@@ -59,7 +59,7 @@
                         <td width="130">
                             <select data-val="true" id="bttype" name="bttype">
                                 <option @if (-1 == Model.bttype) { <text> selected="selected" </text>          } value="-1">选择类型</option>
-                                @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=29"))
+                                @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=29  and ishide=0"))
                                 {
                                     <option @if (info.Systypeid == Model.bttype) { <text> selected="selected" </text>                  } value="@info.Systypeid">@info.Type</option>
                                 }

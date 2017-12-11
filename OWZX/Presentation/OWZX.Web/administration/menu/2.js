@@ -21,22 +21,6 @@
             {
                 "title": "下注记录",
                 "url": "/admin/lottery/lotterylist"
-            },
-            {
-                "title": "急速28开奖设置",
-                "url": "/admin/lottery/openset"
-            },
-            {
-                "title": "急速10开奖设置",
-                "url": "/admin/lottery/openset?type=10"
-            },
-            {
-                "title": "急速11开奖设置",
-                "url": "/admin/lottery/openset?type=11"
-            },
-            {
-                "title": "急速16开奖设置",
-                "url": "/admin/lottery/openset?type=12"
             }
      ]
      },
@@ -86,10 +70,7 @@
                  "title": "代理信息",
                  "url": "/admin/user/lowerlist"
              },
-            {
-                "title": "访问IP列表",
-                "url": "/admin/stat/visitiplist"
-            },
+            
             {
                 "title": "账变记录",
                 "url": "/admin/newuser/changelist"
@@ -97,15 +78,7 @@
 
 	    ]
 	},
-    {
-        "title": "导航管理",
-        "subMenuList": [
-            {
-                "title": "导航菜单",
-                "url": "/admin/nav/list"
-            }
-        ]
-    },
+    
 	{
 	    "title": "系统设置",
 	    "subMenuList": [

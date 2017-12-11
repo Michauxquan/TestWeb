@@ -283,18 +283,18 @@ function register()
 //验证注册
 function verifyRegister(accountName, loginname, password, confirmPwd, verifyCode)
 {
-    if (accountName.length == 0)
-    {
-        $("#" + shadowName).css("border-color", "red");
-        $(".a1").html("<em></em>手机号码不能为空");
-        return false;
-    }
-    else if (!isEmail(accountName))
-    {
-        $("#" + shadowName).css("border-color", "red");
-        $(".a1").html("<em></em>手机号码格式错误");
-        return false;
-    }
+    //if (accountName.length == 0)
+    //{
+    //    $("#" + shadowName).css("border-color", "red");
+    //    $(".a1").html("<em></em>手机号码不能为空");
+    //    return false;
+    //}
+    //else if (!isEmail(accountName))
+    //{
+    //    $("#" + shadowName).css("border-color", "red");
+    //    $(".a1").html("<em></em>手机号码格式错误");
+    //    return false;
+    //}
     if (loginname.length == 0)
     {
         $("#loginname").css("border-color", "red");
@@ -314,12 +314,12 @@ function verifyRegister(accountName, loginname, password, confirmPwd, verifyCode
         $(".a3").html("<em></em>密码不能为空");
         return false;
     }
-    else if (!isPwd(password))
-    {
-        $("#password").css("border-color", "red");
-        $(".a3").html("<em></em>密码长度需在6到16位间，只含数字 字母 _");
-        return false;
-    }
+    //else if (!isPwd(password))
+    //{
+    //    $("#password").css("border-color", "red");
+    //    $(".a3").html("<em></em>密码长度需在6到16位间，只含数字 字母 _");
+    //    return false;
+    //}
 
     if (password != confirmPwd)
     {

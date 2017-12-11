@@ -32,6 +32,25 @@ namespace OWZX.Data
             reader.Close();
             return adminActionList;
         }
+        /// <summary>
+        /// 获得后台操作列表
+        /// </summary>
+        /// <returns></returns>
+        public static List<AdminActionInfo> GetAdminActions()
+        {
+            List<AdminActionInfo> adminActionList = new List<AdminActionInfo>();
+            DataTable dt = OWZX.Core.BSPData.RDBS.GetAdminActions();
 
+            adminActionList = (List<AdminActionInfo>)ModelConvertHelper<AdminActionInfo>.ConvertToModel(dt);
+
+            adminActionList.ForEach((x) =>
+            {
+                x.ChildAction = adminActionList.FindAll(y => y.ParentId == x.AdminAid);
+            });
+
+            List<AdminActionInfo> adminAction = new List<AdminActionInfo>();
+            adminAction = adminActionList.FindAll(x => x.ChildAction.Count > 0);
+            return adminAction;
+        }
     }
 }

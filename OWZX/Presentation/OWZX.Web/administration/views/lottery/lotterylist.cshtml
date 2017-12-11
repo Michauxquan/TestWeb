@@ -43,7 +43,7 @@
                             <select data-val="true" id="lottype" name="lottype">
                                 <option @if (-1 == Model.lottype)
                                         { <text> selected="selected" </text>          } value="-1">选择类型</option>
-                                @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=47"))
+                                @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList(" where parentid=47 and ishide=0"))
                                 {
                                     <option @if (info.Outtypeid == Model.lottype)
                                             { <text> selected="selected" </text>                  } value="@info.Outtypeid">@info.Type</option>

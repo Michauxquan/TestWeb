@@ -221,7 +221,6 @@ namespace OWZX.Services
             OWZX.Core.BSPCache.Remove(CacheKeys.SHOP_ADMINGROUP_LIST);
             WriteAdminNavMenuCache(adminGroupInfo);
         }
-
         /// <summary>
         /// 将管理员组的导航菜单栏缓存写入到文件中
         /// </summary>
@@ -238,130 +237,29 @@ namespace OWZX.Services
             StringBuilder menu = new StringBuilder();
             StringBuilder menuList = new StringBuilder("var menuList = [");
 
+            List<AdminActionInfo> actionlist = OWZX.Data.AdminActions.GetAdminActions();
+            foreach (AdminActionInfo item in actionlist)
+            {
+                flag = false;
+                menu = menu.Clear();
+                menu.AppendFormat("{0}\"title\":\"" + item.Title + "\",\"subMenuList\":[", "{");
+                foreach (AdminActionInfo action in item.ChildAction)
+                {
+                    if (adminGroupActionHashSet.Contains(action.Action))
+                    {
+                        menu.AppendFormat("{0}\"title\":\"" + action.Title + "\",\"url\":\"/admin/" + action.Action.Replace('_', '/') + "\"{1},", "{", "}");
+                        flag = true;
+                    }
+                }
 
-            #region 用户管理
 
-            flag = false;
-            menu = menu.Clear();
-            menu.AppendFormat("{0}\"title\":\"用户管理\",\"subMenuList\":[", "{");
-            if (adminGroupActionHashSet.Contains("user_list"))
-            {
-                menu.AppendFormat("{0}\"title\":\"用户列表\",\"url\":\"/admin/user/list\"{1},", "{", "}");
-                flag = true;
+                if (flag)
+                {
+                    menu.Remove(menu.Length - 1, 1);
+                    menu.Append("]},");
+                    menuList.Append(menu.ToString());
+                }
             }
-            if (adminGroupActionHashSet.Contains("user_teamlist"))
-            {
-                menu.AppendFormat("{0}\"title\":\"团队列表\",\"url\":\"/admin/user/teamlist\"{1},", "{", "}");
-                flag = true;
-            }
-            if (adminGroupActionHashSet.Contains("admingroup_list"))
-            {
-                menu.AppendFormat("{0}\"title\":\"管理员组\",\"url\":\"/admin/admingroup/list\"{1},", "{", "}");
-                flag = true;
-            }
-            if (flag)
-            {
-                menu.Remove(menu.Length - 1, 1);
-                menu.Append("]},");
-                menuList.Append(menu.ToString());
-            }
-
-            #endregion
-
-            #region 信息管理
-            flag = false;
-            menu = menu.Clear();
-            menu.AppendFormat("{0}\"title\":\"信息管理\",\"subMenuList\":[", "{");
-            if (adminGroupActionHashSet.Contains("suite_suiteslist"))
-            {
-                menu.AppendFormat("{0}\"title\":\"套餐列表\",\"url\":\"/admin/suite/suiteslist\"{1},", "{", "}");
-                flag = true;
-            }
-            if (adminGroupActionHashSet.Contains("draw_drawlist"))
-            {
-                menu.AppendFormat("{0}\"title\":\"提现列表\",\"url\":\"/admin/draw/drawlist\"{1},", "{", "}");
-                flag = true;
-            }
-            if (adminGroupActionHashSet.Contains("advice_advicelist"))
-            {
-                menu.AppendFormat("{0}\"title\":\"意见列表\",\"url\":\"/admin/advice/advicelist\"{1},", "{", "}");
-                flag = true;
-            }
-            if (adminGroupActionHashSet.Contains("draw_flowlist"))
-            {
-                menu.AppendFormat("{0}\"title\":\"流量套餐\",\"url\":\"/admin/draw/flowlist\"{1},", "{", "}");
-                flag = true;
-            }
-            
-
-            if (flag)
-            {
-                menu.Remove(menu.Length - 1, 1);
-                menu.Append("]},");
-                menuList.Append(menu.ToString());
-            }
-
-            #endregion
-
-            #region 财务报表
-            flag = false;
-            menu = menu.Clear();
-            menu.AppendFormat("{0}\"title\":\"财务报表\",\"subMenuList\":[", "{");
-            if (adminGroupActionHashSet.Contains("draw_rechargelist"))
-            {
-                menu.AppendFormat("{0}\"title\":\"充值列表\",\"url\":\"/admin/draw/rechargelist\"{1},", "{", "}");
-                flag = true;
-            }
-            if (adminGroupActionHashSet.Contains("draw_userincome"))
-            {
-                menu.AppendFormat("{0}\"title\":\"用户收益\",\"url\":\"/admin/draw/userincome\"{1},", "{", "}");
-                flag = true;
-            }
-            if (adminGroupActionHashSet.Contains("draw_callinfo"))
-            {
-                menu.AppendFormat("{0}\"title\":\"话费清单\",\"url\":\"/admin/draw/callinfo\"{1},", "{", "}");
-                flag = true;
-            }
-            if (flag)
-            {
-                menu.Remove(menu.Length - 1, 1);
-                menu.Append("]},");
-                menuList.Append(menu.ToString());
-            }
-            #endregion
-
-            #region 基础信息
-            flag = false;
-            menu = menu.Clear();
-            menu.AppendFormat("{0}\"title\":\"基础信息\",\"subMenuList\":[", "{");
-            if (adminGroupActionHashSet.Contains("baseinfo_basetypelist"))
-            {
-                menu.AppendFormat("{0}\"title\":\"基础类型\",\"url\":\"/admin/baseinfo/basetypelist\"{1},", "{", "}");
-                flag = true;
-            }
-            if (adminGroupActionHashSet.Contains("baseinfo_baseinfolist"))
-            {
-                menu.AppendFormat("{0}\"title\":\"基础资料\",\"url\":\"/admin/baseinfo/baseinfolist\"{1},", "{", "}");
-                flag = true;
-            }
-            if (adminGroupActionHashSet.Contains("baseinfo_posterbaseinfo"))
-            {
-                menu.AppendFormat("{0}\"title\":\"海报信息\",\"url\":\"/admin/baseinfo/posterbaseinfo\"{1},", "{", "}");
-                flag = true;
-            }
-            if (adminGroupActionHashSet.Contains("baseinfo_positionlist"))
-            {
-                menu.AppendFormat("{0}\"title\":\"职位列表\",\"url\":\"/admin/baseinfo/positionlist\"{1},", "{", "}");
-                flag = true;
-            }
-                                       
-            if (flag)
-            {
-                menu.Remove(menu.Length - 1, 1);
-                menu.Append("]},");
-                menuList.Append(menu.ToString());
-            }
-            #endregion
 
             if (menuList.Length > 16) //没有选择任何模块
                 menuList.Remove(menuList.Length - 1, 1);
@@ -370,6 +268,12 @@ namespace OWZX.Services
             try
             {
                 string fileName = IOHelper.GetMapPath(AdminNavMeunCacheFolder + "/" + adminGroupInfo.AdminGid + ".js");
+
+                if(File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                }
+
                 using (FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite))
                 {
                     Byte[] info = System.Text.Encoding.UTF8.GetBytes(menuList.ToString());

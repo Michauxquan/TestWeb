@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace OWZX.Core
 {
@@ -62,5 +63,7 @@ namespace OWZX.Core
             get { return _displayorder; }
             set { _displayorder = value; }
         }
+
+        public List<AdminActionInfo> ChildAction { get; set; }
     }
 }

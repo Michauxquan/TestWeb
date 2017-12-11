@@ -1086,14 +1086,14 @@ namespace OWZX.Web.Controllers
             }
 
             List<MD_AppLimit> list = Lottery.GetLimitList(strb.ToString() + " and datediff(minute,getdate(),limittime)>0");
-            if (list==null || list.Count == 0)
-            {
-                return APIResult("error", @"亲,您的体验资格已到期,请记得续费哦!
-版权归属:白水非凡工作室 
-联系方式:QQ476008383
-");
-            }
-            else
+//            if (list==null || list.Count == 0)
+//            {
+//                return APIResult("error", @"亲,您的体验资格已到期,请记得续费哦!
+//版权归属:白水非凡工作室 
+//联系方式:QQ476008383
+//");
+//            }
+//            else
             {
                 List<BaseTypeModel> listbase = AdminBaseInfo.GetBaseTypeList(" where type='appsend'");
                 if (listbase != null && listbase.Count > 0)
