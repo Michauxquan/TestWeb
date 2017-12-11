@@ -53,7 +53,7 @@
             </div>
             <div style="width:80%;display:block;float:left;line-height:35px;border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;font-weight:600;">
                 <div id="div_code" style="padding-left:50px;">
-                    @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9)
+                    @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9 || @Model.LotteryType == 14)
                     {
                         <text>
                             <span class="ltnum1">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(0, 17)</span>&nbsp;&nbsp;&nbsp;
@@ -61,7 +61,7 @@
                             <span class="ltnum3">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(36, 17)</span>
                         </text>
                     }
-                    else if (@Model.LotteryType == 2 || @Model.LotteryType == 5 || @Model.LotteryType == 6)
+                    else if (@Model.LotteryType == 2 || @Model.LotteryType == 5 || @Model.LotteryType == 6 || @Model.LotteryType == 15)
                     {
                         string[] numbs = @Model.lotterylist.Prev_Lottery.Orderresult.Split(',');
                         <text>
@@ -95,11 +95,11 @@
                     }
 
 
-                    @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9)
+                    @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9 || @Model.LotteryType == 14)
                     {
                         <a href="http://www.bwlc.net/bulletin/keno.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
                     }
-                    else if (@Model.LotteryType == 2 || @Model.LotteryType == 5)
+                    else if (@Model.LotteryType == 2 || @Model.LotteryType == 5 || @Model.LotteryType == 15)
                     {
                         <a href="http://lotto.bclc.com/winning-numbers/keno-and-keno-bonus.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
                     }
@@ -238,7 +238,7 @@
 
         @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 3
                      || @Model.LotteryType == 6 || @Model.LotteryType == 4 || @Model.LotteryType == 5
-                     || @Model.LotteryType == 11 || @Model.LotteryType == 12)
+                     || @Model.LotteryType == 11 || @Model.LotteryType == 12 || @Model.LotteryType == 14 || @Model.LotteryType == 15)
         {
             @Html.Partial("_content")
         }

@@ -5,7 +5,7 @@ a{
 }
 
 .basecontent{ z-index: 2; width: 1000px; margin:0 auto; }
-.basecontent .title{line-height: 24px;height: 24px;padding: 12px 0px;font-size: 16px;font-weight: bold;color: #000;}
+.basecontent .title{/*line-height: 24px;height: 24px;*/padding: 12px 0px;font-size: 16px;font-weight: bold;color: #000;}
 .title img{  vertical-align:bottom;}
 .title .more{ font-size: 12px;color: #e43846;cursor: pointer;float: right;}
 
@@ -232,4 +232,29 @@ a{
      margin-top: -25px; 
     display: none;
      line-height: 220px; 
+}
+
+.game {
+    width: 1100px;
+    margin: 0 auto;
+    min-height: 400px;
+    text-align: center; 
+}
+.game_title {
+    font-size: 24px;
+    color: #393939;
+    font-weight: 700;
+    margin-top: 30px;
+}
+.game_li {
+     cursor:pointer;
+    width: 210px;
+    height: 190px;
+    margin-left: 12px;
+    float: left;
+    position: relative;
+    line-height: 190px;
+    text-align: center;
+    overflow: hidden;
+     vertical-align: top; 
 }

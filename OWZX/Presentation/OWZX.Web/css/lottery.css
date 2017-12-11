@@ -87,7 +87,7 @@ color:#0167ff;font-size:15px;
 color:#ECA101;font-size:15px;
 }
 .ltnum3 {
-color:#e4393c;font-size:15px;
+color:#fd8724;font-size:15px;
 }
 
 .dv i {
@@ -360,8 +360,8 @@ box-shadow:2px 3px 3px 3px  rgba(0,0,0,.3) inset;    line-height: 30px;    heigh
 
 /*投注*/
 
-.bt_page .border_out{ width:905px;height:92px;margin:auto;border:1px solid #cacaca; }
-.bt_page .border_out_l{width:905px;height:92px;}
+.bt_page .border_out{ width:955px;height:92px;margin:auto;border:1px solid #cacaca; }
+.bt_page .border_out_l{width:955px;height:92px;}
 
 /* button */
 .pu_enter{display:inline-block; background: url(../img/bg_anniu.gif) no-repeat left top; height:23px; padding-left:8px; color:#FFFFFF; cursor:pointer; width:26px; text-align:center;}
@@ -381,18 +381,18 @@ a.puan_quan_enter:hover, a.puan_quan_enter:active{text-decoration:none;width:26p
 .border_out_r{width:898px; height:auto; padding:4px;border-bottom:1px solid #cacaca; padding-top:0px;}
 .border_out_title{height:25px;line-height:25px;color:#000000; width:auto;padding:0px 8px; padding-top:4px;}
 
-.border_out1{width:905px;height:45px;margin:auto;padding-top:10px;}
+.border_out1{width:955px;height:45px;margin:auto;padding-top:10px;}
 .border_out1_l{ background-repeat:no-repeat;width:388px; height:33px; float:left; color:#515151;line-height:33px;}
 
 .border_out_title1{ background-image:url(../img/bg_tz.gif);background-repeat:no-repeat;margin:auto;width:220px;height:77px;margin-top:2px;}
 
 .border_out1_l span{width:63.6px; float:left; text-align:center;letter-spacing: 1px;
-                    word-spacing: 1px; cursor:pointer;color:#8d5000;border:1px solid #e4393c;border-right:none;height:31px; }
-.border_out1_c{width:268px;height:29px; border:2px solid #e4393c; float:left;line-height:29px;margin-left:3px;}
+                    word-spacing: 1px; cursor:pointer;color:#8d5000;border:1px solid #fd8724;border-right:none;height:31px; }
+.border_out1_c{width:268px;height:29px; border:2px solid #fd8724; float:left;line-height:29px;margin-left:3px;}
 .border_out1_r{min-width:125px;height:35px; float:left;}
 .touzhu1{width:80px;height:33px;float:left;line-height:33px; text-align:center; color:#8d5000;margin-left:4px; cursor:pointer;}
-.touzhu2{background:#e4393c;padding: 0px 3px;height:33px;float:left;line-height:33px; text-align:center; color:white;margin-left:4px; cursor:pointer;border-radius:3px;font-size:14px; font-weight:bold;}
-.conform_btn{ width:80px;height:27px;float:right; background:#e4393c;color:white; font-size:14px; font-weight:bold;line-height:25px; text-align:center;border:1px solid #e4393c; cursor:pointer;}
+.touzhu2{background:#fd8724;padding: 0px 3px;height:33px;float:left;line-height:33px; text-align:center; color:white;margin-left:4px; cursor:pointer;border-radius:3px;font-size:14px; font-weight:bold;}
+.conform_btn{ width:80px;height:27px;float:right; background:#fd8724;color:white; font-size:14px; font-weight:bold;line-height:25px; text-align:center;border:1px solid #fd8724; cursor:pointer;}
 /*.content_middle { background: url(../img/content-border.gif) repeat-y;
 }*/
 .content_middle td span{cursor:pointer;}
@@ -405,7 +405,7 @@ a.puan_quan_enter:hover, a.puan_quan_enter:active{text-decoration:none;width:26p
 .img_bt1 {
     width: 42px;
     height: 21px;
-    border: 1px solid #e4393c;
+    border: 1px solid #fd8724;
     float: left;
     text-align: center;
     line-height: 21px;
@@ -422,8 +422,8 @@ a.puan_quan_enter:hover, a.puan_quan_enter:active{text-decoration:none;width:26p
     height: 30px;
     text-align: center;
     line-height: 30px;
-    background: #e4393c;
-    border: 1px solid #e4393c;
+    background: #fd8724;
+    border: 1px solid #fd8724;
     border-left:none;
     color: #fff;
     font-weight:bold;
@@ -446,7 +446,7 @@ color: #666;font-weight:normal;
 }
 
     #bettrecord td a:hover{
-    color:#e4393c;
+    color:#fd8724;
     }
 
 .btnumber {
@@ -454,21 +454,22 @@ font-size:16px;
 }
 .content_middle .input2 {
 height:26px;
-width: 110px; ime-mode: disabled;color:#e4393c;padding-left:2px;
+width: 110px; ime-mode: disabled;color:#fd8724;padding-left:2px;
 }
 .content_middle td a.multiple {
-    background: url(../images/number/number.fw.png) no-repeat;
-    width: 34px;
+   background: url(../images/number/number.fw.png) no-repeat;
+    width: 26px;
     height: 28px;
     display: inline-block;
     text-align: center;
     color: #000;
     line-height: 28px;
-    font-size: 14px;
+    font-size: 13px;
+    background-size: 100% 100%;
 }
 
 .content_middle td a.multiple:hover {
-  color:#e4393c;
+  color:#fd8724;
 }
 
 .input3 {
@@ -574,7 +575,7 @@ button {
 }
 
 .tzbanner {
-    width: 910px;
+    width: 960px;
     border: 1px solid #FFCA7E;
     height: 96px;
     margin: auto;
@@ -584,25 +585,25 @@ button {
 }
 
 .touzhutop_t {
-    width: 910px;
+    width: 960px;
     height: 80px;
     margin: auto;
     margin-top: 6px;
 }
 
 .touzhutop_n {
-    width: 905px;
+    width: 955px;
     height: 80px;
     margin: auto;
 }
 .tzbanner_z {
-    width: 905px;
+    width: 955px;
     height: 136px;
     margin: auto;
 }
 
 .fk_wz {
-    width: 905px;
+    width: 955px;
     float: right;
 }
 .tzbanner_fk {

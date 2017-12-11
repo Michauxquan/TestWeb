@@ -483,7 +483,8 @@ drop table #list
 SELECT ROW_NUMBER() over(order by a.setid ) id,a.[setid]
       ,a.[lotterytype]
       ,a.[bttypeid]
-      ,a.[odds]
+      ,isnull(currodds,a.[odds]) [odds]
+      ,ISNULL(prevodds,a.[odds])  prevodds
       ,a.[addtime]
       ,b.item,b.type,b.nums
 into  #list
@@ -491,7 +492,7 @@ into  #list
   join owzx_lotteryset b on a.bttypeid= b.bttypeid and a.lotterytype= @type
   {1}
 
-if( @type in (1,2,3,6))
+if( @type in (1,2,3,6,14,15))
 begin
 select * from  #list where id>=1 and id<=14
 
