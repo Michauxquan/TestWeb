@@ -109,5 +109,7 @@ namespace OWZX.Web.Framework
 
         public NameValueCollection postparms;//post请求参数
 
+        public int LuckPre;//幸运值
+
     }
 }

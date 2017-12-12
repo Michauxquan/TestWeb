@@ -67,7 +67,7 @@ input[type="button"], input[type="submit"] {
 #headerBar a:hover{ color:#d23335;}
 #headerBar .box{ position:relative;}
 #headerBar .headerLink{ position:absolute; right:0; top:0;}
-#imglogo{ width:1000px;margin:0 auto;text-align:center;height:74px; overflow:hidden;display: block; }
+#imglogo{ /*width:1000px;*/margin:0 auto;text-align:center;height:74px; overflow:hidden;display: block; }
 .headerAD{ padding-top:10px; position:relative;}
 .headerAD .close{ position:absolute; right:0px; top:10px; background:#FFF; border:1px solid #DDD; display:block; width:20px; height:20px; line-height:16px; font-size:14px; text-align:center; background:#333; color:#FFF;}
 .headerAD .close:hover{ background:#FFF; color:#333;}

@@ -142,6 +142,9 @@ namespace OWZX.Web.Framework
             WorkContext.OnlineMemberCount = WorkContext.OnlineUserCount - WorkContext.OnlineGuestCount;
             //搜索词
             WorkContext.SearchWord = string.Empty;
+
+            BaseInfo eventInfo = BSPConfig.BaseConfig.BaseList.Find(x => x.Key == "luckkey");
+            WorkContext.LuckPre = eventInfo == null ? 50 : int.Parse(eventInfo.Account.Replace("%",""));
             
 
             //设置导航列表

@@ -82,11 +82,11 @@
                     <td align="right">确认密码：</td>
                     <td>@Html.PasswordFor(x => x.ConfirmPassword, new {@class = "input", size = "35"})@Html.ValidationMessageFor(x => x.ConfirmPassword)</td>
                 </tr>
-                <tr>
+                <tr hidden>
                     <td align="right">类别：</td>
                     <td>
                         <p>
-                            <label>@Html.RadioButtonFor(x => x.UserType, 0, new {@class = "checkbox"})会员</label>
+                            <label>@Html.RadioButtonFor(x => x.UserType, 0, new {@class = "checkbox",@checked="checked"})会员</label>
                             <label>@Html.RadioButtonFor(x => x.UserType, 1, new {@class = "checkbox"})代理</label>
                             @Html.ValidationMessageFor(x => x.UserType)
                             <br/>

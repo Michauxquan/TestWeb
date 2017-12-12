@@ -48,7 +48,7 @@
                     <td width="130">
                         @Html.TextBox("Mobile", Model.Mobile, new {height = "18"})
                     </td>
-                     <td>
+                     @*<td>
                         &nbsp;&nbsp;&nbsp;用户类型：
                     </td>
                       <td width="130">
@@ -57,7 +57,7 @@
                               <option value="0" @(Model.UserType==0?"selected='selected'":"")>会员</option>
                               <option value="1" @(Model.UserType==1?"selected='selected'":"")>代理</option>
                           </select>
-                    </td>
+                    </td>*@
                     <td style="height: 24px;">
                         <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/administration/images/s.jpg" style="vertical-align: middle;" height="24"/>
                     </td>

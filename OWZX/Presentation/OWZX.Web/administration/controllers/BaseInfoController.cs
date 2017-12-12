@@ -405,7 +405,18 @@ namespace OWZX.Web.Admin.Controllers
             else
                 return PromptView("保存失败");
         }
-
+        /// <summary>
+        /// 删除回水规则
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DelBackRule(string id)
+        {
+            bool result = Lottery.DeleteRateRule(id);
+            if (result)
+                return PromptView("删除成功");
+            else
+                return PromptView("删除失败");
+        }
         #endregion
 
         #region 赔率

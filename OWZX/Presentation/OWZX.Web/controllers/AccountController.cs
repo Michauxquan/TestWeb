@@ -232,12 +232,24 @@ namespace OWZX.Web.Controllers
             string password = WebHelper.GetFormString("password");
             string confirmPwd = WebHelper.GetFormString("confirmPwd");
             string verifyCode = WebHelper.GetFormString("verifyCode");
-            int invitecode = WebHelper.GetFormInt("invitecode", 0); //邀请码
+            int invitecode = WebHelper.GetFormInt("invitecode", -1); //邀请码
+            BaseInfo eventInfo = BSPConfig.BaseConfig.BaseList.Find(x => x.Key == "invitecode");
+            
+            StringBuilder errorList = new StringBuilder("[");
 
+            if(invitecode==-1)
+            {
+                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "invitecode", "邀请码不能为空", "}");
+            }
+            else if (eventInfo == null)
+            {
+                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "invitecode", "邀请码错误，请重新输入", "}");
+            }else if(int.Parse(eventInfo.Account)!=invitecode)
+            {
+                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "invitecode", "邀请码错误，请重新输入", "}");
+            }
 
             
-
-            StringBuilder errorList = new StringBuilder("[");
             
 
             //if (!ValidateHelper.IsEmail(accountName))
@@ -465,7 +477,7 @@ namespace OWZX.Web.Controllers
                 userInfo.RegionId = WebHelper.GetFormInt("regionId");
                 userInfo.Address = WebHelper.HtmlEncode(WebHelper.GetFormString("address"));
                 userInfo.Bio = WebHelper.HtmlEncode(WebHelper.GetFormString("bio"));
-                userInfo.InviteCode = invitecode;
+                userInfo.InviteCode = 0;// invitecode;
 
                 #endregion
 

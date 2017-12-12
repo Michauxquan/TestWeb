@@ -1,4 +1,5 @@
-﻿<div id="ltheader" style="background:#FFF;color: #666;">
+﻿<link href="~/css/wrap.css" rel="stylesheet" />
+<div id="ltheader" style="background:#FFF;color: #666;">
     <div id="ltnavs">
          <ul class="ltItme">
             @*<li data-type="10"><a href="javascript:tabpage(10)"><div>急速10</div></a></li>
@@ -17,8 +18,104 @@
             <li data-type="9"><a href="javascript:tabpage(9)"><div>蛋蛋龙虎豹</div></a></li>
             <li data-type="13"><a href="javascript:tabpage(13)"><div>六合彩</div></a></li>
         </ul>*@
+        @*<div class="wrapper">
+            <div class="green">
+                <div class="progress">
+                    <div class="inner">
+                        <div class="percent"><span>67</span>%</div>
+                        <div class="water"></div>
+                        <div class="glare"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>*@
+        <div class="fu-progress">
+            <div class="fu-inner">
+                <div class="fu-percent percent"><span style="font-size: 22px;">0</span><label style="font-size:6px;">%</label></div>
+                <div class="water"></div>
+                <div class="glare"></div>
+            </div>
+        </div>
     </div>
 </div>
+<script>
+    var animatePercentChange = function animatePercentChange(newPercent, elem) {
+        elem = elem || $('.fu-percent span');
+        const val = parseInt(elem.text(), 10);
+
+        if (val !== parseInt(newPercent, 10)) {
+            //let diff = newPercent < val ? -1 : 1;
+            //elem.text(val + diff);
+            elem.text(newPercent);
+            //setTimeout(animatePercentChange.bind(null, newPercent, elem), 50);
+        }
+    };
+    var waterPercent;
+    $(function () {
+        waterPercent = @WorkContext.LuckPre;
+        animatePercentChange(waterPercent);
+        $('.water').css({
+            top: (100-waterPercent+2) + '%'
+        });
+    })
+    //$('.fu-progress').on('click', function () {
+    //    const amount = Math.ceil((Math.random() * 100));
+    //    const currentPercent = $('.fu-percent span').text();
+    //    const waterAnimSpeed = (Math.abs(currentPercent - amount) / 50) * 10;
+    //    const waterPercent = 100 - amount;
+    //    animatePercentChange(amount);
+    //    $('.water').css({
+    //        top: waterPercent + '%'
+    //    });
+    //});
+</script>
+<script>
+    var colorInc = 100 / 3;
+
+    $(function () {
+        $("#percent-box").click(function () {
+            $(this).select();
+        });
+
+        $("#percent-box").keyup(function () {
+            var val = $(this).val();
+
+            if (val != ""
+              && !isNaN(val)
+              && val <= 100
+              && val >= 0) {
+                console.log(val);
+
+                var valOrig = val;
+                val = 100 - val;
+
+                if (valOrig == 0) {
+                    $("#percent-box").val(0);
+                    $(".progress .percent").text(0 + "%");
+                }
+                else $(".progress .percent").text(valOrig + "%");
+
+                $(".progress").parent().removeClass();
+                $(".progress .water").css("top", val + "%");
+
+                if (valOrig < colorInc * 1)
+                    $(".progress").parent().addClass("red");
+                else if (valOrig < colorInc * 2)
+                    $(".progress").parent().addClass("orange");
+                else
+                    $(".progress").parent().addClass("green");
+            }
+            else {
+                $(".progress").parent().removeClass();
+                $(".progress").parent().addClass("green");
+                $(".progress .water").css("top", 100 - 67 + "%");
+                $(".progress .percent").text(67 + "%");
+                $("#percent-box").val("");
+            }
+        });
+    });
+</script>
 <script>
 
     function tabpage(type)

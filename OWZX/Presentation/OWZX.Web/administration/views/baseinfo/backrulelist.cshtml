@@ -43,7 +43,9 @@
                             <td>@info.Maxloss</td>
                             <td>@info.Backrate%</td>
                             <td>
-                                @Html.ActionLink("[编辑]", "editbackrule", new { rateid = @info.Rateid }, new { @class = "editOperate" })
+                                @Html.ActionLink("[编辑]", "editbackrule", new { rateid = @info.Rateid }, new { @class = "editOperate" })|
+                                @Html.ActionLink("[删除]", "delbackrule", new { id = @info.Rateid }, new { @class = "deleteOperate" })
+
                             </td>
                         </tr>
                     }

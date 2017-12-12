@@ -12,11 +12,14 @@
  /*border-bottom:1px solid #c30000;*/
 }
 #ltnavs{
-    width:910px;
-    padding-bottom:5px;
+        width: 910px;
+    padding-bottom: 5px;
+    height: 60px;
+    padding-top: 10px;
 }
 .ltItme {
-
+    width: 230px;
+    float: left;
 /*border-bottom:1px solid #c30000;*/
 }
     #ltheader .ltItme li {

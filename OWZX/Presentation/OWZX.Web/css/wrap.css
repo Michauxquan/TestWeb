@@ -1,0 +1,77 @@
+﻿body {
+  font-family: sans-serif;
+}
+@keyframes spin{
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+.fu-progress {
+    position: relative;
+    width: 50px;
+    height:50px;
+    border: 2px solid rgb(228, 65, 57);
+    border-radius: 50% !important;
+    float:left;
+    background: #ff7984;
+}
+
+.fu-inner {
+    position: absolute;
+    overflow: hidden;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    /* border: 2px solid #ffffff; */
+    border-radius: 50% !important;
+}
+    .water {
+      position: absolute;
+      z-index: 1;
+      background: #e60012;
+      width: 200%;
+      height: 200%;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      transition: all 1s ease !important;
+      -webkit-transition: all 1s ease !important;
+      top: 50%;
+      left: -50%;
+      border: 1px solid transparent;
+      border-radius: 40% !important;
+      animation-duration: 10s;
+      animation-name: spin;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+    
+    .glare {
+      position: absolute;
+      top: -120%;
+      left: -120%;
+      z-index: 5;
+      width:200%;
+      height: 200%;
+      transform: rotate(45deg);
+      background: #ffffff;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+    }
+
+    .fu-percent {
+      position: absolute;
+      top: 7px;
+      left: 2px;
+      width: 100%;
+      height: 100%;
+      /* font-size: 6em; */
+      font-weight: bold;
+      color: white;
+      text-align: center;
+      z-index: 1000;
+    }
+
