@@ -26,7 +26,7 @@ height: 36px;line-height: 36px;padding-left: 9px;font-size: 16px;color: #138bc5;
 
 .newsListT{ font-size:18px; height:35px; line-height:35px; border-bottom:1px solid #ddd;}
 .newsList { padding:10px 0;}
-.newsList li{ position:relative;text-indent: 15px; display:block; height:30px; line-height:30px; padding:0 10px; background:url(/images/helpcenter_icon2.gif) no-repeat left center; border-bottom:1px dotted #DDD;}
+.newsList li{ position:relative;text-indent: 15px; display:block; height:35px; line-height:35px; font-size: 13px;padding:0 10px; background:url(/images/helpcenter_icon2.gif) no-repeat left center; border-bottom:1px dotted #DDD;}
 .newsList li a{ color:#333;}
 .newsList li a:hover{ color:#005ea7; text-decoration:underline;}
 .newsList li span{ position:absolute; top:0; right:10px; display:block; height:30px; line-height:30px; color:#999;}

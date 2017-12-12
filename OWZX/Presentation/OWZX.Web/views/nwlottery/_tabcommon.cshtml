@@ -53,7 +53,7 @@
             </div>
             <div style="width:80%;display:block;float:left;line-height:35px;border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;font-weight:600;">
                 <div id="div_code" style="padding-left:50px;">
-                    @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9 || @Model.LotteryType == 14)
+                    @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9 || @Model.LotteryType == 14 || @Model.LotteryType == 16 || @Model.LotteryType == 17)
                     {
                         <text>
                             <span class="ltnum1">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(0, 17)</span>&nbsp;&nbsp;&nbsp;
@@ -89,13 +89,13 @@
                         </h3>
                     }
 
-                    @if (@Model.LotteryType == 3 || @Model.LotteryType == 10 || @Model.LotteryType == 11 || @Model.LotteryType == 12)
+                    @if (@Model.LotteryType == 3 || @Model.LotteryType == 10 || @Model.LotteryType == 11 || @Model.LotteryType == 12 )
                     {
                         <span class="numberl">系统开奖</span>
                     }
 
 
-                    @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9 || @Model.LotteryType == 14)
+                    @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9 || @Model.LotteryType == 14 || @Model.LotteryType == 16 || @Model.LotteryType == 17)
                     {
                         <a href="http://www.bwlc.net/bulletin/keno.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
                     }
@@ -130,7 +130,7 @@
                             <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
                         }
 
-                        if (@Model.LotteryType != 4 && @Model.LotteryType != 5)
+                        if (@Model.LotteryType != 4 && @Model.LotteryType != 5 && @Model.LotteryType != 17)
                         {<span style="margin-left:60px;font-size:15px;">
                             结果:
                             <span class="ltresult pcresult">
@@ -144,7 +144,7 @@
                             string type = @Model.lotterylist.Prev_Lottery.Resultnum;
                             string cltype = type == "豹" ? "z1" : (type == "顺" ? "z3" : (type == "对" ? "z2" : (type == "半" ? "z4" : "z5")));
                             <span style="margin-left:60px;font-size:15px;">
-                                结果:
+                                结果:<span class="ltresult pcresult">@type</span>
                             </span>
                         }
                     }
@@ -238,7 +238,7 @@
 
         @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 3
                      || @Model.LotteryType == 6 || @Model.LotteryType == 4 || @Model.LotteryType == 5
-                     || @Model.LotteryType == 11 || @Model.LotteryType == 12 || @Model.LotteryType == 14 || @Model.LotteryType == 15)
+                     || @Model.LotteryType == 11 || @Model.LotteryType == 12 || @Model.LotteryType == 14 || @Model.LotteryType == 15 || @Model.LotteryType == 16 || @Model.LotteryType == 17)
         {
             @Html.Partial("_content")
         }

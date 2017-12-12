@@ -536,6 +536,7 @@
     <Content Include="images\kefu_bg.png" />
     <Content Include="images\kefu_icon.gif" />
     <Content Include="images\kefu_icon.png" />
+    <Content Include="images\login_bg.jpg" />
     <Content Include="images\logo.ico" />
     <Content Include="images\lottery\bjkl8.jpg" />
     <Content Include="images\lottery\bjsaiche.jpg" />

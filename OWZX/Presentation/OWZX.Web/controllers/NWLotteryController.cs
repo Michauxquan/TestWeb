@@ -213,8 +213,8 @@ namespace OWZX.Web.controllers
                     total = 300;
                     stop = 40;
                     break;
-                case (int)LotType.xy28:
-                    title = "幸运28首页";
+                case (int)LotType.bj36:
+                    title = "北京36首页";
                     total = 300;
                     stop = 40;
                     break;

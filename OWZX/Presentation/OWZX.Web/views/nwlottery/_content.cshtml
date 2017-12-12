@@ -29,14 +29,14 @@
             else
             {
                 <text><i>@lot.First</i>+<i>@lot.Second</i>+<i>@lot.Three</i>=</text>
-                if (@Model.LotteryType != 4 && @Model.LotteryType != 5)
+                if (@Model.LotteryType != 4 && @Model.LotteryType != 5 && @Model.LotteryType != 17)
                 {
                     string resnum  = int.Parse(@lot.Resultnum).ToString("d2");
                     <span class="ltresult pcresult">
                         @resnum
                     </span>
                 }
-                else if (@Model.LotteryType == 4 || @Model.LotteryType == 5)
+                else if (@Model.LotteryType == 4 || @Model.LotteryType == 5 || @Model.LotteryType == 17)
                 {
                     string type = @lot.Resultnum;
                     string cltype = type == "豹" ? "z1" : (type == "顺" ? "z3" : (type == "对" ? "z2" : (type == "半" ? "z4" : "z5")));

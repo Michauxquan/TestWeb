@@ -205,7 +205,7 @@
     </tr>
     @foreach (DataRow row in ds.Tables[0].Rows)
     {
-        string num = (lottype == 4 || lottype == 5 || lottype==9) ? @row["id"].ToString() : @row["item"].ToString();
+        string num = (lottype == 4 || lottype == 5 || lottype==9 || lottype == 17) ? @row["id"].ToString() : @row["item"].ToString();
 
         <text>
             <tr>
@@ -257,7 +257,7 @@
     </tr>
     @foreach (DataRow row in ds.Tables[1].Rows)
         {
-            string num = (lottype == 4 || lottype == 5 || lottype == 9) ? @row["id"].ToString() : @row["item"].ToString();
+            string num = (lottype == 4 || lottype == 5 || lottype == 9 || lottype == 17) ? @row["id"].ToString() : @row["item"].ToString();
 
         <text>
             <tr>

@@ -180,7 +180,7 @@ order by expect desc
         public bool ExistsLotteryOpen(string type, string expect)
         {
             string sql = string.Format(@"
-select 1 from owzx_lotteryrecord where type={0} and expect={1} and status=2
+select 1 from owzx_lotteryrecord where type={0} and expect='{1}' and status=2
 ",type,expect);
 
             return RDBSHelper.Exists(sql);
@@ -241,7 +241,7 @@ end
               declare @type int ={0}
 declare @min varchar(5), @sec varchar(5),@expect varchar(50),@totalsec varchar(5)
 
-if(@type in (1,4,9,7,8)) 
+if(@type in (1,4,9,7,8,14,16,17)) 
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status !=2 and 
@@ -258,7 +258,7 @@ end
 
 
 end
-else if(@type in (2,5)) 
+else if(@type in (2,5,15)) 
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status  !=2  and 
@@ -492,7 +492,7 @@ into  #list
   join owzx_lotteryset b on a.bttypeid= b.bttypeid and a.lotterytype= @type
   {1}
 
-if( @type in (1,2,3,6,14,15))
+if( @type in (1,2,3,6,14,15,16))
 begin
 select * from  #list where id>=1 and id<=14
 
@@ -504,7 +504,7 @@ select * from  #list where type=12
 
 select * from  #list where type=16
 end
-else if( @type in (4,5))
+else if( @type in (4,5,17))
 begin
 select * from  #list where id>=1 and id<=3
 

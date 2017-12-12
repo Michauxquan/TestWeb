@@ -90,10 +90,10 @@
     </div>
     }
  
-    <div class="border_out" style="margin-top: -2px; height:@(((int)@ViewData["lotterytype"] != 9 && (int)@ViewData["lotterytype"] != 5 && (int)@ViewData["lotterytype"] != 4 ) ? "120px" : "75px");">
+    <div class="border_out" style="margin-top: -2px; height:@(((int)@ViewData["lotterytype"] != 9 && (int)@ViewData["lotterytype"] != 5 && (int)@ViewData["lotterytype"] != 17 && (int)@ViewData["lotterytype"] != 4 ) ? "120px" : "75px");">
         <div class="border_out_l">
             <div class="border_out_title"><span style="float: left; width: auto;">标准投注模式</span> <span style="float: right; width: auto;"></span></div>
-            @if ((int)@ViewData["lotterytype"] != 9 && (int)@ViewData["lotterytype"] != 5 && (int)@ViewData["lotterytype"] != 4 )
+            @if ((int)@ViewData["lotterytype"] != 9 && (int)@ViewData["lotterytype"] != 5 && (int)@ViewData["lotterytype"] != 4 && (int)@ViewData["lotterytype"] != 17)
             {
             <table border="0" align="left" style="padding-left: 5px;">
                 <tr>

@@ -369,7 +369,7 @@ function useSuoha() {
 //标准投注模式设定方法
 function setValue(num)
 {
-    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6 || lotterytype == 14 || lotterytype == 15)
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6 || lotterytype == 14 || lotterytype == 15 || lotterytype == 16)
     {
         for (var i = 0; i < mode[num].length; i++)
         {
@@ -382,7 +382,7 @@ function setValue(num)
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
         }
-    } else if (lotterytype == 4 || lotterytype == 5) { 
+    } else if (lotterytype == 4 || lotterytype == 5 || lotterytype == 17) {
         for (var i = 0; i < mode36[num].length; i++) {
             var id_num = mode36[num][i];
             var id_name = "[id='txt_" + mode36[num][i]+"']";
@@ -804,7 +804,7 @@ function datapost()
                    {
                        //成功
                        layer.alert("第<span  style='color :Red;'>" + expect + "</span>期投注成功！", { icon: 1, title: "提示" })
-                       if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 4 || lotterytype == 5 || lotterytype == 6 || lotterytype == 11 || lotterytype == 12 || lotterytype == 14 || lotterytype == 15)
+                       if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 4 || lotterytype == 5 || lotterytype == 6 || lotterytype == 11 || lotterytype == 12 || lotterytype == 14 || lotterytype == 15 || lotterytype == 16 || lotterytype == 17)
                        {
                            $(".temp_content").load("/nwlottery/_content", { "type": lotterytype, "page": 1 });
                        }

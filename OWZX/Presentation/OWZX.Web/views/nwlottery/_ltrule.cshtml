@@ -19,7 +19,7 @@
 <table class="con_table table_rule" cellspacing="0" style="border-collapse: collapse; border: 1px solid #cacaca; margin-top: 10px;" bgcolor="#CACACA">
     <tbody>
    
-    @if (ViewData["ltruletype"].ToString() == "4" || ViewData["ltruletype"].ToString() == "1" || ViewData["ltruletype"].ToString() == "9" || ViewData["ltruletype"].ToString() == "14" || ViewData["ltruletype"].ToString() == "15" || ViewData["ltruletype"].ToString() == "16" || ViewData["ltruletype"].ToString() == "17")
+    @if (ViewData["ltruletype"].ToString() == "4" || ViewData["ltruletype"].ToString() == "1" || ViewData["ltruletype"].ToString() == "9" || ViewData["ltruletype"].ToString() == "14" )
     {
         <tr><td colspan="4">采用北京福彩中心快乐8数据，与PC蛋蛋结果相同，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
         <tr>
@@ -69,15 +69,19 @@
             </li></td>
 
         </tr>
-    }else if (ViewData["ltruletype"].ToString() == "2" || ViewData["ltruletype"].ToString() == "5" || ViewData["ltruletype"].ToString() == "6")
+    }else if (ViewData["ltruletype"].ToString() == "2" || ViewData["ltruletype"].ToString() == "5" || ViewData["ltruletype"].ToString() == "15" || ViewData["ltruletype"].ToString() == "6" || ViewData["ltruletype"].ToString() == "16"  || ViewData["ltruletype"].ToString() == "17")
     {
-        if (ViewData["ltruletype"].ToString() == "6")
+        if (ViewData["ltruletype"].ToString() == "6" )
         {
             <tr><td colspan="4"> 采用韩国快乐8数据，每1分半钟一期，每天5:00-07:00暂停开奖</td></tr>
         }
+        else if (ViewData["ltruletype"].ToString() == "16"  || ViewData["ltruletype"].ToString() == "17" )
+        {
+             <tr><td colspan="4"> 采用北京福彩中心快乐8数据，与PC蛋蛋结果相同，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
+        }
         else
         {
-             <tr><td colspan="4"> 采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:30暂停开奖</td></tr>
+             <tr><td colspan= 4"> 采用加拿大快乐8数据，每4分钟一期，每天336期，每天19: 00 - 20:30暂停开奖 </td></tr>
         }
         <tr>
             <td width="120">如第1234567期</td>
@@ -232,7 +236,7 @@
         </tr>
     }
 
-    @if (ViewData["ltruletype"].ToString() == "4" || ViewData["ltruletype"].ToString() == "5")
+    @if (ViewData["ltruletype"].ToString() == "4" || ViewData["ltruletype"].ToString() == "5" || ViewData["ltruletype"].ToString() == "17")
     {
         <tr>
             <td colspan="4" style="color: #F90; font-weight: bold">游戏结果说明</td>

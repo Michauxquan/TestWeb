@@ -26,7 +26,7 @@
     </div>
     <div style="width:80%;display:block;float:left;line-height:35px;border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;font-weight:600;">
         <div id="div_code" style="padding-left:50px;">
-            @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9 || @Model.LotteryType == 14)
+            @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9 || @Model.LotteryType == 14 || @Model.LotteryType == 16 || @Model.LotteryType == 17)
             {
                 <text>
                     <span class="ltnum1">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(0, 17)</span>&nbsp;&nbsp;&nbsp;
@@ -67,7 +67,7 @@
                 <span class="numberl">系统开奖</span>
             }
 
-            @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9 || @Model.LotteryType == 14)
+            @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9 || @Model.LotteryType == 14 || @Model.LotteryType == 16 || @Model.LotteryType == 17)
             {
                 <a href="http://www.bwlc.net/bulletin/keno.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
             }
@@ -96,7 +96,7 @@
                     <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
                 }
 
-                if (@Model.LotteryType != 4 && @Model.LotteryType != 5)
+                if (@Model.LotteryType != 4 && @Model.LotteryType != 5 && @Model.LotteryType != 17)
                 {<span style="margin-left:60px;font-size:15px;">
                     结果:
                     <span class="ltresult pcresult">
@@ -200,7 +200,7 @@
 </div>
 <div class="temp_content">
     @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 3 || @Model.LotteryType == 6
-        || @Model.LotteryType == 4 || @Model.LotteryType == 5 || @Model.LotteryType == 11 || @Model.LotteryType == 12 || @Model.LotteryType == 14 || @Model.LotteryType == 15)
+        || @Model.LotteryType == 4 || @Model.LotteryType == 5 || @Model.LotteryType == 11 || @Model.LotteryType == 12 || @Model.LotteryType == 14 || @Model.LotteryType == 15 || @Model.LotteryType == 16 || @Model.LotteryType == 17)
     {
         @Html.Partial("_content")
     }

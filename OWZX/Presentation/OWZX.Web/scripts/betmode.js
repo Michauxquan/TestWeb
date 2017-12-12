@@ -47,11 +47,11 @@ function Change_Modes(ModeId) {
         }
     });
 
-    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6 || lotterytype == 14 || lotterytype == 15) {
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6 || lotterytype == 14 || lotterytype == 15 || lotterytype == 16) {
         for (var i = 0; i < 28; i++) {
             document.getElementById("SMONEY_" + i).value = ModelDatas[CurrentMode - 1][i];
         }
-    } else if (lotterytype == 4 || lotterytype == 5) {
+    } else if (lotterytype == 4 || lotterytype == 5 || lotterytype == 17) {
         for (var i = 1; i <= 5; i++) {
             $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
         }
@@ -167,7 +167,7 @@ function inputsb(val, num) {
     var regex = /^[1-9]\d{0,}$/;
     var oldsum, sum, thismoney, sm;
     sum = 0;
-    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6 || lotterytype == 14 || lotterytype == 15) {
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6 || lotterytype == 14 || lotterytype == 15 || lotterytype == 16) {
         for (loop = 0 ; loop < 28 ; loop++) {
             sm = document.getElementById("SMONEY_" + loop).value;
             if (sm == null || sm > maxnum || sm == "") {
@@ -178,7 +178,7 @@ function inputsb(val, num) {
             sum = sum + parseInt(sm);
         }
     }
-    else if (lotterytype == 4 || lotterytype == 5) {
+    else if (lotterytype == 4 || lotterytype == 5 || lotterytype == 17) {
         for (var i = 1; i <= 5; i++) {
             sm = document.getElementById("SMONEY_" + i).value;
             if (sm == null || sm > maxnum || sm == "") {
@@ -372,7 +372,7 @@ function FirstModes(modes) {
             $(this).val("");
         }
     });
-    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6 || lotterytype == 14 || lotterytype == 15) {
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6 || lotterytype == 14 || lotterytype == 15 || lotterytype == 16) {
         if (modes < 1 || modes > stdMode.length) modes = 1;
         for (loop = 0 ; loop < 28 ; loop++) {
             var n = stdMode[modes][loop];
@@ -380,7 +380,7 @@ function FirstModes(modes) {
             sum = sum + n;  //总投注金额
 
         }
-    }else if (lotterytype == 4 || lotterytype == 5) {
+    } else if (lotterytype == 4 || lotterytype == 5 || lotterytype == 17) {
 
         for (var i = 0; i < mode36[modes].length; i++) {
             var id_num = mode36[modes][i];

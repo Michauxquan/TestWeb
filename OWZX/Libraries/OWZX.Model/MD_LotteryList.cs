@@ -111,9 +111,9 @@ namespace OWZX.Model
         /// </summary>
         bj28 = 16,
         /// <summary>
-        /// 幸运28
+        /// 北京36
         /// </summary>
-        xy28 = 17,
+        bj36 = 17,
         /// <summary>
         /// 广西快3
         /// </summary>

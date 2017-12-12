@@ -34,37 +34,39 @@
 <body style="">
 @Html.Partial("_header") 
     <!--登录-->
-    <div style="height: 450px;"> 
-        <div style="width:760px;margin:90px auto 0px auto;background:white; border: solid 2px #ddd; border-radius: 10px;">
-            <div class="lanrenzhijia" style="float: left; margin-left: 30px;padding-right:30px ">
-                <div class="product-wrap" style="width:300px;">
-                    <span class="ml0" style="font-size: 16px; color: #000;">
-                                    欢迎登录本站，如果您没有帐号，<a style="color: #4167D5; font-size: 12px;" href="@Url.Action("register")">[免费注册]</a>
-                                </span>
+    <div style="height: 720px;overflow: hidden;background-image: url(../images/login_bg.jpg);background-size: cover;background-position: top center;background-repeat: no-repeat;overflow: hidden;text-align: center;"> 
+        <div style="width:760px;margin:100px auto 0px auto;">
+            <div class="lanrenzhijia" style="margin: auto;">
+                <div class="product-wrap" style="width:380px;">
+                    <div class="ml0" style="font-size: 16px; color: #fff;text-align:center;margin:auto;">
+                                    还没有帐号，<a style="color: #00fffc; font-size: 15px;" href="@Url.Action("register")">[免费注册]</a>
+                                </div>
                     <div class="product show">
                         <form name="loginForm" action="">
                             <ul class="cf">
-                                <li class="ml0">
-                                    <input class="b1" type="text" name="@Model.ShadowName" id="@Model.ShadowName" placeholder="邮箱" value=""/><br/>
+                                <li class="ml0" style="font-size: 16px; color: #fff;">
+                                   帐 &nbsp; 号: <input class="b1" style="width:270px" type="text" name="@Model.ShadowName" id="@Model.ShadowName" placeholder="邮箱" value=""/><br/>
                                     <span class="phone" style="font-size: 12px; color: red; height: 22px;"></span><br/>
-                                    <input class="b1" type="password" id="password" name="password" placeholder="密码" value=""/><br/>
+                                   密 &nbsp; 码: <input class="b1"  style="width:270px" type="password" id="password" name="password" placeholder="密码" value=""/><br/>
                                     <span class="password" style="font-size: 12px; color: red; height: 22px;"></span><br/>
-                                    <input class="b1" type="text" id="verifyCode" name="checkcode"  style="width: 100px;" placeholder="验证码" value=""  />
+                                   验证码: <input class="b1" type="text" id="verifyCode" name="checkcode"  style="width: 143px;background:#ccc0;    COLOR: #FFF;font-size:16px;" placeholder="验证码" value=""  />
                                     <img id="verifyCode1" style="cursor:pointer;margin:0 0 0 14px; width: 106px;height:36px;vertical-align:middle;" title="点击刷新验证码" onclick="this.src = '/tool/verifyimage?time=' + new Date()" src="/tool/verifyimage" /><br/>
                                     <span class="code" style="font-size: 12px; color: red; height: 22px;"></span><br />
                                 </li>
                                 <li style="height: 20px; line-height: 20px; margin-top: 10px; text-align: right;float:right;"> 
-                                    <span style="text-align:right;color: #3b3b3b;padding-right:20px;"><a style="color: blue;" href="@Url.Action("findpwd")">忘记密码?</a></span>
+                                    
                                 </li>
                                 <li class="loginBt">
-                                    <a class="redBT loginIn" style="text-align: center;" href="javascript:void(0)">登录</a>
+                                    <a class="redBT loginIn" style="text-align: center; background:#FFF;color:#000;width:263px;margin-left:55px;" href="javascript:void(0)">登录</a>
+                                    <br/>
+                                    <span style="text-align:right;color: #00fffc;padding-right:20px;margin-left:55px;"><a style="color: #00fffc;font-size:16px;" href="@Url.Action(" findpwd")"=findpwd")">忘记密码?</a></span>
                                 </li> 
                             </ul>
                         </form>
                     </div>
                 </div>
             </div>
-            <div ><img style="width: 370px; height: 239px;margin-top:77px" src="../images/baseimg/dl.jpg"/></div>
+            @*<div ><img style="width: 370px; height: 239px;margin-top:77px" src="../images/baseimg/dl.jpg"/></div>*@
             <div class="clear"></div>
         </div>
     </div> 
