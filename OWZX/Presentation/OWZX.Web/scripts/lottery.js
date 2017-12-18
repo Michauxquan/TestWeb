@@ -237,7 +237,7 @@ function loadpage(type, expect, betid) {
             if (lotterytype == 13) {
                 $(".temp_content").load("/nwlottery/_bettpagelhc", { "type": lotterytype, "expect": expect });
             } else {
-                $(".temp_content").load("/nwlottery/_bettpage", { "type": lotterytype, "expect": expect });
+                $(".temp_content").load("/nwlottery/_nwbettpage", { "type": lotterytype, "expect": expect });
             }
            
             break;

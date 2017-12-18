@@ -78,6 +78,15 @@ margin-bottom: 4px;margin-top:5px;  " >
         foreach (string item in row["bettinfo"].ToString().Split(';'))
         {
             string[] betitem = item.Split(':');
+            if (System.Text.RegularExpressions.Regex.IsMatch(betitem[0], @"^\d*$"))
+            {
+                isnumber= 1;
+            }
+            else
+            {
+                isnumber = 0; 
+            }
+               
             dic[(isnumber == 0 ? betitem[0] : int.Parse(betitem[0]).ToString())] = int.Parse(betitem[1]);
             
         }
@@ -129,6 +138,14 @@ margin-bottom: 4px;margin-top:5px;  " >
         foreach (string item in row["bettinfo"].ToString().Split(';'))
         {
             string[] betitem = item.Split(':');
+            if (System.Text.RegularExpressions.Regex.IsMatch(betitem[0], @"^\d*$"))
+            {
+                isnumber = 1;
+            }
+            else
+            {
+                isnumber = 0;
+            }
             dic[(isnumber == 0 ? betitem[0] : int.Parse(betitem[0]).ToString())] = int.Parse(betitem[1]);
 
         }
@@ -176,5 +193,129 @@ margin-bottom: 4px;margin-top:5px;  " >
                 }
         </td>
     </tr>
+    }
+    @foreach (DataRow rw in @ds.Tables[2].Rows)
+    {
+        Dictionary<object, int> dic = new Dictionary<object, int>();
+        foreach (string item in row["bettinfo"].ToString().Split(';'))
+        {
+            string[] betitem = item.Split(':');
+            if (System.Text.RegularExpressions.Regex.IsMatch(betitem[0], @"^\d*$"))
+            {
+                isnumber = 1;
+            }
+            else
+            {
+                isnumber = 0;
+            }
+            dic[(isnumber == 0 ? betitem[0] : int.Parse(betitem[0]).ToString())] = int.Parse(betitem[1]);
+
+        }
+        <tr align="center" bgcolor="#FFFFFF" height="27">
+            <td>
+                @if ((int)@row["lotteryid"] != 9)
+                {
+                    <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); font-size:15px;"
+                          width="25" height="25">@rw["item"]</span>
+                }
+                else
+                {
+                    <span class="ltresult lhbresult btnumber"
+                          width="25" height="25">@rw["item"]</span>
+                }
+            </td>
+            <td>@rw["odds"]</td>
+            <td>
+                @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
+                {
+                    @dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())].ToString("n0")
+                }
+                else
+                {
+                    @:-
+                }
+            </td>
+            <td>
+                @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
+                {
+                    if (rw["item"].ToString() == row["resultnum"].ToString()
+                        || ("," + rw["nums"].ToString() + ",").Contains("," + row["resultnum"].ToString() + ","))
+                    {
+                        int win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * float.Parse(rw["odds"].ToString()));
+                        @win.ToString("n0")
+                    }
+                    else
+                    {
+                        @:-
+                    }
+                }
+                else
+                {
+                    @:-
+                }
+            </td>
+        </tr>
+    }
+    @foreach (DataRow rw in @ds.Tables[3].Rows)
+    {
+        Dictionary<object, int> dic = new Dictionary<object, int>();
+        foreach (string item in row["bettinfo"].ToString().Split(';'))
+        {
+            string[] betitem = item.Split(':');
+            if (System.Text.RegularExpressions.Regex.IsMatch(betitem[0], @"^\d*$"))
+            {
+                isnumber = 1;
+            }
+            else
+            {
+                isnumber = 0;
+            }
+            dic[(isnumber == 0 ? betitem[0] : int.Parse(betitem[0]).ToString())] = int.Parse(betitem[1]);
+
+        }
+        <tr align="center" bgcolor="#FFFFFF" height="27">
+            <td>
+                @if ((int)@row["lotteryid"] != 9)
+                {
+                    <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png');font-size:15px; "
+                          width="25" height="25">@rw["item"]</span>
+                }
+                else
+                {
+                    <span class="ltresult lhbresult btnumber"
+                          width="25" height="25">@rw["item"]</span>
+                }
+            </td>
+            <td>@rw["odds"]</td>
+            <td>
+                @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
+                {
+                    @dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())].ToString("n0")
+                }
+                else
+                {
+                    @:-
+                }
+            </td>
+            <td>
+                @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
+                {
+                    if (rw["item"].ToString() == row["resultnum"].ToString()
+                        || ("," + rw["nums"].ToString() + ",").Contains("," + row["resultnum"].ToString() + ","))
+                    {
+                        int win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * float.Parse(rw["odds"].ToString()));
+                        @win.ToString("n0")
+                    }
+                    else
+                    {
+                        @:-
+                    }
+                }
+                else
+                {
+                    @:-
+                }
+            </td>
+        </tr>
     }
     </table>

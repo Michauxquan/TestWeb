@@ -489,88 +489,24 @@ into  #list
   join owzx_lotteryset b on a.bttypeid= b.bttypeid and a.lotterytype= @type
   {1}
 
-if( @type in (1,2,3,6))
+if( @type in (1,2))
 begin
 select * from  #list where id>=1 and id<=14
 
 select * from  #list where id>=15 and id<=28
+
+select * from  #list where id>=29 and id<=33
+
+select * from  #list where id>=34 and id<=38
 end
-else if( @type in (9))
-begin
-select * from  #list where type=12
-
-select * from  #list where type=16
-end
-else if( @type in (4,5))
-begin
-select * from  #list where id>=1 and id<=3
-
-select * from  #list where id>=4 and id<=5
-end
-else if( @type in (7,10))
-begin
-select * from  #list where id>=1 and id<=5
-
-select * from  #list where id>=6 and id<=10
-end
-else if( @type in (8))
-begin
-select * from  #list where id>=1 and id<=9
-
-select * from  #list where id>=10 and id<=17
-end
-else if( @type in (11))
-begin
-select * from  #list where id>=1 and id<=6
-
-select * from  #list where id>=7 and id<=12
-end
-else if( @type in (12))
-begin
-select * from  #list where id>=1 and id<=8
-
-select * from  #list where id>=9 and id<=18
-end
-
-
-", type,condition);
-            
-                strb.AppendFormat(@"
-else if( @type in (13))
-begin
-select * from 
-(
-select top 17 * from  #list where (bttypeid>=12 and bttypeid <=28 ) order by bttypeid  ) a
-union all
-select * from (
-select top 17 * from  #list where (bttypeid>=29 and bttypeid <=36) 
- order by bttypeid) a
-
-
-select * from (
-select top 17 * from  #list where (bttypeid>=37 and bttypeid <=38) or (bttypeid>=135 and bttypeid <=141) order by bttypeid) a
-union all
-select * from 
-(
-select top 17 * from  #list where (bttypeid>=142 and bttypeid <=156 ) order by bttypeid  ) a
-
-
-
-select * from (
-select top 8 * from  #list where setid between 249 and 256 order by bttypeid  ) a
-
-select * from (
-select top 12 * from  #list where bttypeid between 161 and 172 order by bttypeid  ) a
-end
-");
-
-            strb.AppendFormat(@"
-
 end try
 begin catch
 select ERROR_MESSAGE() state
 end catch
-");
+
+", type,condition);
+            
+
 
             return RDBSHelper.ExecuteDataset(CommandType.Text, strb.ToString(), null);
         }

@@ -600,6 +600,7 @@
     <Content Include="scripts\jquery.js" />
     <Content Include="scripts\jquery.soChange.js" />
     <Content Include="scripts\lottery.js" />
+    <Content Include="scripts\nwplay.js" />
     <Content Include="scripts\play.js" />
     <Content Include="scripts\region.js" />
     <Content Include="scripts\resize.js" />
@@ -740,6 +741,7 @@
     <Content Include="views\nwlottery\_bettdetailslhc.cshtml" />
     <Content Include="views\nwlottery\LotTrend.cshtml" />
     <Content Include="views\nwlottery\WeekProfit.cshtml" />
+    <Content Include="views\nwlottery\_nwbettpage.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
