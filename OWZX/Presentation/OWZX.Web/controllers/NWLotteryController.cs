@@ -406,7 +406,7 @@ namespace OWZX.Web.controllers
         {
             int type = WebHelper.GetFormInt("type");
             int betid = WebHelper.GetFormInt("bettid");
-            DataSet ds = LotteryList.GetLotSetList(type.ToString());
+            DataSet ds = LotteryList.GetLotSetList(type.ToString(), "", false, betid);
             ViewData["ltset"] = ds;
             DataTable dt = LotteryList.GetUserBett(type, WorkContext.Uid, 1, 1, " where a.bettid=" + betid.ToString());
             ViewData["bett"] = dt;

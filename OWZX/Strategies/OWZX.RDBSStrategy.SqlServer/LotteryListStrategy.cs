@@ -466,9 +466,12 @@ end catch
         /// </summary>
         /// <param name="condition">没有where</param>
         /// <returns></returns>
-        public DataSet GetLotSetList(string type, string condition = "",bool islhcbett=false)
+        public DataSet GetLotSetList(string type, string condition = "",bool islhcbett=false,int bettid=-1)
         {
             StringBuilder strb = new StringBuilder();
+            if(bettid==-1)
+            {
+
             strb.AppendFormat(@"
 
 declare @type int
@@ -506,7 +509,13 @@ end catch
 
 ", type,condition);
             
+            }else
+            {
+                strb.AppendFormat(@"
+exec GetBettDetailsLotSet {0},{1}
 
+", type, bettid);
+            }
 
             return RDBSHelper.ExecuteDataset(CommandType.Text, strb.ToString(), null);
         }

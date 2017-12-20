@@ -553,6 +553,8 @@
     <Content Include="images\number\lottery.png" />
     <Content Include="images\number\number.fw.png" />
     <Content Include="images\number\pk.png" />
+    <Content Include="images\number\dd.png" />
+    <Content Include="images\number\xs.png" />
     <Content Include="images\sdragon.png" />
     <Content Include="images\security.mp3" />
     <Content Include="images\stiger.png" />
@@ -733,7 +735,7 @@
     <Content Include="views\nwlottery\_contentlhb.cshtml" />
     <Content Include="views\agent\list.cshtml" />
     <Content Include="views\nwlottery\_contentpk.cshtml" />
-    <Content Include="views\nwlottery\_bettdetails.cshtml" />
+    <Content Include="views\nwlottery\_bettdetails11.cshtml" />
     <Content Include="views\nwlottery\_tabcommon.cshtml" />
     <Content Include="views\nwlottery\_contentlhc.cshtml" />
     <Content Include="views\nwlottery\_bettpagelhc.cshtml" />
@@ -741,7 +743,9 @@
     <Content Include="views\nwlottery\_bettdetailslhc.cshtml" />
     <Content Include="views\nwlottery\LotTrend.cshtml" />
     <Content Include="views\nwlottery\WeekProfit.cshtml" />
+    <Content Include="views\nwlottery\_nwbettpage1.cshtml" />
     <Content Include="views\nwlottery\_nwbettpage.cshtml" />
+    <Content Include="views\nwlottery\_bettdetails.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
