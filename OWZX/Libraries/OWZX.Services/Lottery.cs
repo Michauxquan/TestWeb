@@ -1100,6 +1100,66 @@ namespace OWZX.Services
         }
         #endregion
 
+        #region 特殊赔率
+
+        /// <summary>
+        /// 添加投注记录
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        public static bool AddOddsRoom(MD_OddsRoom room)
+        {
+            string result = OWZX.Data.Lottery.AddOddsRoom(room);
+            if (result.EndsWith("成功"))
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 更新投注记录 
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        public static bool UpdateOddsRoom(MD_OddsRoom room)
+        {
+            string result = OWZX.Data.Lottery.UpdateOddsRoom(room);
+            if (result.EndsWith("成功"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 删除投注记录
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static bool DeleteOddsRoom(string id)
+        {
+            string result = OWZX.Data.Lottery.DeleteOddsRoom(id);
+            if (result.EndsWith("成功"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        ///  获取投注记录(分页)
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where 主表 a  彩票类型表 b 房间类型表c</param>
+        /// <returns></returns>
+        public static List<MD_OddsRoom> GetOddsRoomList(int pageIndex, int pageSize, string condition = "")
+        {
+            DataTable dt = OWZX.Data.Lottery.GetOddsRoomList(pageIndex, pageSize, condition);
+            List<MD_OddsRoom> list = (List<MD_OddsRoom>)ModelConvertHelper<MD_OddsRoom>.ConvertToModel(dt);
+            return list;
+        }
+        #endregion
 
         #region 急速28 
 

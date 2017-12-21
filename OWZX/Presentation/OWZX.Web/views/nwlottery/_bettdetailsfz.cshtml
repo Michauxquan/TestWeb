@@ -72,9 +72,7 @@ margin-bottom: 4px;margin-top:5px;  " >
         <th width="20%" style="height: 28px;text-align:center;">我的投注</th>
         <th width="20%" style="height: 28px;text-align:center;">获得金额</th>
     </tr>
-    
-    @foreach (DataRow rw in @ds.Tables[3].Select("item in ('小双','大单')"))
-    {
+    @{
         Dictionary<object, int> dic = new Dictionary<object, int>();
         foreach (string item in row["bettinfo"].ToString().Split(';'))
         {
@@ -90,6 +88,10 @@ margin-bottom: 4px;margin-top:5px;  " >
             dic[(isnumber == 0 ? betitem[0] : int.Parse(betitem[0]).ToString())] = int.Parse(betitem[1]);
 
         }
+    }
+    @foreach (DataRow rw in @ds.Tables[3].Select("item in ('小双','大单')"))
+    {
+       
         <tr align="center" bgcolor="#FFFFFF" height="27">
             <td>
                 <span class="ltresult lhbresult btnumber"

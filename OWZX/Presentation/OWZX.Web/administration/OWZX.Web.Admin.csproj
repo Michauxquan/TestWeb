@@ -131,7 +131,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="views\account\login.cshtml" />
+    <None Include="views\baseinfo\addoddsroom.cshtml" />
     <None Include="views\baseinfo\editlotteryset.cshtml" />
+    <None Include="views\baseinfo\editoddsroom.cshtml" />
+    <None Include="views\baseinfo\lotterysetlistfz.cshtml" />
+    <None Include="views\baseinfo\oddsroomlist.cshtml" />
     <None Include="views\lottery\openset.cshtml" />
     <None Include="views\newuser\userrptday.cshtml" />
     <None Include="views\user\lowerlist.cshtml" />

@@ -1,0 +1,116 @@
+﻿@model OWZX.Model.MD_OddsRoom
+           
+@section header{
+    <title>添加特殊赔率</title>
+    <link type="text/css" rel="stylesheet" href="/administration/css/site.css"/>
+    <script type="text/javascript" src="/administration/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/administration/scripts/jquery.validate.js"></script>
+    <script type="text/javascript" src="/administration/scripts/jquery.validate.unobtrusive.js"></script>
+}
+@section body{
+    <h1 class="rightH1">
+        基础资料 &gt;&gt; 添加特殊赔率
+        <div class="right">
+            <a href="@Html.Raw(ViewData["referer"].ToString())" class="menuBT">
+                <img src="/administration/images/goback.jpg" />返回列表</a>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </h1>
+    @using (Html.BeginForm())
+    {
+        <div class="addTable">
+                <table width="100%">
+                    <tr>
+                    <td width="100px" align="right">
+                        彩票类型：
+                    </td>
+                    <td>
+                        <select data-val="true" data-val-required="请选择" id="Type" name="Type">
+                            <option @if ("" == Model.Type) { <text> selected="selected" </text>            } value="">玩法类型</option>
+
+                            <option @if (Model.Type == "大小单双"){<text> selected="selected" </text>} value="大小单双">大小单双</option>
+                            <option @if (Model.Type == "组合") { <text> selected="selected" </text>  } value="组合">组合</option>
+                           
+                        </select> 
+                    </td>
+                </tr>
+                    <tr>
+                        <td align="right">
+                            房间类型：
+                        </td>
+                        <td>
+                            <select data-val="true" data-val-required="请选择" id="Roomid" name="Roomid">
+                                <option @if (-1 == Model.Roomid)
+                                        {
+                                            <text> selected="selected" </text>
+                                        } value="0">房间类型</option>
+                                @foreach (OWZX.Model.BaseTypeModel info in AdminBaseInfo.GetBaseTypeList("where parentid=19"))
+                                {
+                                    <option @if (info.Systypeid == Model.Roomid)
+                                            {
+                                                <text> selected="selected" </text>
+                                            } value="@info.Systypeid">@info.Type</option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(x => x.Roomid)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            最小投注总额：
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.Minmoney, new {@class = "input", size = "35"})
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                           最大投注总额：
+                        </td>
+                        <td>
+                           @Html.TextBoxFor(x => x.Maxmoney, new { @class = "input", size = "35" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            赔率：
+                        </td>
+                        <td>
+                             @Html.TextBoxFor(x => x.OddsRate, new { @class = "input", size = "35" })
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="right">
+                            &nbsp;
+                        </td>
+                        <td>
+                            <a href="" class="addBt" id="sumbitBut">
+                                <img src="/administration/images/submit.jpg" /></a>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $("#sumbitBut").click(function () {
+                                        $("form:first").submit();
+                                        return false;
+                                    })
+                                });
+                            </script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+        </div>
+    }
+
+    
+}

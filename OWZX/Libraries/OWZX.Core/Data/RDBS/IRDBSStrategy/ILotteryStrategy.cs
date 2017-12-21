@@ -395,5 +395,37 @@ namespace OWZX.Core
         DataTable GetLotteryOpenSetList(int type = 3);
         #endregion
 
+        #region 特殊赔率
+
+        /// <summary>
+        /// 添加投注记录
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        string AddOddsRoom(MD_OddsRoom room);
+        /// <summary>
+        /// 更新投注记录 
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        string UpdateOddsRoom(MD_OddsRoom room);
+
+        /// <summary>
+        /// 删除投注记录
+        /// </summary>  
+        /// <param name="id"></param>
+        /// <returns></returns>
+        string DeleteOddsRoom(string id);
+
+        /// <summary>
+        ///  获取投注记录(分页)
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where 主表 a  彩票类型表 b 房间类型表c</param>
+        /// <returns></returns>
+        DataTable GetOddsRoomList(int pageNumber, int pageSize, string condition = "");
+        #endregion
+
     }
 }

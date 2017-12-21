@@ -2654,5 +2654,163 @@ exec(@sql)
             return RDBSHelper.ExecuteTable(sql, null)[0];
         }
         #endregion
+
+        #region 特殊赔率
+
+        /// <summary>
+        /// 添加房间信息
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        public string AddOddsRoom(MD_OddsRoom room)
+        {
+            DbParameter[] parms = {
+                                    GenerateInParam("@type", SqlDbType.VarChar, 50, room.Type),
+                                    GenerateInParam("@roomid", SqlDbType.Int, 4 ,room.Roomid),
+                                    GenerateInParam("@minmoney", SqlDbType.Int, 4, room.Minmoney),
+                                    GenerateInParam("@maxmoney", SqlDbType.Int, 4, room.Maxmoney),
+                                     GenerateInParam("@oddsrate", SqlDbType.VarChar, 50, room.OddsRate),
+                                    };
+            string commandText = string.Format(@"
+begin try
+begin tran t1
+
+INSERT INTO [owzx_Oddsroom]([Type]
+           ,[roomid]
+           ,[minmoney]
+           ,[maxmoney]
+           ,[oddsrate]
+           )
+VALUES(@type,@roomid,
+@minmoney,@maxmoney,
+@oddsrate)
+
+select '添加成功' state
+commit tran t1
+
+end try
+begin catch
+rollback tran t1
+select ERROR_MESSAGE() state
+end catch
+");
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+        }
+        /// <summary>
+        /// 更新房间信息
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        public string UpdateOddsRoom(MD_OddsRoom room)
+        {
+            DbParameter[] parms = {
+                                               // GenerateInParam("@type", SqlDbType.VarChar, 50, room.Type),
+                                                GenerateInParam("@id", SqlDbType.Int, 4 ,room.Id),
+                                                GenerateInParam("@minmoney", SqlDbType.Int, 4, room.Minmoney),
+                                                GenerateInParam("@maxmoney", SqlDbType.Int, 4, room.Maxmoney),
+                                                 GenerateInParam("@oddsrate", SqlDbType.VarChar, 50, room.OddsRate),
+                                                };
+            string commandText = string.Format(@"
+            begin try
+            begin tran t1
+            if exists(select 1 from owzx_Oddsroom where id=@id)
+            begin
+            UPDATE owzx_Oddsroom
+               SET  minmoney = @minmoney,maxmoney=@maxmoney,oddsrate=@oddsrate
+--,type=@type
+            where id=@id
+           
+            select '修改成功' state
+            commit tran t1
+            end
+            else
+            begin
+            select '记录已被删除' state
+            commit tran t1
+            end
+            end try
+            begin catch
+            rollback tran t1
+            select ERROR_MESSAGE() state
+            end catch
+            ");
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+        }
+
+        /// <summary>
+        /// 删除房间信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string DeleteOddsRoom(string id)
+        {
+            string commandText = string.Format(@"
+            begin try
+            if exists(select 1 from owzx_Oddsroom where id in ({0}))
+            begin
+            delete from owzx_Oddsroom where id in ({0})
+            select '删除成功' state
+            end
+            else
+            begin
+            select '记录已被删除' state
+            end
+            end try
+            begin catch
+            select ERROR_MESSAGE() state
+            end catch
+            ", id);
+            return RDBSHelper.ExecuteScalar(commandText).ToString();
+        }
+
+        /// <summary>
+        ///  获取房间信息(分页)
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where 主表 a  彩票类型表 b 房间类型表c</param>
+        /// <returns></returns>
+        public DataTable GetOddsRoomList(int pageNumber, int pageSize, string condition = "")
+        {
+            DbParameter[] parms = {
+                                      GenerateInParam("@pagesize", SqlDbType.Int, 4, pageSize),
+                                      GenerateInParam("@pageindex", SqlDbType.Int, 4, pageNumber)
+                                  };
+
+
+            string commandText = string.Format(@"
+begin try
+if OBJECT_ID('tempdb..#list') is not null
+drop table #list
+
+SELECT a.id,
+a.[roomid] ,a.[type],a.[minmoney],a.[maxmoney],a.[oddsrate],a.[addtime]--,c.type room
+into  #list
+from owzx_Oddsroom a 
+--join owzx_sys_basetype c on a.roomid=c.systypeid 
+{0} 
+order by roomid,type,minmoney,id 
+declare @total int
+select @total=(select count(1)  from #list)
+
+if(@pagesize=-1)
+begin
+select *,@total TotalCount from #list
+end
+else
+begin
+select  *,@total TotalCount from #list where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
+end
+
+end try
+begin catch
+select ERROR_MESSAGE() state
+end catch
+
+", condition);
+
+            return RDBSHelper.ExecuteDataset(CommandType.Text, commandText, parms).Tables[0];
+        }
+        #endregion
     }
 }

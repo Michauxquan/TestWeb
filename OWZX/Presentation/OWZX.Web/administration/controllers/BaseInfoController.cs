@@ -420,7 +420,7 @@ namespace OWZX.Web.Admin.Controllers
         #endregion
 
         #region 赔率
-        public ActionResult LotterySetList(int type = -1, int bttype = -1, int roomtype = -1, int pageSize = 15, int pageNumber = 1)
+        public ActionResult LotterySetList(int type = -1, int bttype = -1, int roomtype = -1, int pageSize = 25, int pageNumber = 1)
         {
             StringBuilder strb = new StringBuilder();
             strb.Append("where 1=1");
@@ -481,5 +481,90 @@ namespace OWZX.Web.Admin.Controllers
                 return PromptView("保存失败");
         }
         #endregion
+
+        #region 特殊赔率
+        /// <summary>
+        /// 获取房间信息
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OddsRoomList(int roomid = -1)
+        {
+            StringBuilder strb = new StringBuilder();
+            if (roomid > 0)
+                strb.Append(" where a.roomid=" + roomid);
+            List<MD_OddsRoom> listbase = Lottery.GetOddsRoomList(1, -1, strb.ToString());
+            ShopUtils.SetAdminRefererCookie(Url.Action("oddsroomlist"));
+            return View(listbase);
+        }
+        /// <summary>
+        /// 添加房间信息
+        /// </summary>
+        /// <param name="baseid"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult AddOddsRoom()
+        {
+            LoadRoom();
+            ViewData["referer"] = ShopUtils.GetAdminRefererCookie();
+            MD_OddsRoom baseinfo = new MD_OddsRoom { Type = "", Roomid = -1, Minmoney = 0, Maxmoney = 0 };
+            return View(baseinfo);
+        }
+
+        /// <summary>
+        /// 添加房间信息
+        /// </summary>
+        /// <param name="baseid"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult AddOddsRoom(MD_OddsRoom roominfo)
+        {
+            ViewData["referer"] = ShopUtils.GetAdminRefererCookie();
+            //接收参数名称不能与提交的参数名相同（不区分大小写）
+            if (ModelState.IsValid)
+            {
+                bool result = Lottery.AddOddsRoom(roominfo);
+                if (result)
+                    return PromptView("保存成功");
+                else
+                    return PromptView("保存失败");
+            }
+            return View(roominfo);
+        }
+        /// <summary>
+        /// 编辑房间信息
+        /// </summary>
+        /// <param name="baseid"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult EditOddsRoom(int id = -1)
+        {
+            StringBuilder strb = new StringBuilder();
+            if (id > 0)
+                strb.Append(" where a.id=" + id);
+            List<MD_OddsRoom> listbase = Lottery.GetOddsRoomList(1, -1, strb.ToString());
+            ViewData["referer"] = ShopUtils.GetAdminRefererCookie();
+            if (listbase.Count == 0)
+                return View(new MD_OddsRoom());
+            MD_OddsRoom baseinfo = listbase[0];
+            LoadRoom();
+            return View(baseinfo);
+        }
+        /// <summary>
+        /// 修改房间信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult EditOddsRoom(MD_OddsRoom ltmd)
+        {
+            ViewData["referer"] = ShopUtils.GetAdminRefererCookie();
+            bool result = Lottery.UpdateOddsRoom(ltmd);
+            if (result)
+                return PromptView("保存成功");
+            else
+                return PromptView("保存失败");
+        }
+
+        #endregion
+
     }
 }
