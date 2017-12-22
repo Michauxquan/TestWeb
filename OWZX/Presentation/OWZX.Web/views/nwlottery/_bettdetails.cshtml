@@ -51,8 +51,8 @@
                     </tr>
                     <tr>
                         @{string mybett = string.Format("{0:n0}", @row["money"]);
-                          string winmoney = string.Format("{0:n0}", @row["winmoney"]);
-                          string mywin = string.Format("{0:n0}", @row["win"]);
+                          string winmoney = string.Format("{0:n2}", @row["winmoney"]);
+                          string mywin = string.Format("{0:n2}", @row["win"]);
                         }
                         <td width="235" height="30" align="left"><span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;我的投注额：@mybett</span><img style="float: left;margin-top:6px; margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
                         <td width="230" height="30" align="left"><span style="float: left;">获得金额：@winmoney</span><img style="float: left;margin-top:6px;  margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
@@ -117,8 +117,8 @@ margin-bottom: 4px;margin-top:5px;  " >
                     if (rw["item"].ToString() == row["resultnum"].ToString() 
                         ||(","+rw["nums"].ToString()+",").Contains(","+row["resultnum"].ToString()+","))
                     {
-                        int win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * float.Parse(rw["odds"].ToString()));
-                        @win.ToString("n0")
+                        decimal win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * decimal.Parse(rw["odds"].ToString()));
+                        @win.ToString("n2")
                     }
                     else
                     {
@@ -179,8 +179,8 @@ margin-bottom: 4px;margin-top:5px;  " >
                 if (rw["item"].ToString() == row["resultnum"].ToString()
                     ||(","+rw["nums"].ToString()+",").Contains(","+row["resultnum"].ToString()+","))
                 {
-                    int win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * float.Parse(rw["odds"].ToString()));
-                    @win.ToString("n0")
+                    decimal win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * decimal.Parse(rw["odds"].ToString()));
+                    @win.ToString("n2")
                 }
                 else
                 {
@@ -241,8 +241,8 @@ margin-bottom: 4px;margin-top:5px;  " >
                     if (rw["item"].ToString() == row["resultnum"].ToString()
                         || ("," + rw["nums"].ToString() + ",").Contains("," + row["resultnum"].ToString() + ","))
                     {
-                        int win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * float.Parse(rw["odds"].ToString()));
-                        @win.ToString("n0")
+                        decimal win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * decimal.Parse(rw["odds"].ToString()));
+                        @win.ToString("n2")
                     }
                     else
                     {
@@ -303,8 +303,8 @@ margin-bottom: 4px;margin-top:5px;  " >
                     if (rw["item"].ToString() == row["resultnum"].ToString()
                         || ("," + rw["nums"].ToString() + ",").Contains("," + row["resultnum"].ToString() + ","))
                     {
-                        int win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * float.Parse(rw["odds"].ToString()));
-                        @win.ToString("n0")
+                        decimal win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * decimal.Parse(rw["odds"].ToString()));
+                        @win.ToString("n2")
                     }
                     else
                     {
