@@ -26,7 +26,7 @@ namespace OWZX.Web.Admin.Controllers
             StringBuilder strb = new StringBuilder();
             strb.Append(" where 1=1");
             if (account != "")
-                strb.Append(" and rtrim(b.email)='" + account.Trim() + "'");
+                strb.Append(" and rtrim(b.username)='" + account.Trim() + "'");
             if (lottype != -1)
                 strb.Append(" and a.lotteryid=" + lottype);
             if (expect != "")

@@ -1219,7 +1219,7 @@ if OBJECT_ID('tempdb..#list') is not null
 drop table #list
 /*
 SELECT ROW_NUMBER() over(order by a.bettid desc) id,
-a.[bettid],a.[uid],a.[lotteryid],a.[bttypeid],a.[money],a.[lotterynum],a.isread,a.[addtime],b.mobile account,e.type lottery,d.type room,g.type vip,f.type bttype,c.item,cc.luckresult
+a.[bettid],a.[uid],a.[lotteryid],a.[bttypeid],a.[money],a.[lotterynum],a.isread,a.[addtime],b.username account,e.type lottery,d.type room,g.type vip,f.type bttype,c.item,cc.luckresult
 into  #list
 FROM owzx_bett a
 join owzx_users b on a.uid=b.uid
@@ -1235,7 +1235,7 @@ join owzx_sys_basetype g on a.vipid=g.systypeid
 SELECT ROW_NUMBER() over(order by a.bettid desc) id,
 a.[bettid],a.[uid],a.[lotteryid],a.[money],a.[lotterynum],
 a.isread,a.[addtime],
-b.email account,a.bettnum as item,
+b.username account,a.bettnum as item,
 e.type lottery ,cast(isnull(a.winmoney,0) as decimal(18,2)) as luckresult
 into  #list
   from  owzx_bett a

@@ -77,6 +77,7 @@
                         <th width="80" align="left">是否结算</th>
                         <th width="80" align="left">中奖金额</th>
                         <th width="80" align="left">盈亏</th>
+                        <th width="80" align="left">时间</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,6 +95,7 @@
                             <td>@(info.IsRead ? "是" : "否")</td>
                             <td>@info.LuckResult.ToString("N0")</td>
                              <td>@((Convert.ToInt64(info.LuckResult)-info.Money).ToString("N0"))</td>
+                            <td>@info.Addtime.ToString("yyyy-MM-dd HH:mm:ss")</td>
                         </tr>
                     }
                 </tbody>

@@ -710,7 +710,7 @@ drop table #list
 
 SELECT ROW_NUMBER() over(order by a.addtime desc) id,
 a.drawid,a.[uid],a.money,a.[state],a.[exception],a.[addtime] ,a.[updatetime],c.username
-,c.card,c.cardnum,c.cardaddress,b.mobile,isnull(b.totalmoney,0) totalmoney
+,c.card,c.cardnum,c.cardaddress,b.mobile,isnull(b.totalmoney,0) totalmoney,b.username account
 into  #list
 FROM [owzx_userdraw] a
 join owzx_users b on a.uid=b.uid
@@ -722,7 +722,7 @@ if(@pagesize=-1)
 begin
 select cast(id as int) id,drawid,[uid],[money],case state when '0' then '待审核' when '1' then '审核中' when '2' then '审核完成' when '3' then '审核失败' end state,
 isnull([exception],'') exception,[addtime] ,[updatetime],username,card,cardnum,cardaddress,mobile,
-totalmoney,
+totalmoney,account,
 (select count(1)  from #list) TotalCount from #list
 end
 else
@@ -730,7 +730,7 @@ begin
 select  cast(id as int) id,drawid,[uid],[money],
 case state when '0' then '待审核' when '1' then '审核中' when '2' then '审核完成' when '3' then '审核失败' end state,
 isnull([exception],'') exception,[addtime] ,[updatetime],username,card,cardnum,cardaddress,mobile,
-totalmoney,
+totalmoney,account,
 (select count(1)  from #list) TotalCount from #list where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
 end
 
