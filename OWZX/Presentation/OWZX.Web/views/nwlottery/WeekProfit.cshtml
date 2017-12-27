@@ -43,7 +43,7 @@
                 <td>@result</td>
                 @for (int j = 2; j <= 8; j++)
                 {
-                total += double.Parse(info[info.Table.Columns[j].ColumnName].ToString());
+                    total += double.Parse(info[info.Table.Columns[j].ColumnName].ToString() == "" ? "0" : info[info.Table.Columns[j].ColumnName].ToString());
                 <td>@info[info.Table.Columns[j].ColumnName]</td>
                 }
             </tr>
