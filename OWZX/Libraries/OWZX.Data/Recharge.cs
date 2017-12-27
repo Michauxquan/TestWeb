@@ -138,6 +138,10 @@ namespace OWZX.Data
 
        
         #region 提现
+        public static  string AddChangeWare(MD_DrawAccount draw)
+        {
+            return BSPData.RDBS.AddChangeWare(draw);
+        }
         /// <summary>
         /// 添加提现记录
         /// </summary>

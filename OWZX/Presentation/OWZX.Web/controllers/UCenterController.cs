@@ -746,6 +746,7 @@ namespace OWZX.Web.Controllers
         #endregion
 
         #region 元宝明细
+        
         /// <summary>
         /// 元宝明细
         /// </summary>
@@ -792,7 +793,26 @@ namespace OWZX.Web.Controllers
         /// <summary>
         /// 兑换明细
         /// </summary>
-        public ActionResult ChangeRecord(int uid=-1,int type=-1 ,int pageSize = 15, int pageNumber = 1)
+        public ActionResult ChangeRecord(int uid = -1, int pageSize = 15, int pageNumber = 1)
+        {
+            StringBuilder strb = new StringBuilder();
+            strb.Append(" ");
+            if (uid == -1)
+            {
+                uid = WorkContext.PartUserInfo.Uid;
+            }
+            strb.Append(" and a.uid=" + uid + " ");
+
+            List<DrawInfoModel> list = Recharge.GetDrawList(pageNumber, pageSize, strb.ToString());
+            WareChangeList warelist = new WareChangeList
+            {
+                uid = uid,
+                PageModel = new PageModel(pageSize, pageNumber, list.Count > 0 ? list[0].TotalCount : 0),
+                DrawList = list
+            };
+            return View(warelist);
+        }
+        private ActionResult ChangeRecord(int uid=-1,int type=-1 ,int pageSize = 15, int pageNumber = 1)
         { 
             StringBuilder strb = new StringBuilder();
             strb.Append(" ");

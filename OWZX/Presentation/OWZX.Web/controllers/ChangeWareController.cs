@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using OWZX.Model;
 using OWZX.Services;
 using OWZX.Web.Framework;
+using OWZX.Core;
 
 namespace OWZX.Web.controllers
 {
@@ -30,7 +31,8 @@ namespace OWZX.Web.controllers
             if (specid>-1)
             {
                 strb.Append(" and  specid="+specid);
-            } 
+            }
+            strb.Append(" and  b.status=0");
             List<MD_Ware> list = ChangeWare.GetWareSkuList(pageNumber, pageSize, strb.ToString());
             WareSkuList warelist = new WareSkuList
             {
@@ -289,5 +291,105 @@ namespace OWZX.Web.controllers
                 return APIResult("error", "获取失败");
             }
         }
+
+        #region 提现
+        /// <summary>
+        /// 提现申请
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AddUserChangeWare()
+        {
+            NameValueCollection parmas = WorkContext.postparms;
+            int type = parmas.AllKeys.Contains("type") && !string.IsNullOrEmpty(parmas["type"])
+                ? int.Parse(parmas["type"])
+                : 0;
+            decimal price = decimal.Parse(parmas["price"].ToString());
+            if (price < 100)
+                return APIResult("error", "最低请提现100元宝");
+
+            PartUserInfo partUserInfo = Users.GetPartUserById(WorkContext.Uid);
+
+            if (partUserInfo.TotalMoney < price)
+                return APIResult("error", "余额不足");
+
+            if (parmas["openname"].Trim() == "" || parmas["bank"].Trim() == "" || parmas["card"].Trim() == "")
+            {
+                return APIResult("error", "请输入银行卡信息");
+            }
+            MD_DrawAccount draw = new MD_DrawAccount
+            {
+                Account = partUserInfo.UserName,
+                Uid=WorkContext.Uid,
+                Username = parmas["openname"],
+                Card = parmas["bank"],
+                Cardnum = parmas["card"],
+                Cardaddress = parmas["bkaddress"],
+                Drawpwd = "",
+                Money = price
+            };
+
+            string addres = Recharge.AddChangeWare(draw);
+            if (addres.EndsWith("成功"))
+            {
+                return APIResult("success", "兑换申请成功");
+            }
+            else if (addres == "-1")
+            {
+                return APIResult("error", "余额不足");
+            }
+            else
+            {
+                return APIResult("error", "兑换申请失败");
+            }
+        }
+        /// <summary>
+        /// 提现记录
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult UserDrawList()
+        {
+            try
+            {
+                NameValueCollection parmas = WorkContext.postparms;
+                if (parmas.Keys.Count != 3)
+                {
+                    return APIResult("error", "缺少请求参数");
+                }
+                int pageindex = int.Parse(parmas["page"]);
+
+                List<DrawInfoModel> userdraw = Recharge.GetDrawList(pageindex, 15, " where rtrim(b.mobile)='" + parmas["account"] + "'");
+                if (userdraw.Count == 0)
+                {
+                    return APIResult("error", "暂无提现记录");
+                }
+                else
+                {
+                    userdraw.ForEach((x) =>
+                    {
+                        x.State = x.State.Replace("审核完成", "成功").Replace("审核失败", "提现失败");
+                    });
+
+                    JsonSerializerSettings jsetting = new JsonSerializerSettings();
+                    jsetting.ContractResolver = new JsonLimitOutPut(new string[] { "Addtime", "Money", "State" }, true);
+                    jsetting.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+                    string data = JsonConvert.SerializeObject(userdraw, jsetting).ToLower();
+                    return APIResult("success", data, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                return APIResult("error", "获取失败");
+            }
+
+        }
+        ///// <summary>
+        ///// 提现条件
+        ///// </summary>
+        ///// <returns></returns>
+        //public ActionResult DrawSet()
+        //{ 
+
+        //}
+        #endregion
     }
 }

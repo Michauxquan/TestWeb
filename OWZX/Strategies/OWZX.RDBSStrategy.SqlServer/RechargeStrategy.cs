@@ -426,6 +426,82 @@ end catch
 
         #region 提现
         /// <summary>
+        /// 添加兑换记录
+        /// </summary>
+        /// <param name="draw"></param>
+        /// <returns></returns>
+        public string AddChangeWare(MD_DrawAccount draw)
+        {
+            DbParameter[] parms = {
+                                      GenerateInParam("@uid", SqlDbType.Int, 4, draw.Uid),
+                                      GenerateInParam("@username", SqlDbType.VarChar, 20, draw.Username),
+                                      GenerateInParam("@card", SqlDbType.VarChar, 20, draw.Card),
+                                      GenerateInParam("@cardnum", SqlDbType.VarChar, 20, draw.Cardnum),
+                                      GenerateInParam("@cardaddress", SqlDbType.VarChar, 50, draw.Cardaddress),
+                                      GenerateInParam("@money", SqlDbType.Decimal, 18, draw.Money)
+                                  };
+      
+            string commandText = string.Format(@"
+begin try
+begin tran t1
+if exists(select 1 from {0}users where uid=@uid and totalmoney>=@money)
+begin
+
+if exists(select 1 from owzx_userdrawaccount a join owzx_users b on a.uid=b.uid and b.uid=@uid)
+begin
+
+update a set 
+a.username=@username,
+a.card=@card,
+a.cardnum=@cardnum,
+a.cardaddress=@cardaddress
+from owzx_userdrawaccount a 
+join owzx_users b on a.uid=b.uid and b.uid=@uid
+
+end
+else
+begin
+insert into owzx_userdrawaccount([uid],[username],[card],[cardnum],[cardaddress])
+select uid,@username,@card,@cardnum,@cardaddress
+from owzx_users where uid=@uid
+end
+
+
+INSERT INTO [{0}userdraw]([uid],[money],[state])
+VALUES (@uid,@money,0)
+
+
+--收取1%手续费
+update a set  a.totalmoney=a.totalmoney-@money-@money*1*0.01
+from {0}users a 
+
+
+INSERT INTO owzx_accountchange([uid],[changemoney],[remark])
+select @uid ,-(@money),'提现'
+
+INSERT INTO owzx_accountchange([uid],[changemoney],[remark])
+select @uid ,-(@money*1*0.01),'提现手续费'
+
+
+select '添加成功' state
+commit tran t1
+end
+else
+begin
+select '-1' state
+commit tran t1
+end
+end try
+begin catch
+rollback tran t1
+select ERROR_MESSAGE() state
+end catch
+",
+                                                RDBSHelper.RDBSTablePre);
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+        }
+
+        /// <summary>
         /// 添加提现记录
         /// </summary>
         /// <param name="draw"></param>
@@ -459,9 +535,8 @@ and CONVERT(varchar(10),a.addtime,120)=CONVERT(varchar(10),getdate(),120)
 if(@count>3)
 begin
 --每天免费3次,超过收取1%手续费
-update a set  a.totalmoney=a.totalmoney-b.money-b.money*1*0.01
+update a set  a.totalmoney=a.totalmoney-@money-@money*1*0.01
 from {0}users a 
-join {0}userdraw b on a.uid=b.uid and a.uid=@uid
 
 INSERT INTO owzx_accountchange([uid],[changemoney],[remark])
 select @uid ,-(@money+@money*1*0.01),'提现'
@@ -470,9 +545,8 @@ select @uid ,-(@money+@money*1*0.01),'提现'
 end
 else
 begin
-update a set  a.totalmoney=a.totalmoney-b.money
+update a set  a.totalmoney=a.totalmoney-@money
 from {0}users a 
-join {0}userdraw b on a.uid=b.uid and a.uid=@uid
 
 INSERT INTO owzx_accountchange([uid],[changemoney],[remark])
 select @uid ,-@money,'提现'

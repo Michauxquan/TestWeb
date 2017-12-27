@@ -218,6 +218,10 @@ namespace OWZX.Services
         #endregion
 
         #region 提现
+        public static string AddChangeWare(MD_DrawAccount draw)
+        {
+            return OWZX.Data.Recharge.AddChangeWare(draw);
+        }
         /// <summary>
         /// 添加提现记录
         /// </summary>

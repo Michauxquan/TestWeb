@@ -19,12 +19,7 @@
         isGuestSC = @WorkContext.ShopConfig.IsGuestSC;
         scSubmitType = @WorkContext.ShopConfig.SCSubmitType;
 
-        function getCardcode(orderid) {
-            $.post('/ucenter/getCardcode',{orderid:orderid},function(data){ 
-                var result = eval('('+data+')');
-                alert(result.content);
-            });
-        }
+        
     </script>
 </head>
 
@@ -41,7 +36,7 @@
         </div>
         <div class="left pLeft10">
             <h2 id="memberRT" class="cblock">兑换点卡</h2>
-            <span>可把元宝兑换成点卡（输入数量点击点卡），点卡将发送到邮箱中，请保持邮箱绑定并畅通</span>
+            <span>可把元宝兑换成点卡</span>
         </div>
         <div class="clear"></div>
     </div>
@@ -54,29 +49,21 @@
                 </div>
                 <table style="width: 666px; border: solid 1px #ddd; margin: 10px 0 10px 10px;" cellpadding="0" cellspacing="0" class="memberTableBorder">
                     <thead >
-                    <tr style="height: 34px;line-height: 34px; ">
-                        <th class="th" style="text-align: left; padding: 5px 0;background: #fff;font-weight: 100;" colspan="4">
-                        <input type="radio" class="radioday" name="type" style="margin-left: 10px;" @(Model.type==1?"checked=true":"") value="1"/>7天&nbsp;&nbsp;<input type="radio" name="type" @(Model.type==2?"checked=true":"") class="radioday" value="2"/>30天&nbsp;&nbsp;
-                        <input type="radio" class="radioday" name="type" value="3" @(Model.type==3?"checked=true":"")/>半年 &nbsp;&nbsp;
-                        <input type="radio" class="radioday" name="type" value="4" @(Model.type==4?"checked=true":"")/>一年 &nbsp;&nbsp;
-                            <a class="greenBT submit" style="cursor: pointer;" style="font-size: 10px; padding: 2px 8px;" >提交</a>
-                        </th> 
-                    </tr>
                     <tr>
                         <th class="th" width="200">兑换时间</th>
-                        <th class="th" width="200">卡类型</th>
+                        <th class="th" width="200">兑换金额</th>
                         <th class="th" width="100">数量</th>
-                        <th class="th" width="100">操作</th>
+                        <th class="th" width="100">状态</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach (OWZX.Model.MD_UserOrder info in Model.ChangeList)
+                    @foreach (OWZX.Model.DrawInfoModel info in Model.DrawList)
                     {
                         <tr>
-                            <td style="text-align: center; height: 24px; line-height: 24px; border-bottom: solid 1px #ddd;">@info.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
-                            <td style="text-align: center; border-bottom: solid 1px #ddd;">@(info.WareName+" "+info.SpecName)</td>
-                            <td style="text-align: center; border-bottom: solid 1px #ddd;">@info.Num</td>
-                            <td style="text-align: center; border-bottom: solid 1px #ddd;"><a id="getCardcode" style="@(info.Status==0?"":"display:none;")" href="javascript:void(0);" onclick="getCardcode(@info.OrderID)" >[获取卡密]</a></td>
+                            <td style="text-align: center; height: 24px; line-height: 24px; border-bottom: solid 1px #ddd;">@info.Addtime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                            <td style="text-align: center; border-bottom: solid 1px #ddd;">@info.Money</td>
+                            <td style="text-align: center; border-bottom: solid 1px #ddd;">1</td>
+                            <td style="text-align: center; border-bottom: solid 1px #ddd;">@info.State</td>
                         </tr>
                     }
                     </tbody>

@@ -87,6 +87,8 @@ namespace OWZX.Model
             set { drawpwd = value.TrimEnd(); }
         }
 
+        public decimal Money { get; set; }
+        
         private DateTime addtime;
         public DateTime Addtime
         {

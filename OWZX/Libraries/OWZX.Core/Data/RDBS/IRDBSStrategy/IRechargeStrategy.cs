@@ -101,6 +101,7 @@ namespace OWZX.Core
         #endregion
 
         #region 提现
+        string AddChangeWare(MD_DrawAccount draw);
         /// <summary>
         /// 添加提现记录
         /// </summary>

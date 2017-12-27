@@ -21,5 +21,9 @@ namespace OWZX.Web
         /// 账变记录列表
         /// </summary>
         public List<MD_UserOrder> ChangeList { get; set; }
+        /// <summary>
+        /// 提现记录
+        /// </summary>
+        public List<DrawInfoModel> DrawList { get; set; }
     }
 }
