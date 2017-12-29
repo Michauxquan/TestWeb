@@ -12,6 +12,8 @@
     string opentime = DateTime.Parse(row["opentime"].ToString()).ToString("MM-dd HH:mm:ss");
     int lotterytype=int.Parse(row["lotteryid"].ToString());
     int isnumber = (lotterytype == 4 || lotterytype == 5 || lotterytype == 9) ? 0 : 1;
+    string wintype=string.Empty ;
+    
 }
 <div class="tzbanner touzhutop">
     <div class="tzbanner_z touzhutop_n">
@@ -72,68 +74,7 @@ margin-bottom: 4px;margin-top:5px;  " >
         <th width="20%" style="height: 28px;text-align:center;">我的投注</th>
         <th width="20%" style="height: 28px;text-align:center;">获得金额</th>
     </tr>
-    @foreach (DataRow rw in @ds.Tables[0].Rows)
-    {
-        Dictionary<object, int> dic = new Dictionary<object, int>();
-        foreach (string item in row["bettinfo"].ToString().Split(';'))
-        {
-            string[] betitem = item.Split(':');
-            if (System.Text.RegularExpressions.Regex.IsMatch(betitem[0], @"^\d*$"))
-            {
-                isnumber= 1;
-            }
-            else
-            {
-                isnumber = 0; 
-            }
-               
-            dic[(isnumber == 0 ? betitem[0] : int.Parse(betitem[0]).ToString())] = int.Parse(betitem[1]);
-            
-        }
-        <tr align="center" bgcolor="#FFFFFF" height="27">
-            <td>
-                @if ((int)@row["lotteryid"] != 9)
-                {
-                    <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
-                          width="25" height="25">@rw["item"]</span>
-                }
-                else
-                {
-                    <span class="ltresult lhbresult btnumber"
-                          width="25" height="25">@rw["item"]</span>
-                }
-            </td>
-            <td>@rw["odds"]</td>
-            <td>@if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
-                { 
-                  @dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())].ToString("n0")
-                }else
-                {
-                @:-
-                }</td>
-            <td>
-                @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
-                {
-                    if (rw["item"].ToString() == row["resultnum"].ToString() 
-                        ||(","+rw["nums"].ToString()+",").Contains(","+row["resultnum"].ToString()+","))
-                    {
-                        decimal win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * decimal.Parse(rw["odds"].ToString()));
-                        @win.ToString("n2")
-                    }
-                    else
-                    {
-                        @:-
-                    }
-                }
-                else
-                {
-                    @:-
-                }
-        </td>
-    </tr>
-    }
-    @foreach (DataRow rw in @ds.Tables[1].Rows)
-    {
+    @{
         Dictionary<object, int> dic = new Dictionary<object, int>();
         foreach (string item in row["bettinfo"].ToString().Split(';'))
         {
@@ -149,80 +90,26 @@ margin-bottom: 4px;margin-top:5px;  " >
             dic[(isnumber == 0 ? betitem[0] : int.Parse(betitem[0]).ToString())] = int.Parse(betitem[1]);
 
         }
-        <tr align="center" bgcolor="#FFFFFF" height="27">
-            <td>
-                @if ((int)@row["lotteryid"] != 9)
-                {
-                    <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
-                          width="25" height="25">@rw["item"]</span>
-                }
-                else
-                {
-                    <span class="ltresult lhbresult btnumber"
-                          width="25" height="25">@rw["item"]</span>
-                }
-            </td>
-            <td>@rw["odds"]</td>
-            <td>
-                @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
-                {
-                    @dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())].ToString("n0")
-                }
-                else
-                {
-                    @:-
-                }
-        </td>
-        <td>
-            @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
-            {
-                if (rw["item"].ToString() == row["resultnum"].ToString()
-                    ||(","+rw["nums"].ToString()+",").Contains(","+row["resultnum"].ToString()+","))
-                {
-                    decimal win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * decimal.Parse(rw["odds"].ToString()));
-                    @win.ToString("n2")
-                }
-                else
-                {
-                    @:-
-                    }
-            }
-            else
-            {
-                @:-
-                }
-        </td>
-    </tr>
-    }
-    @foreach (DataRow rw in @ds.Tables[2].Rows)
-    {
-        Dictionary<object, int> dic = new Dictionary<object, int>();
-        foreach (string item in row["bettinfo"].ToString().Split(';'))
+        if (!string.IsNullOrEmpty(row["resultnum"].ToString()))
         {
-            string[] betitem = item.Split(':');
-            if (System.Text.RegularExpressions.Regex.IsMatch(betitem[0], @"^\d*$"))
+            if ("15,17,19,21,23,25,27".Contains(row["resultnum"].ToString()))
             {
-                isnumber = 1;
+                wintype = "大单";
             }
-            else
+            if ("0,2,4,6,8,10,12".Contains(row["resultnum"].ToString()))
             {
-                isnumber = 0;
+                wintype = "小双";
             }
-            dic[(isnumber == 0 ? betitem[0] : int.Parse(betitem[0]).ToString())] = int.Parse(betitem[1]);
-
         }
+    }
+    @foreach (DataRow rw in @ds.Tables[3].Select("item in ('小双','大单')"))
+    {
+       
         <tr align="center" bgcolor="#FFFFFF" height="27">
             <td>
-                @if ((int)@row["lotteryid"] != 9)
-                {
-                    <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); font-size:15px;"
-                          width="25" height="25">@rw["item"]</span>
-                }
-                else
-                {
-                    <span class="ltresult lhbresult btnumber"
-                          width="25" height="25">@rw["item"]</span>
-                }
+                <span class="ltresult lhbresult btnumber"
+                      style="background: url('../../images/number/dd.png') no-repeat;font-size:16px;
+width:80px;height:40px;color:white;padding-top: 4px; ">@rw["item"]</span>
             </td>
             <td>@rw["odds"]</td>
             <td>
@@ -236,85 +123,31 @@ margin-bottom: 4px;margin-top:5px;  " >
                 }
             </td>
             <td>
-                @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
-                {
-                    if (rw["item"].ToString() == row["resultnum"].ToString()
-                        || ("," + rw["nums"].ToString() + ",").Contains("," + row["resultnum"].ToString() + ","))
+                
+                    @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
                     {
-                        decimal win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * decimal.Parse(rw["odds"].ToString()));
-                        @win.ToString("n2")
+                        if (row["resultnum"].ToString() == "13" || row["resultnum"].ToString() == "14")
+                        {
+                            decimal wints = (dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * decimal.Parse(rw["odds"].ToString()));
+                            @wints.ToString("n2")
+                        }
+                        else
+                        {
+                            if (rw["item"].ToString() == wintype)                                
+                            {
+                                decimal win = (dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * decimal.Parse(rw["odds"].ToString()));
+                                @win.ToString("n2")
+                            }
+                            else
+                            {
+                                @:-
+                             }
+                        }
                     }
                     else
                     {
                         @:-
                     }
-                }
-                else
-                {
-                    @:-
-                }
-            </td>
-        </tr>
-    }
-    @foreach (DataRow rw in @ds.Tables[3].Rows)
-    {
-        Dictionary<object, int> dic = new Dictionary<object, int>();
-        foreach (string item in row["bettinfo"].ToString().Split(';'))
-        {
-            string[] betitem = item.Split(':');
-            if (System.Text.RegularExpressions.Regex.IsMatch(betitem[0], @"^\d*$"))
-            {
-                isnumber = 1;
-            }
-            else
-            {
-                isnumber = 0;
-            }
-            dic[(isnumber == 0 ? betitem[0] : int.Parse(betitem[0]).ToString())] = int.Parse(betitem[1]);
-
-        }
-        <tr align="center" bgcolor="#FFFFFF" height="27">
-            <td>
-                @if ((int)@row["lotteryid"] != 9)
-                {
-                    <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png');font-size:15px; "
-                          width="25" height="25">@rw["item"]</span>
-                }
-                else
-                {
-                    <span class="ltresult lhbresult btnumber"
-                          width="25" height="25">@rw["item"]</span>
-                }
-            </td>
-            <td>@rw["odds"]</td>
-            <td>
-                @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
-                {
-                    @dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())].ToString("n0")
-                }
-                else
-                {
-                    @:-
-                }
-            </td>
-            <td>
-                @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
-                {
-                    if (rw["item"].ToString() == row["resultnum"].ToString()
-                        || ("," + rw["nums"].ToString() + ",").Contains("," + row["resultnum"].ToString() + ","))
-                    {
-                        decimal win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * decimal.Parse(rw["odds"].ToString()));
-                        @win.ToString("n2")
-                    }
-                    else
-                    {
-                        @:-
-                    }
-                }
-                else
-                {
-                    @:-
-                }
             </td>
         </tr>
     }
