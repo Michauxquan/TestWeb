@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>元宝明细-@{@WorkContext.ShopConfig.SiteTitle}</title>
+    <title>帐变记录-@{@WorkContext.ShopConfig.SiteTitle}</title>
     @Html.Raw(WorkContext.ShopConfig.SEOKeyword)
     @Html.Raw(WorkContext.ShopConfig.SEODescription)
     <link href="@{@WorkContext.CSSCDN}/css/base.css" rel="stylesheet" type="text/css" />
@@ -35,14 +35,13 @@
                 <img src="../images/baseimg/banner.png"/>
             </div>
             <div class="left pLeft10">
-                <h2 id="memberRT" class="cblock">元宝明细</h2>
-                <span class="font10">元宝收支明细等 </span> @*,银行存取、转帐、充值*@
+                <h2 id="memberRT" class="cblock">帐变记录</h2>
             </div>
             <div class="clear"></div>
         </div>
         <div style="margin-top: 10px; border: solid 1px #ddd; width: 686px;">
             <div style="height: 38px; color: #fff; line-height: 39px; background: url('../images/baseimg/msgbgl.png') no-repeat">
-                &nbsp; &nbsp;元宝记录 <span class="Fred font10 right mRight20">注:仅保留30天记录</span><span class="clear"></span>
+                &nbsp; &nbsp;帐变记录 <span class="Fred font10 right mRight20">注:仅保留30天记录</span><span class="clear"></span>
                 <input type="text" name="Uid" id="Uid" style="display: none;" readonly="readonly" name="type" value="@(@Model.Uid)" />
             </div>
             <table style="width: 666px; border-right: solid 1px #ddd; margin: 10px 0 10px 10px;" cellpadding="0" cellspacing="0" class="memberTableBorder">

@@ -45,7 +45,7 @@
             <th width="100" align="right">昵称：</th>
             <td><input type="text" name="nickName" value="@Model.UserInfo.NickName" class="text" maxlength="15" style="width:200px" />@*<span class="tip">这里是提示信息</span>*@</td>
           </tr>  
-          <tr>
+          <tr hidden>
             <th width="100" align="right">性别：</th>
             <td>
              <label class="radio"><input type="radio" name="gender" value="1" @{if(Model.UserInfo.Gender==1){<text>checked="checked"</text>}} />男</label>
@@ -53,20 +53,20 @@
              <label class="radio"><input type="radio" name="gender" value="0" @{if(Model.UserInfo.Gender==0){<text>checked="checked"</text>}} />未知</label>
              </td>
           </tr>
-              <tr>
+              <tr hidden>
            <th width="100" align="right">手机：</th>
             <td><input type="text" style="border: none;width:200px" value="@Model.UserInfo.Mobile" class="text" @(string.IsNullOrEmpty(Model.UserInfo.Mobile)?"":"readonly=true") maxlength="18" style="width:200px" /> </td>
           </tr>
-          <tr>
+          <tr hidden>
             <th width="100" align="right">邮箱：</th>
             <td><input type="text"  style="border: none;width:200px" value="@Model.UserInfo.Email" class="text" @(string.IsNullOrEmpty(Model.UserInfo.Email)?"":"readonly=true") maxlength="18" style="width:200px" /><a class="tip" href="@Url.Action("safeinfo")" > @(string.IsNullOrEmpty(Model.UserInfo.Email)?"未绑定":"已绑定")</a></td>
           </tr>
 
-          <tr>
+          <tr hidden>
             <th width="100" align="right">收款人：</th>
             <td><input type="text" name="realName" value="@Model.UserInfo.RealName" @(string.IsNullOrEmpty(Model.UserInfo.RealName)?"":"readonly=true") class="text" maxlength="15" style="width:200px" /><span class="tip">必须与支付宝的收款姓名一致,填后不可修改</span></td>
           </tr> 
-        <tr>
+        <tr hidden>
             <th width="100" align="right">QQ：</th>
             <td><input type="text" name="qqNum" value="@Model.UserInfo.QQ"  @(string.IsNullOrEmpty(Model.UserInfo.QQ)?"":"readonly=true") class="text" maxlength="15" style="width:200px" /><span class="tip">填后不可修改</span></td>
           </tr> 

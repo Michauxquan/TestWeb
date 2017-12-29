@@ -737,7 +737,6 @@
     <Content Include="views\nwlottery\_contentlhb.cshtml" />
     <Content Include="views\agent\list.cshtml" />
     <Content Include="views\nwlottery\_contentpk.cshtml" />
-    <Content Include="views\nwlottery\_bettdetails.cshtml" />
     <Content Include="views\nwlottery\_tabcommon.cshtml" />
     <Content Include="views\nwlottery\_contentlhc.cshtml" />
     <Content Include="views\nwlottery\_bettpagelhc.cshtml" />
@@ -746,8 +745,7 @@
     <Content Include="views\nwlottery\LotTrend.cshtml" />
     <Content Include="views\nwlottery\WeekProfit.cshtml" />
     <Content Include="views\nwlottery\_nwbettpage.cshtml" />
-    <Content Include="views\nwlottery\_nwbettpagefz.cshtml" />
-    <Content Include="views\nwlottery\_bettdetailsfz.cshtml" />
+    <Content Include="views\nwlottery\_bettdetails.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
