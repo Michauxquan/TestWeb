@@ -362,12 +362,12 @@ function verifyBlur(type, value)
                 $(".a2").html("<em></em>用户名不能为空");
                 return false;
             }
-            else if (!isRegisterUserName(value))
-            {
-                $("#loginname").css("border-color", "red");
-                $(".a2").html("<em></em>用户名由英文、数字及'_'组成，以英文开到头,5-20位字符");
-                return false;
-            }
+            //else if (!isRegisterUserName(value))
+            //{
+            //    $("#loginname").css("border-color", "red");
+            //    $(".a2").html("<em></em>用户名由英文、数字及'_'组成，以英文开到头,5-20位字符");
+            //    return false;
+            //}
             break;
         case "password":
             if (value.length == 0)
@@ -376,12 +376,12 @@ function verifyBlur(type, value)
                 $(".a3").html("<em></em>密码不能为空");
                 return false;
             }
-            else if (!isPwd(value))
-            {
-                $("#password").css("border-color", "red");
-                $(".a3").html("<em></em>密码长度需在6到16位间，只含数字 字母 _");
-                return false;
-            }
+            //else if (!isPwd(value))
+            //{
+            //    $("#password").css("border-color", "red");
+            //    $(".a3").html("<em></em>密码长度需在6到16位间，只含数字 字母 _");
+            //    return false;
+            //}
             break;
         case "confirmPwd":
             var pwd = $("#password").val().trim();
@@ -391,12 +391,12 @@ function verifyBlur(type, value)
                 $(".a3").html("<em></em>密码不能为空");
                 return false;
             }
-            else if (!isPwd(pwd))
-            {
-                $("#password").css("border-color", "red");
-                $(".a3").html("<em></em>密码长度需在6到16位间，只含数字 字母 _");
-                return false;
-            }
+            //else if (!isPwd(pwd))
+            //{
+            //    $("#password").css("border-color", "red");
+            //    $(".a3").html("<em></em>密码长度需在6到16位间，只含数字 字母 _");
+            //    return false;
+            //}
             else if (pwd != confirmPwd)
             {
                 $("#confirmPwd").css("border-color", "red");

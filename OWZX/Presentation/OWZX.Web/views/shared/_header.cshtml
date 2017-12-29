@@ -6,8 +6,7 @@
                 @if (WorkContext.Uid < 1)
                 {
                     @:欢迎来到好利28&nbsp;&nbsp;|
-                    <a href="@Url.Action("login", "account", new RouteValueDictionary {{"returnUrl", WorkContext.Url}})">登录</a>@:&nbsp;&nbsp;|
-                    <a href="@Url.Action("register", "account")" class="A_b">注册</a>@:&nbsp; &nbsp;
+                    <a href="@Url.Action("login", "account", new RouteValueDictionary {{"returnUrl", WorkContext.Url}})">登录</a>@:&nbsp;&nbsp;
                 }
                 else
                 {
@@ -103,7 +102,7 @@
 @{
     <link href="@{@WorkContext.CSSCDN}/css/kefu.css" rel="stylesheet" type="text/css" />
 }
-<div id="box-kefu">
+@*<div id="box-kefu">
     <div class="kefu-close"></div>
     <div class="kefu-open">
         <div>
@@ -114,7 +113,7 @@
         </div>
         <a href="javascript:;" class="close">关闭</a>
     </div>
-</div>
+</div>*@
 
 <script>
     (function($){

@@ -62,37 +62,7 @@
           <tr style="background: #fff7f0;">
             <td width="240" align="right">最后一次登录IP： <span style="width:120px" >@Model.UserInfo.LastVisitIP</span></td>
           </tr>
-          @if(@Model.UserInfo.VerifyEmail==0 ||@Model.UserInfo.VerifyMobile==0)
-          {
-          <tr>
-              <td align="right" colspan="2" style="height: 40px; line-height: 30px; font-size: 13px;"><span class="Fred bold">温馨提示</span>您可以进行以下操作：</td>
-            </tr>
-            <tr>
-                <td colspan="2">
-             @*   @if (@Model.UserInfo.VerifyMobile == 0)
-                {
-                    <img src="../images/baseimg/mobile.png" class="left" style="width: 100px; height: 100px;"/><a href="/ucenter/safeinfo"><h3 style="width:120px; margin-top: 40px;" class="left">认证手机>></h3></a>
-                }*@
-                
-                @if (@Model.UserInfo.VerifyEmail == 0)
-                {
-                    <img src="../images/baseimg/email.png" class="left" style="width: 100px; height: 100px;"/>
-                    <a href="/ucenter/safeinfo">
-                        <h3 style="width: 120px; margin-top: 40px;" class="left">&nbsp;&nbsp;认证邮箱>></h3></a>
-                    <br/> <br/> <br/> <br/>
-                }
-                else
-                {
-                    <span><a href="javascript:void(0)" class="greenBT" style="font-size: 14px; padding: 3px 20px;" onclick="GetOwnerBack(0)">领取回水</a> </span>
-                    @*<span><a href="javascript:void(0)" class="greenBT" style="font-size: 14px; padding: 3px 20px; @(Model.UserInfo.UserType == 1 ? "display:inherit;" : "")" onclick="GetOwnerBack(1)">领取下级回水</a> </span>*@
-                    <br/>
-                    <br/>
-                }
-                     <br/>
-               
-            </td>
-          </tr>
-          }
+         
         </table>
     </form>
     
