@@ -417,10 +417,10 @@ namespace OWZX.Web.Controllers
             {
                 return AjaxResult("password", "密码不能为空");
             }
-            if (password.Length < 4 || password.Length > 32)
-            {
-                return AjaxResult("password", "密码不能小于3且不大于32个字符");
-            }
+            //if (password.Length < 4 || password.Length > 32)
+            //{
+            //    return AjaxResult("password", "密码不能小于3且不大于32个字符");
+            //}
             if (password != confirmPwd)
             {
                 return AjaxResult("confirmpwd", "两次密码不相同");
@@ -479,10 +479,10 @@ namespace OWZX.Web.Controllers
             {
                 return AjaxResult("safepassword", "安全密码不能为空");
             }
-            if (password.Length < 4 || password.Length > 32)
-            {
-                return AjaxResult("safepassword", "安全密码不能小于3且不大于32个字符");
-            }
+            //if (password.Length < 4 || password.Length > 32)
+            //{
+            //    return AjaxResult("safepassword", "安全密码不能小于3且不大于32个字符");
+            //}
             if (password != confirmPwd)
             {
                 return AjaxResult("confirmpwd", "两次密码不相同");

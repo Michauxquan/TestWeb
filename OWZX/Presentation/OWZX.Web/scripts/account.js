@@ -222,13 +222,13 @@ function verifyLogin(accountName, password, verifyCode)
 {
     if (accountName.trim().length == 0)
     {
-        $("#" + shadowName).css("border-color", "red");
+        $("#" + shadowName).css("border-color", "#0e6a49");
         $(".phone").html("<em></em>请输入帐户名");
         return false;
     }
     if (password.trim().length == 0)
     {
-        $("#password").css("border-color", "red");
+        $("#password").css("border-color", "#0e6a49");
         $(".password").html("<em></em>请输入密码");
         return false;
     }
@@ -297,7 +297,7 @@ function verifyRegister(accountName, loginname, password, confirmPwd, verifyCode
     //}
     if (loginname.length == 0)
     {
-        $("#loginname").css("border-color", "red");
+        $("#loginname").css("border-color", "#0e6a49");
         $(".a2").html("<em></em>用户名不能为空");
         return false;
     }
@@ -310,7 +310,7 @@ function verifyRegister(accountName, loginname, password, confirmPwd, verifyCode
 
     if (password.length == 0)
     {
-        $("#password").css("border-color", "red");
+        $("#password").css("border-color", "#0e6a49");
         $(".a3").html("<em></em>密码不能为空");
         return false;
     }
@@ -323,13 +323,13 @@ function verifyRegister(accountName, loginname, password, confirmPwd, verifyCode
 
     if (password != confirmPwd)
     {
-        $("#confirmPwd").css("border-color", "red");
+        $("#confirmPwd").css("border-color", "#0e6a49");
         $(".a4").html("<em></em>两次输入的密码不一样");
         return false;
     }
     if (verifyCode != undefined && verifyCode.length == 0)
     {
-        $("#verifyCode").css("border-color", "red");
+        $("#verifyCode").css("border-color", "#0e6a49");
         $(".a5").html("<em></em>验证码不能为空");
         return false;
     }
@@ -343,14 +343,14 @@ function verifyBlur(type, value)
         case shadowName:
             if (value.length == 0)
             {
-                $("#" + shadowName).css("border-color", "red");
+                $("#" + shadowName).css("border-color", "#0e6a49");
                 $(".phone").html("<em></em>请输入帐户名");
                 $(".a1").html("<em></em>账户名不能为空");
                 return false;
             }
             //else if (!isMobile(value))
             //{
-            //    $("#" + shadowName).css("border-color", "red");
+            //    $("#" + shadowName).css("border-color", "#0e6a49");
             //    $(".a1").html("<em></em>手机号码格式错误");
             //    return false;
             //}
@@ -358,48 +358,48 @@ function verifyBlur(type, value)
         case "loginname":
             if (value.length == 0)
             {
-                $("#loginname").css("border-color", "red");
+                $("#loginname").css("border-color", "#0e6a49");
                 $(".a2").html("<em></em>用户名不能为空");
                 return false;
             }
-            else if (!isRegisterUserName(value))
-            {
-                $("#loginname").css("border-color", "red");
-                $(".a2").html("<em></em>用户名由英文、数字及'_'组成，以英文开到头,5-20位字符");
-                return false;
-            }
+            //else if (!isRegisterUserName(value))
+            //{
+            //    $("#loginname").css("border-color", "#0e6a49");
+            //    $(".a2").html("<em></em>用户名由英文、数字及'_'组成，以英文开到头,5-20位字符");
+            //    return false;
+            //}
             break;
         case "password":
             if (value.length == 0)
             {
-                $("#password").css("border-color", "red");
+                $("#password").css("border-color", "#0e6a49");
                 $(".a3").html("<em></em>密码不能为空");
                 return false;
             }
-            else if (!isPwd(value))
-            {
-                $("#password").css("border-color", "red");
-                $(".a3").html("<em></em>密码长度需在6到16位间，只含数字 字母 _");
-                return false;
-            }
+            //else if (!isPwd(value))
+            //{
+            //    $("#password").css("border-color", "#0e6a49");
+            //    $(".a3").html("<em></em>密码长度需在6到16位间，只含数字 字母 _");
+            //    return false;
+            //}
             break;
         case "confirmPwd":
             var pwd = $("#password").val().trim();
             if (pwd.length == 0)
             {
-                $("#password").css("border-color", "red");
+                $("#password").css("border-color", "#0e6a49");
                 $(".a3").html("<em></em>密码不能为空");
                 return false;
             }
-            else if (!isPwd(pwd))
-            {
-                $("#password").css("border-color", "red");
-                $(".a3").html("<em></em>密码长度需在6到16位间，只含数字 字母 _");
-                return false;
-            }
+            //else if (!isPwd(pwd))
+            //{
+            //    $("#password").css("border-color", "#0e6a49");
+            //    $(".a3").html("<em></em>密码长度需在6到16位间，只含数字 字母 _");
+            //    return false;
+            //}
             else if (pwd != confirmPwd)
             {
-                $("#confirmPwd").css("border-color", "red");
+                $("#confirmPwd").css("border-color", "#0e6a49");
                 $(".a4").html("<em></em>两次输入的密码不一样");
                 return false;
             }
@@ -407,7 +407,7 @@ function verifyBlur(type, value)
         case "verifyCode":
             if (verifyCode != undefined && verifyCode.length == 0)
             {
-                $("#verifyCode").css("border-color", "red");
+                $("#verifyCode").css("border-color", "#0e6a49");
                 $(".a5").html("<em></em>验证码不能为空");
                 return false;
             }

@@ -17,8 +17,8 @@ body{ background:#fff; }
 
 
 .loginBt{}
-.loginBt .loginIn{ font-size:14px; font-weight:bold;background:#e4393c; color:white; display:block; width:250px;height:36px;line-height:36px; text-align:center; font-weight:normal;margin-top:10px; }
-.loginBt .loginIn:hover{ background: #c5272c;}
+.loginBt .loginIn{ font-size:14px; font-weight:bold;background:#0e6a49; color:white; display:block; width:250px;height:36px;line-height:36px; text-align:center; font-weight:normal;margin-top:10px; }
+.loginBt .loginIn:hover{ background: #0e6a49;}
 .openID{ padding:10px 0; margin-top:10px;}
 .openID a{ color:#333;}
 .openID h4{ color:#999; font-size:12px; font-weight:normal;}
@@ -31,13 +31,13 @@ body{ background:#fff; }
 .regTitle{width:900px; text-align:right; padding-bottom:5px;}
 .reg th{ font-weight:normal; font-size:14px;color: #999;
 padding-right: 10px;width: 190px;text-align: right; height:60px;}
-.reg th em{ color:red;}
+.reg th em{ color:#0e6a49;}
 .reg .tipBox{ position:relative; width:100%; height:38px; line-height:38px;}
 .reg .tip{ background:#f7f7f7; border:1px solid #ddd; width:260px; height:36px; line-height:36px; padding:0 10px; position:absolute; left:0; top:0;}
 .reg .text{width: 238px;height: 16px;padding: 10px 25px 10px 5px;border: 1px solid #cccccc;float: none;font-size: 14px;color: #999;overflow: hidden; outline:none;}
 body .reg .succ_ok .text{ background:url(/images/succ-ok.png) no-repeat right center;}
 body .reg .succ_error .text{ background:url(/images/succ-error.png) no-repeat right center;}
-body .reg .succ_error .tip{ border:1px solid #ffbdbe;background: #FFEBEB; color:red; }
+body .reg .succ_error .tip{ border:1px solid #ffbdbe;background: #FFEBEB; color:0e6a49; }
 body .reg .succ_on .text{ border:1px solid #7abd54;}
 
 
@@ -62,8 +62,8 @@ html body .reg .regBt{font-size:18px; font-weight:bold; color:#FFF; display:bloc
 
 .findPassword th{ font-weight:normal; font-size:14px;color: #999;
 padding-right: 10px;width: 190px;text-align: right; height:60px;}
-.findPassword th em{ color:red;}
-.findPassword td em{ color:red;}
+.findPassword th em{ color:#0e6a49;}
+.findPassword td em{ color:#0e6a49;}
 .passBt{font-size:14px; font-weight:bold; color:#FFF; display:block; text-align:center; width:100px; padding:7px 0; font-weight:normal; margin-top:10px;}
-.passBt:hover{background: #c5272c}
+.passBt:hover{background: #0e6a49}
 .findPassword select{ padding:4px;}

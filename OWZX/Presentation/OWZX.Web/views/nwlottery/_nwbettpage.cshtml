@@ -38,19 +38,19 @@
          .chips5 {
             background: url(../../images/chips/chips_5000000.png) no-repeat center;
         }
-        .self {
-            height: 29px;
-            line-height: 29px; 
-            border: 1px solid #e4393c;
-            float: left;
-            background: #e4393c;
-            color: #fff;
+            .self {
+        height: 29px;
+        line-height: 29px;
+        border: 1px solid #0e6a49;
+        float: left;
+        background: #0e6a49;
+        color: #fff;
         }
         .avinput {
             border: none;
             height: 27px;
             width: 105px;
-            color: #f00;
+            color: #0e6a49;
             font-size: 16px;
             margin: -2px 0 0 0px;
             padding-left: 2px;
@@ -94,7 +94,7 @@
         <div class="border_out_l">
             <div class="border_out_title"><span style="float: left; width: auto;">标准投注模式</span> <span style="float: right; width: auto;"></span></div>
             
-             <div class="border_out1_l" id="border_out1_l" style="border-right: 1px solid #e4393c; width: auto; margin-left: 7px;">
+             <div class="border_out1_l" id="border_out1_l" style="border-right: 1px solid #0e6a49; width: auto; margin-left: 7px;">
              <span>0.1倍</span><span>0.5倍</span><span>0.8倍</span><span>1.2倍</span><span>1.5倍</span><span>2倍</span><span>5倍</span><span>10倍</span><span>50倍</span><span>100倍</span>
         </div> 
         </div>
@@ -158,7 +158,7 @@
                     <td>
                         @if((int)@ViewData["lotterytype"]!=9)
                         {
-                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                            <span class="ltresult pcresult btnumber"
                                   width="25" height="25">@row["item"]</span>
                         }
                         else
@@ -206,7 +206,7 @@
                     <td>
                         @if ((int)@ViewData["lotterytype"] != 9)
                         {
-                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                            <span class="ltresult pcresult btnumber" 
                                   width="25" height="25">@row["item"]</span>
                         }
                         else
@@ -253,7 +253,7 @@
                     <td>
                         @if ((int)@ViewData["lotterytype"] != 9)
                         {
-                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png');font-size:15px; "
+                            <span class="ltresult pcresult btnumber" style="font-size:15px; "
                                   width="25" height="25">@row["item"]</span>
                         }
                         else
@@ -299,7 +299,7 @@
                     <td>
                         @if ((int)@ViewData["lotterytype"] != 9)
                         {
-                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png');font-size:15px; "
+                            <span class="ltresult pcresult btnumber" style="font-size:15px; "
                                   width="25" height="25">@row["item"]</span>
                         }
                         else

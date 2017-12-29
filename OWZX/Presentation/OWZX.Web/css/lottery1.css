@@ -72,22 +72,21 @@ display:inline-block;width:910px;margin-bottom:10px;
 .ltnumber {
 width:20%;display:block;float:left;
 text-align:center;color:white;height:75px;vertical-align:middle;
-/*background-image:url(../images/ltnumber.png);*/
-background:#0e6a49;
+background-image:url(../images/ltnumber.png);
 
 }
 .ltresult {color:#c30000;font-weight:bold;font-size:20px;}
 
 .pcresult {
-    background:rgba(0, 0, 0, 0)  scroll 0 0;height:32px;width:32px;
-    color:#0e6a49;text-align:center;display:inline-block;line-height:32px;text-indent:0;
+    background:rgba(0, 0, 0, 0) url(../images/number/lottery.png) no-repeat scroll 0 0;height:32px;width:32px;
+    color:#fff;text-align:center;display:inline-block;line-height:32px;text-indent:0;
 }
 .lhbresult{
     background:rgba(0, 0, 0, 0) scroll 0 0;height:32px;width:32px;
     text-align:center;display:inline-block;line-height:32px;text-indent:0; cursor:pointer;
 }
 
-.ltwarn {color:#0e6a49;font-size:15px;font-weight:600;}
+.ltwarn {color:#c30000;font-size:15px;font-weight:600;}
 .ltnum1 {
 color:#0167ff;font-size:15px;
 }
@@ -331,9 +330,7 @@ width:910px; border:0;
 }
 
 #play i {
-    font-size:18px;
-    font-weight:600;
-    color: #0e6a49;
+    font-size:18px;font-weight:600;color:#c30000;
 }
 
 #play td,.table_rule td {
@@ -362,7 +359,9 @@ height:40px;
     background:#E0E0E0;
 }
 
-#play .ltoperate {background: #0e6a49;color:white;border-radius:40px;text-align:center;width:80%;margin:3px auto;font-weight:bold;font-size:14px;}
+#play .ltoperate {
+background:#e4393c;color:white;border-radius:40px;text-align:center;width:80%;margin:3px auto;font-weight:bold;font-size:14px;
+}
 
 .ltclose {color:#666;border-radius:40px;text-align:center;width:80%;margin:3px auto;font-weight:bold;font-size:14px;
 box-shadow:2px 3px 3px 3px  rgba(0,0,0,.3) inset;
@@ -396,23 +395,13 @@ a.puan_quan_enter:hover, a.puan_quan_enter:active{text-decoration:none;width:26p
 
 .border_out_title1{ background-image:url(../img/bg_tz.gif);background-repeat:no-repeat;margin:auto;width:220px;height:77px;margin-top:2px;}
 
-.border_out1_l span{
-                    width:63.6px;
-                    float:left;
-                    text-align:center;
-                    letter-spacing: 1px;
-                    word-spacing: 1px;
-                    cursor:pointer;
-                    color:#8d5000;
-                    border: 1px solid #0e6a49;
-                    border-right:none;
-                    height:31px;
-                    }
-.border_out1_c{width:268px;height:29px;border: 2px solid #0e6a49;float:left;line-height:29px;margin-left:3px;}
+.border_out1_l span{width:63.6px; float:left; text-align:center;letter-spacing: 1px;
+                    word-spacing: 1px; cursor:pointer;color:#8d5000;border:1px solid #e4393c;border-right:none;height:31px; }
+.border_out1_c{width:268px;height:29px; border:2px solid #e4393c; float:left;line-height:29px;margin-left:3px;}
 .border_out1_r{min-width:125px;height:35px; float:left;}
 .touzhu1{width:80px;height:33px;float:left;line-height:33px; text-align:center; color:#8d5000;margin-left:4px; cursor:pointer;}
-.touzhu2{background: #0e6a49;padding: 0px 3px;height:33px;float:left;line-height:33px;text-align:center;color:white;margin-left:4px;cursor:pointer;border-radius:3px;font-size:14px;font-weight:bold;}
-.conform_btn{width:80px;height:27px;float:right;background: #0e6a49;color:white;font-size:14px;font-weight:bold;line-height:25px;text-align:center;border: 1px solid #0e6a49;cursor:pointer;}
+.touzhu2{background:#e4393c;padding: 0px 3px;height:33px;float:left;line-height:33px; text-align:center; color:white;margin-left:4px; cursor:pointer;border-radius:3px;font-size:14px; font-weight:bold;}
+.conform_btn{ width:80px;height:27px;float:right; background:#e4393c;color:white; font-size:14px; font-weight:bold;line-height:25px; text-align:center;border:1px solid #e4393c; cursor:pointer;}
 /*.content_middle { background: url(../img/content-border.gif) repeat-y;
 }*/
 .content_middle td span{cursor:pointer;}
@@ -442,8 +431,8 @@ a.puan_quan_enter:hover, a.puan_quan_enter:active{text-decoration:none;width:26p
     height: 30px;
     text-align: center;
     line-height: 30px;
-    background: #0e6a49;
-    border: 1px solid #0e6a49;
+    background: #e4393c;
+    border: 1px solid #e4393c;
     border-left:none;
     color: #fff;
     font-weight:bold;
@@ -571,7 +560,7 @@ button {
 .table_rule td em.final{ background-position:1px -497px; height:23px; width:26px; position:relative;}
 .table_rule td em.finals{ background-position:0px -497px; height:26px; width:30px; position:relative; top:5px}
 .table_rule td em.final i{ position:absolute; width:30px; display:block; height:26px; text-align:center; color:#fff; top:0px; left:0; line-height:26px;}
-.table_rule td li.finalbig {font-style:normal;color: #0e6a49;font-size:21px;background: no-repeat;display:inline-block;width:32px;height:32px;text-indent:0px;line-height:32px;text-align:center;}
+.table_rule td li.finalbig { font-style:normal; color:#fff; font-size:21px; background:url(../images/number/lottery.png) no-repeat; display:inline-block; width:32px; height:32px; text-indent:0px; line-height:32px; text-align:center; }
 .table_rule td.state .open1{ background-position:0 0;}
 .table_rule td.state .open2{ background-position:0 -40px; cursor:pointer; }
 .table_rule td.state .open3{ background-position:0 -80px;}

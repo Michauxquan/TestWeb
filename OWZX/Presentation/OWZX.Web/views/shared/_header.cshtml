@@ -1,4 +1,7 @@
-﻿<div id="headercontent" style="background: #FFF; color: #666;">
+﻿
+<link href="/components/layer/skin/layer.css" rel="stylesheet" />
+<script src="/components/layer/layer.js"></script>
+<div id="headercontent" style="background: #FFF; color: #666;">
     <div id="headerBar" class="bigBox">
         <div class="box">
             <div class="headerLink">
@@ -31,10 +34,10 @@
     </div>
     <div id="navs">
         <ul id="navItme">
-            <li onclick="javascript: window.location.href = '/nwlottery/ltindex/1'"><a href="javascript:void(0);">游戏乐园</a></li>
-            <li class="weekprofit"><a href="#">一周盈利榜</a></li>
-            <li onclick="javascript: window.location.href = '@Url.Action("list", "news")'"><a href="javascript:void(0);">活动专区</a></li>
-            <li onclick="javascript: window.location.href = '@Url.Action("changelist", "changeware")'"><a href="javascript:void(0);">兑换中心</a></li>
+            <li onclick="javascript: window.location.href = '/nwlottery/ltindex/1'"><a href="javascript:void(0);">游戏大厅</a></li>
+            <li class="weekprofit"><a href="#">我的收益</a></li>
+            <li onclick="javascript: window.location.href = '@Url.Action("list", "news")'"><a href="javascript:void(0);">动态消息</a></li>
+            <li onclick="javascript: window.location.href = '@Url.Action("changelist", "changeware")'"><a href="javascript:void(0);">精品兑换</a></li>
             <li onclick="javascript: window.location.href = '@Url.Action("userdefault", "ucenter")'"><a href="javascript:void(0);">用户中心</a></li>
         </ul>
     </div>
@@ -103,7 +106,7 @@
 @{
     <link href="@{@WorkContext.CSSCDN}/css/kefu.css" rel="stylesheet" type="text/css" />
 }
-<div id="box-kefu">
+@*<div id="box-kefu">
     <div class="kefu-close"></div>
     <div class="kefu-open">
         <div>
@@ -114,7 +117,7 @@
         </div>
         <a href="javascript:;" class="close">关闭</a>
     </div>
-</div>
+</div>*@
 
 <script>
     (function($){

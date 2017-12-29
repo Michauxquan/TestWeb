@@ -41,10 +41,10 @@
 }
         .b2 {width:250px;height:34px; padding-left:13px;outline: medium;border:1px solid #cdcdcd;
         }
-        .al {border-color:red;
+        .al {border-color:#0e6a49;
         }
-        .btnreg{width: 280px; height: 40px; background: #e4393c; border: none; outline: medium; margin-top: 20px; color: #ffffff; font-size: 14px;}
-        .btnreg:hover{ background: #c5272c;}
+        .btnreg{width: 280px; height: 40px; background: #0e6a49; border: none; outline: medium; margin-top: 20px; color: #ffffff; font-size: 14px;}
+        .btnreg:hover{ background: #0e6a49;}
         em {
             background-position: -51px -165px;
             float: left;
@@ -64,30 +64,30 @@
 @Html.Partial("_header") 
      
 <div style="height: 450px;">
-    <div style="width: 760px; margin: 60px auto 0px auto; background: white; border: solid 2px #ddd; border-radius: 10px;">
-        <div style="float: left; width: 280px; margin: 0 20px; background: #fff; padding:15px; padding-right: 30px">
+    <div style="width: 860px; margin: 60px auto 0px auto; background: #0e6a49; border: solid 2px #ddd; border-radius: 10px;">
+        <div style="float: right; width: 280px; margin: 0 10px; background: #ffffff61; padding:15px; padding-right: 30px;">
             <div class="product-wrap">
                 <span class="ml0" style="font-size: 16px; color: #000;">
-                                 我已经注册，现在就，<a href="@Url.Action("login")" style="color: #4167D5; font-size: 12px;" >[去登录]</a>
+                                 我已经注册，现在就，<a href="@Url.Action("login")" style="color:white; font-size: 12px;" >[去登录]</a>
                                 </span>
                 <div class="product show">
                     <form name="registerForm" id="registerForm" action="">
                         <ul class="cf">
                             <li class="ml0" style="padding-top: 20px;">
                                 <input class="b2" type="text" placeholder="用户名" id="@Model.ShadowName" name="@Model.ShadowName" autocomplete="off"/><br/>
-                                <span class="a1" style="font-size: 12px; color: red; height: 24px;"></span><br/>
+                                <span class="a1" style="font-size: 12px; color: #0e6a49; height: 24px;"></span><br/>
                                 <input class="b2" type="text" placeholder="昵称" name="loginname" id="loginname" autocomplete="off"/><br/>
-                                <span class="a2" style="font-size: 12px; color: red; height: 24px;"></span><br/>
+                                <span class="a2" style="font-size: 12px; color: #0e6a49; height: 24px;"></span><br/>
                                 <input class="b2" type="password" placeholder="密码" name="password" id="password" autocomplete="off"/><br/>
-                                <span class="a3" style="font-size: 12px; color: red; height: 24px;"></span><br/>
+                                <span class="a3" style="font-size: 12px; color: #0e6a49; height: 24px;"></span><br/>
                                 <input class="b2" type="password" placeholder="确认密码" name="confirmPwd" id="confirmPwd" autocomplete="off"/><br/>
-                                <span class="a4" style="font-size: 12px; color: red; height: 24px;"></span><br/>
+                                <span class="a4" style="font-size: 12px; color: #0e6a49; height: 24px;"></span><br/>
                                 <input class="b2" type="text" placeholder="邀请码" name="invitecode" value="@Model.InviteCode" id="invitecode" autocomplete="off" /> <br />
-                                <span   style="font-size: 12px; color: red; height: 24px; display: none;"></span><br />
+                                <span   style="font-size: 12px; color: #0e6a49; height: 24px; display: none;"></span><br />
 
                                 <input class="b2" style="width: 120px;" maxlength="6" name="verifyCode" id="verifyCode" type="text" placeholder="验证码" autocomplete="off"/>
                                 <img onclick="this.src='/tool/verifyimage?time=' + new Date()" src="/tool/verifyimage" alt="验证码" style="cursor:pointer;width:100px; float:right; margin-right:16px;height:36px; "> 
-                                <span class="a5" style="font-size: 12px; color: red; height: 24px;"></span><br/>
+                                <span class="a5" style="font-size: 12px; color: #0e6a49; height: 24px;"></span><br/>
                             </li>
                             <li class="btn">
                                 <input class="btnreg" type="button" value="立即注册" onclick="register()"/>
@@ -97,7 +97,7 @@
                 </div>
             </div>
         </div>
-        <div><img style="margin-top: 58px;" src="../../images/baseimg/logright.jpg"/></div>
+        <div style="float:left;"><img style="margin-top: 58px;" src="../images/baseimg/dl.jpg"/></div>
          <div class="clear"></div>
     </div>
 </div>

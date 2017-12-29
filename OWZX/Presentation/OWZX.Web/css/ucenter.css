@@ -7,27 +7,35 @@
 #memberNav li a{padding-left:25px; position:relative; display:block; height:25px; line-height:25px;}
 #memberL #memberNav s{ position:absolute; left:10px; top:0; font-family:"宋体";}
 
-#memberNav li a:hover,#memberNav li a.hot{ color:#d23335; font-weight:bold;}
+#memberNav li a:hover,#memberNav li a.hot{ color:#0e6a49; font-weight:bold;}
 
 /*菜单项*/
 #conter{width:1000px;margin:0 auto}
-#conter #help-left{width: 250px; height: 500px; border: solid 1px #ccc; background: #f5f5f5;font-family:'microsoft YaHei';float: left;border-top: solid 3px #E8454E;}
-#uinfobox #imgbox{ margin: 30px 0 40px 18px;float: left;border: solid 2px #E8454E;width: 64px;height:64px;padding: 3px;background: #fff;}
+#conter #help-left{width: 250px;height: 500px;border: solid 1px #ccc;background: #f5f5f5;font-family:'microsoft YaHei';float: left;border-top: solid 3px #0e6a49;}
+#uinfobox #imgbox{margin: 30px 0 40px 18px;float: left;border: solid 2px #0e6a49;width: 64px;height:64px;padding: 3px;background: #fff;}
 #imgbox img{ width: 64px;height:64px;border-radius: 2px;}
 #uinfobox #infobox{ margin: 30px 0 40px 10px;float: left;}
 /*#conter .menu{border-left:1px solid #ccc;border-right:1px solid #ccc}*/
 /*#conter .menu:last-child{border-bottom:1px solid #ccc}*/
-#conter .menu summary{height:38px;line-height:38px;text-indent:10px;outline:0;font-size:16px;font-weight:700; 
-                      background:url('../images/baseimg/fw.png');color: #E4393C;
+#conter .menu summary{
+                      height:38px;
+                      line-height:38px;
+                      text-indent:10px;
+                      outline:0;
+                      font-size:16px;
+                      font-weight:700;
+                      background:url('../images/baseimg/fw.png');
+                      color: #0e6a49;
                       /*background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#FEFEFE),color-stop(1,#CCC));突起效果*/
-                      cursor:pointer}
+                      cursor:pointer;
+                      }
 #conter .menu summary::-webkit-details-marker{display:none}
 #conter .menu summary:before{content:"+";display:inline-block;width:16px;height:16px;margin-right:10px;font-size:18px;font-weight:700}
 #conter .menu[open] summary:before{content:"-"}
 #conter .menu ul{padding:10px 0}
 #conter .menu ul li{list-style:none;text-indent:25px;font-size:12px;height:30px;line-height:30px}
 #conter .menu ul li a{display:block;color: #000;margin-left: 14px;}
-#conter .menu ul li a:hover{color:#d23335;}
+#conter .menu ul li a:hover{color:#0e6a49;}
 
 #memberRT{ font-size:15px; /*position:relative; height:35px; line-height:35px; padding-bottom:10px;*/}
 #memberRT a{ font-size:12px; font-weight:normal; color:#005ea7;}
@@ -151,8 +159,8 @@ html body .proList .memberStar a{ float:left;color:#005ea7;}
 .safe s{background:url(/images/succ-ico.png) no-repeat;width: 32px;height: 33px; display:block; float:left; margin:0 15px;}
 .safe b{ display:block; float:left; width:110px; height:26px; font-size:18px; margin-top:5px; border-right:1px solid #ddd;}
 .safe p{ padding-left:20px; float:left; line-height:40px;}
-.safe .greenBT{ position:absolute; right:0px; padding:0px 10px; top:10px; width:50px; text-align:center;background: #FF6B6B;color: #fff;}
-.safe .greenBT:hover{ background: #e4393c;color: #fff; }
+.safe .greenBT{ position:absolute; right:0px; padding:0px 10px; top:10px; width:50px; text-align:center;background: #0e6a49;color: #fff;}
+.safe .greenBT:hover{ background: #0e6a49;color: #fff; }
 .safe .ico1{ background-position: -64px 0;}
 .safe .ico2{ background-position: 0 0;}
 .safeInfo h2{ height:25px; line-height:25px; padding-bottom:10px; font-size:14px;}
@@ -161,8 +169,8 @@ html body .proList .memberStar a{ float:left;color:#005ea7;}
 .step{ margin:20px 0 15px 150px;}
 .step li{ position:relative; border-top:5px solid #cccccc; width:160px; text-align:center; height:40px; line-height:40px; float:left;}
 .step li s{ width:20px; height:20px; background:#CCC; position:absolute; top:-13px; left:50%; margin-left:-10px; font-weight:bold; color:#FFF; line-height:20px;}
-.step li.hot{ border-top:5px solid #FF6B6B; color:#FF6B6B;}
-.step li.hot s{ background:#FF6B6B;}
+.step li.hot{border-top: 5px solid #0e6a49;color: #0e6a49;}
+.step li.hot s{background: #0e6a49;}
 
 .safeYZ{ padding-left:90px; padding-bottom:60px;}
 .safeYZ table td .text{ width:100%;}

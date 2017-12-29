@@ -46,15 +46,15 @@ html body .show{ display:block;}
 .bigBox{ width:100%; text-align:center;}
 .box{ width:1000px; margin:0 auto; text-align:left;}
 html body .Fblue{ color:#005AA0;}
-html body .Fred{ color:#E4393C;}
+html body .Fred{ color:#0e6a49;}
 .borDDD{ border:1px solid #DDD;}
 .textindent5 {
     text-indent: 5px;
 }
-html body .redBT{padding: 1px 10px;background: #e03033;color: #FFF;border: 1px solid #c5272c;}
+html body .redBT{padding: 1px 10px;background: #0e6a49;color: #FFF;    border: 1px solid #0e6a49;}
 html body .whiteBT{padding: 1px 10px;background: #FFF;color: #666;border: 1px solid #ddd;}
-html body .greenBT{padding: 1px 10px;background: #FF6B6B;color: #FFF;border: 1px solid #FF6B6B;}
-html body .greenBT:hover{background: #E4393C;}
+html body .greenBT{padding: 1px 10px;background: #0e6a49;color: #FFF;border: 1px solid #0e6a49;}
+html body .greenBT:hover{background: #0e6a49;}
 html body .grayBT{padding: 1px 10px;background: #f5f5f5;color: #333;border: 1px solid #ddd;}
 input[type="button"], input[type="submit"] {
     cursor: pointer;
@@ -64,7 +64,7 @@ input[type="button"], input[type="submit"] {
 
 #headerBar{ height:30px; line-height:30px; background:#f4f4f4; border-bottom:1px solid #d8e1e6;}
 #headerBar a{ color:#4c4c4c;}
-#headerBar a:hover{ color:#d23335;}
+#headerBar a:hover{ color:#0e6a49;}
 #headerBar .box{ position:relative;}
 #headerBar .headerLink{ position:absolute; right:0; top:0;}
 #imglogo{ /*width:1000px;*/margin:0 auto;text-align:center;height:74px; overflow:hidden;display: block; }
@@ -162,10 +162,10 @@ height:36px;margin-top:10px; margin-left:94px;
 .fullSendSnap .right a:hover{ text-decoration:underline;}
 
 
-/*导航*/
+/*å¯¼èˆª*/
 /*#nav{ background:#da383a;} #cc0000*/
-#navs {background: #e4393c;}
-
+/*#navs {background: #e4393c;}*/
+#navs {background: #0e6a49;}
 #navItme{ width:1000px;margin:0 auto;text-align:center;height:45px; overflow:hidden;display:block; }
 #navItme  li{ display:inline-block;width:185px;}
 #navItme  li a{
@@ -179,7 +179,7 @@ height:36px;margin-top:10px; margin-left:94px;
     #navItme li:hover {
     cursor:pointer;
     }
-#navItme li:hover,#navItme li.hot{ background:#990000;}
+#navItme li:hover,#navItme li.hot{ /*background:#990000;*/ background:#053323;}
 #navItme li a.index {background: url(../images/ico.png);background-position: -2px -121px;padding-left: 20px;}
 
 
@@ -188,9 +188,9 @@ height:36px;margin-top:10px; margin-left:94px;
 .footerBox{ padding:18px 0;}
 
 .footerBox{ float:left; padding-left:52px; width:148px;}
-.footerBox h3{ font-size:14px; color:#e33b3d;}
+.footerBox h3{ font-size:14px; color:#0e6a49;}
 .footerBox a{ color:#6a6a6a; display:block;}
-.footerBox a:hover{color:#e33b3d;}
+.footerBox a:hover{color:#0e6a49;}
 
 
 .footerB{ /*border-top:1px solid #cacaca;*/ padding-top:10px;}
@@ -205,15 +205,15 @@ height:36px;margin-top:10px; margin-left:94px;
 .breadcrumb{height:35px; line-height:35px;padding:0 0 4px 6px;overflow:hidden; padding-top:5px;}
 .breadcrumb strong,.breadcrumb h1{display:inline;font-weight:700;line-height:20px;font-size:16px;font-family:"microsoft yahei"; font-weight:normal;}
 .breadcrumb a{color:#666}
-.breadcrumb a:hover{color:#e4393c; text-decoration:underline;}
+.breadcrumb a:hover{color:#0e6a49; text-decoration:underline;}
 
-/*通用产品列表*/
+/*é€šç”¨äº§å“åˆ—è¡¨*/
 
 .proList li{}
 .proList li a{ color:#666;}
-.proList li a:hover{color:#E4393C}
+.proList li a:hover{color:#0e6a49}
 .proList li em{ display:block; line-height:1.5em; height:1.5em; overflow:hidden; padding-top:3px;}
-.proList li b{ color:#e33b3d; display:block;padding-top:3px;}
+.proList li b{ color:#0e6a49; display:block;padding-top:3px;}
 
 .proList .info{ text-align:right; height:20px; position:relative;}
 .proList .info a{ color:#005aa0;}
@@ -227,7 +227,7 @@ height:36px;margin-top:10px; margin-left:94px;
 .proList .info2 span{ cursor:pointer; }
 .page{ padding:15px 0; clear:both; text-align:center;}
 .page a{ display:inline; padding:3px 10px; background:#FFF; border:1px solid #cccccc; color:#005aa0;}
-.page a:hover,.proList .page a.hot,#memberR .page a.hot{ border:1px solid #e4393c; color:#e4393c;}
+.page a:hover,.proList .page a.hot,#memberR .page a.hot{border: 1px solid #0e6a49;color: #0e6a49;}
 
 .prompt{ color:#7ABD54; font-size:24px; height:80px; line-height:80px;text-align:center; margin-top:30px;}
 

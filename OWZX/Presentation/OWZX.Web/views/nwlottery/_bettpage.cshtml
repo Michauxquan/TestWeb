@@ -41,16 +41,16 @@
         .self {
             height: 29px;
             line-height: 29px; 
-            border: 1px solid #e4393c;
+            border: 1px solid #0e6a49;
             float: left;
-            background: #e4393c;
+            background: #0e6a49;
             color: #fff;
         }
         .avinput {
             border: none;
             height: 27px;
             width: 105px;
-            color: #f00;
+            color: #0e6a49;
             font-size: 16px;
             margin: -2px 0 0 0px;
             padding-left: 2px;
@@ -142,7 +142,7 @@
                 </tr>
             </table> 
             }
-             <div class="border_out1_l" id="border_out1_l" style="border-right: 1px solid #e4393c; width: auto; margin-left: 7px;">
+             <div class="border_out1_l" id="border_out1_l" style="border-right: 1px solid #0e6a49; width: auto; margin-left: 7px;">
              <span>0.1倍</span><span>0.5倍</span><span>0.8倍</span><span>1.2倍</span><span>1.5倍</span><span>2倍</span><span>5倍</span><span>10倍</span><span>50倍</span><span>100倍</span>
         </div> 
         </div>
@@ -165,7 +165,7 @@
             </div>
          <div class="border_out1_c" style="width:308px;">
             <div style="float: left; width: 60px; padding-left: 5px;">总投元宝：</div>
-            <div style="color: #ff0000; width: 156px; float: left; overflow: hidden" id="totalvalue">
+            <div style="color: #0e6a49; width: 156px; float: left; overflow: hidden" id="totalvalue">
                 0
             </div>
             <div class="conform_btn" onclick="comform()" id="conform_btn">确认投注</div>
@@ -206,7 +206,7 @@
                     <td>
                         @if((int)@ViewData["lotterytype"]!=9)
                         {
-                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                            <span class="ltresult pcresult btnumber" style=""
                                   width="25" height="25">@row["item"]</span>
                         }
                         else
@@ -254,7 +254,7 @@
                     <td>
                         @if ((int)@ViewData["lotterytype"] != 9)
                         {
-                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                            <span class="ltresult pcresult btnumber" 
                                   width="25" height="25">@row["item"]</span>
                         }
                         else

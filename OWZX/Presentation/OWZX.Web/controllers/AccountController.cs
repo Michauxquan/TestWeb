@@ -552,10 +552,10 @@ namespace OWZX.Web.Controllers
             {
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名不能为空", "}");
             }
-            else if (accountName.Length < 4 || accountName.Length > 50)
-            {
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名必须大于3且不大于50个字符", "}");
-            }
+            //else if (accountName.Length < 4 || accountName.Length > 50)
+            //{
+            //    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名必须大于3且不大于50个字符", "}");
+            //}
             //else if (!SecureHelper.IsSafeSqlString(accountName)  )
             //{
             //    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "accountName", "账户名不存在", "}");
@@ -600,8 +600,8 @@ namespace OWZX.Web.Controllers
 
             if (errorList.Length == 1)
             {
-                if (partUserInfo.Email.Length == 0 && partUserInfo.Mobile.Length == 0)
-                    return AjaxResult("nocanfind", "由于您没有设置邮箱和手机，所以不能找回此账号的密码");
+                //if (partUserInfo.Email.Length == 0 && partUserInfo.Mobile.Length == 0)
+                //    return AjaxResult("nocanfind", "由于您没有设置邮箱和手机，所以不能找回此账号的密码");
 
                 return AjaxResult("success", Url.Action("selectfindpwdtype", new RouteValueDictionary { { "uid", partUserInfo.Uid } }));
             }
@@ -747,10 +747,10 @@ namespace OWZX.Web.Controllers
             {
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码不能为空", "}");
             }
-            else if (password.Length < 4 || password.Length > 32)
-            {
-                errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码必须大于3且不大于32个字符", "}");
-            }
+            //else if (password.Length < 4 || password.Length > 32)
+            //{
+            //    errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "password", "密码必须大于3且不大于32个字符", "}");
+            //}
             else if (password != confirmPwd)
             {
                 errorList.AppendFormat("{0}\"key\":\"{1}\",\"msg\":\"{2}\"{3},", "{", "confirmPwd", "两次输入的密码不一样", "}");
