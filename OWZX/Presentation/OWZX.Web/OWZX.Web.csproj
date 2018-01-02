@@ -476,6 +476,8 @@
     <Content Include="images\baseimg\1000.png" />
     <Content Include="images\baseimg\100011.png" />
     <Content Include="images\baseimg\1W.png" />
+    <Content Include="images\baseimg\2000.png" />
+    <Content Include="images\baseimg\3000.png" />
     <Content Include="images\baseimg\500.png" />
     <Content Include="images\baseimg\5000.png" />
     <Content Include="images\baseimg\5W.png" />

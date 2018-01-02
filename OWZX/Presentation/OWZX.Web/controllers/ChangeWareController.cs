@@ -305,7 +305,7 @@ namespace OWZX.Web.controllers
                 : 0;
             decimal price = decimal.Parse(parmas["price"].ToString());
             if (price < 100)
-                return APIResult("error", "最低请提现100元宝");
+                return APIResult("error", "最低请提现100金币");
 
             PartUserInfo partUserInfo = Users.GetPartUserById(WorkContext.Uid);
 

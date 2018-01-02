@@ -1380,15 +1380,15 @@ select @maxbett=(select SUM(money)+@money from owzx_bett where lotterynum=@expec
 
 if(@roomtype='初级' and @maxbett>80000 ) 
 begin
-select '总投注金额不能大于80000元宝' msg
+select '总投注金额不能大于80000金币' msg
 end
 else if(@roomtype ='中级' and @maxbett>100000 ) 
 begin
-select '总投注金额不能大于100000元宝' msg
+select '总投注金额不能大于100000金币' msg
 end
 else if(@roomtype='高级' and @maxbett>1000000 ) 
 begin
-select '总投注金额不能大于1000000元宝' msg
+select '总投注金额不能大于1000000金币' msg
 end
 else
 begin

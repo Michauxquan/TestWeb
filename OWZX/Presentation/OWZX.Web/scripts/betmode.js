@@ -1,5 +1,5 @@
 ﻿var tzmscount = 10;//投注模式最大数设置
-//投注模式 号码的元宝数
+//投注模式 号码的金币数
 var ModelDatas = new Array();
 var ModeNames = new Array("", "", "", "", "", "", "", "", "", "");
 var CurrentMode = 0;
@@ -500,7 +500,7 @@ function trim(data) {
 function OnSave() {
     var sumgoldeggs = document.getElementById("SMONEYSUM").value;
     if (sumgoldeggs < 10) {/*|| sumgoldeggs > 20000000   -2000万*/
-        m = "<div class='content1' id='Notice_content'>保存失败，投注总额必须大于10元宝</div>";
+        m = "<div class='content1' id='Notice_content'>保存失败，投注总额必须大于10金币</div>";
         layer.alert(m, { icon: 2, title: "保存模式" });
         return;
     }
@@ -529,7 +529,7 @@ function DoSave(NewName) {
     var m = "";
     var sumgoldeggs = document.getElementById("SMONEYSUM").value;
     if (sumgoldeggs < 10) { //|| sumgoldeggs > 20000000   -2000万
-        m = "<div class='content1' id='Notice_content'>保存失败，投注总额必须大于10元宝</div>";
+        m = "<div class='content1' id='Notice_content'>保存失败，投注总额必须大于10金币</div>";
         layer.alert(m, { icon: 2, title: "保存模式" });
         return;
     }

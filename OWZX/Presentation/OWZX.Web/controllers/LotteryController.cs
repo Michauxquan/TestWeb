@@ -53,11 +53,11 @@ namespace OWZX.Web.Controllers
                     //判断投注的最高注数 是否有效
                     if (btmoney < 10)
                     {
-                        return APIResult("error", "单笔投注金额不能小于10元宝");
+                        return APIResult("error", "单笔投注金额不能小于10金币");
                     }
                     if (btmoney > 20000)
                     {
-                        return APIResult("error", "单笔投注金额不能大于20000元宝");
+                        return APIResult("error", "单笔投注金额不能大于20000金币");
                     }
                     return DealBettLow(parmas);
                 }
@@ -66,11 +66,11 @@ namespace OWZX.Web.Controllers
                     int btminmoney = int.Parse(parmas["money"]);
                     if (btminmoney < 50)
                     {
-                        return APIResult("error", "单笔投注金额不能小于50元宝");
+                        return APIResult("error", "单笔投注金额不能小于50金币");
                     }
                     if (btminmoney > 30000)
                     {
-                        return APIResult("error", "单笔投注金额不能大于30000元宝");
+                        return APIResult("error", "单笔投注金额不能大于30000金币");
                     }
                     return DealBettMid(parmas);
                 }
@@ -79,11 +79,11 @@ namespace OWZX.Web.Controllers
                     int bthighmoney = int.Parse(parmas["money"]);
                     if (bthighmoney < 50)
                     {
-                        return APIResult("error", "单笔投注金额不能小于50元宝");
+                        return APIResult("error", "单笔投注金额不能小于50金币");
                     }
                     if (bthighmoney > 30000)
                     {
-                        return APIResult("error", "单笔投注金额不能大于30000元宝");
+                        return APIResult("error", "单笔投注金额不能大于30000金币");
                     }
                     return DealBettHigh(parmas);
                 }

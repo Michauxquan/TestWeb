@@ -710,7 +710,7 @@ function comform()
     //else
     if (t < minnum)
     {
-        layer.alert("最小投注额[" + minnum + "]元宝！", { icon: 2, title: "提示" });
+        layer.alert("最小投注额[" + minnum + "]金币！", { icon: 2, title: "提示" });
         isconfirmenable = true
         return false;
     }
@@ -726,7 +726,7 @@ function comform()
         return false;
     } else if (t > mymoney)
     {
-        layer.alert("您的元宝不足,请充值！", { icon: 2, title: "提示" });
+        layer.alert("您的金币不足,请充值！", { icon: 2, title: "提示" });
         isconfirmenable = true
         return false;
 
@@ -740,7 +740,7 @@ function comform()
             str.push(txt_value);
         }
         $("#ALLSMONEY").val(str.join(","));
-        var message = "确认你投注？将扣除你<span id='postgoldeggs' style='color :Red;font-weight:bold'>" + t + "</span>元宝！"
+        var message = "确认你投注？将扣除你<span id='postgoldeggs' style='color :Red;font-weight:bold'>" + t + "</span>金币！"
 
         layer.confirm(message, {
             btn: ['确定', '取消'] //按钮
@@ -825,9 +825,9 @@ function datapost()
                        if (data == "2")
                            msg = "投注失败，第<span  style='color :Red;'>" + expect + "</span>期投注已截止！";
                        else if (data == "3")
-                           msg = "您的元宝不足,请充值！";
+                           msg = "您的金币不足,请充值！";
                        else if (data == "4")
-                           msg = "最小投注额[" + minnum + "]元宝！";
+                           msg = "最小投注额[" + minnum + "]金币！";
 
                        layer.alert(msg, { icon: 2, title: "提示" })
                    }

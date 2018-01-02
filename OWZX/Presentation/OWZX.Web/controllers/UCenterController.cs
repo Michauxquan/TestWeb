@@ -745,10 +745,10 @@ namespace OWZX.Web.Controllers
 
         #endregion
 
-        #region 元宝明细
+        #region 金币明细
         
         /// <summary>
-        /// 元宝明细
+        /// 金币明细
         /// </summary>
         public ActionResult AccountDetail(int Uid=-1 , string start = "", string end = "", int pageSize = 15, int pageNumber = 1)
         {

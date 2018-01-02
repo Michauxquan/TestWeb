@@ -301,7 +301,7 @@ namespace OWZX.Web.controllers
             decimal money = decimal.Parse(parmas["money"]);
 
             if (money < 100)
-                return APIResult("error", "最低请提现100元宝");
+                return APIResult("error", "最低请提现100金币");
 
             PartUserInfo partUserInfo = Users.GetPartUserByMobile(account);
 
