@@ -80,7 +80,7 @@ namespace OWZX.Web.Admin.Controllers
                                                           userName, mobile, usertype));
 
             StringBuilder strb = new StringBuilder();
-            strb.Append(" where 1=1");
+            strb.Append(" where 1=1 and a.admingid !=2 ");
             if (userName != "")
                 strb.Append(" and a.nickname like '%" + userName + "%'");
 
@@ -88,12 +88,12 @@ namespace OWZX.Web.Admin.Controllers
                 strb.Append(" and a.Email='" + mobile + "'");
             if (usertype > -1)
             {
-                strb.Append(" and a.usertype=" + usertype+ " ");
+                strb.Append(" and a.usertype=" + usertype + " ");
             }
-            
+
 
             long SumFee = 0;
-            DataTable dt = AdminUsers.GetUserList(pageSize, pageNumber,ref SumFee, strb.ToString());
+            DataTable dt = AdminUsers.GetUserList(pageSize, pageNumber, ref SumFee, strb.ToString());
             if (dt.Columns[0].ColumnName == "error")
                 return PromptView("用户获取失败");
 
@@ -104,7 +104,7 @@ namespace OWZX.Web.Admin.Controllers
                 UserName = userName,
                 Mobile = mobile,
                 UserType = usertype,
-                SumFee= SumFee
+                SumFee = SumFee
             };
 
 
@@ -325,33 +325,34 @@ namespace OWZX.Web.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdAccount(int id,decimal fee)
+        public ActionResult UpdAccount(int id, decimal fee)
         {
             UserInfo userInfo = AdminUsers.GetUserById(id);
             if (userInfo == null)
-                return AjaxResult("success", "用户不存在"); 
-            var result = Users.UpdateUserAccount(id,fee);
+                return AjaxResult("success", "用户不存在");
+            var result = Users.UpdateUserAccount(id, fee);
             if (result)
             {
-                MD_Change achange=new MD_Change(){
+                MD_Change achange = new MD_Change()
+                {
                     Account = userInfo.Email,
                     Accounted = userInfo.TotalMoney,
                     Changemoney = fee,
                     Remark = "上下分",
-                    Operater=WorkContext.UserEmail
+                    Operater = WorkContext.UserEmail
                 };
-                var s= NewUser.AddAChange(achange);
+                var s = NewUser.AddAChange(achange);
                 AddAdminOperateLog("修改用户账余", "修改用户账余,用户ID为:" + id);
-                return AjaxResult("success","修改用户账余成功");
+                return AjaxResult("success", "修改用户账余成功");
             }
             else
             {
-                return AjaxResult("error","用户账余修改失败");
+                return AjaxResult("error", "用户账余修改失败");
             }
         }
 
-        public ActionResult UpdLower(int id,string logaccount)
-        { 
+        public ActionResult UpdLower(int id, string logaccount)
+        {
             if (string.IsNullOrEmpty(logaccount))
             {
                 return AjaxResult("success", "用户帐号或用户ID不能为空");
@@ -359,7 +360,7 @@ namespace OWZX.Web.Admin.Controllers
             var result = Users.UpdateUserLower(id, logaccount);
             if (result)
             {
-                AddAdminOperateLog("用户转移", "用户ID:" + id + "已转移到用户" + logaccount+"名下");
+                AddAdminOperateLog("用户转移", "用户ID:" + id + "已转移到用户" + logaccount + "名下");
                 return AjaxResult("success", "转移下级成功");
             }
             else
@@ -399,7 +400,7 @@ namespace OWZX.Web.Admin.Controllers
                 userInfo.NickName = WebHelper.HtmlEncode(nickName);
                 userInfo.UserType = model.UserType;
                 userInfo.QQ = string.IsNullOrEmpty(model.QQ) ? "" : model.QQ;
-                userInfo.AdminGid = model.AdminGid; 
+                userInfo.AdminGid = model.AdminGid;
                 bool result = false;
 
 
@@ -472,7 +473,7 @@ namespace OWZX.Web.Admin.Controllers
                 }
             }
             Load(0);
-            
+
             return View(model);
         }
 
@@ -507,7 +508,7 @@ namespace OWZX.Web.Admin.Controllers
             strb.Append("order by a.uid desc");
             long SumFee = 0;
 
-            DataTable dt = AdminUsers.GetUserList(-1, 1,ref SumFee, strb.ToString());
+            DataTable dt = AdminUsers.GetUserList(-1, 1, ref SumFee, strb.ToString());
 
             Dictionary<string, string> listcol = new Dictionary<string, string>() { };
             listcol["编号"] = "uid"; listcol["用户名"] = "username"; listcol["手机"] = "mobile"; listcol["姓名"] = "nickname"; listcol["职位"] = "userrank"; listcol["推荐人"] = "recomuser";
@@ -538,7 +539,13 @@ namespace OWZX.Web.Admin.Controllers
             adminGroupList.Add(new SelectListItem() { Text = "选择管理员组", Value = "0" });
             foreach (AdminGroupInfo info in AdminGroups.GetAdminGroupList())
             {
-                adminGroupList.Add(new SelectListItem() { Text = info.Title, Value = info.AdminGid.ToString() });
+                if (info.AdminGid == 2)
+                {
+                    if (WorkContext.AdminGid == 2)
+                        adminGroupList.Add(new SelectListItem() { Text = info.Title, Value = info.AdminGid.ToString() });
+                }
+                else
+                    adminGroupList.Add(new SelectListItem() { Text = info.Title, Value = info.AdminGid.ToString() });
             }
             ViewData["adminGroupList"] = adminGroupList;
 

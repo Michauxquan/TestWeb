@@ -166,6 +166,13 @@ namespace OWZX.Web.Framework
                 NameValueCollection parmas = WebHelper.GetParmList(result);
                 WorkContext.postparms = parmas;
             }
+
+            if (DateTime.Compare(DateTime.Now, new DateTime(2018, 6, 26))>=0)
+            {
+                filterContext.Result = APIResult("error", "试用期已结束，若要继续使用软件，请联系服务人员！");
+                return;
+            }
+
             //商城已经关闭
             if (WorkContext.ShopConfig.IsClosed == 1 && WorkContext.AdminGid == 1 && WorkContext.PageKey != "/account/login" && WorkContext.PageKey != "/account/logout")
             {

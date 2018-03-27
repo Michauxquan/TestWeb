@@ -428,7 +428,7 @@ select * from owzx_userinvite a where a.chaildaccount='{0}'
 delete from {0}userdetails where uid={1};
 delete from {0}onlinetime where uid={1}
 delete from owzx_onlineusers where uid={1}", RDBSHelper.RDBSTablePre, uid);
-            return RDBSHelper.ExecuteNonQuery(CommandType.Text, sql) == 4 ? true : false;
+            return RDBSHelper.ExecuteNonQuery(CommandType.Text, sql) >0 ? true : false;
         }
 
         /// <summary>
@@ -957,7 +957,7 @@ begin
 select * ,(select count(1) from #list) TotalCount from #list where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
 end
 
-select  sum(isnull(totalmoney,0))+ sum(isnull(bankmoney,0)) SumFee from  owzx_users  a  {0}
+select  isnull(sum(isnull(totalmoney,0))+ sum(isnull(bankmoney,0)),0) SumFee from  owzx_users  a  {0}
 
 end try
 begin catch
