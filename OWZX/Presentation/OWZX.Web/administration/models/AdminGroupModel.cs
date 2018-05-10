@@ -73,4 +73,5 @@ namespace OWZX.Web.Admin.Models
         /// </summary>
         public string DepName { get; set; }
     }
+   
 }

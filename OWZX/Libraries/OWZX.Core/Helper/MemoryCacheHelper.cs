@@ -35,7 +35,14 @@ namespace OWZX.Core
 
             return (T)MemoryCache.Default[key];
         }
-
+        public static T GetItem<T>(String key)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ArgumentException("Invalid cache key");
+            }
+            return (T)MemoryCache.Default[key];
+        }
         private static CacheItemPolicy CreatePolicy(TimeSpan? slidingExpiration, DateTime? absoluteExpiration)
         {
             var policy = new CacheItemPolicy();

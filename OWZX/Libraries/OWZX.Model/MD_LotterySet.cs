@@ -112,4 +112,5 @@ namespace OWZX.Model
 
         public int TotalCount { get; set; }
     }
+    
 }

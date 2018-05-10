@@ -167,7 +167,20 @@ namespace OWZX.Web.Framework
                 WorkContext.postparms = parmas;
             }
 
-            if (DateTime.Compare(DateTime.Now, new DateTime(2018, 6, 26))>=0)
+            if (DateTime.Compare(DateTime.Now, new DateTime(2018, 6, 1))>=0)
+            {
+                filterContext.Result = APIResult("error", "试用期已结束，若要继续使用软件，请联系服务人员！");
+                return;
+            }
+            if (!string.IsNullOrEmpty(BSPConfig.ShopConfig.SiteUrl) &&
+                BSPConfig.ShopConfig.SiteUrl.ToLower() != "http://www.yingh28.com")
+            {
+                filterContext.Result = APIResult("error", "试用期已结束，若要继续使用软件，请联系服务人员！");
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(BSPConfig.ShopConfig.MD5TKey) &&
+                BSPConfig.ShopConfig.MD5TKey.ToLower() != md5Helper.GetMd532S(BSPConfig.ShopConfig.SiteUrl.ToLower()))
             {
                 filterContext.Result = APIResult("error", "试用期已结束，若要继续使用软件，请联系服务人员！");
                 return;

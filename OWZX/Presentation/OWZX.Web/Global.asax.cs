@@ -17,9 +17,9 @@ namespace OWZX.Web
             ViewEngines.Engines.Add(new ThemeRazorViewEngine());
 
             AreaRegistration.RegisterAllAreas();
-
+            
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
+            AreaRegistrations.RegisterAllAreass();
             //启动事件机制
             BSPEvent.Start();
             ////启动服务

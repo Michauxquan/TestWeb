@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 using OWZX.Core;
 using OWZX.Services;
+using System.Text;
 
 namespace OWZX.Web.Framework
 {
@@ -72,7 +73,7 @@ namespace OWZX.Web.Framework
         {
             return GetRouteString(key, "");
         }
-
+       
         /// <summary>
         /// 提示信息视图
         /// </summary>
@@ -142,4 +143,6 @@ namespace OWZX.Web.Framework
             return Content(string.Format("{0}\"state\":\"{1}\",\"biz_content\":{2}{3}{4}{5}", "{", state, isObject ? "" : "\"", biz_content, isObject ? "" : "\"", "}"));
         }
     }
+
+   
 }

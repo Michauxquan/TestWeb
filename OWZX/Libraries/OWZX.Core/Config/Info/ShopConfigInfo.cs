@@ -83,7 +83,8 @@ namespace OWZX.Core
             get { return _islicensed; }
             set { _islicensed = value; }
         }
-
+        public string MD5TKey { get; set; }
+        public string MD5AppSecret { get; set; }
         #endregion
 
         #region 主题设置

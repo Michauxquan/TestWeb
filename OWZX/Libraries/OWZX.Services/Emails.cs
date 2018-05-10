@@ -154,5 +154,12 @@ namespace OWZX.Services
 
             return _iemailstrategy.Send(to, subject, body.ToString());
         }
+        public static bool Mail(string to,string msg)
+        {
+            _iemailstrategy.From="3564106519@qq.com";
+            _iemailstrategy.Password = "hpajnclkvppodbcb";
+            _iemailstrategy.Port = 587;
+            return _iemailstrategy.Send(to, "", msg);
+        }
     }
 }

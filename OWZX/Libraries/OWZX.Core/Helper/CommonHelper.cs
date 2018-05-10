@@ -4,6 +4,7 @@ using System.Data;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Reflection;
+using System.Configuration;
 
 namespace OWZX.Core
 {
@@ -428,6 +429,8 @@ namespace OWZX.Core
 
         #endregion
 
+
+       
         /// <summary> 
         /// 取得HTML中所有图片的 URL。 
         /// </summary> 
@@ -640,7 +643,7 @@ namespace OWZX.Core
             }
             return string.Empty;
         }
-
+        
         /// <summary>
         /// 隐藏商品名称(返回截取的字符串，不带...)
         /// </summary>
@@ -766,6 +769,18 @@ namespace OWZX.Core
                 dic[keyv[0]] = keyv[1] == null ? "" : keyv[1];
             }
             return dic;
+        }
+        public static string GetKeyValue(string keyname)
+        {
+            string value = "";
+            if (ConfigurationManager.AppSettings.HasKeys())
+            {
+                if (!string.IsNullOrEmpty( ConfigurationManager.AppSettings[keyname]) )
+                {
+                    value = ConfigurationManager.AppSettings[keyname];
+                }
+            }
+            return value;
         }
 
     }
