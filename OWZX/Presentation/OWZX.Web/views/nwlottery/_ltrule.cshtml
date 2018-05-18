@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "_ltrule";
+    string lottype = ViewData["ltruletype"].ToString();
 }
 <style>
     .label {
@@ -19,7 +20,7 @@
 <table class="con_table table_rule" cellspacing="0" style="border-collapse: collapse; border: 1px solid #cacaca; margin-top: 10px;" bgcolor="#CACACA">
     <tbody>
    
-    @if (ViewData["ltruletype"].ToString() == "4" || ViewData["ltruletype"].ToString() == "1" || ViewData["ltruletype"].ToString() == "9" || ViewData["ltruletype"].ToString() == "14" )
+    @if (lottype == "4" || lottype == "1" || lottype == "9" || lottype == "14" )
     {
         <tr><td colspan="4">采用北京福彩中心快乐8数据，与PC蛋蛋结果相同，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
         <tr>
@@ -65,17 +66,18 @@
         <tr>
             <td>开奖</td>
             <td colspan="3"><li class="finalbig">1</li> + <li class="finalbig">8</li> + <li class="finalbig">8</li> = <li class="finalbig">
-                @(ViewData["ltruletype"].ToString() == "4" ? "对" :  "17")
+                @(lottype == "4" ? "对" :  "17")
             </li></td>
 
         </tr>
-    }else if (ViewData["ltruletype"].ToString() == "2" || ViewData["ltruletype"].ToString() == "5" || ViewData["ltruletype"].ToString() == "15" || ViewData["ltruletype"].ToString() == "6" || ViewData["ltruletype"].ToString() == "16"  || ViewData["ltruletype"].ToString() == "17")
+    }
+    else if (lottype == "2" || lottype == "5" || lottype == "15" || lottype == "6" || lottype == "16"  || lottype == "17")
     {
-        if (ViewData["ltruletype"].ToString() == "6" )
+        if (lottype == "6" )
         {
             <tr><td colspan="4"> 采用韩国快乐8数据，每1分半钟一期，每天5:00-07:00暂停开奖</td></tr>
         }
-        else if (ViewData["ltruletype"].ToString() == "16"  || ViewData["ltruletype"].ToString() == "17" )
+        else if (lottype == "16"  || lottype == "17" )
         {
              <tr><td colspan="4"> 采用北京福彩中心快乐8数据，与PC蛋蛋结果相同，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
         }
@@ -125,14 +127,15 @@
         </tr>
         <tr>
             <td>开奖</td>
-            <td colspan="3"><li class="finalbig">0</li> + <li class="finalbig">3</li> + <li class="finalbig">3</li> = <li class="finalbig"> @(ViewData["ltruletype"].ToString() == "5" ? "对" : "6")</li></td>
+            <td colspan="3"><li class="finalbig">0</li> + <li class="finalbig">3</li> + <li class="finalbig">3</li> = <li class="finalbig"> @(lottype == "5" ? "对" : "6")</li></td>
 
         </tr>
     }
-    else if (ViewData["ltruletype"].ToString() == "7" || ViewData["ltruletype"].ToString() == "8" || ViewData["ltruletype"].ToString() == "10")
+    else if(lottype == "7" || lottype == "8" || lottype == "10"|| lottype == "28" || lottype == "29" || lottype == "30" )
     {
+        
         <tr><td colspan="2">
-            @if (ViewData["ltruletype"].ToString() != "10")
+            @if (lottype != "10")
             {
                 @: 采用北京福彩中心PK10数据，每5分钟一期，每天179期，每天0 - 9点暂停开奖
             }
@@ -157,19 +160,64 @@
 		<tr>
 			<td>计算</td>
 		    <td colspan="3">
-		        @(ViewData["ltruletype"].ToString() == "8" ?"取开奖号码前两位之和":"取开奖号码首位")
+               @if (lottype == "8")
+               {
+                 @("取开奖号码前两位之和")
+               }
+               else if (lottype == "7" || lottype == "10")
+               {
+                 @( "取开奖号码首位")
+               }
+               else if (lottype == "28")
+               {
+                   @( "开奖取前3位之和")
+               }
+               else if (lottype == "29")
+               {
+                @( "开奖期号的个位为取号位")
+               }
+               else if (lottype == "30")
+               {
+                @( "开奖取第1位和第10位比较大小,第1位大即为龙,反之为虎.")
+               }
+		        
 		    </td>
 	
         </tr>
+      
+        if (lottype == "29")
+        { @("<tr><td>结果</td><td>第449159期个位数是9,第九位号码是9，开奖号为9，如期号个位数是0就取第10位号码为开奖号码</td></tr>")
+                                                                                                                  
+        }
 		<tr>
 			<td>开奖</td>
 		    <td colspan="3">
-		          @(ViewData["ltruletype"].ToString() == "8" ?"<em class='regular06'></em> + <em class='regular05'></em> = <li class='finalbig'>11</li>":"<li class='finalbig'>6</li>")
+                @if (lottype == "8")
+                {
+                    @("<em class='regular06'></em> + <em class='regular05'></em> = <li class='finalbig'>11</li>")
+                }
+                else if (lottype == "7" || lottype == "10")
+                {
+                    @( "<li class='finalbig'>6</li>")
+                }
+                else if (lottype == "28")
+                {
+                    @( "<em class='regular06'></em> + <em class='regular05'></em>+ <em class='regular01'></em> = <li class='finalbig'>12</li>")
+                }
+                else if (lottype == "29")
+                {
+                    @( "<li class='finalbig'>9</li>")
+                }
+                else if (lottype == "30")
+                {
+                    @( "<em class='regular06' style='vertical-align: middle;'></em>  PK <em class='regular02' style='vertical-align: middle;'></em> = <li class='finalbig'>龙</li>")
+                }
+		         
 		    </td>
 	
         </tr>
     }
-    else if (ViewData["ltruletype"].ToString() == "3")
+    else if (lottype == "3")
     {
         <tr><td colspan="4">计算机系统随机产生3个数字,每个数字范围0-9,每2分钟一期，24小时开奖</td></tr>
         <tr>
@@ -202,9 +250,9 @@
             <td colspan="3"><li class="finalbig">3</li> + <li class="finalbig">6</li> + <li class="finalbig">1</li> = <li class="finalbig">10</li></td>
         </tr>
     }
-    else if (ViewData["ltruletype"].ToString() == "11" || ViewData["ltruletype"].ToString() == "12")
+    else if (lottype == "11" || lottype == "12")
     {
-        <tr><td colspan="@(ViewData["ltruletype"].ToString()=="12"?"4":"3")">计算机系统随机产生@(ViewData["ltruletype"].ToString()=="12"?"3":"2")个数字,每个数字范围1-6,每2分钟一期，24小时开奖</td></tr>
+        <tr><td colspan="@(lottype=="12"?"4":"3")">计算机系统随机产生@(lottype=="12"?"3":"2")个数字,每个数字范围1-6,每2分钟一期，24小时开奖</td></tr>
          <tr>
             <td width="120">如第449159期</td>
             <td>
@@ -213,7 +261,7 @@
             <td>
                 1-6随机数
             </td>
-            <td style="@(ViewData["ltruletype"].ToString()=="12"?"":"display:none;")">
+            <td style="@(lottype=="12"?"":"display:none;")">
                 1-6随机数
             </td>
         </tr>
@@ -225,18 +273,18 @@
             <td>
                 <li class="finalbig">6</li>
             </td>
-            <td style="@(ViewData["ltruletype"].ToString()=="12"?"":"display:none;")">
+            <td style="@(lottype=="12"?"":"display:none;")">
                 <li class="finalbig">1</li>
             </td>
 
         </tr>
         <tr>
             <td>开奖</td>
-            <td colspan="@(ViewData["ltruletype"].ToString()=="12"?"3":"4")"><li class="finalbig">3</li> + <li class="finalbig">6</li> @(ViewData["ltruletype"].ToString() == "12"?"+ <li class='finalbig'>1</li>":"") = <li class="finalbig"> @(ViewData["ltruletype"].ToString()=="12"?"10":"9")</li></td>
+            <td colspan="@(lottype=="12"?"3":"4")"><li class="finalbig">3</li> + <li class="finalbig">6</li> @(lottype == "12"?"+ <li class='finalbig'>1</li>":"") = <li class="finalbig"> @(lottype=="12"?"10":"9")</li></td>
         </tr>
     }
 
-    @if (ViewData["ltruletype"].ToString() == "4" || ViewData["ltruletype"].ToString() == "5" || ViewData["ltruletype"].ToString() == "17")
+    @if (lottype == "4" || lottype == "5" || lottype == "17")
     {
         <tr>
             <td colspan="4" style="color: #F90; font-weight: bold">游戏结果说明</td>
@@ -266,7 +314,7 @@
 
         </tr>
     }
-    @if (ViewData["ltruletype"].ToString() == "9")
+    @if (lottype == "9")
     {
         <tr>
 			  <td colspan="4">游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双</td>
@@ -303,7 +351,7 @@
 			</tr>
     }
     
-       @if (ViewData["ltruletype"].ToString() == "13")
+       @if (lottype == "13")
        {
         <tr>
             <td >六合彩规则说明</td>
