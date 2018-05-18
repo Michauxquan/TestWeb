@@ -149,7 +149,23 @@ namespace OWZX.Model
         /// <summary>
         /// 重庆幸运农场
         /// </summary>
-        cqxync = 26 
+        cqxync = 26 ,
+        /// <summary>
+        /// PK赛车
+        /// </summary>
+        pksc = 27,
+        /// <summary>
+        /// PK10
+        /// </summary>
+        pk10 = 28,
+        /// <summary>
+        /// PK22
+        /// </summary>
+        pk22 = 29,
+        /// <summary>
+        /// PK龙虎
+        /// </summary>
+        pklh = 30,
     }
     /// <summary>
     /// 投注类型

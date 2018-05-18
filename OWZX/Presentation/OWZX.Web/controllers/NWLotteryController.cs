@@ -58,7 +58,7 @@ namespace OWZX.Web.controllers
             //hnklsf  23:30-09:00 暂停投注
             //cqssc cqxync 02:00-10:00 暂停投注
             //xjssc 22:00-09:00 暂停投注
-            if (id == 1 || id == 4 || id == 9 || id == 7 || id == 8 || id == 14 || id == 16 || id == 17)
+            if (id == 1 || id == 4 || id == 9 || id == 7 || id == 8 || id == 14 || id == 16 || id == 17 || id == 27 || id == 28 || id == 29 || id == 30)
             {
                 if (DateTime.Now > DateTime.Parse("00:00") && DateTime.Now < DateTime.Parse("9:02"))
                 {
@@ -165,6 +165,26 @@ namespace OWZX.Web.controllers
                     stop = 40;
                     break;
                 case (int)LotType.pkgyj: title = "PK冠亚军首页";
+                    total = 300;
+                    stop = 40;
+                    break;
+                case (int)LotType.pksc:
+                    title = "PK赛车首页";
+                    total = 300;
+                    stop = 40;
+                    break;
+                case (int)LotType.pk22:
+                    title = "PK22首页";
+                    total = 300;
+                    stop = 40;
+                    break;
+                case (int)LotType.pk10:
+                    title = "PK10首页";
+                    total = 300;
+                    stop = 40;
+                    break;
+                case (int)LotType.pklh:
+                    title = "PK龙虎首页";
                     total = 300;
                     stop = 40;
                     break;

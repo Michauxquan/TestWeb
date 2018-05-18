@@ -574,6 +574,8 @@
     <Content Include="images\number\lottery.png" />
     <Content Include="images\number\number.fw.png" />
     <Content Include="images\number\pk.png" />
+    <Content Include="images\number\sdragon.png" />
+    <Content Include="images\number\stiger.png" />
     <Content Include="images\sdragon.png" />
     <Content Include="images\security.mp3" />
     <Content Include="images\stiger.png" />

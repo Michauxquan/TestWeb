@@ -74,7 +74,7 @@
                             <span class="numberl n1">@numbs[18]</span><span class="numberl n1">@numbs[19]</span>
                         </text>
                     }
-                    else if (@Model.LotteryType == 7 || @Model.LotteryType == 8)
+                    else if (@Model.LotteryType == 7 || @Model.LotteryType == 8 || @Model.LotteryType == 27 || @Model.LotteryType == 28 || @Model.LotteryType == 29 || @Model.LotteryType == 30)
                     {
                         string orderresult = @Model.lotterylist.Prev_Lottery.Orderresult;
                         <span class="numberl n2">@Model.lotterylist.Prev_Lottery.First</span>
@@ -103,7 +103,7 @@
                     {
                         <a href="http://lotto.bclc.com/winning-numbers/keno-and-keno-bonus.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
                     }
-                    else if (@Model.LotteryType == 7 || @Model.LotteryType == 8)
+                    else if (@Model.LotteryType == 7 || @Model.LotteryType == 8 || @Model.LotteryType == 27 || @Model.LotteryType == 28 || @Model.LotteryType == 29 || @Model.LotteryType == 30)
                     {
                         <a href="http://www.bwlc.net/bulletin/trax.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
                     }
@@ -246,7 +246,7 @@
         {
             @Html.Partial("_contentlhb")
         }
-        else if (@Model.LotteryType == 7 || @Model.LotteryType == 8 || @Model.LotteryType == 10)
+        else if (@Model.LotteryType == 7 || @Model.LotteryType == 8 || @Model.LotteryType == 10 || @Model.LotteryType == 28 || @Model.LotteryType == 29 || @Model.LotteryType == 30)
         {
             @Html.Partial("_contentpk")
         }

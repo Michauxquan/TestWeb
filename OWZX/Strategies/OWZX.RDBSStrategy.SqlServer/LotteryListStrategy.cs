@@ -76,7 +76,7 @@ select top 1  type,expect lastnumber,opentime,status,case when @type=6 then DATE
 into #now
 from owzx_lotteryrecord
 where type=@type and status in (0,1)
-and DATEDIFF(SECOND,GETDATE(),opentime)>=0 and DATEDIFF(SECOND,GETDATE(),opentime)<=(case when type in(1,4,9,7,8,14,16,17) then 300 
+and DATEDIFF(SECOND,GETDATE(),opentime)>=0 and DATEDIFF(SECOND,GETDATE(),opentime)<=(case when type in(1,4,9,7,8,14,16,17,27,28,29,30) then 300 
 when type =6 then 115
 when type in(2,5,15) then 210 
 when type in(3,12,10,11) then 120
@@ -534,8 +534,6 @@ select * from  #list where id>=1 and id<=8
 
 select * from  #list where id>=9 and id<=18
 end
-
-
 ", type,condition);
             
                 strb.AppendFormat(@"
@@ -549,15 +547,12 @@ select * from (
 select top 17 * from  #list where (bttypeid>=29 and bttypeid <=36) 
  order by bttypeid) a
 
-
 select * from (
 select top 17 * from  #list where (bttypeid>=37 and bttypeid <=38) or (bttypeid>=135 and bttypeid <=141) order by bttypeid) a
 union all
 select * from 
 (
 select top 17 * from  #list where (bttypeid>=142 and bttypeid <=156 ) order by bttypeid  ) a
-
-
 
 select * from (
 select top 8 * from  #list where setid between 249 and 256 order by bttypeid  ) a
