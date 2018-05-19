@@ -571,6 +571,8 @@
     <Content Include="images\mall\wei.png" />
     <Content Include="images\mall\zhi.png" />
     <Content Include="images\number\dd36.png" />
+    <Content Include="images\number\hu.png" />
+    <Content Include="images\number\long.png" />
     <Content Include="images\number\lottery.png" />
     <Content Include="images\number\number.fw.png" />
     <Content Include="images\number\pk.png" />
@@ -762,6 +764,7 @@
     <Content Include="views\nwlottery\_bettpagelhc.cshtml" />
     <Content Include="views\nwlottery\_bettmodelhc.cshtml" />
     <Content Include="views\nwlottery\_bettdetailslhc.cshtml" />
+    <Content Include="views\nwlottery\_contentpklh.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

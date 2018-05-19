@@ -27,6 +27,11 @@ namespace OWZX.Web.controllers
         /// <returns></returns>
         public ActionResult LTIndex(int id)
         {
+            if(WorkContext.Uid<=0)
+            {
+                return Redirect("/");
+            }
+
             MD_LotteryList list = LotteryList.GetLotteryByType(id, 1, 20, WorkContext.Uid);
             int total = 0;
             int stop = 0;
@@ -282,7 +287,8 @@ namespace OWZX.Web.controllers
                     title = "重庆幸运农场";
                     total = 600;
                     stop = 40;
-                    break; 
+                    break;
+                
             }
         }
 
@@ -368,6 +374,30 @@ namespace OWZX.Web.controllers
         /// </summary>
         /// <returns></returns>
         public ActionResult _ContentLHB()
+        {
+            int type = WebHelper.GetFormInt("type");
+            int pageindex = WebHelper.GetFormInt("page");
+            MD_LotteryList list = LotteryList.GetLotteryByType(type, pageindex, 20, WorkContext.Uid);
+            int total = 0;
+            int stop = 0;
+            string title = string.Empty;
+            InitParms(type, ref total, ref stop, ref title);
+            total = ResetTotalTime(type, list, total);
+            LotteryModel lot = new LotteryModel()
+            {
+                LotteryType = type,
+                TotalS = total,
+                StopTime = stop,
+                PageModel = new PageModel(20, pageindex, list.TotalCount),
+                lotterylist = list
+            };
+            return View(lot);
+        }
+        /// <summary>
+        /// LHB获取数据
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _ContentPKLH()
         {
             int type = WebHelper.GetFormInt("type");
             int pageindex = WebHelper.GetFormInt("page");

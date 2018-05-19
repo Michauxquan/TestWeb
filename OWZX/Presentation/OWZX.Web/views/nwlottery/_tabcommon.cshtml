@@ -1,6 +1,8 @@
 ﻿@model LotteryModel
 @{
     ViewBag.Title = "_tabcommon";
+    
+    int cpcode = Model.LotteryType;
 }
 <script type="text/javascript">
     lotterytype=@Model.LotteryType;
@@ -33,7 +35,7 @@
     <a href="javascript:loadpage('bettrecords')" target="_parent">投注记录</a>
     <span class="wh12">|</span>
     <a href="javascript:loadpage('models')" target="_parent">模式编辑</a>
-    @if (@Model.LotteryType != 13)
+    @if (@cpcode != 13)
     {
         <span class="wh12">|</span>
         <a href="javascript:loadpage('autobett')" target="_parent">自动投注</a>
@@ -53,7 +55,7 @@
             </div>
             <div style="width:80%;display:block;float:left;line-height:35px;border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;font-weight:600;">
                 <div id="div_code" style="padding-left:50px;">
-                    @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9 || @Model.LotteryType == 14 || @Model.LotteryType == 16 || @Model.LotteryType == 17)
+                    @if (cpcode == 1 || cpcode == 4 || @cpcode == 9 || cpcode == 14 || cpcode == 16 || cpcode == 17)
                     {
                         <text>
                             <span class="ltnum1">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(0, 17)</span>&nbsp;&nbsp;&nbsp;
@@ -61,9 +63,9 @@
                             <span class="ltnum3">@Model.lotterylist.Prev_Lottery.Orderresult.Substring(36, 17)</span>
                         </text>
                     }
-                    else if (@Model.LotteryType == 2 || @Model.LotteryType == 5 || @Model.LotteryType == 6 || @Model.LotteryType == 15)
+                    else if (cpcode == 2 || cpcode == 5 || cpcode == 6 || cpcode == 15)
                     {
-                        string[] numbs = @Model.lotterylist.Prev_Lottery.Orderresult.Split(',');
+                        string[] numbs = Model.lotterylist.Prev_Lottery.Orderresult.Split(',');
                         <text>
                             <span class="numberl n1">@numbs[0]</span><span class="numberl n3">@numbs[1]</span><span class="numberl n2">@numbs[2]</span>
                             <span class="numberl n4">@numbs[3]</span><span class="numberl n3">@numbs[4]</span><span class="numberl n2">@numbs[5]</span>
@@ -74,13 +76,20 @@
                             <span class="numberl n1">@numbs[18]</span><span class="numberl n1">@numbs[19]</span>
                         </text>
                     }
-                    else if (@Model.LotteryType == 7 || @Model.LotteryType == 8 || @Model.LotteryType == 27 || @Model.LotteryType == 28 || @Model.LotteryType == 29 || @Model.LotteryType == 30)
+                    else if (cpcode == 7 || cpcode == 8 || cpcode == 27 || cpcode == 28 || cpcode == 29 || cpcode == 30)
                     {
-                        string orderresult = @Model.lotterylist.Prev_Lottery.Orderresult;
-                        <span class="numberl n2">@Model.lotterylist.Prev_Lottery.First</span>
-                        <span class="numberl n3">@orderresult.Substring(3, @orderresult.Length - 3)</span>
+                        string orderresult = Model.lotterylist.Prev_Lottery.Orderresult;
+                        if (cpcode == 7 || cpcode == 8)
+                        {
+                            <span class="numberl n2">@Model.lotterylist.Prev_Lottery.First</span>
+                            <span class="numberl n3">@orderresult.Substring(3, @orderresult.Length - 3)</span>
+                        }else
+                        {
+                            <span class="numberl n3">@orderresult</span>
+                        }
+                        
                     }
-                    else if (@Model.LotteryType == 13)
+                    else if (cpcode == 13)
                     {
                         string orderresult = @Model.lotterylist.Prev_Lottery.Orderresult;
                         <h3>
@@ -89,25 +98,25 @@
                         </h3>
                     }
 
-                    @if (@Model.LotteryType == 3 || @Model.LotteryType == 10 || @Model.LotteryType == 11 || @Model.LotteryType == 12 )
+                    @if (cpcode == 3 || cpcode == 10 || cpcode == 11 || cpcode == 12 )
                     {
                         <span class="numberl">系统开奖</span>
                     }
 
 
-                    @if (@Model.LotteryType == 1 || @Model.LotteryType == 4 || @Model.LotteryType == 9 || @Model.LotteryType == 14 || @Model.LotteryType == 16 || @Model.LotteryType == 17)
+                    @if (@cpcode == 1 || @cpcode == 4 || @cpcode == 9 || @cpcode == 14 || @cpcode == 16 || @cpcode == 17)
                     {
                         <a href="http://www.bwlc.net/bulletin/keno.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
                     }
-                    else if (@Model.LotteryType == 2 || @Model.LotteryType == 5 || @Model.LotteryType == 15)
+                    else if (@cpcode == 2 || @cpcode == 5 || @cpcode == 15)
                     {
                         <a href="http://lotto.bclc.com/winning-numbers/keno-and-keno-bonus.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
                     }
-                    else if (@Model.LotteryType == 7 || @Model.LotteryType == 8 || @Model.LotteryType == 27 || @Model.LotteryType == 28 || @Model.LotteryType == 29 || @Model.LotteryType == 30)
+                    else if (@cpcode == 7 || @cpcode == 8 || @cpcode == 27 || @cpcode == 28 || @cpcode == 29 || @cpcode == 30)
                     {
                         <a href="http://www.bwlc.net/bulletin/trax.html" target="_blank" style="color:#666;float:right;">[官方查询]</a>
                     }
-                    else if (@Model.LotteryType == 6)
+                    else if (@cpcode == 6)
                     {
                         <a href="http://www.knlotto.kr/keno.aspx?method=kenoWinNoList" target="_blank" style="color:#666;float:right;">[官方查询]</a>
                     }
@@ -118,19 +127,28 @@
                     @{
                     int first = int.Parse(@Model.lotterylist.Prev_Lottery.First);
                     int second = int.Parse(@Model.lotterylist.Prev_Lottery.Second);
+                    string three = Model.lotterylist.Prev_Lottery.Three;
+                    int intthree = int.Parse(three==""?"0":three);
                     }
 
-                    @if (@Model.LotteryType != 13)
+                    @if (cpcode != 13 && cpcode != 29 && cpcode != 30)
                     {
                         <span style="font-size:15px;">一区号码: <span class="ltresult">@first</span></span>
                         <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@second</span></span>
 
-                        if (@Model.LotteryType != 7 && @Model.LotteryType != 8 && @Model.LotteryType != 11)
+                        if (cpcode != 7 && cpcode != 8 && cpcode != 11)
                         {
-                            <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@Model.lotterylist.Prev_Lottery.Three</span> </span>
+                            if (cpcode == 28)
+                            {
+                                <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@intthree</span> </span>
+                            }
+                            else
+                            {
+                                <span style="margin-left:60px;font-size:15px;">三区号码: <span class="ltresult">@three</span> </span>
+                            }
                         }
 
-                        if (@Model.LotteryType != 4 && @Model.LotteryType != 5 && @Model.LotteryType != 17)
+                        if (@cpcode != 4 && @cpcode != 5 && @cpcode != 17)
                         {<span style="margin-left:60px;font-size:15px;">
                             结果:
                             <span class="ltresult pcresult">
@@ -148,7 +166,7 @@
                             </span>
                         }
                     }
-                    else
+                    else if (@cpcode == 13)
                     {
                         string resulttype = @Model.lotterylist.Prev_Lottery.ResultType;
                         <span style="font-size:18px;">
@@ -196,6 +214,31 @@
                             }
 
                         </span>
+                    } 
+                    else if (cpcode == 29)
+                    {
+                        string tt = first == 10 ? "0" : first.ToString();
+                    <span style="font-size:15px;">期号个位: <span class="ltresult">@tt</span></span>
+                    <span style="margin-left:60px;font-size:15px;">号码: <span class="ltresult">@second</span></span>
+                    <span style="margin-left:60px;font-size:15px;">
+                        结果:
+                        <span class="ltresult pcresult">
+                            @{string resnum = int.Parse(@Model.lotterylist.Prev_Lottery.Resultnum).ToString();}
+                            @resnum
+                        </span>
+                    </span>
+                    }
+                    else if (cpcode == 30)
+                    {
+                        string restype = Model.lotterylist.Prev_Lottery.Resultnum == "龙" ? "pklong" : "pkhu";
+                            <span style="font-size:15px;"><span class="ltresultpk">@first</span></span>
+                            <span style="padding:0 10px 0 10px;font-size:15px;">PK</span>
+                            <span style="font-size:15px;"><span class="ltresultpk">@second</span></span>
+                            <span style="margin-left:40px;font-size:15px;vertical-align:middle;">
+                                结果:
+                                <span class="ltresult pcresult @restype">
+                                </span>
+                            </span>
                     }
                     
                 </div>
@@ -236,23 +279,27 @@
     </div>
     <div class="temp_content">
 
-        @if (@Model.LotteryType == 1 || @Model.LotteryType == 2 || @Model.LotteryType == 3
-                     || @Model.LotteryType == 6 || @Model.LotteryType == 4 || @Model.LotteryType == 5
-                     || @Model.LotteryType == 11 || @Model.LotteryType == 12 || @Model.LotteryType == 14 || @Model.LotteryType == 15 || @Model.LotteryType == 16 || @Model.LotteryType == 17)
+        @if (cpcode == 1 || cpcode == 2 || cpcode == 3
+                     || cpcode == 6 || cpcode == 4 || cpcode == 5
+                     || cpcode == 11 || cpcode == 12 || cpcode == 14 || cpcode == 15 || cpcode == 16 || cpcode == 17)
         {
             @Html.Partial("_content")
         }
-        else if (@Model.LotteryType == 9)
+        else if (cpcode == 9 )
         {
             @Html.Partial("_contentlhb")
         }
-        else if (@Model.LotteryType == 7 || @Model.LotteryType == 8 || @Model.LotteryType == 10 || @Model.LotteryType == 28 || @Model.LotteryType == 29 || @Model.LotteryType == 30)
+        else if (cpcode == 7 || cpcode == 8 || cpcode == 10 || cpcode == 28 || cpcode == 29 || cpcode == 30)
         {
             @Html.Partial("_contentpk")
         }
-        else if (@Model.LotteryType == 13)
+        else if (cpcode == 13)
         {
             @Html.Partial("_contentlhc");
+        }
+        else if (cpcode == 27)
+        {
+            @Html.Partial("_contentpklh");
         }
     </div>
 

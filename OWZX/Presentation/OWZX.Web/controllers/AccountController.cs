@@ -47,7 +47,7 @@ namespace OWZX.Web.Controllers
             }
 
             //ajax请求
-            string accountName = WebHelper.GetFormString(WorkContext.ShopConfig.ShadowName);
+            string accountName = WebHelper.GetFormString(WorkContext.ShopConfig.ShadowName).Trim();
             string password = WebHelper.GetFormString("password");
             string verifyCode = WebHelper.GetFormString("verifyCode");
             int isRemember = WebHelper.GetFormInt("isRemember",0);

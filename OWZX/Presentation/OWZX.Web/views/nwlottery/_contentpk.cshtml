@@ -30,6 +30,8 @@
     </tr>
     @foreach (OWZX.Model.MD_LotteryUser lot in @Model.lotterylist.LotteryList)
     {
+        
+        
         <tr>
             <td>@lot.Expect</td>
             <td>@lot.Opentime.ToString("MM-dd HH:mm")</td>
@@ -40,25 +42,55 @@
                 }
                 else
                 {
-                    string[] opencodes = @lot.Orderresult.Split(',');
-                    string clfir = "regular" + opencodes[0];
-                    <em class="@clfir"></em>
-                    string clsec = (@lot.Type == 8 ? "regular" + opencodes[1] : "light" + opencodes[1]);
-                    <em class="@clsec"></em>
-                    for (int i = 2; i <= opencodes.Length - 1; i++)
+                    string[] opencodes = lot.Orderresult.Split(',');
+                    if(lot.Type==29)
                     {
-                        clsec = "light" + opencodes[i];
+                        
+                        string clsec=string.Empty ;
+                        for (int i = 0; i <= opencodes.Length - 1; i++)
+                        {
+                        if(i==(int.Parse(lot.First)-1))
+                        {
+                          clsec = "regular" + opencodes[i];
+                        }
+                        else
+                        {
+                          clsec = "light" + opencodes[i];
+                        }
                         <em class="@clsec"></em>
+                        }
+                        int pk10res = int.Parse(lot.Resultnum);
+                        <em class="final"><i>@pk10res</i></em>
                     }
-                    if (@lot.Type == 8 || @lot.Type == 28 || @lot.Type == 29)
+                    else
                     {
+                        string clfir = "regular" + opencodes[0];
+                        <em class="@clfir"></em>
+                        string clsec = ((@lot.Type == 8 ||@lot.Type==28) ? "regular" + opencodes[1] : "light" + opencodes[1]);
+                        <em class="@clsec"></em>
+                        for (int i = 2; i <= opencodes.Length - 1; i++)
+                        {
+                        if(lot.Type==28 && i==2)
+                        {
+                        clsec = "regular" + opencodes[i];
+                        }else
+                        {
+                        clsec = "light" + opencodes[i];
+                        }
+                        <em class="@clsec"></em>
+                        }
+                        if (lot.Type == 8 || lot.Type == 28 )
+                        {
+                            
                         <em class="final"><i>@lot.Resultnum</i></em>
+                        }
+                        else if (@lot.Type == 30)
+                        {
+                            string lhclass = (@lot.Resultnum == "龙" ? "slong" : "shu");
+                        <em class="final pklh"><i class="@lhclass"></i></em>
+                        } 
                     }
-                    else if (@lot.Type == 30)
-                    {
-                        string lhclass = (@lot.Resultnum == "龙" ? "slong" : "shu");
-                        <em class="final @lhclass"><i>@lot.Resultnum</i></em>
-                    }
+                    
                 }
             </td>
 

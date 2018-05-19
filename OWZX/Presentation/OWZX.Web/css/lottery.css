@@ -63,16 +63,41 @@ display:inline-block;width:960px;margin-bottom:10px;
 }
 .ltnumber {
 width:20%;display:block;float:left;
-text-align:center;color:white;height:75px;vertical-align:middle;
+text-align:center;color:white;height:77px;vertical-align:middle;
 background: #fd8724;
 /*background-image:url(../images/ltnumber.png);*/
 
 }
 .ltresult {color:#c30000;font-weight:bold;font-size:20px;}
-
+.ltresultpk {
+    color: #CB0000;
+    font-size: 22px;
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: #eee;
+    border-radius: 60px;
+    padding: 3px 12px;
+    font-weight: 500;
+    vertical-align: middle;
+}
 .pcresult {
     background:rgba(0, 0, 0, 0) url(../images/number/lottery.png) no-repeat scroll 0 0;height:32px;width:32px;
     color:#fff;text-align:center;display:inline-block;line-height:32px;text-indent:0;
+}
+
+.pklong{
+    height: 35px;
+    width: 50px;
+    background:url(../images/number/long.png) no-repeat;
+    vertical-align: middle;
+    margin-top: -8px;
+}
+.pkhu{
+    height: 35px;
+    width: 50px;
+    background:url(../images/number/hu.png) no-repeat;
+    vertical-align: middle;
+    margin-top: -8px;
 }
 .lhbresult{
     background:rgba(0, 0, 0, 0) scroll 0 0;height:32px;width:32px;
@@ -136,7 +161,7 @@ padding:0 3px;
 }
 
 /*can*/
-.numberl{margin-left:5px;font-size:14px;}
+.numberl{margin-left:5px;font-size:16px;}
 .n1{color:#000}
 .n2{color:#0167FF}
 .n3{color:#eca101}
@@ -150,9 +175,8 @@ padding:0 3px;
     width: 26px;
     position: relative;
 }
-#play  td em {
+#play  td em:not(.pklh) {
     font-style: normal;
-    background: url(../../images/number/pk.png) no-repeat;
     display: inline-block;
     width: 23px;
     height: 21px;
@@ -164,6 +188,10 @@ padding:0 3px;
     word-spacing: normal;
     float: left;
 }
+#play  td em:not(.pklh) {
+    background: url(../../images/number/pk.png) no-repeat;
+}
+
 #play td em.regular01,#play td em.regular1 {
 	background-position: 0 0
 }
@@ -272,6 +300,15 @@ padding:0 3px;
 	left: 0;
 	line-height: 26px
 
+}
+#play td em.pklh{
+margin-left: -37px;
+}
+#play td em i.slong  {
+	background: url(../../images/number/sdragon.png) no-repeat;
+}
+#play td em i.shu  {
+	background: url(../../images/number/stiger.png) no-repeat;
 }
 
 
