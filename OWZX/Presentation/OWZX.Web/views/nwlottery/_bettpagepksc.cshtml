@@ -1,0 +1,441 @@
+﻿@{
+    ViewBag.Title = "pksc";
+    int lottype =int.Parse(ViewData["lotterytype"].ToString());
+}
+@model List<OWZX.Model.MD_BettMode>
+<script src="~/scripts/selmode.js"></script>
+<script>
+    var StrTimeOut = 0;
+    var num = "";
+    var bettmodel = "";
+    var mymoney = @WorkContext.PartUserInfo.TotalMoney;//我的余额
+    var expect=@ViewData["expect"];
+</script>
+<script src="~/scripts/play.js"></script>
+<style>
+     .chipsul {
+            float: left;
+            margin-right: 5px;
+        }
+        .chipsul li.chips a {
+            width: 31px;
+            height: 31px;
+            display: block;
+            float: left;
+            text-decoration: none;
+        }
+         .chipsul .chips1 {
+            background: url(../../images/chips/chips_10000.png) no-repeat center;
+        }
+        .chipsul .chips2 {
+            background: url(../../images/chips/chips_100000.png) no-repeat center;
+        }
+        .chipsul .chips3 {
+            background: url(../../images/chips/chips_500000.png) no-repeat center;
+        }
+        .chipsul .chips4 {
+            background: url(../../images/chips/chips_1000000.png) no-repeat center;
+        }
+         .chips5 {
+            background: url(../../images/chips/chips_5000000.png) no-repeat center;
+        }
+        .self {
+            height: 29px;
+            line-height: 29px; 
+            border: 1px solid #fd8724;
+            float: left;
+            background: #fd8724;
+            color: #fff;
+        }
+        .avinput {
+            border: none;
+            height: 26px;
+            width: 105px;
+            color: #f00;
+            font-size: 16px;
+            margin: -3px 0 0 0px;
+            padding-left: 2px;
+        }
+        .self li {
+            float: left;
+            height: 29px;
+            line-height: 29px;
+            font-size: 13px;
+        }
+        .self li a {
+            float: left;
+            width: 64px;
+            height: 29px; 
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            text-indent: 0px;
+        }
+        #tb_gy h4 b, #tb_ch h4 b, #tb_lh h4 b {
+    display: inline-block;
+    cursor: pointer;
+    right: 15px;
+    top: 7px;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    color: #666;
+    float: right;
+    font-size: 20px;
+}
+        .content_middle td, #bettrecord td, #bettdetails td{
+            text-align: center;
+    font-weight: 600;
+    border: 1px solid #eee;
+    color: #932d2f;
+        }
+</style>
+
+
+<div class="bt_page">
+    @if((bool)ViewData["exists"])
+    {
+    <div class="border_out" style="height: auto; margin-top: 8px;">
+        <div class="border_out_r">
+            <div class="border_out_title"><span style="float: left; width: auto;">我的模式</span> <span style="float: right; width: auto;"></span></div>
+
+            <div style="padding: 2px 5px; border: 1px solid #cacaca; height:24px; line-height: 24px;width:880px;" id="usbettmode">
+            @foreach (OWZX.Model.MD_BettMode info in Model)
+            { 
+            <text><a href='javascript:personmode(@info.Modeid)' style='margin-left:15px;'>@info.Name</a></text>
+            }
+            </div>
+        </div>
+    </div>
+    }
+ 
+    <div class="border_out" style="margin-top: -2px; height:@((lottype != 9 && lottype != 5 && lottype != 17 && lottype != 4 && lottype !=27) ? "120px" : "75px");">
+        <div class="border_out_l">
+            <div class="border_out_title"><span style="float: left; width: auto;">标准投注模式</span> <span style="float: right; width: auto;"></span></div>
+            @if (lottype != 9 && lottype != 5 && lottype != 4 && lottype != 17 && lottype != 27 && lottype != 30)
+            {
+            <table border="0" align="left" style="padding-left: 5px;">
+                <tr>
+                    <td class="img_bt1" style="display: none" attr="0">全包</td>
+                    <td class="img_bt1" attr="1">单</td>
+                    <td class="img_bt1" attr="2">双</td>
+                    <td class="img_bt1" attr="3">大</td>
+                    <td class="img_bt1" attr="4">小</td>
+                    <td class="img_bt1" attr="5">中</td>
+                    <td class="img_bt1" attr="6">边</td>
+                    <td class="img_bt1" attr="7">大单</td>
+                    <td class="img_bt1" attr="8">小单</td>
+                    <td class="img_bt1" attr="9">大双</td>
+                    <td class="img_bt1" attr="10">小双</td>
+                    <td class="img_bt1" attr="11">大边</td>
+                    <td class="img_bt1" attr="12">小边</td>
+                    <td class="img_bt1" attr="13">单边</td>
+                    <td class="img_bt1" attr="14">双边</td>
+                    <td class="img_bt1" attr="15">0尾</td>
+                    <td class="img_bt1" attr="16">1尾</td>
+                    <td class="img_bt1" attr="17">2尾</td>
+                    <td class="img_bt1" attr="18">3尾</td>
+                    <td class="img_bt1" attr="19">4尾</td>
+
+                </tr>
+                <tr>
+                    <td class="img_bt1" attr="20">小尾</td>
+                    <td class="img_bt1" attr="21">5尾</td>
+                    <td class="img_bt1" attr="22">6尾</td>
+                    <td class="img_bt1" attr="23">7尾</td>
+                    <td class="img_bt1" attr="24">8尾</td>
+                    <td class="img_bt1" attr="25">9尾</td>
+                    <td class="img_bt1" attr="26">大尾</td>
+                    <td class="img_bt1" attr="27">3余0</td>
+                    <td class="img_bt1" attr="28">3余1</td>
+                    <td class="img_bt1" attr="29">3余2</td>
+                    <td class="img_bt1" attr="30">4余0</td>
+                    <td class="img_bt1" attr="31">4余1</td>
+                    <td class="img_bt1" attr="32">4余2</td>
+                    <td class="img_bt1" attr="33">4余3</td>
+                    <td class="img_bt1" attr="34">5余0</td>
+                    <td class="img_bt1" attr="35">5余1</td>
+                    <td class="img_bt1" attr="36">5余2</td>
+                    <td class="img_bt1" attr="37">5余3</td>
+                    <td class="img_bt1" attr="38">5余4</td>
+                </tr>
+            </table> 
+            }
+             <div class="border_out1_l" id="border_out1_l" style="border-right: 1px solid #e4393c; width: auto; margin-left: 7px;">
+             <span>0.1倍</span><span>0.5倍</span><span>0.8倍</span><span>1.2倍</span><span>1.5倍</span><span>2倍</span><span>5倍</span><span>10倍</span><span>50倍</span><span>100倍</span>
+        </div> 
+        </div>
+    </div> 
+       <div class="border_out1">
+            <div style="width: 368px;height: 33px;float: left;color: #515151;line-height: 33px;">
+            <ul class="chipsul" style="float: left;margin:0px 10px 10px;">
+				<li class="chips">
+				<a class="chips1" title="" href="javascript:chips(10000)">&nbsp;</a>
+				<a class="chips2" title="" href="javascript:chips(100000)">&nbsp;</a>
+				<a class="chips3" title="" href="javascript:chips(500000)">&nbsp;</a>
+				<a class="chips4" title="" href="javascript:chips(1000000)">&nbsp;</a>
+				<a class="chips5" title="" href="javascript:chips(5000000)">&nbsp;</a>
+				</li>
+			</ul>
+                <ul class="self">
+		        <li><input id="betsLeft" class="avinput" type="text"/>
+		        </li><li><a href="javascript:usefenpei()">定额梭哈</a></li>
+	        </ul>
+            </div>
+         <div class="border_out1_c" style="width:308px;">
+            <div style="float: left; width: 60px; padding-left: 5px;">总投元宝：</div>
+            <div style="color: #ff0000; width: 156px; float: left; overflow: hidden" id="totalvalue">
+                0
+            </div>
+            <div class="conform_btn" onclick="comform()" id="conform_btn">确认投注</div>
+            
+        </div>
+        <div class="border_out1_r">
+            <div class="touzhu2" style="width: 60px;" data-id="@ViewData["lotterytype"]" id="provbett_btn">上期投注</div>
+            <div class="touzhu2" id="prevbett" onclick="useSuoha();">梭哈</div>
+            <div class="touzhu2" id="btnall" onclick="setValue(0);">全包</div>
+            <div class="touzhu2 reversebtn" >反选</div>
+            <div class="touzhu2 clearbtn">清除</div>
+        </div>
+    </div>
+    <div class="content_middle" style="height: auto; width: 960px; margin: auto;" id="panel">
+
+        @{
+            DataSet ds = (DataSet)ViewData["ltset"];
+        }
+       
+        <input class="input2" name="SMONEYY" type="hidden" value="ALD" />
+        <div id="tb_gy" style="width:960px;background-color:#eee;margin-top:20px;cursor:pointer;" onclick="change('tb_gy')">
+            <h4 style="font-size:15px;padding-left:10px;">冠亚军和<b>-</b></h4>
+        </div>
+        <table style="width:960px;color: Black;border-collapse:collapse; border:1px solid #cacaca;border-top:none;border-right:none;" border="0"
+               cellpadding="0" cellspacing="1" class="tb_btmode tb_gy">
+            <tr align="center" height="20"><th colspan="20" style="font-size:20px;">冠亚军和</th></tr>
+            @*<tr align="center" height="20">
+                <th width="50">号码</th>
+                <th width="71" >赔率</th>
+                <th width="71">已投注</th>
+                <th width="53">请选择</th>
+                <th width="100">投注</th>
+            </tr>*@
+            @{int id = 0;
+
+            DataRowCollection gyh = ds.Tables[0].Rows;
+            }
+            @for (int j = 0; j < 5; j++)
+            {
+                <tr align="center" bgcolor="#FFFFFF" height="27">
+                    @for (int i = 0; i < 4; i++)
+                    {
+                        id = id + 1;
+                        if (gyh.Count < id)
+                        {
+                            break;
+                        }
+                        string num = gyh[id - 1]["item"].ToString();
+                        DataRow row = gyh[id - 1];
+                        <td>
+                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                                  width="25" height="25">@row["item"]</span>
+                            </td>
+                        <td class="lossrate" data-type=@row["item"]>@row["odds"]</td>
+                        <td><span id="span_@num"></span></td>
+                        <td>
+                            <input type="checkbox" name="checkboxd" value="checkbox" />
+                        </td>
+                        <td>
+                            <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
+                                   id="txt_@num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                        </td>
+                    }
+                </tr>
+            }
+            @{
+                DataRowCollection gyhdx = ds.Tables[1].Rows;
+            }
+            <tr align="center" bgcolor="#FFFFFF" height="27">
+                @for (int i = 0; i < 4; i++)
+                {
+
+
+                    string num = gyhdx[i]["item"].ToString();
+                    DataRow row = gyhdx[i];
+                    <td>
+                        <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                              width="25" height="25">@row["item"]</span>
+                        </td>
+                        <td class="lossrate" data-type=@row["item"]>@row["odds"]</td>
+                        <td><span id="span_@num"></span></td>
+                        <td>
+                            <input type="checkbox" name="checkboxd" value="checkbox" />
+                        </td>
+                        <td>
+                            <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
+                                   id="txt_@num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                        </td>
+                }
+            </tr>
+        </table>
+
+        <div id="tb_ch" style="width:960px;background-color:#eee;margin-top:20px;cursor:pointer;" onclick="change('tb_ch')">
+            <h4 style="font-size:15px;padding-left:10px;">车号<b>-</b></h4>
+        </div>
+        <table style="width:960px;color: Black;border-collapse:collapse;border:1px solid #cacaca;border-top:none;border-left:none;"
+               border="0" cellpadding="0" cellspacing="1" class="tb_btmode tb_ch ">
+            @*<tr align="center" height="20">
+                <th width="50">号码</th>
+                <th width="71">当前赔率</th>
+                <th width="71">已投注</th>
+                <th width="53">请选择</th>
+                <th width="100">投注</th>
+            </tr>*@
+            <tr><th colspan="5">第一名</th><th colspan="5">第二名</th><th colspan="5">第三名</th><th colspan="5">第四名</th><th colspan="5">第五名</th></tr>
+            @{
+                DataTable dtch = ds.Tables[2];
+
+            }
+            @for (int i = 1; i <= 14; i++)
+            {
+                <tr align="center" bgcolor="#FFFFFF" height="27">
+                    @for (int j = 1; j <= 5; j++)
+                    {
+                        DataRow dttype = dtch.Select("pitem='" + j.ToString() + "'")[i - 1];
+                        string num = dttype["item"].ToString();
+
+                        <td>
+                            @if ((int)@ViewData["lotterytype"] != 9)
+                            {
+                                <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                                      width="25" height="25">@dttype["item"]</span>
+                            }
+                            else
+                            {
+                                <span class="ltresult lhbresult btnumber"
+                                      width="25" height="25">@dttype["item"]</span>
+                            }
+                        </td>
+                        <td class="lossrate" data-type=@dttype["item"]>@dttype["odds"]</td>
+                        <td><span id="span_@num"></span></td>
+                        <td>
+                            <input type="checkbox" name="checkboxd" value="checkbox" />
+                        </td>
+                        <td>
+                            <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled" id='txt_@num' onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                        </td>
+
+                    }
+                </tr>
+            }
+        </table>
+        
+        <table style="width:960px;color: Black;border-collapse:collapse;border:1px solid #cacaca;border-top:none;border-left:none;"
+               border="0" cellpadding="0" cellspacing="1" class="tb_btmode tb_ch">
+            @*<tr align="center" height="20">
+                <th width="50">号码</th>
+                <th width="71">当前赔率</th>
+                <th width="71">已投注</th>
+                <th width="53">请选择</th>
+                <th width="100">投注</th>
+            </tr>*@
+            <tr><th colspan="5">第六名</th><th colspan="5">第七名</th><th colspan="5">第八名</th><th colspan="5">第九名</th><th colspan="5">第十名</th></tr>
+
+            @for (int i = 1; i <= 14; i++)
+            {
+                <tr align="center" bgcolor="#FFFFFF" height="27">
+                    @for (int j = 6; j <= 10; j++)
+                    {
+                        DataRow dttype = dtch.Select("pitem='" + j.ToString() + "'")[i - 1];
+                        string num = dttype["item"].ToString();
+
+                        <td>
+                            @if ((int)@ViewData["lotterytype"] != 9)
+                            {
+                                <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                                      width="25" height="25">@dttype["item"]</span>
+                            }
+                            else
+                            {
+                                <span class="ltresult lhbresult btnumber"
+                                      width="25" height="25">@dttype["item"]</span>
+                            }
+                        </td>
+                        <td class="lossrate" data-type=@dttype["item"]>@dttype["odds"]</td>
+                        <td><span id="span_@num"></span></td>
+                        <td>
+                            <input type="checkbox" name="checkboxd" value="checkbox" />
+                        </td>
+                        <td>
+                            <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled" id='txt_@num' onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                        </td>
+
+                    }
+                </tr>
+            }
+        </table>
+
+        <div id="tb_lh" style="width:960px;background-color:#eee;margin-top:20px;cursor:pointer;" onclick="change('tb_lh')">
+            <h4 style="font-size:15px;padding-left:10px;">龙虎<b>-</b></h4>
+        </div>
+        <table style="width:960px;color: Black;border-collapse:collapse;border:1px solid #cacaca;border-top:none;border-left:none;"
+               border="0" cellpadding="0" cellspacing="1" class="tb_lh">
+            @*<tr align="center" height="20">
+                <th width="50">号码</th>
+                <th width="71">当前赔率</th>
+                <th width="71">已投注</th>
+                <th width="53">请选择</th>
+                <th width="100">投注</th>
+            </tr>*@
+            <tr><th colspan="5">1V10</th><th colspan="5">2V9</th><th colspan="5">3V8</th><th colspan="5">4V7</th><th colspan="5">5V6</th></tr>
+            @{
+                 dtch = ds.Tables[3];
+            }
+
+            @for (int i = 1; i <= 2; i++)
+            {
+                <tr align="center" bgcolor="#FFFFFF" height="27">
+                    @for (int j = 1; j <= 5; j++)
+                    {
+                    DataRow dttype = dtch.Select("pitem like '%" + j.ToString() + "%'")[i - 1];
+                    string num = dttype["item"].ToString();
+
+                    <td>
+                        @if ((int)@ViewData["lotterytype"] != 9)
+                        {
+                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                                  width="25" height="25">@dttype["item"]</span>
+                        }
+                        else
+                        {
+                            <span class="ltresult lhbresult btnumber"
+                                  width="25" height="25">@dttype["item"]</span>
+                        }
+                    </td>
+                    <td class="lossrate" data-type=@dttype["item"]>@dttype["odds"]</td>
+                    <td><span id="span_@num"></span></td>
+                    <td>
+                        <input type="checkbox" name="checkboxd" value="checkbox" />
+                    </td>
+                    <td>
+                        <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled" id='txt_@num' onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                    </td>
+
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<script>
+    function change(name)
+    {
+        $("."+name).toggle()
+        if($("#"+name+" b").text()=="-")
+        {
+            $("#"+name+" b").text("+")
+        }else
+        {
+            $("#"+name+" b").text("-")
+        }
+    }
+</script>

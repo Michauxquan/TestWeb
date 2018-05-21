@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "_content36";
+    ViewBag.Title = "_contentpklh";
 }
 
 @model LotteryModel
@@ -10,107 +10,127 @@
        style="color: Black; margin-bottom: 4px;margin-top:5px; border-top:2px solid #fd8724;" bgcolor="#fd8724">
     <tr id="trhead">
         <td rowspan="2" width="13%" style="height: 28px;">期号</td>
-        <td rowspan="2" width="13%" style="height: 28px">开奖时间</td>
-        <td rowspan="2" width="17%" style="height: 28px">开奖结果</td>
-        <td colspan="5" width="27%" style="height: 28px">
-        中奖</td>
-        <td rowspan="2" width="15%" style="height: 28px">中奖额/投注额</td>
+        <td rowspan="2" width="10%" style="height: 28px">开奖时间</td>
+        <td rowspan="2" width="26%" style="height: 28px">开奖结果</td>
+        @*<td colspan="5" width="27%" style="height: 28px">
+        中奖</td>*@
+        <td rowspan="2" colspan="3" width="12%" style="height: 28px">冠亚</td>
+        <td colspan="5" width="14%">龙虎</td>
+        <td rowspan="2" width="10%" style="height: 28px">中奖额/投注额</td>
         <td rowspan="2" width="13%" style="height: 28px">投注</td>
     </tr>
-    <tr>
-        <td>冠亚</td><td>龙虎</td>
+    <tr class="pklhtr">
+        <td style="background:#E0E0E0;">1</td><td style="background:#E0E0E0;">2</td><td style="background:#E0E0E0;">3</td><td style="background:#E0E0E0;">4</td><td style="background:#E0E0E0;">5</td>
     </tr>
     @foreach (OWZX.Model.MD_LotteryUser lot in @Model.lotterylist.LotteryList)
     {
-        
+
         <tr>
             <td>@lot.Expect</td>
             <td>@lot.Opentime.ToString("MM-dd HH:mm")</td>
             <td>
+               
                 @if (@lot.Status != 2)
                 {
-                    
+
                 }
                 else
                 {
-                    <text><i>@lot.First</i>+<i>@lot.Second</i>+<i>@lot.Three</i>=</text>
-                    string resnum = string.Empty;
-                   
-                        resnum = int.Parse(@lot.Resultnum).ToString("d2");
-                        <span class="ltresult pcresult">
-                            @resnum
-                        </span>
-                    
+                    string[] opencodes = lot.Orderresult.Split(',');
+                    string clsec = string.Empty;
+                    for (int i = 0; i <= opencodes.Length - 1; i++)
+                    {
+                        clsec = "regular" + opencodes[i];
+                        <em class="@clsec"></em>
+                    }
                 }
             </td>
             @if(lot.ResultType!=null &&lot.ResultType!=string.Empty)
             {
-            string[] resulttype = lot.ResultType.Split(',');
+                string[] pklhresult = lot.ResultType.Split(';');
+                string[] pkgy = pklhresult[1].Replace("冠亚:","").Split(',');
+                string[] pklh = pklhresult[2].Replace("龙虎:", "").Split(',');
+            <td style="color:#900;">@pkgy[0]</td>
             <td>
-            @if (@resulttype[0]=="大")
+            @if (pkgy[1] == "大")
             {
-            <span class="da">@resulttype[0]</span>
+            <span class="da">@pkgy[1]</span>
             }
-            else if (@resulttype[0] == "小")
+            else if (pkgy[1] == "小")
             {
-                <span class="xiao">@resulttype[0]</span>
+                <span class="xiao">@pkgy[1]</span>
             }</td><td>
-            @if (@resulttype[1] == "单")
+            @if (pkgy[2] == "单")
             {
-                <span class="dan">@resulttype[1]</span>
+                <span class="dan">@pkgy[2]</span>
             }
-            else if (@resulttype[1] == "双")
+            else if (pkgy[2] == "双")
             {
-                <span class="shuang">@resulttype[1]</span>
+                <span class="shuang">@pkgy[2]</span>
             }
             </td>
-            <td><span>@if (@resulttype[2] == "大单")
+            <td><span>@if (pklh[0] == "龙")
                     {
-                        <span class="dan">@resulttype[2]</span>
+                        <span class="dan">@pklh[0]</span>
                     }
-                      else if (@resulttype[2] == "小单")
-                      {
-                        <span class="xiaodan">@resulttype[2]</span>
-                      }
-                      else if (@resulttype[2] == "大双")
-                      {
-                        <span class="shuang">@resulttype[2]</span>
-                      }
-                      else if (@resulttype[2] == "小双")
-                      {
-                        <span class="xiaos">@resulttype[2]</span>
-                      }</span></td>
-            <td>
-                @if (@resulttype[3] == "龙")
-                {
-                    <span class="long">@resulttype[3]</span>
-                }
-                else if (@resulttype[3] == "虎")
-                {
-                    <span class="hu">@resulttype[3]</span>
-                }
-                else if (@resulttype[3] == "豹")
-                {
-                    <span class="bao">@resulttype[3]</span>
-                }
-                
-            </td>
-            <td>
-                @if (@resulttype.Length > 4)
-                {
-                    string type = @resulttype[4] == "极小" ? "xiao" : "da";
-                    <span class="@type">
-                        @resulttype[4]
-                    </span>
-                }
-                else
-                {
-                  <span>-</span>
+                    else if (@pklh[0] == "虎")
+                    {
+                        <span class="xiaodan">@pklh[0]</span>
                     }
-                               </td>
+                </span></td>
+    <td>
+        <span>
+            @if (pklh[1] == "龙")
+            {
+                <span class="dan">@pklh[1]</span>
+            }
+            else if (@pklh[1] == "虎")
+            {
+                <span class="xiaodan">@pklh[1]</span>
+            }
+    </span>
+</td>
+    <td>
+        <span>
+            @if (pklh[2] == "龙")
+            {
+                <span class="dan">@pklh[2]</span>
+            }
+            else if (@pklh[2] == "虎")
+            {
+                <span class="xiaodan">@pklh[2]</span>
+            }
+        </span>
+    </td>
+    <td>
+        <span>
+            @if (pklh[3] == "龙")
+            {
+                <span class="dan">@pklh[3]</span>
+            }
+            else if (@pklh[3] == "虎")
+            {
+                <span class="xiaodan">@pklh[3]</span>
+            }
+        </span>
+    </td>
+    <td>
+        <span>
+            @if (pklh[4] == "龙")
+            {
+                <span class="dan">@pklh[4]</span>
+            }
+            else if (@pklh[4] == "虎")
+            {
+                <span class="xiaodan">@pklh[4]</span>
+            }
+        </span>
+    </td>
             }else
             { 
-              <td></td><td></td><td></td><td></td><td></td>
+              <td></td><td></td><td></td><td></td><td></td><td></td>
+<td></td>
+<td></td>
             }
                 
             <td>@{string bt = string.Format("{0:n0}", @lot.LuckResult); string lk = string.Format("{0:n0}", @lot.Money);} @(lk!="0"?"<a style=\"color: #FD6400;cursor:pointer;\" href=\"javascript:loadpage('bett',"+@lot.Expect+")\">":"")@bt/@lk @(lk!="0"?"</a>":"")</td>
@@ -131,7 +151,7 @@
         </tr>
     }
     <tr align="center" bgcolor="#FFFFFF" id="pagetr">
-        <td height="28" colspan="10" bgcolor="#FFFFFF">
+        <td height="28" colspan="13" bgcolor="#FFFFFF">
 
             <div class="tcdPageCode">
 
@@ -151,7 +171,7 @@
             current: @Model.PageModel.PageNumber,
             backFn: function (p)
             {
-                $(".temp_content").load("/nwlottery/_contentlhb",{"type":lotterytype,"page":p});
+                $(".temp_content").load("/nwlottery/_contentpklh",{"type":lotterytype,"page":p});
             }
         });
     });

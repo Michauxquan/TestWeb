@@ -154,7 +154,7 @@
                             int intthree = int.Parse(three == "" ? "0" : three);
                             }
 
-                            @if (cpcode != 13 && cpcode != 29 && cpcode != 30)
+                            @if (cpcode != 13 && cpcode != 29 && cpcode != 30 && cpcode != 27)
                             {
                                 <span style="font-size:15px;">一区号码: <span class="ltresult">@first</span></span>
                                 <span style="margin-left:60px;font-size:15px;">二区号码: <span class="ltresult">@second</span></span>
@@ -237,6 +237,32 @@
 
                                     }
 
+                                </span>
+                            }
+                            else if (cpcode == 27)
+                            {
+                                string[] ttype = Model.lotterylist.Prev_Lottery.ResultType.Split(';')[1].Replace("冠亚:", "").Split(',');
+                                <span style="font-size:15px;">
+                                    冠亚和:
+
+                                    <span class="pcresult">@ttype[0]</span>
+                                    @if (ttype[1] == "大")
+                                    {
+                                        <span class="da" style="font-size:17px;">@ttype[1]</span>
+                                    }
+                                    else if (ttype[1] == "小")
+                                    {
+                                        <span class="xiao" style="font-size:17px;">@ttype[1]</span>
+                                    }
+
+                                    @if (ttype[2] == "单")
+                                    {
+                                        <span class="dan" style="font-size:17px;">@ttype[2]</span>
+                                    }
+                                    else if (ttype[2] == "双")
+                                    {
+                                        <span class="shuang" style="font-size:17px;">@ttype[2]</span>
+                                    }
                                 </span>
                             }
                             else if (cpcode == 29)

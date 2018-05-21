@@ -157,11 +157,11 @@ namespace OWZX.Model
         /// <summary>
         /// PK10
         /// </summary>
-        pk10 = 28,
+        pk22 = 28,
         /// <summary>
         /// PK22
         /// </summary>
-        pk22 = 29,
+         pk10= 29,
         /// <summary>
         /// PK龙虎
         /// </summary>

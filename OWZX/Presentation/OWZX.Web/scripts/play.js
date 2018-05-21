@@ -1,5 +1,6 @@
 ﻿/// <reference path="D:\我的\项目\蛋蛋竞猜\Qg_EggQuiz\Qg_EggQuiz\qcgeass.aspx" />
 var PRESSNUM = (lotterytype == 4 || lotterytype == 5) ? '10, 60, 270, 360, 300' :
+lotterytype == 29?"10":
     (lotterytype == 9 ? '10, 60, 270, 360, 620,870,1020,870,620,360,270,60,10' :
     (lotterytype == 13 ? '6, 8, 10, 14, 16, 18, 27, 32, 36, 38, 40, 43, 48,50, 51,53,55,57,58,60,62,64,66,68, 72,76,80,82,86,90,90,86,82,80,76,72, 68, 66, 64, 62, 60, 58, 57, 55, 53, 51, 50, 48, 43, 40, 38, 36, 32, 27, 18, 16,14,20,25,30,35,40,45,50,55,60,70,75,80' :
     '1,3,6,10,15,21,28,36,45,55,63,69,73,75,75,73,69,63,55,45,36,28,21,15,10,6,3,1'));
@@ -109,6 +110,14 @@ $(document).ready(function ()
                         //dom.parent().next("td").children("input").val(nub1[i]); //改了
                         dom.parent().next("td").children("input").val(nub[i]); //改了
                     }
+                    else if (lotterytype == 27)
+                        dom.parent().next("td").children("input").val(10);
+                    else if (lotterytype == 28)
+                        dom.parent().next("td").children("input").val(pk22[i]); 
+                    else if (lotterytype == 29)
+                        dom.parent().next("td").children("input").val(10); 
+                    else if (lotterytype == 30)
+                        dom.parent().next("td").children("input").val(50);
                     else
                     {
                         dom.parent().next("td").children("input").val(lhc[i]); 
@@ -369,7 +378,7 @@ function useSuoha() {
 //标准投注模式设定方法
 function setValue(num)
 {
-    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6 || lotterytype == 14 || lotterytype == 15 || lotterytype == 16)
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6 || lotterytype == 14 || lotterytype == 15 || lotterytype == 16 )
     {
         for (var i = 0; i < mode[num].length; i++)
         {
@@ -393,7 +402,7 @@ function setValue(num)
             }
         }
     }
-    else if (lotterytype == 7 || lotterytype == 10)
+    else if (lotterytype == 7 || lotterytype == 10 )
     {
         for (var i = 0; i < modegj[num].length; i++) {
             var id_num = modegj[num][i];
@@ -403,7 +412,33 @@ function setValue(num)
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
         }
-    } else if (lotterytype == 8)
+    }
+    else if(lotterytype==28)
+    {
+        for (var i = 0; i < modepk22[num].length; i++)
+        {
+            var id_num = modepk22[num][i];
+            var id_name = "#txt_" + modepk22[num][i];
+            if (!$(id_name).attr("readonly")) {
+
+                $(id_name).val(pk22[id_num]);
+                $(id_name).parent().prev("td").children("input").prop("checked", true);
+            }
+        }
+    }
+    else if(lotterytype == 29)
+    {
+        for (var i = 0; i < modepk10[num].length; i++) {
+            var id_num = modepk10[num][i];
+            var id_name = "#txt_" + modepk10[num][i];
+            if (!$(id_name).attr("readonly")) {
+
+                $(id_name).val(pk10);
+                $(id_name).parent().prev("td").children("input").prop("checked", true);
+            }
+        }
+    }
+    else if (lotterytype == 8)
     {
         for (var i = 0; i < modegyj[num].length; i++) {
             var id_num = modegyj[num][i];
@@ -413,7 +448,7 @@ function setValue(num)
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
         }
-    } else if (lotterytype ==9) {
+    } else if (lotterytype == 9) {
         for (var i = 0; i < modelhb[num].length; i++) {
             var id_num = modelhb[num][i];
             var id_name = "[id='txt_" + modelhb[num][i] + "']";
@@ -516,6 +551,14 @@ function ani_select() {
                         $(this).parent().next("td").children("input").val(pkgj); //改了
                     else if (lotterytype == 10)
                         $(this).parent().next("td").children("input").val(pkgyj[i]); //改了
+                    else if (lotterytype == 27)
+                        $(this).parent().next("td").children("input").val(10);
+                    else if (lotterytype == 28)
+                        $(this).parent().next("td").children("input").val(pk22[i]);
+                    else if (lotterytype == 29)
+                        $(this).parent().next("td").children("input").val(10); 
+                    else if (lotterytype == 30)
+                        $(this).parent().next("td").children("input").val(50);
                     else {
                         $(this).parent().next("td").children("input").val(nub[i]); //改了
                     }
@@ -546,6 +589,14 @@ $("input[name='checkboxd']").each(function (i, v) {
                         $(this).parent().next("td").children("input").val(pkgj); //改了
                     else if (lotterytype == 10)
                         $(this).parent().next("td").children("input").val(pkgyj[i]); //改了
+                    else if (lotterytype == 27)
+                        $(this).parent().next("td").children("input").val(10);
+                    else if (lotterytype == 28)
+                        $(this).parent().next("td").children("input").val(pk22[i]);
+                    else if (lotterytype == 29)
+                        $(this).parent().next("td").children("input").val(10);
+                    else if (lotterytype == 30)
+                        $(this).parent().next("td").children("input").val(50); 
                     else {
                         // $(this).parent().next("td").children("input").val(nub1[i]); //改了
                         $(this).parent().next("td").children("input").val(nub[i]); //改了

@@ -383,7 +383,7 @@ border:1px solid #cacaca;
 .table_rule tr {
 height:40px;
 }
-#trhead,#trhead td {
+#trhead,#trhead td,.pklhtr td {
     background:#E0E0E0;
 }
 

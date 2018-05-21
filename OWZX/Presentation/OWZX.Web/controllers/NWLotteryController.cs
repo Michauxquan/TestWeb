@@ -486,6 +486,19 @@ namespace OWZX.Web.controllers
             return View(model);
         }
 
+        public ActionResult _BettPagePKSC()
+        {
+            int type = WebHelper.GetFormInt("type");
+            string expect = WebHelper.GetFormString("expect");
+            DataSet ds = LotteryList.GetLotSetList(type.ToString());
+            ViewData["ltset"] = ds;
+            ViewData["exists"] = NewUser.ExistsMode(WorkContext.Uid, type);
+            ViewData["lotterytype"] = type;
+            ViewData["expect"] = expect;
+            List<MD_BettMode> model = NewUser.GetModeList(1, 20, " where a.uid=" + WorkContext.Uid.ToString() + " and a.lotterytype=" + type.ToString());
+            return View(model);
+        }
+
         /// <summary>
         /// 投注
         /// </summary>

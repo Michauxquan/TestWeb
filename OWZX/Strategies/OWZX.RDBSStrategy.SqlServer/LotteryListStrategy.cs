@@ -486,7 +486,7 @@ SELECT ROW_NUMBER() over(order by a.setid ) id,a.[setid]
       ,isnull(currodds,a.[odds]) [odds]
       ,ISNULL(prevodds,a.[odds])  prevodds
       ,a.[addtime]
-      ,b.item,b.type,b.nums
+      ,b.item,b.type,b.nums,a.pitem
 into  #list
   FROM owzx_lotsetodds a
   join owzx_lotteryset b on a.bttypeid= b.bttypeid and a.lotterytype= @type
@@ -533,6 +533,41 @@ begin
 select * from  #list where id>=1 and id<=8
 
 select * from  #list where id>=9 and id<=18
+end
+else if(@type=27)
+begin
+
+select * from  #list where id>=1 and id<=17
+
+select * from  #list where id>=18 and id<=21
+
+select id,setid,lotterytype,bttypeid,odds,prevodds,item,type,
+replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(pitem,'第一名','1')
+,'第二名','2')
+,'第三名','3')
+,'第四名','4')
+,'第五名','5')
+,'第六名','6')
+,'第七名','7')
+,'第八名','8')
+,'第九名','9')
+,'第十名','10') pitem from  #list where id>=22 and id<=161
+select * from  #list where id>=162 and id<=171
+end
+else if(@type=28)
+begin
+select * from  #list where id>=1 and id<=11
+select * from  #list where id>=12 and id<=22
+end
+else if(@type=29)
+begin
+select * from  #list where id>=1 and id<=5
+select * from  #list where id>=6 and id<=10
+end
+else if(@type=30)
+begin
+select * from  #list where id=1
+select * from  #list where id=2
 end
 ", type,condition);
             

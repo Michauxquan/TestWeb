@@ -236,7 +236,11 @@ function loadpage(type, expect, betid) {
             isbett = 1;
             if (lotterytype == 13) {
                 $(".temp_content").load("/nwlottery/_bettpagelhc", { "type": lotterytype, "expect": expect });
-            } else {
+            }
+            else if (lotterytype == 27) {
+                $(".temp_content").load("/nwlottery/_bettpagepksc", { "type": lotterytype, "expect": expect });
+            }
+            else {
                 $(".temp_content").load("/nwlottery/_bettpage", { "type": lotterytype, "expect": expect });
             }
            
