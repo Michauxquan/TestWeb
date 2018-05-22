@@ -206,7 +206,7 @@ select  ROW_NUMBER() over(order by a.bettid desc) id,a.lotterynum,a.addtime,c.re
 case when c.status=2 then (
 case when ISNULL(a.winmoney,0)>=0 then ISNULL(a.winmoney,0)-a.money else ISNULL(a.winmoney,0) end ) else 0 end win,
 a.bettid,a.bettinfo
-,c.status,c.opentime,a.lotteryid,isnull(c.resulttype,'') resulttype
+,c.status,c.opentime,a.lotteryid,isnull(c.resulttype,'') resulttype,c.orderresult
 into #lotrecord  
 from owzx_bett a 
 join owzx_lotteryrecord c on a.lotteryid=c.type and a.lotterynum=c.expect and c.type={0} and a.uid={1}

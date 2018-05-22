@@ -27,7 +27,7 @@ namespace OWZX.Web.controllers
         /// <returns></returns>
         public ActionResult LTIndex(int id)
         {
-            if(WorkContext.Uid<=0)
+            if (WorkContext.Uid <= 0)
             {
                 return Redirect("/");
             }
@@ -130,7 +130,7 @@ namespace OWZX.Web.controllers
                     total = list.RemainS;
                 }
             }
-            else if (id == 25 || id==26)
+            else if (id == 25 || id == 26)
             {
                 if (DateTime.Now > DateTime.Parse("2:00") && DateTime.Now < DateTime.Parse("10:00"))
                 {
@@ -220,7 +220,7 @@ namespace OWZX.Web.controllers
                     break;
                 case (int)LotType.hk6:
                     title = "六合彩首页";
-                    total = 60*60*24*2;
+                    total = 60 * 60 * 24 * 2;
                     stop = 600;
                     break;
                 case (int)LotType.dd28fd:
@@ -288,7 +288,7 @@ namespace OWZX.Web.controllers
                     total = 600;
                     stop = 40;
                     break;
-                
+
             }
         }
 
@@ -477,7 +477,7 @@ namespace OWZX.Web.controllers
         {
             int type = WebHelper.GetFormInt("type");
             string expect = WebHelper.GetFormString("expect");
-            DataSet ds = LotteryList.GetLotSetList(type.ToString(),"",true);
+            DataSet ds = LotteryList.GetLotSetList(type.ToString(), "", true);
             ViewData["ltset"] = ds;
             ViewData["exists"] = NewUser.ExistsMode(WorkContext.Uid, type);
             ViewData["lotterytype"] = type;
@@ -515,10 +515,125 @@ namespace OWZX.Web.controllers
                 Money = WebHelper.GetFormInt("bettTotalEggs"),
                 Bettmode = WebHelper.GetFormInt("bettmodel")
             };
+
             if (bett.Money < 10)
             {
                 return Content("4");
             }
+            //if (bett.Lotteryid == 27)
+            //{
+            //    //bettinfo    gy$3:10;gy$4:10;ch_1$大:10;ch_1$小:10;ch_3$大:10;ch_4$大:10;ch_5$大:10;lh_1$龙:10;lh_1$虎:10
+            //    //bettnumber  gy$3;gy$4;ch_1$大;ch_2$大;ch_3$大;ch_4$大;ch_5$大;lh_1$龙;lh_1$虎
+            //    StringBuilder strbgy = new StringBuilder("冠亚_");
+            //    StringBuilder strch = new StringBuilder("车号_");
+            //    StringBuilder strlh = new StringBuilder("龙虎_");
+            //    StringBuilder strbgynum = new StringBuilder("冠亚_");
+            //    StringBuilder strchnum = new StringBuilder("车号_");
+            //    StringBuilder strlhnum = new StringBuilder("龙虎_");
+            //    List<string> bettinfo = bett.Bettinfo.Split(';').ToList<string>();
+            //    List<string> bettnum = bett.Bettnum.Split(';').ToList<string>();
+
+            //    #region info
+            //    if (bett.Bettinfo.Contains("gy$"))
+            //    {
+            //        List<string> gylist = bettinfo.FindAll(x => x.Contains("gy$"));
+            //        foreach (string item in gylist)
+            //        {
+            //            strbgy.Append(item.Replace("gy$", "") + ";");
+            //        }
+            //        strbgy = strbgy.Remove(strbgy.Length - 1, 1).Append("|");
+            //    }
+                
+            //    if (bett.Bettinfo.Contains("ch_"))
+            //    {
+            //        for (int i = 1; i <= 10; i++)
+            //        {
+            //            List<string> chlist = bettinfo.FindAll(x => x.Contains("ch_"+i.ToString()+"$"));
+            //            for (int j=0;j<chlist.Count;j++)
+            //            {
+            //                string item = chlist[j];
+            //                if (j == 0)
+            //                    strch.Append(item.Replace("ch_" + i.ToString(), i.ToString()) + ";");
+            //                else
+            //                    strch.Append(item.Replace("ch_" + i.ToString()+"$", "") + ";");
+            //            }
+            //            strch = strch.Remove(strch.Length - 1, 1).Append("%");
+            //        }
+            //        strch = strch.Remove(strch.Length - 1, 1).Append("|");
+            //    }
+                
+            //    if (bett.Bettinfo.Contains("lh_"))
+            //    {
+            //        for (int i = 1; i <= 5; i++)
+            //        {
+            //            List<string> lhlist = bettinfo.FindAll(x => x.Contains("lh_" + i.ToString() + "$"));
+            //            for (int j = 0; j < lhlist.Count; j++)
+            //            {
+            //                string item = lhlist[j];
+            //                if (j == 0)
+            //                    strlh.Append(item.Replace("lh_" + i.ToString(), i.ToString()) + ";");
+            //                else
+            //                    strlh.Append(item.Replace("lh_" + i.ToString() + "$", "") + ";");
+            //            }
+            //            strlh = strlh.Remove(strlh.Length - 1, 1).Append("%");
+            //        }
+            //        strlh = strlh.Remove(strlh.Length - 1, 1);
+            //    }
+            //    bett.Bettinfo = strbgy.ToString() + strch.ToString() + strlh.ToString();
+            //    #endregion
+
+            //    #region num
+            //    if (bett.Bettnum.Contains("gy$"))
+            //    {
+            //        List<string> gylist = bettnum.FindAll(x => x.Contains("gy$"));
+            //        foreach (string item in gylist)
+            //        {
+            //            strbgynum.Append(item.Replace("gy$", "") + ";");
+            //        }
+            //        strbgynum = strbgynum.Remove(strbgynum.Length - 1, 1).Append("|");
+            //    }
+                
+            //    if (bett.Bettnum.Contains("ch_"))
+            //    {
+            //        for (int i = 1; i <= 10; i++)
+            //        {
+            //            List<string> chlist = bettnum.FindAll(x => x.Contains("ch_" + i.ToString() + "$"));
+            //            for (int j = 0; j < chlist.Count; j++)
+            //            {
+            //                string item = chlist[j];
+            //                if (j == 0)
+            //                    strchnum.Append(item.Replace("ch_" + i.ToString(), i.ToString()) + ";");
+            //                else
+            //                    strchnum.Append(item.Replace("ch_" + i.ToString() + "$", "") + ";");
+            //            }
+            //            strchnum = strchnum.Remove(strchnum.Length - 1, 1).Append("%");
+            //        }
+            //        strchnum = strchnum.Remove(strchnum.Length - 1, 1).Append("|");
+            //    }
+                
+            //    if (bett.Bettnum.Contains("lh_"))
+            //    {
+            //        for (int i = 1; i <= 5; i++)
+            //        {
+            //            List<string> lhlist = bettnum.FindAll(x => x.Contains("lh_" + i.ToString() + "$"));
+            //            for (int j = 0; j < lhlist.Count; j++)
+            //            {
+            //                string item = lhlist[j];
+            //                if (j == 0)
+            //                    strlhnum.Append(item.Replace("lh_" + i.ToString(), i.ToString()) + ";");
+            //                else
+            //                    strlhnum.Append(item.Replace("lh_" + i.ToString() + "$", "") + ";");
+            //            }
+            //            strlhnum = strlhnum.Remove(strlhnum.Length - 1, 1).Append("%");
+            //        }
+            //        strlhnum = strlhnum.Remove(strlhnum.Length - 1, 1);
+            //    }
+
+            //    bett.Bettnum = strbgynum.ToString() + strchnum.ToString() + strlhnum.ToString();
+            //    #endregion
+            //}
+
+
             string result = Lottery.AddNewBett(bett);
             if (result.EndsWith("成功"))
                 return Content("1");
@@ -538,7 +653,7 @@ namespace OWZX.Web.controllers
             string btjson = JsonConvert.SerializeObject(btmode);
             return Content(btjson);
         }
-       
+
 
         /// <summary>
         /// 游戏规则
@@ -563,12 +678,28 @@ namespace OWZX.Web.controllers
             DataTable dt = LotteryList.GetUserBett(type, WorkContext.Uid, pageindex, pagesize);
             LotteryRecord record = new LotteryRecord()
             {
-                LotteryType=type,
+                LotteryType = type,
                 PageModel = new PageModel(20, pageindex, dt.Rows.Count > 0 ? int.Parse(dt.Rows[0]["totalcount"].ToString()) : 0),
                 Records = dt
             };
             return View(record);
         }
+
+        public ActionResult _BettRecordPKSC()
+        {
+            int type = WebHelper.GetFormInt("type");
+            int pageindex = WebHelper.GetFormInt("page");
+            int pagesize = 20;
+            DataTable dt = LotteryList.GetUserBett(type, WorkContext.Uid, pageindex, pagesize);
+            LotteryRecord record = new LotteryRecord()
+            {
+                LotteryType = type,
+                PageModel = new PageModel(20, pageindex, dt.Rows.Count > 0 ? int.Parse(dt.Rows[0]["totalcount"].ToString()) : 0),
+                Records = dt
+            };
+            return View(record);
+        }
+
         /// <summary>
         /// 投注详情
         /// </summary>
@@ -584,7 +715,7 @@ namespace OWZX.Web.controllers
             return View();
         }
 
-         /// <summary>
+        /// <summary>
         /// 投注详情
         /// </summary>
         /// <returns></returns>
@@ -592,13 +723,24 @@ namespace OWZX.Web.controllers
         {
             int type = WebHelper.GetFormInt("type");
             int betid = WebHelper.GetFormInt("bettid");
-            DataSet ds = LotteryList.GetLotSetList(type.ToString(),"",true);
+            DataSet ds = LotteryList.GetLotSetList(type.ToString(), "", true);
             ViewData["ltset"] = ds;
             DataTable dt = LotteryList.GetUserBett(type, WorkContext.Uid, 1, 1, " where a.bettid=" + betid.ToString());
             ViewData["bett"] = dt;
             return View();
         }
-        
+
+        public ActionResult _BettDetailsPKSC()
+        {
+            int type = WebHelper.GetFormInt("type");
+            int betid = WebHelper.GetFormInt("bettid");
+            DataSet ds = LotteryList.GetLotSetList(type.ToString());
+            ViewData["ltset"] = ds;
+            DataTable dt = LotteryList.GetUserBett(type, WorkContext.Uid, 1, 1, " where a.bettid=" + betid.ToString());
+            ViewData["bett"] = dt;
+            return View();
+        }
+
         #endregion
 
         /// <summary>
@@ -615,7 +757,7 @@ namespace OWZX.Web.controllers
             else
                 return Content(result);
         }
-       
+
         #region 模式
         /// <summary>
         /// 投注模式
@@ -646,7 +788,7 @@ namespace OWZX.Web.controllers
             return View(model);
         }
 
-        
+
         public ActionResult _BettModeLHC()
         {
             int type = WebHelper.GetFormInt("type");
@@ -673,14 +815,14 @@ namespace OWZX.Web.controllers
         }
         #endregion
 
-        public ActionResult GetProvBettInfo(int type = 0,string lotterynum="")
+        public ActionResult GetProvBettInfo(int type = 0, string lotterynum = "")
         {
             var condition = "";
             if (!string.IsNullOrEmpty(lotterynum))
             {
                 condition = " where a.lotterynum='" + lotterynum + "' ";
             }
-            var list = LotteryList.GetUserBett(type, WorkContext.Uid, 1, 2, condition); 
+            var list = LotteryList.GetUserBett(type, WorkContext.Uid, 1, 2, condition);
             string btjson = JsonConvert.SerializeObject(list);
             return Content(btjson);
         }
@@ -756,7 +898,7 @@ namespace OWZX.Web.controllers
         /// 获取用户自动投注
         /// </summary>
         /// <returns></returns>
-        private  ActionResult GetUserBett()
+        private ActionResult GetUserBett()
         {
             int type = WebHelper.GetFormInt("type");
             ViewData["lotterytype"] = type;

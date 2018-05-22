@@ -11,7 +11,7 @@
     string status = row["status"].ToString() == "2" ? "已开奖" : "未开奖";
     string opentime = DateTime.Parse(row["opentime"].ToString()).ToString("MM-dd HH:mm:ss");
     int lotterytype=int.Parse(row["lotteryid"].ToString());
-    int isnumber = (lotterytype == 4 || lotterytype == 5 || lotterytype == 9 || lotterytype == 17) ? 0 : 1;
+    int isnumber = (lotterytype == 4 || lotterytype == 5 || lotterytype == 9 || lotterytype == 17 || lotterytype == 30) ? 0 : 1;
 }
 <div class="tzbanner touzhutop">
     <div class="tzbanner_z touzhutop_n">
@@ -28,23 +28,31 @@
                         <td width="225" align="left">开奖结果：
                         @if (row["status"].ToString() == "2")
                         {
-                            if (lotterytype != 4 && lotterytype != 5 && lotterytype != 17)
+                            if (lotterytype != 4 && lotterytype != 5 && lotterytype != 17 && lotterytype != 30)
                             {<span style="font-size:15px;">
                             
                             <span class="ltresult pcresult">
                                 @{string resnum = int.Parse(row["resultnum"].ToString()).ToString("d2");}
                                 @resnum
                             </span>
-                        </span>
-                        }
-                        else if (lotterytype == 4 || lotterytype == 5 || lotterytype == 17)
-                        {
-                            string type = row["resultnum"].ToString();
-                            string cltype = type == "豹" ? "z1" : (type == "顺" ? "z3" : (type == "对" ? "z2" : (type == "半" ? "z4" : "z5")));
-                            <span style="font-size:15px;">
-                                <span class="ltresult pcresult">@type</span>
                             </span>
-                        }
+                            }
+                            else if (lotterytype == 4 || lotterytype == 5 || lotterytype == 17)
+                            {
+                                string type = row["resultnum"].ToString();
+                                string cltype = type == "豹" ? "z1" : (type == "顺" ? "z3" : (type == "对" ? "z2" : (type == "半" ? "z4" : "z5")));
+                                <span style="font-size:15px;">
+                                    <span class="ltresult pcresult">@type</span>
+                                </span>
+                            }
+                            else if (lotterytype == 30)
+                            {
+                                string type = row["resultnum"].ToString();
+                                string cltype = type == "龙" ? "long" : "hu";
+                                <span style="font-size:15px;">
+                                    <span class="ltresult pcresult">@type</span>
+                                </span>
+                            }
                         }
                          
                         </td>

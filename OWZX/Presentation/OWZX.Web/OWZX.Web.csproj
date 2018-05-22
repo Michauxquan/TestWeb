@@ -764,8 +764,11 @@
     <Content Include="views\nwlottery\_bettpagelhc.cshtml" />
     <Content Include="views\nwlottery\_bettmodelhc.cshtml" />
     <Content Include="views\nwlottery\_bettdetailslhc.cshtml" />
-    <Content Include="views\nwlottery\_contentpklh.cshtml" />
     <Content Include="views\nwlottery\_bettpagepksc.cshtml" />
+    <Content Include="views\nwlottery\_contentpklh.cshtml" />
+    <Content Include="views\nwlottery\_bettpagepksc - 复制.cshtml" />
+    <Content Include="views\nwlottery\_bettrecordpksc.cshtml" />
+    <Content Include="views\nwlottery\_bettdetailspksc.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

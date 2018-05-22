@@ -1,6 +1,7 @@
-﻿/// <reference path="D:\我的\项目\蛋蛋竞猜\Qg_EggQuiz\Qg_EggQuiz\qcgeass.aspx" />
+﻿
 var PRESSNUM = (lotterytype == 4 || lotterytype == 5) ? '10, 60, 270, 360, 300' :
-lotterytype == 29?"10":
+(lotterytype == 27 || lotterytype == 29) ? "10" : (lotterytype == 30) ? "50" :
+lotterytype == 28 ? "10, 10, 20, 30, 40, 50, 70, 80, 90, 100, 100, 100, 100, 90, 80, 70, 50, 40, 30, 20, 10, 10" :
     (lotterytype == 9 ? '10, 60, 270, 360, 620,870,1020,870,620,360,270,60,10' :
     (lotterytype == 13 ? '6, 8, 10, 14, 16, 18, 27, 32, 36, 38, 40, 43, 48,50, 51,53,55,57,58,60,62,64,66,68, 72,76,80,82,86,90,90,86,82,80,76,72, 68, 66, 64, 62, 60, 58, 57, 55, 53, 51, 50, 48, 43, 40, 38, 36, 32, 27, 18, 16,14,20,25,30,35,40,45,50,55,60,70,75,80' :
     '1,3,6,10,15,21,28,36,45,55,63,69,73,75,75,73,69,63,55,45,36,28,21,15,10,6,3,1'));
@@ -8,12 +9,10 @@ lotterytype == 29?"10":
 var maxnum = 99999999999999999;
 var minnum = 10;
 var BeforePeriods;
-$(document).ready(function ()
-{
-     
+$(document).ready(function () {
+
     //点击投注模式
-    $(".img_bt1").click(function ()
-    {
+    $(".img_bt1").click(function () {
         clear();
         var i = $(this).attr("attr");
         //if (i == 1|| i == 2 || i == 3 || i == 4)
@@ -28,12 +27,10 @@ $(document).ready(function ()
         setValue(i);
         //getAllpceggs();
     }).hover(
-  function ()
-  {
+  function () {
       $(this).css("color", "#FF6600");
   },
-  function ()
-  {
+  function () {
       $(this).css("color", "#8d5000"); //鼠标移过后样式
   }
 
@@ -52,19 +49,17 @@ $(document).ready(function ()
     //})
 
     $('input[type="checkbox"]').each(function (i, v) {
-        $(v).click(function () { 
+        $(v).click(function () {
             if (!$(v).prop("checked")) {
                 $(v).prop("checked", true);
-                if (lotterytype != 13)
-                {
+                if (lotterytype != 13) {
                     //$(v).parent().next("td").children("input").val(nub1[i - 1]); //改了
                     $(v).parent().next("td").children("input").val(nub[i - 1]); //改了
                 }
-                else
-                {
+                else {
                     $(v).parent().next("td").children("input").val(lhc[i - 1]);
                 }
-                
+
             } else {
                 $(v).prop("checked", false);
                 $(v).parent().next("td").children("input").val("");
@@ -72,7 +67,7 @@ $(document).ready(function ()
             var total = 0;
             $("#panel").find("input[name='SMONEY']").each(function () {
                 if (!$(this).attr("readonly")) {
-                    var txt_value = $.trim($(this).val()).replace(/,/gi, ""); 
+                    var txt_value = $.trim($(this).val()).replace(/,/gi, "");
                     if (txt_value && !isNaN(txt_value)) {
                         total += parseInt(txt_value);
                     }
@@ -96,35 +91,35 @@ $(document).ready(function ()
     //    })
     //})
     //点击号码 
-    $(".btnumber").each(function (i)
-    {
-        $(this).click(function ()
-        {
-            var dom = $(this).parent().next("td").next("td").next("td").next("td").children("input");
-            if (!dom.attr("disabled"))
-            {
-                if (!dom.prop("checked"))
-                {
-                    if (lotterytype != 13)
-                    {
+    $(".btnumber").each(function (i) {
+        $(this).click(function () {
+            var dom;
+            if (lotterytype == 27) {
+                dom = $(this).parent().next("td").next("td").next("td").children("input");
+            }
+            else {
+                dom = $(this).parent().next("td").next("td").next("td").next("td").children("input");
+            }
+
+            if (!dom.attr("disabled")) {
+                if (!dom.prop("checked")) {
+                    if (lotterytype == 27)
+                        dom.parent().next("td").children("input").val(10);
+                    else if (lotterytype == 28)
+                        dom.parent().next("td").children("input").val(pk22[i]);
+                    else if (lotterytype == 29)
+                        dom.parent().next("td").children("input").val(10);
+                    else if (lotterytype == 30)
+                        dom.parent().next("td").children("input").val(50);
+                    else if (lotterytype != 13) {
                         //dom.parent().next("td").children("input").val(nub1[i]); //改了
                         dom.parent().next("td").children("input").val(nub[i]); //改了
                     }
-                    else if (lotterytype == 27)
-                        dom.parent().next("td").children("input").val(10);
-                    else if (lotterytype == 28)
-                        dom.parent().next("td").children("input").val(pk22[i]); 
-                    else if (lotterytype == 29)
-                        dom.parent().next("td").children("input").val(10); 
-                    else if (lotterytype == 30)
-                        dom.parent().next("td").children("input").val(50);
-                    else
-                    {
-                        dom.parent().next("td").children("input").val(lhc[i]); 
+                    else {
+                        dom.parent().next("td").children("input").val(lhc[i]);
                     }
                     dom.prop("checked", true);
-                } else
-                {
+                } else {
                     dom.parent().next("td").children("input").val("");
                     dom.prop("checked", false);
                 }
@@ -134,7 +129,7 @@ $(document).ready(function ()
     }).css("cursor", "pointer");
 
     //点击反选按钮
-    $(".reversebtn").click(function() { ani_select(); });
+    $(".reversebtn").click(function () { ani_select(); });
     //点击清除按钮
     $(".clearbtn").click(function () { bettmodel = ""; clear(); });
     ////刷新赔率
@@ -146,8 +141,7 @@ $(document).ready(function ()
     //setTimeout(function() { getprovbettinfo(0) },800);
     getprovbettinfo(0);
     //点击整体的倍数
-    $("#border_out1_l").find("span").click(function ()
-    {
+    $("#border_out1_l").find("span").click(function () {
         var peilv = $(this).text().replace("倍", "");
         if ($('#betsLeft').val() != "") {
             var s = parseFloat($('#betsLeft').val()) * peilv
@@ -164,65 +158,59 @@ $(document).ready(function ()
         //setAllvalue(peilv);
         //getAllpceggs();
     }).hover(
-  function ()
-  {
-      $(this).css("color", "#FF6600");
-  },
-  function ()
-  {
-      $(this).css("color", "#8d5000"); //鼠标移过后样式
-  }
-);
+    function () {
+        $(this).css("color", "#FF6600");
+    },
+    function () {
+        $(this).css("color", "#8d5000"); //鼠标移过后样式
+    }
+    );
 
     //输入投注数据
-    $("#panel").find("input[name='SMONEY']").keyup(function ()
-    {
+    $("#panel").find("input[name='SMONEY']").keyup(function () {
         var regex = /^[1-9]\d{0,}$/;
         var val = $(this).val();
-        if (!regex.test(val))
-        {
+        if (!regex.test(val)) {
             val = val.replace(/\D/g, '');
             $(this).val(val);
         }
-        if (!regex.test(val))
-        {
+        if (!regex.test(val)) {
             $(this).val(val.substring(1));
             getAllpceggs();
-        } else { 
+        } else {
             $(this).parent().prev("td").children("input").attr("checked", "checked");
             getAllpceggs();
         }
-    }).blur(function ()
-    {
+    }).blur(function () {
         $(this).val(ver($(this).val()));
-    }).focus(function ()
-    {
-        if ($(this).val().indexOf(",") > -1)
-        {
+    }).focus(function () {
+        if ($(this).val().indexOf(",") > -1) {
             domvalue = $(this).val().replace(/,/gi, "");
             $(this).val(domvalue);
         }
-        try
-        {
+        try {
             var obj = event.srcElement;
             var txt = obj.createTextRange();
             txt.moveStart('character', obj.value.length);
             txt.collapse(true);
             txt.select();
-        } catch (e)
-        {
+        } catch (e) {
         }
     });
 });
 
 function getprovbettinfo(type) {
-    $.post('/nwlottery/getprovbettinfo', { 'type': $('#provbett_btn').data("id"), lotterynum: type ==0 ? expect:"" }, function (data) {
-        var dt = JSON.parse(data); 
+    $.post('/nwlottery/getprovbettinfo', { 'type': $('#provbett_btn').data("id"), lotterynum: type == 0 ? expect : "" }, function (data) {
+        if ($('#provbett_btn').data("id") == "27")
+        {
+            console.log(data);
+        }
+        var dt = JSON.parse(data);
         for (var i = 0; i < dt.length; i++) {
             if (dt[i].lotterynum == expect) {
-                var arr = dt[i].bettinfo.split(';'); 
+                var arr = dt[i].bettinfo.split(';');
                 $.each(arr, function (i) {
-                    var arritem = arr[i].split(':');  
+                    var arritem = arr[i].split(':');
                     if (parseInt(arritem[0]) + "" != "NaN") {
                         $("#span_" + (parseInt(arritem[0])).toString()).html(ver(arritem[1]));
                     } else {
@@ -230,11 +218,11 @@ function getprovbettinfo(type) {
                     }
                 });
             }
-            if (dt[i].lotterynum != expect && type == 1 ) {
+            if (dt[i].lotterynum != expect && type == 1) {
                 UserMode(dt[i].bettinfo.split(';'), false, true);
                 break;
             }
-        } 
+        }
     });
 }
 
@@ -264,7 +252,7 @@ function usefenpei() {
     var perScore = 0;
     var totalPressScore = 0;
     var data = PRESSNUM.split(",");
-    var Input_Score = $('#betsLeft').val(); 
+    var Input_Score = $('#betsLeft').val();
     if (isNaN(Input_Score)) {
         $('#betsLeft').val('');
         alert('分配分必须为数字!');
@@ -282,7 +270,7 @@ function usefenpei() {
         }
         var checked_num = 0;
         for (var i = 0; i < data.length; i++) {
-            if ($("[id='txt_" + i+"']").parent().prev("td").children("input").prop("checked")) {
+            if ($("[id='txt_" + i + "']").parent().prev("td").children("input").prop("checked")) {
                 checked_num = checked_num + 1;
             }
         }
@@ -300,40 +288,40 @@ function usefenpei() {
     for (var i = 0; i < data.length; i++) {
         if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
             var vval = $("[id='txt_" + getindname(i) + "']").val();
-            perScore = 0; 
-            if (vval != null && vval != "" ) {
-            	vval=vval.replace(/,/g,'');
-	            if(!isNaN(parseInt(vval))){
-	            	totalScore += parseInt(vval);
-	            }
-                
+            perScore = 0;
+            if (vval != null && vval != "") {
+                vval = vval.replace(/,/g, '');
+                if (!isNaN(parseInt(vval))) {
+                    totalScore += parseInt(vval);
+                }
+
             }
         }
-    } 
+    }
     console.log(totalScore);
     for (var i = 0; i < data.length; i++) {
-        if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) { 
+        if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
             var vval = $("[id='txt_" + getindname(i) + "']").val();
             perScore = 0;
-            if (vval != null && vval != "" ) { 
-            	vval=vval.replace(/,/g,'');
-            	if(!isNaN(parseInt(vval))){
-	                if (Input_Score <= maxnum) {
-	                    perScore = Input_Score * parseInt(vval) / totalScore;
-	                } else {
-	                    perScore = mymoney* parseInt(vval) / totalScore ;
-	                } 
-	                $("[id='txt_" + getindname(i) + "']").val(parseInt(perScore));
-	                totalPressScore += parseInt(perScore);
-	            }
+            if (vval != null && vval != "") {
+                vval = vval.replace(/,/g, '');
+                if (!isNaN(parseInt(vval))) {
+                    if (Input_Score <= maxnum) {
+                        perScore = Input_Score * parseInt(vval) / totalScore;
+                    } else {
+                        perScore = mymoney * parseInt(vval) / totalScore;
+                    }
+                    $("[id='txt_" + getindname(i) + "']").val(parseInt(perScore));
+                    totalPressScore += parseInt(perScore);
+                }
             }
         }
-    } 
+    }
     $("#totalvalue").html(totalPressScore);
 }
-function chips(num) { 
+function chips(num) {
     $("#betsLeft").val(num);
-    if (!is_new_game()) { 
+    if (!is_new_game()) {
         usefenpei();
     }
 }
@@ -341,10 +329,9 @@ function chips(num) {
 function getindname(i) {
     if (lotterytype == 4 || lotterytype == 5) {
         return mode36[0][i];
-    } else if(lotterytype == 9){
+    } else if (lotterytype == 9) {
         return modelhb[0][i];
-    } else if (lotterytype == 13)
-    {
+    } else if (lotterytype == 13) {
         return modelhc[0][i];
     }
     return i;
@@ -364,10 +351,10 @@ function useSuoha() {
     for (var i = 0; i < data.length; i++) {
         if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
             if (mymoney <= maxnum) {
-                perScore = mymoney* parseInt($("[id='txt_" + getindname(i) + "']").val()) / totalScore ;
+                perScore = mymoney * parseInt($("[id='txt_" + getindname(i) + "']").val()) / totalScore;
             }
             else {
-                perScore = maxnum* parseInt($("[id='txt_" + getindname(i) + "']").val()) / totalScore ;
+                perScore = maxnum * parseInt($("[id='txt_" + getindname(i) + "']").val()) / totalScore;
             }
             $("[id='txt_" + getindname(i) + "']").val(parseInt(perScore));
             totalPressScore += parseInt(perScore);
@@ -376,16 +363,12 @@ function useSuoha() {
     $("#totalvalue").html(totalPressScore);
 }
 //标准投注模式设定方法
-function setValue(num)
-{
-    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6 || lotterytype == 14 || lotterytype == 15 || lotterytype == 16 )
-    {
-        for (var i = 0; i < mode[num].length; i++)
-        {
+function setValue(num) {
+    if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 6 || lotterytype == 14 || lotterytype == 15 || lotterytype == 16) {
+        for (var i = 0; i < mode[num].length; i++) {
             var id_num = mode[num][i];
-            var id_name = "#txt_" + mode[num][i]; 
-            if (!$(id_name).attr("readonly"))
-            {
+            var id_name = "#txt_" + mode[num][i];
+            if (!$(id_name).attr("readonly")) {
 
                 $(id_name).val(nub[id_num]);
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
@@ -394,7 +377,7 @@ function setValue(num)
     } else if (lotterytype == 4 || lotterytype == 5 || lotterytype == 17) {
         for (var i = 0; i < mode36[num].length; i++) {
             var id_num = mode36[num][i];
-            var id_name = "[id='txt_" + mode36[num][i]+"']";
+            var id_name = "[id='txt_" + mode36[num][i] + "']";
             if (!$(id_name).attr("readonly")) {
                 //$(id_name).val(fc36[id_num-1]);
                 $(id_name).val(fc36[i]);
@@ -402,8 +385,7 @@ function setValue(num)
             }
         }
     }
-    else if (lotterytype == 7 || lotterytype == 10 )
-    {
+    else if (lotterytype == 7 || lotterytype == 10) {
         for (var i = 0; i < modegj[num].length; i++) {
             var id_num = modegj[num][i];
             var id_name = "#txt_" + modegj[num][i];
@@ -413,21 +395,18 @@ function setValue(num)
             }
         }
     }
-    else if(lotterytype==28)
-    {
-        for (var i = 0; i < modepk22[num].length; i++)
-        {
+    else if (lotterytype == 28) {
+        for (var i = 0; i < modepk22[num].length; i++) {
             var id_num = modepk22[num][i];
             var id_name = "#txt_" + modepk22[num][i];
             if (!$(id_name).attr("readonly")) {
 
-                $(id_name).val(pk22[id_num]);
+                $(id_name).val(pk22[id_num-6]);
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
         }
     }
-    else if(lotterytype == 29)
-    {
+    else if (lotterytype == 29) {
         for (var i = 0; i < modepk10[num].length; i++) {
             var id_num = modepk10[num][i];
             var id_name = "#txt_" + modepk10[num][i];
@@ -438,13 +417,12 @@ function setValue(num)
             }
         }
     }
-    else if (lotterytype == 8)
-    {
+    else if (lotterytype == 8) {
         for (var i = 0; i < modegyj[num].length; i++) {
             var id_num = modegyj[num][i];
             var id_name = "#txt_" + modegyj[num][i];
             if (!$(id_name).attr("readonly")) {
-                $(id_name).val(pkgyj[id_num-3]);
+                $(id_name).val(pkgyj[id_num - 3]);
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
         }
@@ -452,7 +430,7 @@ function setValue(num)
         for (var i = 0; i < modelhb[num].length; i++) {
             var id_num = modelhb[num][i];
             var id_name = "[id='txt_" + modelhb[num][i] + "']";
-            if (!$(id_name).attr("readonly")) { 
+            if (!$(id_name).attr("readonly")) {
                 $(id_name).val(ddlhb[i]);
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
@@ -475,22 +453,17 @@ function setValue(num)
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
         }
-    } else if (lotterytype == 13)
-    {
-        for (var i = 0; i < modelhc[num].length; i++)
-        {
+    } else if (lotterytype == 13) {
+        for (var i = 0; i < modelhc[num].length; i++) {
             var id_num = modelhc[num][i];
             var id_name = "[id='txt_" + modelhc[num][i] + "']";
-            if ($(id_name).length > 0)
-            {
-               
-            } else
-            {
+            if ($(id_name).length > 0) {
+
+            } else {
                 id_name = "[data-type='" + modelhc[num][i] + "']";
             }
 
-            if (!$(id_name).attr("readonly"))
-            {
+            if (!$(id_name).attr("readonly")) {
                 $(id_name).val(lhc[i]);
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
@@ -499,13 +472,10 @@ function setValue(num)
     getAllpceggs();
 }
 //清除方法
-function clear()
-{
+function clear() {
     $(".img_bt1").css("background", "url(../../images/img_bt1.png) left no-repeat");
-    $("#panel").find("input[name='SMONEY']").each(function (i)
-    {
-        if (!$(this).attr("readonly"))
-        {
+    $("#panel").find("input[name='SMONEY']").each(function (i) {
+        if (!$(this).attr("readonly")) {
             $(this).val("");
         }
     });
@@ -513,23 +483,18 @@ function clear()
     $("#totalvalue").text("0");
 }
 //数字加千分符号
-function ver(n)
-{
+function ver(n) {
     re = /(\d{1,3})(?=(\d{3})+(?:$|\.))/g
     return n.replace(re, "$1,")
 }
 
 //设置所有赔率
-function setAllvalue(peilv)
-{
-    $("#panel").find("input[name='SMONEY']").each(function ()
-    {
-        if (!$(this).attr("readonly"))
-        {
-           // 847442060446041
+function setAllvalue(peilv) {
+    $("#panel").find("input[name='SMONEY']").each(function () {
+        if (!$(this).attr("readonly")) {
+            // 847442060446041
             var txt_value = $.trim($(this).val()).replace(/,/gi, "");
-            if (txt_value && !isNaN(txt_value))
-            {
+            if (txt_value && !isNaN(txt_value)) {
                 var new_value = Math.floor(txt_value * peilv);
                 if (new_value.toString().length > 15)
                     $(this).val(ver(new_value.toString().substr(0, 15) + ""));
@@ -541,12 +506,10 @@ function setAllvalue(peilv)
 }
 //反选		  
 function ani_select() {
-    $("input[name='checkboxd']").each(function(i) {
+    $("input[name='checkboxd']").each(function (i) {
         if (!$(this).attr("disabled")) {
-            if (!$(this).prop("checked"))
-            {
-                if (lotterytype != 13)
-                {
+            if (!$(this).prop("checked")) {
+                if (lotterytype != 13) {
                     if (lotterytype == 7)
                         $(this).parent().next("td").children("input").val(pkgj); //改了
                     else if (lotterytype == 10)
@@ -556,7 +519,7 @@ function ani_select() {
                     else if (lotterytype == 28)
                         $(this).parent().next("td").children("input").val(pk22[i]);
                     else if (lotterytype == 29)
-                        $(this).parent().next("td").children("input").val(10); 
+                        $(this).parent().next("td").children("input").val(10);
                     else if (lotterytype == 30)
                         $(this).parent().next("td").children("input").val(50);
                     else {
@@ -564,11 +527,10 @@ function ani_select() {
                     }
                     //$(this).parent().next("td").children("input").val(nub1[i]); //改了
                 }
-                else
-                {
+                else {
                     $(this).parent().next("td").children("input").val(lhc[i]);
                 }
-                
+
                 $(this).prop("checked", true);
             } else {
                 $(this).parent().next("td").children("input").val("");
@@ -579,12 +541,10 @@ function ani_select() {
     getAllpceggs();
 }
 $("input[name='checkboxd']").each(function (i, v) {
-    $(v).click(function() {
+    $(v).click(function () {
         if (!$(this).attr("disabled")) {
-            if (!$(this).prop("checked"))
-            {
-                if (lotterytype != 13)
-                {
+            if (!$(this).prop("checked")) {
+                if (lotterytype != 13) {
                     if (lotterytype == 7)
                         $(this).parent().next("td").children("input").val(pkgj); //改了
                     else if (lotterytype == 10)
@@ -596,18 +556,17 @@ $("input[name='checkboxd']").each(function (i, v) {
                     else if (lotterytype == 29)
                         $(this).parent().next("td").children("input").val(10);
                     else if (lotterytype == 30)
-                        $(this).parent().next("td").children("input").val(50); 
+                        $(this).parent().next("td").children("input").val(50);
                     else {
                         // $(this).parent().next("td").children("input").val(nub1[i]); //改了
                         $(this).parent().next("td").children("input").val(nub[i]); //改了
                     }
-                    
+
                 }
-                else
-                {
+                else {
                     $(this).parent().next("td").children("input").val(lhc[i]);
                 }
-                
+
                 $(this).prop("checked", true);
             } else {
                 $(this).parent().next("td").children("input").val("");
@@ -619,15 +578,13 @@ $("input[name='checkboxd']").each(function (i, v) {
 });
 
 //选择自定义模式 
-function personmode(id)
-{
+function personmode(id) {
     bettmodel = id;
     $.ajax({
         type: "get",
         url: "/nwlottery/getbettmode",
-        data:{"id":id},
-        success: function (data)
-        {
+        data: { "id": id },
+        success: function (data) {
             var dt = JSON.parse(data);
 
             UserMode(dt.Bettinfo.split(';'));
@@ -637,40 +594,33 @@ function personmode(id)
 }
 
 //自定义投注模式
-function UserMode(arr,flag,isprev)
-{
-    if (StrTimeOut == "-1" && typeof (isprev)==undefined && !isprev)
-    {
+function UserMode(arr, flag, isprev) {
+    if (StrTimeOut == "-1" && typeof (isprev) == undefined && !isprev) {
         layer.alert("该期已经截止投注！", { icon: 2, title: "提示" });
         return false;
     }
     clear();
-    $.each(arr, function (i)
-    {
-        var arritem = arr[i].split(':'); 
-        if (this != "")
-        {
+    $.each(arr, function (i) {
+        var arritem = arr[i].split(':');
+        if (this != "") {
             //不可选的号，不处理
-            if ($("#txt_" + (parseInt(arritem[0])).toString()).attr("readonly"))
-            {
+            if ($("#txt_" + (parseInt(arritem[0])).toString()).attr("readonly")) {
                 return;
-            } 
-            if (flag)
-            {
+            }
+            if (flag) {
                 $("#txt_" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").attr("disabled", true);
                 $("#txt_" + (parseInt(arritem[0])).toString()).attr("readonly", true).attr("disabled", true);
-            } else
-            {
+            } else {
                 if (!isNaN(parseInt(arritem[0]))) {
                     $("#txt_" + (parseInt(arritem[0])).toString()).parent().prev("td").children("input").prop("checked", true);
                 } else {
-                    $("[id='txt_" +arritem[0]+"']").parent().prev("td").children("input").prop("checked", true);
+                    $("[id='txt_" + arritem[0] + "']").parent().prev("td").children("input").prop("checked", true);
                 }
-            } 
+            }
             if (parseInt(arritem[0]) + "" != "NaN") {
                 $("#txt_" + (parseInt(arritem[0])).toString()).val(ver(arritem[1]));
             } else {
-                $("[id='txt_" +arritem[0]+"']").val(ver(arritem[1]));
+                $("[id='txt_" + arritem[0] + "']").val(ver(arritem[1]));
             }
         }
     });
@@ -678,18 +628,15 @@ function UserMode(arr,flag,isprev)
 }
 
 //刷新赔率 
-function refreshd(id)
-{
+function refreshd(id) {
     $.ajax({
         type: "get",
         url: "pg28mode.aspx?refresh=" + id,
-        error: function ()
-        {
+        error: function () {
             //	alert("操作错误");
             //showmessage("10","操作错误！",LastIssue);
         },
-        success: function (data, textStatus)
-        {
+        success: function (data, textStatus) {
             setpeilv("", data.split(",")); //当前赔率
         }
     });
@@ -698,19 +645,15 @@ function refreshd(id)
 
 var first = 0;
 //取总的投注金币
-function getAllpceggs()
-{
+function getAllpceggs() {
     //if ($('#betsLeft').val() != "") {
     //    usefenpei();
     //}
     var total = 0;
-    $("#panel").find("input[name='SMONEY']").each(function ()
-    {
-        if (!$(this).attr("readonly"))
-        {
+    $("#panel").find("input[name='SMONEY']").each(function () {
+        if (!$(this).attr("readonly")) {
             var txt_value = $.trim($(this).val()).replace(/,/gi, "");
-            if (txt_value && !isNaN(txt_value))
-            {
+            if (txt_value && !isNaN(txt_value)) {
                 total += parseInt(txt_value);
             }
         }
@@ -720,21 +663,16 @@ function getAllpceggs()
     $("#totalvalue").attr("")
 
 }
-function setpeilv(a_cis, a_cis1)
-{
-    if (a_cis != "")
-    {
-        $.each(a_cis, function (i)
-        {
+function setpeilv(a_cis, a_cis1) {
+    if (a_cis != "") {
+        $.each(a_cis, function (i) {
             var v = this + "";
             //		$("#txt"+i).parent().prev("td").prev("td").text(v);	//上期赔率
             $("#txt_" + i).parent().prev("td").prev("td").prev("td").text(v); //上期赔率
         })
     }
-    if (a_cis1 != "")
-    {
-        $.each(a_cis1, function (i)
-        {
+    if (a_cis1 != "") {
+        $.each(a_cis1, function (i) {
             var v = this + "";
             //		$("#txt"+i).parent().prev("td").prev("td").prev("td").text(v);	//当前赔率
             $("#txt_" + i).parent().prev("td").prev("td").text(v); //当前赔率
@@ -744,8 +682,7 @@ function setpeilv(a_cis, a_cis1)
 }
 var isconfirmenable = true;
 //确认投注	
-function comform()
-{
+function comform() {
     if (!isconfirmenable)
         return;
     t = $("#totalvalue").text().replace(/,/gi, "");
@@ -759,34 +696,28 @@ function comform()
     //    return false;
     //}
     //else
-    if (t < minnum)
-    {
+    if (t < minnum) {
         layer.alert("最小投注额[" + minnum + "]元宝！", { icon: 2, title: "提示" });
         isconfirmenable = true
         return false;
     }
-    else if (t > maxnum)
-    {
+    else if (t > maxnum) {
         layer.alert("对不起，总投注额不能超过投注上限[" + maxnum + "]！", { icon: 2, title: "提示" });
         isconfirmenable = true
         return false;
-    } else if (t == 0)
-    {
+    } else if (t == 0) {
         layer.alert("请投注！", { icon: 2, title: "提示" });
         isconfirmenable = true
         return false;
-    } else if (t > mymoney)
-    {
+    } else if (t > mymoney) {
         layer.alert("您的元宝不足,请充值！", { icon: 2, title: "提示" });
         isconfirmenable = true
         return false;
 
     }
-    else
-    {
+    else {
         var str = [];
-        for (var i = 0; i < 70; i++)
-        {
+        for (var i = 0; i < 70; i++) {
             var txt_value = $.trim($("#txt_" + i).val()).replace(/,/gi, "");
             str.push(txt_value);
         }
@@ -795,12 +726,10 @@ function comform()
 
         layer.confirm(message, {
             btn: ['确定', '取消'] //按钮
-        }, function ()
-        {
+        }, function () {
             datapost();
             layer.closeAll('dialog');
-        }, function ()
-        {
+        }, function () {
             //必须加上，否则取消不成功
         }, { icon: 3, title: "提示" });
         t = ver(String(t)); //将数字转字符串后千分位 
@@ -813,65 +742,77 @@ function comform()
 }
 
 //执行投注
-function datapost()
-{
+function datapost() {
     //chgsubmit();
     var arrbettnew = "";
     var arrbettnum = "";
     $("input[name='SMONEY']").attr("disabled", false);
-    $("input[name='SMONEY']").each(function (i)
-    {
-        if (!$(this).attr("readOnly"))
-        {
+    $("input[name='SMONEY']").each(function (i) {
+        if (!$(this).attr("readOnly")) {
             var ipval = $(this).val();
+            
             ipval = $.trim(ipval).replace(/,/gi, "");//去掉数字分割符
-            if (ipval != "0" && ipval.trim() != "")
-            {
-                var src = $(this).parent().parent().find("td").eq(0).find("span").text();
-                var num = src;
-                if (isNaN(num))
-                {
-                    arrbettnew += (num) + ":" + ipval + ";";
-                    arrbettnum += (num) + ";";
-                    
-                } else
-                {
-                    arrbettnew += (num.length == 1 ? ("0" + num) : num) + ":" + ipval + ";";
-                    arrbettnum += (num.length == 1 ? ("0" + num) : num) + ";";
+            if (ipval != "0" && ipval.trim() != "") {
+                if (lotterytype != 27) {
+                    var src = $(this).parent().parent().find("td").eq(0).find("span").text();
+                    var num = src;
+                    if (isNaN(num)) {
+                        arrbettnew += (num) + ":" + ipval + ";";
+                        arrbettnum += (num) + ";";
+
+                    } else {
+                        arrbettnew += (num.length == 1 ? ("0" + num) : num) + ":" + ipval + ";";
+                        arrbettnum += (num.length == 1 ? ("0" + num) : num) + ";";
+                    }
                 }
+                else
+                {
+                    var oddsid = $(this).data("id");
+                    arrbettnew += (oddsid) + ":" + ipval + ";";
+                    arrbettnum += (oddsid) + ";";
+                }
+                //else {
+                //    var type = $(this).data("type");
+                    //var src = $(this).data("item");
+                    //var num = src;
+                    //if (isNaN(num)) {
+                    //    arrbettnew += type+"$"+(num) + ":" + ipval + ";";
+                    //    arrbettnum += type + "$" + (num) + ";";
+
+                    //} else {
+                    //    arrbettnew += type + "$" + (num.length == 1 ? ("0" + num) : num) + ":" + ipval + ";";
+                    //    arrbettnum += type + "$" + (num.length == 1 ? ("0" + num) : num) + ";";
+                    //}
+                //}
             }
         }
     });
-
+    //console.log("bettinfo" + arrbettnew.substr(0, arrbettnew.length - 1));
+    //console.log("bettnumber" + arrbettnum.substr(0, arrbettnum.length - 1));
     $.post("/nwlottery/addbettinfo",
                {
                    "lotterytype": lotterytype, "fcnum": expect, "bettTotalEggs": $("#totalvalue").text().replace(/,/gi, ""),
                    "cusbettinfo": arrbettnew.substr(0, arrbettnew.length - 1), "bettnumber": arrbettnum.substr(0, arrbettnum.length - 1),
                    "bettmodel": bettmodel
                },
-               function (data)
-               {
-                   if (data == "1")
-                   {
+               function (data) {
+                   if (data == "1") {
                        //成功
                        layer.alert("第<span  style='color :Red;'>" + expect + "</span>期投注成功！", { icon: 1, title: "提示" })
-                       if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 4 || lotterytype == 5 || lotterytype == 6 || lotterytype == 11 || lotterytype == 12 || lotterytype == 14 || lotterytype == 15 || lotterytype == 16 || lotterytype == 17)
-                       {
+                       if (lotterytype == 1 || lotterytype == 2 || lotterytype == 3 || lotterytype == 4 || lotterytype == 5 || lotterytype == 6 || lotterytype == 11 || lotterytype == 12 || lotterytype == 14 || lotterytype == 15 || lotterytype == 16 || lotterytype == 17) {
                            $(".temp_content").load("/nwlottery/_content", { "type": lotterytype, "page": 1 });
                        }
-                       else if (lotterytype == 9)
-                       {
+                       else if (lotterytype == 9) {
                            $(".temp_content").load("/nwlottery/_contentlhb", { "type": lotterytype, "page": 1 });
                        }
-                       else if (lotterytype == 7 || lotterytype == 8 || lotterytype == 10)
-                       {
+                       else if (lotterytype == 7 || lotterytype == 8 || lotterytype == 10 || lotterytype == 28 || lotterytype == 29 || lotterytype == 30) {
                            $(".temp_content").load("/nwlottery/_contentpk", { "type": lotterytype, "page": 1 });
-                       } else if (lotterytype == 13)
-                       {
+                       } else if (lotterytype == 13) {
                            $(".temp_content").load("/nwlottery/_contentlhc", { "type": lotterytype, "page": 1 });
+                       } else if (lotterytype == 27) {
+                           $(".temp_content").load("/nwlottery/_contentpklh", { "type": lotterytype, "page": 1 });
                        }
-                   } else
-                   {
+                   } else {
                        var msg = "投注失败";
                        if (data == "2")
                            msg = "投注失败，第<span  style='color :Red;'>" + expect + "</span>期投注已截止！";
@@ -888,17 +829,14 @@ function datapost()
 
 
 //是否按现模式自动投注
-function ischecked()
-{
+function ischecked() {
     var isdb = document.getElementById("isdb")//子层
     var isdb_p = ""; //父层
 
 
-    if (isdb.checked == true)
-    {
+    if (isdb.checked == true) {
         document.getElementById("isdb_p").value = "1";
-    } else
-    {
+    } else {
         document.getElementById("isdb_p").value = "0";
     }
 
@@ -906,37 +844,31 @@ function ischecked()
 
 
 //滚动
-function sc1()
-{
+function sc1() {
     var top = (document.documentElement.scrollTop + document.body.scrollTop + ($(window).height() - $('#div_ad').height()) / 2) + "px";
     var left = (document.documentElement.scrollLeft + ($(window).width() - $('#div_ad').width()) / 2) + "px";
 
     $("#div_ad").css("top", top);
     $("#div_ad").css("left", left);
 }
-function scall()
-{
+function scall() {
     sc1();
 }
 
 window.onscroll = sc1;
-function CleanMessage()
-{
+function CleanMessage() {
     document.getElementById("div_ad").style.display = 'none';
     document.getElementById("parent_div").style.display = 'none';
 }
 //投注后信息返回
-function showmessage(flag, msg, NLid)
-{
+function showmessage(flag, msg, NLid) {
 
     ////弹出浮层
     $("#div_ad").css("display", "");
     sc1();
-    switch (flag)
-    {
+    switch (flag) {
         case "0":
-            if (readcookie("handflag") == "1")
-            {
+            if (readcookie("handflag") == "1") {
                 setcookie("handflag", "2");
             }
             window.location.href = "/qcgeass.aspx";
@@ -1044,8 +976,7 @@ function showmessage(flag, msg, NLid)
 }
 
 //投注后信息返回
-function showmessage1(issue)
-{
+function showmessage1(issue) {
     $(".content1").html('<div class="content_zc">第<span  style="color :Red;">' + issue + '</span>期投注成功！</div>');
     $(".titleclose").html('<span class="title">投注成功</span><a onclick="return bettsucc();" class="close"><span>X</span></a>');
     $(".btnpane").html('<div style="float:left; "><a onclick="return bettsucc();"  style="width:72px;height:22px; background:url(../img/popup_btn.png) no-repeat;display:block;cursor:pointer;"></a></div>');
@@ -1058,31 +989,27 @@ function showmessage1(issue)
     parent_div.style.height = parseInt(bodyheight) + 'px';
 
 }
-function bettsucc()
-{
+function bettsucc() {
     document.getElementById("div_ad").style.display = 'none';
     document.getElementById("parent_div").style.display = 'none';
     window.location = "/qcgeass.aspx"
 }
 
 //取消投注
-function rm1()
-{
+function rm1() {
     document.getElementById("isdb_p").value = "0";
     document.getElementById("div_ad").style.display = 'none';
     document.getElementById("parent_div").style.display = 'none';
 }
 
 //取消投注
-function rm()
-{
+function rm() {
     isconfirmenable = true;
     document.getElementById("div_ad").style.display = 'none';
     document.getElementById("parent_div").style.display = 'none';
 }
 
-function getgoldeggs()
-{
+function getgoldeggs() {
     //$("#help_show").css("display","none");
     ShowMsgo.show("/adcomate/pggetgoldeggsnew.aspx", 503, 518);
     document.getElementById("div_ad").style.display = 'none';
@@ -1090,67 +1017,51 @@ function getgoldeggs()
 
 
 }
-function closelinqu()
-{
+function closelinqu() {
     ShowMsgo.cancel();
     window.location.reload(true);
 }
 
 
-function otherMode(num)
-{
+function otherMode(num) {
     //全
-    if (o == 0)
-    {
+    if (o == 0) {
         $("[name = 'tbChk']:checkbox").attr("checked", "checked");
-        for (var i = 0; i < cc; i++)
-        {
+        for (var i = 0; i < cc; i++) {
             $("#tbNum" + i).val(parseInt(data[i]));
         }
     }
     //双
-    if (o == 1)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 2 == 0)
-            {
+    if (o == 1) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 2 == 0) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
         }
     }
     //单
-    if (o == 2)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 2 == 1)
-            {
+    if (o == 2) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 2 == 1) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
         }
     }
     //小
-    if (o == 3)
-    {
+    if (o == 3) {
         var num = data.length / 2;
-        for (var i = 0; i < cc; i++)
-        {
-            if (GTYPE == 11 || GTYPE == 7)
-            {
-                if (i < num - 1)
-                {
+        for (var i = 0; i < cc; i++) {
+            if (GTYPE == 11 || GTYPE == 7) {
+                if (i < num - 1) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
 
                 }
             }
-            else
-            {
-                if (i < num)
-                {
+            else {
+                if (i < num) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
@@ -1158,24 +1069,18 @@ function otherMode(num)
         }
     }
     //大
-    if (o == 4)
-    {
+    if (o == 4) {
         var num = data.length / 2;
-        for (var i = 0; i < cc; i++)
-        {
-            if (GTYPE == 11 || GTYPE == 7)
-            {
-                if (i >= num - 1)
-                {
+        for (var i = 0; i < cc; i++) {
+            if (GTYPE == 11 || GTYPE == 7) {
+                if (i >= num - 1) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
 
                 }
             }
-            else
-            {
-                if (i >= num)
-                {
+            else {
+                if (i >= num) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
 
@@ -1185,41 +1090,31 @@ function otherMode(num)
         }
     }
     //中
-    if (o == 5)
-    {
+    if (o == 5) {
         var num = data.length / 3;
-        for (var i = 0; i < cc; i++)
-        {
-            if (GTYPE == 17)
-            {
-                if (i >= num - 1 & i < 2 * num)
-                {
+        for (var i = 0; i < cc; i++) {
+            if (GTYPE == 17) {
+                if (i >= num - 1 & i < 2 * num) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
             }
-            else if (GTYPE == 7)
-            {
-                if (i >= num - 1 & i <= 2 * num)
-                {
+            else if (GTYPE == 7) {
+                if (i >= num - 1 & i <= 2 * num) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
 
             }
 
-            else if (GTYPE == 11)
-            {
-                if (i > num - 1 && i < 2 * num)
-                {
+            else if (GTYPE == 11) {
+                if (i > num - 1 && i < 2 * num) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
             }
-            else
-            {
-                if (i >= num & i < 2 * num - 1)
-                {
+            else {
+                if (i >= num & i < 2 * num - 1) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
@@ -1227,41 +1122,31 @@ function otherMode(num)
         }
     }
     //边
-    if (o == 6)
-    {
+    if (o == 6) {
         var num = data.length / 4;
-        for (var i = 0; i < cc; i++)
-        {
-            if (GTYPE == 7)
-            {
-                if (i < num || i >= 3 * num - 1)
-                {
+        for (var i = 0; i < cc; i++) {
+            if (GTYPE == 7) {
+                if (i < num || i >= 3 * num - 1) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
             }
 
-            else if (GTYPE == 17)
-            {
-                if (i <= num || i >= 3 * num - 1)
-                {
+            else if (GTYPE == 17) {
+                if (i <= num || i >= 3 * num - 1) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
             }
-            else if (GTYPE == 11)
-            {
-                if (i <= num || i > 2 * num + 2)
-                {
+            else if (GTYPE == 11) {
+                if (i <= num || i > 2 * num + 2) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
             }
 
-            else
-            {
-                if (i < num + 3 || i > 3 * num - 4)
-                {
+            else {
+                if (i < num + 3 || i > 3 * num - 4) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
@@ -1270,14 +1155,11 @@ function otherMode(num)
         }
     }
     //大单
-    if (o == 7)
-    {
+    if (o == 7) {
         var num = (data.length + imore) / 2;
-        for (var i = 0; i < cc; i++)
-        {
+        for (var i = 0; i < cc; i++) {
 
-            if ((i + istart) > num && (i + istart) % 2 == 1)
-            {
+            if ((i + istart) > num && (i + istart) % 2 == 1) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1286,15 +1168,12 @@ function otherMode(num)
         }
     }
     //小单
-    if (o == 8)
-    {
+    if (o == 8) {
         var num = (data.length + imore) / 2;
-        for (var i = 0; i < cc; i++)
-        {
+        for (var i = 0; i < cc; i++) {
 
 
-            if ((i + istart) < num && (i + istart) % 2 == 1)
-            {
+            if ((i + istart) < num && (i + istart) % 2 == 1) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1303,14 +1182,11 @@ function otherMode(num)
         }
     }
     //大双
-    if (o == 9)
-    {
+    if (o == 9) {
         var num = (data.length + imore) / 2;
-        for (var i = 0; i < cc; i++)
-        {
+        for (var i = 0; i < cc; i++) {
 
-            if ((i + istart) >= num && (i + istart) % 2 == 0)
-            {
+            if ((i + istart) >= num && (i + istart) % 2 == 0) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1319,14 +1195,11 @@ function otherMode(num)
         }
     }
     //小双
-    if (o == 10)
-    {
+    if (o == 10) {
         var num = (data.length + imore) / 2;
-        for (var i = 0; i < cc; i++)
-        {
+        for (var i = 0; i < cc; i++) {
 
-            if ((i + istart) < num && (i + istart) % 2 == 0)
-            {
+            if ((i + istart) < num && (i + istart) % 2 == 0) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1335,27 +1208,20 @@ function otherMode(num)
         }
     }
     //大边
-    if (o == 11)
-    {
+    if (o == 11) {
         var num = (data.length + imore) / 3;
-        if (GTYPE == 7)
-        {
+        if (GTYPE == 7) {
             istart--;
         }
-        for (var i = 0; i < cc; i++)
-        {
-            if (GTYPE == 11)
-            {
-                if ((i + istart) > 2 * num + 1)
-                {
+        for (var i = 0; i < cc; i++) {
+            if (GTYPE == 11) {
+                if ((i + istart) > 2 * num + 1) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
             }
-            else
-            {
-                if ((i + istart) > 2 * num - 1)
-                {
+            else {
+                if ((i + istart) > 2 * num - 1) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
@@ -1364,14 +1230,11 @@ function otherMode(num)
         }
     }
     //小边
-    if (o == 12)
-    {
+    if (o == 12) {
         var num = (data.length + imore) / 3;
-        for (var i = 0; i < cc; i++)
-        {
+        for (var i = 0; i < cc; i++) {
 
-            if ((i + istart) <= num)
-            {
+            if ((i + istart) <= num) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1380,12 +1243,9 @@ function otherMode(num)
         }
     }
     //单边
-    if (o == 13)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 10 == 0)
-            {
+    if (o == 13) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 10 == 0) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1393,12 +1253,9 @@ function otherMode(num)
         }
     }
     //双边
-    if (o == 14)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 10 == 1)
-            {
+    if (o == 14) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 10 == 1) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1407,12 +1264,9 @@ function otherMode(num)
     }
 
     //0尾
-    if (o == 15)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 10 == 0)
-            {
+    if (o == 15) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 10 == 0) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1420,12 +1274,9 @@ function otherMode(num)
         }
     }
     //1尾
-    if (o == 16)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 10 == 1)
-            {
+    if (o == 16) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 10 == 1) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1433,12 +1284,9 @@ function otherMode(num)
         }
     }
     //2尾
-    if (o == 17)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 10 == 2)
-            {
+    if (o == 17) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 10 == 2) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1446,12 +1294,9 @@ function otherMode(num)
         }
     }
     //3尾
-    if (o == 18)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 10 == 3)
-            {
+    if (o == 18) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 10 == 3) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1459,12 +1304,9 @@ function otherMode(num)
         }
     }
     //4尾
-    if (o == 19)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 10 == 4)
-            {
+    if (o == 19) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 10 == 4) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1472,25 +1314,18 @@ function otherMode(num)
         }
     }
     //小尾
-    if (o == 20)
-    {
-        if (GTYPE == 10)
-        {
-            for (var i = 0; i < cc; i++)
-            {
-                if ((i + istart) % 10 < 5 && (i + istart) % 10 >= 0)
-                {
+    if (o == 20) {
+        if (GTYPE == 10) {
+            for (var i = 0; i < cc; i++) {
+                if ((i + istart) % 10 < 5 && (i + istart) % 10 >= 0) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
 
             }
-        } else
-        {
-            for (var i = 0; i < cc; i++)
-            {
-                if ((i + istart) % 10 < 5)
-                {
+        } else {
+            for (var i = 0; i < cc; i++) {
+                if ((i + istart) % 10 < 5) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
@@ -1499,12 +1334,9 @@ function otherMode(num)
         }
     }
     //5尾
-    if (o == 21)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 10 == 5)
-            {
+    if (o == 21) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 10 == 5) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1512,12 +1344,9 @@ function otherMode(num)
         }
     }
     //6尾
-    if (o == 22)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 10 == 6)
-            {
+    if (o == 22) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 10 == 6) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1525,12 +1354,9 @@ function otherMode(num)
         }
     }
     //7尾
-    if (o == 23)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 10 == 7)
-            {
+    if (o == 23) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 10 == 7) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1538,12 +1364,9 @@ function otherMode(num)
         }
     }
     //8尾
-    if (o == 24)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 10 == 8)
-            {
+    if (o == 24) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 10 == 8) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1551,12 +1374,9 @@ function otherMode(num)
         }
     }
     //9尾
-    if (o == 25)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 10 == 9)
-            {
+    if (o == 25) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 10 == 9) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1564,26 +1384,19 @@ function otherMode(num)
         }
     }
     //大尾
-    if (o == 26)
-    {
-        if (GTYPE == 10)
-        {
-            for (var i = 0; i < cc; i++)
-            {
-                if ((i + istart) % 10 >= 5)
-                {
+    if (o == 26) {
+        if (GTYPE == 10) {
+            for (var i = 0; i < cc; i++) {
+                if ((i + istart) % 10 >= 5) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
 
             }
         }
-        else
-        {
-            for (var i = 0; i < cc; i++)
-            {
-                if ((i + istart) % 10 >= 5)
-                {
+        else {
+            for (var i = 0; i < cc; i++) {
+                if ((i + istart) % 10 >= 5) {
                     $("#tbNum" + i).val(parseInt(data[i]));
                     $("#tbChk" + i).attr("checked", "checked");
                 }
@@ -1592,12 +1405,9 @@ function otherMode(num)
         }
     }
     //3余0
-    if (o == 27)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 3 == 0)
-            {
+    if (o == 27) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 3 == 0) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1605,12 +1415,9 @@ function otherMode(num)
         }
     }
     //3余1
-    if (o == 28)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 3 == 1)
-            {
+    if (o == 28) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 3 == 1) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1618,12 +1425,9 @@ function otherMode(num)
         }
     }
     //3余2
-    if (o == 29)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 3 == 2)
-            {
+    if (o == 29) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 3 == 2) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1631,12 +1435,9 @@ function otherMode(num)
         }
     }
     //4余0
-    if (o == 30)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 4 == 0)
-            {
+    if (o == 30) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 4 == 0) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1644,12 +1445,9 @@ function otherMode(num)
         }
     }
     //4余1
-    if (o == 31)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 4 == 1)
-            {
+    if (o == 31) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 4 == 1) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1657,12 +1455,9 @@ function otherMode(num)
         }
     }
     //4余2
-    if (o == 32)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 4 == 2)
-            {
+    if (o == 32) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 4 == 2) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1670,12 +1465,9 @@ function otherMode(num)
         }
     }
     //4余3
-    if (o == 33)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 4 == 3)
-            {
+    if (o == 33) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 4 == 3) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1683,12 +1475,9 @@ function otherMode(num)
         }
     }
     //5余0
-    if (o == 34)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 5 == 0)
-            {
+    if (o == 34) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 5 == 0) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1696,12 +1485,9 @@ function otherMode(num)
         }
     }
     //5余1
-    if (o == 35)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 5 == 1)
-            {
+    if (o == 35) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 5 == 1) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1709,13 +1495,10 @@ function otherMode(num)
         }
     }
     //5余2
-    if (o == 36)
-    {
+    if (o == 36) {
 
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 5 == 2)
-            {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 5 == 2) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1723,12 +1506,9 @@ function otherMode(num)
         }
     }
     //5余3
-    if (o == 37)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 5 == 3)
-            {
+    if (o == 37) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 5 == 3) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }
@@ -1736,12 +1516,9 @@ function otherMode(num)
         }
     }
     //5余4
-    if (o == 38)
-    {
-        for (var i = 0; i < cc; i++)
-        {
-            if ((i + istart) % 5 == 4)
-            {
+    if (o == 38) {
+        for (var i = 0; i < cc; i++) {
+            if ((i + istart) % 5 == 4) {
                 $("#tbNum" + i).val(parseInt(data[i]));
                 $("#tbChk" + i).attr("checked", "checked");
             }

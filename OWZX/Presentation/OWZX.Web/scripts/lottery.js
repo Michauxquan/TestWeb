@@ -5,7 +5,10 @@ var traptime;
 function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum)
 {
     clearTimeout(tiner);
-    clearTimeout(traptime);
+    if (prevnum == fcnum - 1)
+    {
+        clearTimeout(traptime);
+    }
 
     var nS = parseInt(ctime);
     //处理上期未开奖，重启计时处理
@@ -249,7 +252,14 @@ function loadpage(type, expect, betid) {
             $(".temp_content").load("/nwlottery/_ltrule", { "type": lotterytype });
             break;
         case 'bettrecords':
-            $(".temp_content").load("/nwlottery/_bettrecord", { "type": lotterytype, "page": 1 });
+            if (lotterytype == 27)
+            {
+                $(".temp_content").load("/nwlottery/_bettrecordpklh", { "type": lotterytype, "page": 1 });
+            } else
+            {
+                $(".temp_content").load("/nwlottery/_bettrecord", { "type": lotterytype, "page": 1 });
+            }
+           
             break;
         case 'models':
             if (lotterytype == 13) {

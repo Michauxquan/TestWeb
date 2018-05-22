@@ -22,7 +22,7 @@
     <tr class="pklhtr">
         <td style="background:#E0E0E0;">1</td><td style="background:#E0E0E0;">2</td><td style="background:#E0E0E0;">3</td><td style="background:#E0E0E0;">4</td><td style="background:#E0E0E0;">5</td>
     </tr>
-    @foreach (OWZX.Model.MD_LotteryUser lot in @Model.lotterylist.LotteryList)
+    @foreach (OWZX.Model.MD_LotteryUser lot in Model.lotterylist.LotteryList)
     {
 
         <tr>
@@ -171,7 +171,7 @@
             current: @Model.PageModel.PageNumber,
             backFn: function (p)
             {
-                $(".temp_content").load("/nwlottery/_contentpklh",{"type":lotterytype,"page":p});
+                $(".temp_content").load("/nwlottery/_contentpksc",{"type":lotterytype,"page":p});
             }
         });
     });

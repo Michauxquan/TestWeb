@@ -20,9 +20,13 @@
     @foreach (DataRow row in @Model.Records.Rows)
     {
         string result = string.Empty;
-        if (@Model.LotteryType == 13)
+        if (Model.LotteryType == 13)
         {
             result = row["resulttype"].ToString();
+        }
+        if (Model.LotteryType == 27)
+        {
+            result = row["opencode"].ToString();
         }
         else
         {

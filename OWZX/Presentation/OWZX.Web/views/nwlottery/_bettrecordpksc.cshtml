@@ -1,0 +1,178 @@
+﻿@{
+    ViewBag.Title = "_bettrecord";
+}
+@model LotteryRecord
+<script src="~/components/pager/jquery.page.js"></script>
+<script src="~/scripts/betmode.js"></script>
+<link href="~/components/pager/page.css" rel="stylesheet" />
+<table class="con_table table_rule" id="bettrecord" cellpadding="0" cellspacing="1" align="center"
+       style="width:960px; color: Black; margin-bottom: 4px;margin-top:5px; border:1px solid #eee;border-left:none; border-top:2px solid #fd8724;">
+    <tr style="height: 28px">
+        <th rowspan="2" width="11%" style="height: 28px;">期号</th>
+        <th rowspan="2" width="11%" style="height: 28px">投注时间</th>
+        <th rowspan="2" width="15%" style="height: 28px">开奖结果</th>
+        <th rowspan="2" colspan="3" width="10%" style="height: 28px">冠亚</th>
+        <th colspan="5" style="height: 28px" width="14%">龙虎</th>
+        <th rowspan="2" width="13%" style="height: 28px">投注数量</th>
+        <th rowspan="2" width="8%" style="height: 28px">获得数量</th>
+        <th rowspan="2" width="8%" style="height: 28px">赢取</th>
+        <th rowspan="2" width="5%" style="height: 28px">详情</th>
+        <th rowspan="2" width="5%" style="height: 28px">保存</th>
+    </tr>
+    <tr style="height: 28px">
+        <th style="height: 28px">1</th>
+        <th style="height: 28px">2</th>
+        <th style="height: 28px">3</th>
+        <th style="height: 28px">4</th>
+        <th style="height: 28px">5</th>
+    </tr>
+    @foreach (DataRow row in Model.Records.Rows)
+    {
+        string resulttype = row["resulttype"].ToString();
+        string[] opencodes = row["orderresult"].ToString().Split(',');
+        string clsec = string.Empty;
+        <tr>
+            <td>@row["lotterynum"]</td>
+            <td>
+                @{DateTime dt = DateTime.Parse(@row["addtime"].ToString());
+                } @dt.ToString("MM-dd HH:mm:ss")
+            </td>
+            <td>
+                @for (int i = 0; i <= opencodes.Length - 1; i++)
+                {
+                    clsec = "regular" + opencodes[i];
+                    <em class="@clsec"></em>
+                }
+            </td>
+            @if (resulttype != string.Empty)
+            {
+                string[] pklhresult = resulttype.Split(';');
+                string[] pkgy = pklhresult[1].Replace("冠亚:", "").Split(',');
+                string[] pklh = pklhresult[2].Replace("龙虎:", "").Split(',');
+                <td style="color:#900;">@pkgy[0]</td>
+                <td>
+                    @if (pkgy[1] == "大")
+                    {
+                        <span class="da">@pkgy[1]</span>
+                    }
+                    else if (pkgy[1] == "小")
+                    {
+                        <span class="xiao">@pkgy[1]</span>
+                    }
+                </td>
+                <td>
+                    @if (pkgy[2] == "单")
+                    {
+                        <span class="dan">@pkgy[2]</span>
+                    }
+                    else if (pkgy[2] == "双")
+                    {
+                        <span class="shuang">@pkgy[2]</span>
+                    }
+                </td>
+                <td>
+                    <span>
+                        @if (pklh[0] == "龙")
+                        {
+                            <span class="dan">@pklh[0]</span>
+                        }
+                        else if (@pklh[0] == "虎")
+                        {
+                            <span class="xiaodan">@pklh[0]</span>
+                        }
+                    </span>
+                </td>
+                <td>
+                    <span>
+                        @if (pklh[1] == "龙")
+                        {
+                            <span class="dan">@pklh[1]</span>
+                        }
+                        else if (@pklh[1] == "虎")
+                        {
+                            <span class="xiaodan">@pklh[1]</span>
+                        }
+                    </span>
+                </td>
+                <td>
+                    <span>
+                        @if (pklh[2] == "龙")
+                        {
+                            <span class="dan">@pklh[2]</span>
+                        }
+                        else if (@pklh[2] == "虎")
+                        {
+                            <span class="xiaodan">@pklh[2]</span>
+                        }
+                    </span>
+                </td>
+                <td>
+                    <span>
+                        @if (pklh[3] == "龙")
+                        {
+                            <span class="dan">@pklh[3]</span>
+                        }
+                        else if (@pklh[3] == "虎")
+                        {
+                            <span class="xiaodan">@pklh[3]</span>
+                        }
+                    </span>
+                </td>
+                <td>
+                    <span>
+                        @if (pklh[4] == "龙")
+                        {
+                            <span class="dan">@pklh[4]</span>
+                        }
+                        else if (@pklh[4] == "虎")
+                        {
+                            <span class="xiaodan">@pklh[4]</span>
+                        }
+                    </span>
+                </td>
+            }
+            else
+            {
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            }
+
+
+            <td><img style="float: right; margin-top:5px; margin-right: 20px;width: 20px; height: 16px;" src="../../images/yuanbao.png" /><span style="float: right;">@Int64.Parse(@row["money"].ToString()).ToString("n0")</span><span class="clear"></span></td>
+            <td><img style="float: right; margin-top:5px; margin-right: 20px;width: 20px; height: 16px;" src="../../images/yuanbao.png" /><span style="float: right;">@Int64.Parse(@row["winmoney"].ToString()).ToString("n0")</span><span class="clear"></span></td>
+            <td><img style="float: right; margin-top:5px; margin-right: 10px;width: 20px; height: 16px;" src="../../images/yuanbao.png" /><span style="float: right;">@Int64.Parse(@row["win"].ToString()).ToString("n0")</span><span class="clear"></span></td>
+            <td><a href="javascript:loadpage('details',undefined,@row["bettid"])" style="color:#e4393c">查看</a></td>
+            <td><a href="javascript:record_save(@row["bettid"]);">保存</a></td>
+        </tr>
+    }
+    <tr align="center" bgcolor="#FFFFFF" id="pagetr">
+        <td height="28" colspan="8" bgcolor="#FFFFFF">
+            <div class="tcdPageCode">
+                @*@Html.WebPager(Model.PageModel)*@
+            </div>
+        </td>
+    </tr>
+</table>
+<script>
+    
+    $(function ()
+    {
+        $(".tcdPageCode").createPage({
+            pageCount: @Model.PageModel.TotalPages,
+            current: @Model.PageModel.PageNumber,
+            backFn: function (p)
+            {
+                $(".temp_content").load("/nwlottery/_bettrecordpklh",{"type":lotterytype,"page":p});
+            }
+        });
+    });
+
+
+
+</script>
