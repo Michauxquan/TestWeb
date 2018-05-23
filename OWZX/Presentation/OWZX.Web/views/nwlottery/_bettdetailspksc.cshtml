@@ -5,15 +5,38 @@
 
 @{
 
-    DataSet ds = (DataSet)@ViewData["ltset"];
-    DataTable dt = (DataTable)@ViewData["bett"];
-    DataRow row = dt.Rows[0];
-    string status = row["status"].ToString() == "2" ? "已开奖" : "未开奖";
-    string opentime = DateTime.Parse(row["opentime"].ToString()).ToString("MM-dd HH:mm:ss");
-    int lotterytype=int.Parse(row["lotteryid"].ToString());
+    DataSet ds = (DataSet)ViewData["ltset"];
+    DataTable dt = (DataTable)ViewData["bett"];
+    DataRow rowbet = dt.Rows[0];
+    string status = rowbet["status"].ToString() == "2" ? "已开奖" : "未开奖";
+    string opentime = DateTime.Parse(rowbet["opentime"].ToString()).ToString("MM-dd HH:mm:ss");
+    int lotterytype = int.Parse(rowbet["lotteryid"].ToString());
     int isnumber = (lotterytype == 4 || lotterytype == 5 || lotterytype == 9 || lotterytype == 17 || lotterytype == 30) ? 0 : 1;
-    string[] resulttype = row["resulttype"].ToString().Split(';');
+    string[] resulttype = rowbet["resulttype"].ToString().Split(';');
+    List<string> bettinfo = rowbet["bettinfo"].ToString().Split(';').ToList<string>();
+        
 }
+<script>
+    $(function () {
+        $.post('/nwlottery/getprovbettinfo', { 'type': 27, lotterynum: rowbet["lotterynum"].toString() }, function (data) {
+            
+            var dt = JSON.parse(data);
+            for (var i = 0; i < dt.length; i++) {
+                if (dt[i].lotterynum == expect) {
+                    var arr = dt[i].bettinfo.split(';');
+                    $.each(arr, function (i) {
+                        var arritem = arr[i].split(':');
+                        if (parseInt(arritem[0]) + "" != "NaN") {
+                            $("#span_" + (parseInt(arritem[0])).toString()).html(ver(arritem[1]));
+                        } else {
+                            $("[id='span_" + arritem[0] + "']").html(ver(arritem[1]));
+                        }
+                    });
+                }
+            }
+        });
+    })
+</script>
 <div class="tzbanner touzhutop">
     <div class="tzbanner_z touzhutop_n">
         <div class="tzbanner_fk fk_wz touzhutop_t">
@@ -23,15 +46,15 @@
                         <td height="9" colspan="4" align="left"></td>
                     </tr>
                     <tr>
-                        <td width="235" height="30" align="left">&nbsp;&nbsp;&nbsp;&nbsp;期号：<font color="red">@row["lotterynum"]</font></td>
+                        <td width="235" height="30" align="left">&nbsp;&nbsp;&nbsp;&nbsp;期号：<font color="red">@rowbet["lotterynum"]</font></td>
                         <td width="230" align="left">开奖状态：@status</td>
                         <td width="230" height="30" align="left">开奖时间：@opentime</td>
                         
                     </tr>
                     <tr>
-                        @{string mybett = string.Format("{0:n0}", @row["money"]);
-                          string winmoney = string.Format("{0:n0}", @row["winmoney"]);
-                          string mywin = string.Format("{0:n0}", @row["win"]);
+                        @{string mybett = string.Format("{0:n0}", rowbet["money"]);
+                          string winmoney = string.Format("{0:n0}", rowbet["winmoney"]);
+                          string mywin = string.Format("{0:n0}", rowbet["win"]);
                         }
                         <td width="235" height="30" align="left"><span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;我的投注额：@mybett</span><img style="float: left;margin-top:6px; margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
                         <td width="230" height="30" align="left"><span style="float: left;">获得金额：@winmoney</span><img style="float: left;margin-top:6px;  margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
@@ -47,7 +70,7 @@
     <tr align="center" height="20"><th colspan="20" style="font-size:20px;">冠亚军和</th></tr>
 
     @{int id = 0;
-      string gytype = resulttype[1];
+      string gytype = ","+resulttype[1].Replace("冠亚:","")+",";
     DataRowCollection gyh = ds.Tables[0].Rows;
     }
     @for (int j = 0; j < 5; j++)
@@ -62,6 +85,12 @@
                 }
                 string num = gyh[id - 1]["setid"].ToString();
                 DataRow row = gyh[id - 1];
+                string btitem = row["item"].ToString();
+                int numresult=0;
+                if(int.TryParse(btitem, out numresult))
+                {
+                    btitem = numresult.ToString().PadLeft(2, '0');
+                }
                 <td>
                     <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
                           width="25" height="25">@row["item"]</span>
@@ -70,18 +99,13 @@
                     <td><span id="span_@num"></span></td>
                   
                     <td>
-                        @if (dic.ContainsKey((isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())))
+                        @if (gytype.Contains(btitem))
                         {
-                            if (rw["item"].ToString() == row["resultnum"].ToString()
-                                || ("," + rw["nums"].ToString() + ",").Contains("," + row["resultnum"].ToString() + ","))
-                            {
-                                int win = (int)(dic[(isnumber == 0 ? @rw["item"].ToString() : int.Parse(@rw["item"].ToString()).ToString())] * float.Parse(rw["odds"].ToString()));
-                                @win.ToString("n0")
-                            }
-                            else
-                            {
-                                @:-
-                    }
+                            string item=bettinfo.Find(x=>x.Contains(num));
+                            string[] btinfo = item.Split(':');
+                            int win =(int) (int.Parse(btinfo[1]) * decimal.Parse(row["odds"].ToString()));
+                            @win.ToString("n0");
+                            
                         }
                         else
                         {
@@ -97,10 +121,14 @@
     <tr align="center" bgcolor="#FFFFFF" height="27">
         @for (int i = 0; i < 4; i++)
         {
-
-
             string num = gyhdx[i]["setid"].ToString();
             DataRow row = gyhdx[i];
+            string btitem = row["item"].ToString();
+            int numresult = 0;
+            if (int.TryParse(btitem, out numresult))
+            {
+                btitem = numresult.ToString().PadLeft(2, '0');
+            }
             <td>
                 <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
                       width="25" height="25">@row["item"]</span>
@@ -111,8 +139,18 @@
                     <input type="checkbox" name="checkboxd" value="checkbox" />
                 </td>
                 <td>
-                    <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled" data-id="@num"
-                           id="txt_@num" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                    @if (gytype.Contains(btitem))
+                    {
+                        string item = bettinfo.Find(x => x.Contains(num));
+                        string[] btinfo = item.Split(':');
+                        int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(row["odds"].ToString()));
+                        @win.ToString("n0");
+
+                    }
+                    else
+                    {
+                        @:-
+                    }
                 </td>
         }
     </tr>
@@ -127,7 +165,7 @@
     <tr><th colspan="5">第一名</th><th colspan="5">第二名</th><th colspan="5">第三名</th><th colspan="5">第四名</th><th colspan="5">第五名</th></tr>
     @{
         DataTable dtch = ds.Tables[2];
-        string gytype = resulttype[0];
+        string [] chtype = resulttype[0].Replace("车号:","").Split('|');
     }
     @for (int i = 1; i <= 14; i++)
     {
@@ -136,9 +174,14 @@
             {
                 DataRow dttype = dtch.Select("pitem='" + j.ToString() + "'")[i - 1];
                 string num = dttype["setid"].ToString();
-                string inpname = "txt_ch_" + j.ToString() + "_" + num;
+                string btitem = dttype["item"].ToString();
+                int numresult = 0;
+                if (int.TryParse(btitem, out numresult))
+                {
+                    btitem = numresult.ToString().PadLeft(2, '0');
+                }
                 <td>
-                    @if ((int)@ViewData["lotterytype"] != 9)
+                    @if ((int)ViewData["lotterytype"] != 9)
                     {
                         <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
                               width="25" height="25">@dttype["item"]</span>
@@ -151,13 +194,20 @@
                 </td>
                 <td class="lossrate" data-type=@dttype["item"]>@dttype["odds"]</td>
                 <td><span id="span_@num"></span></td>
+                
                 <td>
-                    <input type="checkbox" name="checkboxd" value="checkbox" />
-                </td>
-                <td>
-                    <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled"
-                           id='txt_@num' data-id="@num"
-                           onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                    @if ((","+chtype[j-1]+",").Contains(btitem))
+                    {
+                        string item = bettinfo.Find(x => x.Contains(num));
+                        string[] btinfo = item.Split(':');
+                        int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(dttype["odds"].ToString()));
+                        @win.ToString("n0");
+
+                    }
+                    else
+                    {
+                        @:-
+                    }
                 </td>
 
             }
@@ -177,9 +227,14 @@
             {
                 DataRow dttype = dtch.Select("pitem='" + j.ToString() + "'")[i - 1];
                 string num = dttype["setid"].ToString();
-                string inpname = "txt_ch_" + j.ToString() + "_" + num;
+                string btitem = dttype["item"].ToString();
+                int numresult = 0;
+                if (int.TryParse(btitem, out numresult))
+                {
+                    btitem = numresult.ToString().PadLeft(2, '0');
+                }
                 <td>
-                    @if ((int)@ViewData["lotterytype"] != 9)
+                    @if ((int)ViewData["lotterytype"] != 9)
                     {
                         <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
                               width="25" height="25">@dttype["item"]</span>
@@ -192,12 +247,20 @@
                 </td>
                 <td class="lossrate" data-type=@dttype["item"]>@dttype["odds"]</td>
                 <td><span id="span_@num"></span></td>
+                
                 <td>
-                    <input type="checkbox" name="checkboxd" value="checkbox" />
-                </td>
-                <td>
-                    <input type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled" id='txt_@num' data-id="@num"
-                           onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                   @if (("," + chtype[j - 1] + ",").Contains(btitem))
+                   {
+                       string item = bettinfo.Find(x => x.Contains(num));
+                       string[] btinfo = item.Split(':');
+                       int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(dttype["odds"].ToString()));
+                    @win.ToString("n0");
+
+                   }
+                   else
+                   {
+                    @:-
+                    }
                 </td>
 
             }
@@ -213,7 +276,7 @@
     <tr><th colspan="5">1V10</th><th colspan="5">2V9</th><th colspan="5">3V8</th><th colspan="5">4V7</th><th colspan="5">5V6</th></tr>
     @{
         dtch = ds.Tables[3];
-        string gytype = resulttype[2];
+        string lhtype = resulttype[2];
     }
 
     @for (int i = 1; i <= 2; i++)
@@ -223,7 +286,12 @@
             {
                 DataRow dttype = dtch.Select("pitem like '%" + j.ToString() + "%'")[i - 1];
                 string num = dttype["setid"].ToString();
-                string inpname = "txt_lh_" + j.ToString() + "_" + num;
+                string btitem = dttype["item"].ToString();
+                int numresult = 0;
+                if (int.TryParse(btitem, out numresult))
+                {
+                    btitem = numresult.ToString().PadLeft(2, '0');
+                }
                 <td>
                     @if ((int)@ViewData["lotterytype"] != 9)
                     {
@@ -240,8 +308,18 @@
                 <td><span id="span_@num"></span></td>
                
                 <td>
-                    <span type="text" class="input2" name="SMONEY" style="width: 80px; ime-mode: disabled" id='txt_@num' data-id="@num"
-                           onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" maxlength="8" />
+                   @if (("," + chtype[j - 1] + ",").Contains(btitem))
+                   {
+                       string item = bettinfo.Find(x => x.Contains(num));
+                       string[] btinfo = item.Split(':');
+                       int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(dttype["odds"].ToString()));
+                    @win.ToString("n0");
+
+                   }
+                   else
+                   {
+                    @:-
+                    }
                 </td>
 
             }

@@ -254,7 +254,7 @@ function loadpage(type, expect, betid) {
         case 'bettrecords':
             if (lotterytype == 27)
             {
-                $(".temp_content").load("/nwlottery/_bettrecordpklh", { "type": lotterytype, "page": 1 });
+                $(".temp_content").load("/nwlottery/_bettrecordpksc", { "type": lotterytype, "page": 1 });
             } else
             {
                 $(".temp_content").load("/nwlottery/_bettrecord", { "type": lotterytype, "page": 1 });
