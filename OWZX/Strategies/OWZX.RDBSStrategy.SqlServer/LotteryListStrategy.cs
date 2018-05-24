@@ -241,7 +241,7 @@ end
               declare @type int ={0}
 declare @min varchar(5), @sec varchar(5),@expect varchar(50),@totalsec varchar(5)
 
-if(@type in (1,4,9,7,8,14,16,17)) 
+if(@type in (1,4,9,7,8,14,16,17,27,28,29,30)) 
 begin
 
 if exists(select top 1 1 from owzx_lotteryrecord where type=@type and status !=2 and 

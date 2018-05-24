@@ -33,9 +33,12 @@
     <a href="javascript:loadpage('rule')" target="_parent">游戏规则</a>
     <span class="wh12">|</span>
     <a href="javascript:loadpage('bettrecords')" target="_parent">投注记录</a>
-    <span class="wh12">|</span>
-    <a href="javascript:loadpage('models')" target="_parent">模式编辑</a>
-    @if (@cpcode != 13)
+    @if (cpcode != 27)
+    {
+        <span class="wh12">|</span>
+        <a href="javascript:loadpage('models')" target="_parent">模式编辑</a>
+    }
+    @if (cpcode != 13 && cpcode != 27)
     {
         <span class="wh12">|</span>
         <a href="javascript:loadpage('autobett')" target="_parent">自动投注</a>

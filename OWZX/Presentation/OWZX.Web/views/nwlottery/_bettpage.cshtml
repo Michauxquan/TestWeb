@@ -204,10 +204,21 @@
             <text>
                 <tr align="center" bgcolor="#FFFFFF" height="27">
                     <td>
-                        @if((int)@ViewData["lotterytype"]!=9)
+                        @if ((int)ViewData["lotterytype"] != 9)
                         {
-                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
-                                  width="25" height="25">@row["item"]</span>
+                            if ((int)ViewData["lotterytype"] == 30)
+                            {
+                                <span class="ltresult pcresult btnumber"
+                                      style="width:35px;height:35px;background-image: url('../../images/number/@(row["item"].ToString() == "龙"?"long":"hu").png'); "
+                                      width="35" height="35" data-type="@row["item"]"></span>
+
+                            }
+                            else
+                            {
+                                <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                                      width="25" height="25">@row["item"]</span>
+                            }
+
                         }
                         else
                         {
@@ -254,8 +265,18 @@
                     <td>
                         @if ((int)@ViewData["lotterytype"] != 9)
                         {
-                            <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
-                                  width="25" height="25">@row["item"]</span>
+                            if ((int)ViewData["lotterytype"] == 30)
+                            {
+                                <span class="ltresult pcresult btnumber"
+                                      style="width:35px;height:35px;background-image: url('../../images/number/@(row["item"].ToString() == "龙"?"long":"hu").png'); "
+                                      width="35" height="35" data-type="@row["item"]"></span>
+
+                            }
+                            else
+                            {
+                                <span class="ltresult pcresult btnumber" style="background-image: url('../../images/number/lottery.png'); "
+                                      width="25" height="25">@row["item"]</span>
+                            }
                         }
                         else
                         {

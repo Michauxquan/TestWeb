@@ -754,7 +754,15 @@ function datapost() {
             ipval = $.trim(ipval).replace(/,/gi, "");//去掉数字分割符
             if (ipval != "0" && ipval.trim() != "") {
                 if (lotterytype != 27) {
-                    var src = $(this).parent().parent().find("td").eq(0).find("span").text();
+                    var src;
+                    if (lotterytype == 30)
+                    {
+                        src = $(this).parent().parent().find("td").eq(0).find("span").data("type");
+                    }
+                    else
+                    {
+                        src = $(this).parent().parent().find("td").eq(0).find("span").text();
+                    }
                     var num = src;
                     if (isNaN(num)) {
                         arrbettnew += (num) + ":" + ipval + ";";

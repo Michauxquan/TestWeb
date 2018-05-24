@@ -275,6 +275,8 @@ function loadpage(type, expect, betid) {
             if (lotterytype == 13)
             {
                 $(".temp_content").load("/nwlottery/_bettdetailslhc", { "type": lotterytype, "bettid": betid });
+            }else if (lotterytype == 27) {
+                $(".temp_content").load("/nwlottery/_bettdetailspksc", { "type": lotterytype, "bettid": betid });
             } else
             {
                 $(".temp_content").load("/nwlottery/_bettdetails", { "type": lotterytype, "bettid": betid });

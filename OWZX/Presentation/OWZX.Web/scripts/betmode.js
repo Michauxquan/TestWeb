@@ -86,6 +86,16 @@ function Change_Modes(ModeId) {
         {
             $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
         }
+    } else if (lotterytype == 28 ||lotterytype == 29) {
+        //modeldatas 按照 投注编号进行保存
+        for (var i = 1; i <= 27; i++) {
+            $("#SMONEY_" + i).val(ModelDatas[CurrentMode - 1][i]);
+        }
+    }
+    else if (lotterytype == 30) {
+        $("#SMONEY_龙").val(ModelDatas[CurrentMode - 1][0]);
+        $("#SMONEY_虎").val(ModelDatas[CurrentMode - 1][1]);
+
     }
     $("#bttmode").val(ModeNames[CurrentMode - 1]);
 
@@ -447,6 +457,55 @@ function FirstModes(modes) {
                 //}
             }
         }
+    } else if (lotterytype == 27)
+    {
+        for (var i = 0; i < modelpksc[modes - 1].length; i++) {
+            var id_num = modelpksc[modes - 1][i];
+            var id_name = "#SMONEY_" + modelpksc[modes - 1][i];
+            if (!$(id_name).attr("readonly")) {
+                //if (i >= 49)
+                //{
+                //    $(id_name).val(20);
+                //    sum = sum + 20;
+                //} else
+                //{
+                $(id_name).val(10);
+                sum = sum + 10;
+                //}
+            }
+        }
+    } else if (lotterytype == 28) {
+        for (var i = 0; i < modepk22[modes - 1].length; i++) {
+            var id_num = modepk22[modes - 1][i];
+            var id_name = "#SMONEY_" + modepk22[modes - 1][i];
+            if (!$(id_name).attr("readonly")) {
+                //if (i >= 49)
+                //{
+                //    $(id_name).val(20);
+                //    sum = sum + 20;
+                //} else
+                //{
+                $(id_name).val(pk22[id_num - 6]);
+                sum = sum + pk22[id_num - 6];
+                //}
+            }
+        }
+    } else if (lotterytype == 29) {
+        for (var i = 0; i < modepk10[modes - 1].length; i++) {
+            var id_num = modepk10[modes - 1][i];
+            var id_name = "#SMONEY_" + modepk10[modes - 1][i];
+            if (!$(id_name).attr("readonly")) {
+                //if (i >= 49)
+                //{
+                //    $(id_name).val(20);
+                //    sum = sum + 20;
+                //} else
+                //{
+                $(id_name).val(10);
+                sum = sum + 10;
+                //}
+            }
+        }
     }
 
     document.getElementById("SMONEYSUM").value = sum;
@@ -557,9 +616,16 @@ function DoSave(NewName) {
         ipval = $.trim(ipval).replace(/,/gi, "");
 
         if (ipval != "0" && ipval.trim() != "") {
-            var src = $(this).parent().parent().find("td").eq(0).find("span").text();
+            var src;
+            if (lotterytype == 30) {
+                src = $(this).parent().parent().find("td").eq(0).find("span").data("type");
+            }
+            else {
+                src = $(this).parent().parent().find("td").eq(0).find("span").text();
+            }
+            
             var num = src;// src.split('_')[1].split('.')[0];
-            if (isNaN(num)) {
+            if (isNaN(num) || lotterytype == 28 || lotterytype == 29) {
                 arrbettnew += num + ":" + ipval + ";";
                 arrbettnum += num + ";";
             } else {
