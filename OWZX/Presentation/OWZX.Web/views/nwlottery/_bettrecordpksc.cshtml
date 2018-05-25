@@ -145,8 +145,8 @@
 
 
             <td><img style="float: right; margin-top:5px; margin-right: 20px;width: 20px; height: 16px;" src="../../images/yuanbao.png" /><span style="float: right;">@Int64.Parse(@row["money"].ToString()).ToString("n0")</span><span class="clear"></span></td>
-            <td><img style="float: right; margin-top:5px; margin-right: 20px;width: 20px; height: 16px;" src="../../images/yuanbao.png" /><span style="float: right;">@Int64.Parse(@row["winmoney"].ToString()).ToString("n0")</span><span class="clear"></span></td>
-            <td><img style="float: right; margin-top:5px; margin-right: 10px;width: 20px; height: 16px;" src="../../images/yuanbao.png" /><span style="float: right;">@Int64.Parse(@row["win"].ToString()).ToString("n0")</span><span class="clear"></span></td>
+            <td><img style="float: right; margin-top:5px; margin-right: 20px;width: 20px; height: 16px;" src="../../images/yuanbao.png" /><span style="float: right;">@Decimal.Parse(@row["winmoney"].ToString()).ToString("n2")</span><span class="clear"></span></td>
+            <td><img style="float: right; margin-top:5px; margin-right: 10px;width: 20px; height: 16px;" src="../../images/yuanbao.png" /><span style="float: right;">@Decimal.Parse(@row["win"].ToString()).ToString("n2")</span><span class="clear"></span></td>
             <td><a href="javascript:loadpage('details',undefined,@row["bettid"])" style="color:#e4393c">查看</a></td>
             <td><a href="javascript:record_save(@row["bettid"]);">保存</a></td>
         </tr>

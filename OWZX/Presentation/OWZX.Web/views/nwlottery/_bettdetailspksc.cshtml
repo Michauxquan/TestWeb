@@ -56,8 +56,8 @@
                     </tr>
                     <tr>
                         @{string mybett = string.Format("{0:n0}", rowbet["money"]);
-                          string winmoney = string.Format("{0:n0}", rowbet["winmoney"]);
-                          string mywin = string.Format("{0:n0}", rowbet["win"]);
+                          string winmoney = string.Format("{0:n2}", rowbet["winmoney"]);
+                          string mywin = string.Format("{0:n2}", rowbet["win"]);
                         }
                         <td width="235" height="30" align="left"><span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;我的投注额：@mybett</span><img style="float: left;margin-top:6px; margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
                         <td width="230" height="30" align="left"><span style="float: left;">获得金额：@winmoney</span><img style="float: left;margin-top:6px;  margin-left: 5px;width: 20px; height: 16px;" src="../../images/yuanbao.png"/><span class="clear"></span></td>
@@ -109,7 +109,7 @@
                 string item = bettinfo.Find(x => x.Contains(num));
                 string[] btinfo = item.Split(':');
                 int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(row["odds"].ToString()));
-                @win.ToString("n0");
+                @win.ToString("n2");
             }
             else
             {
@@ -153,7 +153,7 @@
                 string item = bettinfo.Find(x => x.Contains(num));
                 string[] btinfo = item.Split(':');
                 int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(row["odds"].ToString()));
-                @win.ToString("n0");
+                @win.ToString("n2");
             }
             else
             {
@@ -209,7 +209,7 @@
                 string item = bettinfo.Find(x => x.Contains(num));
                 string[] btinfo = item.Split(':');
                 int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(dttype["odds"].ToString()));
-                @win.ToString("n0");
+                @win.ToString("n2");
             }
             else
             {
@@ -263,7 +263,7 @@
                 string item = bettinfo.Find(x => x.Contains(num));
                 string[] btinfo = item.Split(':');
                 int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(dttype["odds"].ToString()));
-                @win.ToString("n0");
+                @win.ToString("n2");
             }
             else
             {
@@ -321,7 +321,7 @@
                 string item = bettinfo.Find(x => x.Contains(num));
                 string[] btinfo = item.Split(':');
                 int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(dttype["odds"].ToString()));
-                @win.ToString("n0");
+                @win.ToString("n2");
             }
             else
             {
