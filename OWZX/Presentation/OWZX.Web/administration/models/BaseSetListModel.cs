@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 using OWZX.Core;
+using OWZX.Model;
 
 namespace OWZX.Web.Admin.Models
 {
@@ -15,7 +16,7 @@ namespace OWZX.Web.Admin.Models
         /// <summary>
         /// 列表
         /// </summary>
-        public List<BaseInfo> BaseSetList { get; set; }
+        public List<MD_BaseSet> BaseSetList { get; set; }
 
        
     }

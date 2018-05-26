@@ -20,7 +20,11 @@ function GetRTime(type, ctime, fcnum, totalime, stoptime, prevnum)
     //ns 开奖时间
     nS = nS - 1;
     if (nS <= -30)
+    {
         clearTimeout(tiner);
+        $(".lot_content").load("/nwlottery/_index", { "type": type });
+    }
+        
     if (nS > -30)
         tiner = setTimeout("GetRTime(" + type + "," + nS + "," + fcnum + "," + totalime + "," + stoptime + ")", 1000);
 
@@ -135,7 +139,6 @@ function trap(type, fcnum) {
     $.post("/nwlottery/lotteryopen", { "type": lotterytype, "expect": fcnum }, function (data) {
         if (data == "1") {
             $("#jquery_jplayer_1").jPlayer('play');
-            clearTimeout(tiner);
             clearTimeout(traptime);
             if ($(".sec_head a:eq(0)").hasClass("hot") && isbett == 0)
                 $(".lot_content").load("/nwlottery/_index", { "type": lotterytype });

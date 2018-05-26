@@ -1,0 +1,134 @@
+﻿@model LotteryModel
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <title>牛人榜-@{@WorkContext.ShopConfig.SiteTitle}</title>
+    @Html.Raw(WorkContext.ShopConfig.SEOKeyword)
+    @Html.Raw(WorkContext.ShopConfig.SEODescription)
+    <link href="@{@WorkContext.CSSCDN}/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="@{@WorkContext.CSSCDN}/css/rankings.css" rel="stylesheet" />
+    <script src="@{@WorkContext.ScriptCDN}/scripts/jquery.js" type="text/javascript"></script>
+    <link href="/components/layer/skin/layer.css" rel="stylesheet" />
+    <script src="/components/layer/layer.js"></script>
+    
+</head>
+<body style="background: #fff;background-size:  100% 90%; background-position: bottom;">
+    @Html.Partial("_header")
+    <div class="Content">
+
+        <div class="list">
+            <div class="list_top"><img src="~/images/rank/rankings_top1.jpg" /></div>
+            @{
+                DataTable dttd = (DataTable)ViewData["tdrank"];
+                DataTable dtzd = (DataTable)ViewData["zdrank"];
+                DataTable dtweek= (DataTable)ViewData["weekrank"];
+            }
+            @for (int i = 0; i < 20; i++)
+            {
+                DataRow rw =dttd.Rows[i];
+                string num = string.Empty;
+                
+                if(i>2)
+                { num = (i + 1).ToString();
+                }
+                <div class="list_Content">
+                    <li class="pm"><div class="r0@(i>2?0:(i+1))">@num</div></li>
+                    <li class="nc">@rw["nickname"]</li>
+                    <li class="yl">@int.Parse(rw["totalmoney"].ToString()).ToString("n0") </li>
+                </div>
+            }
+        </div>
+
+        <div class="rankingsxian"></div>
+
+
+
+
+        <div class="list">
+            <div class="list_top"><img src="~/images/rank/rankings_top2.jpg" /></div>
+            @for (int i = 0; i < 20; i++)
+            {
+                DataRow rw = dtzd.Rows[i];
+                string num = string.Empty;
+                string jjnum = string.Empty;
+                string img = string.Empty; 
+                
+                if (i > 2)
+                {
+                    img = "r00";
+                    num = (i + 1).ToString();
+                }else
+                {
+                    img = "r1"+(i+1).ToString();
+                }
+                if(i==0)
+                {
+                    jjnum = "( 奖:2,888,000 )";
+                }
+                else if (i == 1)
+                {
+                    jjnum = "( 奖:1,888,000 )";
+                }
+                else if (i == 2)
+                {
+                    jjnum = "( 奖:1,588,000 )";
+                }
+                else if (i == 3)
+                {
+                    jjnum = "( 奖:1,288,000 )";
+                }
+                else if (i ==4)
+                {
+                    jjnum = "( 奖:888,000 )";
+                }else if(i>=5 && i<=9)
+                {
+                    jjnum = "( 奖:88,000 )";
+                }
+                else if (i >= 10 && i <= 19)
+                {
+                    jjnum = "( 奖:58,000 )";
+                }
+                <div class="list_Content">
+                    <li class="pm"><div class="@img">@num</div></li>
+                    <li class="nc0"><div class="nc2">@rw["nickname"]</div><div class="nc3">@jjnum</div></li>
+                    <li class="yl">@int.Parse(rw["totalmoney"].ToString()).ToString("n0") </li>
+                </div>
+            }
+        </div>
+
+
+        <div class="rankingsxian"></div>
+
+
+        <div class="list">
+            <div class="list_top"><img src="~/images/rank/rankings_top3.jpg" /></div>
+            @for (int i = 0; i < 20; i++)
+            {
+                DataRow rw = dtweek.Rows[i];
+                string num = string.Empty;
+                string img = string.Empty;
+
+                if (i > 2)
+                {
+                    img = "r00";
+                    num = (i + 1).ToString();
+                }
+                else
+                {
+                    img = "r3" + (i + 1).ToString();
+                }
+                <div class="list_Content">
+                    <li class="pm"><div class="@img">@num</div></li>
+                    <li class="nc">@rw["nickname"]<font color="#FF0000"></font></li>
+                    <li class="yl">@int.Parse(rw["totalmoney"].ToString()).ToString("n0") </li>
+                </div>
+            }
+        </div>
+
+    </div>
+
+    @Html.Partial("_footer")
+</body>
+</html>

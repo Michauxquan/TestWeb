@@ -108,7 +108,7 @@
             {
                 string item = bettinfo.Find(x => x.Contains(num));
                 string[] btinfo = item.Split(':');
-                int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(row["odds"].ToString()));
+                decimal win = (decimal.Parse(btinfo[1]) * decimal.Parse(row["odds"].ToString()));
                 @win.ToString("n2");
             }
             else
@@ -152,7 +152,7 @@
             {
                 string item = bettinfo.Find(x => x.Contains(num));
                 string[] btinfo = item.Split(':');
-                int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(row["odds"].ToString()));
+                decimal win = (decimal.Parse(btinfo[1]) * decimal.Parse(row["odds"].ToString()));
                 @win.ToString("n2");
             }
             else
@@ -208,7 +208,7 @@
             {
                 string item = bettinfo.Find(x => x.Contains(num));
                 string[] btinfo = item.Split(':');
-                int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(dttype["odds"].ToString()));
+                decimal win = (decimal.Parse(btinfo[1]) * decimal.Parse(dttype["odds"].ToString()));
                 @win.ToString("n2");
             }
             else
@@ -262,7 +262,7 @@
             {
                 string item = bettinfo.Find(x => x.Contains(num));
                 string[] btinfo = item.Split(':');
-                int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(dttype["odds"].ToString()));
+                decimal win = (decimal.Parse(btinfo[1]) * decimal.Parse(dttype["odds"].ToString()));
                 @win.ToString("n2");
             }
             else
@@ -320,7 +320,7 @@
             {
                 string item = bettinfo.Find(x => x.Contains(num));
                 string[] btinfo = item.Split(':');
-                int win = (int)(int.Parse(btinfo[1]) * decimal.Parse(dttype["odds"].ToString()));
+                decimal win = (decimal.Parse(btinfo[1]) * decimal.Parse(dttype["odds"].ToString()));
                 @win.ToString("n2");
             }
             else

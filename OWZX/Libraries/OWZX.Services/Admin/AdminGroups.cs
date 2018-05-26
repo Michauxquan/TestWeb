@@ -34,10 +34,11 @@ namespace OWZX.Services
 
             HashSet<string> adminActionHashSet = AdminActions.GetAdminActionHashSet();
             HashSet<string> adminGroupActionHashSet = GetAdminGroupActionHashSet(adminGid);
-            pageKey = pageKey.Substring(1, pageKey.Length-1);
+            pageKey = pageKey.Substring(1, pageKey.Length - 1).Replace('/', '_');
             //动作方法的优先级大于控制器的优先级
             if ((adminActionHashSet.Contains(pageKey) && adminGroupActionHashSet.Contains(pageKey)) ||
-                                    (adminActionHashSet.Contains(controller) && adminGroupActionHashSet.Contains(controller)))
+                                    (adminActionHashSet.Contains(controller) && adminGroupActionHashSet.Contains(controller))
+                || (adminActionHashSet.Contains(controller) && (pageKey.ToLower().Contains("edit") || pageKey.ToLower().Contains("add") || pageKey.ToLower().Contains("up"))))
             {
                 return true;
             }

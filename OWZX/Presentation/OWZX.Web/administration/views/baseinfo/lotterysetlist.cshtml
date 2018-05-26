@@ -93,13 +93,21 @@
                 <tbody>
                     @foreach (OWZX.Model.MD_LotterySet info in Model.SetList)
                     {
-                        
+                        string bttype = string.Empty;
+                        if (info.PItem == "")
+                        {
+                            bttype = info.Settype;
+                        }
+                        else
+                        {
+                            bttype = info.PItem;
+                        }
                         <tr>
                             <td></td>
                             <td>@info.Id</td>
                             <td>@info.Lottery</td>
                            @* <td>@info.Room</td>*@
-                            <td>@info.Settype</td>
+                            <td>@bttype</td>
                             <td>@info.Item</td>
                             <td>@info.Odds</td>
                             <td>@info.Nums</td>

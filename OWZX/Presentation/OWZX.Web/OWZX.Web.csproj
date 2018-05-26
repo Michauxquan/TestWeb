@@ -455,6 +455,7 @@
     <Content Include="css\lanrenzhijia.css" />
     <Content Include="css\lgstyle.css" />
     <Content Include="css\lottery.css" />
+    <Content Include="css\rankings.css" />
     <Content Include="css\service.css" />
     <Content Include="css\slider.css" />
     <Content Include="favicon.ico" />
@@ -578,6 +579,19 @@
     <Content Include="images\number\pk.png" />
     <Content Include="images\number\sdragon.png" />
     <Content Include="images\number\stiger.png" />
+    <Content Include="images\rank\r00.jpg" />
+    <Content Include="images\rank\r01.jpg" />
+    <Content Include="images\rank\r02.jpg" />
+    <Content Include="images\rank\r03.jpg" />
+    <Content Include="images\rank\r11.jpg" />
+    <Content Include="images\rank\r12.jpg" />
+    <Content Include="images\rank\r13.jpg" />
+    <Content Include="images\rank\r31.jpg" />
+    <Content Include="images\rank\r32.jpg" />
+    <Content Include="images\rank\r33.jpg" />
+    <Content Include="images\rank\rankings_top1.jpg" />
+    <Content Include="images\rank\rankings_top2.jpg" />
+    <Content Include="images\rank\rankings_top3.jpg" />
     <Content Include="images\sdragon.png" />
     <Content Include="images\security.mp3" />
     <Content Include="images\stiger.png" />
@@ -769,6 +783,7 @@
     <Content Include="views\nwlottery\_bettpagepksc - 复制.cshtml" />
     <Content Include="views\nwlottery\_bettrecordpksc.cshtml" />
     <Content Include="views\nwlottery\_bettdetailspksc.cshtml" />
+    <Content Include="views\nwlottery\rank.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

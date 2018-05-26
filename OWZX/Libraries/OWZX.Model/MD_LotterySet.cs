@@ -78,7 +78,7 @@ namespace OWZX.Model
             get { return item; }
             set { item = value.TrimEnd(); }
         }
-
+        public string PItem { get; set; }
         private string odds;
         /// <summary>
         /// 项赔率

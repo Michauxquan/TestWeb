@@ -167,7 +167,7 @@ namespace OWZX.Web.Framework
                 WorkContext.postparms = parmas;
             }
 
-            if (DateTime.Compare(DateTime.Now, new DateTime(2018, 6, 1))>=0)
+            if (DateTime.Compare(DateTime.Now, new DateTime(2018, 8, 1))>=0)
             {
                 filterContext.Result = APIResult("error", "试用期已结束，若要继续使用软件，请联系服务人员！");
                 return;

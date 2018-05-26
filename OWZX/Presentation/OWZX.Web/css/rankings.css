@@ -1,0 +1,123 @@
+﻿@charset "utf-8";
+/* CSS Document */
+li {
+    list-style-type: none;
+}
+.Content{
+	width:1100px;
+	margin:0 auto;	
+	padding-top:15px;
+	padding-bottom:30px;
+	overflow: hidden;
+	font-family:'微软雅黑';
+}
+
+.list{
+	float:left;
+	width:348px;	
+	border:1px solid #ddd;
+	border-top:0px;
+	border-bottom:0px;
+}
+.list_top{
+	height:60px;
+	line-height:60px;  
+}
+.list_Content{
+	height:50px;
+	line-height:50px; 
+	text-align:center;	
+	font-size:16px;	
+	border-bottom:1px solid #ddd;
+	color:#666;
+}
+.list_Content li,.list_Content div{
+	float:left;
+}
+
+.pm{
+	width:50px;	
+}
+.pm div{
+	width:50px;	
+    height: 50px;
+	line-height:50px;
+	color:#fff;
+	font-size:18px;
+	font-weight:600;
+    text-align: center;
+}
+
+.nc{
+	width:196px;		
+	display:block;	
+	word-break:keep-all;
+	white-space:nowrap;
+	overflow:hidden;
+	text-align: left;
+}
+.nc0{
+	width:196px;		
+	display:block;
+}
+.nc2{
+	width:196px;	
+	height:25px;
+    line-height:25px;	
+	word-break:keep-all;
+	white-space:nowrap;
+	overflow:hidden;
+	text-align: left;
+	padding-top:5px;	
+}
+
+.nc3{
+	width:196px;	
+	height: 15px;
+    line-height: 15px;		
+	color:#f7790b;	
+	font-size:12px;	
+	text-align: left;
+}
+
+.yl{
+	width:90px;	
+	text-align:right;
+	color:#f00;	
+	font-size:15px;
+}
+.rankingsxian{
+	 float:left;
+	 width:25px;
+	 height:400px;
+}
+.r00{
+	background:url("/images/rank/r00.jpg") no-repeat center center;
+}
+.r01{
+	background:url("/images/rank/r01.jpg") no-repeat center center;
+}
+.r02{
+	background:url("/images/rank/r02.jpg") no-repeat center center;
+}
+.r03{
+	background:url("/images/rank/r03.jpg") no-repeat center center;
+}
+.r11{
+	background:url("/images/rank/r11.jpg") no-repeat center center;
+}
+.r12{
+	background:url("/images/rank/r12.jpg") no-repeat center center;
+}
+.r13{
+	background:url("/images/rank/r13.jpg") no-repeat center center;
+}
+.r31{
+	background:url("/images/rank/r31.jpg") no-repeat center center;
+}
+.r32{
+	background:url("/images/rank/r32.jpg") no-repeat center center;
+}
+.r33{
+	background:url("/images/rank/r33.jpg") no-repeat center center;
+}

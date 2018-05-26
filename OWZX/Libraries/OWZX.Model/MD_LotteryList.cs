@@ -19,7 +19,7 @@ namespace OWZX.Model
         /// <summary>
         /// 今日盈亏
         /// </summary>
-        public Int64 TdProf { get; set; }
+        public decimal TdProf { get; set; }
         /// <summary>
         /// 今日参与期数
         /// </summary>

@@ -579,5 +579,54 @@ namespace OWZX.Data
             return OWZX.Core.BSPData.RDBS.GetLimitList(condition);
         }
         #endregion
+
+        #region 配置信息
+
+        /// <summary>
+        /// 添加配置信息
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        public static string AddBaseSet(MD_BaseSet baseset)
+        {
+            return OWZX.Core.BSPData.RDBS.AddBaseSet(baseset);
+        }
+        /// <summary>
+        /// 更新配置信息
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        public static string UpdateBaseSet(MD_BaseSet baseset)
+        {
+            return OWZX.Core.BSPData.RDBS.UpdateBaseSet(baseset);
+        }
+
+        /// <summary>
+        /// 删除配置信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static string DeleteBaseSet(string id)
+        {
+            return OWZX.Core.BSPData.RDBS.DeleteBaseSet(id);
+        }
+
+        /// <summary>
+        ///  获取配置信息
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where </param>
+        /// <returns></returns>
+        public static DataTable GetBaseSetList(int pageNumber, int pageSize, string condition = "")
+        {
+            return OWZX.Core.BSPData.RDBS.GetBaseSetList(pageNumber, pageSize, condition);
+        }
+        #endregion
+
+        public static DataSet GetRank()
+        {
+            return OWZX.Core.BSPData.RDBS.GetRank();
+        }
     }
 }

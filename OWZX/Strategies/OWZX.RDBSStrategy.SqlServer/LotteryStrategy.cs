@@ -1652,6 +1652,7 @@ SELECT ROW_NUMBER() over(order by a.bttypeid ) id,
 a.[bttypeid], e.type as  lottery
 ,a.[type],c.type as settype,a.[item],'1:'+f.odds odds,a.[nums],a.[addtime],a.roomtype
 ,f.lotterytype --,d.type as room
+,isnull(f.pitem,'') pitem,f.setid
 into  #list
  from  owzx_lotteryset a
  join dbo.owzx_lotsetodds f on a.bttypeid=f.bttypeid
@@ -1666,11 +1667,11 @@ select @total=(select count(1)  from #list)
 
 if(@pagesize=-1)
 begin
-select *,@total TotalCount from #list
+select *,@total TotalCount from #list order by lotterytype, setid
 end
 else
 begin
-select  *,@total TotalCount from #list where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
+select  *,@total TotalCount from #list where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex order by lotterytype, setid
 end
 
 end try
@@ -2614,5 +2615,181 @@ end catch
         }
 
         #endregion
+
+        #region 配置信息
+
+        /// <summary>
+        /// 添加配置信息
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        public string AddBaseSet(MD_BaseSet baseset)
+        {
+            DbParameter[] parms = {
+                                    GenerateInParam("@key", SqlDbType.VarChar, 50, baseset.Key),
+                                    GenerateInParam("@name", SqlDbType.VarChar, 50,baseset.Name),
+                                    GenerateInParam("@account", SqlDbType.VarChar, 50, baseset.Account),
+                                    GenerateInParam("@bank", SqlDbType.VarChar, 50,baseset.Bank),
+                                    GenerateInParam("@BankAddress", SqlDbType.VarChar, 50, baseset.BankAddress),
+                                    GenerateInParam("@Image", SqlDbType.VarChar, 50, baseset.Image)
+                                    };
+            string commandText = string.Format(@"
+begin try
+begin tran t1
+
+INSERT INTO [owzx_baseset]
+           ([key]
+           ,[name]
+           ,[account]
+           ,[bank]
+           ,[BankAddress]
+           ,[Image])
+     VALUES
+           (@key
+           ,@name
+           ,@account
+           ,@bank
+           ,@BankAddress
+           ,@Image)
+
+select '添加成功' state
+commit tran t1
+
+end try
+begin catch
+rollback tran t1
+select ERROR_MESSAGE() state
+end catch
+");
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+        }
+        /// <summary>
+        /// 更新配置信息
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        public string UpdateBaseSet(MD_BaseSet baseset)
+        {
+            DbParameter[] parms = {
+                                                  GenerateInParam("@autoid", SqlDbType.Int, 4, baseset.Autoid),
+                                                  GenerateInParam("@name", SqlDbType.VarChar, 50, baseset.Name),
+                                                  GenerateInParam("@account", SqlDbType.VarChar, 50, baseset.Account),
+                                                  GenerateInParam("@bank", SqlDbType.VarChar, 50, baseset.Bank),
+                                                  GenerateInParam("@BankAddress", SqlDbType.VarChar, 50, baseset.BankAddress),
+                                                  GenerateInParam("@Image", SqlDbType.VarChar, 100, baseset.Image)
+                                                };
+            string commandText = string.Format(@"
+            begin try
+            begin tran t1
+            if exists(select 1 from owzx_baseset where autoid=@autoid)
+            begin
+            UPDATE owzx_baseset
+               SET name = @name
+      ,[account] = @account
+      ,[bank] = @bank
+      ,[BankAddress] = @BankAddress
+      ,[Image] = @Image
+            where autoid=@autoid
+            
+            select '修改成功' state
+            commit tran t1
+            end
+            else
+            begin
+            select '记录已被删除' state
+            commit tran t1
+            end
+            end try
+            begin catch
+            rollback tran t1
+            select ERROR_MESSAGE() state
+            end catch
+            ");
+            return RDBSHelper.ExecuteScalar(CommandType.Text, commandText, parms).ToString();
+        }
+
+        /// <summary>
+        /// 删除配置信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string DeleteBaseSet(string id)
+        {
+            string commandText = string.Format(@"
+            begin try
+            if exists(select 1 from owzx_baseset where autoid in ({0}))
+            begin
+            delete from owzx_baseset where autoid in ({0})
+            select '删除成功' state
+            end
+            else
+            begin
+            select '记录已被删除' state
+            end
+            end try
+            begin catch
+            select ERROR_MESSAGE() state
+            end catch
+            ", id);
+            return RDBSHelper.ExecuteScalar(commandText).ToString();
+        }
+
+        /// <summary>
+        ///  获取配置信息
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where </param>
+        /// <returns></returns>
+        public DataTable GetBaseSetList(int pageNumber, int pageSize, string condition = "")
+        {
+            DbParameter[] parms = {
+                                      GenerateInParam("@pagesize", SqlDbType.Int, 4, pageSize),
+                                      GenerateInParam("@pageindex", SqlDbType.Int, 4, pageNumber)
+                                  };
+
+
+            string commandText = string.Format(@"
+begin try
+if OBJECT_ID('tempdb..#list') is not null
+drop table #list
+
+SELECT ROW_NUMBER() over(order by a.autoid ) id,*
+into  #list
+from owzx_baseset a
+{0}
+
+declare @total int
+select @total=(select count(1)  from #list)
+
+if(@pagesize=-1)
+begin
+select *,@total TotalCount from #list
+end
+else
+begin
+select  *,@total TotalCount from #list where id>@pagesize*(@pageindex-1) and id <=@pagesize*@pageindex
+end
+
+end try
+begin catch
+select ERROR_MESSAGE() state
+end catch
+
+", condition);
+
+            return RDBSHelper.ExecuteDataset(CommandType.Text, commandText, parms).Tables[0];
+        }
+        #endregion
+
+        public DataSet GetRank()
+        {
+            string commandText = string.Format(@"
+exec owzx_getrank
+");
+            return RDBSHelper.ExecuteDataset(CommandType.Text, commandText, null);
+        
+        }
+
     }
 }

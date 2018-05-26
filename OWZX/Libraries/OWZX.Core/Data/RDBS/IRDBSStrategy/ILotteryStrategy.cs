@@ -394,6 +394,38 @@ namespace OWZX.Core
         string UpdateSetDetailStaus(int lotteryid, int detailid, int isdefault, string result, string lotterynum);
         DataTable GetLotteryOpenSetList(int type = 3);
         #endregion
+        #region 配置信息
 
+        /// <summary>
+        /// 添加配置信息
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        string AddBaseSet(MD_BaseSet baseset);
+        /// <summary>
+        /// 更新配置信息
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        string UpdateBaseSet(MD_BaseSet baseset);
+
+        /// <summary>
+        /// 删除配置信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        string DeleteBaseSet(string id);
+
+        /// <summary>
+        ///  获取配置信息
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where </param>
+        /// <returns></returns>
+        DataTable GetBaseSetList(int pageNumber, int pageSize, string condition = "");
+        #endregion
+
+        DataSet GetRank();
     }
 }

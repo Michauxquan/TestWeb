@@ -580,7 +580,7 @@ namespace OWZX.Services
         /// <returns></returns>
         public static List<MD_Lottery> GetLotteryList(int pageIndex, int pageSize, string condition = "", string orderby = "desc")
         {
-            DataTable dt = OWZX.Data.Lottery.GetLotteryList(pageIndex, pageSize, condition,orderby);
+            DataTable dt = OWZX.Data.Lottery.GetLotteryList(pageIndex, pageSize, condition, orderby);
             List<MD_Lottery> list = (List<MD_Lottery>)ModelConvertHelper<MD_Lottery>.ConvertToModel(dt);
             return list;
         }
@@ -1101,7 +1101,7 @@ namespace OWZX.Services
         #endregion
 
 
-        #region 急速28 
+        #region 急速28
 
         public static List<MD_LotteryAllMoney> GetAllMoneyByLotteryNum(string lotterynum = "", int type = 3)
         {
@@ -1155,10 +1155,77 @@ namespace OWZX.Services
         /// <returns></returns>
         public static List<MD_AppLimit> GetLimitList(string condition = "")
         {
-            DataTable dt= OWZX.Data.Lottery.GetLimitList(condition);
+            DataTable dt = OWZX.Data.Lottery.GetLimitList(condition);
             List<MD_AppLimit> list = (List<MD_AppLimit>)ModelConvertHelper<MD_AppLimit>.ConvertToModel(dt);
             return list;
         }
         #endregion
+
+        #region 配置信息
+
+        /// <summary>
+        /// 添加配置信息
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        public static bool AddBaseSet(MD_BaseSet baseset)
+        {
+            string result = OWZX.Data.Lottery.AddBaseSet(baseset);
+            if (result.EndsWith("成功"))
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 更新配置信息
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        public static bool UpdateBaseSet(MD_BaseSet baseset)
+        {
+            string result = OWZX.Data.Lottery.UpdateBaseSet(baseset);
+            if (result.EndsWith("成功"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 删除配置信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static bool DeleteBaseSet(string id)
+        {
+            string result = OWZX.Data.Lottery.DeleteBaseSet(id);
+            if (result.EndsWith("成功"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        ///  获取配置信息
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize">-1 取全部</param>
+        /// <param name="condition">没有where </param>
+        /// <returns></returns>
+        public static List<MD_BaseSet> GetBaseSetList(int pageNumber, int pageSize, string condition = "")
+        {
+            DataTable dt = OWZX.Data.Lottery.GetBaseSetList(pageNumber, pageSize, condition);
+            List<MD_BaseSet> list = (List<MD_BaseSet>)ModelConvertHelper<MD_BaseSet>.ConvertToModel(dt);
+            return list;
+        }
+        #endregion
+
+        public static DataSet GetRank()
+        {
+            DataSet ds = OWZX.Data.Lottery.GetRank();
+            return ds;
+        }
     }
 }

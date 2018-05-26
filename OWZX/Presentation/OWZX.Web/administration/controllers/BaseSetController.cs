@@ -9,6 +9,7 @@ using OWZX.Core;
 using OWZX.Services;
 using OWZX.Web.Framework;
 using OWZX.Web.Admin.Models;
+using OWZX.Model;
 
 namespace OWZX.Web.Admin.Controllers
 {
@@ -17,6 +18,7 @@ namespace OWZX.Web.Admin.Controllers
     /// </summary>
     public partial class BaseSetController : BaseAdminController
     {
+        #region 基础设置
         /// <summary>
         /// 列表
         /// </summary>
@@ -24,7 +26,7 @@ namespace OWZX.Web.Admin.Controllers
         {
             BaseSetListModel model = new BaseSetListModel();
 
-            model.BaseSetList = BSPConfig.BaseConfig.BaseList;
+            model.BaseSetList = Lottery.GetBaseSetList(1, -1, "");
 
             ShopUtils.SetAdminRefererCookie(Url.Action("list"));
 
@@ -50,7 +52,7 @@ namespace OWZX.Web.Admin.Controllers
         public ActionResult Add()
         {
             Load();
-            BaseInfo model = new BaseInfo();
+            MD_BaseSet model = new MD_BaseSet();
             ViewData["referer"] = ShopUtils.GetAdminRefererCookie();
             return View(model);
         }
@@ -59,27 +61,28 @@ namespace OWZX.Web.Admin.Controllers
         /// 添加基础信息
         /// </summary>
         [HttpPost]
-        public ActionResult Add(BaseInfo model)
+        public ActionResult Add(MD_BaseSet model)
         {
             Load();
-            if (!string.IsNullOrWhiteSpace(model.Key) && BSPConfig.BaseConfig.BaseList.Find(x => x.Key == model.Key.Trim().ToLower()) != null)
-                ModelState.AddModelError("Key", "键已经存在");
+            List<MD_BaseSet> list = Lottery.GetBaseSetList(1, -1, " where [key]='" + model.Key + "'");
+
+            if (list != null && list.Count > 0)
+                ModelState.AddModelError("Key", "类型已经存在");
 
 
-            BaseInfo eventInfo = new BaseInfo()
-                {
-                    Key = model.Key,
-                    Account = model.Account,
-                    Name = model.Name,
-                    Bank = model.Bank,
-                    BankAddress = model.BankAddress
-                };
-
-            BSPConfig.BaseConfig.BaseList.Add(eventInfo);
-            BSPConfig.SaveBaseConfig(BSPConfig.BaseConfig);
-
-            return PromptView("添加成功");
-
+            MD_BaseSet eventInfo = new MD_BaseSet()
+            {
+                Key = model.Key,
+                Account = model.Account,
+                Name = model.Name,
+                Bank = model.Bank,
+                BankAddress = model.BankAddress
+            };
+            bool result = Lottery.AddBaseSet(eventInfo);
+            if (result)
+                return PromptView("添加成功");
+            else
+                return PromptView("添加失败");
         }
 
         /// <summary>
@@ -89,17 +92,18 @@ namespace OWZX.Web.Admin.Controllers
         public ActionResult Edit(string key = "")
         {
             Load();
-            BaseInfo eventInfo = BSPConfig.BaseConfig.BaseList.Find(x => x.Key == key);
-            if (eventInfo == null)
+            List<MD_BaseSet> list = Lottery.GetBaseSetList(1, -1, " where [key]='" + key + "'");
+            if (list == null || list.Count == 0)
                 return PromptView("基础信息不存在");
 
-            BaseInfo model = new BaseInfo();
-            model.Key = eventInfo.Key.Trim();
-            model.Name = eventInfo.Name;
-            model.Account = eventInfo.Account;
-            model.Bank = eventInfo.Bank;
-            model.BankAddress = eventInfo.BankAddress;
-            model.Image = eventInfo.Image;
+
+            MD_BaseSet model = new MD_BaseSet();
+            model.Key = list[0].Key.Trim();
+            model.Name = list[0].Name;
+            model.Account = list[0].Account;
+            model.Bank = list[0].Bank;
+            model.BankAddress = list[0].BankAddress;
+            model.Image = list[0].Image;
 
             ViewData["referer"] = ShopUtils.GetAdminRefererCookie();
             return View(model);
@@ -109,30 +113,32 @@ namespace OWZX.Web.Admin.Controllers
         /// 编辑事件
         /// </summary>
         [HttpPost]
-        public ActionResult Edit(BaseInfo model)
+        public ActionResult Edit(MD_BaseSet model)
         {
             Load();
-            BaseInfo eventInfo = null;
+            MD_BaseSet eventInfo = new MD_BaseSet();
 
-            if (!string.IsNullOrWhiteSpace(model.Key))
-                eventInfo = BSPConfig.BaseConfig.BaseList.Find(x => x.Key == model.Key);
+            List<MD_BaseSet> list = Lottery.GetBaseSetList(1, -1, " where [key]='" + model.Key + "'");
 
-            if (eventInfo == null)
-                return PromptView("基础信息不存在");
-
-
-            //eventInfo.Key = model.Key.Trim().ToLower(),
-            eventInfo.Key = model.Key.Trim();
+            if (list != null && list.Count == 0)
+                ModelState.AddModelError("Key", "基础信息不存在");
+            eventInfo.Autoid = list[0].Autoid;
+            eventInfo.Key = list[0].Key.Trim();
             eventInfo.Name = model.Name;
             eventInfo.Account = model.Account;
             eventInfo.Bank = model.Bank;
             eventInfo.BankAddress = model.BankAddress;
             eventInfo.Image = model.Image;
-            BSPConfig.SaveBaseConfig(BSPConfig.BaseConfig);
-            return PromptView("保存成功");
+            bool result = Lottery.UpdateBaseSet(eventInfo);
+            if (result)
+                return PromptView("保存成功");
+            else
+                return PromptView("保存失败");
 
 
         }
+
+        #endregion
 
     }
 }
