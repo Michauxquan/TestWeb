@@ -12,6 +12,7 @@ namespace OWZX.Model
     /// </summary>
     public class MD_LotterySet
     {
+        public int SetId { get; set; }
         public Int64 Id { get; set; }
         private int bttypeid;
         public int Bttypeid

@@ -1568,7 +1568,7 @@ end catch
         public string UpdateLotterySet(MD_LotterySet lotset)
         {
             DbParameter[] parms = {
-                                    GenerateInParam("@bttypeid", SqlDbType.Int, 4, lotset.Bttypeid),
+                                    GenerateInParam("@setid", SqlDbType.Int, 4, lotset.SetId),
                                     GenerateInParam("@type", SqlDbType.Int, 4, lotset.Lotterytype),
                                     GenerateInParam("@item", SqlDbType.VarChar, 10, lotset.Item),
                                     GenerateInParam("@odds", SqlDbType.VarChar, 10, lotset.Odds),
@@ -1577,13 +1577,13 @@ end catch
             string commandText = string.Format(@"
 begin try
 begin tran t1
-if exists(select 1 from owzx_lotsetodds where bttypeid=@bttypeid and lotterytype=@type )
+if exists(select 1 from owzx_lotsetodds where setid=@setid and lotterytype=@type )
 begin
-UPDATE owzx_lotteryset   SET odds = @odds,nums=@nums
-where bttypeid=@bttypeid 
+--UPDATE owzx_lotteryset   SET odds = @odds,nums=@nums
+--where setid=@setid 
 
 UPDATE owzx_lotsetodds   SET odds = @odds 
-where bttypeid=@bttypeid  and lotterytype=@type
+where setid=@setid  and lotterytype=@type
 
 select '修改成功' state
 commit tran t1

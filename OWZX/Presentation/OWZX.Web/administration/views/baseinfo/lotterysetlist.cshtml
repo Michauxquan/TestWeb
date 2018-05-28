@@ -111,7 +111,7 @@
                             <td>@info.Item</td>
                             <td>@info.Odds</td>
                             <td>@info.Nums</td>
-                           <td> @Html.ActionLink("[编辑]", "editlotteryset", new { bttypeid = @info.Bttypeid,outtypeid= @info.Lotterytype }, new { @class = "editOperate" })</td>
+                           <td> @Html.ActionLink("[编辑]", "editlotteryset", new { setid = info.SetId,outtypeid= @info.Lotterytype }, new { @class = "editOperate" })</td>
                         </tr>
                     }
                 </tbody>

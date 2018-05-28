@@ -441,10 +441,10 @@ namespace OWZX.Web.Admin.Controllers
         /// <param name="baseid"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult EditLotterySet(int bttypeid = -1,int outtypeid=-1)
+        public ActionResult EditLotterySet(int setid = -1, int outtypeid = -1)
         {
-            StringBuilder strb = new StringBuilder(); 
-            strb.Append(" where a.bttypeid=" + bttypeid + " and f.lotterytype=" + outtypeid);
+            StringBuilder strb = new StringBuilder();
+            strb.Append(" where f.setid=" + setid + " and f.lotterytype=" + outtypeid);
             strb.Append(" and a.roomtype=20 ");
             List<MD_LotterySet> listbase = Lottery.GetLotterySetList(1, 1, strb.ToString()); ;
             ViewData["referer"] = ShopUtils.GetAdminRefererCookie();
