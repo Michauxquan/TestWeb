@@ -252,6 +252,19 @@ function usefenpei() {
     var perScore = 0;
     var totalPressScore = 0;
     var data = PRESSNUM.split(",");
+    var datalength = data.length;
+    
+    if (lotterytype == 27)
+    {
+        datalength = 171;
+    } else if (lotterytype == 28)
+    {
+        datalength = 22;
+    } else if (lotterytype == 29) {
+        datalength = 10;
+    } else if (lotterytype == 30) {
+        datalength = 2;
+    }
     var Input_Score = $('#betsLeft').val();
     if (isNaN(Input_Score)) {
         $('#betsLeft').val('');
@@ -267,12 +280,14 @@ function usefenpei() {
             $('#betsLeft').val('');
             alert('分配分必须正整数!');
             return;
-        }
+        } 
         var checked_num = 0;
-        for (var i = 0; i < data.length; i++) {
-            if ($("[id='txt_" + i + "']").parent().prev("td").children("input").prop("checked")) {
-                checked_num = checked_num + 1;
+        for (var i = 0; i < datalength; i++) {
+        
+            if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
+                  checked_num = checked_num + 1;
             }
+            
         }
         if (Input_Score < checked_num) {
             alert('分配分不够!');
@@ -285,7 +300,7 @@ function usefenpei() {
         }
     }
 
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < datalength; i++) {
         if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
             var vval = $("[id='txt_" + getindname(i) + "']").val();
             perScore = 0;
@@ -299,7 +314,7 @@ function usefenpei() {
         }
     }
     console.log(totalScore);
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < datalength; i++) {
         if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
             var vval = $("[id='txt_" + getindname(i) + "']").val();
             perScore = 0;
@@ -321,6 +336,7 @@ function usefenpei() {
 }
 function chips(num) {
     $("#betsLeft").val(num);
+
     if (!is_new_game()) {
         usefenpei();
     }
@@ -333,6 +349,17 @@ function getindname(i) {
         return modelhb[0][i];
     } else if (lotterytype == 13) {
         return modelhc[0][i];
+    } else if (lotterytype == 27) {
+        return 358+i;
+    } else if (lotterytype == 28) {
+        return modepk22[0][i];
+    } else if (lotterytype == 29) {
+        return modepk10[0][i];
+    } else if (lotterytype == 30) {
+        if (i == 0)
+            return '龙';
+        else
+            return '虎';
     }
     return i;
 }
@@ -343,12 +370,23 @@ function useSuoha() {
     var perScore = 0;
     var totalPressScore = 0;
     var data = PRESSNUM.split(",");
-    for (var i = 0; i < data.length; i++) {
+    var datalength = data.length;
+
+    if (lotterytype == 27) {
+        datalength = 171;
+    } else if (lotterytype == 28) {
+        datalength = 22;
+    } else if (lotterytype == 29) {
+        datalength = 10;
+    } else if (lotterytype == 30) {
+        datalength = 2;
+    }
+    for (var i = 0; i < datalength; i++) {
         if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
             totalScore += parseInt($("[id='txt_" + getindname(i) + "']").val());
         }
     }
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < datalength; i++) {
         if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
             if (mymoney <= maxnum) {
                 perScore = mymoney * parseInt($("[id='txt_" + getindname(i) + "']").val()) / totalScore;

@@ -5,7 +5,8 @@
     int cpcode = Model.LotteryType;
 }
 <script type="text/javascript">
-    lotterytype=@Model.LotteryType;
+    var lotterytype=@Model.LotteryType;
+    var expect='';
     isbett=0;
     $(function () {
         $(".sec_head a").click(function () {
@@ -24,7 +25,6 @@
         }*@
     });
 </script>
-
 <div class="sec_head">
     <a href="javascript:loadpage('lottery')" target="_parent" class="hot">
         @Model.Title

@@ -3,14 +3,16 @@
     int lottype =int.Parse(ViewData["lotterytype"].ToString());
 }
 @model List<OWZX.Model.MD_BettMode>
-<script src="~/scripts/selmode.js"></script>
+
 <script>
     var StrTimeOut = 0;
     var num = "";
     var bettmodel = "";
     var mymoney = @WorkContext.PartUserInfo.TotalMoney;//我的余额
     var expect=@ViewData["expect"];
+    var lotterytype=@ViewData["lotterytype"];
 </script>
+<script src="~/scripts/selmode.js"></script>
 <script src="~/scripts/play.js"></script>
 <style>
      .chipsul {

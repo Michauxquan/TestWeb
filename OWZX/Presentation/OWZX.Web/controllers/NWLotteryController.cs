@@ -872,7 +872,8 @@ namespace OWZX.Web.controllers
         }
 
         #region 牛人榜
-        public ActionResult Rank() {
+        public ActionResult Rank() 
+        {
 
             DataSet ds = Lottery.GetRank();
             DataTable tdrank = MemoryCacheHelper.GetCacheItem<DataTable>("tdrank", delegate()

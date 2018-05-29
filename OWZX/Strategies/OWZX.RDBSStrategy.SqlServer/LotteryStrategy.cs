@@ -1017,7 +1017,15 @@ begin
 		set  @v = SUBSTRING(@val,1,CHARINDEX(':',@val))  
 		if(CHARINDEX(@v,@cusbettinfo)>0)
 		begin
-			set @v=SUBSTRING(@cusbettinfo,CHARINDEX(@v,@cusbettinfo)+3,LEN(@cusbettinfo)) 
+            if(@lotteryid=27)
+begin
+set @v=SUBSTRING(@cusbettinfo,CHARINDEX(@v,@cusbettinfo)+4,LEN(@cusbettinfo)) 
+end
+else
+begin
+set @v=SUBSTRING(@cusbettinfo,CHARINDEX(@v,@cusbettinfo)+3,LEN(@cusbettinfo)) 
+end
+			
 			set @s=cast(SUBSTRING(@v,0,CHARINDEX(';',@v)) as bigint)
 			set @v= SUBSTRING(@val,1,CHARINDEX(':',@val))
 			set @cusbettinfo=REPLACE(@cusbettinfo,@v+cast(@s as varchar),@v+CAST((@s+ CAST(SUBSTRING(@val,CHARINDEX(':',@val)+1,LEN(@val)) as int)) as varchar))
