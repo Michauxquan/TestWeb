@@ -21,66 +21,68 @@
     </script>
 </head>
 
-<body>
-@Html.Partial("_header")
-@using (Html.BeginForm())
-{
-<div class="bigBox" id="member">
-<div class="box">
-@Html.Partial("_menu")
+<body >
+    @Html.Partial("_header")
+    @using (Html.BeginForm())
+    {
+        <div class="bigBox" id="member">
+            <div class="box">
+                @Html.Partial("_menu")
 
-    <div id="memberR">
-        <div style="border-bottom: solid 2px #ccc; padding-bottom: 5px; width: 686px;">
-            <div class="left">
-                <img src="../images/baseimg/banner.png"/>
-            </div>
-            <div class="left pLeft10">
-                <h2 id="memberRT" class="cblock">元宝明细</h2>
-                <span class="font10">元宝收支明细,银行存取、转帐、充值等 </span>
+                <div id="memberR">
+                    <div style="border-bottom: solid 2px #ccc; padding-bottom: 5px; width: 686px;">
+                        <div class="left">
+                            <img src="../images/baseimg/banner.png" />
+                        </div>
+                        <div class="left pLeft10">
+                            <h2 id="memberRT" class="cblock">元宝明细</h2>
+                            <span class="font10">元宝收支明细,银行存取、转帐、充值等 </span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div style="margin-top: 10px; border: solid 1px #ddd; width: 686px;">
+                        <div style="height: 38px; color: #fff; line-height: 39px; background: url('../images/baseimg/msgbgl.png') no-repeat">
+                            &nbsp; &nbsp;元宝记录 <span class="Fred font10 right mRight20">注:仅保留30天记录</span><span class="clear"></span>
+                            <input type="text" name="Uid" id="Uid" style="display: none;" readonly="readonly" name="type" value="@(@Model.Uid)" />
+                        </div>
+                        <table style="width: 666px; border-right: solid 1px #ddd; margin: 10px 0 10px 10px;" cellpadding="0" cellspacing="0" class="memberTableBorder">
+                            <thead>
+                                <tr>
+                                    <th class="th" width="200">时间</th>
+                                    <th class="th" width="150">类型</th>
+                                    <th class="th" width="150">数量</th>
+                                    @*      <th class="th" width="150">操作前额度</th>*@
+                                    <th class="th" width="150"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (OWZX.Model.MD_Change info in Model.ChangeList)
+                                {
+                                    <tr>
+                                        <td style="text-align: center; height: 24px; line-height: 24px; border-bottom: solid 1px #ddd;">@info.Addtime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                                        <td style="text-align: center; border-bottom: solid 1px #ddd;">@info.Remark</td>
+                                        <td style="text-align: center; border-bottom: solid 1px #ddd;">@info.Changemoney</td>
+                                        @*       <td style="text-align: center; border-bottom: solid 1px #ddd;">@info.Accounted</td>*@
+                                        <td style="text-align: center; border-bottom: solid 1px #ddd;"></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="dataListEdit">
+                            <div class="page">
+                                @Html.AdminPager(Model.PageModel)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
             </div>
             <div class="clear"></div>
         </div>
-        <div style="margin-top: 10px; border: solid 1px #ddd; width: 686px;">
-            <div style="height: 38px; color: #fff; line-height: 39px; background: url('../images/baseimg/msgbgl.png') no-repeat">
-                &nbsp; &nbsp;元宝记录 <span class="Fred font10 right mRight20">注:仅保留30天记录</span><span class="clear"></span>
-                <input type="text" name="Uid" id="Uid" style="display: none;" readonly="readonly" name="type" value="@(@Model.Uid)" />
-            </div>
-            <table style="width: 666px; border-right: solid 1px #ddd; margin: 10px 0 10px 10px;" cellpadding="0" cellspacing="0" class="memberTableBorder">
-                <thead >
-                <tr>
-                    <th class="th" width="200">时间</th>
-                    <th class="th" width="150">类型</th>
-                    <th class="th" width="150">数量</th>
-              @*      <th class="th" width="150">操作前额度</th>*@
-                </tr>
-                </thead>
-                <tbody>
-                @foreach (OWZX.Model.MD_Change info in Model.ChangeList)
-                {
-                    <tr>
-                        <td style="text-align: center; height: 24px; line-height: 24px; border-bottom: solid 1px #ddd;">@info.Addtime.ToString("yyyy-MM-dd HH:mm:ss")</td>
-                        <td style="text-align: center; border-bottom: solid 1px #ddd;">@info.Remark</td>
-                        <td style="text-align: center; border-bottom: solid 1px #ddd;">@info.Changemoney</td>
-                 @*       <td style="text-align: center; border-bottom: solid 1px #ddd;">@info.Accounted</td>*@
-                    </tr>
-                }
-                </tbody>
-            </table>
-            <div class="dataListEdit">
-                <div class="page">
-                    @Html.AdminPager(Model.PageModel)
-                </div>
-            </div>
-        </div>
-    </div>
 
-<div class="clear"></div>
-</div>
-<div class="clear"></div>
-</div>
+    }
 
-}
-
-@Html.Partial("_footer")
+    @Html.Partial("_footer")
 </body>
 </html>

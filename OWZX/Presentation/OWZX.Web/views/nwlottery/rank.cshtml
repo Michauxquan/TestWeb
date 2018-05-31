@@ -29,14 +29,14 @@
             {
                 DataRow rw =dttd.Rows[i];
                 string num = string.Empty;
-                
+                string btnum=CommonHelper.HideNumber(decimal.Parse(rw["totalmoney"].ToString()).ToString("n0"), 10,17);
                 if(i>2)
                 { num = (i + 1).ToString();
                 }
                 <div class="list_Content">
                     <li class="pm"><div class="r0@(i>2?0:(i+1))">@num</div></li>
-                    <li class="nc">@rw["nickname"]</li>
-                    <li class="yl">@decimal.Parse(rw["totalmoney"].ToString()).ToString("n0") </li>
+                    <li class="nc">@rw["nickname"].ToString().TrimEnd()</li>
+                    <li class="yl">@btnum</li>
                 </div>
             }
         </div>
@@ -92,8 +92,8 @@
                 }
                 <div class="list_Content">
                     <li class="pm"><div class="@img">@num</div></li>
-                    <li class="nc0"><div class="nc2">@rw["nickname"]</div><div class="nc3">@jjnum</div></li>
-                    <li class="yl">@decimal.Parse(rw["totalmoney"].ToString()).ToString("n0") </li>
+                    <li class="nc0"><div class="nc2">@rw["nickname"].ToString().TrimEnd()</div><div class="nc3">@jjnum</div></li>
+                    <li class="yl">@(CommonHelper.HideNumber(decimal.Parse(rw["totalmoney"].ToString()).ToString("n0"), 10, 17)) </li>
                 </div>
             }
         </div>
@@ -121,8 +121,8 @@
                 }
                 <div class="list_Content">
                     <li class="pm"><div class="@img">@num</div></li>
-                    <li class="nc">@rw["nickname"]<font color="#FF0000"></font></li>
-                    <li class="yl">@decimal.Parse(rw["totalmoney"].ToString()).ToString("n0") </li>
+                    <li class="nc">@rw["nickname"].ToString().TrimEnd()<font color="#FF0000"></font></li>
+                    <li class="yl">@(CommonHelper.HideNumber(decimal.Parse(rw["totalmoney"].ToString()).ToString("n0"), 10, 17))</li>
                 </div>
             }
         </div>

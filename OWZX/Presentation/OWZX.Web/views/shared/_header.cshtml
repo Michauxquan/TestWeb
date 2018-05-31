@@ -46,7 +46,10 @@
 <script>
     var online = new Array();
     online[0] = 1;
+    var uid=@WorkContext.Uid;
     $(function() {
+        if(uid<=0)
+            return;
         $.post('/ucenter/getusermoney', {}, function(data) {
             var result = eval("(" + data + ")");
             $('.usertotalmoney').html(transStr(parseFloat(result.content.totalmoney).toFixed(0)));
@@ -59,18 +62,18 @@
                 $('.banktotalmoney').html(transStr(parseFloat(result.content.bankmoney).toFixed(0)));
             });
         } }, 8000);
-      
-        $("#jquery_jplayer_1").jPlayer({ 
+
+        $("#jquery_jplayer_1").jPlayer({
             swfPath: "/script",
-            ready: function () { 
-                $(this).jPlayer("setMedia", { 
-                    mp3: "/images/security.mp3" 
-                }); 
-            }, 
+            ready: function () {
+                $(this).jPlayer("setMedia", {
+                    mp3: "/images/security.mp3"
+                });
+            },
             supplied: "mp3",
             wmode: "window"
-        }); 
-    });  
+        });
+    });
 </script>
 @*<script src="http://webpresence.qq.com/getonline?Type=1&3503560500n   :"></script>*@
 <script type="text/javascript" src="@{@WorkContext.CSSCDN}/scripts/cookie.js"></script>

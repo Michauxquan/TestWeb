@@ -482,7 +482,7 @@ drop table #list
 
 SELECT ROW_NUMBER() over(order by a.setid ) id,a.[setid]
       ,a.[lotterytype]
-      ,a.[bttypeid]
+      ,a.[bttypeid],a.odds bzodds
       ,isnull(currodds,a.[odds]) [odds]
       ,ISNULL(prevodds,a.[odds])  prevodds
       ,a.[addtime]
@@ -541,7 +541,7 @@ select * from  #list where id>=1 and id<=17
 
 select * from  #list where id>=18 and id<=21
 
-select id,setid,lotterytype,bttypeid,odds,prevodds,item,type,
+select id,setid,lotterytype,bttypeid,bzodds,odds,prevodds,item,type,
 replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(pitem,'第一名','1')
 ,'第二名','2')
 ,'第三名','3')
@@ -625,7 +625,7 @@ end catch
                                         GenerateInParam("@uid", SqlDbType.Int,4, mode.Uid),
                                         GenerateInParam("@selmodeid", SqlDbType.Int,4, mode.SelModeId),
                                         GenerateInParam("@fcnum", SqlDbType.VarChar,50, mode.StartExpect),
-                                        GenerateInParam("@maxbtnum", SqlDbType.Int,4, mode.MaxBettNum),
+                                        GenerateInParam("@maxbtnum", SqlDbType.VarChar,50, mode.MaxBettNum),
                                         GenerateInParam("@mingoldnum", SqlDbType.Int,4, mode.MinGold),
                                         GenerateInParam("@allmd", SqlDbType.VarChar,1000, mode.AllSelMode)
                                     };

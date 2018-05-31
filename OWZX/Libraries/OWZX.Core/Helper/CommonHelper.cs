@@ -605,6 +605,20 @@ namespace OWZX.Core
         }
 
         /// <summary>
+        /// 隐藏数字
+        /// </summary>
+        /// <param name="mobile"></param>
+        /// <param name="length">前面保留的长度</param>
+        /// <param name="totallength">大于多少 执行隐藏</param>
+        /// <returns></returns>
+        public static string HideNumber(string number,int length,int totallength)
+        {
+            if (number != null && number.Length > totallength)
+                return number.Substring(0, length) + "***" + number.Substring(number.Length - 3);
+            else
+                return number;
+        }
+        /// <summary>
         /// 隐藏手机
         /// </summary>
         public static string HideMobile(string mobile)

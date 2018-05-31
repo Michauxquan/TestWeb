@@ -51,11 +51,11 @@ namespace OWZX.Model
             set { startexpect = value; }
         }
 
-        private int maxbettnum;
+        private string maxbettnum;
         /// <summary>
-        /// 最大投注期数
+        /// 结束期号
         /// </summary>
-        public int MaxBettNum
+        public string MaxBettNum
         {
             get { return maxbettnum; }
             set { maxbettnum = value; }

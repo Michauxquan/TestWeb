@@ -201,8 +201,7 @@ $(document).ready(function () {
 
 function getprovbettinfo(type) {
     $.post('/nwlottery/getprovbettinfo', { 'type': $('#provbett_btn').data("id"), lotterynum: type == 0 ? expect : "" }, function (data) {
-        if ($('#provbett_btn').data("id") == "27")
-        {
+        if ($('#provbett_btn').data("id") == "27") {
             console.log(data);
         }
         var dt = JSON.parse(data);
@@ -253,12 +252,10 @@ function usefenpei() {
     var totalPressScore = 0;
     var data = PRESSNUM.split(",");
     var datalength = data.length;
-    
-    if (lotterytype == 27)
-    {
+
+    if (lotterytype == 27) {
         datalength = 171;
-    } else if (lotterytype == 28)
-    {
+    } else if (lotterytype == 28) {
         datalength = 22;
     } else if (lotterytype == 29) {
         datalength = 10;
@@ -280,14 +277,14 @@ function usefenpei() {
             $('#betsLeft').val('');
             alert('分配分必须正整数!');
             return;
-        } 
+        }
         var checked_num = 0;
         for (var i = 0; i < datalength; i++) {
-        
+
             if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
-                  checked_num = checked_num + 1;
+                checked_num = checked_num + 1;
             }
-            
+
         }
         if (Input_Score < checked_num) {
             alert('分配分不够!');
@@ -302,34 +299,55 @@ function usefenpei() {
 
     for (var i = 0; i < datalength; i++) {
         if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
-            var vval = $("[id='txt_" + getindname(i) + "']").val();
+            //var vval = $("[id='txt_" + getindname(i) + "']").val();
             perScore = 0;
-            if (vval != null && vval != "") {
-                vval = vval.replace(/,/g, '');
-                if (!isNaN(parseInt(vval))) {
-                    totalScore += parseInt(vval);
-                }
+            //if (vval != null && vval != "") {
+            //    vval = vval.replace(/,/g, '');
+            //    if (!isNaN(parseInt(vval))) {
+            totalScore += 1;// parseInt(vval);
+            //}
 
-            }
+            //}
         }
     }
-    console.log(totalScore);
+    var selnum = 1;
     for (var i = 0; i < datalength; i++) {
         if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
-            var vval = $("[id='txt_" + getindname(i) + "']").val();
+            //var vval = $("[id='txt_" + getindname(i) + "']").val();
             perScore = 0;
-            if (vval != null && vval != "") {
-                vval = vval.replace(/,/g, '');
-                if (!isNaN(parseInt(vval))) {
-                    if (Input_Score <= maxnum) {
-                        perScore = Input_Score * parseInt(vval) / totalScore;
-                    } else {
-                        perScore = mymoney * parseInt(vval) / totalScore;
-                    }
-                    $("[id='txt_" + getindname(i) + "']").val(parseInt(perScore));
-                    totalPressScore += parseInt(perScore);
+            //if (vval != null && vval != "") {
+            //    vval = vval.replace(/,/g, '');
+            //    if (!isNaN(parseInt(vval))) {
+         
+            if (Input_Score <= maxnum) {
+                //perScore = Input_Score * parseInt(vval) / totalScore;
+
+                perScore = parseInt(Input_Score / totalScore);
+
+                if (selnum == totalScore - 1) {
+                    console.log(selnum);
+                    perScore = Input_Score - (perScore * (totalScore - 1));
+                    console.log(perScore);
+                } else {
+                    perScore = Input_Score / totalScore;
                 }
             }
+            else {
+                //perScore = mymoney * parseInt(vval) / totalScore;
+                perScore = parseInt(mymoney / totalScore);
+                if (selnum == totalScore - 1) {
+                    perScore = mymoney - (perScore * (totalScore - 1));
+                } else {
+                    perScore = mymoney / totalScore;
+                }
+            }
+
+            $("[id='txt_" + getindname(i) + "']").val(parseInt(perScore));
+            totalPressScore += parseInt(perScore);
+
+            selnum += 1;
+            //    }
+            //}
         }
     }
     $("#totalvalue").html(totalPressScore);
@@ -350,7 +368,7 @@ function getindname(i) {
     } else if (lotterytype == 13) {
         return modelhc[0][i];
     } else if (lotterytype == 27) {
-        return 358+i;
+        return 358 + i;
     } else if (lotterytype == 28) {
         return modepk22[0][i];
     } else if (lotterytype == 29) {
@@ -383,19 +401,36 @@ function useSuoha() {
     }
     for (var i = 0; i < datalength; i++) {
         if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
-            totalScore += parseInt($("[id='txt_" + getindname(i) + "']").val());
+            totalScore += 1;// parseInt($("[id='txt_" + getindname(i) + "']").val());
         }
     }
+    var selnum = 1;
     for (var i = 0; i < datalength; i++) {
         if ($("[id='txt_" + getindname(i) + "']").parent().prev("td").children("input").prop("checked")) {
+
             if (mymoney <= maxnum) {
-                perScore = mymoney * parseInt($("[id='txt_" + getindname(i) + "']").val()) / totalScore;
+                //perScore = mymoney * parseInt($("[id='txt_" + getindname(i) + "']").val()) / totalScore;
+                perScore = parseInt(mymoney / totalScore);
+                if (selnum == totalScore - 1) {
+                    perScore = mymoney - (perScore * (totalScore - 1));
+                } else {
+                    perScore = mymoney / totalScore;
+                }
             }
             else {
-                perScore = maxnum * parseInt($("[id='txt_" + getindname(i) + "']").val()) / totalScore;
+                //perScore = maxnum * parseInt($("[id='txt_" + getindname(i) + "']").val()) / totalScore;
+                perScore = parseInt(maxnum / totalScore);
+                if (selnum == totalScore - 1) {
+                    perScore = maxnum - (perScore * (totalScore - 1));
+                } else {
+                    perScore = maxnum / totalScore;
+                }
             }
+
             $("[id='txt_" + getindname(i) + "']").val(parseInt(perScore));
             totalPressScore += parseInt(perScore);
+
+            selnum += 1;
         }
     }
     $("#totalvalue").html(totalPressScore);
@@ -439,7 +474,7 @@ function setValue(num) {
             var id_name = "#txt_" + modepk22[num][i];
             if (!$(id_name).attr("readonly")) {
 
-                $(id_name).val(pk22[id_num-6]);
+                $(id_name).val(pk22[id_num - 6]);
                 $(id_name).parent().prev("td").children("input").prop("checked", true);
             }
         }
@@ -788,17 +823,15 @@ function datapost() {
     $("input[name='SMONEY']").each(function (i) {
         if (!$(this).attr("readOnly")) {
             var ipval = $(this).val();
-            
+
             ipval = $.trim(ipval).replace(/,/gi, "");//去掉数字分割符
             if (ipval != "0" && ipval.trim() != "") {
                 if (lotterytype != 27) {
                     var src;
-                    if (lotterytype == 30)
-                    {
+                    if (lotterytype == 30) {
                         src = $(this).parent().parent().find("td").eq(0).find("span").data("type");
                     }
-                    else
-                    {
+                    else {
                         src = $(this).parent().parent().find("td").eq(0).find("span").text();
                     }
                     var num = src;
@@ -811,24 +844,23 @@ function datapost() {
                         arrbettnum += (num.length == 1 ? ("0" + num) : num) + ";";
                     }
                 }
-                else
-                {
+                else {
                     var oddsid = $(this).data("id");
                     arrbettnew += (oddsid) + ":" + ipval + ";";
                     arrbettnum += (oddsid) + ";";
                 }
                 //else {
                 //    var type = $(this).data("type");
-                    //var src = $(this).data("item");
-                    //var num = src;
-                    //if (isNaN(num)) {
-                    //    arrbettnew += type+"$"+(num) + ":" + ipval + ";";
-                    //    arrbettnum += type + "$" + (num) + ";";
+                //var src = $(this).data("item");
+                //var num = src;
+                //if (isNaN(num)) {
+                //    arrbettnew += type+"$"+(num) + ":" + ipval + ";";
+                //    arrbettnum += type + "$" + (num) + ";";
 
-                    //} else {
-                    //    arrbettnew += type + "$" + (num.length == 1 ? ("0" + num) : num) + ":" + ipval + ";";
-                    //    arrbettnum += type + "$" + (num.length == 1 ? ("0" + num) : num) + ";";
-                    //}
+                //} else {
+                //    arrbettnew += type + "$" + (num.length == 1 ? ("0" + num) : num) + ":" + ipval + ";";
+                //    arrbettnum += type + "$" + (num.length == 1 ? ("0" + num) : num) + ";";
+                //}
                 //}
             }
         }

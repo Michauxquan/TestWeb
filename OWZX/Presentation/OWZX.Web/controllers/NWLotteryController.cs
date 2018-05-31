@@ -845,7 +845,7 @@ namespace OWZX.Web.controllers
                 LotteryId = WebHelper.GetFormInt("type"),
                 SelModeId = WebHelper.GetFormInt("startmd"),
                 StartExpect = WebHelper.GetFormString("nowfcnum"),
-                MaxBettNum = WebHelper.GetFormInt("maxbetnum"),
+                MaxBettNum = WebHelper.GetFormString("maxbetnum"),
                 MinGold = WebHelper.GetFormInt("mingold"),
                 AllSelMode = WebHelper.GetFormString("allselmd")
             };

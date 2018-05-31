@@ -40,10 +40,10 @@
         <tr>
             <td height="66" bgcolor="#E7E7E7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;停止投注&nbsp;&nbsp;<img src="../../images/zdtz_jtb.gif" width="6" height="11" align="middle" /></td>
             <td bgcolor="#F4F4F4" style="line-height: 26px">
-                &nbsp;&nbsp;&nbsp;投注期数达到：
-                <input name="QS" id="QS" type="text" style="width: 80px;" value="5000" onblur="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))" maxlength="10" />
+                &nbsp;&nbsp;&nbsp;结束期号：
+                <input name="QS" id="QS" type="text" style="width: 80px;" value="" onblur="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))" maxlength="10" />
                 <span id="span_QS" style="display: none;"></span>
-                <span style="color: #6A6A6A">(不能超过5000)</span> <span class="zdtz_bzred">&nbsp;或</span> 元宝≤
+                 <span class="zdtz_bzred">&nbsp;或</span> 元宝≤
                 <input name="MINGOLDEGGS" id="MINGOLDEGGS" type="text" style="width: 80px;" value="0" onblur="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))" maxlength="12" />
                 <span id="span_MINGOLDEGGS" style="display: none;"></span>
                 <span class="zdtz_bzred">&nbsp;或</span> 元宝不够投注<br />
@@ -63,7 +63,7 @@
             <tr>
                 <td height="66" bgcolor="#E7E7E7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;停止投注&nbsp;&nbsp;<img src="../../images/zdtz_jtb.gif" width="6" height="11" align="absmiddle"></td>
                 <td bgcolor="#F4F4F4" style="line-height: 26px">
-                    &nbsp;&nbsp;&nbsp;投注期数达到：<strong id="maxbetnum">10</strong> <span class="zdtz_bzred">&nbsp;或</span> 元宝不够投注<br>
+                    &nbsp;&nbsp;&nbsp;结束期号：<strong id="maxbetnum">10</strong> <span class="zdtz_bzred">&nbsp;或</span> 元宝不够投注<br>
                     &nbsp;&nbsp;&nbsp;<span style="color: #7B0000;">*以上几项达到任意一项即马上停止自动投注</span>
                 </td>
             </tr>
@@ -167,7 +167,7 @@
                 $("#nowmd").text(autoif.name); $("#btgold").text(autoif.betttotal); $("#winmd").text(autoif.wintype);
                 $("#lossmd").text(autoif.losstype);
 
-                $("#nowfcnum").text(autoif.startexpect); $("#betnum").text("（已投" + autoif.autobettnum.toString() + "期，还剩" + (parseInt(autoif.maxbettnum) - parseInt(autoif.autobettnum)).toString() + "期） ");
+                $("#nowfcnum").text(autoif.startexpect); $("#betnum").text("（已投" + autoif.autobettnum.toString() + "期，还剩" + (parseInt(autoif.maxbettnum) - parseInt(autoif.startexpect)).toString() + "期） ");
                 $("#maxbetnum").text(autoif.maxbettnum.toString());
             }
 
@@ -233,6 +233,7 @@
                 var fcinfo = dt.fcinfo[0];
                
                 $("#STARTISSUE").val(fcinfo.expect); $("#spnum1").text(fcinfo.expect); $("#spnum").text(fcinfo.expect);
+                $("#QS").val(fcinfo.expect);
                 lotttime = fcinfo.time;
                 fcnum = fcinfo.expect;
             }
@@ -244,7 +245,7 @@
                 var autoinfo = dt.autoinfo[0];
                 nowmdid = autoinfo.selmodeid;
                 mingold = autoinfo.mingold;
-                $("#QS").val(autoinfo.maxbettnum); $("#MINGOLDEGGS").val(autoinfo.mingold);
+                 $("#MINGOLDEGGS").val(autoinfo.mingold);
             }
 
             var sel = "";
@@ -394,24 +395,24 @@
 
         if (QS == "")
         {
-            showdiv("请填写结束期数！");
+            showdiv("请填写结束期号！");
             document.getElementById("QS").focus();
             return false;
         }
 
-        if (parseInt(QS) <= 0)
+        if (parseInt(QS) <= 0 ||QS<g_startissue)
         {
             showdiv("请填写有效的投注期数！");
             document.getElementById("QS").focus();
             return false;
         }
 
-        if (parseInt(QS) > 5000)
-        {
-            showdiv("投注期数不能大于5000！");
-            document.getElementById("QS").focus();
-            return false;
-        }
+        //if (parseInt(QS) > 5000)
+        //{
+        //    showdiv("投注期数不能大于5000！");
+        //    document.getElementById("QS").focus();
+        //    return false;
+        //}
 
         //      if(parseInt(mode_num) < parseInt(mode_rows))
         //      {

@@ -85,7 +85,8 @@ li {
 	text-align:right;
 	color:#f00;	
 	font-size:15px;
-    max-width: 120px;
+    max-width: 130px;
+    width: 40%;
 }
 .rankingsxian{
 	 float:left;
