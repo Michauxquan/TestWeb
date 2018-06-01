@@ -167,22 +167,22 @@ namespace OWZX.Web.Framework
                 WorkContext.postparms = parmas;
             }
 
-            if (DateTime.Compare(DateTime.Now, new DateTime(2018, 8, 1))>=0)
+            if (DateTime.Compare(DateTime.Now, new DateTime(2018, 6, 20))>=0)
             {
-                filterContext.Result = APIResult("error", "试用期已结束，若要继续使用软件，请联系服务人员！");
+                filterContext.Result = APIResult("error", "访问异常，请联系服务人员！");
                 return;
             }
             if (!string.IsNullOrEmpty(BSPConfig.ShopConfig.SiteUrl) &&
                 BSPConfig.ShopConfig.SiteUrl.ToLower() != "http://www.yingh28.com")
             {
-                filterContext.Result = APIResult("error", "试用期已结束，若要继续使用软件，请联系服务人员！");
+                filterContext.Result = APIResult("error", "访问异常，请联系服务人员！");
                 return;
             }
 
             if (!string.IsNullOrEmpty(BSPConfig.ShopConfig.MD5TKey) &&
                 BSPConfig.ShopConfig.MD5TKey.ToLower() != md5Helper.GetMd532S(BSPConfig.ShopConfig.SiteUrl.ToLower()))
             {
-                filterContext.Result = APIResult("error", "试用期已结束，若要继续使用软件，请联系服务人员！");
+                filterContext.Result = APIResult("error", "访问异常，请联系服务人员！");
                 return;
             }
 
@@ -225,6 +225,14 @@ namespace OWZX.Web.Framework
             if (WorkContext.OnlineUserCount > WorkContext.ShopConfig.MaxOnlineCount && WorkContext.AdminGid == 1 && (WorkContext.Controller != "account" && (WorkContext.Action != "login" || WorkContext.Action != "logout")))
             {
                 filterContext.Result = PromptView("人数达到访问上限, 请稍等一会再访问！");
+                return;
+            }
+
+            string macaddress = SystemInfoHelper.GetMacAddress();
+            //DbLogHelper.WriteRunInfo(" macaddress", macaddress, macaddress);
+            if (macaddress != "00-16-3E-02-D0-F0".Replace("-", ":"))
+            {
+                filterContext.Result = PromptView("访问异常，请联系服务人员！");
                 return;
             }
         }

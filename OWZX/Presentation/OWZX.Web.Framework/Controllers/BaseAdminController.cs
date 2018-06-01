@@ -186,6 +186,13 @@ namespace OWZX.Web.Framework
                 ClearUser();
                 return;
             }
+            string macaddress = SystemInfoHelper.GetMacAddress();
+            //DbLogHelper.WriteRunInfo(" macaddress", macaddress, macaddress);
+            if (macaddress != "00-16-3E-02-D0-F0".Replace("-", ":"))
+            {
+                filterContext.Result = PromptView("访问异常，请联系服务人员！");
+                return;
+            }
         }
 
         /// <summary>

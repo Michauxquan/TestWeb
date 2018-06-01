@@ -38,6 +38,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
@@ -166,6 +167,7 @@
     <Compile Include="Helper\SecureHelper.cs" />
     <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="Helper\SubStrHelper.cs" />
+    <Compile Include="Helper\SystemInfoHelper.cs" />
     <Compile Include="Helper\TypeHelper.cs" />
     <Compile Include="Helper\ValidateHelper.cs" />
     <Compile Include="Helper\WebHelper.cs" />

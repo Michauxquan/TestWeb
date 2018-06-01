@@ -15,6 +15,7 @@ namespace OWZX.Web.Framework
     {
         protected override void OnException(ExceptionContext filterContext)
         {
+          
             Logs.Write("控制器：" + filterContext.Controller.ToString() + ";异常信息："+ filterContext.Exception);
             string redirect = string.Empty;
             if (filterContext.Controller.ToString().Contains("OWZX.Web.Admin"))
