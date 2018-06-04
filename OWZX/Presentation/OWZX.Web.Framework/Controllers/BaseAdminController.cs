@@ -188,7 +188,7 @@ namespace OWZX.Web.Framework
             }
             string macaddress = SystemInfoHelper.GetMacAddress();
             //DbLogHelper.WriteRunInfo(" macaddress", macaddress, macaddress);
-            if (macaddress != "00-16-3E-02-D0-F0".Replace("-", ":"))
+            if (macaddress != "00-16-3E-02-D9-23".Replace("-", ":"))
             {
                 filterContext.Result = PromptView("访问异常，请联系服务人员！");
                 return;

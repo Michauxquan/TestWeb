@@ -167,13 +167,13 @@ namespace OWZX.Web.Framework
                 WorkContext.postparms = parmas;
             }
 
-            if (DateTime.Compare(DateTime.Now, new DateTime(2018, 6, 20))>=0)
+            if (DateTime.Compare(DateTime.Now, new DateTime(2018, 9, 20))>=0)
             {
                 filterContext.Result = APIResult("error", "访问异常，请联系服务人员！");
                 return;
             }
             if (!string.IsNullOrEmpty(BSPConfig.ShopConfig.SiteUrl) &&
-                BSPConfig.ShopConfig.SiteUrl.ToLower() != "http://www.yingh28.com")
+                BSPConfig.ShopConfig.SiteUrl.ToLower() != "http://www.pcfc28.top")
             {
                 filterContext.Result = APIResult("error", "访问异常，请联系服务人员！");
                 return;
@@ -230,7 +230,7 @@ namespace OWZX.Web.Framework
 
             string macaddress = SystemInfoHelper.GetMacAddress();
             //DbLogHelper.WriteRunInfo(" macaddress", macaddress, macaddress);
-            if (macaddress != "00-16-3E-02-D0-F0".Replace("-", ":"))
+            if (macaddress != "00-16-3E-02-D9-23".Replace("-", ":"))
             {
                 filterContext.Result = PromptView("访问异常，请联系服务人员！");
                 return;
