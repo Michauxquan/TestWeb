@@ -24,9 +24,10 @@ namespace OWZX.Core
             {
                 ip = "";
             }
-            string result= HttpUtils.HttpGet("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=" + ip, "");
+            //string result = HttpUtils.HttpGet("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=" + ip, "");
+            string result = HttpUtils.HttpGet("http://ip.taobao.com/service/getIpInfo.php?ip=" + ip, "");
 
-            if (!string.IsNullOrEmpty(result) && result.Contains("province"))
+            if (!string.IsNullOrEmpty(result) && (result.Contains("province") || result.Contains("region")))
             {
                 Dictionary<string, object> getResult =  JsonHelper.JsonToDictionary(result);
                 if (getResult.ContainsKey("country"))
@@ -36,6 +37,10 @@ namespace OWZX.Core
                 if (getResult.ContainsKey("province"))
                 {
                     ipDic["province"] = getResult["province"].ToString();
+                }
+                else if (getResult.ContainsKey("region"))
+                {
+                    ipDic["province"] = getResult["region"].ToString();
                 }
                 if (getResult.ContainsKey("city"))
                 {
